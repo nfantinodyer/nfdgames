@@ -1,0 +1,251 @@
+```html
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privacy Policy — OpenDrop</title>
+  <meta name="description" content="Privacy Policy for OpenDrop" />
+  <style>
+    :root{
+      --bg:#0b0b12;
+      --card:#101024;
+      --text:#eef0ff;
+      --muted:#b7bbd6;
+      --link:#9b87ff;
+      --border:rgba(255,255,255,.10);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1000px 600px at 20% -10%, rgba(120,78,255,.25), transparent 60%),
+                  radial-gradient(900px 700px at 90% 10%, rgba(155,135,255,.18), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.55;
+    }
+    a{color:var(--link); text-decoration:none}
+    a:hover{text-decoration:underline}
+    header{
+      max-width: 920px;
+      margin: 40px auto 18px;
+      padding: 0 18px;
+    }
+    .badge{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      padding: 8px 12px;
+      border:1px solid var(--border);
+      background: rgba(155,135,255,.12);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    h1{
+      margin: 14px 0 6px;
+      font-size: clamp(28px, 4vw, 40px);
+      letter-spacing: -.02em;
+    }
+    .sub{
+      margin:0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+    main{
+      max-width: 920px;
+      margin: 0 auto 56px;
+      padding: 0 18px;
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: 0 16px 50px rgba(0,0,0,.35);
+    }
+    h2{
+      margin: 22px 0 10px;
+      font-size: 18px;
+      letter-spacing: -.01em;
+    }
+    h2:first-child{margin-top:0}
+    p, li{color:var(--text)}
+    .muted{color:var(--muted)}
+    ol{
+      margin: 0;
+      padding-left: 20px;
+    }
+    ol > li{
+      margin: 14px 0;
+    }
+    ul{
+      margin: 10px 0 0;
+      padding-left: 18px;
+    }
+    footer{
+      max-width: 920px;
+      margin: 18px auto 36px;
+      padding: 0 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .contact{
+      display:inline-block;
+      margin-top:8px;
+      padding: 10px 12px;
+      border:1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(0,0,0,.18);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="badge" aria-label="Effective date">
+      <span>Effective Date</span>
+      <strong>December 21, 2025</strong>
+    </div>
+    <h1>Privacy Policy for OpenDrop</h1>
+    <p class="sub">
+      This Privacy Policy explains how OpenDrop collects, uses, and safeguards information when you use the OpenDrop
+      mobile application and associated desktop server software.
+    </p>
+  </header>
+
+  <main>
+    <section class="card">
+      <ol>
+        <li>
+          <h2>Introduction</h2>
+          <p>
+            OpenDrop ("we," "us," or "our") is committed to protecting your privacy. This Privacy Policy explains how
+            our self-hosted, distributed file access system collects, uses, and safeguards your information when you use
+            our mobile application ("App") and associated desktop server software.
+          </p>
+        </li>
+
+        <li>
+          <h2>Information We Collect</h2>
+          <ul>
+            <li>
+              <strong>Google Account Information:</strong>
+              When you choose to sign in with Google to use our Cloud Sync features, we collect your email address and
+              Google User ID. This is used exclusively to authenticate you and securely link your mobile device to your
+              personal desktop server.
+            </li>
+            <li>
+              <strong>Connection Data:</strong>
+              To facilitate the connection between your devices, we temporarily store your Tunnel URL and a hashed
+              version of your connection credentials in our secure Key-Value store.
+            </li>
+            <li>
+              <strong>Purchase Information:</strong>
+              If you subscribe to OpenDrop Pro, our payment processors (RevenueCat, Google Play, Stripe) handle your
+              financial transaction. We do not store your credit card details. We only receive a confirmation of your
+              subscription status and expiration date linked to your User ID.
+            </li>
+            <li>
+              <strong>File Data (End-to-End):</strong>
+              OpenDrop facilitates the transfer of files between your own devices. We do not store your files on our
+              cloud servers. Your files are transferred directly between your desktop and mobile device via a secure
+              tunnel.
+            </li>
+          </ul>
+        </li>
+
+        <li>
+          <h2>How We Use Your Information</h2>
+          <p>We use the collected information for the following specific purposes:</p>
+          <ul>
+            <li><strong>Device Pairing:</strong> To discover and connect your devices automatically without manual IP entry.</li>
+            <li><strong>Authentication:</strong> To ensure that only you can access the files on your personal desktop server.</li>
+            <li>
+              <strong>Subscription Management:</strong>
+              To verify your "Pro" status across platforms (e.g., unlocking features on Desktop after purchasing on Android).
+            </li>
+          </ul>
+        </li>
+
+        <li>
+          <h2>Data Sharing and Third-Party Services</h2>
+          <p>
+            We utilize trusted third-party services to operate our infrastructure. These partners have access to limited
+            data necessary to perform their functions:
+          </p>
+          <ul>
+            <li>
+              <strong>Cloudflare:</strong>
+              We use Cloudflare Tunnels and Workers to securely route traffic between your devices. They may process
+              your IP address and connection metadata to provide security and DDoS protection.
+            </li>
+            <li>
+              <strong>RevenueCat:</strong>
+              Used to manage subscription status and sync purchase history between your Android device and Desktop.
+            </li>
+            <li><strong>Google Firebase / OAuth:</strong> Used for secure user authentication.</li>
+          </ul>
+        </li>
+
+        <li>
+          <h2>Data Security</h2>
+          <ul>
+            <li><strong>Secure Tunnels:</strong> All file transfers occur over an encrypted HTTPS connection using Cloudflare Tunnels.</li>
+            <li>
+              <strong>Access Control:</strong>
+              Access to your desktop server is protected by a generated "Shared Secret" (API Key) and/or Google
+              Authentication tokens. You are responsible for keeping your Shared Secret confidential.
+            </li>
+          </ul>
+        </li>
+
+        <li>
+          <h2>Data Retention</h2>
+          <ul>
+            <li>
+              <strong>Ephemeral Connection Data:</strong>
+              The connection details (Tunnel URL) stored in our cloud are temporary and are set to expire automatically
+              (e.g., every 20 minutes) when not in use.
+            </li>
+            <li><strong>User Files:</strong> Your files remain on your local devices. We have no access to them.</li>
+          </ul>
+        </li>
+
+        <li>
+          <h2>Children's Privacy</h2>
+          <p>
+            Our Service is not directed to anyone under the age of 13. We do not knowingly collect personally
+            identifiable information from children under 13.
+          </p>
+        </li>
+
+        <li>
+          <h2>Changes to This Privacy Policy</h2>
+          <p>
+            We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new
+            Privacy Policy on this page.
+          </p>
+        </li>
+
+        <li>
+          <h2>Contact Us</h2>
+          <p>If you have any questions about this Privacy Policy, please contact us at:</p>
+          <div class="contact">
+            <a href="mailto:spot4nickgaming@gmail.com">spot4nickgaming@gmail.com</a>
+          </div>
+        </li>
+      </ol>
+
+      <p class="muted" style="margin-top:18px;">
+        Last updated: December 21, 2025
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <span class="muted">© OpenDrop</span>
+  </footer>
+</body>
+</html>
+```
