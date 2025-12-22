@@ -165,6 +165,16 @@
             animation: fadeInUp 0.6s ease-out;
         }
 
+        .hero-badge a {
+            color: inherit;
+            text-decoration: none;
+        }
+        .hero-badge a:hover {
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+
         .hero-badge::before {
             content: '';
             width: 6px;
@@ -188,10 +198,21 @@
         }
 
         .hero h1 .gradient {
+            display: inline-block;
             background: linear-gradient(135deg, var(--accent-glow), #c084fc, var(--accent));
+            background-size: 100%;
+            background-repeat: repeat;
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             background-clip: text;
+            color: transparent; /* Firefox + general fallback */
+            -webkit-text-fill-color: transparent; /* Chrome/Safari */
+        }
+        @supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+            .hero h1 .gradient {
+                background: none;
+                color: var(--accent-glow);
+                -webkit-text-fill-color: initial;
+            }
         }
 
         .hero-subtitle {
@@ -721,12 +742,12 @@
     </nav>
 
     <section class="hero">
-        <div class="hero-badge">Version 0.5.3 • Now Available</div>
+        <div class="hero-badge" id="releaseBadge"><a id="releaseBadgeLink" href="https://github.com/nfantinodyer/nfdgames/releases/latest" target="_blank" rel="noopener noreferrer"><span id="releaseBadgeText">Version 0.5.3 • Now Available</span></a></div>
         <h1>Wireless file sharing,<br><span class="gradient">simplified.</span></h1>
         <p class="hero-subtitle">Transfer files between your phone and computer instantly. No cables, no cloud limits, no hassle.</p>
         
         <div class="hero-actions">
-            <a href="#download" class="btn btn-primary">
+            <a href="https://github.com/nfantinodyer/nfdgames/releases/latest" class="btn btn-primary" id="heroDownloadBtn" data-fallback-href="https://github.com/nfantinodyer/nfdgames/releases/latest">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
@@ -827,8 +848,8 @@
                         </svg>
                     </div>
                     <h3>Windows Server</h3>
-                    <div class="version">v0.5.3 • 64-bit</div>
-                    <a href="OpenDropServer.exe" class="btn btn-primary" download>
+                    <div class="version" id="windowsVersionText">v0.5.3 • 64-bit</div>
+                    <a href="https://github.com/nfantinodyer/nfdgames/releases/latest" class="btn btn-primary" id="windowsDownloadBtn" data-fallback-href="https://github.com/nfantinodyer/nfdgames/releases/latest">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                         </svg>
@@ -929,7 +950,7 @@
 
         <div class="footer-bottom">
             <p>&copy; 2025 NFDGames. All rights reserved.</p>
-            <a href="mailto:support@opendrop.app">support@opendrop.app</a>
+            <a href="mailto:Spot4nickgaming@gmail.com">Spot4nickgaming@gmail.com</a>
         </div>
     </footer>
 
@@ -957,6 +978,167 @@
                 nav.style.background = 'rgba(13, 13, 26, 0.8)';
             }
         });
-    </script>
+    
+
+        // -------- Latest GitHub release (badge + download links) --------
+        const GITHUB_OWNER = 'nfantinodyer';
+        const GITHUB_REPO = 'nfdgames';
+
+        const RELEASES_PAGE = `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases`;
+        const LATEST_RELEASE_PAGE = `${RELEASES_PAGE}/latest`;
+        const RELEASES_API = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/releases?per_page=100`;
+
+        const releaseBadgeText = document.getElementById('releaseBadgeText');
+        const releaseBadgeLink = document.getElementById('releaseBadgeLink');
+        const windowsVersionText = document.getElementById('windowsVersionText');
+
+        const heroDownloadBtn = document.getElementById('heroDownloadBtn');
+        const windowsDownloadBtn = document.getElementById('windowsDownloadBtn');
+
+        function parseSemver(tag) {
+            if (!tag) return null;
+            const cleaned = String(tag).trim().replace(/^v/i, '');
+            // Match "1.2.3" anywhere (supports tags like "release-1.2.3" or "v1.2.3-beta")
+            const m = cleaned.match(/(\d+)\.(\d+)\.(\d+)/);
+            if (!m) return null;
+            return { major: Number(m[1]), minor: Number(m[2]), patch: Number(m[3]) };
+        }
+
+        function compareSemver(a, b) {
+            if (a.major !== b.major) return a.major - b.major;
+            if (a.minor !== b.minor) return a.minor - b.minor;
+            return a.patch - b.patch;
+        }
+
+        function pickBestRelease(releases) {
+            // Prefer the highest semantic version among non-draft, non-prerelease releases.
+            const stable = (releases || []).filter(r => r && !r.draft && !r.prerelease);
+            const candidates = stable.length ? stable : (releases || []).filter(r => r && !r.draft);
+
+            let best = null;
+            for (const r of candidates) {
+                const sv = parseSemver(r.tag_name);
+                if (!sv) continue;
+
+                if (!best) {
+                    best = { release: r, semver: sv };
+                    continue;
+                }
+
+                const cmp = compareSemver(sv, best.semver);
+                if (cmp > 0) best = { release: r, semver: sv };
+                if (cmp === 0) {
+                    // Tie-breaker: most recently published
+                    const a = new Date(r.published_at || 0).getTime();
+                    const b = new Date(best.release.published_at || 0).getTime();
+                    if (a > b) best = { release: r, semver: sv };
+                }
+            }
+
+            // If none parse as semver, fall back to first stable release (GitHub sorts newest first)
+            if (!best) return (stable[0] || candidates[0] || null);
+            return best.release;
+        }
+
+        function pickWindowsAsset(assets) {
+            if (!Array.isArray(assets)) return null;
+
+            const isExe = (a) => a && typeof a.name === 'string' && a.name.toLowerCase().endsWith('.exe');
+            const exes = assets.filter(isExe);
+
+            if (!exes.length) return null;
+
+            // Prefer an exe that looks like the Windows server app
+            const preferred = exes.find(a => /opendrop/i.test(a.name) && /server|setup|installer|windows/i.test(a.name));
+            if (preferred) return preferred;
+
+            const opendropAny = exes.find(a => /opendrop/i.test(a.name));
+            return opendropAny || exes[0];
+        }
+
+        function setHrefSafe(el, href) {
+            if (!el) return;
+            el.href = href || el.dataset.fallbackHref || LATEST_RELEASE_PAGE;
+        }
+
+        function setTextSafe(el, text) {
+            if (!el) return;
+            el.textContent = text;
+        }
+
+        function updateReleaseUI(release) {
+            if (!release) return;
+
+            const tag = release.tag_name || '';
+            const cleaned = String(tag).trim().replace(/^v/i, '');
+            const versionLabel = cleaned ? `Version ${cleaned} • Now Available` : 'Now Available';
+
+            setTextSafe(releaseBadgeText, versionLabel);
+
+            if (releaseBadgeLink) {
+                releaseBadgeLink.href = release.html_url || LATEST_RELEASE_PAGE;
+            }
+
+            if (windowsVersionText) {
+                const display = cleaned ? `v${cleaned} • 64-bit` : '64-bit';
+                setTextSafe(windowsVersionText, display);
+            }
+
+            const asset = pickWindowsAsset(release.assets);
+            const downloadUrl = asset?.browser_download_url || (release.html_url || LATEST_RELEASE_PAGE);
+
+            setHrefSafe(heroDownloadBtn, downloadUrl);
+            setHrefSafe(windowsDownloadBtn, downloadUrl);
+        }
+
+        async function fetchLatestRelease() {
+            // Cache to reduce GitHub API hits (rate limited).
+            const CACHE_KEY = 'opendrop_latest_release_v1';
+            const CACHE_TTL_MS = 6 * 60 * 60 * 1000; // 6 hours
+
+            try {
+                const cachedRaw = localStorage.getItem(CACHE_KEY);
+                if (cachedRaw) {
+                    const cached = JSON.parse(cachedRaw);
+                    if (cached?.ts && (Date.now() - cached.ts) < CACHE_TTL_MS && cached?.release) {
+                        updateReleaseUI(cached.release);
+                        return;
+                    }
+                }
+            } catch (_) {
+                // Ignore cache errors
+            }
+
+            try {
+                const res = await fetch(RELEASES_API, {
+                    headers: {
+                        'Accept': 'application/vnd.github+json'
+                    }
+                });
+
+                if (!res.ok) {
+                    // Fallback: link to latest release page (already default)
+                    return;
+                }
+
+                const releases = await res.json();
+                const best = pickBestRelease(releases);
+                if (!best) return;
+
+                updateReleaseUI(best);
+
+                try {
+                    localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), release: best }));
+                } catch (_) {
+                    // Ignore cache errors
+                }
+            } catch (_) {
+                // Network / CORS / offline: keep defaults
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', fetchLatestRelease);
+
+</script>
 </body>
 </html>
