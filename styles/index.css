@@ -1,0 +1,167 @@
+/* ============================================
+   NFDGames - Index Page Styles
+   ============================================ */
+
+/* Index-specific background */
+.bg-gradient {
+    background: 
+        radial-gradient(ellipse 80% 60% at 50% -20%, rgba(124, 58, 237, 0.2), transparent),
+        radial-gradient(ellipse 60% 50% at 0% 50%, rgba(245, 158, 11, 0.05), transparent);
+}
+
+/* Projects Section */
+.projects {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-3xl) var(--space-xl) 8rem;
+}
+
+.projects .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+}
+
+/* Project Grid */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--space-xl);
+}
+
+/* Project Cards */
+.project-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    transition: all var(--transition-slow);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.project-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.card-image {
+    height: 220px;
+    background: var(--bg-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+}
+
+.card-image.opendrop-bg {
+    background: radial-gradient(circle at center, rgba(124, 58, 237, 0.2), var(--bg-dark));
+}
+
+.card-image.gunslinger-bg {
+    background: radial-gradient(circle at center, rgba(245, 158, 11, 0.15), var(--bg-dark));
+}
+
+.card-icon {
+    font-size: 4rem;
+    z-index: 1;
+}
+
+.card-content {
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.project-type {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent-glow);
+    margin-bottom: 0.75rem;
+}
+
+.project-type.game {
+    color: var(--accent-secondary);
+}
+
+.card-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: var(--space-md);
+}
+
+.card-content p {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-xl);
+    flex-grow: 1;
+}
+
+.card-actions {
+    display: flex;
+    gap: var(--space-md);
+}
+
+.card-link {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    transition: color var(--transition-fast);
+}
+
+.card-link:hover {
+    color: var(--accent-glow);
+}
+
+/* Social Links */
+.social-links {
+    display: flex;
+    gap: var(--space-lg);
+}
+
+.social-links a {
+    color: var(--text-secondary);
+    transition: color var(--transition-fast);
+}
+
+.social-links a:hover {
+    color: var(--text-primary);
+}
+
+/* Index-specific footer (centered, simpler) */
+.footer-simple {
+    text-align: center;
+}
+
+.footer-simple .footer-content {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-lg);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .projects {
+        padding: var(--space-2xl) var(--space-lg);
+    }
+
+    .projects .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
+}
