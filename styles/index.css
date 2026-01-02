@@ -69,12 +69,10 @@
 }
 
 .card-icon {
-    font-size: 4rem;
-    z-index: 1;
-    width: 24px;   /* Adjust this to match your text size */
-    height: 24px;  /* Keep it square */
-    vertical-align: middle; /* Helps align it with surrounding text */
+    width: 100%;
+    height: 100%;
     object-fit: contain;
+    display: block;
 }
 
 .card-content {
