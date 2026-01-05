@@ -108,5 +108,33 @@
 
     <!-- Scripts -->
     <script src="scripts/common.js"></script>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+      import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-analytics.js";
+    
+      const firebaseConfig = {
+        apiKey: "AIzaSyD1XfHr0OtAM4Zm62sPLW4Rjg__8HlLE0c",
+        authDomain: "opendrop-3c111.firebaseapp.com",
+        projectId: "opendrop-3c111",
+        storageBucket: "opendrop-3c111.firebasestorage.app",
+        messagingSenderId: "573883707762",
+        appId: "1:573883707762:web:e68643cce07c2cee3eadeb",
+        measurementId: "G-ENWJJ78E3Q"
+      };
+    
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+    
+      // OPTIONAL: Manually log a download if standard tracking misses it
+      // You can attach this function to your download buttons onclick event
+      window.trackDownload = (fileName) => {
+          logEvent(analytics, 'select_content', {
+            content_type: 'download',
+            item_id: fileName
+          });
+          console.log("Download tracked: " + fileName);
+      }
+    </script>
 </body>
 </html>
