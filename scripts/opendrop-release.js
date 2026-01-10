@@ -16,6 +16,7 @@ const OpenDropRelease = (function() {
         releasesPage: `https://github.com/${CONFIG.owner}/${CONFIG.repo}/releases`,
         latestRelease: `https://github.com/${CONFIG.owner}/${CONFIG.repo}/releases/latest`,
         api: `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/releases?per_page=100`,
+        playStore: 'https://play.google.com/store/apps/details?id=com.nfdgames.opendrop',
     };
 
     // DOM element IDs
@@ -23,9 +24,105 @@ const OpenDropRelease = (function() {
         badgeText: 'releaseBadgeText',
         badgeLink: 'releaseBadgeLink',
         versionText: 'windowsVersionText',
+        linuxVersionText: 'linuxVersionText',
         heroDownload: 'heroDownloadBtn',
+        heroDownloadText: 'heroDownloadText',
         windowsDownload: 'windowsDownloadBtn',
+        linuxDownload: 'linuxDownloadBtn',
     };
+
+    // Platform detection
+    const PLATFORMS = {
+        WINDOWS: 'windows',
+        MACOS: 'macos',
+        LINUX: 'linux',
+        IOS: 'ios',
+        ANDROID: 'android',
+        UNKNOWN: 'unknown',
+    };
+
+    /**
+     * Detect the user's operating system
+     * @returns {string} Platform identifier
+     */
+    function detectOS() {
+        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        const platform = navigator.platform || '';
+        
+        // Check for iOS first (before Mac check since iPad can report as Mac)
+        if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+            return PLATFORMS.IOS;
+        }
+        
+        // Check for Android
+        if (/android/i.test(userAgent)) {
+            return PLATFORMS.ANDROID;
+        }
+        
+        // Check for Windows
+        if (/Win/i.test(platform) || /Windows/i.test(userAgent)) {
+            return PLATFORMS.WINDOWS;
+        }
+        
+        // Check for macOS (after iOS check)
+        if (/Mac/i.test(platform) || /Macintosh/i.test(userAgent)) {
+            return PLATFORMS.MACOS;
+        }
+        
+        // Check for Linux
+        if (/Linux/i.test(platform) || /Linux/i.test(userAgent)) {
+            return PLATFORMS.LINUX;
+        }
+        
+        return PLATFORMS.UNKNOWN;
+    }
+
+    /**
+     * Get platform display info
+     * @param {string} platform - Platform identifier
+     * @returns {Object} Platform info with name and availability
+     */
+    function getPlatformInfo(platform) {
+        const info = {
+            [PLATFORMS.WINDOWS]: { 
+                name: 'Windows', 
+                available: true, 
+                extension: '.exe',
+                action: 'Download for Windows'
+            },
+            [PLATFORMS.LINUX]: { 
+                name: 'Linux', 
+                available: true, 
+                extension: '.AppImage',
+                action: 'Download for Linux'
+            },
+            [PLATFORMS.MACOS]: { 
+                name: 'macOS', 
+                available: false, 
+                extension: null,
+                action: 'macOS Coming Soon'
+            },
+            [PLATFORMS.IOS]: { 
+                name: 'iPhone', 
+                available: false, 
+                extension: null,
+                action: 'iPhone Coming Soon'
+            },
+            [PLATFORMS.ANDROID]: { 
+                name: 'Android', 
+                available: true, 
+                extension: null,
+                action: 'Get on Play Store'
+            },
+            [PLATFORMS.UNKNOWN]: { 
+                name: 'Desktop', 
+                available: true, 
+                extension: null,
+                action: 'Download'
+            },
+        };
+        return info[platform] || info[PLATFORMS.UNKNOWN];
+    }
 
     /**
      * Parse semantic version from a tag string
@@ -142,6 +239,36 @@ const OpenDropRelease = (function() {
     }
 
     /**
+     * Find the Linux AppImage asset from release assets
+     * @param {Array} assets - Release assets
+     * @returns {Object|null} Linux asset or null
+     */
+    function pickLinuxAsset(assets) {
+        if (!Array.isArray(assets) || assets.length === 0) {
+            return null;
+        }
+
+        const isAppImage = (a) => a && typeof a.name === 'string' && 
+                                  a.name.toLowerCase().endsWith('.appimage');
+        const appImages = assets.filter(isAppImage);
+
+        if (appImages.length === 0) return null;
+
+        // Prefer the OpenDrop AppImage
+        const preferred = appImages.find(a => 
+            /opendrop/i.test(a.name) && /x86_64/i.test(a.name)
+        );
+        if (preferred) return preferred;
+
+        // Try any OpenDrop AppImage
+        const opendropAny = appImages.find(a => /opendrop/i.test(a.name));
+        if (opendropAny) return opendropAny;
+
+        // Fallback to first AppImage
+        return appImages[0];
+    }
+
+    /**
      * Safely set href on an element
      * @param {HTMLElement} el - Target element
      * @param {string} href - URL to set
@@ -197,6 +324,47 @@ const OpenDropRelease = (function() {
     }
 
     /**
+     * Update hero button based on detected OS
+     * @param {Object} release - GitHub release object (optional)
+     */
+    function updateHeroForOS(release) {
+        const detectedOS = detectOS();
+        const platformInfo = getPlatformInfo(detectedOS);
+        
+        const heroBtn = document.getElementById(ELEMENTS.heroDownload);
+        const heroText = document.getElementById(ELEMENTS.heroDownloadText);
+        
+        if (!heroBtn || !heroText) return;
+
+        // Update button text
+        setTextSafe(heroText, platformInfo.action);
+
+        // Update button href based on platform
+        if (detectedOS === PLATFORMS.ANDROID) {
+            heroBtn.href = URLS.playStore;
+            heroBtn.target = '_blank';
+        } else if (detectedOS === PLATFORMS.MACOS || detectedOS === PLATFORMS.IOS) {
+            // For unavailable platforms, link to download section
+            heroBtn.href = '#download';
+            heroBtn.classList.remove('btn-primary');
+            heroBtn.classList.add('btn-secondary');
+        } else if (release) {
+            // For Windows/Linux, set appropriate download link
+            let asset = null;
+            if (detectedOS === PLATFORMS.LINUX) {
+                asset = pickLinuxAsset(release.assets);
+            } else {
+                asset = pickWindowsAsset(release.assets);
+            }
+            
+            const downloadUrl = asset?.browser_download_url || 
+                               release.html_url || 
+                               URLS.latestRelease;
+            heroBtn.href = downloadUrl;
+        }
+    }
+
+    /**
      * Update UI with release information
      * @param {Object} release - GitHub release object
      */
@@ -216,27 +384,45 @@ const OpenDropRelease = (function() {
             badgeLink.href = release.html_url || URLS.latestRelease;
         }
 
-        // Update version text
+        // Update Windows version text
         const versionText = document.getElementById(ELEMENTS.versionText);
         if (versionText) {
             const display = cleaned ? `v${cleaned} • 64-bit` : '64-bit';
             setTextSafe(versionText, display);
         }
 
-        // Update download buttons
-        const asset = pickWindowsAsset(release.assets);
-        const downloadUrl = asset?.browser_download_url || 
-                           release.html_url || 
-                           URLS.latestRelease;
+        // Update Linux version text
+        const linuxVersionText = document.getElementById(ELEMENTS.linuxVersionText);
+        if (linuxVersionText) {
+            const display = cleaned ? `v${cleaned} • x86_64` : 'x86_64';
+            setTextSafe(linuxVersionText, display);
+        }
 
-        setHrefSafe(document.getElementById(ELEMENTS.heroDownload), downloadUrl);
-        setHrefSafe(document.getElementById(ELEMENTS.windowsDownload), downloadUrl);
+        // Update Windows download button
+        const windowsAsset = pickWindowsAsset(release.assets);
+        const windowsDownloadUrl = windowsAsset?.browser_download_url || 
+                                   release.html_url || 
+                                   URLS.latestRelease;
+        setHrefSafe(document.getElementById(ELEMENTS.windowsDownload), windowsDownloadUrl);
+
+        // Update Linux download button
+        const linuxAsset = pickLinuxAsset(release.assets);
+        const linuxDownloadUrl = linuxAsset?.browser_download_url || 
+                                 release.html_url || 
+                                 URLS.latestRelease;
+        setHrefSafe(document.getElementById(ELEMENTS.linuxDownload), linuxDownloadUrl);
+
+        // Update hero button based on OS
+        updateHeroForOS(release);
     }
 
     /**
      * Fetch and display the latest release
      */
     async function fetchLatestRelease() {
+        // Update hero button immediately based on OS (before fetch completes)
+        updateHeroForOS(null);
+
         // Try cache first
         const cached = getCachedRelease();
         if (cached) {
@@ -284,10 +470,13 @@ const OpenDropRelease = (function() {
     return {
         init,
         fetchLatestRelease,
+        detectOS,
+        getPlatformInfo,
         // Expose for testing
         _parseSemver: parseSemver,
         _pickBestRelease: pickBestRelease,
         _pickWindowsAsset: pickWindowsAsset,
+        _pickLinuxAsset: pickLinuxAsset,
     };
 })();
 
