@@ -240,6 +240,7 @@ const OpenDropRelease = (function() {
 
     /**
      * Find the Linux AppImage asset from release assets
+     * Specifically looks for OpenDrop-x86_64.AppImage
      * @param {Array} assets - Release assets
      * @returns {Object|null} Linux asset or null
      */
@@ -248,24 +249,36 @@ const OpenDropRelease = (function() {
             return null;
         }
 
-        const isAppImage = (a) => a && typeof a.name === 'string' && 
-                                  a.name.toLowerCase().endsWith('.appimage');
-        const appImages = assets.filter(isAppImage);
+        // Look specifically for OpenDrop-x86_64.AppImage first
+        const exactMatch = assets.find(a => 
+            a && typeof a.name === 'string' && 
+            a.name === 'OpenDrop-x86_64.AppImage'
+        );
+        if (exactMatch) return exactMatch;
 
-        if (appImages.length === 0) return null;
-
-        // Prefer the OpenDrop AppImage
-        const preferred = appImages.find(a => 
-            /opendrop/i.test(a.name) && /x86_64/i.test(a.name)
+        // Fallback: any AppImage with OpenDrop and x86_64 in the name
+        const preferred = assets.find(a => 
+            a && typeof a.name === 'string' && 
+            a.name.toLowerCase().endsWith('.appimage') &&
+            /opendrop/i.test(a.name) && 
+            /x86_64/i.test(a.name)
         );
         if (preferred) return preferred;
 
-        // Try any OpenDrop AppImage
-        const opendropAny = appImages.find(a => /opendrop/i.test(a.name));
+        // Fallback: any OpenDrop AppImage
+        const opendropAny = assets.find(a => 
+            a && typeof a.name === 'string' && 
+            a.name.toLowerCase().endsWith('.appimage') &&
+            /opendrop/i.test(a.name)
+        );
         if (opendropAny) return opendropAny;
 
-        // Fallback to first AppImage
-        return appImages[0];
+        // Last fallback: first AppImage
+        const anyAppImage = assets.find(a => 
+            a && typeof a.name === 'string' && 
+            a.name.toLowerCase().endsWith('.appimage')
+        );
+        return anyAppImage || null;
     }
 
     /**
