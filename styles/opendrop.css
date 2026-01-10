@@ -208,7 +208,7 @@
 }
 
 .download-container {
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -216,22 +216,60 @@
     text-align: center;
 }
 
+/* Updated grid for 5 cards - 3 on top row, 2 centered on bottom */
 .download-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--space-lg);
     margin-top: var(--space-2xl);
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Center the last two cards */
+.download-cards .download-card:nth-child(4),
+.download-cards .download-card:nth-child(5) {
+    grid-column: span 1;
+}
+
+/* When we have exactly 5 items, center the bottom row */
+.download-cards {
+    justify-items: center;
+}
+
+/* Adjust for 5-card layout: first 3 cards take full width, last 2 center */
+@supports (display: grid) {
+    .download-cards {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: var(--space-lg);
+    }
+    
+    .download-card {
+        grid-column: span 2;
+    }
+    
+    /* Center the 4th and 5th cards */
+    .download-card:nth-child(4) {
+        grid-column: 2 / span 2;
+    }
+    
+    .download-card:nth-child(5) {
+        grid-column: 4 / span 2;
+    }
 }
 
 .download-card {
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: var(--radius-2xl);
-    padding: 2.5rem;
+    padding: 2rem;
     text-align: center;
     transition: all var(--transition-slow);
     position: relative;
     overflow: hidden;
+    min-width: 220px;
 }
 
 .download-card::before {
@@ -273,7 +311,7 @@
 }
 
 .download-card h3 {
-    font-size: 1.35rem;
+    font-size: 1.25rem;
     margin-bottom: var(--space-sm);
 }
 
@@ -291,7 +329,7 @@
 
 .coming-soon {
     display: inline-block;
-    padding: 0.4rem 0.8rem;
+    padding: 0.5rem 1rem;
     background: rgba(245, 158, 11, 0.15);
     color: var(--warning);
     border-radius: var(--radius-sm);
@@ -349,6 +387,23 @@
 }
 
 /* Responsive */
+@media (max-width: 1024px) {
+    .download-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .download-card {
+        grid-column: span 1 !important;
+    }
+    
+    /* Center the 5th card on its own row */
+    .download-card:nth-child(5) {
+        grid-column: 1 / -1 !important;
+        max-width: 320px;
+        justify-self: center;
+    }
+}
+
 @media (max-width: 768px) {
     .hero {
         padding: 7rem var(--space-lg) var(--space-2xl);
@@ -372,5 +427,20 @@
 
     .step-number {
         margin: 0 auto;
+    }
+    
+    /* Stack all cards on mobile */
+    .download-cards {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+    }
+    
+    .download-card {
+        grid-column: span 1 !important;
+        max-width: none !important;
+    }
+    
+    .download-card:nth-child(5) {
+        max-width: none !important;
     }
 }
