@@ -216,60 +216,26 @@
     text-align: center;
 }
 
-/* Updated grid for 5 cards - 3 on top row, 2 centered on bottom */
+/* All 5 cards in a single row */
 .download-cards {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-lg);
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--space-md);
     margin-top: var(--space-2xl);
-    max-width: 1000px;
+    max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
-}
-
-/* Center the last two cards */
-.download-cards .download-card:nth-child(4),
-.download-cards .download-card:nth-child(5) {
-    grid-column: span 1;
-}
-
-/* When we have exactly 5 items, center the bottom row */
-.download-cards {
-    justify-items: center;
-}
-
-/* Adjust for 5-card layout: first 3 cards take full width, last 2 center */
-@supports (display: grid) {
-    .download-cards {
-        display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        gap: var(--space-lg);
-    }
-    
-    .download-card {
-        grid-column: span 2;
-    }
-    
-    /* Center the 4th and 5th cards */
-    .download-card:nth-child(4) {
-        grid-column: 2 / span 2;
-    }
-    
-    .download-card:nth-child(5) {
-        grid-column: 4 / span 2;
-    }
 }
 
 .download-card {
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: var(--radius-2xl);
-    padding: 2rem;
+    padding: 1.5rem;
     text-align: center;
     transition: all var(--transition-slow);
     position: relative;
     overflow: hidden;
-    min-width: 220px;
 }
 
 .download-card::before {
@@ -294,9 +260,9 @@
 }
 
 .platform-icon {
-    width: 64px;
-    height: 64px;
-    margin: 0 auto var(--space-lg);
+    width: 56px;
+    height: 56px;
+    margin: 0 auto var(--space-md);
     background: var(--bg-dark);
     border-radius: var(--radius-xl);
     display: flex;
@@ -305,35 +271,37 @@
 }
 
 .platform-icon svg {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
     color: var(--text-primary);
 }
 
 .download-card h3 {
-    font-size: 1.25rem;
-    margin-bottom: var(--space-sm);
+    font-size: 1.1rem;
+    margin-bottom: var(--space-xs);
 }
 
 .download-card .version {
     color: var(--text-muted);
-    font-size: 0.85rem;
-    margin-bottom: var(--space-lg);
+    font-size: 0.75rem;
+    margin-bottom: var(--space-md);
     font-family: 'Space Mono', monospace;
 }
 
 .download-card .btn {
     width: 100%;
     justify-content: center;
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
 }
 
 .coming-soon {
     display: inline-block;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0.75rem;
     background: rgba(245, 158, 11, 0.15);
     color: var(--warning);
     border-radius: var(--radius-sm);
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -387,20 +355,15 @@
 }
 
 /* Responsive */
-@media (max-width: 1024px) {
+@media (max-width: 1100px) {
+    .download-cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
     .download-cards {
         grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .download-card {
-        grid-column: span 1 !important;
-    }
-    
-    /* Center the 5th card on its own row */
-    .download-card:nth-child(5) {
-        grid-column: 1 / -1 !important;
-        max-width: 320px;
-        justify-self: center;
     }
 }
 
@@ -433,14 +396,5 @@
     .download-cards {
         grid-template-columns: 1fr;
         gap: var(--space-md);
-    }
-    
-    .download-card {
-        grid-column: span 1 !important;
-        max-width: none !important;
-    }
-    
-    .download-card:nth-child(5) {
-        max-width: none !important;
     }
 }
