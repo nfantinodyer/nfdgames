@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="OpenDrop App Store Export Compliance Documentation - Complete encryption and regulatory compliance information">
+    <title>OpenDrop - Export Compliance Documentation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>OpenDrop - App Store Export Compliance Documentation</h1>
+    <p><strong>Complete System Documentation (Desktop Server + Mobile App)</strong></p>
+
+    <hr>
+
+    <section class="executive-summary">
+        <h2>Executive Summary</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>App Name</td>
+                    <td>OpenDrop</td>
+                </tr>
+                <tr>
+                    <td>Version</td>
+                    <td>0.6.91</td>
+                </tr>
+                <tr>
+                    <td>Platforms</td>
+                    <td>iOS, Android, macOS, Windows, Linux</td>
+                </tr>
+                <tr>
+                    <td>Uses Encryption</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>Proprietary Encryption</td>
+                    <td><strong>No</strong></td>
+                </tr>
+                <tr>
+                    <td>Exemption Claimed</td>
+                    <td>EAR 740.17(b)(1) - Mass Market</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="key-finding">
+            <strong>Key Finding:</strong> OpenDrop uses only standard, publicly available encryption algorithms provided by operating systems, platform SDKs, and widely-used open-source libraries. No proprietary or custom encryption is implemented.
+        </div>
+    </section>
+
+    <hr>
+
+    <nav class="toc">
+        <h2>Table of Contents</h2>
+        <ol>
+            <li><a href="#encryption-overview">Encryption Overview</a></li>
+            <li><a href="#mobile-app-encryption">Mobile App Encryption</a></li>
+            <li><a href="#desktop-server-encryption">Desktop Server Encryption</a></li>
+            <li><a href="#third-party-sdks">Third-Party SDKs</a></li>
+            <li><a href="#export-compliance-questionnaire">Export Compliance Questionnaire</a></li>
+            <li><a href="#app-store-connect-submission-guide">App Store Connect Submission Guide</a></li>
+            <li><a href="#declaration-statement">Declaration Statement</a></li>
+        </ol>
+    </nav>
+
+    <hr>
+
+    <section id="encryption-overview">
+        <h2>Encryption Overview</h2>
+        
+        <h3>Summary of Encryption Usage</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Component</th>
+                    <th>Encryption Type</th>
+                    <th>Standard</th>
+                    <th>Implementation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Network Communication</td>
+                    <td>TLS 1.2/1.3</td>
+                    <td>IETF RFC 8446</td>
+                    <td>Platform SSL/TLS</td>
+                </tr>
+                <tr>
+                    <td>Authentication</td>
+                    <td>OAuth 2.0</td>
+                    <td>IETF RFC 6749</td>
+                    <td>Firebase Auth, Google Sign-In</td>
+                </tr>
+                <tr>
+                    <td>ID Tokens</td>
+                    <td>JWT</td>
+                    <td>IETF RFC 7519</td>
+                    <td>Firebase ID Tokens</td>
+                </tr>
+                <tr>
+                    <td>In-App Purchases</td>
+                    <td>TLS</td>
+                    <td>Platform Standard</td>
+                    <td>RevenueCat SDK</td>
+                </tr>
+                <tr>
+                    <td>Cloud Sync</td>
+                    <td>HTTPS</td>
+                    <td>IETF RFC 2818</td>
+                    <td>Cloudflare Workers</td>
+                </tr>
+                <tr>
+                    <td>Tunnel</td>
+                    <td>QUIC/TLS 1.3</td>
+                    <td>IETF RFC 9000</td>
+                    <td>cloudflared</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>What OpenDrop Does NOT Use</h3>
+        <ul class="not-used-list">
+            <li>Proprietary encryption algorithms</li>
+            <li>Custom cryptographic implementations</li>
+            <li>Modified versions of standard algorithms</li>
+            <li>Encryption not accepted by international standards bodies</li>
+            <li>Government-specific encryption features</li>
+        </ul>
+    </section>
+
+    <hr>
+
+    <section id="mobile-app-encryption">
+        <h2>Mobile App Encryption</h2>
+        <h3>Platform: iOS &amp; Android (Flutter/Dart)</h3>
+
+        <h4>1. Firebase Authentication</h4>
+        <pre><code>Library: firebase_auth (Flutter)
+Purpose: User authentication and session management
+Encryption: TLS 1.2/1.3 (platform-provided)
+Standards: OAuth 2.0 (RFC 6749), JWT (RFC 7519)</code></pre>
+        <p><strong>Usage in Code:</strong></p>
+        <ul>
+            <li><code>auth_service.dart</code>: Firebase Auth for user sign-in</li>
+            <li>ID token generation and refresh</li>
+            <li>Cross-platform user identification</li>
+        </ul>
+
+        <h4>2. Google Sign-In</h4>
+        <pre><code>Library: google_sign_in (Flutter)
+Purpose: OAuth 2.0 authentication with Google
+Encryption: TLS via platform SDK
+Standards: OAuth 2.0 (RFC 6749, RFC 6750)</code></pre>
+        <p><strong>Usage in Code:</strong></p>
+        <ul>
+            <li><code>auth_service.dart</code>: <code>GoogleSignIn</code> class for OAuth flow</li>
+            <li>Credential exchange with Firebase</li>
+        </ul>
+
+        <h4>3. RevenueCat (In-App Purchases)</h4>
+        <pre><code>Library: purchases_flutter
+Purpose: Subscription management and purchase verification
+Encryption: TLS 1.2/1.3 (SDK-provided)
+Standards: HTTPS, platform billing APIs</code></pre>
+        <p><strong>Usage in Code:</strong></p>
+        <ul>
+            <li><code>subscription_service.dart</code>: Subscription status checking</li>
+            <li><code>main.dart</code>: SDK initialization</li>
+            <li><code>config.dart</code>: API key configuration</li>
+        </ul>
+
+        <h4>4. HTTP Communication (Dio)</h4>
+        <pre><code>Library: dio (Dart)
+Purpose: API calls to OpenDrop desktop server
+Encryption: TLS via platform SSL/TLS stack
+Standards: HTTPS (RFC 2818)</code></pre>
+        <p><strong>Usage in Code:</strong></p>
+        <ul>
+            <li><code>api_service.dart</code>: All server communication</li>
+            <li><code>file_uploader.dart</code>: Chunked file uploads</li>
+            <li>Session token and API key transmission</li>
+        </ul>
+
+        <h4>5. QR Code Scanning</h4>
+        <pre><code>Library: mobile_scanner
+Purpose: Scan QR codes for connection setup
+Encryption: None (camera input only)</code></pre>
+        <p><strong>Note:</strong> QR scanning itself does not use encryption. The scanned data (connection URL and secret) is transmitted over HTTPS.</p>
+
+        <h3>Mobile Encryption Summary Table</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>File</th>
+                    <th>Component</th>
+                    <th>Encryption Used</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>main.dart</code></td>
+                    <td>Firebase init, RevenueCat init</td>
+                    <td>TLS (platform)</td>
+                </tr>
+                <tr>
+                    <td><code>auth_service.dart</code></td>
+                    <td>Firebase Auth, Google Sign-In</td>
+                    <td>OAuth 2.0, TLS</td>
+                </tr>
+                <tr>
+                    <td><code>subscription_service.dart</code></td>
+                    <td>RevenueCat purchases</td>
+                    <td>TLS (SDK)</td>
+                </tr>
+                <tr>
+                    <td><code>api_service.dart</code></td>
+                    <td>Server API calls</td>
+                    <td>HTTPS/TLS</td>
+                </tr>
+                <tr>
+                    <td><code>file_uploader.dart</code></td>
+                    <td>File upload</td>
+                    <td>HTTPS/TLS</td>
+                </tr>
+                <tr>
+                    <td><code>firebase_options.dart</code></td>
+                    <td>Firebase config</td>
+                    <td>N/A (config only)</td>
+                </tr>
+                <tr>
+                    <td><code>qr_scan_page.dart</code></td>
+                    <td>QR scanning</td>
+                    <td>None</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <hr>
+
+    <section id="desktop-server-encryption">
+        <h2>Desktop Server Encryption</h2>
+        <h3>Platform: Python (Windows, macOS, Linux)</h3>
+
+        <h4>1. HTTPS Communication</h4>
+        <pre><code>Library: requests (Python)
+Purpose: Sync data to Cloudflare Worker
+Encryption: TLS 1.2/1.3 via OS SSL stack
+Standards: HTTPS (RFC 2818)</code></pre>
+        <p><strong>Usage in Code:</strong></p>
+        <ul>
+            <li><code>cloud_sync.py</code>: <code>sync_to_cloud()</code>, <code>_heartbeat_loop()</code></li>
+        </ul>
+
+        <h4>2. OAuth 2.0 Authentication</h4>
+        <pre><code>Library: google-auth-oauthlib
+Purpose: Google Sign-In for desktop
+Encryption: TLS via requests library
+Standards: OAuth 2.0 (RFC 6749, RFC 6750)</code></pre>
+        <p><strong>Usage in Code:</strong></p>
+        <ul>
+            <li><code>auth.py</code>: Credential management and token refresh</li>
+        </ul>
+
+        <h4>3. Cloudflare Tunnel</h4>
+        <pre><code>Binary: cloudflared
+Purpose: Secure tunnel exposing local server
+Encryption: QUIC with TLS 1.3
+Standards: QUIC (RFC 9000), TLS 1.3 (RFC 8446)</code></pre>
+        <p><strong>Usage in Code:</strong></p>
+        <ul>
+            <li><code>tunnel.py</code>: Tunnel initialization and management</li>
+        </ul>
+
+        <h4>4. Session Management</h4>
+        <pre><code>Implementation: Server-generated tokens
+Purpose: Authenticated session continuity
+Transmission: HTTPS headers</code></pre>
+        <p><strong>Usage in Code:</strong></p>
+        <ul>
+            <li><code>middleware.py</code>: Session validation</li>
+            <li><code>health.py</code>: Session creation</li>
+        </ul>
+
+        <h3>Server Encryption Summary Table</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>File</th>
+                    <th>Component</th>
+                    <th>Encryption Used</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>cloud_sync.py</code></td>
+                    <td>Worker sync, heartbeat</td>
+                    <td>HTTPS/TLS</td>
+                </tr>
+                <tr>
+                    <td><code>tunnel.py</code></td>
+                    <td>Cloudflare tunnel</td>
+                    <td>TLS 1.3/QUIC</td>
+                </tr>
+                <tr>
+                    <td><code>middleware.py</code></td>
+                    <td>Session validation</td>
+                    <td>None (token comparison)</td>
+                </tr>
+                <tr>
+                    <td><code>health.py</code></td>
+                    <td>Session creation</td>
+                    <td>None (token generation)</td>
+                </tr>
+                <tr>
+                    <td><code>paths.py</code></td>
+                    <td>Token file storage</td>
+                    <td>None (plaintext JSON)</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <hr>
+
+    <section id="third-party-sdks">
+        <h2>Third-Party SDKs</h2>
+        
+        <h3>SDK Encryption Attestations</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>SDK</th>
+                    <th>Provider</th>
+                    <th>Encryption</th>
+                    <th>Documentation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Firebase</td>
+                    <td>Google</td>
+                    <td>TLS 1.2+</td>
+                    <td><a href="https://firebase.google.com/support/privacy" target="_blank">Firebase Security</a></td>
+                </tr>
+                <tr>
+                    <td>RevenueCat</td>
+                    <td>RevenueCat</td>
+                    <td>TLS 1.2+</td>
+                    <td><a href="https://www.revenuecat.com/docs/security" target="_blank">RevenueCat Security</a></td>
+                </tr>
+                <tr>
+                    <td>Google Sign-In</td>
+                    <td>Google</td>
+                    <td>OAuth 2.0/TLS</td>
+                    <td><a href="https://developers.google.com/identity" target="_blank">Google Identity</a></td>
+                </tr>
+                <tr>
+                    <td>Cloudflare</td>
+                    <td>Cloudflare</td>
+                    <td>TLS 1.3</td>
+                    <td><a href="https://www.cloudflare.com/ssl/" target="_blank">Cloudflare Security</a></td>
+                </tr>
+                <tr>
+                    <td>Dio</td>
+                    <td>pub.dev</td>
+                    <td>Platform TLS</td>
+                    <td>Uses system certificates</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>All third-party SDKs use standard encryption provided by their respective platforms and comply with international encryption standards.</p>
+    </section>
+
+    <hr>
+
+    <section id="export-compliance-questionnaire">
+        <h2>Export Compliance Questionnaire</h2>
+        
+        <h3>U.S. Export Administration Regulations (EAR) Responses</h3>
+
+        <p><strong>Q1: Does your app use encryption?</strong></p>
+        <blockquote><strong>Yes</strong></blockquote>
+
+        <p><strong>Q2: Does your app qualify for any exemptions provided in Category 5, Part 2 of the EAR?</strong></p>
+        <blockquote><strong>Yes</strong> - Mass market exemption under EAR 740.17(b)(1)</blockquote>
+
+        <p><strong>Q3: Does your app implement any proprietary or non-standard cryptographic algorithms?</strong></p>
+        <blockquote><strong>No</strong> - All encryption uses industry-standard algorithms</blockquote>
+
+        <p><strong>Q4: Does your app only use encryption provided by the operating system?</strong></p>
+        <blockquote><strong>No</strong> - The app uses additional standard third-party libraries, but all implement standard algorithms</blockquote>
+
+        <p><strong>Q5: Is your app available without restriction?</strong></p>
+        <blockquote><strong>Yes</strong> - Available to general public</blockquote>
+
+        <p><strong>Q6: Is the encryption user-configurable?</strong></p>
+        <blockquote><strong>No</strong> - Users cannot modify encryption settings</blockquote>
+
+        <p><strong>Q7: Is your app designed for government use?</strong></p>
+        <blockquote><strong>No</strong> - Consumer file sharing application</blockquote>
+
+        <h3>Exemption Qualification</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Requirement</th>
+                    <th>Status</th>
+                    <th>Evidence</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Uses standard encryption</td>
+                    <td><span class="status-met">✅ Met</span></td>
+                    <td>TLS, OAuth 2.0, JWT only</td>
+                </tr>
+                <tr>
+                    <td>Available to general public</td>
+                    <td><span class="status-met">✅ Met</span></td>
+                    <td>App Store / Play Store distribution</td>
+                </tr>
+                <tr>
+                    <td>No government-specific features</td>
+                    <td><span class="status-met">✅ Met</span></td>
+                    <td>General file sharing utility</td>
+                </tr>
+                <tr>
+                    <td>Encryption not user-modifiable</td>
+                    <td><span class="status-met">✅ Met</span></td>
+                    <td>No encryption settings exposed</td>
+                </tr>
+                <tr>
+                    <td>Not for military/intelligence</td>
+                    <td><span class="status-met">✅ Met</span></td>
+                    <td>Consumer application</td>
+                </tr>
+                <tr>
+                    <td>Mass market distribution</td>
+                    <td><span class="status-met">✅ Met</span></td>
+                    <td>Available worldwide</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <hr>
+
+    <section id="app-store-connect-submission-guide">
+        <h2>App Store Connect Submission Guide</h2>
+        
+        <h3>Step-by-Step Answers</h3>
+        <p>When submitting your app to App Store Connect, you will be asked about export compliance. Use these answers:</p>
+
+        <h4>Screen 1: Export Compliance</h4>
+        <p><strong>"Does your app use encryption?"</strong></p>
+        <blockquote>Select: <strong>Yes</strong></blockquote>
+
+        <h4>Screen 2: Exemption Qualification</h4>
+        <p><strong>"Does your app qualify for any of the exemptions provided in Category 5, Part 2 of the U.S. Export Administration Regulations?"</strong></p>
+        <blockquote>Select: <strong>Yes</strong></blockquote>
+
+        <h4>Screen 3: Encryption Type</h4>
+        <p><strong>"Does your app contain, use, or access third-party encryption?"</strong></p>
+        <blockquote>Select: <strong>Yes</strong></blockquote>
+
+        <p><strong>"Does your app implement or use cryptography that is proprietary or not accepted as standard by international standard bodies (IEEE, IETF, ITU, etc.)?"</strong></p>
+        <blockquote>Select: <strong>No</strong></blockquote>
+
+        <h4>Screen 4: Distribution</h4>
+        <p><strong>"Is your app going to be available on the French App Store?"</strong></p>
+        <blockquote>Select: <strong>Yes</strong> (app qualifies for all territories)</blockquote>
+
+        <h3>Annual Self-Classification Report</h3>
+        <p>If required, use BIS classification:</p>
+        <ul>
+            <li><strong>ECCN:</strong> 5D992</li>
+            <li><strong>License Exception:</strong> ENC (740.17(b)(1))</li>
+        </ul>
+    </section>
+
+    <hr>
+
+    <section id="declaration-statement">
+        <h2>Declaration Statement</h2>
+        
+        <h3>For Apple App Store Review</h3>
+        <blockquote>
+            <p>OpenDrop version 0.6.91 uses encryption exclusively for:</p>
+            <ol>
+                <li><strong>Secure network communication</strong> via HTTPS using standard TLS 1.2/1.3 protocols</li>
+                <li><strong>User authentication</strong> via OAuth 2.0 (Google Sign-In) and Firebase Authentication</li>
+                <li><strong>In-app purchase verification</strong> via RevenueCat SDK using platform billing APIs</li>
+                <li><strong>Secure tunneling</strong> via Cloudflare's publicly available tunnel software</li>
+                <li><strong>JWT token handling</strong> for session management using standard RFC 7519 format</li>
+            </ol>
+            <p><strong>No proprietary encryption algorithms are implemented.</strong> All cryptographic functionality is provided by:</p>
+            <ul>
+                <li>Apple's Security framework and App Transport Security</li>
+                <li>Firebase SDK (Google)</li>
+                <li>RevenueCat SDK</li>
+                <li>Platform-provided TLS/SSL implementations</li>
+            </ul>
+            <p>This application qualifies for the mass market encryption exemption under U.S. Export Administration Regulations section 740.17(b)(1).</p>
+        </blockquote>
+
+        <h3>For Google Play Console</h3>
+        <blockquote>
+            <p>OpenDrop uses encryption for secure data transmission only. All encryption is provided by:</p>
+            <ul>
+                <li>Android platform TLS/SSL</li>
+                <li>Firebase Authentication SDK</li>
+                <li>RevenueCat Purchases SDK</li>
+                <li>Standard HTTPS for API communication</li>
+            </ul>
+            <p>No custom or proprietary encryption algorithms are used.</p>
+        </blockquote>
+    </section>
+
+    <hr>
+
+    <section>
+        <h2>Technical Architecture Diagram</h2>
+        <pre class="architecture-diagram">┌─────────────────────────────────────────────────────────────────┐
+│                        OPENDROP SYSTEM                          │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  ┌─────────────────┐         HTTPS/TLS          ┌────────────┐  │
+│  │   Mobile App    │◄──────────────────────────►│  Firebase  │  │
+│  │   (Flutter)     │         OAuth 2.0          │   Auth     │  │
+│  └────────┬────────┘                            └────────────┘  │
+│           │                                                     │
+│           │ HTTPS/TLS                                           │
+│           │                                                     │
+│           ▼                                                     │
+│  ┌─────────────────┐         HTTPS/TLS          ┌────────────┐  │
+│  │   RevenueCat    │◄──────────────────────────►│   Store    │  │
+│  │      SDK        │                            │   APIs     │  │
+│  └─────────────────┘                            └────────────┘  │
+│                                                                 │
+│  ┌─────────────────┐      TLS 1.3/QUIC          ┌────────────┐  │
+│  │  Desktop Server │◄──────────────────────────►│ Cloudflare │  │
+│  │    (Python)     │         Tunnel             │   Edge     │  │
+│  └────────┬────────┘                            └────────────┘  │
+│           │                                                     │
+│           │ HTTPS/TLS                                           │
+│           ▼                                                     │
+│  ┌─────────────────┐                            ┌────────────┐  │
+│  │   Cloudflare    │◄──────────────────────────►│   Mobile   │  │
+│  │     Worker      │         HTTPS/TLS          │    App     │  │
+│  └─────────────────┘                            └────────────┘  │
+│                                                                 │
+│  ┌─────────────────────────────────────────────────────────┐    │
+│  │                  ENCRYPTION STANDARDS                   │    │
+│  │  • TLS 1.2/1.3 (IETF RFC 8446)                          │    │
+│  │  • OAuth 2.0 (IETF RFC 6749)                            │    │
+│  │  • JWT (IETF RFC 7519)                                  │    │
+│  │  • HTTPS (IETF RFC 2818)                                │    │
+│  │  • QUIC (IETF RFC 9000)                                 │    │
+│  └─────────────────────────────────────────────────────────┘    │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+
+All connections use standard encryption - NO proprietary algorithms</pre>
+    </section>
+
+    <hr>
+
+    <section class="document-info">
+        <h2>Document Information</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Document Version</td>
+                    <td>2.0</td>
+                </tr>
+                <tr>
+                    <td>Created</td>
+                    <td>January 2026</td>
+                </tr>
+                <tr>
+                    <td>App Version</td>
+                    <td>0.6.91</td>
+                </tr>
+                <tr>
+                    <td>Author</td>
+                    <td>NFDGames</td>
+                </tr>
+                <tr>
+                    <td>Covers</td>
+                    <td>Desktop Server + Mobile App</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <hr>
+
+    <section>
+        <h2>Appendix A: Code File Encryption Reference</h2>
+        
+        <h3>Mobile App Files</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>File</th>
+                    <th>Encryption Relevance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>main.dart</code></td><td>Firebase &amp; RevenueCat initialization</td></tr>
+                <tr><td><code>auth_service.dart</code></td><td>OAuth 2.0 flows, Firebase Auth</td></tr>
+                <tr><td><code>subscription_service.dart</code></td><td>RevenueCat purchase verification</td></tr>
+                <tr><td><code>api_service.dart</code></td><td>HTTPS API communication</td></tr>
+                <tr><td><code>file_uploader.dart</code></td><td>HTTPS file transfer</td></tr>
+                <tr><td><code>config.dart</code></td><td>API keys (no encryption code)</td></tr>
+                <tr><td><code>firebase_options.dart</code></td><td>Firebase config (no encryption code)</td></tr>
+                <tr><td><code>qr_scan_page.dart</code></td><td>No encryption</td></tr>
+                <tr><td><code>connection_status.dart</code></td><td>No encryption (enum only)</td></tr>
+                <tr><td><code>main_screen.dart</code></td><td>No encryption (UI only)</td></tr>
+                <tr><td><code>open_drop_app.dart</code></td><td>No encryption (UI only)</td></tr>
+                <tr><td><code>files_tab.dart</code></td><td>Uses ApiService (HTTPS)</td></tr>
+                <tr><td><code>upload_tab.dart</code></td><td>Uses ApiService (HTTPS)</td></tr>
+                <tr><td><code>shared_folders_tab.dart</code></td><td>Uses ApiService (HTTPS)</td></tr>
+                <tr><td><code>recently_deleted_screen.dart</code></td><td>Uses ApiService (HTTPS)</td></tr>
+                <tr><td><code>auth_screen.dart</code></td><td>Uses AuthService (OAuth)</td></tr>
+                <tr><td><code>file_action_menu.dart</code></td><td>No encryption (UI only)</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Desktop Server Files</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>File</th>
+                    <th>Encryption Relevance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>cloud_sync.py</code></td><td>HTTPS requests</td></tr>
+                <tr><td><code>tunnel.py</code></td><td>cloudflared TLS tunnel</td></tr>
+                <tr><td><code>auth.py</code></td><td>OAuth 2.0 token management</td></tr>
+                <tr><td><code>middleware.py</code></td><td>Session token validation</td></tr>
+                <tr><td><code>health.py</code></td><td>Session token creation</td></tr>
+                <tr><td><code>app.py</code></td><td>No encryption (routing)</td></tr>
+                <tr><td><code>config.py</code></td><td>No encryption (config)</td></tr>
+                <tr><td><code>paths.py</code></td><td>No encryption (file paths)</td></tr>
+                <tr><td><code>files.py</code></td><td>No encryption (file ops)</td></tr>
+                <tr><td><code>folders.py</code></td><td>No encryption (folder ops)</td></tr>
+                <tr><td><code>trash.py</code></td><td>No encryption (trash ops)</td></tr>
+                <tr><td><code>settings.py</code></td><td>No encryption (settings)</td></tr>
+                <tr><td><code>utils.py</code></td><td>No encryption (utilities)</td></tr>
+                <tr><td><code>validation.py</code></td><td>No encryption (validation)</td></tr>
+                <tr><td><code>gui_app.py</code></td><td>No encryption (UI)</td></tr>
+                <tr><td><code>gui_styles.py</code></td><td>No encryption (UI)</td></tr>
+                <tr><td><code>updater.py</code></td><td>HTTPS for update checks</td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <hr>
+
+    <section>
+        <h2>Appendix B: Compliance Checklist</h2>
+        <p>Before submission, verify:</p>
+        <ul>
+            <li><span class="check">✓</span> All encryption uses standard algorithms (TLS, OAuth, JWT)</li>
+            <li><span class="check">✓</span> No proprietary encryption implemented</li>
+            <li><span class="check">✓</span> Third-party SDKs use standard encryption</li>
+            <li><span class="check">✓</span> App is available to general public</li>
+            <li><span class="check">✓</span> No government-specific features</li>
+            <li><span class="check">✓</span> Users cannot modify encryption settings</li>
+            <li><span class="check">✓</span> Documentation prepared for App Store Review</li>
+            <li><span class="check">✓</span> ECCN classification identified (5D992)</li>
+            <li><span class="check">✓</span> License exception applicable (ENC 740.17(b)(1))</li>
+        </ul>
+    </section>
+
+</body>
+</html>
