@@ -1,0 +1,356 @@
+/* OpenDrop Export Compliance Documentation Styles */
+
+:root {
+    --primary-color: #2563eb;
+    --primary-dark: #1d4ed8;
+    --success-color: #16a34a;
+    --danger-color: #dc2626;
+    --text-color: #1f2937;
+    --text-muted: #6b7280;
+    --bg-color: #ffffff;
+    --bg-secondary: #f9fafb;
+    --bg-code: #f3f4f6;
+    --border-color: #e5e7eb;
+    --table-header-bg: #1f2937;
+    --table-stripe: #f9fafb;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    line-height: 1.3;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 2.25rem;
+    color: var(--primary-color);
+    border-bottom: 3px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+    margin-top: 0;
+}
+
+h2 {
+    font-size: 1.75rem;
+    color: var(--text-color);
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 0.5rem;
+    margin-top: 3rem;
+}
+
+h3 {
+    font-size: 1.375rem;
+    color: var(--text-color);
+}
+
+h4 {
+    font-size: 1.125rem;
+    color: var(--text-muted);
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Executive Summary Box */
+.executive-summary {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    border: 1px solid #bfdbfe;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+}
+
+.executive-summary h2 {
+    margin-top: 0;
+    border: none;
+    color: var(--primary-dark);
+}
+
+/* Key Finding Box */
+.key-finding {
+    background-color: #f0fdf4;
+    border-left: 4px solid var(--success-color);
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.key-finding strong {
+    color: var(--success-color);
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+thead {
+    background-color: var(--table-header-bg);
+    color: white;
+}
+
+th {
+    padding: 0.875rem 1rem;
+    text-align: left;
+    font-weight: 600;
+}
+
+td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+tbody tr:nth-child(even) {
+    background-color: var(--table-stripe);
+}
+
+tbody tr:hover {
+    background-color: #f3f4f6;
+}
+
+/* Code Blocks */
+pre {
+    background-color: var(--bg-code);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1rem;
+    overflow-x: auto;
+    margin: 1rem 0;
+    font-size: 0.875rem;
+}
+
+code {
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 0.875em;
+    background-color: var(--bg-code);
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+}
+
+pre code {
+    background: none;
+    padding: 0;
+}
+
+/* Lists */
+ul, ol {
+    margin: 1rem 0;
+    padding-left: 2rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
+
+/* Checkmarks and X marks */
+.check {
+    color: var(--success-color);
+    font-weight: bold;
+}
+
+.cross {
+    color: var(--danger-color);
+    font-weight: bold;
+}
+
+/* What OpenDrop Does NOT Use */
+.not-used-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.not-used-list li {
+    padding: 0.5rem 0;
+    padding-left: 2rem;
+    position: relative;
+}
+
+.not-used-list li::before {
+    content: "❌";
+    position: absolute;
+    left: 0;
+}
+
+/* Blockquotes */
+blockquote {
+    background-color: var(--bg-secondary);
+    border-left: 4px solid var(--primary-color);
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 0 8px 8px 0;
+}
+
+blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+/* Architecture Diagram */
+.architecture-diagram {
+    background-color: #1f2937;
+    color: #e5e7eb;
+    padding: 1.5rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    margin: 1.5rem 0;
+}
+
+/* Table of Contents */
+.toc {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+}
+
+.toc h2 {
+    margin-top: 0;
+    border: none;
+    font-size: 1.25rem;
+}
+
+.toc ol {
+    margin-bottom: 0;
+}
+
+.toc a {
+    color: var(--text-color);
+}
+
+.toc a:hover {
+    color: var(--primary-color);
+}
+
+/* Horizontal Rule */
+hr {
+    border: none;
+    border-top: 2px solid var(--border-color);
+    margin: 2rem 0;
+}
+
+/* Document Info Footer */
+.document-info {
+    background-color: var(--bg-secondary);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-top: 3rem;
+}
+
+.document-info h2 {
+    margin-top: 0;
+    border: none;
+}
+
+/* Status Badges */
+.status-met {
+    display: inline-block;
+    background-color: #dcfce7;
+    color: #166534;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+/* Section Cards */
+.section-card {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    background-color: var(--bg-color);
+}
+
+/* Print Styles */
+@media print {
+    body {
+        max-width: 100%;
+        padding: 1rem;
+    }
+    
+    .toc {
+        page-break-after: always;
+    }
+    
+    h2 {
+        page-break-before: always;
+    }
+    
+    table {
+        page-break-inside: avoid;
+    }
+    
+    pre {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+        font-size: 15px;
+    }
+    
+    h1 {
+        font-size: 1.75rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    table {
+        font-size: 0.8rem;
+    }
+    
+    th, td {
+        padding: 0.5rem;
+    }
+    
+    .architecture-diagram {
+        font-size: 0.65rem;
+    }
+}
