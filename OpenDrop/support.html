@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support – OpenDrop</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../styles/common.css">
+    <link rel="stylesheet" href="../styles/opendrop.css">
+    
+    <style>
+        /* Support Page Specific Styles */
+        .support-hero {
+            min-height: auto;
+            padding: 10rem var(--space-xl) var(--space-2xl);
+            text-align: center;
+        }
+
+        .support-hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: var(--space-md);
+        }
+
+        .support-hero p {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Support Container */
+        .support-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 var(--space-xl) var(--space-4xl);
+        }
+
+        .support-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: var(--space-2xl);
+        }
+
+        /* Contact Info Sidebar */
+        .support-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+        }
+
+        .info-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            transition: all var(--transition-slow);
+        }
+
+        .info-card:hover {
+            border-color: rgba(124, 58, 237, 0.3);
+        }
+
+        .info-card h3 {
+            font-size: 1rem;
+            margin-bottom: var(--space-sm);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .info-card h3 span {
+            font-size: 1.25rem;
+        }
+
+        .info-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .info-card a {
+            color: var(--accent-glow);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+
+        .info-card a:hover {
+            color: var(--text-primary);
+            text-decoration: underline;
+        }
+
+        /* Ticket Form */
+        .ticket-form-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-2xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ticket-form-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-glow));
+        }
+
+        .ticket-form-container h2 {
+            font-size: 1.25rem;
+            margin-bottom: var(--space-lg);
+        }
+
+        .form-group {
+            margin-bottom: var(--space-lg);
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: var(--space-sm);
+            color: var(--text-secondary);
+        }
+
+        .form-group label .required {
+            color: var(--error);
+            margin-left: 2px;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: all var(--transition-fast);
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+        }
+
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        .form-select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239ca3af'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1.25rem;
+            padding-right: 2.5rem;
+        }
+
+        .form-select option {
+            background: var(--bg-dark);
+            color: var(--text-primary);
+        }
+
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+            line-height: 1.6;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-md);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background: linear-gradient(135deg, var(--accent), var(--accent-glow));
+            border: none;
+            border-radius: var(--radius-md);
+            color: white;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-sm);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(124, 58, 237, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .submit-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin-top: var(--space-4xl);
+            padding: var(--space-3xl) var(--space-xl);
+            border-top: 1px solid var(--border);
+        }
+
+        .faq-section .section-header {
+            text-align: center;
+            margin-bottom: var(--space-2xl);
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-lg);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            transition: all var(--transition-slow);
+        }
+
+        .faq-item:hover {
+            border-color: rgba(124, 58, 237, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .faq-item h4 {
+            font-size: 1rem;
+            margin-bottom: var(--space-sm);
+            color: var(--text-primary);
+        }
+
+        .faq-item p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: var(--space-2xl);
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .success-icon {
+            width: 64px;
+            height: 64px;
+            background: rgba(16, 185, 129, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-lg);
+            font-size: 2rem;
+        }
+
+        .success-message h3 {
+            font-size: 1.25rem;
+            margin-bottom: var(--space-sm);
+        }
+
+        .success-message p {
+            color: var(--text-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .support-hero {
+                padding: 8rem var(--space-lg) var(--space-xl);
+            }
+
+            .support-container {
+                padding: 0 var(--space-lg) var(--space-3xl);
+            }
+
+            .support-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .support-sidebar {
+                order: 2;
+            }
+
+            .ticket-form-container {
+                padding: var(--space-xl);
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .faq-section {
+                padding: var(--space-2xl) var(--space-lg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+    <div class="noise"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="opendrop.html" class="logo">
+            <img src="OpenDropIcon.png" alt="OpenDrop Icon" class="logo-icon">
+            OpenDrop
+        </a>
+        <div class="nav-links">
+            <a href="opendrop.html#features">Features</a>
+            <a href="opendrop.html#download">Download</a>
+            <a href="opendrop.html#how-it-works">How It Works</a>
+            <a href="opendrop.html#download" class="nav-cta">Get Started</a>
+        </div>
+    </nav>
+
+    <!-- Support Hero -->
+    <section class="support-hero">
+        <h1>How can we <span class="gradient">help?</span></h1>
+        <p>Having trouble with OpenDrop? Submit a support ticket and we'll get back to you as soon as possible.</p>
+    </section>
+
+    <!-- Support Content -->
+    <div class="support-container">
+        <div class="support-grid">
+            <!-- Sidebar -->
+            <aside class="support-sidebar">
+                <div class="info-card">
+                    <h3><span>📧</span> Email Us</h3>
+                    <p>For general inquiries, reach out directly at <a href="mailto:Spot4nickgaming@gmail.com">Spot4nickgaming@gmail.com</a></p>
+                </div>
+
+                <div class="info-card">
+                    <h3><span>📖</span> Documentation</h3>
+                    <p>Check out our <a href="https://www.nfdgames.com/OpenDrop/docs/export-compliance/">documentation</a> for setup guides and troubleshooting tips.</p>
+                </div>
+
+                <div class="info-card">
+                    <h3><span>🐛</span> Bug Reports</h3>
+                    <p>Found a bug? You can also report issues on our <a href="https://github.com/nfantinodyer/nfdgames/issues" target="_blank">GitHub Issues</a> page.</p>
+                </div>
+
+                <div class="info-card">
+                    <h3><span>⏱️</span> Response Time</h3>
+                    <p>We typically respond to support tickets within 24-48 hours during business days.</p>
+                </div>
+            </aside>
+
+            <!-- Ticket Form -->
+            <div class="ticket-form-container">
+                <h2>Submit a Support Ticket</h2>
+                
+                <!-- Form using Formspree -->
+                <form id="supportForm" action="https://formspree.io/f/xyzyvkqe" method="POST">
+                    <input type="hidden" name="_subject" value="OpenDrop Support Ticket">
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Name <span class="required">*</span></label>
+                            <input type="text" id="name" name="name" class="form-input" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="your@email.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="platform">Platform <span class="required">*</span></label>
+                            <select id="platform" name="platform" class="form-select" required>
+                                <option value="" disabled selected>Select your platform</option>
+                                <option value="Windows">Windows</option>
+                                <option value="Linux">Linux</option>
+                                <option value="Android">Android</option>
+                                <option value="iOS">iOS (Beta)</option>
+                                <option value="macOS">macOS (Beta)</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Issue Type <span class="required">*</span></label>
+                            <select id="category" name="category" class="form-select" required>
+                                <option value="" disabled selected>Select issue type</option>
+                                <option value="Bug Report">Bug Report</option>
+                                <option value="Connection Issue">Connection Issue</option>
+                                <option value="Installation Help">Installation Help</option>
+                                <option value="Feature Request">Feature Request</option>
+                                <option value="Account/Subscription">Account / Subscription</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="version">OpenDrop Version</label>
+                        <input type="text" id="version" name="version" class="form-input" placeholder="e.g., v0.5.3">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject <span class="required">*</span></label>
+                        <input type="text" id="subject" name="subject" class="form-input" placeholder="Brief description of your issue" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Description <span class="required">*</span></label>
+                        <textarea id="message" name="message" class="form-textarea" placeholder="Please describe your issue in detail. Include any error messages, steps to reproduce the problem, and what you've already tried." required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                        </svg>
+                        Submit Ticket
+                    </button>
+                </form>
+
+                <!-- Success Message -->
+                <div class="success-message" id="successMessage">
+                    <div class="success-icon">✓</div>
+                    <h3>Ticket Submitted!</h3>
+                    <p>Thank you for reaching out. We'll get back to you at the email address provided within 24-48 hours.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="section-header">
+            <h2>Frequently Asked Questions</h2>
+            <p>Quick answers to common questions</p>
+        </div>
+
+        <div class="faq-grid">
+            <div class="faq-item">
+                <h4>Why won't my phone connect?</h4>
+                <p>Make sure both devices are on the same network, or use the Cloudflare tunnel URL. Try refreshing the QR code on the server.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Are my files secure?</h4>
+                <p>Yes! OpenDrop uses end-to-end encryption with unique session keys. Your files are never stored on our servers.</p>
+            </div>
+            <div class="faq-item">
+                <h4>What's the file size limit?</h4>
+                <p>There's no file size limit for local transfers. Large files transfer at your network's maximum speed.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Is there a mobile app?</h4>
+                <p>Android is available now on Google Play. iOS and macOS versions are currently in development.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <a href="opendrop.html" class="logo">
+                    <img src="OpenDropIcon.png" alt="OpenDrop Icon" class="logo-icon">
+                    OpenDrop
+                </a>
+                <p>Cross-platform file sharing made simple. Built by NFDGames.</p>
+            </div>
+
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <a href="opendrop.html#features">Features</a>
+                    <a href="opendrop.html#download">Download</a>
+                    <a href="opendrop.html#how-it-works">How It Works</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <a href="https://www.nfdgames.com/OpenDrop/docs/export-compliance/">Documentation</a>
+                    <a href="support.html">Support</a>
+                    <a href="https://github.com/nfantinodyer/nfdgames/releases">Changelog</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <a href="PrivacyPolicy.html">Privacy Policy</a>
+                    <a href="TermsOfService.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 NFDGames. All rights reserved.</p>
+            <a href="mailto:Spot4nickgaming@gmail.com">Spot4nickgaming@gmail.com</a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../scripts/common.js"></script>
+    <script>
+        // Handle form submission
+        const form = document.getElementById('supportForm');
+        const successMessage = document.getElementById('successMessage');
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = form.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span>Sending...</span>';
+            submitBtn.disabled = true;
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    form.style.display = 'none';
+                    successMessage.classList.add('show');
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                alert('There was an error submitting your ticket. Please try emailing us directly at Spot4nickgaming@gmail.com');
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
