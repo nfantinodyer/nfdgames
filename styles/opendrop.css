@@ -295,6 +295,47 @@
     font-size: 0.85rem;
 }
 
+/* Stacked download buttons for Windows */
+.download-buttons-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.download-buttons-stack .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+}
+
+/* Microsoft Store button style */
+.btn-store {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all var(--transition-fast);
+    cursor: pointer;
+}
+
+.btn-store:hover {
+    border-color: var(--accent);
+    color: var(--text-primary);
+    background: var(--accent-soft);
+}
+
+.btn-store svg {
+    flex-shrink: 0;
+}
+
 .coming-soon {
     display: inline-block;
     padding: 0.5rem 0.75rem;
@@ -354,6 +395,111 @@
     color: var(--text-secondary);
 }
 
+/* ============================================
+   Download Choice Modal
+   ============================================ */
+.download-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-lg);
+    animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.download-modal-content {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    max-width: 450px;
+    width: 100%;
+    box-shadow: 
+        0 0 0 1px rgba(255, 255, 255, 0.05),
+        0 25px 80px rgba(0, 0, 0, 0.5),
+        0 0 100px rgba(124, 58, 237, 0.2);
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from { 
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.download-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-lg);
+    border-bottom: 1px solid var(--border);
+}
+
+.download-modal-header h3 {
+    font-size: 1.25rem;
+    margin: 0;
+}
+
+.download-modal-close {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    transition: color var(--transition-fast);
+}
+
+.download-modal-close:hover {
+    color: var(--text-primary);
+}
+
+.download-modal-body {
+    padding: var(--space-xl);
+}
+
+.download-modal-body p {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-lg);
+    text-align: center;
+}
+
+.download-modal-options {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.download-option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+}
+
+.download-option svg {
+    flex-shrink: 0;
+}
+
 /* Responsive */
 @media (max-width: 1100px) {
     .download-cards {
@@ -396,5 +542,19 @@
     .download-cards {
         grid-template-columns: 1fr;
         gap: var(--space-md);
+    }
+
+    /* Modal responsive */
+    .download-modal-content {
+        margin: var(--space-md);
+    }
+
+    .download-modal-options {
+        gap: var(--space-sm);
+    }
+
+    .download-option {
+        padding: 0.875rem 1rem;
+        font-size: 0.9rem;
     }
 }
