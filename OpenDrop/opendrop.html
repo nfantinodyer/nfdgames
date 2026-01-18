@@ -28,6 +28,33 @@
     <div class="bg-gradient"></div>
     <div class="noise"></div>
 
+    <!-- Download Choice Modal -->
+    <div id="downloadModal" class="download-modal" style="display: none;">
+        <div class="download-modal-content">
+            <div class="download-modal-header">
+                <h3>Choose Download Option</h3>
+                <button class="download-modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="download-modal-body">
+                <p>How would you like to get OpenDrop for Windows?</p>
+                <div class="download-modal-options">
+                    <a href="https://apps.microsoft.com/store/detail/XP99SJJTQXZ9WT" class="btn btn-primary download-option" id="modalMicrosoftStore" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                            <path d="M0 0h11.5v11.5H0V0zm12.5 0H24v11.5H12.5V0zM0 12.5h11.5V24H0V12.5zm12.5 0H24V24H12.5V12.5z"/>
+                        </svg>
+                        Microsoft Store
+                    </a>
+                    <a href="https://github.com/nfantinodyer/nfdgames/releases/latest" class="btn btn-secondary download-option" id="modalWebDownload">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="20" height="20">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                        </svg>
+                        Web Download (.exe)
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Navigation -->
     <nav>
         <a href="#" class="logo">
@@ -158,12 +185,20 @@
                     </div>
                     <h3>Windows</h3>
                     <div class="version" id="windowsVersionText">v0.5.3 • 64-bit</div>
-                    <a href="https://github.com/nfantinodyer/nfdgames/releases/latest" class="btn btn-primary" id="windowsDownloadBtn" data-fallback-href="https://github.com/nfantinodyer/nfdgames/releases/latest">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                        </svg>
-                        Download .exe
-                    </a>
+                    <div class="download-buttons-stack">
+                        <a href="https://github.com/nfantinodyer/nfdgames/releases/latest" class="btn btn-primary" id="windowsDownloadBtn" data-fallback-href="https://github.com/nfantinodyer/nfdgames/releases/latest">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                            </svg>
+                            Download .exe
+                        </a>
+                        <a href="https://apps.microsoft.com/store/detail/XP99SJJTQXZ9WT" class="btn btn-store" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                                <path d="M0 0h11.5v11.5H0V0zm12.5 0H24v11.5H12.5V0zM0 12.5h11.5V24H0V12.5zm12.5 0H24V24H12.5V12.5z"/>
+                            </svg>
+                            Get it from Microsoft Store
+                        </a>
+                    </div>
                 </div>
 
                 <!-- macOS -->
@@ -216,7 +251,7 @@
                     </div>
                     <h3>Android</h3>
                     <div class="version">Released</div>
-                    <a href="https://play.google.com/store/apps/details?id=com.nfdgames.opendrop" class="btn btn-secondary" target="_blank">
+                    <a href="https://play.google.com/store/apps/details?id=com.nfdgames.opendrop" class="btn btn-primary" target="_blank">
                         View on Play Store
                     </a>
                 </div>
