@@ -17,6 +17,7 @@ const OpenDropRelease = (function() {
         latestRelease: `https://github.com/${CONFIG.owner}/${CONFIG.repo}/releases/latest`,
         api: `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/releases?per_page=100`,
         playStore: 'https://play.google.com/store/apps/details?id=com.nfdgames.opendrop',
+        microsoftStore: 'https://apps.microsoft.com/store/detail/XP99SJJTQXZ9WT',
     };
 
     // DOM element IDs
@@ -29,6 +30,10 @@ const OpenDropRelease = (function() {
         heroDownloadText: 'heroDownloadText',
         windowsDownload: 'windowsDownloadBtn',
         linuxDownload: 'linuxDownloadBtn',
+        downloadModal: 'downloadModal',
+        closeModal: 'closeModal',
+        modalMicrosoftStore: 'modalMicrosoftStore',
+        modalWebDownload: 'modalWebDownload',
     };
 
     // Platform detection
@@ -40,6 +45,9 @@ const OpenDropRelease = (function() {
         ANDROID: 'android',
         UNKNOWN: 'unknown',
     };
+
+    // Store the current release for modal use
+    let currentRelease = null;
 
     /**
      * Detect the user's operating system
@@ -337,6 +345,85 @@ const OpenDropRelease = (function() {
     }
 
     /**
+     * Show the download choice modal for Windows users
+     */
+    function showDownloadModal() {
+        const modal = document.getElementById(ELEMENTS.downloadModal);
+        if (modal) {
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+    }
+
+    /**
+     * Hide the download choice modal
+     */
+    function hideDownloadModal() {
+        const modal = document.getElementById(ELEMENTS.downloadModal);
+        if (modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+    }
+
+    /**
+     * Initialize modal event listeners
+     */
+    function initModal() {
+        const modal = document.getElementById(ELEMENTS.downloadModal);
+        const closeBtn = document.getElementById(ELEMENTS.closeModal);
+        const microsoftBtn = document.getElementById(ELEMENTS.modalMicrosoftStore);
+        const webBtn = document.getElementById(ELEMENTS.modalWebDownload);
+
+        // Close button
+        if (closeBtn) {
+            closeBtn.addEventListener('click', hideDownloadModal);
+        }
+
+        // Click outside to close
+        if (modal) {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    hideDownloadModal();
+                }
+            });
+        }
+
+        // Escape key to close
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                hideDownloadModal();
+            }
+        });
+
+        // Microsoft Store button
+        if (microsoftBtn) {
+            microsoftBtn.href = URLS.microsoftStore;
+            microsoftBtn.addEventListener('click', () => {
+                hideDownloadModal();
+            });
+        }
+
+        // Web download button - update with release URL when available
+        if (webBtn && currentRelease) {
+            const windowsAsset = pickWindowsAsset(currentRelease.assets);
+            const downloadUrl = windowsAsset?.browser_download_url || 
+                               currentRelease.html_url || 
+                               URLS.latestRelease;
+            webBtn.href = downloadUrl;
+        }
+
+        // Close modal when either option is clicked
+        [microsoftBtn, webBtn].forEach(btn => {
+            if (btn) {
+                btn.addEventListener('click', () => {
+                    hideDownloadModal();
+                });
+            }
+        });
+    }
+
+    /**
      * Update hero button based on detected OS
      * @param {Object} release - GitHub release object (optional)
      */
@@ -352,6 +439,16 @@ const OpenDropRelease = (function() {
         // Update button text
         setTextSafe(heroText, platformInfo.action);
 
+        // For Windows, intercept click to show modal
+        if (detectedOS === PLATFORMS.WINDOWS) {
+            heroBtn.href = '#';
+            heroBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                showDownloadModal();
+            });
+            return;
+        }
+
         // Update button href based on platform
         if (detectedOS === PLATFORMS.ANDROID) {
             heroBtn.href = URLS.playStore;
@@ -362,14 +459,8 @@ const OpenDropRelease = (function() {
             heroBtn.classList.remove('btn-primary');
             heroBtn.classList.add('btn-secondary');
         } else if (release) {
-            // For Windows/Linux, set appropriate download link
-            let asset = null;
-            if (detectedOS === PLATFORMS.LINUX) {
-                asset = pickLinuxAsset(release.assets);
-            } else {
-                asset = pickWindowsAsset(release.assets);
-            }
-            
+            // For Linux, set appropriate download link
+            const asset = pickLinuxAsset(release.assets);
             const downloadUrl = asset?.browser_download_url || 
                                release.html_url || 
                                URLS.latestRelease;
@@ -383,6 +474,9 @@ const OpenDropRelease = (function() {
      */
     function updateReleaseUI(release) {
         if (!release) return;
+
+        // Store release for modal use
+        currentRelease = release;
 
         const tag = release.tag_name || '';
         const cleaned = String(tag).trim().replace(/^v/i, '');
@@ -424,6 +518,12 @@ const OpenDropRelease = (function() {
                                  release.html_url || 
                                  URLS.latestRelease;
         setHrefSafe(document.getElementById(ELEMENTS.linuxDownload), linuxDownloadUrl);
+
+        // Update modal web download button
+        const webBtn = document.getElementById(ELEMENTS.modalWebDownload);
+        if (webBtn) {
+            webBtn.href = windowsDownloadUrl;
+        }
 
         // Update hero button based on OS
         updateHeroForOS(release);
@@ -477,6 +577,7 @@ const OpenDropRelease = (function() {
      */
     function init() {
         fetchLatestRelease();
+        initModal();
     }
 
     // Public API
@@ -485,6 +586,8 @@ const OpenDropRelease = (function() {
         fetchLatestRelease,
         detectOS,
         getPlatformInfo,
+        showDownloadModal,
+        hideDownloadModal,
         // Expose for testing
         _parseSemver: parseSemver,
         _pickBestRelease: pickBestRelease,
