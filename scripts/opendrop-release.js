@@ -17,6 +17,7 @@ const OpenDropRelease = (function() {
         latestRelease: `https://github.com/${CONFIG.owner}/${CONFIG.repo}/releases/latest`,
         api: `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/releases?per_page=100`,
         playStore: 'https://play.google.com/store/apps/details?id=com.nfdgames.opendrop',
+        appStore: 'https://apps.apple.com/us/app/opendrop/id6757438202',
         microsoftStore: 'https://apps.microsoft.com/store/detail/XP99SJJTQXZ9WT',
     };
 
@@ -112,9 +113,9 @@ const OpenDropRelease = (function() {
             },
             [PLATFORMS.IOS]: { 
                 name: 'iPhone', 
-                available: false, 
+                available: true, 
                 extension: null,
-                action: 'iPhone Coming Soon'
+                action: 'Get on App Store'
             },
             [PLATFORMS.ANDROID]: { 
                 name: 'Android', 
@@ -453,7 +454,10 @@ const OpenDropRelease = (function() {
         if (detectedOS === PLATFORMS.ANDROID) {
             heroBtn.href = URLS.playStore;
             heroBtn.target = '_blank';
-        } else if (detectedOS === PLATFORMS.MACOS || detectedOS === PLATFORMS.IOS) {
+        } else if (detectedOS === PLATFORMS.IOS) {
+            heroBtn.href = URLS.appStore;
+            heroBtn.target = '_blank';
+        } else if (detectedOS === PLATFORMS.MACOS) {
             // For unavailable platforms, link to download section
             heroBtn.href = '#download';
             heroBtn.classList.remove('btn-primary');
