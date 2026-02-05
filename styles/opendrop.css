@@ -309,6 +309,45 @@
     font-size: 0.85rem;
 }
 
+/* Tertiary button style (smaller, less prominent) */
+.btn-tertiary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all var(--transition-fast);
+    cursor: pointer;
+}
+
+.btn-tertiary:hover {
+    border-color: rgba(124, 58, 237, 0.5);
+    color: var(--text-secondary);
+    background: rgba(124, 58, 237, 0.05);
+}
+
+.btn-tertiary svg {
+    width: 14px;
+    height: 14px;
+}
+
+/* Small button variant */
+.btn-small {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+}
+
+.btn-small svg {
+    width: 14px;
+    height: 14px;
+}
+
 /* Microsoft Store button style */
 .btn-store {
     display: inline-flex;
@@ -396,7 +435,7 @@
 }
 
 /* ============================================
-   Download Choice Modal
+   Download Choice Modal (Windows)
    ============================================ */
 .download-modal {
     position: fixed;
@@ -454,6 +493,9 @@
 .download-modal-header h3 {
     font-size: 1.25rem;
     margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
 }
 
 .download-modal-close {
@@ -475,7 +517,7 @@
     padding: var(--space-xl);
 }
 
-.download-modal-body p {
+.download-modal-body > p {
     color: var(--text-secondary);
     margin-bottom: var(--space-lg);
     text-align: center;
@@ -494,10 +536,130 @@
     gap: 0.75rem;
     padding: 1rem 1.5rem;
     font-size: 1rem;
+    position: relative;
 }
 
 .download-option svg {
     flex-shrink: 0;
+}
+
+/* Recommended badge */
+.recommended-badge {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--success);
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius-sm);
+}
+
+/* ============================================
+   Linux Download Modal
+   ============================================ */
+.linux-modal {
+    max-width: 500px;
+}
+
+.linux-instructions {
+    margin-bottom: var(--space-lg);
+}
+
+.instruction-intro {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-md);
+    text-align: center;
+}
+
+.terminal-block {
+    background: var(--bg-deep);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-bottom: var(--space-md);
+}
+
+.terminal-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid var(--border);
+}
+
+.terminal-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--border);
+}
+
+.terminal-dot:nth-child(1) { background: var(--error); }
+.terminal-dot:nth-child(2) { background: var(--warning); }
+.terminal-dot:nth-child(3) { background: var(--success); }
+
+.terminal-title {
+    margin-left: auto;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-family: 'Space Mono', monospace;
+}
+
+.terminal-body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+}
+
+.terminal-body code {
+    color: var(--success);
+    user-select: all;
+}
+
+.copy-btn {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0.5rem;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.copy-btn:hover {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+    color: var(--accent-glow);
+}
+
+.copy-btn.copied {
+    background: rgba(16, 185, 129, 0.15);
+    border-color: var(--success);
+    color: var(--success);
+}
+
+.instruction-note {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.linux-modal-ok {
+    width: 100%;
+    justify-content: center;
+    margin-top: var(--space-md);
 }
 
 /* Responsive */
@@ -556,5 +718,27 @@
     .download-option {
         padding: 0.875rem 1rem;
         font-size: 0.9rem;
+    }
+
+    .recommended-badge {
+        position: static;
+        transform: none;
+        margin-left: auto;
+    }
+
+    /* Linux modal responsive */
+    .terminal-body {
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: stretch;
+    }
+
+    .terminal-body code {
+        font-size: 0.75rem;
+        word-break: break-all;
+    }
+
+    .copy-btn {
+        align-self: flex-end;
     }
 }
