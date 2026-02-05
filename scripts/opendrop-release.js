@@ -35,6 +35,12 @@ const OpenDropRelease = (function() {
         closeModal: 'closeModal',
         modalMicrosoftStore: 'modalMicrosoftStore',
         modalWebDownload: 'modalWebDownload',
+        // Linux modal elements
+        linuxDownloadModal: 'linuxDownloadModal',
+        closeLinuxModal: 'closeLinuxModal',
+        linuxModalOk: 'linuxModalOk',
+        linuxCommand: 'linuxCommand',
+        copyCommand: 'copyCommand',
     };
 
     // Platform detection
@@ -49,6 +55,7 @@ const OpenDropRelease = (function() {
 
     // Store the current release for modal use
     let currentRelease = null;
+    let currentLinuxAssetName = 'OpenDrop-x86_64.AppImage';
 
     /**
      * Detect the user's operating system
@@ -368,6 +375,68 @@ const OpenDropRelease = (function() {
     }
 
     /**
+     * Show the Linux download modal with instructions
+     */
+    function showLinuxDownloadModal() {
+        const modal = document.getElementById(ELEMENTS.linuxDownloadModal);
+        if (modal) {
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            
+            // Update the command with the actual filename
+            const commandEl = document.getElementById(ELEMENTS.linuxCommand);
+            if (commandEl) {
+                commandEl.textContent = `chmod +x ${currentLinuxAssetName}`;
+            }
+        }
+    }
+
+    /**
+     * Hide the Linux download modal
+     */
+    function hideLinuxDownloadModal() {
+        const modal = document.getElementById(ELEMENTS.linuxDownloadModal);
+        if (modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+    }
+
+    /**
+     * Copy command to clipboard
+     */
+    async function copyCommandToClipboard() {
+        const commandEl = document.getElementById(ELEMENTS.linuxCommand);
+        const copyBtn = document.getElementById(ELEMENTS.copyCommand);
+        
+        if (!commandEl || !copyBtn) return;
+        
+        try {
+            await navigator.clipboard.writeText(commandEl.textContent);
+            
+            // Visual feedback
+            copyBtn.classList.add('copied');
+            copyBtn.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="16" height="16">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+            `;
+            
+            // Reset after 2 seconds
+            setTimeout(() => {
+                copyBtn.classList.remove('copied');
+                copyBtn.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="16" height="16">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                `;
+            }, 2000);
+        } catch (err) {
+            console.warn('Failed to copy to clipboard:', err);
+        }
+    }
+
+    /**
      * Initialize modal event listeners
      */
     function initModal() {
@@ -390,10 +459,11 @@ const OpenDropRelease = (function() {
             });
         }
 
-        // Escape key to close
+        // Escape key to close (for both modals)
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 hideDownloadModal();
+                hideLinuxDownloadModal();
             }
         });
 
@@ -422,6 +492,53 @@ const OpenDropRelease = (function() {
                 });
             }
         });
+    }
+
+    /**
+     * Initialize Linux modal event listeners
+     */
+    function initLinuxModal() {
+        const modal = document.getElementById(ELEMENTS.linuxDownloadModal);
+        const closeBtn = document.getElementById(ELEMENTS.closeLinuxModal);
+        const okBtn = document.getElementById(ELEMENTS.linuxModalOk);
+        const copyBtn = document.getElementById(ELEMENTS.copyCommand);
+
+        // Close button
+        if (closeBtn) {
+            closeBtn.addEventListener('click', hideLinuxDownloadModal);
+        }
+
+        // OK button
+        if (okBtn) {
+            okBtn.addEventListener('click', hideLinuxDownloadModal);
+        }
+
+        // Copy button
+        if (copyBtn) {
+            copyBtn.addEventListener('click', copyCommandToClipboard);
+        }
+
+        // Click outside to close
+        if (modal) {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    hideLinuxDownloadModal();
+                }
+            });
+        }
+    }
+
+    /**
+     * Handle Linux download button click
+     * @param {Event} e - Click event
+     * @param {string} downloadUrl - URL to download
+     */
+    function handleLinuxDownload(e, downloadUrl) {
+        // Allow the download to proceed (don't prevent default)
+        // Show the modal after a brief delay to let download start
+        setTimeout(() => {
+            showLinuxDownloadModal();
+        }, 100);
     }
 
     /**
@@ -462,13 +579,24 @@ const OpenDropRelease = (function() {
             heroBtn.href = '#download';
             heroBtn.classList.remove('btn-primary');
             heroBtn.classList.add('btn-secondary');
-        } else if (release) {
-            // For Linux, set appropriate download link
+        } else if (detectedOS === PLATFORMS.LINUX && release) {
+            // For Linux, set appropriate download link and show modal on click
             const asset = pickLinuxAsset(release.assets);
             const downloadUrl = asset?.browser_download_url || 
                                release.html_url || 
                                URLS.latestRelease;
             heroBtn.href = downloadUrl;
+            
+            if (asset) {
+                currentLinuxAssetName = asset.name;
+            }
+            
+            heroBtn.addEventListener('click', (e) => {
+                handleLinuxDownload(e, downloadUrl);
+            });
+        } else if (release) {
+            // For unknown OS with release
+            heroBtn.href = release.html_url || URLS.latestRelease;
         }
     }
 
@@ -521,7 +649,21 @@ const OpenDropRelease = (function() {
         const linuxDownloadUrl = linuxAsset?.browser_download_url || 
                                  release.html_url || 
                                  URLS.latestRelease;
-        setHrefSafe(document.getElementById(ELEMENTS.linuxDownload), linuxDownloadUrl);
+        
+        const linuxBtn = document.getElementById(ELEMENTS.linuxDownload);
+        if (linuxBtn) {
+            setHrefSafe(linuxBtn, linuxDownloadUrl);
+            
+            // Store the asset name for the modal
+            if (linuxAsset) {
+                currentLinuxAssetName = linuxAsset.name;
+            }
+            
+            // Add click handler to show Linux modal
+            linuxBtn.addEventListener('click', (e) => {
+                handleLinuxDownload(e, linuxDownloadUrl);
+            });
+        }
 
         // Update modal web download button
         const webBtn = document.getElementById(ELEMENTS.modalWebDownload);
@@ -582,6 +724,7 @@ const OpenDropRelease = (function() {
     function init() {
         fetchLatestRelease();
         initModal();
+        initLinuxModal();
     }
 
     // Public API
@@ -592,6 +735,8 @@ const OpenDropRelease = (function() {
         getPlatformInfo,
         showDownloadModal,
         hideDownloadModal,
+        showLinuxDownloadModal,
+        hideLinuxDownloadModal,
         // Expose for testing
         _parseSemver: parseSemver,
         _pickBestRelease: pickBestRelease,
