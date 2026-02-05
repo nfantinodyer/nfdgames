@@ -5,15 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OpenDrop – Wireless File Sharing</title>
     
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Stylesheets -->
     <link rel="stylesheet" href="../styles/common.css">
     <link rel="stylesheet" href="../styles/opendrop.css">
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241">
     </script>
     <script>
@@ -23,12 +20,26 @@
     
       gtag('config', 'AW-17319823241');
     </script>
+
+    <script>
+    function gtag_report_conversion(url) {
+      var callback = function () {
+        if (typeof(url) != 'undefined') {
+          window.location = url;
+        }
+      };
+      gtag('event', 'conversion', {
+          'send_to': 'AW-17319823241/thAVCIzeqvMbEImP3sJA',
+          'event_callback': callback
+      });
+      return false;
+    }
+    </script>
 </head>
 <body>
     <div class="bg-gradient"></div>
     <div class="noise"></div>
 
-    <!-- Download Choice Modal (Windows) -->
     <div id="downloadModal" class="download-modal" style="display: none;">
         <div class="download-modal-content">
             <div class="download-modal-header">
@@ -55,7 +66,6 @@
         </div>
     </div>
 
-    <!-- Linux Download Modal -->
     <div id="linuxDownloadModal" class="download-modal" style="display: none;">
         <div class="download-modal-content linux-modal">
             <div class="download-modal-header">
@@ -93,7 +103,6 @@
         </div>
     </div>
 
-    <!-- Navigation -->
     <nav>
         <a href="#" class="logo">
             <img src="OpenDropIcon.png" alt="OpenDrop Icon" class="logo-icon">
@@ -107,7 +116,6 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-badge" id="releaseBadge">
             <a id="releaseBadgeLink" href="https://github.com/nfantinodyer/nfdgames/releases/latest" target="_blank" rel="noopener noreferrer">
@@ -119,7 +127,7 @@
         <p class="hero-subtitle">Transfer files between your phone and computer instantly. No cables, no cloud limits, no hassle.</p>
         
         <div class="hero-actions">
-            <a href="https://github.com/nfantinodyer/nfdgames/releases/latest" class="btn btn-primary" id="heroDownloadBtn" data-fallback-href="https://github.com/nfantinodyer/nfdgames/releases/latest">
+            <a href="https://github.com/nfantinodyer/nfdgames/releases/latest" onclick="return gtag_report_conversion(this.href);" class="btn btn-primary" id="heroDownloadBtn" data-fallback-href="https://github.com/nfantinodyer/nfdgames/releases/latest">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
@@ -128,7 +136,6 @@
             <a href="#how-it-works" class="btn btn-secondary">Learn More</a>
         </div>
 
-        <!-- App Mockup -->
         <div class="hero-visual">
             <div class="app-mockup">
                 <div class="mockup-header">
@@ -164,7 +171,6 @@
         </div>
     </section>
 
-    <!-- Features Section -->
     <section class="features" id="features">
         <div class="section-header centered">
             <h2>Everything you need</h2>
@@ -205,7 +211,6 @@
         </div>
     </section>
 
-    <!-- Download Section -->
     <section class="download" id="download">
         <div class="download-container">
             <div class="section-header centered">
@@ -214,7 +219,6 @@
             </div>
 
             <div class="download-cards">
-                <!-- Windows -->
                 <div class="download-card" data-platform="windows">
                     <div class="platform-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -230,7 +234,7 @@
                             </svg>
                             Microsoft Store
                         </a>
-                        <a href="https://github.com/nfantinodyer/nfdgames/releases/latest" class="btn btn-tertiary btn-small" id="windowsDownloadBtn" data-fallback-href="https://github.com/nfantinodyer/nfdgames/releases/latest">
+                        <a href="https://github.com/nfantinodyer/nfdgames/releases/latest" onclick="return gtag_report_conversion(this.href);" class="btn btn-tertiary btn-small" id="windowsDownloadBtn" data-fallback-href="https://github.com/nfantinodyer/nfdgames/releases/latest">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                             </svg>
@@ -239,7 +243,6 @@
                     </div>
                 </div>
 
-                <!-- macOS -->
                 <div class="download-card" data-platform="macos">
                     <div class="platform-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -251,7 +254,6 @@
                     <span class="coming-soon">In Development</span>
                 </div>
 
-                <!-- Linux -->
                 <div class="download-card" data-platform="linux">
                     <div class="platform-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -260,7 +262,7 @@
                     </div>
                     <h3>Linux</h3>
                     <div class="version" id="linuxVersionText">v0.5.3 • x86_64</div>
-                    <a href="https://github.com/nfantinodyer/nfdgames/releases/latest" class="btn btn-primary" id="linuxDownloadBtn" data-fallback-href="https://github.com/nfantinodyer/nfdgames/releases/latest">
+                    <a href="https://github.com/nfantinodyer/nfdgames/releases/latest" onclick="return gtag_report_conversion(this.href);" class="btn btn-primary" id="linuxDownloadBtn" data-fallback-href="https://github.com/nfantinodyer/nfdgames/releases/latest">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                         </svg>
@@ -268,7 +270,6 @@
                     </a>
                 </div>
 
-                <!-- iOS -->
                 <div class="download-card" data-platform="ios">
                     <div class="platform-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -282,7 +283,6 @@
                     </a>
                 </div>
 
-                <!-- Android -->
                 <div class="download-card" data-platform="android">
                     <div class="platform-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -299,7 +299,6 @@
         </div>
     </section>
 
-    <!-- How It Works -->
     <section class="how-it-works" id="how-it-works">
         <div class="section-header centered">
             <h2>How it works</h2>
@@ -331,7 +330,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-content">
             <div class="footer-brand">
@@ -369,7 +367,6 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="../scripts/common.js"></script>
     <script src="../scripts/opendrop-release.js"></script>
     <script type="module">
