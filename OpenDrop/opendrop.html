@@ -110,8 +110,8 @@
         </a>
         <div class="nav-links">
             <a href="#features">Features</a>
-            <a href="#download">Download</a>
             <a href="#how-it-works">How It Works</a>
+            <a href="#download">Download</a>
             <a href="#download" class="nav-cta">Get Started</a>
         </div>
     </nav>
@@ -123,8 +123,9 @@
             </a>
         </div>
         
-        <h1>Wireless file sharing,<br><span class="gradient">simplified.</span></h1>
-        <p class="hero-subtitle">Transfer files between your phone and computer instantly. No cables, no cloud limits, no hassle.</p>
+        <h1>Your PC becomes your<br><span class="gradient">personal cloud.</span></h1>
+        <p class="hero-subtitle">Transfer files between your phone and computer over any network. No cables, no cloud subscriptions, no file size limits.</p>
+        <p class="hero-differentiator">Unlike AirDrop or cloud storage, OpenDrop works across any device and any network — your files never touch a third-party server.</p>
         
         <div class="hero-actions">
             <a href="https://github.com/nfantinodyer/nfdgames/releases/latest" onclick="return gtag_report_conversion(this.href);" class="btn btn-primary" id="heroDownloadBtn" data-fallback-href="https://github.com/nfantinodyer/nfdgames/releases/latest">
@@ -132,8 +133,12 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
                 <span id="heroDownloadText">Download</span>
+                <span class="btn-free-label">Free</span>
             </a>
-            <a href="#how-it-works" class="btn btn-secondary">Learn More</a>
+            <a href="#how-it-works" class="btn btn-secondary">See how it works</a>
+        </div>
+        <div class="hero-platforms">
+            Available on Windows, Linux, iOS, and Android
         </div>
 
         <div class="hero-visual">
@@ -171,42 +176,91 @@
         </div>
     </section>
 
+    <section class="trust-bar">
+        <div class="trust-items">
+            <div class="trust-item">
+                <span class="trust-value">5.0</span>
+                <span class="trust-label">App Store Rating</span>
+            </div>
+            <div class="trust-divider"></div>
+            <div class="trust-item">
+                <span class="trust-value">4</span>
+                <span class="trust-label">Platforms</span>
+            </div>
+            <div class="trust-divider"></div>
+            <div class="trust-item">
+                <span class="trust-value">E2E</span>
+                <span class="trust-label">Encrypted</span>
+            </div>
+            <div class="trust-divider"></div>
+            <div class="trust-item">
+                <span class="trust-value">Free</span>
+                <span class="trust-label">No account needed</span>
+            </div>
+        </div>
+    </section>
+
     <section class="features" id="features">
         <div class="section-header centered">
-            <h2>Everything you need</h2>
-            <p>Fast, secure, and dead simple. OpenDrop just works.</p>
+            <h2>Features</h2>
+            <p>What makes OpenDrop different from cloud storage and AirDrop.</p>
         </div>
 
         <div class="features-grid">
             <div class="feature-card">
-                <div class="feature-icon">⚡</div>
                 <h3>Instant Transfers</h3>
                 <p>Direct local network transfers at maximum speed. No file size limits, no waiting for uploads.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">🔒</div>
                 <h3>Secure by Design</h3>
-                <p>End-to-end encrypted connections with unique session keys. Your files stay private.</p>
+                <p>Encrypted connections via Cloudflare Tunnels with unique session keys. Your files never touch a third-party server.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">🌐</div>
                 <h3>Works Anywhere</h3>
-                <p>Cloudflare tunneling lets you transfer files even when not on the same network.</p>
+                <p>Not just local Wi-Fi. Cloudflare tunneling lets you transfer files from anywhere, even over mobile data.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">📱</div>
                 <h3>Cross-Platform</h3>
-                <p>Windows and Linux hosted servers with Android and iOS mobile apps. Transfer between any device.</p>
+                <p>Windows and Linux servers with Android and iOS apps. Transfer between any device.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">🔄</div>
-                <h3>Cloud Sync</h3>
-                <p>Pro subscribers get automatic sync and persistent connection URLs for seamless access.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🎯</div>
                 <h3>Zero Config</h3>
-                <p>Launch the app and scan a QR code. That's it. No accounts required for basic use.</p>
+                <p>Launch the server and scan a QR code. That's it. No port forwarding, no accounts required.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Pro: Cloud Sync</h3>
+                <p>Optional upgrade for auto-connect, remote folder access, and persistent connection URLs.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works" id="how-it-works">
+        <div class="section-header centered">
+            <h2>How it works</h2>
+            <p>Up and running in under a minute.</p>
+        </div>
+
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Launch the Server</h3>
+                    <p>Download and run OpenDrop on your Windows or Linux PC. It starts automatically and creates a secure tunnel.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Scan the QR Code</h3>
+                    <p>Open the OpenDrop app on your phone and scan the QR code. Connected instantly.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Transfer Files</h3>
+                    <p>Browse and download files from your PC, or send files from your phone. Done.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -215,7 +269,7 @@
         <div class="download-container">
             <div class="section-header centered">
                 <h2>Get OpenDrop</h2>
-                <p>Available now on Windows, Linux, Android, and iOS. macOS coming soon.</p>
+                <p>Available on Windows, Linux, Android, and iOS. macOS coming soon.</p>
             </div>
 
             <div class="download-cards">
@@ -294,37 +348,6 @@
                     <a href="https://play.google.com/store/apps/details?id=com.nfdgames.opendrop" class="btn btn-primary" target="_blank">
                         View on Play Store
                     </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="how-it-works" id="how-it-works">
-        <div class="section-header centered">
-            <h2>How it works</h2>
-            <p>Up and running in under a minute.</p>
-        </div>
-
-        <div class="steps">
-            <div class="step">
-                <div class="step-number">1</div>
-                <div class="step-content">
-                    <h3>Launch the Server</h3>
-                    <p>Download and run OpenDropServer on your Windows or Linux PC. The server starts automatically and creates a secure tunnel.</p>
-                </div>
-            </div>
-            <div class="step">
-                <div class="step-number">2</div>
-                <div class="step-content">
-                    <h3>Scan the QR Code</h3>
-                    <p>Open the OpenDrop mobile app and scan the QR code displayed on your computer. Connection is instant.</p>
-                </div>
-            </div>
-            <div class="step">
-                <div class="step-number">3</div>
-                <div class="step-content">
-                    <h3>Transfer Files</h3>
-                    <p>Browse files on your PC from your phone, or send files from your phone to your computer. Fast, simple, done.</p>
                 </div>
             </div>
         </div>

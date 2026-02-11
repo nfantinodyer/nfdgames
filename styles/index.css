@@ -4,9 +4,7 @@
 
 /* Index-specific background */
 .bg-gradient {
-    background: 
-        radial-gradient(ellipse 80% 60% at 50% -20%, rgba(124, 58, 237, 0.2), transparent),
-        radial-gradient(ellipse 60% 50% at 0% 50%, rgba(245, 158, 11, 0.05), transparent);
+    background: none;
 }
 
 /* Projects Section */
@@ -45,8 +43,6 @@
 
 .project-card:hover {
     border-color: var(--accent);
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
 }
 
 .card-image {
@@ -61,11 +57,11 @@
 }
 
 .card-image.opendrop-bg {
-    background: radial-gradient(circle at center, rgba(124, 58, 237, 0.2), var(--bg-dark));
+    background: var(--bg-dark);
 }
 
 .card-image.gunslinger-bg {
-    background: radial-gradient(circle at center, rgba(245, 158, 11, 0.15), var(--bg-dark));
+    background: var(--bg-dark);
 }
 
 .card-icon {
