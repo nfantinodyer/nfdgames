@@ -14,7 +14,8 @@
 }
 
 .hero h1 {
-    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    max-width: 750px;
 }
 
 /* Hero Badge */
