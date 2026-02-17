@@ -1,11 +1,513 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta http-equiv="refresh" content="0; url=opendrop.html">
-    <link rel="canonical" href="opendrop.html">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="../NFDGamesLogoCircleTransparent.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>OpenDrop - Free AirDrop for Windows & Android | Secure Local File Transfer</title>
+    <meta name="description" content="The fastest way to transfer files between PC, Android, iOS, and Linux. OpenDrop is a free, private AirDrop alternative for local Wi-Fi sharing. No internet required.">
+    <meta name="keywords" content="AirDrop for Windows, OpenDrop, file sharing, Snapdrop alternative, local send, wifi file transfer, transfer photos from android to pc, linux airdrop">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="OpenDrop - Your PC becomes your personal cloud">
+    <meta property="og:description" content="Secure, local file transfer for everyone. Open source and free.">
+    <meta property="og:image" content="https://www.nfdgames.com/OpenDrop/OpenDropIcon.png">
+    <meta property="og:url" content="https://www.nfdgames.com/OpenDrop/opendrop.html">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="OpenDrop - Free AirDrop for Windows & Android">
+    <meta name="twitter:description" content="Transfer files between PC, Android, iOS, and Linux. Free, private, no internet required.">
+    <meta name="twitter:image" content="https://www.nfdgames.com/OpenDrop/OpenDropIcon.png">
+    <link rel="canonical" href="https://www.nfdgames.com/OpenDrop/opendrop.html" />
+    <link rel="stylesheet" href="../styles/common.css">
+    <link rel="stylesheet" href="../styles/opendrop.css">
+    <script type="application/ld+json" id="opendrop-schema">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "SoftwareApplication",
+          "name": "OpenDrop",
+          "operatingSystem": ["Windows", "Linux", "Android", "iOS", "macOS"],
+          "applicationCategory": "UtilitiesApplication",
+          "fileSize": "10MB",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "priceValidUntil": "2030-12-31",
+            "availability": "https://schema.org/InStock"
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5.0",
+            "ratingCount": "2",
+            "bestRating": "5",
+            "worstRating": "1"
+          },
+          "description": "Free cross-platform file transfer app. Auto-discovers devices on Wi-Fi via mDNS or connects anywhere through a secure Cloudflare tunnel. Available for Windows, Linux, Android, and iOS.",
+          "disambiguatingDescription": "OpenDrop is a consumer file transfer utility for Windows and Android, distinct from the digital microfluidics project of the same name. Also not the same as the Github repository OpenDrop by alexellis.",
+          "softwareVersion": "LATEST", 
+          "author": {
+            "@type": "Organization",
+            "name": "NFDGames",
+            "url": "https://www.nfdgames.com"
+          },
+          "featureList": "Private encryption, No file size limits, Cross-platform, Offline transfer"
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [{
+            "@type": "Question",
+            "name": "Is there an AirDrop for Windows?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, OpenDrop brings the AirDrop experience to Windows and Linux. It runs a native server that auto-discovers your phone on Wi-Fi or connects through a secure Cloudflare tunnel. Transfer files wirelessly with iPhone, Android, and Linux devices."
+            }
+          }, {
+            "@type": "Question",
+            "name": "Is OpenDrop safe to use?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "OpenDrop is secure by design. Remote connections use Cloudflare Tunnels with TLS 1.3 encryption, and every session generates a unique secret key with HMAC-SHA256 request signing. Files transfer directly between your devices and are never stored on any server."
+            }
+          }]
+        }
+      ]
+    }
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241">
+    </script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'AW-17319823241');
+    </script>
+
+    <script>
+    function gtag_report_conversion(url) {
+      var callback = function () {
+        if (typeof(url) != 'undefined') {
+          window.location = url;
+        }
+      };
+      gtag('event', 'conversion', {
+          'send_to': 'AW-17319823241/thAVCIzeqvMbEImP3sJA',
+          'event_callback': callback
+      });
+      return false;
+    }
+    </script>
 </head>
 <body>
-    <p>Redirecting to <a href="opendrop.html">OpenDrop</a>...</p>
+    <div class="bg-gradient"></div>
+    <div class="noise"></div>
+
+    <div id="downloadModal" class="download-modal" style="display: none;">
+        <div class="download-modal-content">
+            <div class="download-modal-header">
+                <h3>Choose Download Option</h3>
+                <button class="download-modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="download-modal-body">
+                <p>How would you like to get OpenDrop for Windows?</p>
+                <div class="download-modal-options">
+                    <a href="https://apps.microsoft.com/store/detail/XP99SJJTQXZ9WT" class="btn btn-primary download-option" id="modalMicrosoftStore" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                            <path d="M0 0h11.5v11.5H0V0zm12.5 0H24v11.5H12.5V0zM0 12.5h11.5V24H0V12.5zm12.5 0H24V24H12.5V12.5z"/>
+                        </svg>
+                        Microsoft Store
+                    </a>
+                    <a href="https://github.com/nfantinodyer/nfdgames/releases/latest" class="btn btn-tertiary download-option" id="modalWebDownload">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="18" height="18">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                        </svg>
+                        Direct Download (.exe)
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="linuxDownloadModal" class="download-modal" style="display: none;">
+        <div class="download-modal-content linux-modal">
+            <div class="download-modal-header">
+                <h3>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="24" height="24" style="color: var(--success);">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                    Download Started
+                </h3>
+                <button class="download-modal-close" id="closeLinuxModal">&times;</button>
+            </div>
+            <div class="download-modal-body">
+                <div class="linux-instructions">
+                    <p class="instruction-intro">Before running OpenDrop, make the AppImage executable:</p>
+                    <div class="terminal-block">
+                        <div class="terminal-header">
+                            <span class="terminal-dot"></span>
+                            <span class="terminal-dot"></span>
+                            <span class="terminal-dot"></span>
+                            <span class="terminal-title">Terminal</span>
+                        </div>
+                        <div class="terminal-body">
+                            <code id="linuxCommand">chmod +x OpenDrop-x86_64.AppImage</code>
+                            <button class="copy-btn" id="copyCommand" title="Copy to clipboard">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="16" height="16">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="instruction-note">Then double-click the file or run it from terminal to launch OpenDrop.</p>
+                </div>
+                <button class="btn btn-primary linux-modal-ok" id="linuxModalOk">Got it!</button>
+            </div>
+        </div>
+    </div>
+
+    <nav>
+        <a href="#" class="logo">
+            <img src="OpenDropIcon.png" alt="OpenDrop - Free Wireless File Transfer App" class="logo-icon">
+            OpenDrop
+        </a>
+        
+        <div class="nav-links" id="navLinks">
+            <a href="#features">Features</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#download">Download</a>
+            <a href="#download" class="nav-cta">Get Started</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-badge" id="releaseBadge">
+            <a id="releaseBadgeLink" href="https://github.com/nfantinodyer/nfdgames/releases/latest" target="_blank" rel="noopener noreferrer">
+                <span id="releaseBadgeText">Now Available</span>
+            </a>
+        </div>
+        
+        <h1>Send files between your phone and PC.<br><span class="gradient">Instantly.</span></h1>
+        <p class="hero-subtitle">OpenDrop auto-discovers devices on your Wi-Fi, or connects anywhere through a secure Cloudflare tunnel. No cables, no cloud uploads, no file size limits.</p>
+        <p class="hero-differentiator">Works across Windows, Linux, Android, and iOS. Your files transfer directly between devices — nothing is stored on our servers.</p>
+        
+        <div class="hero-actions">
+            <a href="https://github.com/nfantinodyer/nfdgames/releases/latest" onclick="return gtag_report_conversion(this.href);" class="btn btn-primary" id="heroDownloadBtn" data-fallback-href="https://github.com/nfantinodyer/nfdgames/releases/latest">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                <span id="heroDownloadText">Download</span>
+                <span class="btn-free-label">Free</span>
+            </a>
+            <a href="#how-it-works" class="btn btn-secondary">See how it works</a>
+        </div>
+        <div class="hero-platforms">
+            Available on Windows, Linux, iOS, and Android
+        </div>
+
+        <div class="hero-visual">
+            <div class="app-mockup">
+                <div class="mockup-header">
+                    <div class="mockup-dot"></div>
+                    <div class="mockup-dot"></div>
+                    <div class="mockup-dot"></div>
+                </div>
+                <div class="mockup-content">
+                    <div class="mockup-status">
+                        <div class="status-dot"></div>
+                        <span>Server Online</span>
+                    </div>
+                    <div class="mockup-url">https://your-tunnel.trycloudflare.com</div>
+                    <div class="mockup-files">
+                        <div class="file-item">
+                            <span class="file-icon">📄</span>
+                            <span>presentation.pdf</span>
+                            <span class="file-size">2.4 MB</span>
+                        </div>
+                        <div class="file-item">
+                            <span class="file-icon">🖼️</span>
+                            <span>vacation_photos.zip</span>
+                            <span class="file-size">128 MB</span>
+                        </div>
+                        <div class="file-item">
+                            <span class="file-icon">🎵</span>
+                            <span>playlist.mp3</span>
+                            <span class="file-size">8.1 MB</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="trust-bar">
+        <div class="trust-items">
+            <div class="trust-item">
+                <span class="trust-value">5.0</span>
+                <a href="https://apps.apple.com/us/app/opendrop/id6757438202" target="_blank" rel="noopener noreferrer" class="trust-label" style="text-decoration: underline; cursor: pointer;">App Store Rating</a>
+            </div>
+            <div class="trust-divider"></div>
+            <div class="trust-item">
+                <span class="trust-value">4</span>
+                <span class="trust-label">Platforms</span>
+            </div>
+            <div class="trust-divider"></div>
+            <div class="trust-item">
+                <span class="trust-value">E2E</span>
+                <span class="trust-label">Encrypted</span>
+            </div>
+            <div class="trust-divider"></div>
+            <div class="trust-item">
+                <span class="trust-value">Free</span>
+                <span class="trust-label">No account needed</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="section-header centered">
+            <h2>Why OpenDrop is the Best AirDrop Alternative</h2>
+            <p>Secure, offline file transfer for Windows, Linux, and Mobile.</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>Fast Local Wi-Fi Transfer</h3>
+                <p>On the same network? OpenDrop auto-discovers your PC via mDNS and transfers directly at full LAN speed. No file size limits.</p>
+            </div>
+            <div class="feature-card">
+                <h3>End-to-End Encrypted</h3>
+                <p>Remote connections use Cloudflare Tunnels with TLS 1.3 encryption. Every session generates a unique secret key. Files go device-to-device.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Works Anywhere</h3>
+                <p>Not on the same Wi-Fi? OpenDrop creates a secure Cloudflare tunnel so you can transfer files over mobile data, from another building, or across the internet.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Cross-Platform</h3>
+                <p>Desktop server for Windows and Linux. Mobile apps for Android and iOS. Transfer between any combination of devices.</p>
+            </div>
+            <div class="feature-card">
+                <h3>No Accounts Needed</h3>
+                <p>Launch the server, scan a QR code with your phone. Connected. No sign-ups, no port forwarding, no configuration.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Pro: Auto-Connect & Streaming</h3>
+                <p>Skip the QR code entirely. Pro syncs your devices automatically, enables binary streaming for files up to 10 GB, and links multiple desktops together.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works" id="how-it-works">
+        <div class="section-header centered">
+            <h2>How to Transfer Files with OpenDrop</h2>
+            <p>Up and running in under a minute.</p>
+        </div>
+
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Launch the Server</h3>
+                    <p>Run OpenDrop on your PC. It starts a local server, broadcasts itself on your Wi-Fi via mDNS, and creates a secure Cloudflare tunnel — all automatically.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Scan the QR Code</h3>
+                    <p>Open the OpenDrop app on your phone and scan the QR code displayed on your PC. Your phone connects using the fastest available path — local Wi-Fi or secure tunnel.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Transfer Files</h3>
+                    <p>Browse your PC's files from your phone, send photos and documents back, or share entire folders. Files transfer directly between your devices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="social-proof">
+        <div class="section-header centered">
+            <h2>What Users Are Saying</h2>
+        </div>
+        <div class="testimonials">
+            <blockquote class="testimonial">
+                <p>"I have a windows pc and I take a lot of photos and videos on my iPhone. It's nice to use open drop as it makes the transfer process easier. It also doesn't compress my videos down like email does"</p>
+                <cite>
+                    <span class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                    <span class="testimonial-source">Syeda A. - App Store</span>
+                </cite>
+            </blockquote>
+        </div>
+    </section>
+
+    <section class="download" id="download">
+        <div class="download-container">
+            <div class="section-header centered">
+                <h2>Get OpenDrop</h2>
+                <p>Available on Windows, Linux, Android, and iOS. macOS coming soon.</p>
+            </div>
+
+            <div class="download-cards">
+                <div class="download-card" data-platform="windows">
+                    <div class="platform-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/>
+                        </svg>
+                    </div>
+                    <h3>Windows</h3>
+                    <div class="version" id="windowsVersionText">64-bit</div>
+                    <div class="download-buttons-stack">
+                        <a href="https://apps.microsoft.com/store/detail/XP99SJJTQXZ9WT" class="btn btn-primary" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                                <path d="M0 0h11.5v11.5H0V0zm12.5 0H24v11.5H12.5V0zM0 12.5h11.5V24H0V12.5zm12.5 0H24V24H12.5V12.5z"/>
+                            </svg>
+                            Microsoft Store
+                        </a>
+                        <a href="https://github.com/nfantinodyer/nfdgames/releases/latest" onclick="return gtag_report_conversion(this.href);" class="btn btn-tertiary btn-small" id="windowsDownloadBtn" data-fallback-href="https://github.com/nfantinodyer/nfdgames/releases/latest">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                            </svg>
+                            Download .exe
+                        </a>
+                    </div>
+                </div>
+
+                <div class="download-card" data-platform="macos">
+                    <div class="platform-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17.523 15.341c-.022-2.261 1.845-3.345 1.929-3.398-1.05-1.537-2.686-1.747-3.267-1.771-1.39-.141-2.714.82-3.42.82-.705 0-1.795-.799-2.949-.778-1.518.023-2.918.884-3.699 2.245-1.577 2.738-.403 6.794 1.133 9.016.751 1.086 1.647 2.307 2.824 2.263 1.133-.045 1.561-.733 2.931-.733 1.37 0 1.753.733 2.949.71 1.22-.022 1.99-1.107 2.736-2.196.862-1.26 1.217-2.481 1.238-2.544-.027-.012-2.377-.913-2.405-3.634M15.287 5.051c.624-.757 1.045-1.81.931-2.858-.9.037-1.99.6-2.636 1.357-.58.67-1.087 1.74-.951 2.767 1.005.078 2.032-.511 2.656-1.266"/>
+                        </svg>
+                    </div>
+                    <h3>macOS</h3>
+                    <div class="version">Coming Soon</div>
+                    <span class="coming-soon">In Development</span>
+                </div>
+
+                <div class="download-card" data-platform="linux">
+                    <div class="platform-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489a.424.424 0 00-.11.135c-.26.268-.45.6-.663.839-.199.199-.485.267-.797.4-.313.136-.658.269-.864.68-.09.189-.136.394-.132.602 0 .199.027.4.055.536.058.399.116.728.04.97-.249.68-.28 1.145-.106 1.484.174.334.535.47.94.601.81.2 1.91.135 2.774.6.926.466 1.866.67 2.616.47.526-.116.97-.464 1.208-.946.587-.003 1.23-.269 2.26-.334.699-.058 1.574.267 2.577.2.025.134.063.198.114.333l.003.003c.391.778 1.113 1.132 1.884 1.071.771-.06 1.592-.536 2.257-1.306.631-.765 1.683-1.084 2.378-1.503.348-.199.629-.469.649-.853.023-.4-.2-.811-.714-1.376v-.097l-.003-.003c-.17-.2-.25-.535-.338-.926-.085-.401-.182-.786-.492-1.046h-.003c-.059-.054-.123-.067-.188-.135a.357.357 0 00-.19-.064c.431-1.278.264-2.55-.173-3.694-.533-1.41-1.465-2.638-2.175-3.483-.796-1.005-1.576-1.957-1.56-3.368.026-2.152.236-6.133-3.544-6.139zm.529 3.405h.013c.213 0 .396.062.584.198.19.135.33.332.438.533.105.259.158.459.166.724 0-.02.006-.04.006-.06v.105a.086.086 0 01-.004-.021l-.004-.024a1.807 1.807 0 01-.15.706.953.953 0 01-.213.335.71.71 0 00-.088-.042c-.104-.045-.198-.064-.284-.133a1.312 1.312 0 00-.22-.066c.05-.06.146-.133.183-.198.053-.128.082-.264.088-.402v-.02a1.21 1.21 0 00-.061-.4c-.045-.134-.101-.2-.183-.333-.084-.066-.167-.132-.267-.132h-.016c-.093 0-.176.03-.262.132a.8.8 0 00-.205.334 1.18 1.18 0 00-.09.4v.019c.002.089.008.179.02.267-.193-.067-.438-.135-.607-.202a1.635 1.635 0 01-.018-.2v-.02a1.772 1.772 0 01.15-.768c.082-.22.232-.406.43-.533a.985.985 0 01.594-.2zm-2.962.059h.036c.142 0 .27.048.399.135.146.129.264.288.344.465.09.199.14.4.153.667v.004c.007.134.006.2-.002.266v.08c-.03.007-.056.018-.083.024-.152.055-.274.135-.393.2.012-.09.013-.18.003-.267v-.015c-.012-.133-.04-.2-.082-.333a.613.613 0 00-.166-.267.248.248 0 00-.183-.064h-.021c-.071.006-.13.04-.186.132a.552.552 0 00-.12.27.944.944 0 00-.023.33v.015c.012.135.037.2.08.334.046.134.098.2.166.268.01.009.02.018.034.024-.07.057-.117.07-.176.136a.304.304 0 01-.131.068 2.62 2.62 0 01-.275-.402 1.772 1.772 0 01-.155-.667 1.759 1.759 0 01.08-.668 1.43 1.43 0 01.283-.535c.128-.133.26-.2.418-.2zm1.37 1.706c.332 0 .733.065 1.216.399.293.2.523.269 1.052.468h.003c.255.136.405.266.478.399v-.131a.571.571 0 01.016.47c-.123.31-.516.643-1.063.842v.002c-.268.135-.501.333-.775.465-.276.135-.588.292-1.012.267a1.139 1.139 0 01-.448-.067 3.566 3.566 0 01-.322-.198c-.195-.135-.363-.332-.612-.465v-.005h-.005c-.4-.246-.616-.512-.686-.71-.07-.268-.005-.47.193-.6.224-.135.38-.271.483-.336.104-.074.143-.102.176-.131h.002v-.003c.169-.202.436-.47.839-.601.139-.036.294-.065.466-.065zm2.8 2.142c.358 1.417 1.196 3.475 1.735 4.473.286.534.855 1.659 1.102 3.024.156-.005.33.018.513.064.646-1.671-.546-3.467-1.089-3.966-.22-.2-.232-.335-.123-.335.59.534 1.365 1.572 1.646 2.757.13.535.16 1.104.021 1.67.067.028.135.06.205.067 1.032.534 1.413.938 1.23 1.537v-.002c-.06-.135-.12-.2-.283-.334-.164-.066-.39-.2-.674-.267.05.23.083.465.083.668-.066.006-.135.015-.2.015-.058-.464-.18-.93-.427-1.336-.253-.399-.682-.735-1.277-.933-.187-.064-.332-.197-.479-.332-.14-.135-.298-.27-.448-.402-.645-.53-1.128-.133-1.737.403l-.5.467c-.154.135-.436.267-.684.4-.246.067-.479.135-.724.068-.053-.066-.106-.2-.093-.4-.04-.066-.076-.132-.117-.2a.256.256 0 00-.192-.063c-.053 0-.104.02-.15.06-.143.136-.378.334-.637.465-.263.134-.546.2-.845.2-.066-.135-.127-.266-.18-.4-.036-.066-.066-.133-.098-.2-.024-.066-.048-.132-.065-.2-.141-.397-.37-.665-.57-.865-.135-.133-.265-.2-.38-.266-.218-.135-.31-.466-.152-.865a.64.64 0 00-.015-.535c-.017-.066-.083-.132-.166-.2-.089-.066-.213-.132-.4-.199-.182-.065-.285-.135-.349-.198-.026-.065-.026-.133-.017-.2.017-.132.1-.264.266-.4.096-.068.216-.133.36-.2a1.546 1.546 0 01.245-.131c.146-.067.264-.135.351-.2.089-.067.145-.1.202-.2.057-.066.057-.133.012-.2-.045-.098-.162-.197-.361-.265-.203-.067-.447-.133-.672-.267-.138-.067-.286-.135-.363-.2a.161.161 0 01-.057-.1c.006-.066.053-.066.137-.066.08-.003.15.003.204.033.154.066.31.133.459.2.09.065.178.13.267.198.195.13.37.2.52.2.087 0 .166-.033.232-.1a.27.27 0 00.087-.2c0-.066-.025-.133-.062-.2-.037-.064-.09-.132-.15-.198-.09-.133-.2-.2-.32-.266-.123-.066-.212-.133-.303-.2-.09-.066-.176-.132-.26-.2-.085-.066-.135-.198-.154-.332.053 0 .107.002.16.002.127.004.243.035.358.062.264.067.505.135.702.334.19.135.36.332.477.534.149.268.267.535.31.865.02.135.03.267.03.4v.066c.012.266.086.53.12.73.03.132.04.2 0 .265-.04.067-.106.067-.18.067zm-1.706 3.86v.066c-.08.67-.48 1.334-1.154 1.667h-.002c-.128.065-.262.133-.4.198-.15.066-.29.135-.432.2-.35.133-.662.268-.9.468-.227.2-.394.468-.49.8-.08.265-.073.535-.007.8a.857.857 0 00.137.334c.053.066.124.132.2.199.155.131.332.265.445.397.112.134.157.267.14.467-.027.4-.37.668-.87.868-.503.198-1.152.265-1.733.198-.273-.4-.62-1.067-.873-2-.26-.932-.418-1.866-.536-2.533a2.76 2.76 0 00-.157-.53c.01-.066.01-.133.01-.2.01-.466.105-.867.26-1.2.155-.333.373-.6.646-.8.272-.133.574-.267.91-.334.335-.066.697-.066 1.075-.066h.26c.4 0 .736.066 1.025.133.287.133.507.266.65.466.154.133.235.333.235.533 0 .2-.077.466-.204.667a1.437 1.437 0 01-.538.534c.192.198.383.268.634.268.25-.002.48-.136.645-.335.164-.197.264-.463.264-.73 0-.268-.1-.534-.23-.8-.17-.27-.394-.534-.624-.8l-.49-.602c-.135-.2-.237-.334-.3-.467-.066-.134-.1-.267-.1-.4 0-.2.066-.4.2-.534.133-.2.333-.334.633-.4.3-.067.7-.067 1.2 0 .5.065 1.133.198 1.9.465l.1.066zm-2.233 7.266c-.197.134-.464.198-.768.198h-.002c-.257 0-.513-.066-.734-.198-.106-.066-.196-.132-.261-.2a.626.626 0 01-.123-.2v.002c-.014-.064-.022-.132-.022-.2 0-.198.066-.398.178-.598.112-.197.278-.398.492-.597.213-.2.402-.399.574-.598.177-.2.31-.4.4-.598.13.2.26.398.44.598.187.2.37.398.552.598.184.198.33.398.427.598.1.2.142.398.143.598 0 .067-.005.135-.02.2a.587.587 0 01-.132.2 1.21 1.21 0 01-.272.198c-.217.134-.478.2-.738.2h-.005c-.285 0-.55-.066-.746-.2-.158-.067-.336-.134-.467 0-.128.132-.107.267.09.4z"/>
+                        </svg>
+                    </div>
+                    <h3>Linux</h3>
+                    <div class="version" id="linuxVersionText">x86_64</div>
+                    <a href="https://github.com/nfantinodyer/nfdgames/releases/latest" onclick="return gtag_report_conversion(this.href);" class="btn btn-primary" id="linuxDownloadBtn" data-fallback-href="https://github.com/nfantinodyer/nfdgames/releases/latest">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                        </svg>
+                        Download .AppImage
+                    </a>
+                </div>
+
+                <div class="download-card" data-platform="ios">
+                    <div class="platform-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17.523 15.341c-.022-2.261 1.845-3.345 1.929-3.398-1.05-1.537-2.686-1.747-3.267-1.771-1.39-.141-2.714.82-3.42.82-.705 0-1.795-.799-2.949-.778-1.518.023-2.918.884-3.699 2.245-1.577 2.738-.403 6.794 1.133 9.016.751 1.086 1.647 2.307 2.824 2.263 1.133-.045 1.561-.733 2.931-.733 1.37 0 1.753.733 2.949.71 1.22-.022 1.99-1.107 2.736-2.196.862-1.26 1.217-2.481 1.238-2.544-.027-.012-2.377-.913-2.405-3.634M15.287 5.051c.624-.757 1.045-1.81.931-2.858-.9.037-1.99.6-2.636 1.357-.58.67-1.087 1.74-.951 2.767 1.005.078 2.032-.511 2.656-1.266"/>
+                        </svg>
+                    </div>
+                    <h3>iPhone</h3>
+                    <div class="version">Released</div>
+                    <a href="https://apps.apple.com/us/app/opendrop/id6757438202" class="btn btn-primary" target="_blank">
+                        View on App Store
+                    </a>
+                </div>
+
+                <div class="download-card" data-platform="android">
+                    <div class="platform-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zM3.5 8C2.67 8 2 8.67 2 9.5v7c0 .83.67 1.5 1.5 1.5S5 17.33 5 16.5v-7C5 8.67 4.33 8 3.5 8zm17 0c-.83 0-1.5.67-1.5 1.5v7c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-7c0-.83-.67-1.5-1.5-1.5zm-4.97-5.84l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48A5.84 5.84 0 0012 1c-.96 0-1.86.23-2.66.63L7.85.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.31 1.31A5.983 5.983 0 006 7h12c0-1.99-.97-3.75-2.47-4.84zM10 5H9V4h1v1zm5 0h-1V4h1v1z"/>
+                        </svg>
+                    </div>
+                    <h3>Android</h3>
+                    <div class="version">Released</div>
+                    <a href="https://play.google.com/store/apps/details?id=com.nfdgames.opendrop" class="btn btn-primary" target="_blank">
+                        View on Play Store
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <img src="OpenDropIcon.png" alt="OpenDrop - AirDrop Alternative for Windows and Android" class="logo-icon">
+                    OpenDrop
+                </a>
+                <p>Cross-platform file sharing made simple. Built by NFDGames.</p>
+            </div>
+
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <a href="#features">Features</a>
+                    <a href="#download">Download</a>
+                    <a href="#how-it-works">How It Works</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <a href="https://www.nfdgames.com/OpenDrop/docs/export-compliance/">Documentation</a>
+                    <a href="support.html">Support</a>
+                    <a href="https://github.com/nfantinodyer/nfdgames/releases">Changelog</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Use Cases</h4>
+                    <a href="#features">AirDrop for Windows</a>
+                    <a href="#features">Android to PC Transfer</a>
+                    <a href="#features">Linux File Share</a>
+                    <a href="#features">Offline File Sharing</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <a href="PrivacyPolicy.html">Privacy Policy</a>
+                    <a href="TermsOfService.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 NFDGames. All rights reserved.</p>
+            <a href="mailto:Spot4nickgaming@gmail.com">Spot4nickgaming@gmail.com</a>
+        </div>
+    </footer>
+
+    <script src="../scripts/common.js"></script>
+    <script src="../scripts/opendrop-release.js"></script>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+      import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-analytics.js";
+    
+      const firebaseConfig = {
+        apiKey: "AIzaSyD1XfHr0OtAM4Zm62sPLW4Rjg__8HlLE0c",
+        authDomain: "opendrop-3c111.firebaseapp.com",
+        projectId: "opendrop-3c111",
+        storageBucket: "opendrop-3c111.firebasestorage.app",
+        messagingSenderId: "573883707762",
+        appId: "1:573883707762:web:e68643cce07c2cee3eadeb",
+        measurementId: "G-ENWJJ78E3Q"
+      };
+    
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+    
+      // OPTIONAL: Manually log a download if standard tracking misses it
+      // You can attach this function to your download buttons onclick event
+      window.trackDownload = (fileName) => {
+          logEvent(analytics, 'select_content', {
+            content_type: 'download',
+            item_id: fileName
+          });
+          console.log("Download tracked: " + fileName);
+      }
+    </script>
 </body>
 </html>
