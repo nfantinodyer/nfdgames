@@ -636,6 +636,18 @@ const OpenDropRelease = (function() {
             const display = cleaned ? `v${cleaned} • x86_64` : 'x86_64';
             setTextSafe(linuxVersionText, display);
         }
+       
+       const schemaTag = document.getElementById('opendrop-schema');
+        if (schemaTag) {
+            try {
+                const schema = JSON.parse(schemaTag.textContent);
+                schema.softwareVersion = cleaned; // Injects "0.5.3" (or whatever is latest)
+                schemaTag.textContent = JSON.stringify(schema, null, 2);
+                console.log('SEO Schema updated to version:', cleaned);
+            } catch (e) {
+                console.warn('Failed to update SEO schema:', e);
+            }
+        }
 
         // Update Windows download button
         const windowsAsset = pickWindowsAsset(release.assets);
@@ -670,7 +682,7 @@ const OpenDropRelease = (function() {
         if (webBtn) {
             webBtn.href = windowsDownloadUrl;
         }
-
+        const badgeText = document.getElementById(ELEMENTS.badgeText);
         // Update hero button based on OS
         updateHeroForOS(release);
     }
