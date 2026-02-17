@@ -638,12 +638,16 @@ const OpenDropRelease = (function() {
         }
        
        const schemaTag = document.getElementById('opendrop-schema');
-        if (schemaTag) {
+        if (schemaTag && cleaned) {
             try {
                 const schema = JSON.parse(schemaTag.textContent);
-                schema.softwareVersion = cleaned; // Injects "0.5.3" (or whatever is latest)
+                // Schema uses @graph array; softwareVersion is on the first entry
+                if (schema['@graph'] && schema['@graph'][0]) {
+                    schema['@graph'][0].softwareVersion = cleaned;
+                } else if (schema.softwareVersion !== undefined) {
+                    schema.softwareVersion = cleaned;
+                }
                 schemaTag.textContent = JSON.stringify(schema, null, 2);
-                console.log('SEO Schema updated to version:', cleaned);
             } catch (e) {
                 console.warn('Failed to update SEO schema:', e);
             }
@@ -651,26 +655,26 @@ const OpenDropRelease = (function() {
 
         // Update Windows download button
         const windowsAsset = pickWindowsAsset(release.assets);
-        const windowsDownloadUrl = windowsAsset?.browser_download_url || 
-                                   release.html_url || 
+        const windowsDownloadUrl = windowsAsset?.browser_download_url ||
+                                   release.html_url ||
                                    URLS.latestRelease;
         setHrefSafe(document.getElementById(ELEMENTS.windowsDownload), windowsDownloadUrl);
 
         // Update Linux download button
         const linuxAsset = pickLinuxAsset(release.assets);
-        const linuxDownloadUrl = linuxAsset?.browser_download_url || 
-                                 release.html_url || 
+        const linuxDownloadUrl = linuxAsset?.browser_download_url ||
+                                 release.html_url ||
                                  URLS.latestRelease;
-        
+
         const linuxBtn = document.getElementById(ELEMENTS.linuxDownload);
         if (linuxBtn) {
             setHrefSafe(linuxBtn, linuxDownloadUrl);
-            
+
             // Store the asset name for the modal
             if (linuxAsset) {
                 currentLinuxAssetName = linuxAsset.name;
             }
-            
+
             // Add click handler to show Linux modal
             linuxBtn.addEventListener('click', (e) => {
                 handleLinuxDownload(e, linuxDownloadUrl);
@@ -682,7 +686,7 @@ const OpenDropRelease = (function() {
         if (webBtn) {
             webBtn.href = windowsDownloadUrl;
         }
-        const badgeText = document.getElementById(ELEMENTS.badgeText);
+
         // Update hero button based on OS
         updateHeroForOS(release);
     }
