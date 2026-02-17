@@ -688,22 +688,10 @@
     margin-top: var(--space-md);
 }
 
-/* Mid-page CTA */
-.mid-cta {
-    text-align: center;
-    padding: var(--space-2xl) var(--space-xl) var(--space-3xl);
-}
-
-.mid-cta p {
-    color: var(--text-secondary);
-    font-size: 1.1rem;
-    margin-bottom: var(--space-lg);
-}
-
 /* Social Proof / Testimonials */
 .social-proof {
-    padding: var(--space-4xl) var(--space-xl);
-    max-width: 900px;
+    padding: var(--space-3xl) var(--space-xl);
+    max-width: 650px;
     margin: 0 auto;
 }
 
@@ -713,8 +701,8 @@
 }
 
 .testimonials {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    display: flex;
+    flex-direction: column;
     gap: var(--space-lg);
 }
 
