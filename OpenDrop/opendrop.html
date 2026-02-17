@@ -19,26 +19,55 @@
     <script type="application/ld+json" id="opendrop-schema">
     {
       "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "OpenDrop",
-      "operatingSystem": "Windows, Linux, Android, iOS",
-      "applicationCategory": "UtilitiesApplication",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "5.0",
-        "ratingCount": "12"
-      },
-      "description": "Cross-platform wireless file sharing tool for local networks.",
-      "softwareVersion": "LATEST", 
-      "author": {
-        "@type": "Organization",
-        "name": "NFDGames"
-      }
+      "@graph": [
+        {
+          "@type": "SoftwareApplication",
+          "name": "OpenDrop",
+          "operatingSystem": ["Windows", "Linux", "Android", "iOS", "macOS"],
+          "applicationCategory": "UtilitiesApplication",
+          "fileSize": "10MB",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "priceValidUntil": "2030-12-31",
+            "availability": "https://schema.org/InStock"
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5.0",
+            "ratingCount": "24",
+            "bestRating": "5",
+            "worstRating": "1"
+          },
+          "description": "Cross-platform wireless file sharing tool. The best AirDrop alternative for Windows and Linux.",
+          "softwareVersion": "LATEST", 
+          "author": {
+            "@type": "Organization",
+            "name": "NFDGames",
+            "url": "https://www.nfdgames.com"
+          },
+          "featureList": "Private encryption, No file size limits, Cross-platform, Offline transfer"
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [{
+            "@type": "Question",
+            "name": "Is there an AirDrop for Windows?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, OpenDrop brings the AirDrop experience to Windows. It allows you to share files wirelessly with iPhone, Android, and Linux devices securely."
+            }
+          }, {
+            "@type": "Question",
+            "name": "Is OpenDrop safe to use?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "OpenDrop is secure by design. It uses end-to-end encryption and files are transferred directly between devices over your local network or secure tunnels, never stored on a cloud server."
+            }
+          }]
+        }
+      ]
     }
     </script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241">
