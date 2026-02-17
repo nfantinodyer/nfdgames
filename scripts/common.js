@@ -47,11 +47,34 @@ function initNavScroll() {
 }
 
 /**
+ * Initialize mobile menu toggle
+ */
+function initMobileMenu() {
+    const btn = document.getElementById('mobileMenuBtn');
+    const nav = document.getElementById('navLinks');
+    if (!btn || !nav) return;
+
+    btn.addEventListener('click', () => {
+        btn.classList.toggle('active');
+        nav.classList.toggle('open');
+    });
+
+    // Close menu when a link is clicked
+    nav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            btn.classList.remove('active');
+            nav.classList.remove('open');
+        });
+    });
+}
+
+/**
  * Initialize all common functionality
  */
 function initCommon() {
     initSmoothScroll();
     initNavScroll();
+    initMobileMenu();
 }
 
 // Auto-initialize when DOM is ready
@@ -63,5 +86,5 @@ if (document.readyState === 'loading') {
 
 // Export for module usage
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { initSmoothScroll, initNavScroll, initCommon };
+    module.exports = { initSmoothScroll, initNavScroll, initMobileMenu, initCommon };
 }

@@ -470,27 +470,27 @@
         <div class="faq-grid">
             <div class="faq-item">
                 <h4>Why won't my phone connect?</h4>
-                <p>Make sure both devices are on the same network, or use the Cloudflare tunnel URL. Try refreshing the QR code on the server.</p>
+                <p>If you're on the same Wi-Fi, OpenDrop uses mDNS to discover your PC automatically. Some routers block mDNS — if local discovery fails, the app falls back to the Cloudflare tunnel URL in the QR code. Try refreshing the QR code on the server, or make sure your firewall allows connections on port 8000.</p>
             </div>
             <div class="faq-item">
                 <h4>Are my files secure?</h4>
-                <p>Yes! OpenDrop uses end-to-end encryption with unique session keys. Your files are never stored on our servers.</p>
+                <p>Yes. Remote connections are encrypted with TLS 1.3 via Cloudflare Tunnels. Each session generates a unique secret key, and every request is signed with HMAC-SHA256 to prevent tampering. Files transfer directly between your devices and are never stored on any server.</p>
             </div>
             <div class="faq-item">
                 <h4>What's the file size limit?</h4>
-                <p>There's no file size limit for local transfers. Large files transfer at your network's maximum speed.</p>
+                <p>On the same Wi-Fi (LAN transfers), there's no file size limit — files stream directly at your network's full speed. Over a Cloudflare tunnel, free users transfer in 5 MB chunks. Pro subscribers get binary streaming for files up to 10 GB.</p>
             </div>
             <div class="faq-item">
                 <h4>Is there a mobile app?</h4>
-                <p>Yes! OpenDrop is available on both Android (Google Play) and iOS (App Store). A macOS server version is currently in development.</p>
+                <p>Yes! OpenDrop is available on both Android (Google Play) and iOS (App Store). The desktop server runs on Windows and Linux. A macOS server version is in development.</p>
             </div>
             <div class="faq-item">
                 <h4>How do I transfer photos from Android to PC wirelessly?</h4>
-                <p>Open OpenDrop on your PC to create a secure tunnel. Scan the QR code with your Android phone. Select your photos and tap send. They will appear instantly in your PC's Downloads folder.</p>
+                <p>Open OpenDrop on your PC — it starts a local server and creates a secure tunnel automatically. Scan the QR code with the OpenDrop Android app. If both devices are on the same Wi-Fi, it connects directly via LAN for maximum speed. Select your photos and tap send.</p>
             </div>
             <div class="faq-item">
                 <h4>How is OpenDrop different from Snapdrop?</h4>
-                <p>Unlike Snapdrop which requires WebRTC and internet for signaling, OpenDrop runs a native server on your device for faster, more reliable connections that work even without active internet.</p>
+                <p>Snapdrop requires a WebRTC connection through a signaling server and only works in a browser. OpenDrop runs a native FastAPI server on your desktop with automatic LAN discovery (mDNS) and a Cloudflare tunnel for remote access. It works without any internet at all on the same Wi-Fi, and supports larger files, folder browsing, and native mobile apps.</p>
             </div>
         </div>
     </section>
