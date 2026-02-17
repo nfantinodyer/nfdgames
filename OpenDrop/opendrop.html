@@ -9,18 +9,26 @@
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
     <title>OpenDrop - Free AirDrop for Windows & Android | Secure Local File Transfer</title>
-    <meta name="description" content="The fastest way to transfer files between PC, Android, iOS, and Linux. OpenDrop is a free, private AirDrop alternative for local Wi-Fi sharing. No internet required.">
-    <meta name="keywords" content="AirDrop for Windows, OpenDrop, file sharing, Snapdrop alternative, local send, wifi file transfer, transfer photos from android to pc, linux airdrop">
+    <meta name="description" content="The fastest way to transfer files between PC, Android, iOS, and Linux. OpenDrop is a free, private AirDrop alternative with GUI and CLI for local Wi-Fi sharing. No internet required.">
+    <meta name="keywords" content="AirDrop for Windows, OpenDrop, file sharing, Snapdrop alternative, local send, wifi file transfer, transfer photos from android to pc, linux airdrop, file transfer CLI, wireless file transfer app">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="NFDGames">
+    <link rel="canonical" href="https://www.nfdgames.com/OpenDrop/" />
+    <link rel="alternate" hreflang="en" href="https://www.nfdgames.com/OpenDrop/" />
+    <meta name="apple-itunes-app" content="app-id=6757438202">
+    <meta name="google-play-app" content="app-id=com.nfdgames.opendrop">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="OpenDrop - Your PC becomes your personal cloud">
-    <meta property="og:description" content="Secure, local file transfer for everyone. Open source and free.">
+    <meta property="og:title" content="OpenDrop - Free AirDrop for Windows & Android | File Transfer App">
+    <meta property="og:description" content="The fastest way to transfer files between PC, Android, iOS, and Linux. Free, private, no internet required.">
     <meta property="og:image" content="https://www.nfdgames.com/OpenDrop/OpenDropIcon.png">
     <meta property="og:url" content="https://www.nfdgames.com/OpenDrop/">
+    <meta property="og:site_name" content="NFDGames">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="OpenDrop - Free AirDrop for Windows & Android">
-    <meta name="twitter:description" content="Transfer files between PC, Android, iOS, and Linux. Free, private, no internet required.">
+    <meta name="twitter:title" content="OpenDrop - Free AirDrop for Windows & Android | File Transfer App">
+    <meta name="twitter:description" content="Transfer files between PC, Android, iOS, and Linux. GUI and CLI. Free, private, no internet required.">
     <meta name="twitter:image" content="https://www.nfdgames.com/OpenDrop/OpenDropIcon.png">
-    <link rel="canonical" href="https://www.nfdgames.com/OpenDrop/" />
+    <link rel="dns-prefetch" href="//www.googletagmanager.com">
+    <link rel="dns-prefetch" href="//www.gstatic.com">
     <link rel="stylesheet" href="../styles/common.css">
     <link rel="stylesheet" href="../styles/opendrop.css">
     <script type="application/ld+json" id="opendrop-schema">
@@ -30,7 +38,7 @@
         {
           "@type": "WebPage",
           "name": "OpenDrop - Free AirDrop for Windows & Android",
-          "description": "The fastest way to transfer files between PC, Android, iOS, and Linux. Free, private AirDrop alternative.",
+          "description": "The fastest way to transfer files between PC, Android, iOS, and Linux. Free, private AirDrop alternative with GUI and CLI support.",
           "url": "https://www.nfdgames.com/OpenDrop/",
           "isPartOf": {
             "@type": "WebSite",
@@ -60,6 +68,7 @@
           "name": "OpenDrop",
           "operatingSystem": ["Windows", "Linux", "Android", "iOS", "macOS"],
           "applicationCategory": "UtilitiesApplication",
+          "applicationSubCategory": "File Transfer",
           "fileSize": "10MB",
           "offers": {
             "@type": "Offer",
@@ -75,15 +84,17 @@
             "bestRating": "5",
             "worstRating": "1"
           },
-          "description": "Free cross-platform file transfer app. Auto-discovers devices on Wi-Fi via mDNS or connects anywhere through a secure Cloudflare tunnel. Available for Windows, Linux, Android, and iOS.",
-          "disambiguatingDescription": "OpenDrop is a consumer file transfer utility for Windows and Android, distinct from the digital microfluidics project of the same name. Also not the same as the Github repository OpenDrop by alexellis.",
-          "softwareVersion": "LATEST", 
+          "description": "Free cross-platform file transfer app with GUI and CLI. Finds devices on your Wi-Fi via mDNS or connects anywhere through a secure Cloudflare tunnel. Works on Windows, Linux, Android, and iOS. Can also run headless from the command line.",
+          "disambiguatingDescription": "OpenDrop by NFDGames is a file transfer app with GUI and CLI for Windows, Linux, Android, and iOS. Not the same as seemoo-lab/opendrop (Python AirDrop protocol), GaudiLabs OpenDrop (digital microfluidics platform), or jdber1/opendrop (pendant drop tensiometry software).",
+          "softwareVersion": "LATEST",
+          "downloadUrl": "https://github.com/nfantinodyer/nfdgames/releases/latest",
+          "installUrl": "https://apps.microsoft.com/store/detail/XP99SJJTQXZ9WT",
           "author": {
             "@type": "Organization",
             "name": "NFDGames",
             "url": "https://www.nfdgames.com"
           },
-          "featureList": "Private encryption, No file size limits, Cross-platform, Offline transfer"
+          "featureList": "Private encryption, No file size limits, Cross-platform, Offline transfer, CLI support, GUI desktop app, mDNS discovery, Cloudflare tunnel remote access, QR code pairing"
         },
         {
           "@type": "FAQPage",
@@ -92,16 +103,65 @@
             "name": "Is there an AirDrop for Windows?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes, OpenDrop brings the AirDrop experience to Windows and Linux. It runs a native server that auto-discovers your phone on Wi-Fi or connects through a secure Cloudflare tunnel. Transfer files wirelessly with iPhone, Android, and Linux devices."
+              "text": "Yes. OpenDrop works like AirDrop but on Windows and Linux. It runs a local server that finds your phone on Wi-Fi or connects through a secure Cloudflare tunnel. You can transfer files wirelessly with iPhone, Android, and Linux. Works as a GUI app or from the command line."
             }
           }, {
             "@type": "Question",
             "name": "Is OpenDrop safe to use?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "OpenDrop is secure by design. Remote connections use Cloudflare Tunnels with TLS 1.3 encryption, and every session generates a unique secret key with HMAC-SHA256 request signing. Files transfer directly between your devices and are never stored on any server."
+              "text": "Yes. Remote connections use Cloudflare Tunnels with TLS 1.3 encryption, and every session gets a unique secret key with HMAC-SHA256 request signing. Files go directly between your devices and never touch any server."
+            }
+          }, {
+            "@type": "Question",
+            "name": "Does OpenDrop have a command line interface (CLI)?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. OpenDrop has both a desktop GUI and a command line interface. You can run the server headless from the terminal, which is great for automation, scripting, remote servers, or if you just prefer the command line."
+            }
+          }, {
+            "@type": "Question",
+            "name": "How do I transfer photos from Android to PC wirelessly?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Open OpenDrop on your PC. It starts a local server and creates a secure tunnel automatically. Then scan the QR code with the OpenDrop Android app. If both devices are on the same Wi-Fi, it connects directly over LAN for maximum speed. Pick your photos and tap send. No USB cable, no cloud upload, no account needed."
+            }
+          }, {
+            "@type": "Question",
+            "name": "How is OpenDrop different from Snapdrop or LocalSend?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Snapdrop needs a WebRTC signaling server and only runs in a browser. LocalSend needs both devices on the same network. OpenDrop runs a native FastAPI server with automatic LAN discovery (mDNS) plus a Cloudflare tunnel for remote access. It works offline on the same Wi-Fi, and also works across different networks. It handles larger files, lets you browse folders, has a CLI mode, and has native mobile apps."
+            }
+          }, {
+            "@type": "Question",
+            "name": "What is the difference between OpenDrop by NFDGames and other OpenDrop projects?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "OpenDrop by NFDGames is a file transfer app on the App Store, Google Play, and Microsoft Store with GUI and CLI for Windows, Linux, Android, and iOS. The seemoo-lab/opendrop on GitHub is a different project, a Python-based Apple AirDrop protocol tool for macOS and Linux. GaudiLabs OpenDrop is a digital microfluidics bio lab platform. They just happen to share the same name."
             }
           }]
+        },
+        {
+          "@type": "Review",
+          "itemReviewed": {
+            "@type": "SoftwareApplication",
+            "name": "OpenDrop"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          },
+          "author": {
+            "@type": "Person",
+            "name": "Syeda A."
+          },
+          "reviewBody": "I have a windows pc and I take a lot of photos and videos on my iPhone. It's nice to use open drop as it makes the transfer process easier. It also doesn't compress my videos down like email does",
+          "publisher": {
+            "@type": "Organization",
+            "name": "Apple App Store"
+          }
         }
       ]
     }
@@ -202,7 +262,7 @@
         <a href="#" class="logo">
             <picture>
                 <source srcset="OpenDropIcon-logo.webp" type="image/webp">
-                <img src="OpenDropIcon.png" alt="OpenDrop - Free Wireless File Transfer App" class="logo-icon" width="36" height="36">
+                <img src="OpenDropIcon.png" alt="OpenDrop - Free Wireless File Transfer App for Windows Android iOS Linux" class="logo-icon" width="36" height="36" loading="lazy">
             </picture>
             OpenDrop
         </a>
@@ -225,7 +285,7 @@
         
         <h1>Send files between your phone and PC.<br><span class="gradient">Instantly.</span></h1>
         <p class="hero-subtitle">OpenDrop auto-discovers devices on your Wi-Fi, or connects anywhere through a secure Cloudflare tunnel. No cables, no cloud uploads, no file size limits.</p>
-        <p class="hero-differentiator">Works across Windows, Linux, Android, and iOS. Your files transfer directly between devices — nothing is stored on our servers.</p>
+        <p class="hero-differentiator">Works across Windows, Linux, Android, and iOS. Your files go directly between devices. Nothing is stored on our servers.</p>
         
         <div class="hero-actions">
             <a href="https://github.com/nfantinodyer/nfdgames/releases/latest" onclick="return gtag_report_conversion(this.href);" class="btn btn-primary" id="heroDownloadBtn" data-fallback-href="https://github.com/nfantinodyer/nfdgames/releases/latest">
@@ -328,6 +388,10 @@
                 <p>Launch the server, scan a QR code with your phone. Connected. No sign-ups, no port forwarding, no configuration.</p>
             </div>
             <div class="feature-card">
+                <h3>GUI & CLI Support</h3>
+                <p>Use the desktop GUI or run it headless from the command line. The CLI is great for automation, scripting, and running on remote servers.</p>
+            </div>
+            <div class="feature-card">
                 <h3>Pro: Auto-Connect & Streaming</h3>
                 <p>Skip the QR code entirely. Pro syncs your devices automatically, enables binary streaming for files up to 10 GB, and links multiple desktops together.</p>
             </div>
@@ -345,14 +409,14 @@
                 <div class="step-number">1</div>
                 <div class="step-content">
                     <h3>Launch the Server</h3>
-                    <p>Run OpenDrop on your PC. It starts a local server, broadcasts itself on your Wi-Fi via mDNS, and creates a secure Cloudflare tunnel — all automatically.</p>
+                    <p>Run OpenDrop on your PC. It starts a local server, broadcasts itself on your Wi-Fi via mDNS, and creates a secure Cloudflare tunnel. All automatic.</p>
                 </div>
             </div>
             <div class="step">
                 <div class="step-number">2</div>
                 <div class="step-content">
                     <h3>Scan the QR Code</h3>
-                    <p>Open the OpenDrop app on your phone and scan the QR code displayed on your PC. Your phone connects using the fastest available path — local Wi-Fi or secure tunnel.</p>
+                    <p>Open the OpenDrop app on your phone and scan the QR code on your PC. Your phone connects using the fastest path available, either local Wi-Fi or secure tunnel.</p>
                 </div>
             </div>
             <div class="step">
@@ -475,7 +539,7 @@
                 <a href="#" class="logo">
                     <picture>
                         <source srcset="OpenDropIcon-logo.webp" type="image/webp">
-                        <img src="OpenDropIcon.png" alt="OpenDrop - AirDrop Alternative for Windows and Android" class="logo-icon" width="36" height="36">
+                        <img src="OpenDropIcon.png" alt="OpenDrop - AirDrop Alternative for Windows and Android" class="logo-icon" width="36" height="36" loading="lazy">
                     </picture>
                     OpenDrop
                 </a>

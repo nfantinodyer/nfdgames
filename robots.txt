@@ -2,3 +2,10 @@ User-agent: *
 Allow: /
 
 Sitemap: https://www.nfdgames.com/sitemap.xml
+
+# Crawl-delay suggestion for polite bots
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
