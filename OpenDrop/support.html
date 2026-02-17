@@ -17,10 +17,11 @@
     <meta name="twitter:description" content="Get help with OpenDrop file transfers. FAQs, troubleshooting, and direct support.">
     <meta name="twitter:image" content="https://www.nfdgames.com/OpenDrop/OpenDropIcon.png">
 
-    <!-- Fonts -->
+    <!-- Fonts (deferred to avoid render-blocking) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="../styles/common.css">
@@ -338,7 +339,10 @@
     <!-- Navigation -->
     <nav>
         <a href="opendrop.html" class="logo">
-            <img src="OpenDropIcon.png" alt="OpenDrop Icon" class="logo-icon">
+            <picture>
+                <source srcset="OpenDropIcon-logo.webp" type="image/webp">
+                <img src="OpenDropIcon.png" alt="OpenDrop Icon" class="logo-icon" width="36" height="36">
+            </picture>
             OpenDrop
         </a>
         <div class="nav-links">
@@ -349,6 +353,7 @@
         </div>
     </nav>
 
+    <main>
     <!-- Support Hero -->
     <section class="support-hero">
         <h1>How can we <span class="gradient">help?</span></h1>
@@ -495,12 +500,17 @@
         </div>
     </section>
 
+    </main>
+
     <!-- Footer -->
     <footer>
         <div class="footer-content">
             <div class="footer-brand">
                 <a href="opendrop.html" class="logo">
-                    <img src="OpenDropIcon.png" alt="OpenDrop Icon" class="logo-icon">
+                    <picture>
+                        <source srcset="OpenDropIcon-logo.webp" type="image/webp">
+                        <img src="OpenDropIcon.png" alt="OpenDrop Icon" class="logo-icon" width="36" height="36">
+                    </picture>
                     OpenDrop
                 </a>
                 <p>Cross-platform file sharing made simple. Built by NFDGames.</p>

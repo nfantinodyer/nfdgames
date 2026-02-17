@@ -6,7 +6,8 @@
     <link rel="icon" type="image/png" href="../NFDGamesLogoCircleTransparent.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
     <title>OpenDrop - Free AirDrop for Windows & Android | Secure Local File Transfer</title>
     <meta name="description" content="The fastest way to transfer files between PC, Android, iOS, and Linux. OpenDrop is a free, private AirDrop alternative for local Wi-Fi sharing. No internet required.">
     <meta name="keywords" content="AirDrop for Windows, OpenDrop, file sharing, Snapdrop alternative, local send, wifi file transfer, transfer photos from android to pc, linux airdrop">
@@ -171,7 +172,10 @@
 
     <nav>
         <a href="#" class="logo">
-            <img src="OpenDropIcon.png" alt="OpenDrop - Free Wireless File Transfer App" class="logo-icon">
+            <picture>
+                <source srcset="OpenDropIcon-logo.webp" type="image/webp">
+                <img src="OpenDropIcon.png" alt="OpenDrop - Free Wireless File Transfer App" class="logo-icon" width="36" height="36">
+            </picture>
             OpenDrop
         </a>
         
@@ -183,6 +187,7 @@
         </div>
     </nav>
 
+    <main>
     <section class="hero">
         <div class="hero-badge" id="releaseBadge">
             <a id="releaseBadgeLink" href="https://github.com/nfantinodyer/nfdgames/releases/latest" target="_blank" rel="noopener noreferrer">
@@ -434,12 +439,16 @@
             </div>
         </div>
     </section>
+    </main>
 
     <footer>
         <div class="footer-content">
             <div class="footer-brand">
                 <a href="#" class="logo">
-                    <img src="OpenDropIcon.png" alt="OpenDrop - AirDrop Alternative for Windows and Android" class="logo-icon">
+                    <picture>
+                        <source srcset="OpenDropIcon-logo.webp" type="image/webp">
+                        <img src="OpenDropIcon.png" alt="OpenDrop - AirDrop Alternative for Windows and Android" class="logo-icon" width="36" height="36">
+                    </picture>
                     OpenDrop
                 </a>
                 <p>Cross-platform file sharing made simple. Built by NFDGames.</p>

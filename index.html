@@ -16,11 +16,12 @@
     <meta name="twitter:title" content="NFDGames – Indie Games & Software Tools">
     <meta name="twitter:description" content="Indie studio building software utilities like OpenDrop and mobile games.">
     <meta name="twitter:image" content="https://www.nfdgames.com/NFDGamesLogoCircleTransparent.png">
-    <!-- Fonts -->
+    <!-- Fonts (deferred to avoid render-blocking) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+
     <!-- Stylesheets -->
     <link rel="stylesheet" href="styles/common.css">
     <link rel="stylesheet" href="styles/index.css">
@@ -42,7 +43,10 @@
     <!-- Navigation -->
     <nav>
         <a href="#" class="logo">
-            <img src="NFDGamesLogoCircleTransparent.png" alt="NFDGames Icon" class="logo-icon">
+            <picture>
+                <source srcset="NFDGamesLogoCircleTransparent.webp" type="image/webp">
+                <img src="NFDGamesLogoCircleTransparent.png" alt="NFDGames Icon" class="logo-icon" width="36" height="36">
+            </picture>
             NFDGames
         </a>
         <div class="nav-links">
@@ -51,6 +55,7 @@
         </div>
     </nav>
 
+    <main>
     <!-- Hero Section -->
     <section class="hero">
         <h1>Building <span class="gradient">Tools</span> &<br>Crafting <span style="color: var(--accent-secondary);">Games</span></h1>
@@ -77,7 +82,10 @@
             <!-- OpenDrop Card -->
             <article class="project-card">
                 <div class="card-image opendrop-bg">
-                    <img src="OpenDrop/OpenDropIcon.png" alt="OpenDrop Icon" class="card-icon">
+                    <picture>
+                        <source srcset="OpenDrop/OpenDropIcon.webp" type="image/webp">
+                        <img src="OpenDrop/OpenDropIcon.png" alt="OpenDrop Icon" class="card-icon" width="440" height="440">
+                    </picture>
                 </div>
                 <div class="card-content">
                     <span class="project-type">Utility / Tool</span>
@@ -97,7 +105,10 @@
             <!-- Gunslinger Card -->
             <article class="project-card">
                 <div class="card-image gunslinger-bg">
-                    <img src="Gunslinger/GunSlingerIcon.png" alt="Gunslinger Icon" class="card-icon">
+                    <picture>
+                        <source srcset="Gunslinger/GunSlingerIcon.webp" type="image/webp">
+                        <img src="Gunslinger/GunSlingerIcon.png" alt="Gunslinger Icon" class="card-icon" width="512" height="512">
+                    </picture>
                 </div>
                 <div class="card-content">
                     <span class="project-type game">Mobile Game</span>
@@ -116,11 +127,16 @@
         </div>
     </section>
 
+    </main>
+
     <!-- Footer -->
     <footer class="footer-simple">
         <div class="footer-content">
             <a href="#" class="logo">
-                <img src="NFDGamesLogoCircleTransparent.png" alt="NFDGames Icon" class="logo-icon">
+                <picture>
+                    <source srcset="NFDGamesLogoCircleTransparent.webp" type="image/webp">
+                    <img src="NFDGamesLogoCircleTransparent.png" alt="NFDGames Icon" class="logo-icon" width="36" height="36">
+                </picture>
                 NFDGames
             </a>
             <p class="text-muted">© 2026 NFDGames. All rights reserved.</p>
