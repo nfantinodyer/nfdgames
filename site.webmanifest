@@ -1,0 +1,19 @@
+{
+  "name": "NFDGames",
+  "short_name": "NFDGames",
+  "icons": [
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#0b0b12",
+  "background_color": "#0b0b12",
+  "display": "browser"
+}
