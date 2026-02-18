@@ -1,0 +1,796 @@
+{
+  "categories": {
+    "tutorial": {
+      "tag_class": "tutorial",
+      "label": "Tutorial"
+    },
+    "guide": {
+      "tag_class": "guide",
+      "label": "Guide"
+    },
+    "comparison": {
+      "tag_class": "comparison",
+      "label": "Comparison"
+    },
+    "tips": {
+      "tag_class": "tips",
+      "label": "Tips & Tricks"
+    },
+    "news": {
+      "tag_class": "news",
+      "label": "News"
+    }
+  },
+  "topics": [
+    {
+      "title": "How to Transfer Files from Android to PC Without USB",
+      "slug": "transfer-files-android-to-pc-without-usb",
+      "category": "tutorial",
+      "keywords": ["android file transfer", "wireless file transfer", "android to pc", "no usb", "opendrop"],
+      "description": "Step-by-step guide to wirelessly transferring files from your Android phone to your Windows or Linux PC without cables."
+    },
+    {
+      "title": "Best AirDrop Alternatives for Windows in 2026",
+      "slug": "best-airdrop-alternatives-windows-2026",
+      "category": "comparison",
+      "keywords": ["airdrop alternative", "windows airdrop", "file sharing windows", "airdrop for pc"],
+      "description": "Compare the top AirDrop alternatives available for Windows, including OpenDrop, Snapdrop, LocalSend, and more."
+    },
+    {
+      "title": "How to Send Large Files Between Phone and PC for Free",
+      "slug": "send-large-files-phone-to-pc-free",
+      "category": "tutorial",
+      "keywords": ["send large files", "large file transfer", "free file transfer", "no file size limit"],
+      "description": "Learn how to send files of any size between your phone and computer without cloud uploads or paid services."
+    },
+    {
+      "title": "OpenDrop vs AirDrop: Which File Transfer Tool Is Better?",
+      "slug": "opendrop-vs-airdrop-comparison",
+      "category": "comparison",
+      "keywords": ["opendrop vs airdrop", "file transfer comparison", "cross platform airdrop"],
+      "description": "A detailed comparison of OpenDrop and Apple AirDrop covering platform support, speed, security, and features."
+    },
+    {
+      "title": "How to Use OpenDrop CLI for Automated File Transfers",
+      "slug": "opendrop-cli-automated-file-transfers",
+      "category": "tutorial",
+      "keywords": ["opendrop cli", "command line file transfer", "automated file transfer", "scripting"],
+      "description": "Learn to use OpenDrop's command-line interface to automate file transfers between devices via scripts and cron jobs."
+    },
+    {
+      "title": "Wireless File Transfer: Complete Beginner's Guide",
+      "slug": "wireless-file-transfer-beginners-guide",
+      "category": "guide",
+      "keywords": ["wireless file transfer", "how to transfer files wirelessly", "wifi file transfer", "beginner guide"],
+      "description": "Everything beginners need to know about transferring files wirelessly between phones, tablets, and computers."
+    },
+    {
+      "title": "How to Transfer Photos from iPhone to Windows PC",
+      "slug": "transfer-photos-iphone-to-windows-pc",
+      "category": "tutorial",
+      "keywords": ["iphone to windows", "transfer photos", "iphone file transfer pc", "ios to windows"],
+      "description": "Multiple methods to transfer photos and videos from your iPhone to a Windows PC, including wireless options."
+    },
+    {
+      "title": "OpenDrop vs LocalSend: Feature-by-Feature Comparison",
+      "slug": "opendrop-vs-localsend-comparison",
+      "category": "comparison",
+      "keywords": ["opendrop vs localsend", "localsend alternative", "file sharing comparison"],
+      "description": "Comparing OpenDrop and LocalSend on speed, remote transfers, CLI support, encryption, and platform support."
+    },
+    {
+      "title": "How to Set Up Remote File Transfer with Cloudflare Tunnels",
+      "slug": "remote-file-transfer-cloudflare-tunnels",
+      "category": "tutorial",
+      "keywords": ["cloudflare tunnel", "remote file transfer", "transfer files remotely", "opendrop remote"],
+      "description": "Guide to setting up remote file transfers between devices on different networks using Cloudflare tunnels."
+    },
+    {
+      "title": "5 Ways to Transfer Files Between Devices Without Internet",
+      "slug": "transfer-files-without-internet",
+      "category": "tips",
+      "keywords": ["offline file transfer", "no internet file sharing", "local file transfer", "wifi direct"],
+      "description": "Five reliable methods to transfer files between your devices when you don't have internet access."
+    },
+    {
+      "title": "Is Wireless File Transfer Secure? Encryption Explained",
+      "slug": "wireless-file-transfer-security-encryption",
+      "category": "guide",
+      "keywords": ["file transfer security", "encrypted file transfer", "tls encryption", "secure file sharing"],
+      "description": "Understand how encryption keeps your wireless file transfers secure, including TLS 1.3 and end-to-end encryption."
+    },
+    {
+      "title": "How to Transfer Files from PC to Android Phone Wirelessly",
+      "slug": "transfer-files-pc-to-android-wirelessly",
+      "category": "tutorial",
+      "keywords": ["pc to android", "send files to phone", "wireless transfer pc to android"],
+      "description": "Quick tutorial on sending files from your Windows or Linux computer to your Android phone over WiFi."
+    },
+    {
+      "title": "Top 10 Free File Transfer Apps for 2026",
+      "slug": "top-10-free-file-transfer-apps-2026",
+      "category": "comparison",
+      "keywords": ["free file transfer apps", "best file sharing apps", "file transfer app 2026"],
+      "description": "Ranking the best free file transfer applications available across all platforms in 2026."
+    },
+    {
+      "title": "How to Use QR Codes for Quick File Pairing",
+      "slug": "qr-code-file-transfer-pairing",
+      "category": "tutorial",
+      "keywords": ["qr code pairing", "quick connect", "qr file transfer", "device pairing"],
+      "description": "How QR code scanning makes connecting devices for file transfer instant and hassle-free."
+    },
+    {
+      "title": "Why Cloud File Sharing Isn't Always the Best Option",
+      "slug": "cloud-file-sharing-drawbacks",
+      "category": "guide",
+      "keywords": ["cloud storage problems", "local vs cloud", "privacy file sharing", "file size limits cloud"],
+      "description": "The limitations of cloud-based file sharing and when local or direct transfer is the better choice."
+    },
+    {
+      "title": "How to Transfer Files Between Windows and Linux",
+      "slug": "transfer-files-windows-to-linux",
+      "category": "tutorial",
+      "keywords": ["windows to linux", "cross platform transfer", "linux file transfer", "samba alternative"],
+      "description": "Simple methods to share files between Windows and Linux machines without complex network setup."
+    },
+    {
+      "title": "OpenDrop Setup Guide for Windows: Download to First Transfer",
+      "slug": "opendrop-setup-guide-windows",
+      "category": "tutorial",
+      "keywords": ["opendrop windows", "opendrop setup", "install opendrop", "windows file transfer setup"],
+      "description": "Complete walkthrough of installing OpenDrop on Windows and making your first wireless file transfer."
+    },
+    {
+      "title": "mDNS Auto-Discovery: How Devices Find Each Other on Your Network",
+      "slug": "mdns-auto-discovery-explained",
+      "category": "guide",
+      "keywords": ["mdns", "auto discovery", "bonjour", "zeroconf", "network discovery"],
+      "description": "Technical explainer of how mDNS/Bonjour enables automatic device discovery for local file sharing."
+    },
+    {
+      "title": "How to Share Files Between iPhone and Android",
+      "slug": "share-files-iphone-android",
+      "category": "tutorial",
+      "keywords": ["iphone to android", "cross platform file sharing", "ios android transfer"],
+      "description": "The easiest ways to share photos, videos, and documents between iPhone and Android devices."
+    },
+    {
+      "title": "OpenDrop vs Snapdrop: Which Should You Use?",
+      "slug": "opendrop-vs-snapdrop-comparison",
+      "category": "comparison",
+      "keywords": ["opendrop vs snapdrop", "snapdrop alternative", "browser file transfer"],
+      "description": "Comparing OpenDrop's native apps with Snapdrop's browser-based approach for wireless file sharing."
+    },
+    {
+      "title": "File Transfer Speed: WiFi vs Bluetooth vs USB Compared",
+      "slug": "file-transfer-speed-wifi-bluetooth-usb",
+      "category": "comparison",
+      "keywords": ["transfer speed comparison", "wifi vs bluetooth", "fastest file transfer", "usb vs wireless"],
+      "description": "Benchmarking different file transfer methods to find which is fastest for different file sizes."
+    },
+    {
+      "title": "How to Transfer Files to a New Phone Without Losing Anything",
+      "slug": "transfer-files-new-phone-setup",
+      "category": "guide",
+      "keywords": ["new phone transfer", "phone migration", "switch phones", "transfer data new phone"],
+      "description": "A comprehensive guide to moving all your files, photos, and data when switching to a new phone."
+    },
+    {
+      "title": "OpenDrop for Linux: Installation and Usage Guide",
+      "slug": "opendrop-linux-installation-guide",
+      "category": "tutorial",
+      "keywords": ["opendrop linux", "linux file transfer", "install opendrop linux", "ubuntu file sharing"],
+      "description": "How to install and run OpenDrop on Ubuntu, Fedora, Arch, and other Linux distributions."
+    },
+    {
+      "title": "What Is End-to-End Encryption in File Transfer?",
+      "slug": "end-to-end-encryption-file-transfer-explained",
+      "category": "guide",
+      "keywords": ["end to end encryption", "e2ee", "encrypted file sharing", "tls 1.3"],
+      "description": "A clear explanation of end-to-end encryption, how it works during file transfers, and why it matters."
+    },
+    {
+      "title": "How to Back Up Your Phone Photos to PC Automatically",
+      "slug": "auto-backup-phone-photos-to-pc",
+      "category": "tutorial",
+      "keywords": ["photo backup", "automatic backup phone", "backup photos to pc", "local backup"],
+      "description": "Set up automatic photo backups from your phone to your PC without relying on cloud storage."
+    },
+    {
+      "title": "Privacy-First File Sharing: Tools That Don't Upload to the Cloud",
+      "slug": "privacy-first-file-sharing-tools",
+      "category": "guide",
+      "keywords": ["private file sharing", "no cloud upload", "privacy tools", "local file sharing"],
+      "description": "A guide to file sharing tools that keep your data local and never upload to third-party servers."
+    },
+    {
+      "title": "How to Transfer Large Video Files Without Compression",
+      "slug": "transfer-large-video-files-no-compression",
+      "category": "tutorial",
+      "keywords": ["large video transfer", "no compression", "send video original quality", "video file sharing"],
+      "description": "Methods to send large video files at original quality without compression or cloud upload limits."
+    },
+    {
+      "title": "Understanding File Transfer Protocols: TCP, HTTP, and WebSocket",
+      "slug": "file-transfer-protocols-tcp-http-websocket",
+      "category": "guide",
+      "keywords": ["file transfer protocol", "tcp vs http", "websocket", "how file transfer works"],
+      "description": "A technical overview of the protocols that power modern file transfer applications."
+    },
+    {
+      "title": "How to Share Files on a Local Network Without Software",
+      "slug": "share-files-local-network-no-software",
+      "category": "tips",
+      "keywords": ["network file sharing", "lan transfer", "shared folder", "local network sharing"],
+      "description": "Built-in methods to share files between devices on your home or office network."
+    },
+    {
+      "title": "OpenDrop Pro Features: What You Get with the Upgrade",
+      "slug": "opendrop-pro-features-overview",
+      "category": "guide",
+      "keywords": ["opendrop pro", "premium features", "opendrop upgrade", "remote transfer"],
+      "description": "Overview of OpenDrop Pro features including remote transfers, advanced settings, and priority support."
+    },
+    {
+      "title": "How to Fix Common Wireless File Transfer Problems",
+      "slug": "fix-wireless-file-transfer-problems",
+      "category": "tips",
+      "keywords": ["file transfer not working", "troubleshoot wifi transfer", "connection failed fix"],
+      "description": "Solutions for the most common issues when transferring files wirelessly between devices."
+    },
+    {
+      "title": "Batch File Transfer: How to Send Multiple Files at Once",
+      "slug": "batch-file-transfer-multiple-files",
+      "category": "tutorial",
+      "keywords": ["batch transfer", "multiple files", "send folder", "bulk file transfer"],
+      "description": "How to select and send multiple files or entire folders in a single transfer session."
+    },
+    {
+      "title": "AirDrop for Android: Your Best Options in 2026",
+      "slug": "airdrop-for-android-best-options-2026",
+      "category": "comparison",
+      "keywords": ["airdrop android", "android file sharing", "nearby share alternative", "airdrop equivalent android"],
+      "description": "The best AirDrop-like file sharing solutions available for Android users."
+    },
+    {
+      "title": "How OpenDrop Uses Cloudflare for Secure Remote Transfers",
+      "slug": "opendrop-cloudflare-secure-remote-transfers",
+      "category": "guide",
+      "keywords": ["cloudflare tunnels", "remote transfer security", "opendrop remote", "secure tunnel"],
+      "description": "Technical deep-dive into how OpenDrop leverages Cloudflare tunnels for secure transfers across networks."
+    },
+    {
+      "title": "File Sharing for Students: Best Free Tools for School",
+      "slug": "file-sharing-tools-for-students",
+      "category": "guide",
+      "keywords": ["student file sharing", "free tools students", "share homework", "school file transfer"],
+      "description": "The best free file sharing tools for students to transfer assignments, notes, and project files."
+    },
+    {
+      "title": "How to Transfer Music from PC to Phone Without iTunes",
+      "slug": "transfer-music-pc-to-phone-without-itunes",
+      "category": "tutorial",
+      "keywords": ["transfer music", "no itunes", "music to phone", "sync music wireless"],
+      "description": "Easy ways to move your music library from your computer to your phone without using iTunes."
+    },
+    {
+      "title": "Comparing File Transfer Speeds: OpenDrop Benchmark Results",
+      "slug": "opendrop-file-transfer-speed-benchmarks",
+      "category": "comparison",
+      "keywords": ["opendrop speed", "transfer speed test", "benchmark", "fastest file transfer app"],
+      "description": "Real-world speed benchmarks comparing OpenDrop against other popular file transfer tools."
+    },
+    {
+      "title": "How to Access Your PC Files from Your Phone Remotely",
+      "slug": "access-pc-files-from-phone-remotely",
+      "category": "tutorial",
+      "keywords": ["remote access files", "access pc from phone", "remote file transfer"],
+      "description": "Methods to access and transfer files on your home PC from your phone when you're away."
+    },
+    {
+      "title": "The Complete Guide to WiFi Direct File Transfer",
+      "slug": "wifi-direct-file-transfer-guide",
+      "category": "guide",
+      "keywords": ["wifi direct", "wifi direct file transfer", "peer to peer wifi", "p2p transfer"],
+      "description": "Everything you need to know about WiFi Direct and how it enables fast peer-to-peer file transfers."
+    },
+    {
+      "title": "Why Your File Transfer Keeps Failing (And How to Fix It)",
+      "slug": "file-transfer-keeps-failing-fixes",
+      "category": "tips",
+      "keywords": ["transfer failed", "file transfer error", "connection drops", "fix transfer"],
+      "description": "Diagnose and fix the most common reasons wireless file transfers fail or disconnect."
+    },
+    {
+      "title": "How to Set Up File Sharing Between Mac and Windows",
+      "slug": "file-sharing-mac-windows-setup",
+      "category": "tutorial",
+      "keywords": ["mac to windows", "cross platform file sharing", "smb mac windows"],
+      "description": "Step-by-step instructions for seamless file sharing between macOS and Windows computers."
+    },
+    {
+      "title": "OpenDrop Android App: Complete Feature Tour",
+      "slug": "opendrop-android-app-feature-tour",
+      "category": "guide",
+      "keywords": ["opendrop android", "android app", "opendrop mobile", "android file transfer app"],
+      "description": "A full walkthrough of the OpenDrop Android app including all features, settings, and tips."
+    },
+    {
+      "title": "How to Share Files Securely Over Public WiFi",
+      "slug": "secure-file-sharing-public-wifi",
+      "category": "tips",
+      "keywords": ["public wifi security", "secure file transfer", "public network safety", "vpn file transfer"],
+      "description": "Safety tips and tools for securely transferring files when you're on a public WiFi network."
+    },
+    {
+      "title": "NFC vs WiFi vs Bluetooth: Best Method for File Transfer",
+      "slug": "nfc-vs-wifi-vs-bluetooth-file-transfer",
+      "category": "comparison",
+      "keywords": ["nfc transfer", "bluetooth file transfer", "wifi transfer", "comparison transfer methods"],
+      "description": "Comparing NFC, WiFi, and Bluetooth for file transfers in terms of speed, range, and compatibility."
+    },
+    {
+      "title": "How to Transfer Files from Android to iPhone",
+      "slug": "transfer-files-android-to-iphone",
+      "category": "tutorial",
+      "keywords": ["android to iphone", "cross platform transfer", "switch to iphone files"],
+      "description": "The simplest methods to move files, photos, and videos from Android to iPhone."
+    },
+    {
+      "title": "Building a Home File Server vs Using Direct Transfer Tools",
+      "slug": "home-file-server-vs-direct-transfer",
+      "category": "comparison",
+      "keywords": ["home server", "nas vs direct transfer", "file server setup", "nas alternative"],
+      "description": "Pros and cons of setting up a home file server compared to using direct file transfer apps."
+    },
+    {
+      "title": "How Developers Use OpenDrop CLI in Their Workflow",
+      "slug": "developers-opendrop-cli-workflow",
+      "category": "tips",
+      "keywords": ["developer tools", "cli workflow", "opendrop developer", "file transfer automation"],
+      "description": "Real-world examples of how developers integrate OpenDrop CLI into their development workflow."
+    },
+    {
+      "title": "File Compression vs Direct Transfer: When to Use Each",
+      "slug": "file-compression-vs-direct-transfer",
+      "category": "guide",
+      "keywords": ["file compression", "zip files", "compress before sending", "when to compress"],
+      "description": "When you should compress files before transfer and when direct sending is more efficient."
+    },
+    {
+      "title": "How to Transfer Your Entire Photo Library to a New Device",
+      "slug": "transfer-photo-library-new-device",
+      "category": "tutorial",
+      "keywords": ["transfer photos", "photo library migration", "move photos new phone", "backup photos"],
+      "description": "A complete guide to transferring thousands of photos from one device to another without losing quality."
+    },
+    {
+      "title": "Understanding Network Firewalls and File Transfer",
+      "slug": "network-firewalls-file-transfer-explained",
+      "category": "guide",
+      "keywords": ["firewall file transfer", "blocked by firewall", "port forwarding", "network troubleshooting"],
+      "description": "How firewalls affect file transfers and what to do when your transfers are blocked."
+    },
+    {
+      "title": "Google Nearby Share vs OpenDrop: Honest Comparison",
+      "slug": "google-nearby-share-vs-opendrop",
+      "category": "comparison",
+      "keywords": ["nearby share", "google nearby share", "quick share android", "nearby share alternative"],
+      "description": "A thorough comparison of Google Nearby Share (Quick Share) and OpenDrop for Android file transfers."
+    },
+    {
+      "title": "How to Use OpenDrop on iOS: iPhone and iPad Guide",
+      "slug": "opendrop-ios-iphone-ipad-guide",
+      "category": "tutorial",
+      "keywords": ["opendrop ios", "iphone file transfer", "ipad file sharing", "ios app guide"],
+      "description": "Complete guide to installing and using OpenDrop on your iPhone or iPad for cross-platform transfers."
+    },
+    {
+      "title": "File Transfer for Remote Workers: Share Files Across Locations",
+      "slug": "file-transfer-remote-workers-guide",
+      "category": "guide",
+      "keywords": ["remote work file sharing", "work from home transfer", "remote collaboration", "file sharing team"],
+      "description": "Best practices for transferring files between home and office or between remote team members."
+    },
+    {
+      "title": "How Cross-Platform File Transfer Actually Works Under the Hood",
+      "slug": "cross-platform-file-transfer-how-it-works",
+      "category": "guide",
+      "keywords": ["how file transfer works", "file transfer technology", "cross platform networking"],
+      "description": "A technical look at how apps like OpenDrop enable file transfers between different operating systems."
+    },
+    {
+      "title": "10 Tips to Speed Up Your Wireless File Transfers",
+      "slug": "speed-up-wireless-file-transfers-tips",
+      "category": "tips",
+      "keywords": ["faster file transfer", "speed up transfer", "wifi speed tips", "optimize transfer"],
+      "description": "Practical tips to maximize your wireless file transfer speeds across any device or application."
+    },
+    {
+      "title": "How to Share Game Files Between PC and Mobile",
+      "slug": "share-game-files-pc-mobile",
+      "category": "tutorial",
+      "keywords": ["game file transfer", "share game saves", "game data transfer", "mobile gaming files"],
+      "description": "How gamers can transfer game saves, mods, and files between their PC and mobile devices."
+    },
+    {
+      "title": "Zero-Config Networking: Why OpenDrop Doesn't Need Setup",
+      "slug": "zero-config-networking-opendrop",
+      "category": "guide",
+      "keywords": ["zero configuration", "zeroconf", "no setup file transfer", "automatic connection"],
+      "description": "How zero-configuration networking makes OpenDrop work without any manual network setup."
+    },
+    {
+      "title": "Sending Files Between Different WiFi Networks",
+      "slug": "send-files-different-wifi-networks",
+      "category": "tutorial",
+      "keywords": ["different networks transfer", "remote transfer", "not same wifi", "internet file transfer"],
+      "description": "How to transfer files between devices that aren't on the same WiFi network."
+    },
+    {
+      "title": "The History of File Transfer: From Floppy Disks to Wireless",
+      "slug": "history-of-file-transfer-floppy-to-wireless",
+      "category": "guide",
+      "keywords": ["file transfer history", "evolution file sharing", "floppy disk", "history of computing"],
+      "description": "A journey through the evolution of file transfer technology from floppy disks to modern wireless solutions."
+    },
+    {
+      "title": "How to Transfer Documents Between Phone and PC for Work",
+      "slug": "transfer-documents-phone-pc-work",
+      "category": "tutorial",
+      "keywords": ["document transfer", "work files phone", "office documents transfer", "pdf transfer"],
+      "description": "Efficient methods to move work documents between your phone and computer for professionals."
+    },
+    {
+      "title": "OpenDrop Security: How Your Files Stay Protected",
+      "slug": "opendrop-security-files-protected",
+      "category": "guide",
+      "keywords": ["opendrop security", "file transfer security", "encryption opendrop", "tls security"],
+      "description": "A deep dive into OpenDrop's security architecture including TLS 1.3, encryption, and data protection."
+    },
+    {
+      "title": "Why You Should Stop Using Email to Transfer Files",
+      "slug": "stop-using-email-transfer-files",
+      "category": "tips",
+      "keywords": ["email attachment limit", "email file sharing problems", "better than email", "alternative to email attachment"],
+      "description": "The problems with using email for file transfers and better alternatives you should try."
+    },
+    {
+      "title": "How to Set Up OpenDrop as a Home File Hub",
+      "slug": "opendrop-home-file-hub-setup",
+      "category": "tutorial",
+      "keywords": ["home file hub", "always on server", "home network sharing", "file sharing hub"],
+      "description": "Configure OpenDrop as a persistent file transfer hub for all devices in your household."
+    },
+    {
+      "title": "File Sharing Etiquette: Best Practices for Teams",
+      "slug": "file-sharing-best-practices-teams",
+      "category": "tips",
+      "keywords": ["file sharing best practices", "team collaboration", "file naming conventions", "organize shared files"],
+      "description": "Professional best practices for sharing files efficiently within teams and organizations."
+    },
+    {
+      "title": "What Is mDNS and How Does It Enable Local File Discovery?",
+      "slug": "what-is-mdns-local-file-discovery",
+      "category": "guide",
+      "keywords": ["mdns explained", "multicast dns", "local discovery", "bonjour protocol"],
+      "description": "A clear explanation of multicast DNS and its role in automatic device discovery for file sharing."
+    },
+    {
+      "title": "How to Transfer Files from Tablet to PC",
+      "slug": "transfer-files-tablet-to-pc",
+      "category": "tutorial",
+      "keywords": ["tablet to pc", "ipad to pc", "android tablet transfer", "tablet file sharing"],
+      "description": "Easy ways to move files between your tablet (Android or iPad) and your desktop computer."
+    },
+    {
+      "title": "Comparing P2P File Transfer vs Cloud Storage for Personal Use",
+      "slug": "p2p-file-transfer-vs-cloud-storage",
+      "category": "comparison",
+      "keywords": ["p2p vs cloud", "peer to peer file sharing", "local vs cloud storage", "direct transfer benefits"],
+      "description": "When peer-to-peer file transfer beats cloud storage and vice versa for personal file management."
+    },
+    {
+      "title": "How to Transfer Files When Your USB Port Is Broken",
+      "slug": "transfer-files-broken-usb-port",
+      "category": "tips",
+      "keywords": ["broken usb", "no usb alternative", "wireless transfer workaround", "usb alternative"],
+      "description": "Workarounds for transferring files when your USB port is damaged or unavailable."
+    },
+    {
+      "title": "OpenDrop FAQ: Your Top 25 Questions Answered",
+      "slug": "opendrop-faq-top-questions",
+      "category": "guide",
+      "keywords": ["opendrop faq", "opendrop questions", "how does opendrop work", "opendrop help"],
+      "description": "Answers to the 25 most frequently asked questions about OpenDrop file transfer."
+    },
+    {
+      "title": "How to Share Screenshots Between Phone and PC Instantly",
+      "slug": "share-screenshots-phone-pc-instantly",
+      "category": "tutorial",
+      "keywords": ["share screenshot", "screenshot transfer", "quick share screenshot", "instant photo share"],
+      "description": "The fastest ways to get screenshots from your phone onto your computer and vice versa."
+    },
+    {
+      "title": "Understanding TLS 1.3: The Encryption Behind Secure Transfers",
+      "slug": "tls-1-3-encryption-secure-file-transfers",
+      "category": "guide",
+      "keywords": ["tls 1.3", "transport layer security", "encryption explained", "ssl tls difference"],
+      "description": "A beginner-friendly explanation of TLS 1.3 encryption and how it protects your file transfers."
+    },
+    {
+      "title": "How to Transfer Files Between Two Computers on the Same Network",
+      "slug": "transfer-files-two-computers-same-network",
+      "category": "tutorial",
+      "keywords": ["computer to computer transfer", "lan file sharing", "same network transfer", "pc to pc"],
+      "description": "Multiple methods to quickly share files between two computers connected to the same network."
+    },
+    {
+      "title": "The Environmental Case for Local File Transfer Over Cloud",
+      "slug": "environmental-case-local-file-transfer",
+      "category": "guide",
+      "keywords": ["green computing", "cloud environmental impact", "sustainable file sharing", "reduce data center usage"],
+      "description": "How local file transfer reduces your carbon footprint compared to cloud-based alternatives."
+    },
+    {
+      "title": "How to Send APK Files to Your Android Phone from PC",
+      "slug": "send-apk-files-to-android-from-pc",
+      "category": "tutorial",
+      "keywords": ["send apk", "sideload android", "apk transfer", "install apk from pc"],
+      "description": "How to safely transfer and sideload APK files from your computer to your Android device."
+    },
+    {
+      "title": "File Transfer for Photographers: Moving RAW Files Efficiently",
+      "slug": "file-transfer-photographers-raw-files",
+      "category": "guide",
+      "keywords": ["photographer workflow", "raw file transfer", "photo transfer", "large image files"],
+      "description": "The best approaches for photographers to transfer large RAW image files between camera, phone, and PC."
+    },
+    {
+      "title": "OpenDrop vs SHAREit: Privacy and Speed Compared",
+      "slug": "opendrop-vs-shareit-comparison",
+      "category": "comparison",
+      "keywords": ["opendrop vs shareit", "shareit alternative", "shareit privacy", "file sharing app comparison"],
+      "description": "Why privacy-focused users are choosing OpenDrop over SHAREit for cross-device file transfers."
+    },
+    {
+      "title": "Setting Up OpenDrop on a Raspberry Pi for Always-On Transfers",
+      "slug": "opendrop-raspberry-pi-always-on",
+      "category": "tutorial",
+      "keywords": ["raspberry pi", "opendrop server", "always on transfer", "headless file server"],
+      "description": "Run OpenDrop on a Raspberry Pi as a dedicated file transfer station for your home network."
+    },
+    {
+      "title": "How to Migrate Files When Switching from Android to iPhone",
+      "slug": "migrate-files-android-to-iphone-switch",
+      "category": "tutorial",
+      "keywords": ["android to iphone migration", "switching phones", "phone data migration", "new iphone setup"],
+      "description": "A complete migration guide for moving all your important files when switching from Android to iPhone."
+    },
+    {
+      "title": "What Makes a Good File Transfer App? Key Features to Look For",
+      "slug": "good-file-transfer-app-key-features",
+      "category": "guide",
+      "keywords": ["file transfer app features", "best file sharing features", "what to look for", "app comparison criteria"],
+      "description": "The essential features that separate great file transfer apps from mediocre ones."
+    },
+    {
+      "title": "How to Transfer Entire Folders (Not Just Individual Files)",
+      "slug": "transfer-entire-folders-not-individual-files",
+      "category": "tutorial",
+      "keywords": ["folder transfer", "directory transfer", "send folder wirelessly", "bulk transfer"],
+      "description": "How to transfer complete folders with their structure intact between devices."
+    },
+    {
+      "title": "File Transfer for Content Creators: Videos, Assets, and Projects",
+      "slug": "file-transfer-content-creators",
+      "category": "guide",
+      "keywords": ["content creator tools", "video file transfer", "creative workflow", "asset management"],
+      "description": "File transfer strategies for YouTubers, streamers, and content creators handling large media files."
+    },
+    {
+      "title": "How to Troubleshoot Device Discovery Issues in OpenDrop",
+      "slug": "troubleshoot-device-discovery-opendrop",
+      "category": "tips",
+      "keywords": ["device not found", "discovery issues", "can't find device", "opendrop troubleshooting"],
+      "description": "Fix issues when OpenDrop can't find or connect to other devices on your network."
+    },
+    {
+      "title": "USB-C vs Wireless Transfer: Is the Cable Still Worth It?",
+      "slug": "usb-c-vs-wireless-transfer-comparison",
+      "category": "comparison",
+      "keywords": ["usb c speed", "wireless vs wired", "cable transfer speed", "usb c vs wifi"],
+      "description": "A practical comparison of USB-C cable transfers versus modern wireless transfer methods."
+    },
+    {
+      "title": "How to Use OpenDrop with a VPN",
+      "slug": "use-opendrop-with-vpn",
+      "category": "tips",
+      "keywords": ["opendrop vpn", "vpn file transfer", "transfer through vpn", "network configuration vpn"],
+      "description": "Tips for making OpenDrop work smoothly when you have a VPN running on your device."
+    },
+    {
+      "title": "The Complete Guide to File Types and Compatibility Across Devices",
+      "slug": "file-types-compatibility-across-devices",
+      "category": "guide",
+      "keywords": ["file compatibility", "file formats", "cross device file types", "heic jpg conversion"],
+      "description": "Understanding file format compatibility issues when transferring files between different platforms."
+    },
+    {
+      "title": "How Non-Technical Users Can Transfer Files Like a Pro",
+      "slug": "non-technical-users-file-transfer-guide",
+      "category": "guide",
+      "keywords": ["easy file transfer", "simple file sharing", "for beginners", "non technical guide"],
+      "description": "A jargon-free guide to file transfer for people who aren't tech-savvy."
+    },
+    {
+      "title": "How to Transfer Files Between Work and Personal Devices Securely",
+      "slug": "transfer-files-work-personal-devices-securely",
+      "category": "tips",
+      "keywords": ["work personal transfer", "byod file sharing", "secure work files", "corporate file transfer"],
+      "description": "Safe practices for moving files between your work and personal devices without risking data."
+    },
+    {
+      "title": "OpenDrop Performance Tuning: Get the Fastest Transfers",
+      "slug": "opendrop-performance-tuning-fastest-transfers",
+      "category": "tips",
+      "keywords": ["opendrop speed", "performance tuning", "optimize transfer speed", "faster opendrop"],
+      "description": "Advanced settings and network tweaks to maximize OpenDrop transfer speeds."
+    },
+    {
+      "title": "Peer-to-Peer vs Client-Server: File Transfer Architecture Explained",
+      "slug": "p2p-vs-client-server-file-transfer-architecture",
+      "category": "guide",
+      "keywords": ["p2p architecture", "client server", "file transfer design", "networking architecture"],
+      "description": "Understanding the architectural differences between P2P and client-server file transfer systems."
+    },
+    {
+      "title": "How to Share Playlists and Media Between Devices",
+      "slug": "share-playlists-media-between-devices",
+      "category": "tutorial",
+      "keywords": ["share playlist", "media transfer", "music sharing", "video library sync"],
+      "description": "Move your music playlists, podcasts, and video collections between devices seamlessly."
+    },
+    {
+      "title": "File Sharing on School and Corporate Networks: What You Need to Know",
+      "slug": "file-sharing-school-corporate-networks",
+      "category": "guide",
+      "keywords": ["school network sharing", "corporate wifi", "restricted network transfer", "enterprise file sharing"],
+      "description": "How to work around restrictions on school and corporate networks for legitimate file sharing."
+    },
+    {
+      "title": "How to Create a Portable File Transfer Kit",
+      "slug": "create-portable-file-transfer-kit",
+      "category": "tips",
+      "keywords": ["portable transfer", "usb toolkit", "mobile transfer setup", "travel file sharing"],
+      "description": "Assemble a portable kit for reliable file transfers wherever you go."
+    },
+    {
+      "title": "OpenDrop Keyboard Shortcuts and Power User Tips",
+      "slug": "opendrop-keyboard-shortcuts-power-user-tips",
+      "category": "tips",
+      "keywords": ["opendrop shortcuts", "power user tips", "opendrop tricks", "advanced features"],
+      "description": "Hidden features and keyboard shortcuts to become an OpenDrop power user."
+    },
+    {
+      "title": "Why Local File Transfer Is Faster Than Cloud for Same-Network Devices",
+      "slug": "local-transfer-faster-than-cloud-same-network",
+      "category": "guide",
+      "keywords": ["local vs cloud speed", "lan speed", "same network transfer", "why local faster"],
+      "description": "The technical reasons why local device-to-device transfer dramatically outperforms cloud upload/download."
+    },
+    {
+      "title": "How to Transfer eBooks Between Devices",
+      "slug": "transfer-ebooks-between-devices",
+      "category": "tutorial",
+      "keywords": ["ebook transfer", "kindle transfer", "epub sharing", "digital books transfer"],
+      "description": "Move your eBooks, PDFs, and digital publications between your reading devices."
+    },
+    {
+      "title": "Data Privacy Laws and File Transfer: What Users Should Know",
+      "slug": "data-privacy-laws-file-transfer",
+      "category": "guide",
+      "keywords": ["gdpr file transfer", "data privacy", "privacy regulations", "data protection transfer"],
+      "description": "How data privacy regulations like GDPR affect file transfer and what to keep in mind."
+    },
+    {
+      "title": "How to Share Files Between Multiple Devices Simultaneously",
+      "slug": "share-files-multiple-devices-simultaneously",
+      "category": "tutorial",
+      "keywords": ["multi device transfer", "broadcast file", "send to multiple devices", "simultaneous transfer"],
+      "description": "Methods to transfer the same file to several devices at once instead of one at a time."
+    },
+    {
+      "title": "Automating File Transfers with OpenDrop and Cron Jobs",
+      "slug": "automating-file-transfers-opendrop-cron-jobs",
+      "category": "tutorial",
+      "keywords": ["cron job transfer", "scheduled transfer", "automated backup", "opendrop automation"],
+      "description": "Set up automated, scheduled file transfers using OpenDrop CLI and system scheduling tools."
+    },
+    {
+      "title": "How to Recover Failed File Transfers",
+      "slug": "recover-failed-file-transfers",
+      "category": "tips",
+      "keywords": ["failed transfer recovery", "resume transfer", "incomplete file fix", "transfer interrupted"],
+      "description": "What to do when a file transfer fails mid-way and how to recover your data."
+    },
+    {
+      "title": "OpenDrop vs Xender: An Honest Comparison",
+      "slug": "opendrop-vs-xender-comparison",
+      "category": "comparison",
+      "keywords": ["opendrop vs xender", "xender alternative", "xender privacy", "file transfer comparison"],
+      "description": "Comparing OpenDrop with Xender in terms of speed, privacy, features, and ad-free experience."
+    },
+    {
+      "title": "How to Transfer Files from Old PC to New PC",
+      "slug": "transfer-files-old-pc-to-new-pc",
+      "category": "tutorial",
+      "keywords": ["old pc to new pc", "migrate computer", "new computer setup", "pc migration"],
+      "description": "The easiest ways to move your files and data when setting up a new computer."
+    },
+    {
+      "title": "File Transfer Speed Test: How to Measure Your Transfer Rate",
+      "slug": "file-transfer-speed-test-measure-rate",
+      "category": "tips",
+      "keywords": ["speed test", "measure transfer rate", "network speed", "throughput test"],
+      "description": "How to accurately measure and test your file transfer speeds between devices."
+    },
+    {
+      "title": "Why OpenDrop Doesn't Require an Account to Use",
+      "slug": "opendrop-no-account-required",
+      "category": "guide",
+      "keywords": ["no account needed", "no sign up", "privacy focused", "anonymous file transfer"],
+      "description": "The design philosophy behind OpenDrop's account-free experience and what it means for privacy."
+    },
+    {
+      "title": "How to Transfer Contacts and Calendars Between Devices",
+      "slug": "transfer-contacts-calendars-between-devices",
+      "category": "tutorial",
+      "keywords": ["transfer contacts", "move calendar", "contact migration", "vcard transfer"],
+      "description": "Methods to export and transfer your contacts and calendar data between phones and computers."
+    },
+    {
+      "title": "The Ultimate Home Network Setup for Fast File Sharing",
+      "slug": "home-network-setup-fast-file-sharing",
+      "category": "guide",
+      "keywords": ["home network optimization", "fast lan setup", "wifi router setup", "network file sharing speed"],
+      "description": "Optimize your home network configuration for the fastest possible local file transfers."
+    },
+    {
+      "title": "How to Share Code Files and Projects Between Machines",
+      "slug": "share-code-files-projects-between-machines",
+      "category": "tutorial",
+      "keywords": ["developer file sharing", "code transfer", "project sync", "development machine transfer"],
+      "description": "Methods developers use to transfer code, project files, and development assets between machines."
+    },
+    {
+      "title": "OpenDrop Desktop vs Mobile App: Key Differences",
+      "slug": "opendrop-desktop-vs-mobile-app-differences",
+      "category": "comparison",
+      "keywords": ["opendrop desktop", "opendrop mobile", "app comparison", "gui vs mobile"],
+      "description": "Understanding the differences between OpenDrop's desktop application and mobile apps."
+    },
+    {
+      "title": "How File Transfer Apps Handle Network Interruptions",
+      "slug": "file-transfer-apps-network-interruptions",
+      "category": "guide",
+      "keywords": ["network interruption", "transfer resume", "connection drop handling", "resilient transfer"],
+      "description": "How modern file transfer apps deal with network drops and connection interruptions."
+    },
+    {
+      "title": "File Sharing Safety: Avoiding Malware When Receiving Files",
+      "slug": "file-sharing-safety-avoiding-malware",
+      "category": "tips",
+      "keywords": ["malware prevention", "safe file sharing", "virus in files", "file security tips"],
+      "description": "How to protect yourself from malware and malicious files when receiving transfers from others."
+    },
+    {
+      "title": "How to Organize Files Before Transferring to a New Device",
+      "slug": "organize-files-before-transferring-new-device",
+      "category": "tips",
+      "keywords": ["file organization", "clean up files", "prepare for transfer", "organize before moving"],
+      "description": "Tips for organizing and cleaning up your files before a big transfer to a new device."
+    }
+  ]
+}
