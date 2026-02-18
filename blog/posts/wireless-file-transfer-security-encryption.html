@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Is Wireless File Transfer Secure? Encryption Explained | NFDGames Blog</title>
+    <meta name="description" content="Three real security problems with wireless file transfers and how encryption, authentication, and network isolation actually solve them.">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+    <meta name="author" content="NFDGames">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96x96.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="canonical" href="https://www.nfdgames.com/blog/posts/wireless-file-transfer-security-encryption.html" />
+    <link rel="alternate" hreflang="en" href="https://www.nfdgames.com/blog/posts/wireless-file-transfer-security-encryption.html" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Is Wireless File Transfer Secure? Encryption Explained">
+    <meta property="og:description" content="Three real security problems with wireless file transfers and how encryption, authentication, and network isolation actually solve them.">
+    <meta property="og:image" content="https://www.nfdgames.com/NFDGamesLogoCircleTransparent.png">
+    <meta property="og:url" content="https://www.nfdgames.com/blog/posts/wireless-file-transfer-security-encryption.html">
+    <meta property="og:site_name" content="NFDGames">
+    <meta property="article:published_time" content="2026-01-29">
+    <meta property="article:author" content="NFDGames">
+    <meta property="article:section" content="Guide">
+    <meta property="article:tag" content="file transfer security">
+    <meta property="article:tag" content="encrypted file transfer">
+    <meta property="article:tag" content="tls encryption">
+    <meta property="article:tag" content="secure file sharing">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Is Wireless File Transfer Secure? Encryption Explained">
+    <meta name="twitter:description" content="Three real security problems with wireless file transfers and how encryption, authentication, and network isolation actually solve them.">
+    <meta name="twitter:image" content="https://www.nfdgames.com/NFDGamesLogoCircleTransparent.png">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          "headline": "Is Wireless File Transfer Secure? Encryption Explained",
+          "description": "Three real security problems with wireless file transfers and how encryption, authentication, and network isolation actually solve them.",
+          "author": {
+            "@type": "Organization",
+            "name": "NFDGames",
+            "url": "https://www.nfdgames.com/"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "NFDGames",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://www.nfdgames.com/NFDGamesLogoCircleTransparent.png"
+            }
+          },
+          "datePublished": "2026-01-29",
+          "dateModified": "2026-01-29",
+          "mainEntityOfPage": "https://www.nfdgames.com/blog/posts/wireless-file-transfer-security-encryption.html",
+          "keywords": ["file transfer security", "encrypted file transfer", "tls encryption", "secure file sharing"]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "NFDGames", "item": "https://www.nfdgames.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.nfdgames.com/blog/" },
+            { "@type": "ListItem", "position": 3, "name": "Is Wireless File Transfer Secure? Encryption Explained", "item": "https://www.nfdgames.com/blog/posts/wireless-file-transfer-security-encryption.html" }
+          ]
+        }
+        ,
+        {
+          "@type": "FAQPage",
+          "mainEntity": [{"@type":"Question","name":"Is transferring files over WiFi safe?","acceptedAnswer":{"@type":"Answer","text":"On your home WiFi with WPA2 or WPA3 encryption, local file transfers are safe. The WiFi encryption protects against outside interception, and tools like OpenDrop add HMAC authentication to prevent unauthorized access. On public WiFi, use a tool with TLS encryption for the transfer itself."}},{"@type":"Question","name":"Does OpenDrop encrypt file transfers?","acceptedAnswer":{"@type":"Answer","text":"Remote transfers (across different networks) are encrypted with TLS via Cloudflare tunnels or Fly.io relay. LAN transfers use plain HTTP with HMAC-SHA256 authentication because the traffic stays on your local network and never reaches the internet. On public WiFi, use the remote transfer mode for full encryption."}},{"@type":"Question","name":"What is HMAC-SHA256 and why does OpenDrop use it?","acceptedAnswer":{"@type":"Answer","text":"HMAC-SHA256 is a cryptographic method for verifying that a request comes from an authorized device. OpenDrop signs every request with a shared secret and a timestamp. The server checks the signature before processing the request. The 30-second timestamp window prevents replay attacks."}},{"@type":"Question","name":"Are cloud file sharing services more secure than direct transfer?","acceptedAnswer":{"@type":"Answer","text":"Not necessarily. Cloud services encrypt data in transit and at rest, but the provider holds the encryption keys and can access your files. Direct local transfer keeps your data on your devices and off third-party servers entirely. The most private option is a direct device-to-device transfer on your own network."}},{"@type":"Question","name":"Should I use a VPN for file transfers?","acceptedAnswer":{"@type":"Answer","text":"On your home network, a VPN is unnecessary for file transfers. On public WiFi (coffee shops, airports), a VPN encrypts all your traffic including file transfers, which adds a useful layer of protection. Alternatively, use a file transfer tool's remote mode, which provides TLS encryption without needing a separate VPN."}}]
+        }
+      ]
+    }
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/styles/common.css">
+    <link rel="stylesheet" href="/styles/blog.css">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-17319823241');
+    </script>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+    <div class="noise"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="/" class="logo">
+            <picture>
+                <source srcset="/NFDGamesLogoCircleTransparent.webp" type="image/webp">
+                <img src="/NFDGamesLogoCircleTransparent.png" alt="NFDGames Icon" class="logo-icon" width="36" height="36" loading="lazy">
+            </picture>
+            NFDGames
+        </a>
+        <div class="nav-links">
+            <a href="/#projects">Projects</a>
+            <a href="/blog/">Blog</a>
+            <a href="/OpenDrop/" class="nav-cta">Get OpenDrop</a>
+        </div>
+    </nav>
+
+    <main>
+    <!-- Post Hero -->
+    <header class="blog-post-hero">
+        <div class="breadcrumb">
+            <a href="/">Home</a>
+            <span>/</span>
+            <a href="/blog/">Blog</a>
+            <span>/</span>
+            <span class="current">Is Wireless File Transfer Secure? Encryption Ex...</span>
+        </div>
+        <h1>Is Wireless File Transfer Secure? Encryption Explained</h1>
+        <div class="blog-post-meta">
+            <span class="author">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+                NFDGames
+            </span>
+            <span class="blog-card-tag guide">Guide</span>
+            <span class="blog-card-date">January 29, 2026</span>
+            <span class="read-time">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                8 min read
+            </span>
+        </div>
+    </header>
+
+    <!-- Post Content -->
+    <article class="blog-post-content">
+        <div class="toc"><ol><li>Problem 1: Someone on Your Network Intercepts the Transfer</li><li>Problem 2: An Unauthorized Device Connects to Your Server</li><li>Problem 3: Your Files Pass Through a Third-Party Server</li><li>Problem 4: Public WiFi Exposes Everything</li><li>How Different Tools Handle These Problems</li></ol></div>
+
+<h2>Problem 1: Someone on Your Network Intercepts the Transfer</h2>
+
+<p>When you send a file over WiFi, the data travels as radio waves. Any device with a WiFi radio in range can, in theory, capture those packets. On an unencrypted network, the contents of those packets are readable. This is called packet sniffing, and it's trivially easy with free tools like Wireshark.</p>
+
+<p>On a WPA2 or WPA3 encrypted network (which is every modern home router), the WiFi traffic itself is encrypted at the link layer. Someone outside your network can't read the packets even if they capture the radio signals. But someone who is already on your network, someone with your WiFi password, can potentially see traffic between other devices on that same network, depending on the router configuration. Shared WiFi at an office, a dorm, or a family home means multiple people on the same network.</p>
+
+<p><strong>Solution: TLS encryption at the application layer.</strong></p>
+
+<p>TLS (Transport Layer Security) encrypts the data before it hits the network. Even if someone on your WiFi captures the packets, they see encrypted gibberish. TLS 1.3 is the current standard. It uses a handshake where both sides agree on encryption keys using ephemeral Diffie-Hellman key exchange, which means even if someone records the encrypted traffic today, they can't decrypt it later if they somehow get the server's private key (this property is called forward secrecy).</p>
+
+<p>File transfer tools that route through cloud services (Cloudflare, AWS, etc.) typically get TLS for free because the cloud infrastructure handles it. Tools that operate purely on the local network have a choice: add TLS themselves (with the overhead of certificate management) or rely on the network's encryption.</p>
+
+<p><a href="https://www.nfdgames.com/OpenDrop">OpenDrop</a> takes a hybrid approach. Remote transfers (across different networks) go through Cloudflare tunnels or a Fly.io relay, both of which provide TLS encryption automatically. LAN transfers (same network) use plain HTTP because the traffic never leaves the local network. The reasoning: on your home WiFi, the threat model is different from the public internet. Adding TLS to local transfers would add latency and complexity without meaningfully improving security for the common case of transferring files between your own devices on your own network.</p>
+
+<h2>Problem 2: An Unauthorized Device Connects to Your Server</h2>
+
+<p>If you run a file transfer server on your machine, anything on the same network could potentially send requests to it. Without authentication, a random device could upload files to your computer or download files from it. On a home network with three trusted devices, this risk is low. On a shared or public network, it's real.</p>
+
+<p><strong>Solution: Request authentication with shared secrets.</strong></p>
+
+<p>Authentication means the server verifies that each request comes from a device it trusts. The simplest method is a shared secret: both devices know a password, and the client includes proof of that password in every request.</p>
+
+<p>Sending the password in plaintext with each request would be a bad idea (anyone capturing a single request would learn the secret). Instead, most implementations use HMAC (Hash-based Message Authentication Code). The client takes the request details (URL, timestamp, body hash), combines them with the shared secret, and computes a cryptographic hash. The server does the same computation and checks if the hashes match. The secret itself is never sent over the wire.</p>
+
+<p>OpenDrop uses HMAC-SHA256 with a 30-second timestamp window. Each request carries a signature computed from the request data and a shared secret that both devices know. If the timestamp is more than 30 seconds old, the request is rejected. This prevents replay attacks (capturing a valid request and resending it later) and makes it impractical to brute-force the secret in real time.</p>
+
+<div class="callout callout-tip"><div class="callout-title">Tip</div><p>The 30-second timestamp window means your devices' clocks need to be roughly synchronized. If your phone's clock is more than 30 seconds off from your PC's clock, HMAC validation fails and transfers won't work. Most devices sync their clocks via NTP automatically, so this rarely causes issues.</p></div>
+
+<p>Other tools use different authentication approaches. LocalSend uses self-signed TLS certificates for mutual authentication: each device generates a certificate, and they exchange fingerprints during pairing. AirDrop uses iCloud identity certificates tied to your Apple ID for its "Contacts Only" mode.</p>
+
+<h2>Problem 3: Your Files Pass Through a Third-Party Server</h2>
+
+<p>Cloud-based file sharing (Google Drive, Dropbox, WeTransfer) works by uploading your file to the provider's server. The file sits on their infrastructure, under their control, subject to their terms of service. Most providers scan uploaded files for various purposes: malware detection, content policy enforcement, or in some cases, machine learning training data.</p>
+
+<p>Even tools that claim "direct" transfer sometimes route data through relay servers. If both devices can't connect directly (different networks, NAT barriers), the data needs an intermediary. The question is whether that intermediary stores your data or just passes it through.</p>
+
+<p><strong>Solution: Direct transfer on LAN, pass-through relay for remote.</strong></p>
+
+<p>On a local network, there's no reason for data to leave your network at all. Direct device-to-device transfer over LAN means the file goes from phone to PC through your router and never touches the internet. No third party sees it, stores it, or processes it.</p>
+
+<p>For remote transfers across different networks, some intermediary is unavoidable. The question is what that intermediary does. Cloudflare's tunnel service routes packets between your devices but doesn't store the file data. It's a transport layer, not a storage layer. The tunnel is ephemeral: when you close it, the URL dies and no data persists on Cloudflare's infrastructure.</p>
+
+<p>OpenDrop's Pro relay (Fly.io) works similarly. Data flows as binary WebSocket frames from sender through the relay to receiver. The relay buffers small amounts of data in memory during transit but doesn't write files to disk. When the transfer completes or the connection closes, the data is gone from the relay's memory.</p>
+
+<p>This is fundamentally different from uploading a file to Dropbox. Dropbox stores your file on their servers, indefinitely, until you delete it. A pass-through relay handles your data for milliseconds during transit. The privacy implications are not comparable.</p>
+
+<h2>Problem 4: Public WiFi Exposes Everything</h2>
+
+<p>Coffee shops, airports, hotels, conference centers. Public WiFi networks are the worst case for file transfer security. Everyone on the network can potentially see everyone else's traffic. The network operator may log traffic. The encryption (if any) uses a shared password that everyone knows.</p>
+
+<p>On a public network, LAN-based file transfer without TLS is genuinely risky. Plain HTTP traffic between your devices can be captured by anyone else on that network. Authentication (HMAC) prevents unauthorized access to your server, but it doesn't encrypt the file contents in transit.</p>
+
+<p><strong>Solution: Use remote transfer mode or a VPN on public networks.</strong></p>
+
+<p>The safest approach on public WiFi is to skip the local network entirely. Use a remote transfer method that encrypts the data with TLS before it hits the local network. With OpenDrop, this means using the Cloudflare tunnel or Fly.io relay even though both devices are technically on the same WiFi. The tunnel encrypts the transfer end-to-end through Cloudflare's infrastructure, so other devices on the public WiFi see only encrypted HTTPS traffic.</p>
+
+<p>A VPN is another option. If both devices are on a VPN, their traffic is encrypted before it reaches the local network. You can then use LAN-mode transfer within the VPN's virtual network.</p>
+
+<p>The worst approach: transferring sensitive files over plain HTTP on public WiFi without TLS or a VPN. If you're on your home network, the risk is minimal (you control who's on the network). On a public network, assume someone is watching.</p>
+
+<h2>How Different Tools Handle These Problems</h2>
+
+<p>Not all file transfer tools handle security the same way. Here's how common approaches compare.</p>
+
+<p><strong>AirDrop</strong> uses TLS 1.2 between devices, even on the local network. Identity verification happens through iCloud certificates in "Contacts Only" mode. The transfer is direct (no cloud relay) and encrypted. The limitation is platform support: Apple devices only.</p>
+
+<p><strong>LocalSend</strong> uses self-signed TLS certificates for all transfers, including LAN. Every transfer is encrypted. The trade-off is CPU overhead for local transfers and the need to manage certificate fingerprints for device trust.</p>
+
+<p><strong>Cloud services</strong> (Google Drive, Dropbox, OneDrive) encrypt in transit (TLS) and at rest (AES-256, typically). However, the provider holds the encryption keys and can access your files. True privacy requires client-side encryption before upload, which these services don't offer by default.</p>
+
+<p><strong><a href="https://www.nfdgames.com/OpenDrop">OpenDrop</a></strong> uses HMAC-SHA256 authentication on all requests, TLS for remote transfers (via Cloudflare/Fly.io), and plain HTTP for LAN transfers where traffic stays local. The design trades LAN encryption for lower overhead, with the assumption that your home network is trusted. On untrusted networks, the remote transfer path provides full TLS encryption.</p>
+
+<p>No approach is universally "best." The right choice depends on your threat model. If you're transferring family photos on your home WiFi, HMAC authentication and local-only traffic are more than sufficient. If you're a journalist handling sensitive documents on a hotel network, you need TLS end-to-end and should treat the local network as hostile. Match the security level to the actual risk, not to an abstract ideal.</p>
+
+        <!-- CTA -->
+        <div class="blog-cta">
+            <h3>Secure Transfers on Your Terms</h3>
+            <p>OpenDrop authenticates every request with HMAC-SHA256 and encrypts remote transfers with TLS. Local transfers stay on your network and never touch the cloud.</p>
+            <a href="/OpenDrop/" class="btn btn-primary">Download OpenDrop Free</a>
+        </div>
+    </article>
+
+    <!-- Related Posts -->
+    <section class="related-posts">
+        <h3>Related Articles</h3>
+        <div class="related-grid">
+            <a href="/blog/posts/wireless-file-transfer-beginners-guide.html" class="related-card">
+    <h4>Wireless File Transfer: Complete Beginner&#x27;s Guide</h4>
+    <p>Everything beginners need to know about transferring files wirelessly between phones, tablets, and c</p>
+</a>
+<a href="/blog/posts/cloud-file-sharing-drawbacks.html" class="related-card">
+    <h4>Why Cloud File Sharing Isn&#x27;t Always the Best Option</h4>
+    <p>The limitations of cloud-based file sharing and when local or direct transfer is the better choice.</p>
+</a>
+        </div>
+    </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <a href="/" class="logo">
+                    <picture>
+                        <source srcset="/NFDGamesLogoCircleTransparent.webp" type="image/webp">
+                        <img src="/NFDGamesLogoCircleTransparent.png" alt="NFDGames Icon" class="logo-icon" width="36" height="36" loading="lazy">
+                    </picture>
+                    NFDGames
+                </a>
+                <p>Indie studio building software utilities and mobile games.</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Products</h4>
+                    <a href="/OpenDrop/">OpenDrop</a>
+                    <a href="/OpenDrop/support.html">Support</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <a href="/blog/">Blog</a>
+                    <a href="/OpenDrop/PrivacyPolicy.html">Privacy Policy</a>
+                    <a href="/OpenDrop/TermsOfService.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 NFDGames. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/scripts/common.js"></script>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-analytics.js";
+      const app = initializeApp({
+        apiKey: "AIzaSyD1XfHr0OtAM4Zm62sPLW4Rjg__8HlLE0c",
+        authDomain: "opendrop-3c111.firebaseapp.com",
+        projectId: "opendrop-3c111",
+        storageBucket: "opendrop-3c111.firebasestorage.app",
+        messagingSenderId: "573883707762",
+        appId: "1:573883707762:web:e68643cce07c2cee3eadeb",
+        measurementId: "G-ENWJJ78E3Q"
+      });
+      getAnalytics(app);
+    </script>
+</body>
+</html>

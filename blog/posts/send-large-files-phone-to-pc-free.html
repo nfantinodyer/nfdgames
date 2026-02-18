@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Send Large Files Between Phone and PC for Free | NFDGames Blog</title>
+    <meta name="description" content="How free file transfers actually work between phones and PCs, from chunked uploads to LAN streaming, and why file size doesn&#x27;t have to be a limit.">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+    <meta name="author" content="NFDGames">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96x96.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="canonical" href="https://www.nfdgames.com/blog/posts/send-large-files-phone-to-pc-free.html" />
+    <link rel="alternate" hreflang="en" href="https://www.nfdgames.com/blog/posts/send-large-files-phone-to-pc-free.html" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="How to Send Large Files Between Phone and PC for Free">
+    <meta property="og:description" content="How free file transfers actually work between phones and PCs, from chunked uploads to LAN streaming, and why file size doesn&#x27;t have to be a limit.">
+    <meta property="og:image" content="https://www.nfdgames.com/NFDGamesLogoCircleTransparent.png">
+    <meta property="og:url" content="https://www.nfdgames.com/blog/posts/send-large-files-phone-to-pc-free.html">
+    <meta property="og:site_name" content="NFDGames">
+    <meta property="article:published_time" content="2026-02-14">
+    <meta property="article:author" content="NFDGames">
+    <meta property="article:section" content="Tutorial">
+    <meta property="article:tag" content="send large files">
+    <meta property="article:tag" content="large file transfer">
+    <meta property="article:tag" content="free file transfer">
+    <meta property="article:tag" content="no file size limit">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Send Large Files Between Phone and PC for Free">
+    <meta name="twitter:description" content="How free file transfers actually work between phones and PCs, from chunked uploads to LAN streaming, and why file size doesn&#x27;t have to be a limit.">
+    <meta name="twitter:image" content="https://www.nfdgames.com/NFDGamesLogoCircleTransparent.png">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          "headline": "How to Send Large Files Between Phone and PC for Free",
+          "description": "How free file transfers actually work between phones and PCs, from chunked uploads to LAN streaming, and why file size doesn&#x27;t have to be a limit.",
+          "author": {
+            "@type": "Organization",
+            "name": "NFDGames",
+            "url": "https://www.nfdgames.com/"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "NFDGames",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://www.nfdgames.com/NFDGamesLogoCircleTransparent.png"
+            }
+          },
+          "datePublished": "2026-02-14",
+          "dateModified": "2026-02-14",
+          "mainEntityOfPage": "https://www.nfdgames.com/blog/posts/send-large-files-phone-to-pc-free.html",
+          "keywords": ["send large files", "large file transfer", "free file transfer", "no file size limit"]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "NFDGames", "item": "https://www.nfdgames.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.nfdgames.com/blog/" },
+            { "@type": "ListItem", "position": 3, "name": "How to Send Large Files Between Phone and PC for Free", "item": "https://www.nfdgames.com/blog/posts/send-large-files-phone-to-pc-free.html" }
+          ]
+        }
+        ,
+        {
+          "@type": "FAQPage",
+          "mainEntity": [{"@type":"Question","name":"Is there a file size limit for free transfers with OpenDrop?","acceptedAnswer":{"@type":"Answer","text":"On LAN (same WiFi network), there's no practical file size limit. You can stream files up to 10GB directly between devices. For remote transfers (different networks), the free tier uses 5MB chunks through Cloudflare tunnels. There's no hard cap on total file size, it just takes longer since each chunk is sent individually."}},{"@type":"Question","name":"Do I need an account to use OpenDrop?","acceptedAnswer":{"@type":"Answer","text":"No account is needed for LAN transfers. Just install OpenDrop on both devices, connect to the same WiFi, and start sending files. An account is only required for Pro features like the high-speed remote relay and shared folders."}},{"@type":"Question","name":"How fast are OpenDrop transfers compared to cloud services?","acceptedAnswer":{"@type":"Answer","text":"LAN transfers are dramatically faster since files go directly between devices without a cloud round-trip. Speeds depend on your WiFi hardware but are typically orders of magnitude faster than uploading to and downloading from a cloud service. Free remote transfers run at roughly 8 Mbps, and Pro remote transfers reach 30-50+ Mbps."}},{"@type":"Question","name":"Does OpenDrop work if my devices are on different WiFi networks?","acceptedAnswer":{"@type":"Answer","text":"Yes. OpenDrop works across different networks using Cloudflare tunnels (free tier) or a Fly.io relay (Pro tier). Same-network transfers are faster since they bypass the tunnel, but remote transfers work from anywhere with an internet connection."}},{"@type":"Question","name":"What platforms does OpenDrop support?","acceptedAnswer":{"@type":"Answer","text":"OpenDrop runs on Windows, macOS, Linux, iOS, and Android. The desktop versions include both a GUI and a CLI. Mobile apps are available on the iOS App Store and Google Play. You can also download directly from www.nfdgames.com/OpenDrop."}}]
+        }
+      ]
+    }
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/styles/common.css">
+    <link rel="stylesheet" href="/styles/blog.css">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-17319823241');
+    </script>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+    <div class="noise"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="/" class="logo">
+            <picture>
+                <source srcset="/NFDGamesLogoCircleTransparent.webp" type="image/webp">
+                <img src="/NFDGamesLogoCircleTransparent.png" alt="NFDGames Icon" class="logo-icon" width="36" height="36" loading="lazy">
+            </picture>
+            NFDGames
+        </a>
+        <div class="nav-links">
+            <a href="/#projects">Projects</a>
+            <a href="/blog/">Blog</a>
+            <a href="/OpenDrop/" class="nav-cta">Get OpenDrop</a>
+        </div>
+    </nav>
+
+    <main>
+    <!-- Post Hero -->
+    <header class="blog-post-hero">
+        <div class="breadcrumb">
+            <a href="/">Home</a>
+            <span>/</span>
+            <a href="/blog/">Blog</a>
+            <span>/</span>
+            <span class="current">How to Send Large Files Between Phone and PC fo...</span>
+        </div>
+        <h1>How to Send Large Files Between Phone and PC for Free</h1>
+        <div class="blog-post-meta">
+            <span class="author">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+                NFDGames
+            </span>
+            <span class="blog-card-tag tutorial">Tutorial</span>
+            <span class="blog-card-date">February 14, 2026</span>
+            <span class="read-time">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                8 min read
+            </span>
+        </div>
+    </header>
+
+    <!-- Post Content -->
+    <article class="blog-post-content">
+        <div class="toc"><ol><li>Why "Free" Usually Means "Limited"</li><li>How Chunked Uploads Actually Work</li><li>LAN Streaming: The Fast Path Nobody Talks About</li><li>The Cloudflare 5MB Wall and How to Get Around It</li><li>Putting It Together: A Real Transfer from Phone to PC</li><li>What Pro Relay Adds (and When You Don't Need It)</li></ol></div>
+
+<h2>Why "Free" Usually Means "Limited"</h2>
+
+<p>Most free file transfer tools have a catch. Google Drive caps free storage at 15GB. WeTransfer's free tier maxes out at 2GB per transfer. iCloud gives you 5GB before it starts nagging. These services upload your file to someone else's server, store it there, then let the other device download it. That round trip through the cloud is the bottleneck, and it's also where the restrictions live.</p>
+
+<p>I built <a href="https://www.nfdgames.com/OpenDrop">OpenDrop</a> because I got tired of emailing photos to myself just to get them from my iPhone 15 to my Windows PC. The core idea: if both devices are on the same network, why send files through a server in Virginia?</p>
+
+<p>Direct device-to-device transfer skips the cloud entirely. Your file goes from phone to PC in one hop. No storage limits apply because there's no intermediate storage. The file lands directly in the receive folder on the destination machine. On macOS that's <code>~/Downloads/OpenDrop/Files</code>, on Windows it's <code>%LOCALAPPDATA%\OpenDrop\Files</code>, and on Linux it respects <code>$XDG_CONFIG_HOME</code> (defaulting to <code>~/.config/opendrop/Files</code>).</p>
+
+<p>But "direct" still has to deal with the physical reality of moving bytes across a network. The method matters enormously.</p>
+
+<h2>How Chunked Uploads Actually Work</h2>
+
+<p>When you transfer a file over HTTP, you're sending a request body from client to server. For small files (a few megabytes), you can stuff the whole thing into a single POST request. The server reads it, writes it to disk, sends back a 200. Done.</p>
+
+<p>Large files break this model. A 2GB video can't reliably go in one HTTP request. Network hiccups, timeouts, and memory constraints on both sides conspire against you. The solution is chunking: split the file into fixed-size pieces, send each piece as its own request, and reassemble them on the server side.</p>
+
+<p>OpenDrop's free remote tier uses 5MB chunks. Each chunk is a separate HTTP POST through a Cloudflare tunnel. The server receives chunk 1, writes it to a temp file, receives chunk 2, appends it, and so on until the final chunk signals completion. If chunk 47 fails mid-transfer, only that 5MB piece needs to be retried, not the entire file.</p>
+
+<div class="callout callout-tip"><div class="callout-title">Tip</div><p>Chunked transfers have no hard file size cap. You can send a 10GB file in 5MB chunks. It just takes longer because each chunk is a separate HTTP round-trip through the tunnel.</p></div>
+
+<p>The tradeoff is speed. Each chunk involves a full HTTP request/response cycle: TCP handshake, TLS negotiation (handled by Cloudflare), request headers, payload, response. That per-chunk overhead adds up. In practice, free remote transfers hit roughly 8 Mbps (about 1 MB/s). For a 500MB file, that's around 8 minutes. Workable, but not fast.</p>
+
+<p>Why 5MB specifically? Cloudflare's tunnel infrastructure enforces a request body size limit. Anything larger gets rejected without a particularly helpful error message. I spent more time than I'd like to admit figuring that one out. We settled on 5MB chunks because they're well under the ceiling and large enough to keep the chunk count reasonable.</p>
+
+<h2>LAN Streaming: The Fast Path Nobody Talks About</h2>
+
+<p>Chunking is a compromise for remote transfers. On a local network, you don't need it at all.</p>
+
+<p>When your phone and PC are on the same WiFi, OpenDrop uses a completely different transfer path. The desktop app runs an HTTP server on port 8000. The mobile app discovers it via mDNS (the service type is <code>_opendrop._tcp.local.</code>) and connects directly. No tunnel, no relay, no cloud. Just your phone talking to your PC over your own router.</p>
+
+<p>LAN transfers use streaming, the way file transfer should work. The phone opens a connection, starts writing the file data, and the server starts writing to disk as bytes arrive. No chunking, no reassembly, no per-piece overhead. The transfer speed is limited only by your WiFi hardware.</p>
+
+<p>On my home network, I regularly move multi-gigabyte files between my iPhone 15 and my Windows desktop. WiFi 5 (802.11ac) gets roughly 100-300 MB/s depending on signal strength and interference, though real-world numbers depend heavily on your specific router and environment. The point is: LAN streaming is an order of magnitude faster than chunked remote transfers.</p>
+
+<p>Every user gets LAN streaming for free. No account required, no Pro upgrade needed. If both devices are on the same network, you get the fast path automatically. OpenDrop detects the connection type and picks the right transfer mode without you doing anything.</p>
+
+<h2>The Cloudflare 5MB Wall and How to Get Around It</h2>
+
+<p>Remote transfers (different networks) are where things get interesting. Your phone on cellular in Greenville, SC, your PC on home WiFi. They can't discover each other via mDNS because they're not on the same broadcast domain.</p>
+
+<p>OpenDrop solves this with Cloudflare's quick tunnel service (trycloudflare.com). The desktop app creates a temporary tunnel that gives it a public URL. The mobile app connects through that URL, and Cloudflare routes traffic between them. TLS encryption is handled by Cloudflare, so the data is protected in transit even though the local server uses plain HTTP.</p>
+
+<p>The limitation is Cloudflare's 5MB request body cap. Every transfer through the tunnel gets chunked, with the per-chunk overhead described earlier. For someone sending a few photos or a document, it works fine. For someone moving 4GB of raw video footage, 8 Mbps feels slow.</p>
+
+<p>Three options exist for people who need faster remote transfers:</p>
+
+<ol>
+<li><strong>Wait it out.</strong> Chunked transfers are slow but reliable. A 4GB file at 8 Mbps takes roughly 70 minutes. Start it before lunch.</li>
+<li><strong>Get on the same network.</strong> If you can connect both devices to the same WiFi (even a phone hotspot works), you bypass the tunnel entirely and get streaming speed.</li>
+<li><strong>Use OpenDrop Pro's relay.</strong> Pro users get access to a Fly.io-based relay that uses WebSocket with binary frames. True streaming, no chunking, 30-50+ Mbps. That same 4GB file finishes in about 10-15 minutes.</li>
+</ol>
+
+<p>Option 2 is worth knowing about. If I'm at my desk and need to pull files from my Redbeat D5 (my budget Android test phone), I just make sure both are on my home WiFi. The transfer mode switches automatically from tunnel to LAN.</p>
+
+<h2>Putting It Together: A Real Transfer from Phone to PC</h2>
+
+<p>Here's what actually happens when you send a 1.5GB video from an iPhone to a Windows PC using OpenDrop on the same network.</p>
+
+<p>The desktop app starts its HTTP server on <code>0.0.0.0:8000</code>. It registers the mDNS service (<code>_opendrop._tcp.local.</code>) so other devices can find it. The iPhone app scans for that service type using Bonjour (Apple's mDNS implementation) and finds the PC. You select the video file, tap send.</p>
+
+<p>The app opens an HTTP connection to the PC's local IP on port 8000. Each request is signed with HMAC-SHA256 using a shared secret, with a 30-second timestamp window to prevent replay attacks. The file streams as a single HTTP request body. The server writes incoming bytes to <code>%LOCALAPPDATA%\OpenDrop\Files</code> as they arrive.</p>
+
+<p>No chunk boundaries, no reassembly step, no cloud round-trip. The file appears on the PC as it's being received. Total time for 1.5GB over WiFi 5 varies by hardware but typically finishes in well under a minute.</p>
+
+<p>Now consider the same transfer with both devices on different networks. The tunnel kicks in. That 1.5GB file gets split into roughly 307 chunks of 5MB each (plus a smaller final chunk). Each chunk goes phone → Cloudflare → PC. At 8 Mbps, it takes around 25 minutes. Still free, still no file size cap, just slower.</p>
+
+<h2>What Pro Relay Adds (and When You Don't Need It)</h2>
+
+<p>OpenDrop Pro replaces the Cloudflare tunnel with a Fly.io relay server. Instead of chunked HTTP, it opens a WebSocket connection and streams binary frames directly. The relay acts as a pass-through: bytes flow from phone to relay to PC with minimal buffering.</p>
+
+<p>The speed difference is significant. Pro relay typically runs at 30-50+ Mbps (though this varies by your internet connection and the relay server's location). That 4-6x improvement over free remote comes from eliminating per-chunk overhead and using binary frames instead of base64-encoded JSON payloads. We discovered that base64 encoding added 33% overhead on top of the already-chunked data. Binary WebSocket frames solved both problems at once.</p>
+
+<p>You don't need Pro if your devices are usually on the same network. LAN streaming is already the fastest option, and every user gets it. Pro makes sense if you frequently transfer large files between locations, like pulling footage off your phone while traveling to your home workstation.</p>
+
+<p>For most people, the free tier handles daily file transfers without issues. Share a photo album, move a presentation, send a batch of documents. Chunked remote transfers aren't fast, but they're free, reliable, and have no hard file size ceiling. LAN transfers are fast and free. That combination covers the majority of file transfer needs without paying for anything.</p>
+
+<p><a href="https://www.nfdgames.com/OpenDrop">OpenDrop</a> is available on Windows, macOS, Linux, iOS, and Android. Download it, open it on two devices, and send something. On the same network, the transfer starts immediately.</p>
+
+        <!-- CTA -->
+        <div class="blog-cta">
+            <h3>Send Files Between Any Devices, Any Size, No Cloud Required</h3>
+            <p>OpenDrop transfers files directly between your phone and PC over WiFi. No storage limits, no cloud uploads, no account needed for LAN transfers.</p>
+            <a href="/OpenDrop/" class="btn btn-primary">Download OpenDrop Free</a>
+        </div>
+    </article>
+
+    <!-- Related Posts -->
+    <section class="related-posts">
+        <h3>Related Articles</h3>
+        <div class="related-grid">
+            <a href="/blog/posts/transfer-files-android-to-pc-without-usb.html" class="related-card">
+    <h4>How to Transfer Files from Android to PC Without USB</h4>
+    <p>Step-by-step guide to wirelessly transferring files from your Android phone to your Windows or Linux</p>
+</a>
+<a href="/blog/posts/opendrop-cli-automated-file-transfers.html" class="related-card">
+    <h4>How to Use OpenDrop CLI for Automated File Transfers</h4>
+    <p>Learn to use OpenDrop&#x27;s command-line interface to automate file transfers between devices via script</p>
+</a>
+        </div>
+    </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <a href="/" class="logo">
+                    <picture>
+                        <source srcset="/NFDGamesLogoCircleTransparent.webp" type="image/webp">
+                        <img src="/NFDGamesLogoCircleTransparent.png" alt="NFDGames Icon" class="logo-icon" width="36" height="36" loading="lazy">
+                    </picture>
+                    NFDGames
+                </a>
+                <p>Indie studio building software utilities and mobile games.</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Products</h4>
+                    <a href="/OpenDrop/">OpenDrop</a>
+                    <a href="/OpenDrop/support.html">Support</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <a href="/blog/">Blog</a>
+                    <a href="/OpenDrop/PrivacyPolicy.html">Privacy Policy</a>
+                    <a href="/OpenDrop/TermsOfService.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 NFDGames. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/scripts/common.js"></script>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-analytics.js";
+      const app = initializeApp({
+        apiKey: "AIzaSyD1XfHr0OtAM4Zm62sPLW4Rjg__8HlLE0c",
+        authDomain: "opendrop-3c111.firebaseapp.com",
+        projectId: "opendrop-3c111",
+        storageBucket: "opendrop-3c111.firebasestorage.app",
+        messagingSenderId: "573883707762",
+        appId: "1:573883707762:web:e68643cce07c2cee3eadeb",
+        measurementId: "G-ENWJJ78E3Q"
+      });
+      getAnalytics(app);
+    </script>
+</body>
+</html>
