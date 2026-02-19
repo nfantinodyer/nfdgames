@@ -114,4 +114,40 @@
       <changefreq>monthly</changefreq>
       <priority>0.6</priority>
    </url>
+   <url>
+      <loc>https://www.nfdgames.com/blog/posts/cloud-file-sharing-drawbacks.html</loc>
+      <lastmod>2026-02-18</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.6</priority>
+   </url>
+   <url>
+      <loc>https://www.nfdgames.com/blog/posts/transfer-files-windows-to-linux.html</loc>
+      <lastmod>2026-02-18</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.6</priority>
+   </url>
+   <url>
+      <loc>https://www.nfdgames.com/blog/posts/opendrop-setup-guide-windows.html</loc>
+      <lastmod>2026-02-18</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.6</priority>
+   </url>
+   <url>
+      <loc>https://www.nfdgames.com/blog/posts/mdns-auto-discovery-explained.html</loc>
+      <lastmod>2026-02-18</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.6</priority>
+   </url>
+   <url>
+      <loc>https://www.nfdgames.com/blog/posts/share-files-iphone-android.html</loc>
+      <lastmod>2026-02-18</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.6</priority>
+   </url>
+   <url>
+      <loc>https://www.nfdgames.com/blog/posts/opendrop-vs-snapdrop-comparison.html</loc>
+      <lastmod>2026-02-18</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.6</priority>
+   </url>
 </urlset>
