@@ -163,7 +163,7 @@
 
 <p>This is the most common misconception I encounter. People assume that wireless file transfer only works when both devices are on the same WiFi network. Some tools reinforce this assumption because they genuinely do require it. AirDrop needs proximity. Many LAN-only tools need the same network. So the belief persists.</p>
 
-<p>Same-network transfers are faster, yes. When both devices share a WiFi network, data travels directly between them through the router. It never leaves your house. An app like <a href="https://www.nfdgames.com/OpenDrop">OpenDrop</a> uses mDNS (multicast DNS) to automatically discover other devices on the network, so you don't even need to type in an IP address. The desktop server runs on port 8000, the mDNS service type is <code>_opendrop._tcp.local.</code>, and other devices find it within seconds.</p>
+<p>Same-network transfers are faster, yes. When both devices share a WiFi network, data travels directly between them through the router. It never leaves your house. An app like <a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> uses mDNS (multicast DNS) to automatically discover other devices on the network, so you don't even need to type in an IP address. The desktop server runs on port 8000, the mDNS service type is <code>_opendrop._tcp.local.</code>, and other devices find it within seconds.</p>
 
 <p>But same-network isn't required for wireless transfer. Plenty of tools work across different networks, including across the internet. OpenDrop, for instance, creates a Cloudflare tunnel that lets your phone on cellular connect to your home PC on WiFi. The transfer goes phone → internet → Cloudflare → your PC. Slower than LAN, but it works from anywhere.</p>
 
@@ -213,7 +213,7 @@
 
 <p>After testing dozens of file transfer methods across my devices (iPhone 15, M5 MacBook Pro, Windows 11 desktop, Redbeat D5 Android phone, ParrotOS laptop), a few things are clear.</p>
 
-<p>For same-network transfers, a direct WiFi-based tool is fastest by a wide margin. No upload, no download, no cloud. The file goes straight from one device to the other. <a href="https://www.nfdgames.com/OpenDrop">OpenDrop</a> handles discovery automatically via mDNS, so you don't need to configure IP addresses or ports. Install on both devices, open the app, and start sending.</p>
+<p>For same-network transfers, a direct WiFi-based tool is fastest by a wide margin. No upload, no download, no cloud. The file goes straight from one device to the other. <a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> handles discovery automatically via mDNS, so you don't need to configure IP addresses or ports. Install on both devices, open the app, and start sending.</p>
 
 <p>For different-network transfers, you need a tool that supports tunneling or relay. Free options are slower (OpenDrop's free remote runs at about 8 Mbps through Cloudflare tunnels). Paid options are faster (OpenDrop Pro's Fly.io relay does 30-50+ Mbps). Either way, having the option to transfer files without being on the same network makes the tool useful in far more situations.</p>
 

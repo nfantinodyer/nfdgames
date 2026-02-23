@@ -151,7 +151,7 @@
 
 <p>Before any file moves between your phone and computer, the two devices need to find each other. This pairing step is where most people hit their first wall. The transfer itself is usually fast. Getting connected in the first place is the bottleneck.</p>
 
-<p>I've been building <a href="https://www.nfdgames.com/OpenDrop">OpenDrop</a> for a while now, and pairing is the feature I've spent the most time on. Not because the code is complicated, but because different network environments break different pairing methods. What works flawlessly on your home WiFi fails silently at a hotel. What works at the office fails at the airport.</p>
+<p>I've been building <a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> for a while now, and pairing is the feature I've spent the most time on. Not because the code is complicated, but because different network environments break different pairing methods. What works flawlessly on your home WiFi fails silently at a hotel. What works at the office fails at the airport.</p>
 
 <p>There are four common approaches to device pairing for file transfer: mDNS auto-discovery, QR code scanning, manual IP/URL entry, and proximity protocols like Bluetooth or NFC. Each has a clear best-case scenario and specific situations where it falls apart. This guide will help you pick the right one for where you actually are, not where you wish you were.</p>
 
@@ -229,7 +229,7 @@
 
 <p>The pattern is simple: automatic first, visual second, manual third, proximity last. Each step is a fallback for when the previous one doesn't apply. Most of the time, you'll never get past step 1. On tricky networks, step 2 handles it. Steps 3 and 4 are edge cases.</p>
 
-<p><a href="https://www.nfdgames.com/OpenDrop">OpenDrop</a> supports the first three methods across all five platforms. The design goal was to make sure there's always a way to connect, regardless of what the network throws at you. mDNS for the easy case, QR for the common failure case, manual entry for the power-user case. No single pairing method works everywhere, but the combination of these three covers every network I've tested on.</p>
+<p><a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> supports the first three methods across all five platforms. The design goal was to make sure there's always a way to connect, regardless of what the network throws at you. mDNS for the easy case, QR for the common failure case, manual entry for the power-user case. No single pairing method works everywhere, but the combination of these three covers every network I've tested on.</p>
 
         <!-- CTA -->
         <div class="blog-cta">

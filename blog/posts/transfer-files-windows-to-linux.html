@@ -194,7 +194,7 @@
 
 <p>What I wanted was AirDrop for Windows and Linux. No IP addresses, no config files, no prerequisites. Just install something on both machines and send files.</p>
 
-<p>That's why I built <a href="https://www.nfdgames.com/OpenDrop">OpenDrop</a>. Both machines run the app, mDNS auto-discovery (the <code>_opendrop._tcp.local.</code> service on port 8000) finds every device on the network, and you drag a file to send it. Files land in <code>%LOCALAPPDATA%\OpenDrop\Files</code> on Windows and <code>~/.config/opendrop/Files</code> on Linux (respects <code>$XDG_CONFIG_HOME</code>).</p>
+<p>That's why I built <a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a>. Both machines run the app, mDNS auto-discovery (the <code>_opendrop._tcp.local.</code> service on port 8000) finds every device on the network, and you drag a file to send it. Files land in <code>%LOCALAPPDATA%\OpenDrop\Files</code> on Windows and <code>~/.config/opendrop/Files</code> on Linux (respects <code>$XDG_CONFIG_HOME</code>).</p>
 
 <p>On LAN, transfers stream directly at network speed with no file size cap up to 10GB. I regularly move multi-gigabyte database exports between my Windows desktop and the ParrotOS laptop. A 2GB file finishes in under 30 seconds, where the same file over cloud storage would take 7+ minutes waiting for the upload alone.</p>
 

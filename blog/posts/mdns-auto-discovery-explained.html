@@ -154,7 +154,7 @@
 
 <p>The core idea is simple: instead of asking a central DNS server "who is this device?", your device shouts the question to everyone on the network at once (multicast), and the matching device responds directly. No server, no configuration, no IT department required.</p>
 
-<p>I rely on mDNS daily in <a href="https://www.nfdgames.com/OpenDrop">OpenDrop</a>. When the app starts, it registers a service called <code>_opendrop._tcp.local.</code> on port 8000 using the zeroconf library. Every other OpenDrop instance on the same network watches for this service type and adds new devices to the dashboard within seconds. No IP addresses to look up, no QR codes to scan, no manual pairing. The devices just find each other.</p>
+<p>I rely on mDNS daily in <a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a>. When the app starts, it registers a service called <code>_opendrop._tcp.local.</code> on port 8000 using the zeroconf library. Every other OpenDrop instance on the same network watches for this service type and adds new devices to the dashboard within seconds. No IP addresses to look up, no QR codes to scan, no manual pairing. The devices just find each other.</p>
 
 <p>But mDNS has real failure modes. Most of the support emails I get about "device not showing up" trace back to one of four problems. Each one has a specific cause and a specific fix.</p>
 

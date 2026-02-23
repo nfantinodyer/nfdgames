@@ -167,7 +167,7 @@
 
 <p>The second approach is a phone hotspot. Turn on your phone's mobile hotspot (without cellular data, just the local WiFi network it creates). Connect your PC to that hotspot. Both devices are now on the same local network. No internet flows through it, but local traffic works perfectly. Any LAN-based file transfer tool will function over this connection.</p>
 
-<p><a href="https://www.nfdgames.com/OpenDrop">OpenDrop</a> works over a phone hotspot because it uses standard HTTP over the local network. The desktop server starts on port 8000, mDNS broadcasts the service type <code>_opendrop._tcp.local.</code>, and the other device discovers it. The transfer stays entirely local. I've used this in hotel rooms where the WiFi was too slow or unreliable: turn on my iPhone's hotspot, connect my laptop, and transfer files at local WiFi speeds without touching the hotel network.</p>
+<p><a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> works over a phone hotspot because it uses standard HTTP over the local network. The desktop server starts on port 8000, mDNS broadcasts the service type <code>_opendrop._tcp.local.</code>, and the other device discovers it. The transfer stays entirely local. I've used this in hotel rooms where the WiFi was too slow or unreliable: turn on my iPhone's hotspot, connect my laptop, and transfer files at local WiFi speeds without touching the hotel network.</p>
 
 <p>Hotspot-based transfers are faster than you'd expect. Even without cellular data flowing, a phone hotspot creates a WiFi network capable of moving data at the phone's WiFi radio speed. For a modern phone, that's WiFi 5 or WiFi 6 speeds between devices connected to it.</p>
 
@@ -215,7 +215,7 @@
 
 <p><strong>A few small files (under 50MB):</strong> Bluetooth works if both devices support it and you don't mind waiting. USB is faster if you have a cable handy.</p>
 
-<p><strong>Medium transfers (50MB to 5GB):</strong> Local WiFi is the best balance of speed and convenience. A phone hotspot creates the network if no router is available. <a href="https://www.nfdgames.com/OpenDrop">OpenDrop</a> or similar tools handle the actual transfer over that local connection. On my test setup, I regularly move multi-gigabyte files between my iPhone 15 and my Windows desktop this way.</p>
+<p><strong>Medium transfers (50MB to 5GB):</strong> Local WiFi is the best balance of speed and convenience. A phone hotspot creates the network if no router is available. <a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> or similar tools handle the actual transfer over that local connection. On my test setup, I regularly move multi-gigabyte files between my iPhone 15 and my Windows desktop this way.</p>
 
 <p><strong>Large transfers (5GB+):</strong> USB cable or a fast external SSD. WiFi LAN transfer works too, but raw throughput matters at this scale and wired connections are faster. If you have a USB 3.0 cable and port on both sides, that's the fastest option.</p>
 

@@ -159,7 +159,7 @@
 
 <p>File transfer tools that route through cloud services (Cloudflare, AWS, etc.) typically get TLS for free because the cloud infrastructure handles it. Tools that operate purely on the local network have a choice: add TLS themselves (with the overhead of certificate management) or rely on the network's encryption.</p>
 
-<p><a href="https://www.nfdgames.com/OpenDrop">OpenDrop</a> takes a hybrid approach. Remote transfers (across different networks) go through Cloudflare tunnels or a Fly.io relay, both of which provide TLS encryption automatically. LAN transfers (same network) use plain HTTP because the traffic never leaves the local network. The reasoning: on your home WiFi, the threat model is different from the public internet. Adding TLS to local transfers would add latency and complexity without meaningfully improving security for the common case of transferring files between your own devices on your own network.</p>
+<p><a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> takes a hybrid approach. Remote transfers (across different networks) go through Cloudflare tunnels or a Fly.io relay, both of which provide TLS encryption automatically. LAN transfers (same network) use plain HTTP because the traffic never leaves the local network. The reasoning: on your home WiFi, the threat model is different from the public internet. Adding TLS to local transfers would add latency and complexity without meaningfully improving security for the common case of transferring files between your own devices on your own network.</p>
 
 <h2>Problem 2: An Unauthorized Device Connects to Your Server</h2>
 
@@ -217,7 +217,7 @@
 
 <p><strong>Cloud services</strong> (Google Drive, Dropbox, OneDrive) encrypt in transit (TLS) and at rest (AES-256, typically). However, the provider holds the encryption keys and can access your files. True privacy requires client-side encryption before upload, which these services don't offer by default.</p>
 
-<p><strong><a href="https://www.nfdgames.com/OpenDrop">OpenDrop</a></strong> uses HMAC-SHA256 authentication on all requests, TLS for remote transfers (via Cloudflare/Fly.io), and plain HTTP for LAN transfers where traffic stays local. The design trades LAN encryption for lower overhead, with the assumption that your home network is trusted. On untrusted networks, the remote transfer path provides full TLS encryption.</p>
+<p><strong><a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a></strong> uses HMAC-SHA256 authentication on all requests, TLS for remote transfers (via Cloudflare/Fly.io), and plain HTTP for LAN transfers where traffic stays local. The design trades LAN encryption for lower overhead, with the assumption that your home network is trusted. On untrusted networks, the remote transfer path provides full TLS encryption.</p>
 
 <p>No approach is universally "best." The right choice depends on your threat model. If you're transferring family photos on your home WiFi, HMAC authentication and local-only traffic are more than sufficient. If you're a journalist handling sensitive documents on a hotel network, you need TLS end-to-end and should treat the local network as hostile. Match the security level to the actual risk, not to an abstract ideal.</p>
 

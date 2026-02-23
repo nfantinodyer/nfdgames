@@ -165,7 +165,7 @@
 <li><strong>Large file transfer</strong> (a 4.2GB video file, because anything under 100MB is easy)</li>
 </ol>
 
-<p>The tools: <a href="https://www.nfdgames.com/OpenDrop">OpenDrop</a>, LocalSend, Snapdrop/Pairdrop, Windows Nearby Share, and Send Anywhere. I also briefly tested LANDrop and Sharedrop but neither lasted long enough in testing to warrant a full section (LANDrop hasn't been updated since 2023; Sharedrop failed to connect on three separate attempts).</p>
+<p>The tools: <a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a>, LocalSend, Snapdrop/Pairdrop, Windows Nearby Share, and Send Anywhere. I also briefly tested LANDrop and Sharedrop but neither lasted long enough in testing to warrant a full section (LANDrop hasn't been updated since 2023; Sharedrop failed to connect on three separate attempts).</p>
 
 <p>Every speed number below is from my actual network. Your results will vary depending on your router, interference, and device hardware.</p>
 
@@ -177,7 +177,7 @@
 
 <p><strong>Setup on Windows:</strong></p>
 <ol>
-<li>Download from the <a href="https://www.microsoft.com/store">Microsoft Store</a> (search "OpenDrop") or grab the direct installer at <a href="https://www.nfdgames.com/OpenDrop">www.nfdgames.com/OpenDrop</a>.</li>
+<li>Download from the <a href="https://www.microsoft.com/store">Microsoft Store</a> (search "OpenDrop") or grab the direct installer at <a href="https://www.nfdgames.com/OpenDrop/">www.nfdgames.com/OpenDrop</a>.</li>
 <li>Launch OpenDrop. It starts a local server on port 8000 and broadcasts via mDNS (<code>_opendrop._tcp.local.</code>) so other devices can find it automatically.</li>
 <li>On your iPhone or Android device, install OpenDrop from the App Store or Google Play.</li>
 <li>If both devices are on the same network, the mobile app discovers your PC within a few seconds. Tap the device name, pick your files, send.</li>
@@ -285,7 +285,7 @@
 
 <p><strong>If all your devices are Apple + Windows and always on the same network</strong>, LocalSend is a reasonable open-source option. Just be aware of the dual-NIC gotcha I mentioned and the LAN-only limitation.</p>
 
-<p><strong>If you need to transfer files between any combination of devices, across any network, with no file size surprises</strong>, that's the problem I built <a href="https://www.nfdgames.com/OpenDrop">OpenDrop</a> to solve. LAN transfers stream directly up to 10GB per file with no chunking. Remote transfers work automatically even when your devices are on different networks. The free tier handles remote via Cloudflare tunnels, and Pro gives you a dedicated relay that's 4-6x faster. Either way, your files never sit on someone else's cloud storage. On LAN, they don't even leave your local network.</p>
+<p><strong>If you need to transfer files between any combination of devices, across any network, with no file size surprises</strong>, that's the problem I built <a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> to solve. LAN transfers stream directly up to 10GB per file with no chunking. Remote transfers work automatically even when your devices are on different networks. The free tier handles remote via Cloudflare tunnels, and Pro gives you a dedicated relay that's 4-6x faster. Either way, your files never sit on someone else's cloud storage. On LAN, they don't even leave your local network.</p>
 
 <p>I'm biased, obviously. But I'm also the person who tested all five of these tools on real hardware, hit real bugs, and chose to keep building OpenDrop because the alternatives kept letting me down in one way or another. The dual-NIC issue with LocalSend, the tab-crash issue with PairDrop, the ads in Send Anywhere, the Apple/Windows-only silos. I wanted one tool that just worked across everything, and when I couldn't find it, we built it.</p>
 

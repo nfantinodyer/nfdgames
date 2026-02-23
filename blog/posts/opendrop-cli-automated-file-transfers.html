@@ -151,7 +151,7 @@
 
 <p>I have an old HP laptop running ParrotOS that sits in a closet. It collects log files, runs a few background services, and has no monitor connected. Moving files off it used to involve either SSH and <code>scp</code>, or plugging in a monitor to use the GUI. Neither option was great for routine, scheduled transfers.</p>
 
-<p>The <a href="https://www.nfdgames.com/OpenDrop">OpenDrop</a> GUI works well on my Windows desktop and MacBook, but launching a full PySide6 window on a headless Linux box isn't practical. I needed something that could run from a terminal, accept scripted input, and exit cleanly when done. That's what the CLI subcommands are for.</p>
+<p>The <a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> GUI works well on my Windows desktop and MacBook, but launching a full PySide6 window on a headless Linux box isn't practical. I needed something that could run from a terminal, accept scripted input, and exit cleanly when done. That's what the CLI subcommands are for.</p>
 
 <p>OpenDrop's CLI has four main subcommands:</p>
 
@@ -246,7 +246,7 @@
 
 <p>There's no progress bar in the CLI output. For large files over slower connections, the command blocks silently until it finishes or times out. Adding <code>--verbose</code> output with transfer progress would make debugging easier, especially in unattended scripts where you're reading logs after the fact.</p>
 
-<p>Despite those limitations, the CLI does what I originally needed: move files between machines on a schedule without opening a GUI. The <code>serve</code> command turns any Linux box into a headless file receiver. The <code>send</code> command plugs into bash scripts, cron jobs, and CI pipelines. For my ParrotOS-in-a-closet setup, it works reliably. <a href="https://www.nfdgames.com/OpenDrop">OpenDrop</a> handles the networking, mDNS discovery, and transfer protocol so the scripts stay short.</p>
+<p>Despite those limitations, the CLI does what I originally needed: move files between machines on a schedule without opening a GUI. The <code>serve</code> command turns any Linux box into a headless file receiver. The <code>send</code> command plugs into bash scripts, cron jobs, and CI pipelines. For my ParrotOS-in-a-closet setup, it works reliably. <a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> handles the networking, mDNS discovery, and transfer protocol so the scripts stay short.</p>
 
         <!-- CTA -->
         <div class="blog-cta">

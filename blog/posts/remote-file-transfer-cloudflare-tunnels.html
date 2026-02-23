@@ -155,7 +155,7 @@
 
 <p>Cloudflare's quick tunnel service (trycloudflare.com) offers an alternative. It creates a temporary public URL that routes directly to a server running on your machine. No file uploads to a third party. No storage fees. No monthly subscription. Your data goes from your phone through Cloudflare's network to your PC, and that's it. Cloudflare doesn't store your files; it routes packets.</p>
 
-<p>I built remote transfer into <a href="https://www.nfdgames.com/OpenDrop">OpenDrop</a> using Cloudflare tunnels because the free tier needed to work for everyone, not just people willing to pay. Same-network transfers are fast and free. Remote transfers through tunnels are slower but still free. That combination covers most people's needs without a subscription.</p>
+<p>I built remote transfer into <a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> using Cloudflare tunnels because the free tier needed to work for everyone, not just people willing to pay. Same-network transfers are fast and free. Remote transfers through tunnels are slower but still free. That combination covers most people's needs without a subscription.</p>
 
 <h2>What Cloudflare Quick Tunnels Actually Do</h2>
 
@@ -221,7 +221,7 @@
 
 <p>The relay isn't free because Fly.io charges for bandwidth and compute. The Pro subscription covers that cost. For users who need fast remote transfers regularly, it's worth it. For users who only need remote transfer occasionally, the free Cloudflare tunnel is fine.</p>
 
-<p>My position remains: basic remote file access between your own devices should be free. <a href="https://www.nfdgames.com/OpenDrop">OpenDrop</a>'s free tier delivers that through Cloudflare tunnels. It's slower than LAN, slower than Pro, but it works from anywhere with an internet connection and costs nothing. The Pro tier exists for people who need more speed, not as a gate that locks basic functionality behind a paywall.</p>
+<p>My position remains: basic remote file access between your own devices should be free. <a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a>'s free tier delivers that through Cloudflare tunnels. It's slower than LAN, slower than Pro, but it works from anywhere with an internet connection and costs nothing. The Pro tier exists for people who need more speed, not as a gate that locks basic functionality behind a paywall.</p>
 
 <p>Cloudflare's quick tunnel service is one of the most underappreciated pieces of free infrastructure available to developers. It solves the NAT traversal problem, provides free TLS, and requires zero configuration. For file transfer specifically, the 5MB body limit forces chunking, but the alternative (no remote transfer at all, or paid cloud storage) is worse. A free, chunked, encrypted tunnel to your own machine is a good deal.</p>
 
