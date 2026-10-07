@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Security &amp; Vulnerability Disclosure | OpenDrop</title>
+ <meta name="description" content="Coordinated vulnerability disclosure policy and safe-harbor terms for OpenDrop by NFDGames LLC. How to report security issues responsibly.">
+ <meta name="robots" content="index, follow, max-image-preview:large">
+ <meta name="author" content="NFDGames">
+ <link rel="icon" type="image/x-icon" href="favicon-opendrop.ico">
+ <link rel="icon" type="image/png" sizes="96x96" href="icon-96x96-opendrop.png">
+ <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-opendrop.png">
+ <link rel="manifest" href="/site.webmanifest">
+ <link rel="canonical" href="https://www.nfdgames.com/OpenDrop/security.html">
+ <meta property="og:type" content="website">
+ <meta property="og:title" content="Security &amp; Vulnerability Disclosure | OpenDrop">
+ <meta property="og:description" content="Coordinated vulnerability disclosure policy and safe-harbor terms for OpenDrop.">
+ <meta property="og:image" content="https://www.nfdgames.com/OpenDrop/OpenDropIcon.png">
+ <meta property="og:url" content="https://www.nfdgames.com/OpenDrop/security.html">
+ <meta property="og:site_name" content="NFDGames">
+ <meta name="twitter:card" content="summary">
+ <meta name="twitter:title" content="OpenDrop Security &amp; Vulnerability Disclosure">
+ <meta name="twitter:description" content="How to report security issues to OpenDrop responsibly.">
+ <link rel="dns-prefetch" href="//fonts.googleapis.com">
+ <link rel="dns-prefetch" href="//fonts.gstatic.com">
+
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+ <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+
+ <link rel="stylesheet" href="../styles/common.css">
+ <link rel="stylesheet" href="../styles/opendrop.css">
+
+ <style>
+ .doc-hero {
+ min-height: auto;
+ padding: 9rem var(--space-xl) var(--space-2xl);
+ text-align: center;
+ }
+ .doc-hero h1 {
+ font-size: clamp(2rem, 5vw, 3.25rem);
+ margin-bottom: var(--space-md);
+ }
+ .doc-hero p {
+ color: var(--text-secondary);
+ max-width: 720px;
+ margin: 0 auto;
+ font-size: 1.05rem;
+ }
+ .doc-container {
+ max-width: 880px;
+ margin: 0 auto;
+ padding: 0 var(--space-xl) var(--space-4xl);
+ }
+ .doc-card {
+ background: var(--bg-card);
+ border: 1px solid var(--border);
+ border-radius: var(--radius-2xl);
+ padding: var(--space-2xl);
+ margin-bottom: var(--space-lg);
+ }
+ .doc-card h2 {
+ font-size: 1.35rem;
+ margin-bottom: var(--space-md);
+ display: flex;
+ align-items: center;
+ gap: 0.6rem;
+ }
+ .doc-card h3 {
+ font-size: 1.05rem;
+ margin: var(--space-lg) 0 var(--space-sm);
+ }
+ .doc-card p, .doc-card li {
+ color: var(--text-secondary);
+ font-size: 0.97rem;
+ line-height: 1.7;
+ }
+ .doc-card p strong, .doc-card li strong {
+ color: var(--text-primary);
+ }
+ .doc-card ul, .doc-card ol {
+ margin: var(--space-sm) 0 var(--space-md) 1.25rem;
+ }
+ .doc-card li {
+ margin-bottom: 0.4rem;
+ }
+ .doc-card a {
+ color: var(--accent-glow);
+ text-decoration: none;
+ }
+ .doc-card a:hover {
+ text-decoration: underline;
+ }
+ .doc-card code {
+ font-family: 'Space Mono', monospace;
+ background: var(--bg-dark);
+ padding: 0.15rem 0.4rem;
+ border-radius: 4px;
+ font-size: 0.85em;
+ color: var(--accent-glow);
+ }
+ .badge-row {
+ display: flex;
+ flex-wrap: wrap;
+ gap: var(--space-sm);
+ margin-top: var(--space-md);
+ }
+ .pill {
+ display: inline-flex;
+ align-items: center;
+ gap: 0.4rem;
+ padding: 0.35rem 0.85rem;
+ border: 1px solid var(--border);
+ border-radius: var(--radius-full);
+ font-size: 0.8rem;
+ color: var(--text-secondary);
+ background: rgba(59,142,245,0.06);
+ }
+ .pill.crit { background: rgba(212,113,126,0.12); color: #f5a8b3; border-color: rgba(212,113,126,0.4); }
+ .pill.high { background: rgba(212,160,84,0.12); color: #f0c98a; border-color: rgba(212,160,84,0.4); }
+ .pill.med { background: rgba(125,180,216,0.10); color: #afd2ea; border-color: rgba(125,180,216,0.35); }
+ .pill.low { background: rgba(77,184,164,0.10); color: #9bdbcb; border-color: rgba(77,184,164,0.35); }
+ .contact-block {
+ background: var(--bg-dark);
+ border: 1px solid var(--border);
+ border-radius: var(--radius-lg);
+ padding: var(--space-lg);
+ margin-top: var(--space-md);
+ font-family: 'Space Mono', monospace;
+ font-size: 0.9rem;
+ color: var(--text-primary);
+ line-height: 1.8;
+ }
+ .severity-table {
+ width: 100%;
+ border-collapse: collapse;
+ margin-top: var(--space-md);
+ font-size: 0.92rem;
+ }
+ .severity-table th, .severity-table td {
+ padding: 0.75rem;
+ text-align: left;
+ border-bottom: 1px solid var(--border);
+ color: var(--text-secondary);
+ vertical-align: top;
+ }
+ .severity-table th {
+ color: var(--text-primary);
+ font-weight: 600;
+ font-size: 0.85rem;
+ text-transform: uppercase;
+ letter-spacing: 0.04em;
+ }
+ @media (max-width: 768px) {
+ .doc-hero { padding: 7rem var(--space-lg) var(--space-xl); }
+ .doc-container { padding: 0 var(--space-lg) var(--space-3xl); }
+ .doc-card { padding: var(--space-xl); }
+ .severity-table { font-size: 0.85rem; }
+ }
+ </style>
+
+    <!-- Cookie consent / Google Consent Mode v2 preboot -->
+    <script src="/scripts/opendrop-cookie-banner.js"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-17319823241');
+    </script>
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "name": "Security and Vulnerability Disclosure",
+      "description": "Coordinated vulnerability disclosure policy and safe-harbor terms for OpenDrop by NFDGames LLC.",
+      "url": "https://www.nfdgames.com/OpenDrop/security.html",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "NFDGames",
+        "url": "https://www.nfdgames.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "NFDGames LLC"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "NFDGames",
+          "item": "https://www.nfdgames.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "OpenDrop",
+          "item": "https://www.nfdgames.com/OpenDrop/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Security and Vulnerability Disclosure",
+          "item": "https://www.nfdgames.com/OpenDrop/security.html"
+        }
+      ]
+    }
+  ]
+}
+    </script>
+</head>
+<body>
+ <div class="bg-gradient"></div>
+ <div class="noise"></div>
+
+ <nav>
+ <a href="./" class="logo">
+ <picture>
+ <source srcset="OpenDropIcon-logo.webp" type="image/webp">
+ <img src="OpenDropIcon.png" alt="OpenDrop" class="logo-icon" width="36" height="36" loading="lazy">
+ </picture>
+ OpenDrop
+ </a>
+ <div class="nav-links">
+ <a href="./#features">Features</a>
+ <a href="./#download">Download</a>
+ <a href="support.html">Support</a>
+ <a href="./#download" class="nav-cta">Get Started</a>
+ </div>
+ </nav>
+
+ <main>
+ <section class="doc-hero">
+ <h1>Security &amp; Vulnerability Disclosure</h1>
+ <p>NFDGames LLC welcomes good-faith security research on OpenDrop. This page is our coordinated-disclosure policy, scope, severity rubric, and safe-harbor terms.</p>
+ </section>
+
+ <div class="doc-container">
+
+ <div class="doc-card">
+ <h2>How to report</h2>
+ <p>Send your report by email. PGP-encrypted submissions are welcome.</p>
+ <div class="contact-block">
+ <strong>Primary:</strong> <a href="mailto:support@nfdgames.com">support@nfdgames.com</a><br>
+ <strong>Backup:</strong> <a href="mailto:support@nfdgames.com">support@nfdgames.com</a><br>
+ <strong>Subject prefix:</strong> <code>[SECURITY]</code><br>
+ <strong>security.txt:</strong> <a href="/.well-known/security.txt">/.well-known/security.txt</a>
+ </div>
+ <h3>What to include</h3>
+ <ul>
+ <li>The product and version (e.g., "OpenDrop iOS 1.0.0+18", "desktop server 1.0.0 on macOS 14.5").</li>
+ <li>A concise description of the vulnerability and the security impact.</li>
+ <li>Reproduction steps, with sample inputs, request/response captures, or a minimal proof-of-concept.</li>
+ <li>Whether you intend to disclose publicly, and on what timeline.</li>
+ <li>Whether you would like credit in our acknowledgments below.</li>
+ </ul>
+ <h3>What we commit to</h3>
+ <ul>
+ <li><strong>Acknowledge receipt within 3 business days.</strong></li>
+ <li><strong>Triage and initial assessment within 7 business days</strong>, with a severity rating and a target fix window.</li>
+ <li><strong>Keep you informed</strong> as we investigate. We will not surprise you with disclosure timelines.</li>
+ <li><strong>Coordinate public disclosure</strong> with you. Default 90-day disclosure window from triage, extendable for hardware/supply-chain issues.</li>
+ <li><strong>Credit you</strong> in our acknowledgments (Hall of Fame, below) unless you request otherwise.</li>
+ </ul>
+ </div>
+
+ <div class="doc-card" id="scope">
+ <h2>Scope</h2>
+ <p><strong>In scope:</strong></p>
+ <ul>
+ <li>OpenDrop mobile apps for iOS and Android (the App Store and Google Play builds).</li>
+ <li>OpenDrop desktop server (Python/PySide6) for Windows, Linux, and the in-development macOS build.</li>
+ <li>Our Cloudflare Worker control plane (<code>opendrop.n-fantinodyer.workers.dev</code>), its KV-backed device-registration API, and the anonymous free-relay-token mint that issues short-lived, rotating tokens for free-tier relay access.</li>
+ <li>Our self-hosted file-relay infrastructure used for cross-network transfers (the Fly.io relay for Pro subscribers and the Oracle Cloud relay for the free tier and Pro failover).</li>
+ <li>Our peer-to-peer (WebRTC) connection layer and self-hosted STUN servers used for direct cross-network transfers.</li>
+ <li>The OpenDrop wire protocol and end-to-end encryption (ChaCha20-Poly1305 IETF AEAD, HKDF-SHA256, HMAC-SHA256).</li>
+ <li>nfdgames.com web properties, the marketing site, blog, support form, and OpenDrop pages.</li>
+ <li>Our Firebase Authentication configuration and OAuth flows.</li>
+ <li>The OpenDrop CLI mode and headless server.</li>
+ </ul>
+ <p><strong>Out of scope:</strong></p>
+ <ul>
+ <li>Vulnerabilities in third-party services we depend on (Cloudflare, Fly.io, Oracle Cloud, Firebase, Apple, Google Play, Stripe, RevenueCat). Please report those to the providers directly under their own disclosure programs.</li>
+ <li>Reports based on outdated client versions. Please confirm against the latest published release before submitting.</li>
+ <li>Theoretical attacks without a demonstrable security impact.</li>
+ <li>Self-XSS, clickjacking on pages with no sensitive state, and other low-impact UI-only issues.</li>
+ <li>Volumetric denial-of-service findings produced by automated scanners or load tests.</li>
+ <li>Missing security headers on the marketing site that don't lead to a demonstrable compromise (CSP, HSTS-preload, etc., appreciated as hardening suggestions, but generally not eligible for our acknowledgments).</li>
+ <li>Reports requiring physical access to a victim's unlocked device.</li>
+ <li>Social-engineering attacks against NFDGames LLC staff or vendors.</li>
+ </ul>
+ </div>
+
+ <div class="doc-card">
+ <h2>Severity rubric</h2>
+ <p>We use a simple four-tier rubric, not CVSS. The tier dictates response speed and the order in which we ship fixes.</p>
+ <table class="severity-table">
+ <thead>
+ <tr><th>Tier</th><th>Examples</th><th>Target fix window</th></tr>
+ </thead>
+ <tbody>
+ <tr>
+ <td><span class="pill crit">Critical</span></td>
+ <td>Account takeover; key-recovery against the E2EE primitives; remote code execution on the desktop server; bypass of the protocol-version gate that would let a downgraded or non-conforming client transfer plaintext.</td>
+ <td>7 days from triage</td>
+ </tr>
+ <tr>
+ <td><span class="pill high">High</span></td>
+ <td>Authenticated cross-account data exposure; HMAC forgery; CSRF on a state-changing endpoint; secrets leakage in logs; downgrade attack on the wire protocol.</td>
+ <td>21 days from triage</td>
+ </tr>
+ <tr>
+ <td><span class="pill med">Medium</span></td>
+ <td>Stored XSS in marketing pages without auth context; SSRF without remote impact; partial information disclosure (e.g. metadata leaks beyond what the privacy policy describes); race conditions with limited impact.</td>
+ <td>45 days from triage</td>
+ </tr>
+ <tr>
+ <td><span class="pill low">Low</span></td>
+ <td>Hardening recommendations; missing security headers on non-sensitive pages; minor information disclosure (e.g., software version in error messages); rate-limit gaps without amplification.</td>
+ <td>Best-effort, no commitment</td>
+ </tr>
+ </tbody>
+ </table>
+ </div>
+
+ <div class="doc-card">
+ <h2>Safe-harbor terms</h2>
+ <p>If you follow this policy in good faith, NFDGames LLC will not pursue or support any legal action against you, and will treat your research as authorized for the purposes of:</p>
+ <ul>
+ <li>The U.S. Computer Fraud and Abuse Act (CFAA), 18 U.S.C. &sect; 1030.</li>
+ <li>The U.S. Digital Millennium Copyright Act (DMCA), 17 U.S.C. &sect; 1201 (anti-circumvention).</li>
+ <li>The South Carolina Computer Crime Act and analogous state laws.</li>
+ <li>Our Terms of Service Section 5 ("Acceptable Use") prohibition on unauthorized access.</li>
+ </ul>
+ <p>"Good faith" means you:</p>
+ <ul>
+ <li>Make a sincere effort to avoid privacy violations, data destruction, and interruption of service.</li>
+ <li>Only access, copy, or modify accounts and data that you own or have explicit permission to test.</li>
+ <li>Do not run automated scanning that could cause service degradation.</li>
+ <li>Do not exfiltrate or retain data beyond what is necessary to demonstrate the vulnerability, and destroy any data obtained when the report is acknowledged.</li>
+ <li>Give us a reasonable amount of time (per the severity rubric above) to fix the issue before publicly disclosing.</li>
+ <li>Do not extort, threaten, or otherwise pressure NFDGames LLC.</li>
+ </ul>
+ <p>This safe-harbor extends only to claims by NFDGames LLC. We cannot waive claims by third parties whose systems you may inadvertently touch (e.g., our cloud providers). When in doubt, ask first.</p>
+ </div>
+
+ <div class="doc-card">
+ <h2>Compensation</h2>
+ <p>OpenDrop is a one-person product and we do not currently operate a paid bug-bounty program. We compensate researchers in the following non-monetary ways:</p>
+ <ul>
+ <li><strong>Acknowledgment</strong> in the Hall of Fame on this page (and in product release notes where the fix ships).</li>
+ <li><strong>A complimentary OpenDrop Pro subscription</strong> (lifetime) for any report we triage as Medium or higher.</li>
+ <li><strong>Direct line</strong> to me (founder, sole engineer) for follow-up research questions.</li>
+ </ul>
+ <p>If your research uncovers something Critical with broad real-world impact and you would prefer monetary compensation in lieu of acknowledgment, contact us, we will negotiate in good faith case-by-case.</p>
+ </div>
+
+ <div class="doc-card" id="hall-of-fame">
+ <h2>Hall of Fame</h2>
+ <p>We thank the following researchers for responsibly disclosing security issues in OpenDrop:</p>
+ <p class="text-muted" style="font-style:italic;">No public disclosures yet, be the first.</p>
+ </div>
+
+ <div class="doc-card">
+ <h2>What this policy is not</h2>
+ <ul>
+ <li>It is not a service-level agreement. It does not promise that any particular finding will be fixed, only that we will respond and assess.</li>
+ <li>It is not a guarantee of monetary reward. See "Compensation" above.</li>
+ <li>It is not a license to test third-party systems. If your test path touches Cloudflare, Fly.io, Oracle Cloud, Firebase, Apple, or any other provider in our stack, you must comply with that provider's own policy in addition to ours.</li>
+ <li>It does not authorize denial-of-service testing, social engineering, or physical-security testing under any condition.</li>
+ </ul>
+ </div>
+
+ <p class="text-muted" style="text-align:center;font-size:0.85rem;margin-top:var(--space-xl);">
+ Last updated: June 4, 2026 &nbsp;&middot;&nbsp; <a href="/.well-known/security.txt" style="color:var(--accent);">security.txt</a> &nbsp;&middot;&nbsp; <a href="PrivacyPolicy.html" style="color:var(--accent);">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="TermsOfService.html" style="color:var(--accent);">Terms</a>
+ </p>
+ </div>
+ </main>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-analytics.js";
+      const app = initializeApp({
+        apiKey: "AIzaSyD1XfHr0OtAM4Zm62sPLW4Rjg__8HlLE0c",
+        authDomain: "opendrop-3c111.firebaseapp.com",
+        projectId: "opendrop-3c111",
+        storageBucket: "opendrop-3c111.firebasestorage.app",
+        messagingSenderId: "573883707762",
+        appId: "1:573883707762:web:e68643cce07c2cee3eadeb",
+        measurementId: "G-ENWJJ78E3Q"
+      });
+      // Gated on user consent
+      if (window.OpenDropConsent) {
+        window.OpenDropConsent.onConsent(function () { getAnalytics(app); });
+      }
+    </script>
+</body>
+</html>

@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Press Kit | OpenDrop</title>
+ <meta name="description" content="OpenDrop press kit: brand assets, screenshots, logos, color palette, taglines, fact sheet, and contact for press inquiries.">
+ <meta name="robots" content="index, follow, max-image-preview:large">
+ <meta name="author" content="NFDGames">
+ <link rel="icon" type="image/x-icon" href="favicon-opendrop.ico">
+ <link rel="icon" type="image/png" sizes="96x96" href="icon-96x96-opendrop.png">
+ <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-opendrop.png">
+ <link rel="manifest" href="/site.webmanifest">
+ <link rel="canonical" href="https://www.nfdgames.com/OpenDrop/press.html">
+ <meta property="og:type" content="website">
+ <meta property="og:title" content="OpenDrop Press Kit">
+ <meta property="og:description" content="Brand assets, screenshots, fact sheet, and press contact for OpenDrop.">
+ <meta property="og:image" content="https://www.nfdgames.com/OpenDrop/OpenDropIcon.png">
+ <meta property="og:url" content="https://www.nfdgames.com/OpenDrop/press.html">
+ <meta property="og:site_name" content="NFDGames">
+ <meta name="twitter:card" content="summary_large_image">
+
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+ <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+
+ <link rel="stylesheet" href="../styles/common.css">
+ <link rel="stylesheet" href="../styles/opendrop.css">
+
+ <style>
+ .doc-hero {
+ min-height: auto;
+ padding: 9rem var(--space-xl) var(--space-xl);
+ text-align: center;
+ }
+ .doc-hero h1 {
+ font-size: clamp(2rem, 5vw, 3.25rem);
+ margin-bottom: var(--space-md);
+ }
+ .doc-hero p {
+ color: var(--text-secondary);
+ max-width: 760px;
+ margin: 0 auto;
+ font-size: 1.05rem;
+ }
+ .doc-container {
+ max-width: 1080px;
+ margin: 0 auto;
+ padding: 0 var(--space-xl) var(--space-4xl);
+ }
+ .doc-card {
+ background: var(--bg-card);
+ border: 1px solid var(--border);
+ border-radius: var(--radius-2xl);
+ padding: var(--space-2xl);
+ margin-bottom: var(--space-lg);
+ }
+ .doc-card h2 {
+ font-size: 1.35rem;
+ margin-bottom: var(--space-md);
+ display: flex;
+ align-items: baseline;
+ gap: 0.55rem;
+ }
+ .doc-card h2 small {
+ color: var(--text-muted);
+ font-size: 0.8rem;
+ font-weight: 400;
+ }
+ .doc-card h3 {
+ margin: var(--space-lg) 0 var(--space-sm);
+ font-size: 1.0rem;
+ color: var(--text-primary);
+ }
+ .doc-card p, .doc-card li {
+ color: var(--text-secondary);
+ font-size: 0.96rem;
+ line-height: 1.7;
+ }
+ .doc-card strong { color: var(--text-primary); }
+ .doc-card a {
+ color: var(--accent-glow);
+ text-decoration: none;
+ }
+ .doc-card a:hover { text-decoration: underline; }
+ .doc-card ul {
+ margin: var(--space-sm) 0 var(--space-md) 1.25rem;
+ }
+
+ .quick-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+ gap: var(--space-md);
+ margin: var(--space-md) 0;
+ }
+ .quick-card {
+ background: var(--bg-dark);
+ border: 1px solid var(--border);
+ border-radius: var(--radius-lg);
+ padding: var(--space-md);
+ font-size: 0.9rem;
+ }
+ .quick-card .label {
+ display: block;
+ text-transform: uppercase;
+ font-size: 0.72rem;
+ letter-spacing: 0.06em;
+ color: var(--text-muted);
+ margin-bottom: 0.3rem;
+ }
+ .quick-card .value {
+ color: var(--text-primary);
+ font-weight: 600;
+ }
+
+ .logo-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+ gap: var(--space-md);
+ margin-top: var(--space-md);
+ }
+ .logo-tile {
+ background: var(--bg-dark);
+ border: 1px solid var(--border);
+ border-radius: var(--radius-lg);
+ padding: var(--space-md);
+ text-align: center;
+ }
+ .logo-tile.light { background: #ffffff; }
+ .logo-tile.brand-bg { background: var(--bg-deep); }
+ .logo-tile img {
+ display: block;
+ width: 96px;
+ height: 96px;
+ margin: 0 auto var(--space-sm);
+ object-fit: contain;
+ }
+ .logo-tile .caption {
+ display: block;
+ font-family: 'Space Mono', monospace;
+ font-size: 0.75rem;
+ color: var(--text-secondary);
+ line-height: 1.4;
+ }
+ .logo-tile a {
+ color: var(--accent-glow);
+ }
+ .logo-tile.light .caption,
+ .logo-tile.light a { color: #2a2a3a; }
+
+ .swatches {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+ gap: var(--space-sm);
+ margin-top: var(--space-md);
+ }
+ .swatch {
+ border-radius: var(--radius-md);
+ padding: var(--space-md);
+ font-family: 'Space Mono', monospace;
+ font-size: 0.78rem;
+ line-height: 1.4;
+ border: 1px solid var(--border);
+ }
+ .swatch .name {
+ display: block;
+ font-weight: 700;
+ margin-bottom: 0.2rem;
+ }
+
+ .copy-block {
+ background: var(--bg-dark);
+ border: 1px solid var(--border);
+ border-radius: var(--radius-lg);
+ padding: var(--space-lg);
+ margin: var(--space-md) 0;
+ color: var(--text-primary);
+ line-height: 1.7;
+ font-size: 0.96rem;
+ }
+ .copy-block .label {
+ display: block;
+ text-transform: uppercase;
+ font-size: 0.72rem;
+ letter-spacing: 0.06em;
+ color: var(--text-muted);
+ margin-bottom: 0.4rem;
+ font-family: 'Space Mono', monospace;
+ }
+ .copy-block + .copy-block { margin-top: var(--space-md); }
+
+ .contact-block {
+ background: var(--bg-dark);
+ border: 1px solid var(--border);
+ border-radius: var(--radius-lg);
+ padding: var(--space-lg);
+ margin-top: var(--space-md);
+ font-family: 'Space Mono', monospace;
+ font-size: 0.92rem;
+ color: var(--text-primary);
+ line-height: 1.85;
+ }
+
+ @media (max-width: 720px) {
+ .doc-hero { padding: 7rem var(--space-lg) var(--space-lg); }
+ .doc-container { padding: 0 var(--space-lg) var(--space-3xl); }
+ .doc-card { padding: var(--space-xl); }
+ }
+ </style>
+
+    <!-- Cookie consent / Google Consent Mode v2 preboot -->
+    <script src="/scripts/opendrop-cookie-banner.js"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-17319823241');
+    </script>
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "name": "OpenDrop Press Kit",
+      "description": "Brand assets, screenshots, fact sheet, and press contact for OpenDrop.",
+      "url": "https://www.nfdgames.com/OpenDrop/press.html",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "NFDGames",
+        "url": "https://www.nfdgames.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "NFDGames LLC"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "NFDGames",
+          "item": "https://www.nfdgames.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "OpenDrop",
+          "item": "https://www.nfdgames.com/OpenDrop/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "OpenDrop Press Kit",
+          "item": "https://www.nfdgames.com/OpenDrop/press.html"
+        }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "name": "NFDGames LLC",
+      "url": "https://www.nfdgames.com/",
+      "logo": "https://www.nfdgames.com/NFDGamesLogoCircleTransparent.png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "support@nfdgames.com",
+        "contactType": "customer support"
+      }
+    }
+  ]
+}
+    </script>
+</head>
+<body>
+ <div class="bg-gradient"></div>
+ <div class="noise"></div>
+
+ <nav>
+ <a href="./" class="logo">
+ <picture>
+ <source srcset="OpenDropIcon-logo.webp" type="image/webp">
+ <img src="OpenDropIcon.png" alt="OpenDrop" class="logo-icon" width="36" height="36" loading="lazy">
+ </picture>
+ OpenDrop
+ </a>
+ <div class="nav-links">
+ <a href="./#features">Features</a>
+ <a href="./#download">Download</a>
+ <a href="support.html">Support</a>
+ <a href="./#download" class="nav-cta">Get Started</a>
+ </div>
+ </nav>
+
+ <main>
+ <section class="doc-hero">
+ <h1>OpenDrop Press Kit</h1>
+ <p>Everything you need to write about, review, or feature OpenDrop. Hot-link any asset on this page or download originals via the links below. For interviews or quotes, email <a href="mailto:support@nfdgames.com" style="color:var(--accent-glow);">support@nfdgames.com</a>.</p>
+ </section>
+
+ <div class="doc-container">
+
+ <div class="doc-card">
+ <h2>Fact sheet</h2>
+ <div class="quick-grid">
+ <div class="quick-card"><span class="label">Product</span><span class="value">OpenDrop</span></div>
+ <div class="quick-card"><span class="label">Maker</span><span class="value">NFDGames LLC</span></div>
+ <div class="quick-card"><span class="label">Headquarters</span><span class="value">Greenville, SC, USA</span></div>
+ <div class="quick-card"><span class="label">Founder</span><span class="value">Nicholas Fantino-Dyer</span></div>
+ <div class="quick-card"><span class="label">Current version</span><span class="value">1.0.0 (June 4, 2026)</span></div>
+ <div class="quick-card"><span class="label">Platforms</span><span class="value">iOS, Android, Windows, Linux (macOS preview)</span></div>
+ <div class="quick-card"><span class="label">License model</span><span class="value">Proprietary, free with optional Pro</span></div>
+ <div class="quick-card"><span class="label">Pro pricing</span><span class="value">US $2.99/month · $24.99/year</span></div>
+ <div class="quick-card"><span class="label">Encryption</span><span class="value">ChaCha20-Poly1305 IETF AEAD, mandatory</span></div>
+ <div class="quick-card"><span class="label">Wire protocol</span><span class="value">OpenDrop v2 (mandatory)</span></div>
+ </div>
+ <h3>One-line description</h3>
+ <div class="copy-block">
+ <span class="label">Tagline</span>
+ Send files between any device. Instantly.
+ </div>
+ <h3>Short description (≈30 words)</h3>
+ <div class="copy-block">
+ <span class="label">Short blurb</span>
+ OpenDrop is a free, cross-platform AirDrop alternative. Transfer files between iPhone, Android, PC, and Linux over Wi-Fi, Bluetooth, or the cloud, end-to-end encrypted, no internet required on a local network.
+ </div>
+ <h3>Long description (≈80 words)</h3>
+ <div class="copy-block">
+ <span class="label">Long blurb</span>
+ OpenDrop is a self-hosted, cross-platform file-transfer system. The mobile and desktop apps discover each other automatically over Wi-Fi using multicast DNS, connect directly peer-to-peer across networks when they're apart, fall back to Bluetooth LE for nearby transfers without a shared network, and stream through OpenDrop's own high-speed, redundant relay (Fly.io with automatic failover to Oracle Cloud) for remote transfers when a direct connection isn't available. File contents are end-to-end encrypted on the sending device with ChaCha20-Poly1305 and keyed to your account's shared secret, even our infrastructure can't read them. There are no ads, no third-party analytics SDKs in the apps, and the business is funded by an optional OpenDrop Pro subscription.
+ </div>
+ </div>
+
+ <div class="doc-card">
+ <h2>Logos &amp; icons <small>· hot-link the public URLs or save originals from <a href="https://github.com/nfantinodyer/nfdgames" target="_blank">github.com/nfantinodyer/nfdgames</a></small></h2>
+ <div class="logo-grid">
+ <div class="logo-tile brand-bg">
+ <picture>
+ <source srcset="OpenDropIcon.webp" type="image/webp">
+ <img src="OpenDropIcon.png" alt="OpenDrop product icon">
+ </picture>
+ <span class="caption">
+ <strong>OpenDrop icon</strong><br>
+ <a href="OpenDropIcon.png">PNG (1298×1298)</a><br>
+ <a href="OpenDropIcon.webp">WEBP (optimized)</a>
+ </span>
+ </div>
+ <div class="logo-tile brand-bg">
+ <img src="apple-touch-icon-opendrop.png" alt="OpenDrop touch icon">
+ <span class="caption">
+ <strong>Apple touch icon</strong><br>
+ <a href="apple-touch-icon-opendrop.png">180×180 PNG</a>
+ </span>
+ </div>
+ <div class="logo-tile brand-bg">
+ <img src="icon-96x96-opendrop.png" alt="OpenDrop 96px icon">
+ <span class="caption">
+ <strong>96px icon</strong><br>
+ <a href="icon-96x96-opendrop.png">96×96 PNG</a>
+ </span>
+ </div>
+ <div class="logo-tile light">
+ <picture>
+ <source srcset="../NFDGamesLogoCircleTransparent.webp" type="image/webp">
+ <img src="../NFDGamesLogoCircleTransparent.png" alt="NFDGames LLC company logo on light background">
+ </picture>
+ <span class="caption">
+ <strong>NFDGames mark</strong> (light bg)<br>
+ <a href="../NFDGamesLogoCircleTransparent.png">PNG (transparent)</a><br>
+ <a href="../NFDGamesLogoCircleTransparent.webp">WEBP</a>
+ </span>
+ </div>
+ <div class="logo-tile brand-bg">
+ <picture>
+ <source srcset="../NFDGamesLogoCircleTransparent.webp" type="image/webp">
+ <img src="../NFDGamesLogoCircleTransparent.png" alt="NFDGames LLC company logo on dark background">
+ </picture>
+ <span class="caption">
+ <strong>NFDGames mark</strong> (dark bg)<br>
+ <a href="../NFDGamesLogoCircleTransparent.png">PNG (transparent)</a>
+ </span>
+ </div>
+ <div class="logo-tile brand-bg" style="grid-column:span 2;">
+ <img src="../NFDGamesHeaderFinal.jpg" alt="NFDGames header banner" style="width:100%;height:auto;border-radius:8px;">
+ <span class="caption">
+ <strong>NFDGames header banner</strong><br>
+ <a href="../NFDGamesHeaderFinal.jpg">JPG (high-resolution)</a>
+ </span>
+ </div>
+ </div>
+ <p style="margin-top:var(--space-md);font-size:0.86rem;color:var(--text-muted);">
+ <em>Note:</em> A vector (SVG) version of the OpenDrop mark is not currently available. If you need one for print or a large display, email <a href="mailto:support@nfdgames.com">support@nfdgames.com</a> and we will generate it from the 2160×2160 master.
+ </p>
+ </div>
+
+ <div class="doc-card">
+ <h2>Brand colors</h2>
+ <p>The canonical OpenDrop palette is "OpenDrop Brand", cerulean blue and aqua cyan on a deep navy. Hex codes match the in-app <code>openDropBrand</code> palette and the website CSS tokens.</p>
+ <h3>Accents</h3>
+ <div class="swatches">
+ <div class="swatch" style="background:#3b8ef5;color:#fff;"><span class="name">Cerulean Blue</span>#3B8EF5</div>
+ <div class="swatch" style="background:#46d8e5;color:#0d1333;"><span class="name">Aqua Cyan</span>#46D8E5</div>
+ <div class="swatch" style="background:#7db4d8;color:#0d1333;"><span class="name">Sky Mist</span>#7DB4D8</div>
+ <div class="swatch" style="background:#1A2B5E;color:#fff;"><span class="name">Deep Navy</span>#1A2B5E</div>
+ </div>
+ <h3>Surfaces (dark mode)</h3>
+ <div class="swatches">
+ <div class="swatch" style="background:#080c18;color:#fff;border-color:#1c2a50;"><span class="name">bg-deep</span>#080C18</div>
+ <div class="swatch" style="background:#0d1333;color:#fff;border-color:#1c2a50;"><span class="name">bg-dark</span>#0D1333</div>
+ <div class="swatch" style="background:#182044;color:#fff;border-color:#1c2a50;"><span class="name">bg-card</span>#182044</div>
+ <div class="swatch" style="background:#223060;color:#fff;border-color:#1c2a50;"><span class="name">bg-elevated</span>#223060</div>
+ </div>
+ <h3>Utility</h3>
+ <div class="swatches">
+ <div class="swatch" style="background:#4db8a4;color:#0d1333;"><span class="name">Success</span>#4DB8A4</div>
+ <div class="swatch" style="background:#d4a054;color:#0d1333;"><span class="name">Warning</span>#D4A054</div>
+ <div class="swatch" style="background:#d4717e;color:#0d1333;"><span class="name">Error</span>#D4717E</div>
+ </div>
+ <h3>Typography</h3>
+ <ul>
+ <li><strong>Sora</strong>, primary UI / body typeface (weights 300, 400, 500, 600, 700). SIL Open Font License.</li>
+ <li><strong>Space Mono</strong>, display / monospace (weights 400, 700). Used for the OpenDrop wordmark, terminal blocks, version strings, and pricing amounts. SIL Open Font License.</li>
+ </ul>
+ </div>
+
+ <div class="doc-card">
+ <h2>Screenshots</h2>
+ <p>Live store screenshots are pulled from the App Store and Microsoft Store and refreshed automatically by <code>scripts/refresh-screenshots-manifest.mjs</code>. Use the URLs in <a href="screenshots-manifest.json">screenshots-manifest.json</a> as your canonical sources. They include:</p>
+ <ul>
+ <li><strong>iOS</strong>, 6 screenshots at 1080w from the Apple mzstatic CDN (current as of 2026-06-04).</li>
+ <li><strong>Windows</strong>, 5 screenshots at 1084×1397 from the Microsoft Store CDN.</li>
+ <li><strong>Mac</strong> (still in preview) and <strong>Android</strong>. Android is live on Google Play, but neither has screenshots in the auto-refreshed manifest yet (the script pulls from the App Store and Microsoft Store only). Use the Google Play listing or the OpenDrop landing carousel (<a href="./#screenshots">opendrop landing #screenshots</a>) as a substitute.</li>
+ </ul>
+ <p>For higher-resolution originals, App Store and Microsoft Store listings carry the same screenshots at their native resolutions:</p>
+ <ul>
+ <li>App Store: <a href="https://apps.apple.com/us/app/opendrop/id6757438202" target="_blank">apps.apple.com/.../opendrop</a></li>
+ <li>Microsoft Store: <a href="https://apps.microsoft.com/store/detail/XP99SJJTQXZ9WT" target="_blank">apps.microsoft.com/.../opendrop</a></li>
+ <li>Google Play: <a href="https://play.google.com/store/apps/details?id=com.nfdgames.opendrop" target="_blank">play.google.com/.../opendrop</a></li>
+ </ul>
+ </div>
+
+ <div class="doc-card">
+ <h2>About NFDGames LLC</h2>
+ <p>NFDGames LLC is a one-person indie software studio based in Greenville, South Carolina, founded and solely owned by Nicholas Fantino-Dyer. Before forming the LLC in 2026, Nicholas shipped the same projects under his own name as an independent developer. The company now publishes software utilities like OpenDrop and mobile games like Gunslinger. No outside investment. Every commit is the founder&rsquo;s.</p>
+ <ul>
+ <li><strong>LLC founded:</strong> 2026 (Nicholas was developing the same projects independently prior)</li>
+ <li><strong>State of incorporation:</strong> South Carolina (limited liability company)</li>
+ <li><strong>Registered address:</strong> 212 East Broad Street, Apt #1116, Greenville, SC 29601, United States</li>
+ <li><strong>Federal employer identification:</strong> available on request for press verification</li>
+ <li><strong>Website:</strong> <a href="https://www.nfdgames.com">nfdgames.com</a></li>
+ <li><strong>Other products:</strong> Gunslinger (mobile game, separate brand, separate analytics)</li>
+ </ul>
+ </div>
+
+ <div class="doc-card">
+ <h2>Quotes you can use</h2>
+ <div class="copy-block">
+ <span class="label">Founder quote: encryption</span>
+ "If we can't read your files, no court order or breach of our infrastructure can give them up. That's the design goal of OpenDrop 1.0: end-to-end encryption on every transfer path, with no plaintext fallback."
+ <br><br>
+ <em>Nicholas Fantino-Dyer, NFDGames LLC</em>
+ </div>
+ <div class="copy-block">
+ <span class="label">Founder quote: cross-platform</span>
+ "AirDrop only works between Apple devices. SnapDrop only works between browsers. LocalSend works locally but not over the internet. OpenDrop works everywhere (iPhone to Windows, Android to Linux, your laptop to your phone in the next country) and does it in a single app."
+ <br><br>
+ <em>Nicholas Fantino-Dyer, NFDGames LLC</em>
+ </div>
+ <div class="copy-block">
+ <span class="label">Founder quote: independence</span>
+ "OpenDrop is built by one person. No VC, no agency, no committee. If something on the roadmap matters to you, email me. I'm the engineer who'll fix it."
+ <br><br>
+ <em>Nicholas Fantino-Dyer, NFDGames LLC</em>
+ </div>
+ </div>
+
+ <div class="doc-card">
+ <h2>Press contact</h2>
+ <p>For interviews, advance review copies, embargoed information, or anything else press-related:</p>
+ <div class="contact-block">
+ <strong>All inquiries:</strong> <a href="mailto:support@nfdgames.com">support@nfdgames.com</a><br>
+ <strong>Mailing address:</strong> NFDGames LLC, 212 East Broad Street, Apt #1116, Greenville, SC 29601, USA<br>
+ <strong>Web:</strong> <a href="https://www.nfdgames.com">nfdgames.com</a>
+ </div>
+ <p style="margin-top:var(--space-md);font-size:0.85rem;color:var(--text-muted);">NFDGames LLC has one shared inbox: <code>support@nfdgames.com</code>. Press, security, billing, and general support all route there. Response window: 1 business day in US Eastern time. For a same-day reply, mark your email <code>[URGENT-PRESS]</code> in the subject.</p>
+ </div>
+
+ <p class="text-muted" style="text-align:center;font-size:0.85rem;margin-top:var(--space-xl);">
+ Last updated: June 4, 2026 &nbsp;&middot;&nbsp;
+ <a href="changelog.html" style="color:var(--accent);">Release notes</a> &nbsp;&middot;&nbsp;
+ <a href="security.html" style="color:var(--accent);">Security</a> &nbsp;&middot;&nbsp;
+ <a href="PrivacyPolicy.html" style="color:var(--accent);">Privacy</a>
+ </p>
+ </div>
+ </main>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-analytics.js";
+      const app = initializeApp({
+        apiKey: "AIzaSyD1XfHr0OtAM4Zm62sPLW4Rjg__8HlLE0c",
+        authDomain: "opendrop-3c111.firebaseapp.com",
+        projectId: "opendrop-3c111",
+        storageBucket: "opendrop-3c111.firebasestorage.app",
+        messagingSenderId: "573883707762",
+        appId: "1:573883707762:web:e68643cce07c2cee3eadeb",
+        measurementId: "G-ENWJJ78E3Q"
+      });
+      // Gated on user consent
+      if (window.OpenDropConsent) {
+        window.OpenDropConsent.onConsent(function () { getAnalytics(app); });
+      }
+    </script>
+</body>
+</html>

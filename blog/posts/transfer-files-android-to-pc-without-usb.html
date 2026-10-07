@@ -7,9 +7,9 @@
     <meta name="description" content="Transfer files from Android to PC wirelessly, no USB cable needed. Covers five methods with exact steps, speeds, and failure modes I&#x27;ve hit personally.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
     <meta name="author" content="NFDGames">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96x96.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/x-icon" href="/favicon-nfdgames.ico">
+    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96x96-nfdgames.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-nfdgames.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="canonical" href="https://www.nfdgames.com/blog/posts/transfer-files-android-to-pc-without-usb.html" />
     <link rel="alternate" hreflang="en" href="https://www.nfdgames.com/blog/posts/transfer-files-android-to-pc-without-usb.html" />
@@ -74,7 +74,7 @@
         ,
         {
           "@type": "FAQPage",
-          "mainEntity": [{"@type":"Question","name":"Do my Android phone and PC need to be on the same Wi-Fi network for wireless transfer?","acceptedAnswer":{"@type":"Answer","text":"Not with OpenDrop. On the same Wi-Fi network, transfers go over LAN at full speed with no file size limit. But OpenDrop also works across different networks using a Cloudflare tunnel (free tier, ~8 Mbps) or a Fly.io relay (Pro tier, 30-50+ Mbps). Most other wireless transfer methods like Quick Share and FTP do require the same network."}},{"@type":"Question","name":"Why can't my PC find my Android phone for wireless file transfer?","acceptedAnswer":{"@type":"Answer","text":"The most common cause is AP (client) isolation on your router, which prevents devices on the same Wi-Fi from communicating. Check your router's wireless settings for an \"AP isolation\" toggle and disable it. If you're on a hotel or corporate network where you can't change this, use OpenDrop's QR code pairing or remote transfer mode to bypass the restriction."}},{"@type":"Question","name":"Is wireless file transfer from Android to PC secure?","acceptedAnswer":{"@type":"Answer","text":"It depends on the method. FTP is completely unencrypted. Quick Share uses encryption for the transfer payload. OpenDrop uses plain HTTP on LAN (where traffic stays local and never leaves your network), and TLS via Cloudflare or Fly.io for remote transfers. All OpenDrop requests are signed with HMAC-SHA256 and a 30-second timestamp window to prevent replay attacks."}},{"@type":"Question","name":"How fast is wireless file transfer compared to USB?","acceptedAnswer":{"@type":"Answer","text":"USB 2.0, which most budget Android phones use, tops out at about 25-35 MB/s in practice. Wi-Fi 5 wireless transfers can hit 100-300 Mbps (roughly 12-37 MB/s), which is comparable. Wi-Fi 6 or 6E can exceed USB 2.0 speeds. USB 3.0 is faster than any current wireless method, but many phones don't support it."}},{"@type":"Question","name":"Does Quick Share work on Linux PCs?","acceptedAnswer":{"@type":"Answer","text":"No. Google's Quick Share desktop app is only available for Windows. There's no official Linux client and no announced plans for one. For Android-to-Linux transfers, OpenDrop, FTP, or cloud storage are your main options. OpenDrop supports Linux with both a GUI and a CLI."}}]
+          "mainEntity": [{"@type":"Question","name":"Do my Android phone and PC need to be on the same Wi-Fi network for wireless transfer?","acceptedAnswer":{"@type":"Answer","text":"Not with OpenDrop. On the same Wi-Fi network, transfers go over LAN at full speed with no file size limit. But OpenDrop also works across different networks through its own encrypted relay (an Oracle Cloud relay on the free tier, the faster Fly.io relay on Pro) — no tunnel binary to install, and it works behind NAT and firewalls. Most other wireless transfer methods like Quick Share and FTP do require the same network."}},{"@type":"Question","name":"Why can't my PC find my Android phone for wireless file transfer?","acceptedAnswer":{"@type":"Answer","text":"The most common cause is AP (client) isolation on your router, which prevents devices on the same Wi-Fi from communicating. Check your router's wireless settings for an \"AP isolation\" toggle and disable it. If you're on a hotel or corporate network where you can't change this, use OpenDrop's QR code pairing or remote transfer mode to bypass the restriction."}},{"@type":"Question","name":"Is wireless file transfer from Android to PC secure?","acceptedAnswer":{"@type":"Answer","text":"It depends on the method. FTP is completely unencrypted. Quick Share uses encryption for the transfer payload. OpenDrop applies ChaCha20-Poly1305 end-to-end encryption (RFC 8439 IETF AEAD) to file contents on every transfer path — LAN, the encrypted relay, and Bluetooth Low Energy — with no plaintext fallback, and signs every request with HMAC-SHA256 on top. Remote transfers additionally ride underneath TLS as a second encryption layer."}},{"@type":"Question","name":"How fast is wireless file transfer compared to USB?","acceptedAnswer":{"@type":"Answer","text":"USB 2.0, which most budget Android phones use, tops out at about 25-35 MB/s in practice. Wi-Fi 5 wireless transfers can hit 100-300 Mbps (roughly 12-37 MB/s), which is comparable. Wi-Fi 6 or 6E can exceed USB 2.0 speeds. USB 3.0 is faster than any current wireless method, but many phones don't support it."}},{"@type":"Question","name":"Does Quick Share work on Linux PCs?","acceptedAnswer":{"@type":"Answer","text":"No. Google's Quick Share desktop app is only available for Windows. There's no official Linux client and no announced plans for one. For Android-to-Linux transfers, OpenDrop, FTP, or cloud storage are your main options. OpenDrop supports Linux with both a GUI and a CLI."}}]
         }
       ]
     }
@@ -90,6 +90,8 @@
     <link rel="stylesheet" href="/styles/common.css">
     <link rel="stylesheet" href="/styles/blog.css">
 
+    <!-- Cookie consent / Google Consent Mode v2 preboot — must precede any Google tag -->
+    <script src="/scripts/opendrop-cookie-banner.js"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241"></script>
     <script>
@@ -162,9 +164,9 @@
 
 <h3>Step 1: Install OpenDrop on Your PC</h3>
 
-<p>Download the desktop app from <a href="https://www.nfdgames.com/OpenDrop/">www.nfdgames.com/OpenDrop</a> or grab it from the Microsoft Store. On Linux, the direct download is a PyInstaller bundle. Run it, and the server starts automatically. You'll see a dashboard with a QR code and a server status indicator.</p>
+<p>Download the desktop app from <a href="https://www.nfdgames.com/OpenDrop/">www.nfdgames.com/OpenDrop</a>, or grab it from the Microsoft Store on Windows. On Linux, download the <code>.AppImage</code> from the GitHub Releases page (x86_64 and aarch64 builds available) and run it directly — no extraction, no install. The server starts automatically and you'll see a dashboard with a QR code and a server status indicator.</p>
 
-<p>Files land in <code>~/Downloads/OpenDrop/Files</code> by default on Windows and Linux. You can change this in the app settings, but that's the default path if you're looking for where things went.</p>
+<p>Files land in <code>%USERPROFILE%\Downloads\OpenDrop\Files</code> on Windows and <code>~/Downloads/OpenDrop/Files</code> on Linux by default. You can change this in the app settings, but those are the paths to check if you're looking for where things went.</p>
 
 <h3>Step 2: Install OpenDrop on Your Android Phone</h3>
 
@@ -172,15 +174,15 @@
 
 <h3>Step 3: Connect and Transfer</h3>
 
-<p>If both devices are on the same Wi-Fi network, your PC should appear in the app's device list within a few seconds. Tap it, select files, hit send. That's it. Transfers happen over direct HTTP on your LAN, and there's no file size limit on LAN and Pro remote (free remote uses 5MB chunks, but has no hard cap) for LAN mode (up to 10GB with full streaming).</p>
+<p>If both devices are on the same Wi-Fi network, your PC should appear in the app's device list within a few seconds. Tap it, select files, hit send. That's it. Transfers happen over direct HTTP on your LAN with full streaming and no per-file size cap. For remote transfers (different networks), OpenDrop uses its own encrypted relay — on the free tier it first tries a direct peer-to-peer connection and falls back to an Oracle Cloud relay, sending the file in resumable 5 MB chunks, while Pro streams it over a faster Fly.io relay (with automatic Oracle failover) — with no per-transfer size cap.</p>
 
 <p>If your PC doesn't appear, two things to check. First, make sure Windows Firewall isn't blocking port 8000. The installer should create the rule, but I've seen Windows updates silently remove firewall exceptions. Second, some routers block mDNS (multicast on UDP port 5353). If that's the case, scan the QR code displayed on the desktop app's dashboard instead. We added QR pairing specifically because three users emailed us in the same week about hotel and corporate Wi-Fi blocking multicast. The QR encodes the server's IP and port directly, bypassing discovery entirely.</p>
 
-<div class="callout callout-tip"><div class="callout-title">Tip</div><p>OpenDrop doesn't require both devices to be on the same network. If you're transferring from your phone on cellular to your PC at home, the free tier routes through a Cloudflare tunnel (trycloudflare.com) with 5MB chunked uploads at around 8 Mbps. The Pro tier uses a Fly.io relay with true streaming at 30-50+ Mbps. LAN is fastest, but it's not a requirement.</p></div>
+<div class="callout callout-tip"><div class="callout-title">Tip</div><p>OpenDrop doesn't require both devices to be on the same network. If you're transferring from your phone on cellular to your PC at home, OpenDrop first tries a direct peer-to-peer link and otherwise routes through its own encrypted relay — free transfers move in resumable 5 MB chunks over an Oracle Cloud relay, and Pro streams over a faster, dedicated Fly.io relay with automatic Oracle failover. No tunnel binary to download, and it works behind NAT and firewalls. LAN is fastest, but it's not a requirement.</p></div>
 
 <h3>Step 4: Verify the Transfer</h3>
 
-<p>On the desktop app, switch to the Files tab. Your transferred files show up with thumbnails. You can also just open <code>~/Downloads/OpenDrop/Files</code> in File Explorer. Every file keeps its original name and extension.</p>
+<p>On the desktop app, switch to the Files tab. Your transferred files show up with thumbnails. You can also just open <code>%USERPROFILE%\Downloads\OpenDrop\Files</code> in File Explorer. Every file keeps its original name and extension.</p>
 
 <h2 id="nearby-share">Method 2: Quick Share (Google's Built-In Option)</h2>
 
@@ -239,7 +241,7 @@
 
 <p>This is almost always a network isolation issue. Many routers have "AP isolation" or "client isolation" enabled, which prevents devices on the same Wi-Fi from talking to each other. Check your router's admin panel (usually at 192.168.1.1 or 192.168.0.1) and look for this setting under Wireless > Advanced. Corporate and hotel networks almost always have this enabled, which is why mDNS discovery fails on those networks.</p>
 
-<p>In OpenDrop, QR pairing bypasses the mDNS discovery step, but AP isolation will still block the actual transfer since both devices can't reach each other over LAN. In that case, use OpenDrop's remote mode, which routes through a Cloudflare tunnel and doesn't need LAN connectivity at all.</p>
+<p>In OpenDrop, QR pairing bypasses the mDNS discovery step, but AP isolation will still block the actual transfer since both devices can't reach each other over LAN. In that case, use OpenDrop's remote mode, which routes through its own relay and doesn't need LAN connectivity at all.</p>
 
 <h3>"Transfer starts but stalls or drops"</h3>
 
@@ -268,7 +270,7 @@
 <li><strong>Cloud upload/download:</strong> Bottlenecked by your internet upload speed. On a 50 Mbps upstream connection, a 1.2GB file takes several minutes just for the upload, then more time to download.</li>
 </ul>
 
-<p>For transfers between different networks (phone on cellular, PC on home Wi-Fi), OpenDrop is the only option in this list that handles it natively. The free tier uses Cloudflare tunnels at around 8 Mbps, and the Pro tier uses a Fly.io WebSocket relay at 30-50+ Mbps. Cloud storage technically works too, but you're paying for it with upload time and a copy of your files sitting on someone else's server.</p>
+<p>For transfers between different networks (phone on cellular, PC on home Wi-Fi), OpenDrop is the only option in this list that handles it natively. It routes through its own encrypted relay with no third-party tunnel to install and no per-transfer size cap — the free tier sends resumable 5 MB chunks over an Oracle Cloud relay, and Pro streams over a faster Fly.io relay with automatic Oracle failover. Cloud storage technically works too, but you're paying for it with upload time and a copy of your files sitting on someone else's server.</p>
 
 <div class="callout callout-tip"><div class="callout-title">Tip</div><p>If you're transferring HEIC photos from a phone that shoots in that format, OpenDrop Pro can convert HEIC to JPG during the transfer. This saves you from needing a separate conversion step on your PC, which is one less thing to deal with if your photo editor doesn't handle HEIC natively.</p></div>
 
@@ -344,7 +346,8 @@
         appId: "1:573883707762:web:e68643cce07c2cee3eadeb",
         measurementId: "G-ENWJJ78E3Q"
       });
-      getAnalytics(app);
+      // Gated on user consent — see /scripts/opendrop-cookie-banner.js
+      if (window.OpenDropConsent) { window.OpenDropConsent.onConsent(function () { getAnalytics(app); }); }
     </script>
 </body>
 </html>

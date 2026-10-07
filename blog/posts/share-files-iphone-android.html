@@ -7,9 +7,9 @@
     <meta name="description" content="Sharing files between iPhone and Android is surprisingly hard. Here&#x27;s what I tried, what failed, and what actually works in 2026.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
     <meta name="author" content="NFDGames">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96x96.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/x-icon" href="/favicon-nfdgames.ico">
+    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96x96-nfdgames.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-nfdgames.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="canonical" href="https://www.nfdgames.com/blog/posts/share-files-iphone-android.html" />
     <link rel="alternate" hreflang="en" href="https://www.nfdgames.com/blog/posts/share-files-iphone-android.html" />
@@ -72,7 +72,7 @@
         ,
         {
           "@type": "FAQPage",
-          "mainEntity": [{"@type":"Question","name":"Can I use Bluetooth to send files between iPhone and Android?","acceptedAnswer":{"@type":"Answer","text":"No. While Android supports Bluetooth file transfer through the OBEX protocol, iOS does not support OBEX for arbitrary file transfers. Bluetooth pairing between iPhone and Android works for audio devices, but not for sending files directly."}},{"@type":"Question","name":"What's the fastest way to transfer files between iPhone and Android?","acceptedAnswer":{"@type":"Answer","text":"A direct transfer app like OpenDrop on the same WiFi network is the fastest option. Files transfer at LAN speed without uploading to any server. A 1GB video moves in about 10-15 seconds on WiFi 5 or 6, compared to several minutes through cloud storage."}},{"@type":"Question","name":"Do iPhones send photos in a format Android can open?","acceptedAnswer":{"@type":"Answer","text":"iPhones default to HEIC format, which most modern Android devices can view. Some older Android devices may not support HEIC. You can change the iPhone camera format to JPEG in Settings, Camera, Formats, Most Compatible, or use a conversion tool after transfer."}},{"@type":"Question","name":"Can I transfer files between iPhone and Android without WiFi?","acceptedAnswer":{"@type":"Answer","text":"If both phones have cellular data, you can use an app with remote transfer support. OpenDrop's remote mode works across different networks via Cloudflare tunnels (free) or Fly.io relay (Pro). Cloud storage apps like Google Drive also work over cellular, though they're slower due to the upload-then-download process."}}]
+          "mainEntity": [{"@type":"Question","name":"Can I use Bluetooth to send files between iPhone and Android?","acceptedAnswer":{"@type":"Answer","text":"No. While Android supports Bluetooth file transfer through the OBEX protocol, iOS does not support OBEX for arbitrary file transfers. Bluetooth pairing between iPhone and Android works for audio devices, but not for sending files directly."}},{"@type":"Question","name":"What's the fastest way to transfer files between iPhone and Android?","acceptedAnswer":{"@type":"Answer","text":"A direct transfer app like OpenDrop on the same WiFi network is the fastest option. Files transfer at LAN speed without uploading to any server. A 1GB video moves in about 10-15 seconds on WiFi 5 or 6, compared to several minutes through cloud storage."}},{"@type":"Question","name":"Do iPhones send photos in a format Android can open?","acceptedAnswer":{"@type":"Answer","text":"iPhones default to HEIC format, which most modern Android devices can view. Some older Android devices may not support HEIC. You can change the iPhone camera format to JPEG in Settings, Camera, Formats, Most Compatible, or use a conversion tool after transfer."}},{"@type":"Question","name":"Can I transfer files between iPhone and Android without WiFi?","acceptedAnswer":{"@type":"Answer","text":"If both phones have cellular data, you can use an app with remote transfer support. OpenDrop's remote mode works across different networks through its own encrypted relay (the Oracle Cloud relay on the free tier, the faster Fly.io relay on Pro) — nothing extra to install. Cloud storage apps like Google Drive also work over cellular, though they're slower due to the upload-then-download process."}}]
         }
       ]
     }
@@ -88,6 +88,8 @@
     <link rel="stylesheet" href="/styles/common.css">
     <link rel="stylesheet" href="/styles/blog.css">
 
+    <!-- Cookie consent / Google Consent Mode v2 preboot — must precede any Google tag -->
+    <script src="/scripts/opendrop-cookie-banner.js"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241"></script>
     <script>
@@ -188,11 +190,11 @@
 
 <p>The solution is a cross-platform transfer app that sends files directly between devices without routing through a cloud server. Several exist. I'll cover the ones I've actually tested.</p>
 
-<p><strong><a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a></strong> is the one I built. Install the iOS app (App Store) and Android app (Google Play). Both devices find each other automatically via mDNS (<code>_opendrop._tcp.local.</code> on port 8000) when on the same WiFi. Select files, tap send, and the transfer goes directly between phones at LAN speed. No upload wait, no compression, no file size limit up to 10GB.</p>
+<p><strong><a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a></strong> is the one I built. Install the iOS app (App Store) and Android app (Google Play). Both devices find each other automatically via mDNS (<code>_opendrop._tcp.local.</code> on port 8000) when on the same WiFi. Select files, tap send, and the transfer goes directly between phones at LAN speed. No upload wait, no compression, full streaming with no per-file size cap.</p>
 
 <p>The 1.2GB video that took 5 minutes through Google Drive transferred in about 12 seconds over my home WiFi. Original quality, no compression, no cloud server involved.</p>
 
-<p>When the phones aren't on the same network (one on WiFi, one on cellular), OpenDrop's remote mode kicks in. Free users get 5MB chunked transfers through a Cloudflare tunnel at ~8 Mbps. Pro users get full-speed streaming through the Fly.io relay at 30-50+ Mbps.</p>
+<p>When the phones aren't on the same network (one on WiFi, one on cellular), OpenDrop's remote mode kicks in. Free phone-to-phone transfers first try a direct encrypted peer-to-peer link, fall back to our Oracle Cloud relay, and move in resumable 5 MB chunks; Pro streams continuously over the faster Fly.io relay with automatic failover to Oracle if Fly is ever down. There's no tunnel binary to install and no per-transfer size cap.</p>
 
 <p><strong>LocalSend</strong> is a similar option, also open-source. It handles LAN transfers well and uses a comparable mDNS discovery approach. The main limitation: it's LAN-only with no remote transfer mode. If your iPhone is on WiFi and your Android is on cellular, LocalSend can't connect them.</p>
 
@@ -215,7 +217,7 @@
         <!-- CTA -->
         <div class="blog-cta">
             <h3>Share Files Between iPhone and Android in Seconds</h3>
-            <p>OpenDrop works on both iOS and Android. Install on both phones, and they find each other automatically. No cloud upload, no compression, no file size limits on LAN.</p>
+            <p>OpenDrop works on both iOS and Android. Install on both phones, and they find each other automatically. No cloud upload, no compression, full streaming with no per-file size cap on LAN.</p>
             <a href="/OpenDrop/" class="btn btn-primary">Download OpenDrop Free</a>
         </div>
     </article>
@@ -282,7 +284,8 @@
         appId: "1:573883707762:web:e68643cce07c2cee3eadeb",
         measurementId: "G-ENWJJ78E3Q"
       });
-      getAnalytics(app);
+      // Gated on user consent — see /scripts/opendrop-cookie-banner.js
+      if (window.OpenDropConsent) { window.OpenDropConsent.onConsent(function () { getAnalytics(app); }); }
     </script>
 </body>
 </html>

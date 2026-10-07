@@ -33,7 +33,7 @@
                 </tr>
                 <tr>
                     <td>Version</td>
-                    <td>0.6.91</td>
+                    <td>1.0.0</td>
                 </tr>
                 <tr>
                     <td>Platforms</td>
@@ -91,6 +91,30 @@
             </thead>
             <tbody>
                 <tr>
+                    <td>File contents (end-to-end)</td>
+                    <td>ChaCha20-Poly1305 (AEAD), 256-bit key</td>
+                    <td>IETF RFC 8439</td>
+                    <td>pyca/cryptography, Apple CryptoKit, Android BoringSSL, PointyCastle</td>
+                </tr>
+                <tr>
+                    <td>Content-key derivation</td>
+                    <td>HKDF-SHA256</td>
+                    <td>IETF RFC 5869</td>
+                    <td>pyca/cryptography, PointyCastle</td>
+                </tr>
+                <tr>
+                    <td>Account-secret derivation</td>
+                    <td>PBKDF2-HMAC-SHA256 (100k iterations)</td>
+                    <td>IETF RFC 2898</td>
+                    <td>Python hashlib, Dart crypto</td>
+                </tr>
+                <tr>
+                    <td>Request authentication</td>
+                    <td>HMAC-SHA256</td>
+                    <td>IETF RFC 2104</td>
+                    <td>Platform crypto libraries</td>
+                </tr>
+                <tr>
                     <td>Network Communication</td>
                     <td>TLS 1.2/1.3</td>
                     <td>IETF RFC 8446</td>
@@ -121,10 +145,10 @@
                     <td>Cloudflare Workers</td>
                 </tr>
                 <tr>
-                    <td>Tunnel</td>
-                    <td>QUIC/TLS 1.3</td>
-                    <td>IETF RFC 9000</td>
-                    <td>cloudflared</td>
+                    <td>Cross-network relay</td>
+                    <td>WebSocket over TLS 1.2/1.3</td>
+                    <td>IETF RFC 6455, RFC 8446</td>
+                    <td>OpenDrop WebSocket relay (Fly.io / Oracle Cloud)</td>
                 </tr>
             </tbody>
         </table>
@@ -198,6 +222,17 @@ Purpose: Scan QR codes for connection setup
 Encryption: None (camera input only)</code></pre>
         <p><strong>Note:</strong> QR scanning itself does not use encryption. The scanned data (connection URL and secret) is transmitted over HTTPS.</p>
 
+        <h4>6. End-to-End File Encryption</h4>
+        <pre><code>Library: cryptography / cryptography_flutter (Apple CryptoKit on iOS, Android BoringSSL), PointyCastle fallback
+Purpose: End-to-end encryption of file contents on every transfer path (LAN, peer-to-peer, relay, BLE)
+Encryption: ChaCha20-Poly1305 IETF AEAD (256-bit key); HKDF-SHA256 key derivation; HMAC-SHA256 request signing
+Standards: ChaCha20-Poly1305 (RFC 8439), HKDF (RFC 5869), HMAC (RFC 2104)</code></pre>
+        <p><strong>Usage in Code:</strong></p>
+        <ul>
+            <li><code>crypto_utils.dart</code>, <code>e2ee_wire.dart</code>: AEAD encrypt/decrypt, content-key derivation, request signing</li>
+            <li>Applied to all uploads, downloads, thumbnails, and nearby transfers &mdash; there is no plaintext fallback</li>
+        </ul>
+
         <h3>Mobile Encryption Summary Table</h3>
         <table>
             <thead>
@@ -231,7 +266,12 @@ Encryption: None (camera input only)</code></pre>
                 <tr>
                     <td><code>file_uploader.dart</code></td>
                     <td>File upload</td>
-                    <td>HTTPS/TLS</td>
+                    <td>ChaCha20-Poly1305 (E2EE) over TLS</td>
+                </tr>
+                <tr>
+                    <td><code>crypto_utils.dart</code>, <code>e2ee_wire.dart</code></td>
+                    <td>End-to-end file encryption</td>
+                    <td>ChaCha20-Poly1305, HKDF-SHA256, HMAC-SHA256</td>
                 </tr>
                 <tr>
                     <td><code>firebase_options.dart</code></td>
@@ -273,17 +313,28 @@ Standards: OAuth 2.0 (RFC 6749, RFC 6750)</code></pre>
             <li><code>auth.py</code>: Credential management and token refresh</li>
         </ul>
 
-        <h4>3. Cloudflare Tunnel</h4>
-        <pre><code>Binary: cloudflared
-Purpose: Secure tunnel exposing local server
-Encryption: QUIC with TLS 1.3
-Standards: QUIC (RFC 9000), TLS 1.3 (RFC 8446)</code></pre>
+        <h4>3. OpenDrop WebSocket Relay</h4>
+        <pre><code>Component: Self-hosted WebSocket relay (Fly.io primary for Pro, Oracle Cloud for free tier and Pro failover)
+Purpose: Forwards end-to-end-encrypted bytes between devices on different networks
+Encryption: WebSocket over TLS 1.2/1.3 (transport); ChaCha20-Poly1305 IETF AEAD (payload, E2EE)
+Standards: WebSocket (RFC 6455), TLS 1.2/1.3 (RFC 8446), ChaCha20-Poly1305 (RFC 8439)</code></pre>
         <p><strong>Usage in Code:</strong></p>
         <ul>
-            <li><code>tunnel.py</code>: Tunnel initialization and management</li>
+            <li><code>relay_client.py</code>: outbound WebSocket relay session (replaced the former <code>tunnel.py</code> cloudflared transport), with automatic Fly.io&rarr;Oracle Cloud failover</li>
         </ul>
 
-        <h4>4. Session Management</h4>
+        <h4>4. End-to-End File Encryption</h4>
+        <pre><code>Library: cryptography (pyca / OpenSSL backend)
+Purpose: End-to-end encryption of file contents on every transfer path (LAN, peer-to-peer, relay)
+Encryption: ChaCha20-Poly1305 IETF AEAD (256-bit key); HKDF-SHA256 key derivation; PBKDF2-HMAC-SHA256 account-secret derivation; HMAC-SHA256 request signing
+Standards: ChaCha20-Poly1305 (RFC 8439), HKDF (RFC 5869), PBKDF2 (RFC 2898), HMAC (RFC 2104)</code></pre>
+        <p><strong>Usage in Code:</strong></p>
+        <ul>
+            <li><code>crypto/aead.py</code>, <code>crypto/wire.py</code>: AEAD encrypt/decrypt and framed streaming</li>
+            <li><code>server/validation.py</code>: HMAC-SHA256 request signing (5-minute timestamp window)</li>
+        </ul>
+
+        <h4>5. Session Management</h4>
         <pre><code>Implementation: Server-generated tokens
 Purpose: Authenticated session continuity
 Transmission: HTTPS headers</code></pre>
@@ -309,9 +360,9 @@ Transmission: HTTPS headers</code></pre>
                     <td>HTTPS/TLS</td>
                 </tr>
                 <tr>
-                    <td><code>tunnel.py</code></td>
-                    <td>Cloudflare tunnel</td>
-                    <td>TLS 1.3/QUIC</td>
+                    <td><code>relay_client.py</code></td>
+                    <td>OpenDrop WebSocket relay (E2EE payload)</td>
+                    <td>ChaCha20-Poly1305 over TLS 1.2/1.3</td>
                 </tr>
                 <tr>
                     <td><code>middleware.py</code></td>
@@ -369,7 +420,7 @@ Transmission: HTTPS headers</code></pre>
                 <tr>
                     <td>Cloudflare</td>
                     <td>Cloudflare</td>
-                    <td>TLS 1.3</td>
+                    <td>TLS 1.2/1.3</td>
                     <td><a href="https://www.cloudflare.com/ssl/" target="_blank">Cloudflare Security</a></td>
                 </tr>
                 <tr>
@@ -397,7 +448,7 @@ Transmission: HTTPS headers</code></pre>
         <blockquote><strong>Yes</strong> - Mass market exemption under EAR 740.17(b)(1)</blockquote>
 
         <p><strong>Q3: Does your app implement any proprietary or non-standard cryptographic algorithms?</strong></p>
-        <blockquote><strong>No</strong> - All encryption uses industry-standard algorithms</blockquote>
+        <blockquote><strong>No</strong> - All encryption uses industry-standard algorithms: ChaCha20-Poly1305 (RFC 8439), HKDF-SHA256 (RFC 5869), HMAC-SHA256 (RFC 2104), PBKDF2-HMAC-SHA256 (RFC 2898), RSA-2048/SHA-256, and TLS 1.2/1.3</blockquote>
 
         <p><strong>Q4: Does your app only use encryption provided by the operating system?</strong></p>
         <blockquote><strong>No</strong> - The app uses additional standard third-party libraries, but all implement standard algorithms</blockquote>
@@ -497,16 +548,19 @@ Transmission: HTTPS headers</code></pre>
         
         <h3>For Apple App Store Review</h3>
         <blockquote>
-            <p>OpenDrop version 0.6.91 uses encryption exclusively for:</p>
+            <p>OpenDrop version 1.0.0 uses encryption exclusively for:</p>
             <ol>
+                <li><strong>End-to-end encryption of file contents</strong> via ChaCha20-Poly1305 IETF AEAD (RFC 8439) with HKDF-SHA256-derived keys (RFC 5869)</li>
                 <li><strong>Secure network communication</strong> via HTTPS using standard TLS 1.2/1.3 protocols</li>
                 <li><strong>User authentication</strong> via OAuth 2.0 (Google Sign-In) and Firebase Authentication</li>
                 <li><strong>In-app purchase verification</strong> via RevenueCat SDK using platform billing APIs</li>
-                <li><strong>Secure tunneling</strong> via Cloudflare's publicly available tunnel software</li>
+                <li><strong>Secure transport</strong> via WebSocket over standard TLS to our own relay infrastructure</li>
+                <li><strong>Request authentication</strong> via HMAC-SHA256 signing (RFC 2104)</li>
                 <li><strong>JWT token handling</strong> for session management using standard RFC 7519 format</li>
             </ol>
             <p><strong>No proprietary encryption algorithms are implemented.</strong> All cryptographic functionality is provided by:</p>
             <ul>
+                <li>Standard open-source crypto libraries (pyca/cryptography with OpenSSL, Apple CryptoKit, Android BoringSSL, PointyCastle)</li>
                 <li>Apple's Security framework and App Transport Security</li>
                 <li>Firebase SDK (Google)</li>
                 <li>RevenueCat SDK</li>
@@ -549,9 +603,9 @@ Transmission: HTTPS headers</code></pre>
 │  │      SDK        │                            │   APIs     │  │
 │  └─────────────────┘                            └────────────┘  │
 │                                                                 │
-│  ┌─────────────────┐      TLS 1.3/QUIC          ┌────────────┐  │
-│  │  Desktop Server │◄──────────────────────────►│ Cloudflare │  │
-│  │    (Python)     │         Tunnel             │   Edge     │  │
+│  ┌─────────────────┐    WebSocket over TLS      ┌────────────┐  │
+│  │  Desktop Server │◄──────────────────────────►│  OpenDrop  │  │
+│  │    (Python)     │       (relay, E2EE)        │   Relay    │  │
 │  └────────┬────────┘                            └────────────┘  │
 │           │                                                     │
 │           │ HTTPS/TLS                                           │
@@ -563,11 +617,14 @@ Transmission: HTTPS headers</code></pre>
 │                                                                 │
 │  ┌─────────────────────────────────────────────────────────┐    │
 │  │                  ENCRYPTION STANDARDS                   │    │
+│  │  • ChaCha20-Poly1305 E2EE (IETF RFC 8439)               │    │
+│  │  • HKDF-SHA256 (IETF RFC 5869)                          │    │
+│  │  • HMAC-SHA256 (IETF RFC 2104)                          │    │
 │  │  • TLS 1.2/1.3 (IETF RFC 8446)                          │    │
 │  │  • OAuth 2.0 (IETF RFC 6749)                            │    │
 │  │  • JWT (IETF RFC 7519)                                  │    │
 │  │  • HTTPS (IETF RFC 2818)                                │    │
-│  │  • QUIC (IETF RFC 9000)                                 │    │
+│  │  • WebSocket (RFC 6455)                                 │    │
 │  └─────────────────────────────────────────────────────────┘    │
 │                                                                 │
 └─────────────────────────────────────────────────────────────────┘
@@ -589,7 +646,7 @@ All connections use standard encryption - NO proprietary algorithms</pre>
             <tbody>
                 <tr>
                     <td>Document Version</td>
-                    <td>2.0</td>
+                    <td>2.1</td>
                 </tr>
                 <tr>
                     <td>Created</td>
@@ -597,7 +654,7 @@ All connections use standard encryption - NO proprietary algorithms</pre>
                 </tr>
                 <tr>
                     <td>App Version</td>
-                    <td>0.6.91</td>
+                    <td>1.0.0</td>
                 </tr>
                 <tr>
                     <td>Author</td>
@@ -655,7 +712,7 @@ All connections use standard encryption - NO proprietary algorithms</pre>
             </thead>
             <tbody>
                 <tr><td><code>cloud_sync.py</code></td><td>HTTPS requests</td></tr>
-                <tr><td><code>tunnel.py</code></td><td>cloudflared TLS tunnel</td></tr>
+                <tr><td><code>relay_client.py</code></td><td>OpenDrop WebSocket relay (E2EE over TLS)</td></tr>
                 <tr><td><code>auth.py</code></td><td>OAuth 2.0 token management</td></tr>
                 <tr><td><code>middleware.py</code></td><td>Session token validation</td></tr>
                 <tr><td><code>health.py</code></td><td>Session token creation</td></tr>

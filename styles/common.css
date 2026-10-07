@@ -4,26 +4,31 @@
 
 /* Design Tokens */
 :root {
-    /* Colors */
-    --bg-deep: #0d0d1a;
-    --bg-dark: #1a1a2e;
-    --bg-card: #16213e;
-    --bg-elevated: #1f3460;
-    
-    --accent: #7c3aed;
-    --accent-glow: #8b5cf6;
-    --accent-secondary: #f59e0b;
-    --accent-soft: rgba(124, 58, 237, 0.15);
-    
-    --success: #10b981;
-    --warning: #f59e0b;
-    --error: #ef4444;
-    
-    --text-primary: #ffffff;
-    --text-secondary: #94a3b8;
-    --text-muted: #7f8ea2;
-    
-    --border: #334155;
+    /* Colors — OpenDrop Company Palette */
+    /* Backgrounds: deep dark base with clear elevation steps */
+    --bg-deep: #080c18;     /* Near-black base */
+    --bg-dark: #0d1333;     /* Midnight Depth */
+    --bg-card: #182044;     /* Navy card — visible step up */
+    --bg-elevated: #223060; /* Elevated — distinct from cards */
+
+    /* Accents: blue core with complementary warmth */
+    --accent: #3b8ef5;              /* Cerulean Blue (slightly warmer) */
+    --accent-glow: #46d8e5;         /* Aqua Cyan — hover/glow */
+    --accent-secondary: #7db4d8;    /* Sky Mist — soft blue-gray */
+    --accent-soft: rgba(59, 142, 245, 0.12); /* Cerulean at 12% */
+
+    /* Utility: softer, brand-harmonious */
+    --success: #4db8a4;     /* Teal — blue-green, not harsh */
+    --warning: #d4a054;     /* Warm Sand — muted amber */
+    --error: #d4717e;       /* Soft Rose — gentle coral */
+
+    /* Text */
+    --text-primary: #edf2f7;  /* Cool White — slightly warm */
+    --text-secondary: #94a3c0; /* Slate Blue */
+    --text-muted: #637190;
+
+    /* Border */
+    --border: #1c2a50;        /* Between bg-dark and bg-card */
     
     /* Spacing */
     --space-xs: 0.25rem;
@@ -160,6 +165,7 @@ nav.scrolled {
 
 .nav-cta:hover {
     background: var(--accent-glow);
+    color: #0d1333 !important;
 }
 
 /* Buttons */
@@ -189,6 +195,7 @@ nav.scrolled {
 
 .btn-primary:hover {
     background: var(--accent-glow);
+    color: #0d1333;
 }
 
 .btn-secondary {
@@ -356,6 +363,77 @@ footer {
 @keyframes pulse {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.5; }
+}
+
+/* ============================================
+   Cookie / GDPR consent banner. Lives in
+   common.css so every page that loads Google
+   tags has the banner styles available, not
+   just the OpenDrop product pages.
+   ============================================ */
+
+.cookie-banner {
+    position: fixed;
+    left: 50%;
+    bottom: 1rem;
+    transform: translate(-50%, calc(100% + 2rem));
+    width: min(720px, calc(100% - 1.5rem));
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+    padding: 1rem 1.25rem;
+    z-index: 1000;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.cookie-banner-visible {
+    transform: translate(-50%, 0);
+}
+
+.cookie-banner-inner {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.cookie-banner-text {
+    flex: 1;
+    min-width: 220px;
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    line-height: 1.55;
+}
+
+.cookie-banner-text a {
+    color: var(--accent);
+    text-decoration: underline;
+}
+
+.cookie-banner-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.cookie-banner .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+}
+
+@media (max-width: 600px) {
+    .cookie-banner {
+        bottom: 0.5rem;
+    }
+    .cookie-banner-inner {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .cookie-banner-actions {
+        justify-content: flex-end;
+    }
 }
 
 /* Utility Classes */

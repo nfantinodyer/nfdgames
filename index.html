@@ -7,12 +7,13 @@
     <meta name="description" content="NFDGames is an indie studio building software utilities like OpenDrop (free AirDrop alternative for Windows & Android) and mobile games. Explore our projects and download free tools.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="author" content="NFDGames">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96x96.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/x-icon" href="/favicon-nfdgames.ico">
+    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96x96-nfdgames.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-nfdgames.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="canonical" href="https://www.nfdgames.com/" />
     <link rel="alternate" hreflang="en" href="https://www.nfdgames.com/" />
+    <link rel="alternate" type="application/rss+xml" title="NFDGames Blog RSS Feed" href="/blog/feed.xml" />
     <meta property="og:type" content="website">
     <meta property="og:title" content="NFDGames – Indie Games & Software Tools | OpenDrop File Transfer">
     <meta property="og:description" content="Indie studio building software utilities like OpenDrop (free AirDrop alternative) and mobile games.">
@@ -68,6 +69,8 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="styles/common.css">
     <link rel="stylesheet" href="styles/index.css">
+    <!-- Cookie consent / Google Consent Mode v2 preboot — must precede any Google tag -->
+    <script src="/scripts/opendrop-cookie-banner.js"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241">
     </script>
@@ -183,7 +186,15 @@
                 </picture>
                 NFDGames
             </a>
-            <p class="text-muted">© 2026 NFDGames. All rights reserved.</p>
+            <p class="text-muted" style="margin-top:0.75rem;">
+                <a href="OpenDrop/PrivacyPolicy.html" style="color:var(--text-secondary);text-decoration:none;">Privacy</a> &nbsp;·&nbsp;
+                <a href="OpenDrop/TermsOfService.html" style="color:var(--text-secondary);text-decoration:none;">Terms</a> &nbsp;·&nbsp;
+                <a href="OpenDrop/security.html" style="color:var(--text-secondary);text-decoration:none;">Security</a> &nbsp;·&nbsp;
+                <a href="OpenDrop/accessibility.html" style="color:var(--text-secondary);text-decoration:none;">Accessibility</a> &nbsp;·&nbsp;
+                <a href="OpenDrop/press.html" style="color:var(--text-secondary);text-decoration:none;">Press</a> &nbsp;·&nbsp;
+                <a href="OpenDrop/status.html" style="color:var(--text-secondary);text-decoration:none;">Status</a>
+            </p>
+            <p class="text-muted" style="margin-top:0.5rem;">© 2026 NFDGames. All rights reserved.</p>
         </div>
     </footer>
 
@@ -205,12 +216,16 @@
     
       // Initialize Firebase
       const app = initializeApp(firebaseConfig);
-      const analytics = getAnalytics(app);
-    
+      // Gated on user consent — analytics is rebound inside the callback so any
+      // later use waits until the user accepts.
+      let analytics = null;
+      if (window.OpenDropConsent) {
+        window.OpenDropConsent.onConsent(function () { analytics = getAnalytics(app); });
+      }
       // OPTIONAL: Manually log a download if standard tracking misses it
       // You can attach this function to your download buttons onclick event
       window.trackDownload = (fileName) => {
-          logEvent(analytics, 'select_content', {
+          if (analytics) logEvent(analytics, 'select_content', {
             content_type: 'download',
             item_id: fileName
           });

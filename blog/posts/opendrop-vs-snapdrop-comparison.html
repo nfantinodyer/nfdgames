@@ -7,9 +7,9 @@
     <meta name="description" content="OpenDrop and Snapdrop take very different approaches to file transfer. We bust the common myths about both tools and compare what matters.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
     <meta name="author" content="NFDGames">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96x96.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/x-icon" href="/favicon-nfdgames.ico">
+    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96x96-nfdgames.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-nfdgames.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="canonical" href="https://www.nfdgames.com/blog/posts/opendrop-vs-snapdrop-comparison.html" />
     <link rel="alternate" hreflang="en" href="https://www.nfdgames.com/blog/posts/opendrop-vs-snapdrop-comparison.html" />
@@ -72,7 +72,7 @@
         ,
         {
           "@type": "FAQPage",
-          "mainEntity": [{"@type":"Question","name":"Is Snapdrop still maintained?","acceptedAnswer":{"@type":"Answer","text":"The original Snapdrop project is no longer actively maintained. Several forks exist, including PairDrop, which adds features like room-based sharing and optional TURN relay. If you want to use a Snapdrop-like tool, check the specific fork's maintenance status and feature set."}},{"@type":"Question","name":"Can I use Snapdrop to transfer files between different WiFi networks?","acceptedAnswer":{"@type":"Answer","text":"No. Snapdrop's WebRTC peer-to-peer connection requires both devices to be on the same local network. There's no remote transfer, tunnel, or relay mode. For cross-network transfers, you need a tool like OpenDrop that supports remote connections."}},{"@type":"Question","name":"Which is faster for large file transfers, OpenDrop or Snapdrop?","acceptedAnswer":{"@type":"Answer","text":"OpenDrop is faster for large files. Its native HTTP streaming avoids the JavaScript overhead and browser sandbox constraints that limit WebRTC data channel throughput. For files under 100MB, the speed difference is negligible. For files over 500MB, native transfer is measurably faster."}},{"@type":"Question","name":"Does OpenDrop use WebRTC like Snapdrop?","acceptedAnswer":{"@type":"Answer","text":"No. OpenDrop uses HTTP for LAN transfers (direct connection on port 8000) and WebSocket with binary frames for remote relay transfers. Snapdrop uses WebRTC data channels. These are completely different protocols with different performance characteristics and network requirements."}},{"@type":"Question","name":"Do I need an account for either tool?","acceptedAnswer":{"@type":"Answer","text":"Snapdrop requires no account. OpenDrop's free features (LAN transfer, basic remote transfer) also work without an account. Signing in to OpenDrop is optional and unlocks Pro features like high-speed remote relay, shared folders, and file conversion."}}]
+          "mainEntity": [{"@type":"Question","name":"Is Snapdrop still maintained?","acceptedAnswer":{"@type":"Answer","text":"The original Snapdrop project is no longer actively maintained. Several forks exist, including PairDrop, which adds features like room-based sharing and optional TURN relay. If you want to use a Snapdrop-like tool, check the specific fork's maintenance status and feature set."}},{"@type":"Question","name":"Can I use Snapdrop to transfer files between different WiFi networks?","acceptedAnswer":{"@type":"Answer","text":"No. Snapdrop's WebRTC peer-to-peer connection requires both devices to be on the same local network. There's no remote transfer, tunnel, or relay mode. For cross-network transfers, you need a tool like OpenDrop that supports remote connections."}},{"@type":"Question","name":"Which is faster for large file transfers, OpenDrop or Snapdrop?","acceptedAnswer":{"@type":"Answer","text":"OpenDrop is faster for large files. Its native HTTP streaming avoids the JavaScript overhead and browser sandbox constraints that limit WebRTC data channel throughput. For files under 100MB, the speed difference is negligible. For files over 500MB, native transfer is measurably faster."}},{"@type":"Question","name":"Does OpenDrop use WebRTC like Snapdrop?","acceptedAnswer":{"@type":"Answer","text":"Partly. OpenDrop uses several transports: direct HTTP on the LAN, a native WebRTC peer-to-peer path for direct device-to-device transfers across networks (using its own self-hosted STUN servers, never third-party TURN), and a WebSocket relay as the fallback when no direct path can be established. Snapdrop is WebRTC-only and runs entirely inside the browser sandbox, while OpenDrop runs as a native app, so it can also do direct LAN HTTP, an encrypted relay, and Bluetooth LE."}},{"@type":"Question","name":"Do I need an account for either tool?","acceptedAnswer":{"@type":"Answer","text":"Snapdrop requires no account. OpenDrop's free features (LAN transfer, basic remote transfer) also work without an account. Signing in to OpenDrop is optional and unlocks Pro features like high-speed remote relay, shared folders, and file conversion."}}]
         }
       ]
     }
@@ -88,6 +88,8 @@
     <link rel="stylesheet" href="/styles/common.css">
     <link rel="stylesheet" href="/styles/blog.css">
 
+    <!-- Cookie consent / Google Consent Mode v2 preboot — must precede any Google tag -->
+    <script src="/scripts/opendrop-cookie-banner.js"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241"></script>
     <script>
@@ -182,11 +184,11 @@
 
 <p>Snapdrop requires both devices to be on the same local network. The WebRTC signaling server helps devices find each other, but the actual data transfer goes peer-to-peer within the LAN. If your phone is on cellular and your laptop is on WiFi, Snapdrop can't connect them. There's no remote transfer mode, no tunnel, no relay.</p>
 
-<p>OpenDrop works across different networks. On the same WiFi, it uses direct LAN transfer via mDNS discovery (the <code>_opendrop._tcp.local.</code> service on port 8000). When devices are on different networks, it falls back to remote transfer: free users get Cloudflare tunnel-based transfers with 5MB chunks at ~8 Mbps, and Pro users get Fly.io relay streaming at 30-50+ Mbps.</p>
+<p>OpenDrop works across different networks. On the same WiFi, it uses direct LAN transfer via mDNS discovery (the <code>_opendrop._tcp.local.</code> service on port 8000). When devices are on different networks, it first attempts a direct WebRTC peer-to-peer connection (self-hosted STUN, no TURN) and otherwise falls back to remote transfer over OpenDrop's own end-to-end-encrypted relay — both devices dial outbound, so it works behind NAT and firewalls, with no third-party tunnel to install and no per-transfer size cap. Free transfers use our Oracle Cloud relay; Pro unlocks the faster Fly.io relay with automatic Oracle failover.</p>
 
 <p>This distinction matters more than most comparisons acknowledge. If you only ever transfer files at home or in the office where everything is on the same WiFi, both tools work. If you sometimes need to send a file from your phone on cellular to your PC at home, or between a laptop at a coffee shop and a desktop at your apartment, OpenDrop handles it and Snapdrop doesn't.</p>
 
-<div class="callout callout-tip"><div class="callout-title">Tip</div><p>Snapdrop forks and alternatives (like PairDrop) exist with varying features. Some add TURN relay support for cross-network transfers. Check the specific fork you're using to confirm its capabilities.</p></div>
+<div class="callout callout-tip"><div class="callout-title">Tip</div><p>Snapdrop forks and alternatives (like PairDrop) exist with varying features. Some add TURN relay support for cross-network transfers. OpenDrop takes a different approach here: self-hosted STUN only (never third-party TURN), with its own encrypted data relay as the fallback for symmetric-NAT and CGNAT cases. Check the specific fork you're using to confirm its capabilities.</p></div>
 
 <h2 id="myth-4">Myth 4: Snapdrop and OpenDrop Use the Same Technology</h2>
 
@@ -194,9 +196,9 @@
 
 <p>Snapdrop uses WebRTC, which is a browser-native protocol designed for real-time communication (originally video calling, repurposed for data). WebRTC establishes a peer-to-peer connection through a signaling server, negotiates NAT traversal via STUN/TURN, and creates a data channel for the file transfer. The entire stack runs in JavaScript inside the browser.</p>
 
-<p>OpenDrop uses HTTP for LAN transfers and WebSocket for remote relay transfers. On LAN, the receiving device runs an HTTP server on port 8000, and the sending device POSTs the file directly to it. For remote transfers, both devices connect to a relay server over WebSocket with binary frames. Authentication uses HMAC-SHA256 signing with a 30-second timestamp window to prevent replay attacks.</p>
+<p>OpenDrop uses several transports. On LAN, the receiving device runs an HTTP server on port 8000 and the sending device POSTs the file directly to it. Across different networks, OpenDrop first attempts a direct WebRTC peer-to-peer connection — using its own self-hosted STUN servers (with no third-party STUN and no TURN) for NAT traversal — and falls back to its own WebSocket relay (binary frames) only when a direct path can't be punched through. File contents are end-to-end encrypted with ChaCha20-Poly1305 (RFC 8439 IETF AEAD) before they leave the sending device, so the wire body is ciphertext on every path — LAN, peer-to-peer, relay, and BLE. Authentication uses HMAC-SHA256 signing on top to reject unauthorized senders at the auth layer.</p>
 
-<p>Neither approach uses Bluetooth, NFC, or WiFi Direct. Neither is "peer-to-peer" in the strict networking sense, though both avoid uploading files to permanent cloud storage. The fundamental architectural difference is that Snapdrop runs entirely in the browser (constrained by browser APIs and security sandbox) while OpenDrop runs as a native application with direct network access.</p>
+<p>Neither approach uses NFC or WiFi Direct. OpenDrop additionally uses Bluetooth Low Energy as a fallback transport when Wi-Fi isn't available (Snapdrop has no equivalent). Both can establish direct peer-to-peer connections — Snapdrop through browser WebRTC, OpenDrop through native WebRTC with self-hosted STUN — and both avoid uploading files to permanent cloud storage; OpenDrop additionally falls back to its own encrypted relay when a direct path isn't possible. The fundamental architectural difference is that Snapdrop runs entirely in the browser (constrained by browser APIs and security sandbox) while OpenDrop runs as a native application with direct network access.</p>
 
 <h2 id="myth-5">Myth 5: Browser Apps Are More Private Because There's No Install</h2>
 
@@ -206,9 +208,9 @@
 
 <p>Snapdrop's file data transfers peer-to-peer via WebRTC, which means it doesn't pass through Snapdrop's server (only the signaling data does). That's good for privacy. But the original Snapdrop domain is no longer maintained, and many forks exist. If you use a fork hosted by an unknown party, the signaling server and any modifications to the JavaScript could theoretically inspect metadata or inject code. You're trusting whoever runs the server to serve unmodified JavaScript.</p>
 
-<p>OpenDrop's LAN transfers are direct HTTP between devices on your local network. Data never leaves the network. No server involvement at all. Remote transfers go through Cloudflare's network (free) or Fly.io (Pro), both of which provide TLS encryption in transit. The server code doesn't store transferred files, but the data does pass through infrastructure I control.</p>
+<p>OpenDrop's LAN transfers are direct HTTP between devices on your local network — no third party involved — and the file contents are end-to-end encrypted with ChaCha20-Poly1305 (RFC 8439 IETF AEAD) before they leave the sending device. Remote transfers go through OpenDrop's own relay (an Oracle Cloud relay on the free tier, the faster Fly.io relay on Pro), and the relay sees only ciphertext: it routes opaque bytes, doesn't decrypt them, and doesn't write them to disk. TLS sits underneath as a second encryption layer for the remote path, but the AEAD layer is what makes the relay infrastructure unable to read file contents even in principle.</p>
 
-<p>Both tools have reasonable privacy properties for their respective architectures. The real privacy difference is marginal. What's not marginal is that OpenDrop is open-source and you can inspect exactly what the native app does, while browser-based tools serve fresh JavaScript on every page load, which could theoretically change at any time.</p>
+<p>Both tools have reasonable privacy properties for their respective architectures. The real privacy difference is marginal. What's not marginal is that OpenDrop runs as a native app you install once, while browser-based tools serve fresh JavaScript on every page load — which could theoretically change at any time without you noticing.</p>
 
 <h2 id="when-each-wins">When Each Tool Wins</h2>
 
@@ -288,7 +290,8 @@
         appId: "1:573883707762:web:e68643cce07c2cee3eadeb",
         measurementId: "G-ENWJJ78E3Q"
       });
-      getAnalytics(app);
+      // Gated on user consent — see /scripts/opendrop-cookie-banner.js
+      if (window.OpenDropConsent) { window.OpenDropConsent.onConsent(function () { getAnalytics(app); }); }
     </script>
 </body>
 </html>

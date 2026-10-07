@@ -7,9 +7,9 @@
     <meta name="description" content="Samba, SCP, USB, and zero-config tools each have their place. After years of cross-platform file sharing, here&#x27;s what actually works best.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
     <meta name="author" content="NFDGames">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96x96.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/x-icon" href="/favicon-nfdgames.ico">
+    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96x96-nfdgames.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-nfdgames.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="canonical" href="https://www.nfdgames.com/blog/posts/transfer-files-windows-to-linux.html" />
     <link rel="alternate" hreflang="en" href="https://www.nfdgames.com/blog/posts/transfer-files-windows-to-linux.html" />
@@ -73,7 +73,7 @@
         ,
         {
           "@type": "FAQPage",
-          "mainEntity": [{"@type":"Question","name":"Do I need Samba to share files between Windows and Linux?","acceptedAnswer":{"@type":"Answer","text":"No. Samba is one option, but there are simpler alternatives. SCP works if SSH is running on the Linux machine (most distros include it). Zero-config tools like OpenDrop use mDNS auto-discovery and require no network configuration at all."}},{"@type":"Question","name":"What's the fastest way to transfer files between Windows and Linux on the same network?","acceptedAnswer":{"@type":"Answer","text":"A USB 3.2 drive is fastest for raw throughput (300+ MB/s). For wireless, a zero-config LAN transfer tool like OpenDrop streams at WiFi speeds without the upload bottleneck that cloud storage creates. A 2GB file transfers in under 30 seconds on WiFi 6."}},{"@type":"Question","name":"Can I transfer files between Windows and Linux when they're on different networks?","acceptedAnswer":{"@type":"Answer","text":"Yes. SCP works over the internet if you forward port 22. OpenDrop supports remote transfers through Cloudflare tunnels (free, 5MB chunks) and Fly.io relay (Pro, streaming up to 10GB). Both options work across any network with internet access."}},{"@type":"Question","name":"What filesystem should I use on a USB drive shared between Windows and Linux?","acceptedAnswer":{"@type":"Answer","text":"exFAT is the best choice. Both Windows and modern Linux distributions support it natively with full read and write capability. NTFS works too, but Linux writes to NTFS through the ntfs-3g driver, which is slower than native filesystem support."}},{"@type":"Question","name":"Does OpenDrop work on all Linux distributions?","acceptedAnswer":{"@type":"Answer","text":"OpenDrop runs on any Linux distribution with Python 3.10 or later, including Ubuntu, Fedora, Arch, Debian, ParrotOS, and Linux Mint. Both .deb packages and AppImage builds are available from the download page."}}]
+          "mainEntity": [{"@type":"Question","name":"Do I need Samba to share files between Windows and Linux?","acceptedAnswer":{"@type":"Answer","text":"No. Samba is one option, but there are simpler alternatives. SCP works if SSH is running on the Linux machine (most distros include it). Zero-config tools like OpenDrop use mDNS auto-discovery and require no network configuration at all."}},{"@type":"Question","name":"What's the fastest way to transfer files between Windows and Linux on the same network?","acceptedAnswer":{"@type":"Answer","text":"A USB 3.2 drive is fastest for raw throughput (300+ MB/s). For wireless, a zero-config LAN transfer tool like OpenDrop streams at WiFi speeds without the upload bottleneck that cloud storage creates. A 2GB file transfers in under 30 seconds on WiFi 6."}},{"@type":"Question","name":"Can I transfer files between Windows and Linux when they're on different networks?","acceptedAnswer":{"@type":"Answer","text":"Yes. SCP works over the internet if you forward port 22. OpenDrop supports remote transfers through its own end-to-end-encrypted relay — an Oracle Cloud relay on the free tier and the faster Fly.io relay (streaming, with automatic Oracle failover) on Pro. No port forwarding, no tunnel binary to install, and no per-transfer size cap. It works across any network with internet access."}},{"@type":"Question","name":"What filesystem should I use on a USB drive shared between Windows and Linux?","acceptedAnswer":{"@type":"Answer","text":"exFAT is the best choice. Both Windows and modern Linux distributions support it natively with full read and write capability. NTFS works too, but Linux writes to NTFS through the ntfs-3g driver, which is slower than native filesystem support."}},{"@type":"Question","name":"Does OpenDrop work on all Linux distributions?","acceptedAnswer":{"@type":"Answer","text":"OpenDrop ships as a self-contained .AppImage that runs on most modern Linux distributions (tested on Ubuntu 22.04+, Debian 10+, Fedora, Arch, Linux Mint, and ParrotOS). The AppImage bundles its own runtime so no system Python install is required. Both x86_64 and aarch64 builds are available from the GitHub Releases page."}}]
         }
       ]
     }
@@ -89,6 +89,8 @@
     <link rel="stylesheet" href="/styles/common.css">
     <link rel="stylesheet" href="/styles/blog.css">
 
+    <!-- Cookie consent / Google Consent Mode v2 preboot — must precede any Google tag -->
+    <script src="/scripts/opendrop-cookie-banner.js"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241"></script>
     <script>
@@ -194,13 +196,13 @@
 
 <p>What I wanted was AirDrop for Windows and Linux. No IP addresses, no config files, no prerequisites. Just install something on both machines and send files.</p>
 
-<p>That's why I built <a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a>. Both machines run the app, mDNS auto-discovery (the <code>_opendrop._tcp.local.</code> service on port 8000) finds every device on the network, and you drag a file to send it. Files land in <code>%LOCALAPPDATA%\OpenDrop\Files</code> on Windows and <code>~/.config/opendrop/Files</code> on Linux (respects <code>$XDG_CONFIG_HOME</code>).</p>
+<p>That's why I built <a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a>. Both machines run the app, mDNS auto-discovery (the <code>_opendrop._tcp.local.</code> service on port 8000) finds every device on the network, and you drag a file to send it. Files land in <code>%USERPROFILE%\Downloads\OpenDrop\Files</code> on Windows and <code>~/Downloads/OpenDrop/Files</code> on Linux.</p>
 
-<p>On LAN, transfers stream directly at network speed with no file size cap up to 10GB. I regularly move multi-gigabyte database exports between my Windows desktop and the ParrotOS laptop. A 2GB file finishes in under 30 seconds, where the same file over cloud storage would take 7+ minutes waiting for the upload alone.</p>
+<p>On LAN, transfers stream directly at network speed with no file size cap. I regularly move multi-gigabyte database exports between my Windows desktop and the ParrotOS laptop. A 2GB file finishes in under 30 seconds, where the same file over cloud storage would take 7+ minutes waiting for the upload alone.</p>
 
 <p>The argument against zero-config tools is that they require software on both ends. Fair. But so does Samba, and Samba requires significantly more configuration. The trade-off is clear: two installs and zero config versus two installs plus 20 minutes of config file editing and troubleshooting.</p>
 
-<div class="callout callout-tip"><div class="callout-title">Tip</div><p>If your Windows and Linux machines aren't on the same network, OpenDrop still works. Free users get remote transfers through Cloudflare tunnels (5MB chunks at ~8 Mbps). Pro users get Fly.io relay streaming at 30-50+ Mbps. Same WiFi is faster but not a requirement.</p></div>
+<div class="callout callout-tip"><div class="callout-title">Tip</div><p>If your Windows and Linux machines aren't on the same network, OpenDrop still works. It routes the transfer through its own end-to-end-encrypted relay — an Oracle Cloud relay on the free tier, the faster Fly.io relay (with automatic Oracle failover) on Pro — with nothing extra to install and no per-transfer size cap. Same WiFi is faster but not a requirement.</p></div>
 
 <p>LocalSend is another option in this category, using a similar mDNS-based approach. It's LAN-only though, which means no transfers when your machines are on different networks. For same-network use, both tools get the job done.</p>
 
@@ -294,7 +296,8 @@
         appId: "1:573883707762:web:e68643cce07c2cee3eadeb",
         measurementId: "G-ENWJJ78E3Q"
       });
-      getAnalytics(app);
+      // Gated on user consent — see /scripts/opendrop-cookie-banner.js
+      if (window.OpenDropConsent) { window.OpenDropConsent.onConsent(function () { getAnalytics(app); }); }
     </script>
 </body>
 </html>

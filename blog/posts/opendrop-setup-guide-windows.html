@@ -7,9 +7,9 @@
     <meta name="description" content="Install OpenDrop on Windows, understand what happens under the hood at each step, and complete your first file transfer in under 5 minutes.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
     <meta name="author" content="NFDGames">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96x96.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/x-icon" href="/favicon-nfdgames.ico">
+    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96x96-nfdgames.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-nfdgames.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="canonical" href="https://www.nfdgames.com/blog/posts/opendrop-setup-guide-windows.html" />
     <link rel="alternate" hreflang="en" href="https://www.nfdgames.com/blog/posts/opendrop-setup-guide-windows.html" />
@@ -73,7 +73,7 @@
         ,
         {
           "@type": "FAQPage",
-          "mainEntity": [{"@type":"Question","name":"Does OpenDrop work on Windows 10 and Windows 11?","acceptedAnswer":{"@type":"Answer","text":"Yes. OpenDrop supports both Windows 10 and Windows 11. It's available as a Microsoft Store app or as a direct download installer. Both versions are functionally identical, though the direct download includes the CLI tool."}},{"@type":"Question","name":"Where do received files go on Windows?","acceptedAnswer":{"@type":"Answer","text":"By default, received files are saved to %LOCALAPPDATA%\\OpenDrop\\Files\\. This is typically C:\\Users\\YourName\\AppData\\Local\\OpenDrop\\Files\\. You can change this directory in the app's Settings at any time."}},{"@type":"Question","name":"Why can't other devices find my Windows PC?","acceptedAnswer":{"@type":"Answer","text":"The most common cause is Windows Firewall blocking mDNS discovery (UDP port 5353) or the OpenDrop server (TCP port 8000). Open Windows Security, go to Firewall settings, and make sure OpenDrop is allowed through for both private and public networks."}},{"@type":"Question","name":"Is OpenDrop free to use?","acceptedAnswer":{"@type":"Answer","text":"Yes. The free tier includes full LAN streaming (no file size limits up to 10GB on the same network) and remote transfers through Cloudflare tunnels with 5MB chunks. The Pro tier adds high-speed remote relay streaming, shared folders, and file conversion features."}},{"@type":"Question","name":"Can I use OpenDrop from the command line on Windows?","acceptedAnswer":{"@type":"Answer","text":"Yes. The direct download version includes a CLI alongside the GUI. The CLI supports the same transfer features and is useful for scripting automated transfers, integrating with batch files, or running transfers without the graphical interface."}}]
+          "mainEntity": [{"@type":"Question","name":"Does OpenDrop work on Windows 10 and Windows 11?","acceptedAnswer":{"@type":"Answer","text":"Yes. OpenDrop supports both Windows 10 and Windows 11. It's available as a Microsoft Store app or as a direct download installer. Both are the same Inno Setup build, are functionally identical, and both include the CLI tool."}},{"@type":"Question","name":"Where do received files go on Windows?","acceptedAnswer":{"@type":"Answer","text":"By default, received files are saved to %USERPROFILE%\\Downloads\\OpenDrop\\Files\\. This is typically C:\\Users\\YourName\\Downloads\\OpenDrop\\Files\\. You can change this directory in the app's Settings at any time."}},{"@type":"Question","name":"Why can't other devices find my Windows PC?","acceptedAnswer":{"@type":"Answer","text":"The most common cause is Windows Firewall blocking mDNS discovery (UDP port 5353) or the OpenDrop server (TCP port 8000). Open Windows Security, go to Firewall settings, and make sure OpenDrop is allowed through for both private and public networks."}},{"@type":"Question","name":"Is OpenDrop free to use?","acceptedAnswer":{"@type":"Answer","text":"Yes. The free tier includes full LAN streaming (no file size limits on the same network) and remote transfers over OpenDrop's own Oracle Cloud relay. The Pro tier adds a faster, dedicated Fly.io relay (with automatic Oracle failover), shared folders, and file conversion features."}},{"@type":"Question","name":"Can I use OpenDrop from the command line on Windows?","acceptedAnswer":{"@type":"Answer","text":"Yes. Both the Microsoft Store and direct-download versions include a CLI alongside the GUI. The CLI supports the same transfer features and is useful for scripting automated transfers, integrating with batch files, or running transfers without the graphical interface."}}]
         }
       ]
     }
@@ -89,6 +89,8 @@
     <link rel="stylesheet" href="/styles/common.css">
     <link rel="stylesheet" href="/styles/blog.css">
 
+    <!-- Cookie consent / Google Consent Mode v2 preboot — must precede any Google tag -->
+    <script src="/scripts/opendrop-cookie-banner.js"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241"></script>
     <script>
@@ -153,17 +155,17 @@
 
 <p>On Windows specifically, the app includes both a graphical interface (the main window with drag-and-drop) and a command-line interface for scripting and automation. Both connect to the same underlying server. This guide covers the GUI path since that's what most people want, but I'll note where the CLI differs.</p>
 
-<p>One thing worth understanding upfront: OpenDrop does NOT require both devices to be on the same WiFi network. Same network is faster because traffic stays local, but the app also supports remote transfers through Cloudflare tunnels (free) and a Fly.io relay (Pro). I'll explain both modes and when each kicks in.</p>
+<p>One thing worth understanding upfront: OpenDrop does NOT require both devices to be on the same WiFi network. Same network is faster because traffic stays local, but the app also supports remote transfers through OpenDrop's own encrypted relay (an Oracle Cloud relay on the free tier, a faster Fly.io relay on Pro). I'll explain both modes and when each kicks in.</p>
 
 <h2 id="download-options">Download Options: Microsoft Store vs Direct Install</h2>
 
-<p>There are two ways to get OpenDrop on Windows. The choice matters more than you'd think.</p>
+<p>There are two ways to get OpenDrop on Windows, and they install the same application &mdash; the difference is mainly how you get updates.</p>
 
-<p><strong>Microsoft Store:</strong> Search "OpenDrop" in the Store app or visit the store link from www.nfdgames.com/OpenDrop. The Store version auto-updates, runs in a sandboxed environment (MSIX packaging), and installs without needing admin privileges. The downside: Microsoft Store apps run in a slightly restricted sandbox that occasionally interferes with firewall rule creation. If Windows Firewall prompts don't appear on first launch, you may need to manually add a rule (I'll cover that below).</p>
+<p><strong>Microsoft Store:</strong> Search "OpenDrop" in the Store app or visit the store link from www.nfdgames.com/OpenDrop. The Store version auto-updates and installs without needing admin privileges. It's the same Inno Setup installer as the direct download &mdash; not a sandboxed MSIX package &mdash; so it has full access to create its own firewall rules, adds itself to your PATH, and ships the CLI alongside the GUI just like the direct download.</p>
 
-<p><strong>Direct download:</strong> The .exe installer from the website gives you a traditional Windows application. It installs to <code>%LOCALAPPDATA%\Programs\OpenDrop\</code> and has full access to create its own firewall rules during installation. This version also includes the CLI binary alongside the GUI. I use the direct download on my Windows 11 desktop (Intel i7-13700K, 48GB DDR5) because the CLI is important for my workflow.</p>
+<p><strong>Direct download:</strong> The .exe installer from the website is the very same build. It installs to <code>%LOCALAPPDATA%\Programs\OpenDrop\</code>, creates its own firewall rules during installation, and includes the CLI binary alongside the GUI. I use the direct download on my Windows 11 desktop (Intel i7-13700K, 48GB DDR5) so I get new versions the moment they ship rather than waiting on Store review.</p>
 
-<p>Both versions are identical in features. The Store version is simpler to install and maintain. The direct version gives you more control and includes the CLI out of the box.</p>
+<p>Both versions are identical &mdash; same installer, same GUI, same CLI, same firewall behavior. The Store version auto-updates; the direct download lets you grab new releases as soon as they're posted.</p>
 
 <h2 id="installation-internals">Installation Internals: What Gets Put Where</h2>
 
@@ -172,7 +174,7 @@
 <ul>
 <li><code>Files\</code> is the default storage directory where received files land</li>
 <li><code>settings.json</code> stores your preferences (theme, storage path, server name)</li>
-<li><code>token.json</code> stores authentication data if you sign in (stored as plain JSON, same approach Google's own client libraries use)</li>
+<li><code>token.json</code> stores authentication data when you sign in</li>
 </ul>
 
 <p>The application itself is compiled with Nuitka, a Python-to-C compiler. When compiled in windowed mode (no terminal window), Python's <code>sys.stdout</code> is <code>None</code>, so the very first lines of code redirect stdout and stderr to prevent crashes from stray print statements. This is a detail most users never see, but it explains why there's no console output even if you launch from a terminal.</p>
@@ -187,7 +189,7 @@
 
 <p><strong>mDNS advertisement begins.</strong> The app registers itself as <code>_opendrop._tcp.local.</code> on port 8000 using the zeroconf library. This is the same mDNS/Bonjour protocol that Apple uses for AirDrop and printer discovery. Every other OpenDrop instance on the network listens for this service type and adds new devices to its dashboard. Discovery typically takes 2-5 seconds depending on your network.</p>
 
-<p><strong>Windows Firewall may prompt you.</strong> On first launch, Windows should ask whether to allow OpenDrop through the firewall. Click "Allow access" for both private and public networks. If this prompt doesn't appear (common with the Microsoft Store version), you'll need to add the rule manually: open Windows Security → Firewall → Allow an app through firewall → Add OpenDrop. Without this rule, other devices can't reach your server, and you'll see them on your dashboard but they won't be able to send files to you.</p>
+<p><strong>Windows Firewall may prompt you.</strong> On first launch, Windows should ask whether to allow OpenDrop through the firewall. Click "Allow access" for both private and public networks. If this prompt doesn't appear, you'll need to add the rule manually: open Windows Security → Firewall → Allow an app through firewall → Add OpenDrop. Without this rule, other devices can't reach your server, and you'll see them on your dashboard but they won't be able to send files to you.</p>
 
 <div class="callout callout-tip"><div class="callout-title">Tip</div><p>If device discovery isn't working, the issue is almost always the Windows Firewall blocking mDNS (UDP port 5353) or the HTTP server (TCP port 8000). Adding manual firewall rules for these two ports fixes the problem in the vast majority of cases.</p></div>
 
@@ -197,9 +199,9 @@
 
 <p>With OpenDrop running on your Windows machine and at least one other device (phone, Mac, Linux machine), you're ready to transfer files.</p>
 
-<p><strong>To receive files:</strong> Nothing to do. Just keep OpenDrop running. When someone sends a file from another device, it appears in <code>%LOCALAPPDATA%\OpenDrop\Files\</code> by default. A notification pops up showing the filename and size. You can change the storage directory in Settings if you prefer a different location.</p>
+<p><strong>To receive files:</strong> Nothing to do. Just keep OpenDrop running. When someone sends a file from another device, it appears in <code>%USERPROFILE%\Downloads\OpenDrop\Files\</code> by default. A notification pops up showing the filename and size. You can change the storage directory in Settings if you prefer a different location.</p>
 
-<p><strong>To send files from Windows:</strong> Click the upload button in the OpenDrop window or drag files directly onto the app. Select the target device from your connected devices list, and the transfer starts immediately. On the same network, files stream directly over HTTP without any size cap (up to 10GB). You'll see a progress bar with the current transfer speed.</p>
+<p><strong>To send files from Windows:</strong> Click the upload button in the OpenDrop window or drag files directly onto the app. Select the target device from your connected devices list, and the transfer starts immediately. On the same network, files stream directly over HTTP without any size cap. You'll see a progress bar with the current transfer speed.</p>
 
 <p><strong>To send files to Windows from a phone:</strong> Open the OpenDrop mobile app (available on iOS App Store and Google Play). Your Windows PC should appear in the device list within a few seconds. Tap it, select files, and send. The mobile apps are Flutter-based and handle the mDNS discovery, file selection, and upload progress natively on each platform.</p>
 
@@ -209,13 +211,13 @@
 
 <p>The transfer mechanism changes based on whether the devices are on the same network or not, and whether the user has a Pro subscription.</p>
 
-<p><strong>LAN transfer (same network, all users):</strong> The sending device makes a direct HTTP POST to the receiving device's IP on port 8000. The file streams as a single request body with no chunking, no intermediate servers, and no size limits (up to 10GB). This is the fastest mode. Every request is authenticated with HMAC-SHA256 signing: the client computes a signature over the HTTP method, path, timestamp, and body hash using a shared secret. The server verifies this signature and rejects requests with timestamps older than 30 seconds, which prevents replay attacks. On LAN, traffic is plain HTTP (not HTTPS) because the data never leaves your local network.</p>
+<p><strong>LAN transfer (same network, all users):</strong> The sending device makes a direct HTTP POST to the receiving device's IP on port 8000. The file streams as a single request body with no chunking, no intermediate servers, and no size limits. This is the fastest mode. Every request is authenticated with HMAC-SHA256 signing: the client computes a signature over the HTTP method, path, timestamp, and body hash using a shared secret. The server verifies this signature and rejects requests with stale timestamps, which prevents replay attacks. The file contents are end-to-end encrypted with ChaCha20-Poly1305 (RFC 8439 IETF AEAD) before they leave the sending device — so even though the LAN carrier is plain HTTP (not HTTPS), the bytes on the wire are ciphertext, not readable file contents.</p>
 
-<p><strong>Remote free transfer (different networks):</strong> When devices aren't on the same network, OpenDrop establishes a Cloudflare tunnel via trycloudflare.com. This gives the server a public URL without port forwarding. The catch: Cloudflare caps request bodies at 5MB. So the sending device splits the file into 5MB chunks, uploads each one sequentially, and the receiver reassembles them. Throughput is around 8 Mbps. There's no file size cap in the sense that you can send any size file, but large files take proportionally longer. All traffic goes through Cloudflare's network, which provides TLS encryption in transit.</p>
+<p><strong>Remote transfer (different networks):</strong> When devices aren't on the same network, OpenDrop connects through a direct peer-to-peer link or its own encrypted relay. Both the desktop and mobile apps dial outward to the relay — there's no tunnel binary to download, no public URL to manage, and nothing for antivirus or Windows SmartScreen to flag. Because the apps dial outbound, it works behind NAT and firewalls without any port forwarding. There's no per-request size cap; on Pro the file streams end to end without chunking, while free transfers first try a direct encrypted peer-to-peer connection and fall back to our Oracle Cloud relay — and on either the peer-to-peer or relay path, free transfers move in resumable 5 MB chunks. The same ChaCha20-Poly1305 end-to-end encryption applies — the relay sees only ciphertext — and TLS sits underneath as a second encryption layer.</p>
 
-<p><strong>Remote Pro transfer (different networks, Pro users):</strong> Pro users bypass the Cloudflare tunnel entirely. Instead, the transfer goes through a Fly.io relay using WebSocket connections with binary frames. We switched from base64-encoded JSON payloads to raw binary frames after discovering that base64 encoding added 33% overhead. The relay supports true streaming up to 10GB at 30-50+ Mbps, which is 4-6x faster than the free chunked mode. The Fly.io relay also provides TLS encryption.</p>
+<p><strong>Remote Pro transfer (different networks, Pro users):</strong> Pro adds a faster, dedicated Fly.io relay, with automatic failover to a backup Oracle Cloud relay if Fly is ever down. It streams binary WebSocket frames (we switched from base64-encoded JSON to raw binary frames after discovering base64 added 33% overhead), supporting true streaming with no size cap. The relay forwards opaque bytes and never decrypts file contents — the ChaCha20-Poly1305 AEAD layer is applied client-side, and TLS sits underneath as a second encryption layer.</p>
 
-<p>The connection priority is automatic: if both devices are on the same LAN, the transfer takes the direct local path. If not, it falls back to the remote path (relay for Pro, tunnel for free). You don't choose between these modes manually; the app handles the negotiation based on what it discovers during the mDNS phase and the Cloudflare/Fly.io connection state.</p>
+<p>The connection priority is automatic: if both devices are on the same LAN, the transfer takes the direct local path. If not, it falls back to the remote path over the encrypted relay. You don't choose between these modes manually; the app handles the negotiation based on what it discovers during the mDNS phase and the relay connection state.</p>
 
 <p>QR code pairing is available for situations where mDNS is blocked (hotels, corporate WiFi, some mesh networks). The QR code encodes the server's IP and port directly, bypassing the mDNS discovery step entirely. Scan it with the mobile app's camera and the connection establishes manually.</p>
 
@@ -291,7 +293,8 @@
         appId: "1:573883707762:web:e68643cce07c2cee3eadeb",
         measurementId: "G-ENWJJ78E3Q"
       });
-      getAnalytics(app);
+      // Gated on user consent — see /scripts/opendrop-cookie-banner.js
+      if (window.OpenDropConsent) { window.OpenDropConsent.onConsent(function () { getAnalytics(app); }); }
     </script>
 </body>
 </html>

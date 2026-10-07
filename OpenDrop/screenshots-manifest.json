@@ -1,0 +1,90 @@
+{
+  "generated": "2026-05-18T06:16:00.442Z",
+  "sources": {
+    "windows": "https://apps.microsoft.com/store/detail/XP99SJJTQXZ9WT",
+    "ios": "https://apps.apple.com/us/app/opendrop/id6757438202",
+    "mac": "https://apps.apple.com/us/app/opendrop/id6757438202?entity=macSoftware"
+  },
+  "windows": [
+    {
+      "url": "screenshots/windows/8d4254e918b4.png",
+      "source_url": "https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxnVsw_ms9ZuVpZ5c61SOaIW33JA2Np7hO5HLyY2.KEGy.D3UNTTS.9zyIIXvujVv_fBi68CSbfVXFDcD7P5Ncww-&format=source",
+      "alt": "OpenDrop Windows screenshot 1",
+      "width": 1054,
+      "height": 1397,
+      "reused": true
+    },
+    {
+      "url": "screenshots/windows/e5b50884557c.png",
+      "source_url": "https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxnVsw_ms9ZuVpZ5c61SOaIXcCJnDixpOKGI2IvUh08EJHIauJhZvGJ3ksW9EoiYPJ6qXQDpIVIczLkVtD_9JAjk-&format=source",
+      "alt": "OpenDrop Windows screenshot 2",
+      "width": 1084,
+      "height": 1397,
+      "reused": true
+    },
+    {
+      "url": "screenshots/windows/9526aca7a302.png",
+      "source_url": "https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxnVsw_ms9ZuVpZ5c61SOaIVoRB9sZ.1B.6AlZj0dyehRFITNeEblWKn8uC7Mv_q83lvWI99nF4jXv8wiiyRMzeM-&format=source",
+      "alt": "OpenDrop Windows screenshot 3",
+      "width": 1084,
+      "height": 1397,
+      "reused": true
+    },
+    {
+      "url": "screenshots/windows/e046265245e0.png",
+      "source_url": "https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxnVsw_ms9ZuVpZ5c61SOaIXPmWS_lAwGtM80J4XlBiBGn8XbmcL8b0nm_GwHKASfymacpWluEua4bXC1rtrmGwg-&format=source",
+      "alt": "OpenDrop Windows screenshot 4",
+      "width": 1084,
+      "height": 1397,
+      "reused": true
+    },
+    {
+      "url": "screenshots/windows/ec5e91074f7e.png",
+      "source_url": "https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxnVsw_ms9ZuVpZ5c61SOaIX5E7IdIOAC83oqh3cAd3Rlesq35WKbMiEdNFCjX_iwudGxzSL2x56PTXZuLUJdM3A-&format=source",
+      "alt": "OpenDrop Windows screenshot 5",
+      "width": 1084,
+      "height": 1397,
+      "reused": true
+    }
+  ],
+  "ios": [
+    {
+      "url": "screenshots/ios/a3e88235e92a.webp",
+      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/37/58/cc/3758cc10-a7dd-cafb-c316-4aca780c69dc/image_C3A81486-F222-4C91-8AEC-CEF5B846AA22_1770142608.png/1080x0w.webp",
+      "alt": "OpenDrop iOS screenshot 1",
+      "reused": true
+    },
+    {
+      "url": "screenshots/ios/d88e4df79351.webp",
+      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/20/85/f7/2085f7d6-4906-8817-e3ef-171b7e51cee1/image_E3875B53-72CB-4754-9A56-7BF566913FAD_1770142608.png/1080x0w.webp",
+      "alt": "OpenDrop iOS screenshot 2",
+      "reused": true
+    },
+    {
+      "url": "screenshots/ios/064ee597bfa3.webp",
+      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/a3/f0/e4/a3f0e429-6843-4bcd-8785-b2ce4b3ac39f/image_20500661-4FF4-40EF-BC68-28440AFB4F06_1770142608.png/1080x0w.webp",
+      "alt": "OpenDrop iOS screenshot 3",
+      "reused": true
+    },
+    {
+      "url": "screenshots/ios/795e87606324.webp",
+      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/c2/0e/5b/c20e5b14-2d74-c768-db23-07150eb65fdf/image_5DA39DF8-42C1-45A4-9A68-53A520BF3518_1770142608.png/1080x0w.webp",
+      "alt": "OpenDrop iOS screenshot 4",
+      "reused": true
+    },
+    {
+      "url": "screenshots/ios/0bc82cc7d083.webp",
+      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/73/04/0c/73040ca3-bd39-9533-fea5-9af7da8509c4/image_F6186C16-FB5F-4408-9EDC-967E1C5AFA43_1770142608.png/1080x0w.webp",
+      "alt": "OpenDrop iOS screenshot 5",
+      "reused": true
+    },
+    {
+      "url": "screenshots/ios/d6fdba829ea7.webp",
+      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/00/b3/db/00b3db6a-6301-227c-8b75-fe71900fe07a/image_22D4E5EA-F25E-408D-9AEB-2BF008F1C15B_1770142852.png/1080x0w.webp",
+      "alt": "OpenDrop iOS screenshot 6",
+      "reused": true
+    }
+  ],
+  "mac": [],
+  "heroImage": "https://www.nfdgames.com/OpenDrop/screenshots/ios/a3e88235e92a.webp"
+}

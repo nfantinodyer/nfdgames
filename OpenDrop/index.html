@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96x96.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/x-icon" href="favicon-opendrop.ico">
+    <link rel="icon" type="image/png" sizes="96x96" href="icon-96x96-opendrop.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-opendrop.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
     <title>OpenDrop - Free AirDrop for Windows & Android | Secure Local File Transfer</title>
-    <meta name="description" content="The fastest way to transfer files between PC, Android, iOS, and Linux. OpenDrop is a free, private AirDrop alternative with GUI and CLI for local Wi-Fi sharing. No internet required.">
-    <meta name="keywords" content="AirDrop for Windows, OpenDrop, file sharing, Snapdrop alternative, local send, wifi file transfer, transfer photos from android to pc, linux airdrop, file transfer CLI, wireless file transfer app">
+    <meta name="description" content="Transfer files between iPhone, Android, PC, and Linux over Bluetooth, Wi-Fi, or the cloud. OpenDrop is a free, private AirDrop alternative. Send files phone-to-phone, phone-to-PC, or desktop-to-desktop. No internet required.">
+    <meta name="keywords" content="AirDrop for Windows, OpenDrop, file sharing, Snapdrop alternative, local send, wifi file transfer, transfer photos from android to pc, linux airdrop, file transfer CLI, wireless file transfer app, iPhone to Android file transfer, bluetooth file transfer, send files between phones, desktop to desktop file transfer, phone to phone transfer, BLE file sharing, cross platform file sharing, transfer files without internet">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="author" content="NFDGames">
     <link rel="canonical" href="https://www.nfdgames.com/OpenDrop/" />
@@ -22,14 +22,14 @@
     <meta name="google-play-app" content="app-id=com.nfdgames.opendrop">
     <meta property="og:type" content="website">
     <meta property="og:title" content="OpenDrop - Free AirDrop for Windows & Android | File Transfer App">
-    <meta property="og:description" content="The fastest way to transfer files between PC, Android, iOS, and Linux. Free, private, no internet required.">
-    <meta property="og:image" content="https://www.nfdgames.com/OpenDrop/OpenDropIcon.png">
+    <meta property="og:description" content="Transfer files between iPhone, Android, PC, and Linux over Bluetooth, Wi-Fi, or the cloud. Phone-to-phone, phone-to-PC, desktop-to-desktop. Free and private.">
+    <meta property="og:image" id="ogImage" content="https://www.nfdgames.com/OpenDrop/screenshots/ios/a3e88235e92a.webp">
     <meta property="og:url" content="https://www.nfdgames.com/OpenDrop/">
     <meta property="og:site_name" content="NFDGames">
-    <meta name="twitter:card" content="summary">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="OpenDrop - Free AirDrop for Windows & Android | File Transfer App">
-    <meta name="twitter:description" content="Transfer files between PC, Android, iOS, and Linux. GUI and CLI. Free, private, no internet required.">
-    <meta name="twitter:image" content="https://www.nfdgames.com/OpenDrop/OpenDropIcon.png">
+    <meta name="twitter:description" content="Transfer files between iPhone, Android, PC, and Linux over Bluetooth, Wi-Fi, or the cloud. Phone-to-phone, desktop-to-desktop. Free and private.">
+    <meta name="twitter:image" id="twitterImage" content="https://www.nfdgames.com/OpenDrop/screenshots/ios/a3e88235e92a.webp">
     <link rel="dns-prefetch" href="//www.googletagmanager.com">
     <link rel="dns-prefetch" href="//www.gstatic.com">
     <link rel="stylesheet" href="../styles/common.css">
@@ -72,13 +72,63 @@
           "operatingSystem": ["Windows", "Linux", "Android", "iOS", "macOS"],
           "applicationCategory": "UtilitiesApplication",
           "applicationSubCategory": "File Transfer",
-          "fileSize": "10MB",
           "offers": {
-            "@type": "Offer",
-            "price": "0",
+            "@type": "AggregateOffer",
             "priceCurrency": "USD",
-            "priceValidUntil": "2030-12-31",
-            "availability": "https://schema.org/InStock"
+            "lowPrice": "0",
+            "highPrice": "24.99",
+            "offerCount": "3",
+            "availability": "https://schema.org/InStock",
+            "offers": [
+              {
+                "@type": "Offer",
+                "name": "OpenDrop Free",
+                "description": "Free tier, direct LAN streaming, QR pairing, BLE nearby transfer, no account required.",
+                "price": "0",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock"
+              },
+              {
+                "@type": "Offer",
+                "name": "OpenDrop Pro Monthly",
+                "description": "Pro subscription, desktop-to-desktop mesh, multi-device sync, conversion tools, cross-device queue, and uncapped cloud streaming. Billed monthly.",
+                "price": "2.99",
+                "priceCurrency": "USD",
+                "priceSpecification": {
+                  "@type": "UnitPriceSpecification",
+                  "price": "2.99",
+                  "priceCurrency": "USD",
+                  "billingIncrement": "1",
+                  "unitCode": "MON",
+                  "referenceQuantity": {
+                    "@type": "QuantitativeValue",
+                    "value": "1",
+                    "unitCode": "MON"
+                  }
+                },
+                "availability": "https://schema.org/InStock"
+              },
+              {
+                "@type": "Offer",
+                "name": "OpenDrop Pro Annual",
+                "description": "Pro annual subscription, same Pro features, billed yearly at a 30% discount vs. monthly.",
+                "price": "24.99",
+                "priceCurrency": "USD",
+                "priceSpecification": {
+                  "@type": "UnitPriceSpecification",
+                  "price": "24.99",
+                  "priceCurrency": "USD",
+                  "billingIncrement": "1",
+                  "unitCode": "ANN",
+                  "referenceQuantity": {
+                    "@type": "QuantitativeValue",
+                    "value": "1",
+                    "unitCode": "ANN"
+                  }
+                },
+                "availability": "https://schema.org/InStock"
+              }
+            ]
           },
           "aggregateRating": {
             "@type": "AggregateRating",
@@ -87,7 +137,7 @@
             "bestRating": "5",
             "worstRating": "1"
           },
-          "description": "Free cross-platform file transfer app with GUI and CLI. Finds devices on your Wi-Fi via mDNS or connects anywhere through a secure Cloudflare tunnel. Works on Windows, Linux, Android, and iOS. Can also run headless from the command line.",
+          "description": "Free cross-platform file transfer app with GUI and CLI. Finds devices on your Wi-Fi via mDNS, connects directly peer-to-peer across networks, or falls back to OpenDrop's own encrypted relay. Works on Windows, Linux, Android, and iOS. Can also run headless from the command line.",
           "disambiguatingDescription": "OpenDrop by NFDGames is a file transfer app with GUI and CLI for Windows, Linux, Android, and iOS. Not the same as seemoo-lab/opendrop (Python AirDrop protocol), GaudiLabs OpenDrop (digital microfluidics platform), or jdber1/opendrop (pendant drop tensiometry software).",
           "softwareVersion": "LATEST",
           "downloadUrl": "https://github.com/nfantinodyer/nfdgames/releases/latest",
@@ -97,7 +147,7 @@
             "name": "NFDGames",
             "url": "https://www.nfdgames.com"
           },
-          "featureList": "Private encryption, No file size limits, Cross-platform, Offline transfer, CLI support, GUI desktop app, mDNS discovery, Cloudflare tunnel remote access, QR code pairing"
+          "featureList": "Private encryption, Cross-platform, Offline transfer, CLI support, GUI desktop app, mDNS discovery, Encrypted relay remote access, QR code pairing, iPhone to Android file transfer, Bluetooth Low Energy nearby transfer, Desktop to desktop mesh networking, File conversion and media optimization, RAW and DNG camera image conversion, Shared folders with drag and drop, Rich file thumbnails for images videos PDFs and SVGs, Multi-device sync, Folder navigation with breadcrumbs, Recently deleted file recovery, Conversion history with one-click undo, Cross-device conversion queue, Phone auto-conversion rules on upload, Direct LAN streaming for free users, Same-account peer discovery via mDNS account hash, TLS certificate pinning over LAN, CLI talks to running GUI via connection file, Drag and drop between desktop tabs, Customizable color themes"
         },
         {
           "@type": "FAQPage",
@@ -106,14 +156,14 @@
             "name": "Is there an AirDrop for Windows?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes. OpenDrop works like AirDrop but on Windows and Linux. It runs a local server that finds your phone on Wi-Fi or connects through a secure Cloudflare tunnel. You can transfer files wirelessly with iPhone, Android, and Linux. Works as a GUI app or from the command line."
+              "text": "Yes. OpenDrop works like AirDrop but on Windows and Linux. It runs a local server that finds your phone on Wi-Fi or connects through OpenDrop's own encrypted relay. You can transfer files wirelessly with iPhone, Android, and Linux. Works as a GUI app or from the command line."
             }
           }, {
             "@type": "Question",
             "name": "Is OpenDrop safe to use?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes. Remote connections use Cloudflare Tunnels with TLS 1.3 encryption, and every session gets a unique secret key with HMAC-SHA256 request signing. Files go directly between your devices and never touch any server."
+              "text": "Yes. File contents are end-to-end encrypted with ChaCha20-Poly1305 using keys derived from your account's shared secret, so only your devices can decrypt them. On top of that, every connection runs over TLS 1.2/1.3 and every request is signed with HMAC-SHA256. When the cloud relay is used, it routes ciphertext only, we never see the contents of your files."
             }
           }, {
             "@type": "Question",
@@ -127,14 +177,56 @@
             "name": "How do I transfer photos from Android to PC wirelessly?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Open OpenDrop on your PC. It starts a local server and creates a secure tunnel automatically. Then scan the QR code with the OpenDrop Android app. If both devices are on the same Wi-Fi, it connects directly over LAN for maximum speed. Pick your photos and tap send. No USB cable, no cloud upload, no account needed."
+              "text": "Open OpenDrop on your PC. It starts a local server and connects to OpenDrop's encrypted relay automatically. Then scan the QR code with the OpenDrop Android app. If both devices are on the same Wi-Fi, it connects directly over LAN for maximum speed. Pick your photos and tap send. No USB cable, no cloud upload, no account needed."
             }
           }, {
             "@type": "Question",
             "name": "How is OpenDrop different from Snapdrop or LocalSend?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Snapdrop needs a WebRTC signaling server and only runs in a browser. LocalSend needs both devices on the same network. OpenDrop runs a native FastAPI server with automatic LAN discovery (mDNS) plus a Cloudflare tunnel for remote access. It works offline on the same Wi-Fi, and also works across different networks. It handles larger files, lets you browse folders, has a CLI mode, and has native mobile apps."
+              "text": "Snapdrop needs a WebRTC signaling server and only runs in a browser. LocalSend needs both devices on the same network. OpenDrop runs a native FastAPI server with automatic LAN discovery (mDNS) plus its own encrypted relay for remote access. It works offline on the same Wi-Fi, and also works across different networks. It handles larger files, lets you browse folders, has a CLI mode, and has native mobile apps."
+            }
+          }, {
+            "@type": "Question",
+            "name": "Can I transfer files from iPhone to Android?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. OpenDrop lets you send files directly between iPhone and Android using Bluetooth Low Energy, Wi-Fi, or over the cloud. Both phones connect to an OpenDrop desktop server, or use Nearby Transfer via BLE to send files directly between phones without any Wi-Fi or internet connection."
+            }
+          }, {
+            "@type": "Question",
+            "name": "Can I transfer files between two computers?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. With OpenDrop Pro, you can link all your desktops together in a mesh network. Browse, download, and manage files across any connected Windows, macOS, or Linux computer from any other computer or phone. Desktops discover each other automatically via cloud sync."
+            }
+          }, {
+            "@type": "Question",
+            "name": "Can I send files without Wi-Fi or internet?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. OpenDrop supports Nearby Transfer via Bluetooth Low Energy (BLE). You can send files directly to nearby phones and desktops without any Wi-Fi or internet connection. OpenDrop automatically picks the fastest available method: Wi-Fi, hotspot, or Bluetooth. There are no file size limits."
+            }
+          }, {
+            "@type": "Question",
+            "name": "Do free users get LAN streaming or only slower remote transfers?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Free users get full LAN streaming. On the same Wi-Fi, OpenDrop discovers the desktop via mDNS and streams files directly at LAN speed with no chunking. When devices are on different networks, free transfers first try a direct peer-to-peer connection and otherwise fall back to OpenDrop's own Oracle Cloud relay; off-LAN, free transfers are sent in resumable 5 MB chunks rather than a single stream. OpenDrop Pro streams in every direction (LAN, peer-to-peer, and the relay) and adds the faster Fly.io relay with automatic failover to Oracle if Fly is ever down. Either way the relay only forwards already-encrypted bytes and can't read your files."
+            }
+          }, {
+            "@type": "Question",
+            "name": "Can I undo a media conversion if I don't like the result?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. OpenDrop Pro keeps a backup of every original before converting. The Conversion History tab lists every conversion across all your connected devices with a one-click undo that restores the original from backup."
+            }
+          }, {
+            "@type": "Question",
+            "name": "Does OpenDrop convert RAW camera files like DNG, CR2, or NEF?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. OpenDrop Pro can convert RAW and DNG files from most major camera brands (Canon CR2, Nikon NEF, Sony ARW, Fuji RAF, and others) into JPEG, PNG, WebP, HEIC, or TIFF on the desktop."
             }
           }, {
             "@type": "Question",
@@ -169,6 +261,8 @@
       ]
     }
     </script>
+    <!-- Cookie consent / Google Consent Mode v2 preboot, must precede any Google tag -->
+    <script src="/scripts/opendrop-cookie-banner.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241">
     </script>
     <script>
@@ -273,6 +367,8 @@
         <div class="nav-links" id="navLinks">
             <a href="#features">Features</a>
             <a href="#how-it-works">How It Works</a>
+            <a href="#screenshots-section">Screenshots</a>
+            <a href="#compare">Free vs Pro</a>
             <a href="#download">Download</a>
             <a href="/blog/">Blog</a>
             <a href="#download" class="nav-cta">Get Started</a>
@@ -287,9 +383,9 @@
             </a>
         </div>
         
-        <h1>Send files between your phone and PC.<br><span class="gradient">Instantly.</span></h1>
-        <p class="hero-subtitle">OpenDrop auto-discovers devices on your Wi-Fi, or connects anywhere through a secure Cloudflare tunnel. No cables, no cloud uploads, no file size limits.</p>
-        <p class="hero-differentiator">Works across Windows, Linux, Android, and iOS. Your files go directly between devices. Nothing is stored on our servers.</p>
+        <h1>Send files between any device.<br><span class="gradient">Instantly.</span></h1>
+        <p class="hero-subtitle">Transfer files between iPhone and Android, phone and PC, or desktop and desktop over Bluetooth, Wi-Fi, or the cloud. No cables. No per-file size cap.</p>
+        <p class="hero-differentiator">Works across Windows, macOS, Linux, Android, and iOS. End-to-end encrypted: your files are encrypted on your device before they leave it, and only your other devices can decrypt them.</p>
         
         <div class="hero-actions">
             <a href="https://github.com/nfantinodyer/nfdgames/releases/latest" onclick="return gtag_report_conversion(this.href);" class="btn btn-primary" id="heroDownloadBtn" data-fallback-href="https://github.com/nfantinodyer/nfdgames/releases/latest">
@@ -302,41 +398,37 @@
             <a href="#how-it-works" class="btn btn-secondary">See how it works</a>
         </div>
         <div class="hero-platforms">
-            Available on Windows, Linux, iOS, and Android
+            Available on Windows, macOS, Linux, iOS, and Android
         </div>
 
-        <div class="hero-visual">
-            <div class="app-mockup">
-                <div class="mockup-header">
-                    <div class="mockup-dot"></div>
-                    <div class="mockup-dot"></div>
-                    <div class="mockup-dot"></div>
-                </div>
-                <div class="mockup-content">
-                    <div class="mockup-status">
-                        <div class="status-dot"></div>
-                        <span>Server Online</span>
-                    </div>
-                    <div class="mockup-url">https://your-tunnel.trycloudflare.com</div>
-                    <div class="mockup-files">
-                        <div class="file-item">
-                            <span class="file-icon">📄</span>
-                            <span>presentation.pdf</span>
-                            <span class="file-size">2.4 MB</span>
-                        </div>
-                        <div class="file-item">
-                            <span class="file-icon">🖼️</span>
-                            <span>vacation_photos.zip</span>
-                            <span class="file-size">128 MB</span>
-                        </div>
-                        <div class="file-item">
-                            <span class="file-icon">🎵</span>
-                            <span>playlist.mp3</span>
-                            <span class="file-size">8.1 MB</span>
-                        </div>
-                    </div>
-                </div>
+        <div class="hero-visual" id="screenshots-section">
+            <div class="ss-tabs" role="tablist" aria-label="Screenshot platform">
+                <button class="ss-tab active" data-tab="ios" role="tab" type="button">iPhone</button>
+                <button class="ss-tab" data-tab="android" role="tab" type="button">Android</button>
+                <button class="ss-tab" data-tab="windows" role="tab" type="button">Windows</button>
+                <button class="ss-tab" data-tab="linux" role="tab" type="button">Linux</button>
+                <button class="ss-tab" data-tab="mac" role="tab" type="button">macOS</button>
             </div>
+
+            <div class="ss-stage-wrap" tabindex="0" aria-label="Rotating product screenshots">
+                <div class="ss-stage ss-empty" id="screenshots-stage" aria-live="polite"></div>
+            </div>
+
+            <div class="ss-controls">
+                <button class="ss-arrow" id="ssPrev" type="button" aria-label="Previous screenshot">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                </button>
+                <div class="ss-dots" id="screenshots-dots" aria-label="Screenshot position"></div>
+                <button class="ss-arrow" id="ssNext" type="button" aria-label="Next screenshot">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+
+            <p class="ss-note" id="screenshots-note" style="display: none;"></p>
         </div>
     </section>
 
@@ -348,13 +440,13 @@
             </div>
             <div class="trust-divider"></div>
             <div class="trust-item">
-                <span class="trust-value">4</span>
+                <span class="trust-value">5</span>
                 <span class="trust-label">Platforms</span>
             </div>
             <div class="trust-divider"></div>
             <div class="trust-item">
-                <span class="trust-value">E2E</span>
-                <span class="trust-label">Encrypted</span>
+                <span class="trust-value">E2EE</span>
+                <span class="trust-label">End-to-end encrypted</span>
             </div>
             <div class="trust-divider"></div>
             <div class="trust-item">
@@ -367,37 +459,132 @@
     <section class="features" id="features">
         <div class="section-header centered">
             <h2>Why OpenDrop is the Best AirDrop Alternative</h2>
-            <p>Secure, offline file transfer for Windows, Linux, and Mobile.</p>
+            <p>Transfer files between iPhone, Android, Windows, macOS, and Linux. Over Bluetooth, Wi-Fi, or the cloud.</p>
         </div>
 
-        <div class="features-grid">
-            <div class="feature-card">
-                <h3>Fast Local Wi-Fi Transfer</h3>
-                <p>On the same network? OpenDrop auto-discovers your PC via mDNS and transfers directly at full LAN speed. No file size limits.</p>
+        <div class="feature-groups">
+            <div class="feature-group">
+                <h3 class="feature-group-title">
+                    <span class="feature-group-icon" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13a10 10 0 0114 0M8.5 16.5a5 5 0 017 0M12 20h.01M2 8.82a15 15 0 0120 0"/>
+                        </svg>
+                    </span>
+                    Connectivity &amp; Speed
+                </h3>
+                <div class="feature-tiles">
+                    <div class="feature-tile">
+                        <strong>Full-speed LAN streaming</strong>
+                        <p>Same Wi-Fi? Auto-discovers via mDNS and streams direct. No chunking, even on Free.</p>
+                    </div>
+                    <div class="feature-tile">
+                        <strong>Works anywhere</strong>
+                        <p>On cellular or different networks? OpenDrop connects your devices directly peer-to-peer when it can, and falls back to its own encrypted relay automatically. Nothing extra to install.</p>
+                    </div>
+                    <div class="feature-tile">
+                        <strong>Bluetooth nearby transfer</strong>
+                        <p>No Wi-Fi or internet? BLE moves files between phones <em>and</em> desktops with no setup.</p>
+                    </div>
+                    <div class="feature-tile">
+                        <strong>QR pair in seconds</strong>
+                        <p>Scan once. No accounts, no port forwarding, no config screens.</p>
+                    </div>
+                </div>
             </div>
-            <div class="feature-card">
-                <h3>End-to-End Encrypted</h3>
-                <p>Remote connections use Cloudflare Tunnels with TLS 1.3 encryption. Every session generates a unique secret key. Files go device-to-device.</p>
+
+            <div class="feature-group">
+                <h3 class="feature-group-title">
+                    <span class="feature-group-icon" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/>
+                        </svg>
+                    </span>
+                    Security &amp; Trust
+                </h3>
+                <div class="feature-tiles">
+                    <div class="feature-tile">
+                        <strong>End-to-end encrypted</strong>
+                        <p>ChaCha20-Poly1305 with HKDF-derived keys. Only your devices can decrypt your files.</p>
+                    </div>
+                    <div class="feature-tile">
+                        <strong>HMAC-SHA256 signatures</strong>
+                        <p>Every request signed with your account's shared secret. No replay, no spoofing.</p>
+                    </div>
+                    <div class="feature-tile">
+                        <strong>Relay sees ciphertext only</strong>
+                        <p>If your devices can reach each other directly &mdash; over your LAN or a peer-to-peer connection &mdash; they do. Otherwise our encrypted relay forwards bytes it can't decrypt.</p>
+                    </div>
+                    <div class="feature-tile">
+                        <strong>No accounts on Free</strong>
+                        <p>Sign in only when you want Pro multi-device sync. Otherwise, totally anonymous.</p>
+                    </div>
+                </div>
             </div>
-            <div class="feature-card">
-                <h3>Works Anywhere</h3>
-                <p>Not on the same Wi-Fi? OpenDrop creates a secure Cloudflare tunnel so you can transfer files over mobile data, from another building, or across the internet.</p>
+
+            <div class="feature-group">
+                <h3 class="feature-group-title">
+                    <span class="feature-group-icon" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h10"/>
+                        </svg>
+                    </span>
+                    Devices &amp; Mesh
+                </h3>
+                <div class="feature-tiles">
+                    <div class="feature-tile">
+                        <strong>Cross-platform</strong>
+                        <p>Windows, macOS, Linux, iOS, Android. Any device to any device.</p>
+                    </div>
+                    <div class="feature-tile">
+                        <strong class="pro-pill">Pro</strong> Desktop-to-desktop mesh
+                        <p>Link all your desktops. Browse and move files between any of them from your phone.</p>
+                    </div>
+                    <div class="feature-tile">
+                        <strong class="pro-pill">Pro</strong> Auto-connect via account
+                        <p>Same-account peers discover each other via mDNS account hash. No QR scan.</p>
+                    </div>
+                    <div class="feature-tile">
+                        <strong>GUI &amp; CLI</strong>
+                        <p>Headless server for scripting; CLI talks to the running GUI through a shared connection file.</p>
+                    </div>
+                </div>
             </div>
-            <div class="feature-card">
-                <h3>Cross-Platform</h3>
-                <p>Desktop server for Windows and Linux. Mobile apps for Android and iOS. Transfer between any combination of devices.</p>
-            </div>
-            <div class="feature-card">
-                <h3>No Accounts Needed</h3>
-                <p>Launch the server, scan a QR code with your phone. Connected. No sign-ups, no port forwarding, no configuration.</p>
-            </div>
-            <div class="feature-card">
-                <h3>GUI & CLI Support</h3>
-                <p>Use the desktop GUI or run it headless from the command line. The CLI is great for automation, scripting, and running on remote servers.</p>
-            </div>
-            <div class="feature-card">
-                <h3>Pro: Auto-Connect & Streaming</h3>
-                <p>Skip the QR code entirely. Pro syncs your devices automatically, enables binary streaming for files up to 10 GB, and links multiple desktops together.</p>
+
+            <div class="feature-group">
+                <h3 class="feature-group-title">
+                    <span class="feature-group-icon" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 4h12l4 4v12a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2zM14 2v6h6M9 13h6M9 17h6"/>
+                        </svg>
+                    </span>
+                    Files, Conversion &amp; Polish
+                </h3>
+                <div class="feature-tiles">
+                    <div class="feature-tile">
+                        <strong>Rich previews on every platform</strong>
+                        <p>Thumbnails for images, videos, PDFs, and SVGs, and a built-in preview screen.</p>
+                    </div>
+                    <div class="feature-tile">
+                        <strong class="pro-pill">Pro</strong> Image &amp; video conversion
+                        <p>Auto-convert HEIC, MOV, MP4, WebP, plus RAW (DNG, CR2, NEF, ARW). Quality, max-dim, EXIF strip.</p>
+                    </div>
+                    <div class="feature-tile">
+                        <strong class="pro-pill">Pro</strong> History with one-click undo
+                        <p>Every conversion keeps the original. Undo restores it from backup, across all your devices.</p>
+                    </div>
+                    <div class="feature-tile">
+                        <strong class="pro-pill">Pro</strong> Cross-device conversion queue
+                        <p>Queue phone files for the desktop's ffmpeg. The phone shows <em>Queued</em> until done.</p>
+                    </div>
+                    <div class="feature-tile">
+                        <strong class="pro-pill">Pro</strong> Phone auto-rules &amp; shared folders
+                        <p>Auto-convert on upload, expose specific desktop folders, drag-drop between tabs.</p>
+                    </div>
+                    <div class="feature-tile">
+                        <strong>9 color themes</strong>
+                        <p>OpenDrop (the default), Ocean Breeze, Tide Pool, Sea Glass, Lilac Night, Cloud Blue, Peach Cream, Rose Petal, Lavender Mist.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -413,14 +600,14 @@
                 <div class="step-number">1</div>
                 <div class="step-content">
                     <h3>Launch the Server</h3>
-                    <p>Run OpenDrop on your PC. It starts a local server, broadcasts itself on your Wi-Fi via mDNS, and creates a secure Cloudflare tunnel. All automatic.</p>
+                    <p>Run OpenDrop on your PC. It starts a local server, broadcasts itself on your Wi-Fi via mDNS, and connects to OpenDrop's own encrypted relay. All automatic, with nothing extra to download.</p>
                 </div>
             </div>
             <div class="step">
                 <div class="step-number">2</div>
                 <div class="step-content">
                     <h3>Scan the QR Code</h3>
-                    <p>Open the OpenDrop app on your phone and scan the QR code on your PC. Your phone connects using the fastest path available, either local Wi-Fi or secure tunnel.</p>
+                    <p>Open the OpenDrop app on your phone and scan the QR code on your PC. Your phone connects using the fastest path available, either local Wi-Fi or the encrypted relay.</p>
                 </div>
             </div>
             <div class="step">
@@ -431,6 +618,294 @@
                 </div>
             </div>
         </div>
+    </section>
+
+    <section class="compare" id="compare">
+        <div class="section-header centered">
+            <h2>Free vs Pro</h2>
+            <p>Free covers everything you need on the same Wi-Fi. Pro adds remote streaming, multi-device sync, and the conversion stack.</p>
+        </div>
+
+        <table class="compare-table">
+            <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th class="compare-plan">Free</th>
+                    <th class="compare-plan pro">Pro</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="compare-section-row"><td colspan="3">Connectivity</td></tr>
+                <tr>
+                    <td class="compare-feat">Direct LAN streaming (full speed, no chunking)</td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                </tr>
+                <tr>
+                    <td class="compare-feat">Encrypted relay for remote access</td>
+                    <td class="compare-cell"><span class="partial">Oracle&nbsp;Cloud relay</span></td>
+                    <td class="compare-cell"><span class="check">Fly.io relay, up to 10&nbsp;GB</span></td>
+                </tr>
+                <tr>
+                    <td class="compare-feat">QR code pairing</td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                </tr>
+                <tr>
+                    <td class="compare-feat">Bluetooth Low Energy nearby transfer</td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                </tr>
+                <tr>
+                    <td class="compare-feat">Auto-connect via account (no QR scan)</td>
+                    <td class="compare-cell"><span class="dash">, </span></td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                </tr>
+                <tr>
+                    <td class="compare-feat">Same-account peer discovery via mDNS</td>
+                    <td class="compare-cell"><span class="dash">, </span></td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                </tr>
+
+                <tr class="compare-section-row"><td colspan="3">Devices &amp; mesh</td></tr>
+                <tr>
+                    <td class="compare-feat">One desktop paired with one phone</td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                </tr>
+                <tr>
+                    <td class="compare-feat">Multiple phones to multiple desktops</td>
+                    <td class="compare-cell"><span class="dash">, </span></td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                </tr>
+                <tr>
+                    <td class="compare-feat">Desktop-to-desktop mesh</td>
+                    <td class="compare-cell"><span class="dash">, </span></td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                </tr>
+                <tr>
+                    <td class="compare-feat">Pinned favorite devices &amp; auto-disambiguated names</td>
+                    <td class="compare-cell"><span class="dash">, </span></td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                </tr>
+
+                <tr class="compare-section-row"><td colspan="3">Files &amp; previews</td></tr>
+                <tr>
+                    <td class="compare-feat">Folder navigation with breadcrumbs</td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                </tr>
+                <tr>
+                    <td class="compare-feat">Rich thumbnails (images, videos, PDFs, SVGs)</td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                </tr>
+                <tr>
+                    <td class="compare-feat">Shared folders (expose specific desktop folders)</td>
+                    <td class="compare-cell"><span class="dash">, </span></td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                </tr>
+                <tr>
+                    <td class="compare-feat">Drag and drop between desktop tabs</td>
+                    <td class="compare-cell"><span class="dash">, </span></td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                </tr>
+                <tr>
+                    <td class="compare-feat">Recently Deleted recovery</td>
+                    <td class="compare-cell"><span class="dash">, </span></td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                </tr>
+
+                <tr class="compare-section-row"><td colspan="3">Conversion &amp; media</td></tr>
+                <tr>
+                    <td class="compare-feat">Image &amp; video conversion (HEIC, MP4, WebP, etc.)</td>
+                    <td class="compare-cell"><span class="dash">, </span></td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                </tr>
+                <tr>
+                    <td class="compare-feat">RAW / DNG camera conversion (CR2, NEF, ARW, RAF)</td>
+                    <td class="compare-cell"><span class="dash">, </span></td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                </tr>
+                <tr>
+                    <td class="compare-feat">Phone auto-conversion rules on upload</td>
+                    <td class="compare-cell"><span class="dash">, </span></td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                </tr>
+                <tr>
+                    <td class="compare-feat">Cross-device conversion queue (phone&nbsp;&rarr;&nbsp;desktop ffmpeg)</td>
+                    <td class="compare-cell"><span class="dash">, </span></td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                </tr>
+                <tr>
+                    <td class="compare-feat">Conversion history with one-click undo</td>
+                    <td class="compare-cell"><span class="dash">, </span></td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                </tr>
+
+                <tr class="compare-section-row"><td colspan="3">Polish</td></tr>
+                <tr>
+                    <td class="compare-feat">9 customizable color themes</td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                </tr>
+                <tr>
+                    <td class="compare-feat">CLI for desktop (talks to running GUI)</td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                </tr>
+                <tr>
+                    <td class="compare-feat">TLS cert pinning over LAN</td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                </tr>
+                <tr>
+                    <td class="compare-feat">HMAC-SHA256 request signing</td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p class="compare-cta">
+            Pro is $2.99/month or $24.99/year (save 30%). Free tier requires no account and no payment.
+        </p>
+
+        <div class="pricing-cta">
+            <div class="pricing-card">
+                <div class="pricing-tier">Free</div>
+                <div class="pricing-amount">$0</div>
+                <div class="pricing-period">forever</div>
+                <p class="pricing-blurb">Direct LAN streaming, BLE nearby transfer, QR pairing. No account required.</p>
+                <a href="#download" class="btn btn-secondary">Download</a>
+            </div>
+            <div class="pricing-card pricing-card-highlight">
+                <div class="pricing-badge">Best value</div>
+                <div class="pricing-tier">Pro Annual</div>
+                <div class="pricing-amount">$24.99<span class="pricing-amount-suffix">/year</span></div>
+                <div class="pricing-period">≈ $2.08/mo &middot; save 30%</div>
+                <p class="pricing-blurb">Everything in Free, plus desktop mesh, multi-device sync, conversion stack, and 10&nbsp;GB cloud streaming.</p>
+                <a href="https://apps.apple.com/us/app/opendrop/id6757438202" target="_blank" rel="noopener" class="btn btn-primary">Subscribe in app</a>
+            </div>
+            <div class="pricing-card">
+                <div class="pricing-tier">Pro Monthly</div>
+                <div class="pricing-amount">$2.99<span class="pricing-amount-suffix">/month</span></div>
+                <div class="pricing-period">cancel anytime</div>
+                <p class="pricing-blurb">Same Pro features, billed monthly. Try it for a month and switch to annual if you stick around.</p>
+                <a href="https://apps.apple.com/us/app/opendrop/id6757438202" target="_blank" rel="noopener" class="btn btn-secondary">Subscribe in app</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="compare-alts" id="compare-alts">
+        <div class="section-header centered">
+            <h2>OpenDrop vs the Alternatives</h2>
+            <p>How OpenDrop stacks up against the other "AirDrop for Windows" options people land on first.</p>
+        </div>
+
+        <div class="alts-table-wrap">
+        <table class="compare-table alts-table">
+            <thead>
+                <tr>
+                    <th>Capability</th>
+                    <th class="compare-plan">OpenDrop</th>
+                    <th class="compare-plan">LocalSend</th>
+                    <th class="compare-plan">Snapdrop</th>
+                    <th class="compare-plan">AirDrop</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="compare-feat">Works on Windows</td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                    <td class="compare-cell"><span class="check">Browser</span></td>
+                    <td class="compare-cell"><span class="dash">, </span></td>
+                </tr>
+                <tr>
+                    <td class="compare-feat">Works on Linux</td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                    <td class="compare-cell"><span class="check">Browser</span></td>
+                    <td class="compare-cell"><span class="dash">, </span></td>
+                </tr>
+                <tr>
+                    <td class="compare-feat">Works on macOS</td>
+                    <td class="compare-cell"><span class="partial">Coming soon</span></td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                    <td class="compare-cell"><span class="check">Browser</span></td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                </tr>
+                <tr>
+                    <td class="compare-feat">iPhone &harr; Android</td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                    <td class="compare-cell"><span class="check">Browser</span></td>
+                    <td class="compare-cell"><span class="dash">, </span></td>
+                </tr>
+                <tr>
+                    <td class="compare-feat">Native mobile apps</td>
+                    <td class="compare-cell"><span class="check">iOS &amp; Android</span></td>
+                    <td class="compare-cell"><span class="check">iOS &amp; Android</span></td>
+                    <td class="compare-cell"><span class="dash">Web only</span></td>
+                    <td class="compare-cell"><span class="check">iOS only</span></td>
+                </tr>
+                <tr>
+                    <td class="compare-feat">Works across different networks</td>
+                    <td class="compare-cell"><span class="check">Encrypted relay</span></td>
+                    <td class="compare-cell"><span class="dash">Same LAN only</span></td>
+                    <td class="compare-cell"><span class="dash">Same LAN only</span></td>
+                    <td class="compare-cell"><span class="dash">Bluetooth + Wi-Fi proximity</span></td>
+                </tr>
+                <tr>
+                    <td class="compare-feat">Bluetooth fallback (no Wi-Fi)</td>
+                    <td class="compare-cell"><span class="check">BLE</span></td>
+                    <td class="compare-cell"><span class="dash">, </span></td>
+                    <td class="compare-cell"><span class="dash">, </span></td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                </tr>
+                <tr>
+                    <td class="compare-feat">Browse remote files (not just send)</td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                    <td class="compare-cell"><span class="dash">Send only</span></td>
+                    <td class="compare-cell"><span class="dash">Send only</span></td>
+                    <td class="compare-cell"><span class="dash">Send only</span></td>
+                </tr>
+                <tr>
+                    <td class="compare-feat">Auto image / video conversion</td>
+                    <td class="compare-cell"><span class="check">Pro</span></td>
+                    <td class="compare-cell"><span class="dash">, </span></td>
+                    <td class="compare-cell"><span class="dash">, </span></td>
+                    <td class="compare-cell"><span class="dash">, </span></td>
+                </tr>
+                <tr>
+                    <td class="compare-feat">CLI / automation</td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                    <td class="compare-cell"><span class="dash">, </span></td>
+                    <td class="compare-cell"><span class="dash">, </span></td>
+                </tr>
+                <tr>
+                    <td class="compare-feat">Account-free Free tier</td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                    <td class="compare-cell"><span class="check">Apple ID</span></td>
+                </tr>
+                <tr>
+                    <td class="compare-feat">Open source</td>
+                    <td class="compare-cell"><span class="dash">Proprietary</span></td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                    <td class="compare-cell"><span class="check">&#10003;</span></td>
+                    <td class="compare-cell"><span class="dash">Proprietary</span></td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+
+        <p class="alts-note">
+            Last updated 2026-06-04. Comparisons reflect publicly documented capabilities at the time of writing. Trademarks belong to their respective owners.
+        </p>
     </section>
 
     <section class="social-proof">
@@ -452,7 +927,7 @@
         <div class="download-container">
             <div class="section-header centered">
                 <h2>Get OpenDrop</h2>
-                <p>Available on Windows, Linux, Android, and iOS. macOS coming soon.</p>
+                <p>Available on Windows, macOS, Linux, Android, and iOS.</p>
             </div>
 
             <div class="download-cards">
@@ -556,36 +1031,46 @@
                     <a href="#features">Features</a>
                     <a href="#download">Download</a>
                     <a href="#how-it-works">How It Works</a>
+                    <a href="changelog.html">What&rsquo;s new in 1.0</a>
+                    <a href="status.html">System status</a>
                 </div>
                 <div class="footer-col">
                     <h4>Resources</h4>
-                    <a href="https://www.nfdgames.com/OpenDrop/docs/export-compliance/">Documentation</a>
                     <a href="support.html">Support</a>
-                    <a href="https://github.com/nfantinodyer/nfdgames/releases">Changelog</a>
+                    <a href="https://www.nfdgames.com/OpenDrop/docs/export-compliance/">Documentation</a>
+                    <a href="press.html">Press kit</a>
+                    <a href="security.html">Security &amp; disclosure</a>
+                    <a href="accessibility.html">Accessibility</a>
                 </div>
                 <div class="footer-col">
                     <h4>Use Cases</h4>
                     <a href="#features">AirDrop for Windows</a>
+                    <a href="#features">iPhone to Android Transfer</a>
                     <a href="#features">Android to PC Transfer</a>
-                    <a href="#features">Linux File Share</a>
+                    <a href="#features">Desktop to Desktop Sharing</a>
+                    <a href="#features">Bluetooth File Transfer</a>
                     <a href="#features">Offline File Sharing</a>
                 </div>
                 <div class="footer-col">
                     <h4>Legal</h4>
                     <a href="PrivacyPolicy.html">Privacy Policy</a>
                     <a href="TermsOfService.html">Terms of Service</a>
+                    <a href="WithdrawalForm.html">EU/UK Withdrawal</a>
+                    <a href="third-party-notices.html">Third-party notices</a>
                 </div>
             </div>
         </div>
 
         <div class="footer-bottom">
             <p>© 2026 NFDGames. All rights reserved.</p>
-            <a href="mailto:Spot4nickgaming@gmail.com">Spot4nickgaming@gmail.com</a>
+            <a href="mailto:support@nfdgames.com">support@nfdgames.com</a>
         </div>
     </footer>
 
     <script src="../scripts/common.js"></script>
     <script src="../scripts/opendrop-release.js"></script>
+    <script src="../scripts/opendrop-screenshots.js" defer></script>
+    <script src="../scripts/opendrop-app-store-data.js" defer></script>
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
       import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-analytics.js";
@@ -602,12 +1087,16 @@
     
       // Initialize Firebase
       const app = initializeApp(firebaseConfig);
-      const analytics = getAnalytics(app);
-    
+      // Gated on user consent, analytics is rebound inside the callback so any
+      // later use waits until the user accepts.
+      let analytics = null;
+      if (window.OpenDropConsent) {
+        window.OpenDropConsent.onConsent(function () { analytics = getAnalytics(app); });
+      }
       // OPTIONAL: Manually log a download if standard tracking misses it
       // You can attach this function to your download buttons onclick event
       window.trackDownload = (fileName) => {
-          logEvent(analytics, 'select_content', {
+          if (analytics) logEvent(analytics, 'select_content', {
             content_type: 'download',
             item_id: fileName
           });

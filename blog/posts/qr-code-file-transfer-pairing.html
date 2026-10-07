@@ -7,9 +7,9 @@
     <meta name="description" content="QR codes, mDNS, manual IP, Bluetooth — four ways to pair devices for file transfer. Here&#x27;s which one to pick based on your network and use case.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
     <meta name="author" content="NFDGames">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96x96.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/x-icon" href="/favicon-nfdgames.ico">
+    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96x96-nfdgames.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-nfdgames.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="canonical" href="https://www.nfdgames.com/blog/posts/qr-code-file-transfer-pairing.html" />
     <link rel="alternate" hreflang="en" href="https://www.nfdgames.com/blog/posts/qr-code-file-transfer-pairing.html" />
@@ -73,7 +73,7 @@
         ,
         {
           "@type": "FAQPage",
-          "mainEntity": [{"@type":"Question","name":"What is QR code pairing for file transfer?","acceptedAnswer":{"@type":"Answer","text":"QR code pairing lets you connect your phone to a file transfer server by scanning a code displayed on the server's screen. The code contains the server URL and authentication credentials, so one scan sets up the full connection. No typing required."}},{"@type":"Question","name":"Why can't my devices find each other on the same WiFi?","acceptedAnswer":{"@type":"Answer","text":"Your network likely has client isolation or multicast blocking enabled. This is common on hotel WiFi, university eduroam networks, and corporate guest networks. These settings prevent mDNS auto-discovery from working. Use QR code pairing or manual IP entry as a workaround."}},{"@type":"Question","name":"Is QR code pairing secure for file transfers?","acceptedAnswer":{"@type":"Answer","text":"Yes. The QR code transmits the authentication secret optically from screen to camera, not over the network. An attacker would need physical line of sight to your screen to intercept it. After pairing, all API calls are authenticated with HMAC-SHA256 signatures."}},{"@type":"Question","name":"Can I use QR code pairing for remote file transfers across different networks?","acceptedAnswer":{"@type":"Answer","text":"Yes. The QR code can encode a remote tunnel URL instead of a local IP address. Scan the code on your phone while on cellular data, and it connects to your PC at home through the tunnel. You can also send a screenshot of the QR code to scan later."}},{"@type":"Question","name":"Which pairing method is fastest for file transfer?","acceptedAnswer":{"@type":"Answer","text":"mDNS auto-discovery is fastest when it works, requiring zero manual input. QR code scanning takes 1-3 seconds and is the fastest method when mDNS is blocked. Manual IP entry takes 8-12 seconds on a phone keyboard. Bluetooth discovery takes 5-15 seconds."}}]
+          "mainEntity": [{"@type":"Question","name":"What is QR code pairing for file transfer?","acceptedAnswer":{"@type":"Answer","text":"QR code pairing lets you connect your phone to a file transfer server by scanning a code displayed on the server's screen. The code contains the server URL and authentication credentials, so one scan sets up the full connection. No typing required."}},{"@type":"Question","name":"Why can't my devices find each other on the same WiFi?","acceptedAnswer":{"@type":"Answer","text":"Your network likely has client isolation or multicast blocking enabled. This is common on hotel WiFi, university eduroam networks, and corporate guest networks. These settings prevent mDNS auto-discovery from working. Use QR code pairing or manual IP entry as a workaround."}},{"@type":"Question","name":"Is QR code pairing secure for file transfers?","acceptedAnswer":{"@type":"Answer","text":"Yes. The QR code transmits the authentication secret optically from screen to camera, not over the network. An attacker would need physical line of sight to your screen to intercept it. After pairing, all API calls are authenticated with HMAC-SHA256 signatures."}},{"@type":"Question","name":"Can I use QR code pairing for remote file transfers across different networks?","acceptedAnswer":{"@type":"Answer","text":"Yes. The QR code can encode a remote relay endpoint instead of a local IP address. Scan the code on your phone while on cellular data, and it connects to your PC at home through the OpenDrop relay. You can also send a screenshot of the QR code to scan later."}},{"@type":"Question","name":"Which pairing method is fastest for file transfer?","acceptedAnswer":{"@type":"Answer","text":"mDNS auto-discovery is fastest when it works, requiring zero manual input. QR code scanning takes 1-3 seconds and is the fastest method when mDNS is blocked. Manual IP entry takes 8-12 seconds on a phone keyboard. Bluetooth discovery takes 5-15 seconds."}}]
         }
       ]
     }
@@ -89,6 +89,8 @@
     <link rel="stylesheet" href="/styles/common.css">
     <link rel="stylesheet" href="/styles/blog.css">
 
+    <!-- Cookie consent / Google Consent Mode v2 preboot — must precede any Google tag -->
+    <script src="/scripts/opendrop-cookie-banner.js"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241"></script>
     <script>
@@ -173,17 +175,17 @@
 
 <p>QR code pairing exists to solve the exact situations where mDNS breaks down. Instead of devices finding each other over the network, you point your phone's camera at a code on your computer screen. The code contains everything needed to connect: the server URL and the authentication secret.</p>
 
-<p>In OpenDrop, the QR code encodes a compact JSON payload with two fields. The server URL (either a local IP address for LAN connections, or a Cloudflare tunnel URL for remote connections) and the HMAC shared secret used for request signing. Every API call after pairing is authenticated with HMAC-SHA256 and a 30-second timestamp window. One scan bootstraps the entire authentication chain.</p>
+<p>In OpenDrop, the QR code encodes a compact JSON payload with two fields: the server URL (<code>u</code>) &mdash; either a local IP address for LAN connections, or the OpenDrop relay endpoint (<code>https://relayN.nfdgames.com/proxy/&lt;id&gt;</code>) for remote connections &mdash; and the HMAC shared secret (<code>s</code>) used for request signing. Every API call after pairing is authenticated with HMAC-SHA256 and a 5-minute timestamp window. One scan bootstraps the entire authentication chain.</p>
 
 <p>The scan takes 1-3 seconds. Modern iPhones and Android phones have QR scanning built into the default camera app, so no extra software is needed on the phone side.</p>
 
-<p><strong>When QR pairing works best:</strong> networks with blocked mDNS (hotels, universities, corporate guest WiFi), first-time remote connections where the phone is on cellular and needs the tunnel URL, and onboarding someone else's device where you want zero-explanation setup.</p>
+<p><strong>When QR pairing works best:</strong> networks with blocked mDNS (hotels, universities, corporate guest WiFi), first-time remote connections where the phone is on cellular and needs the relay endpoint, and onboarding someone else's device where you want zero-explanation setup.</p>
 
 <p><strong>When QR pairing doesn't work:</strong> if you can't physically see the other device's screen. Remote pairing where you're in a different location from the computer requires sending the QR code as a screenshot (which works, but adds a step). Also not ideal for fully headless servers with no display attached.</p>
 
 <div class="callout callout-tip"><div class="callout-title">Tip</div><p>The QR code carries the authentication secret through light, from screen to camera. No secret is transmitted over the network during pairing. This makes QR pairing more secure than methods that exchange credentials wirelessly, since an attacker would need physical line of sight to intercept it.</p></div>
 
-<p>I tested QR pairing with my M5 MacBook Pro displaying the code and my Redbeat D5 Android phone scanning it on cellular data. The phone connected to the remote Cloudflare tunnel within three seconds of scanning. Dictating the tunnel URL would have taken a minute and at least one typo.</p>
+<p>I tested QR pairing with my M5 MacBook Pro displaying the code and my Redbeat D5 Android phone scanning it on cellular data. The phone connected through the OpenDrop relay within three seconds of scanning. Dictating the endpoint by hand would have taken a minute and at least one typo.</p>
 
 <p><strong>Recommendation:</strong> QR pairing is your second-line method. When mDNS fails to find a device within 10-15 seconds, switch to QR. It's also the best method for first-time connections and guest devices.</p>
 
@@ -191,11 +193,11 @@
 
 <p>Every file transfer app supports typing in an IP address or URL directly. It's the most reliable method because it works regardless of what the network allows or blocks. If you have the address, you can connect.</p>
 
-<p>For LAN connections, you need the server's local IP address and port. In OpenDrop's case, that looks like <code>http://192.168.1.47:8000</code>. For remote connections, it's the Cloudflare tunnel URL. You can find both in the server's dashboard.</p>
+<p>For LAN connections, you need the server's local IP address and port. In OpenDrop's case, that looks like <code>http://192.168.1.47:8000</code>. For remote connections, it's the OpenDrop relay endpoint. You can find both in the server's dashboard.</p>
 
 <p><strong>When manual entry works best:</strong> headless servers with no display for QR codes, scripted or automated connections where you're using the CLI, and situations where you already know the server's address from a previous session.</p>
 
-<p><strong>When manual entry is painful:</strong> on phone keyboards. Typing an IP address with port number requires switching between the letter keyboard, number keyboard, and symbol keyboard multiple times. I time this at 8-12 seconds on a phone with zero typos, and most people make at least one mistake. Tunnel URLs are even worse, with 30+ characters of randomized words and hyphens.</p>
+<p><strong>When manual entry is painful:</strong> on phone keyboards. Typing an IP address with port number requires switching between the letter keyboard, number keyboard, and symbol keyboard multiple times. I time this at 8-12 seconds on a phone with zero typos, and most people make at least one mistake. Relay endpoints are even worse to type, with long opaque tokens.</p>
 
 <p>Manual entry also requires you to know the IP address, which changes when your router reassigns it. DHCP lease times vary, and what worked yesterday might not work today. You can set a static IP on the server to solve this, but that's extra configuration most people won't bother with.</p>
 
@@ -211,9 +213,9 @@
 
 <p><strong>When Bluetooth/NFC works:</strong> when both devices support it and you're standing right next to them. Phone-to-phone transfers in the same room. Apple-to-Apple transfers where AirDrop handles everything automatically.</p>
 
-<p><strong>When Bluetooth/NFC doesn't work:</strong> cross-platform scenarios (Bluetooth pairing protocols differ between ecosystems), transfers to desktop computers that lack Bluetooth, any distance beyond a few feet for NFC. OpenDrop doesn't use Bluetooth or NFC. The overhead of maintaining Bluetooth pairing across five operating systems wasn't worth it when mDNS and QR codes cover the same scenarios faster.</p>
+<p><strong>When Bluetooth/NFC doesn't work:</strong> cross-platform scenarios (classic Bluetooth pairing protocols differ between ecosystems), transfers to desktop computers that lack Bluetooth, any distance beyond a few feet for NFC. OpenDrop uses Bluetooth Low Energy as a fallback transport when Wi-Fi isn't available, but it doesn't use classic Bluetooth pairing or NFC — discovery and key exchange happen through mDNS, QR codes, or the cloud control plane instead.</p>
 
-<p><strong>Recommendation:</strong> if you're in a single ecosystem (all Apple or all Android) and both devices have Bluetooth, the built-in platform tools handle this fine. For cross-platform transfers or any scenario involving a desktop PC, network-based pairing (mDNS or QR) is faster and more reliable.</p>
+<p><strong>Recommendation:</strong> if you're in a single ecosystem (all Apple or all Android) and both devices have Bluetooth, the built-in platform tools handle this fine. For cross-platform transfers or any scenario involving a desktop PC, network-based pairing (mDNS or QR) is faster and more reliable; OpenDrop's BLE fallback handles the rest when Wi-Fi isn't available.</p>
 
 <h2 id="recommendation-framework">Which Pairing Method to Use: A Decision Framework</h2>
 
@@ -225,16 +227,16 @@
 
 <p><strong>Step 3: If you can't see the screen, type the URL.</strong> This applies to headless servers, remote machines you're accessing via SSH, or CLI-based automation. Copy the server URL from the terminal output and paste or type it into the mobile app's manual connect field.</p>
 
-<p><strong>Step 4: Use Bluetooth/NFC only for same-ecosystem, phone-to-phone transfers.</strong> If both devices are iPhones, AirDrop with Bluetooth discovery is hard to beat. If both are Android, Quick Share handles it natively. For anything cross-platform, skip Bluetooth entirely.</p>
+<p><strong>Step 4: If Wi-Fi is completely unavailable, fall back to BLE.</strong> OpenDrop will use Bluetooth Low Energy automatically when both devices are nearby but neither can see the other on Wi-Fi. It's slower than LAN, but it works in places no other network does (airplane mode with Bluetooth on, separated guest networks, dead-zone basements). For same-ecosystem phone-to-phone where AirDrop or Quick Share already exists, those tools are still convenient — pick whichever is in front of you.</p>
 
 <p>The pattern is simple: automatic first, visual second, manual third, proximity last. Each step is a fallback for when the previous one doesn't apply. Most of the time, you'll never get past step 1. On tricky networks, step 2 handles it. Steps 3 and 4 are edge cases.</p>
 
-<p><a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> supports the first three methods across all five platforms. The design goal was to make sure there's always a way to connect, regardless of what the network throws at you. mDNS for the easy case, QR for the common failure case, manual entry for the power-user case. No single pairing method works everywhere, but the combination of these three covers every network I've tested on.</p>
+<p><a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> supports mDNS auto-discovery, QR pairing, manual URL entry, and BLE fallback across all five platforms. The design goal was to make sure there's always a way to connect, regardless of what the network throws at you. mDNS for the easy case, QR for the common failure case, manual entry for the power-user case, BLE when there's no network at all. No single pairing method works everywhere, but the combination covers every scenario I've tested on.</p>
 
         <!-- CTA -->
         <div class="blog-cta">
             <h3>Connect Your Devices in Seconds</h3>
-            <p>OpenDrop supports mDNS auto-discovery, QR code pairing, and manual connection across Windows, macOS, Linux, Android, and iOS. Pick the method that fits your network.</p>
+            <p>OpenDrop supports mDNS auto-discovery, QR code pairing, manual connection, and BLE fallback across Windows, macOS, Linux, Android, and iOS. Pick the method that fits your network.</p>
             <a href="/OpenDrop/" class="btn btn-primary">Download OpenDrop Free</a>
         </div>
     </article>
@@ -301,7 +303,8 @@
         appId: "1:573883707762:web:e68643cce07c2cee3eadeb",
         measurementId: "G-ENWJJ78E3Q"
       });
-      getAnalytics(app);
+      // Gated on user consent — see /scripts/opendrop-cookie-banner.js
+      if (window.OpenDropConsent) { window.OpenDropConsent.onConsent(function () { getAnalytics(app); }); }
     </script>
 </body>
 </html>

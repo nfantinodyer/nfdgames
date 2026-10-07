@@ -75,16 +75,23 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    background: rgba(16, 185, 129, 0.2);
+    background: rgba(77, 184, 164, 0.2);
     color: var(--success);
     padding: 0.15rem 0.4rem;
     border-radius: var(--radius-sm);
 }
 
-/* App Mockup */
+/* Hero visual: the screenshots carousel lives here. The old
+   .app-mockup is gone — real product shots are a stronger first
+   impression than a static mockup, and we already pull them from
+   the live App Store / Microsoft Store APIs. */
 .hero-visual {
     margin-top: var(--space-3xl);
     position: relative;
+    width: 100%;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .app-mockup {
@@ -197,6 +204,7 @@
     color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    text-align: center;
 }
 
 .trust-divider {
@@ -357,9 +365,9 @@
 }
 
 .btn-tertiary:hover {
-    border-color: rgba(124, 58, 237, 0.5);
+    border-color: rgba(37, 139, 244, 0.5);
     color: var(--text-secondary);
-    background: rgba(124, 58, 237, 0.05);
+    background: rgba(37, 139, 244, 0.05);
 }
 
 .btn-tertiary svg {
@@ -576,7 +584,7 @@
     right: 1rem;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(16, 185, 129, 0.15);
+    background: rgba(77, 184, 164, 0.15);
     color: var(--success);
     font-size: 0.65rem;
     font-weight: 600;
@@ -672,7 +680,7 @@
 }
 
 .copy-btn.copied {
-    background: rgba(16, 185, 129, 0.15);
+    background: rgba(77, 184, 164, 0.15);
     border-color: var(--success);
     color: var(--success);
 }
@@ -692,7 +700,7 @@
 /* Social Proof / Testimonials */
 .social-proof {
     padding: var(--space-3xl) var(--space-xl);
-    max-width: 650px;
+    max-width: 1100px;
     margin: 0 auto;
 }
 
@@ -702,9 +710,18 @@
 }
 
 .testimonials {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: var(--space-lg);
+    align-items: stretch;
+}
+
+.testimonial-title {
+    color: var(--text-primary) !important;
+    font-style: normal !important;
+    font-weight: 600 !important;
+    font-size: 1.05rem !important;
+    margin-bottom: var(--space-sm) !important;
 }
 
 .testimonial {
@@ -867,3 +884,651 @@
         align-self: flex-end;
     }
 }
+
+/* ============================================
+   Screenshots — 3D coverflow carousel
+   Real screenshots fetched from Microsoft Store
+   and Apple App Store at runtime + via the
+   daily refresh GitHub Action.
+   ============================================ */
+
+.screenshots {
+    padding: var(--space-3xl) var(--space-xl);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.screenshots .section-header {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+}
+
+.ss-tabs {
+    display: flex;
+    gap: var(--space-xs);
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: var(--space-lg);
+}
+
+.ss-tab {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-full);
+    padding: 0.5rem 1.1rem;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    transition: color 0.2s, background 0.2s, border-color 0.2s;
+}
+
+.ss-tab:hover {
+    color: var(--text-primary);
+    border-color: var(--accent);
+}
+
+.ss-tab.active {
+    background: var(--accent);
+    color: var(--bg-dark, #0e0e10);
+    border-color: var(--accent);
+}
+
+.ss-stage-wrap {
+    position: relative;
+    height: 580px;
+    margin: var(--space-xl) auto;
+    width: 100%;
+    max-width: 1100px;
+    overflow: hidden;
+    /* `pan-y` lets the user scroll the page vertically with a
+       finger that lands inside the carousel, while horizontal
+       gestures are handed off to our pointer-event handlers
+       for swiping between cards. */
+    touch-action: pan-y;
+    user-select: none;
+    -webkit-user-select: none;
+    cursor: grab;
+}
+
+.ss-stage-wrap:active {
+    cursor: grabbing;
+}
+
+.ss-stage-wrap:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: 16px;
+}
+
+.ss-stage {
+    position: absolute;
+    inset: 0;
+}
+
+.ss-stage.ss-empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ss-stage.ss-empty::after {
+    content: 'Loading screenshots...';
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* Three-slot slide layout: previous / current / next.
+   Each card is absolutely positioned at the stage center
+   (left:50%, top:50%) and a transform shifts it into its slot.
+   The current card stacks above the side cards via DOM order
+   (rendered last) AND z-index.
+
+   Card width/height are CSS custom properties set by JS per
+   platform — phone shots are tall (e.g. 280x540), Windows shots
+   are wide (e.g. 540x420). Without per-platform sizing, the
+   wider Windows shots get cropped horizontally because
+   `object-fit: cover` clips. The slot-offset variable controls
+   how far prev/next peek out from behind the current card and
+   scales with card width so the layout looks right at any size. */
+.ss-card {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: var(--ss-card-w, 280px);
+    height: var(--ss-card-h, 540px);
+    margin: 0;
+    border-radius: 24px;
+    overflow: hidden;
+    background: var(--bg-card);
+    box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.45),
+        0 0 0 1px rgba(255, 255, 255, 0.06);
+    transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1),
+                opacity 0.6s ease,
+                filter 0.6s ease,
+                width 0.4s ease,
+                height 0.4s ease;
+    will-change: transform, opacity;
+}
+
+.ss-card img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    /* `contain` so the entire screenshot is always visible — no
+       crop, no aspect-ratio mismatch. The card itself is sized
+       to the natural aspect ratio so there's minimal letterbox. */
+    object-fit: contain;
+    object-position: center;
+}
+
+.ss-card-current {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    filter: none;
+    z-index: 3;
+}
+
+.ss-card-prev {
+    transform: translate(
+        calc(-50% - var(--ss-slot-offset, 260px)),
+        -50%
+    ) scale(0.82);
+    opacity: 0.5;
+    filter: blur(0.5px);
+    z-index: 1;
+    cursor: pointer;
+}
+
+.ss-card-next {
+    transform: translate(
+        calc(-50% + var(--ss-slot-offset, 260px)),
+        -50%
+    ) scale(0.82);
+    opacity: 0.5;
+    filter: blur(0.5px);
+    z-index: 1;
+    cursor: pointer;
+}
+
+.ss-card-prev:hover,
+.ss-card-next:hover {
+    opacity: 0.85;
+    filter: none;
+}
+
+/* Off-stage slots — cards that aren't in the visible 3-up window
+   sit here. They're invisible but still in the DOM so they can
+   transition into prev/next when the carousel rotates. The
+   transform offsets are 2× the slot offset so the card visibly
+   slides in from past the edge of the side cards. */
+.ss-card-off-left {
+    transform: translate(
+        calc(-50% - var(--ss-slot-offset, 260px) * 2),
+        -50%
+    ) scale(0.7);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.ss-card-off-right {
+    transform: translate(
+        calc(-50% + var(--ss-slot-offset, 260px) * 2),
+        -50%
+    ) scale(0.7);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.ss-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+}
+
+.ss-arrow {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+.ss-arrow:hover {
+    border-color: var(--accent);
+    transform: translateY(-1px);
+}
+
+.ss-arrow:active {
+    transform: translateY(0);
+}
+
+/* Position-indicator dots — one per shot in the active platform.
+   Active dot is wider and accent-coloured. Each dot is a button
+   so a screen reader reads "Go to screenshot 3 of 6" via the
+   aria-label set in JS. */
+.ss-dots {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0 0.6rem;
+}
+
+.ss-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 0;
+    padding: 0;
+    background: var(--border);
+    cursor: pointer;
+    transition: background 0.25s ease, width 0.25s ease;
+}
+
+.ss-dot:hover {
+    background: var(--text-muted);
+}
+
+.ss-dot.active {
+    width: 22px;
+    border-radius: 6px;
+    background: var(--accent);
+}
+
+.ss-dot:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.ss-note {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    max-width: 640px;
+    margin: var(--space-md) auto 0;
+    line-height: 1.5;
+}
+
+@media (max-width: 700px) {
+    .ss-stage-wrap {
+        height: 480px;
+    }
+    /* Card dimensions and slot offset are recomputed by JS on
+       resize via CSS custom properties on .ss-stage, so no fixed
+       overrides are needed here. */
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ss-card {
+        transition: none !important;
+    }
+}
+
+/* ============================================
+   Free vs Pro comparison table
+   ============================================ */
+
+.compare {
+    padding: var(--space-3xl) var(--space-xl);
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.compare .section-header {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+}
+
+.compare-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    font-size: 0.95rem;
+}
+
+.compare-table thead th {
+    background: rgba(255, 255, 255, 0.03);
+    text-align: left;
+    padding: 1rem 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border);
+    font-size: 0.95rem;
+}
+
+.compare-table thead th.compare-plan {
+    text-align: center;
+    width: 18%;
+}
+
+.compare-table thead th.compare-plan.pro {
+    color: var(--accent);
+}
+
+.compare-table tbody td {
+    padding: 0.85rem 1.25rem;
+    border-top: 1px solid var(--border);
+    color: var(--text-secondary);
+    vertical-align: top;
+}
+
+.compare-table tbody td.compare-feat {
+    color: var(--text-primary);
+    font-weight: 500;
+    width: 40%;
+}
+
+.compare-table tbody td.compare-cell {
+    text-align: center;
+    width: 18%;
+    color: var(--text-secondary);
+}
+
+.compare-cell .check {
+    color: #4ade80;
+    font-weight: 700;
+}
+
+.compare-cell .dash {
+    color: var(--text-muted);
+}
+
+.compare-cell .partial {
+    color: var(--accent);
+    font-size: 0.82rem;
+}
+
+.compare-section-row td {
+    background: rgba(255, 255, 255, 0.025);
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.5rem 1.25rem;
+    border-top: 1px solid var(--border);
+}
+
+.compare-cta {
+    margin-top: var(--space-xl);
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+@media (max-width: 700px) {
+    .compare-table {
+        font-size: 0.85rem;
+    }
+
+    .compare-table thead th,
+    .compare-table tbody td {
+        padding: 0.65rem 0.75rem;
+    }
+
+    .compare-table tbody td.compare-feat {
+        width: 50%;
+    }
+
+    .compare-table thead th.compare-plan,
+    .compare-table tbody td.compare-cell {
+        width: 25%;
+    }
+}
+
+/* ============================================
+   Redesigned feature wall — themed groups,
+   icon-led, scannable tiles instead of a wall
+   of paragraph-length cards.
+   ============================================ */
+
+.feature-groups {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xl);
+    margin-top: var(--space-2xl);
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.feature-group-title {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 var(--space-md);
+    letter-spacing: 0.01em;
+}
+
+.feature-group-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: rgba(120, 130, 255, 0.08);
+    color: var(--accent);
+    flex-shrink: 0;
+}
+
+.feature-tiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--space-md);
+}
+
+.feature-tile {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 1rem 1.1rem;
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+.feature-tile:hover {
+    border-color: rgba(120, 130, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+.feature-tile strong {
+    display: inline;
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 0.95rem;
+    line-height: 1.3;
+    margin-right: 0.35rem;
+}
+
+.feature-tile p {
+    margin: 0.5rem 0 0;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    line-height: 1.55;
+}
+
+.pro-pill {
+    display: inline-block;
+    background: linear-gradient(120deg, var(--accent), #b78bff);
+    color: #0e0e10;
+    font-size: 0.65rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.15rem 0.45rem;
+    border-radius: 999px;
+    margin-right: 0.4rem !important;
+    vertical-align: 0.06em;
+}
+
+@media (max-width: 700px) {
+    .feature-tiles {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================
+   Pricing CTA strip — sits beneath the Free vs
+   Pro comparison and gives a single clear path
+   to subscribe / download.
+   ============================================ */
+
+.pricing-cta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--space-md);
+    margin-top: var(--space-2xl);
+}
+
+.pricing-card {
+    position: relative;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 1.5rem 1.5rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    transition: border-color 0.25s, transform 0.25s;
+}
+
+.pricing-card:hover {
+    border-color: rgba(120, 130, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+.pricing-card-highlight {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px var(--accent),
+                0 16px 40px rgba(120, 130, 255, 0.18);
+}
+
+.pricing-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(120deg, var(--accent), #b78bff);
+    color: #0e0e10;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+}
+
+.pricing-tier {
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.pricing-amount {
+    color: var(--text-primary);
+    font-family: 'Space Mono', monospace;
+    font-size: 2.25rem;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.pricing-amount-suffix {
+    color: var(--text-muted);
+    font-size: 1rem;
+    font-weight: 500;
+    margin-left: 0.25rem;
+}
+
+.pricing-period {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.pricing-blurb {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.55;
+    margin: 0.5rem 0 1.25rem;
+    flex: 1;
+}
+
+.pricing-card .btn {
+    width: 100%;
+    justify-content: center;
+}
+
+/* ============================================
+   Alternatives comparison table — OpenDrop vs
+   LocalSend, Snapdrop, AirDrop. 4-plan column
+   layout, otherwise mirrors the Free vs Pro
+   table styling.
+   ============================================ */
+
+.compare-alts {
+    padding: var(--space-3xl) var(--space-xl);
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.compare-alts .section-header {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+}
+
+.alts-table-wrap {
+    overflow-x: auto;
+    /* Soft scrollbar on mobile so the table can scroll without
+       chopping off content. The table itself has min-width so
+       columns don't squish below the readable threshold. */
+    -webkit-overflow-scrolling: touch;
+}
+
+.alts-table {
+    min-width: 720px;
+}
+
+.alts-table thead th.compare-plan {
+    width: 16%;
+}
+
+.alts-table tbody td.compare-cell {
+    width: 16%;
+    font-size: 0.88rem;
+}
+
+.alts-table tbody td.compare-feat {
+    width: 36%;
+}
+
+.alts-note {
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    text-align: center;
+    margin-top: var(--space-md);
+    line-height: 1.5;
+}
+
+/* Cookie banner styles moved to styles/common.css so every page
+   that uses Google tags (including the policy pages, which use only
+   inline styles + common.css) inherits them. */

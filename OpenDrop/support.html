@@ -7,9 +7,9 @@
     <meta name="description" content="Get help with OpenDrop. Submit a support ticket, browse FAQs, and find troubleshooting guides for file transfer issues on Windows, Android, Linux, and iOS.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="author" content="NFDGames">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96x96.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/x-icon" href="favicon-opendrop.ico">
+    <link rel="icon" type="image/png" sizes="96x96" href="icon-96x96-opendrop.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-opendrop.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="canonical" href="https://www.nfdgames.com/OpenDrop/support.html" />
     <link rel="alternate" hreflang="en" href="https://www.nfdgames.com/OpenDrop/support.html" />
@@ -71,42 +71,42 @@
             "name": "Why won't my phone connect to OpenDrop?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "If you're on the same Wi-Fi, OpenDrop uses mDNS to discover your PC automatically. Some routers block mDNS, so if local discovery fails, the app falls back to the Cloudflare tunnel URL in the QR code. Try refreshing the QR code on the server, or make sure your firewall allows connections on port 8000."
+              "text": "If you're on the same Wi-Fi, OpenDrop uses mDNS to discover your PC automatically. Some routers block mDNS, so if local discovery fails, the app falls back to OpenDrop's encrypted relay using the pairing details in the QR code. Try refreshing the QR code on the server, or make sure your firewall allows connections on port 8000."
             }
           }, {
             "@type": "Question",
             "name": "Are my files secure with OpenDrop?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes. Remote connections are encrypted with TLS 1.3 via Cloudflare Tunnels. Each session generates a unique secret key, and every request is signed with HMAC-SHA256 to prevent tampering. Files transfer directly between your devices and are never stored on any server."
+              "text": "Yes. File contents are end-to-end encrypted with ChaCha20-Poly1305 using a 256-bit key derived from your account's shared secret via HKDF-SHA256, only your own devices can decrypt them. On top of that, all connections run over TLS 1.2/1.3, and every request is signed with HMAC-SHA256 to prevent tampering and replay. When the cloud relay is used, it forwards encrypted bytes it cannot decrypt; nothing is persisted on our servers."
             }
           }, {
             "@type": "Question",
             "name": "What is the file size limit for OpenDrop?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "On the same Wi-Fi (LAN transfers), there's no file size limit. Files stream directly at your network's full speed. Over a Cloudflare tunnel, free users transfer in 5 MB chunks. Pro subscribers get binary streaming for files up to 10 GB."
+              "text": "On the same Wi-Fi (LAN transfers), there's no file size limit. Files stream directly at your network's full speed. When your devices are on different networks, OpenDrop uses its own encrypted relay with no per-transfer size cap: free transfers go through our Oracle Cloud relay, and Pro subscribers get the faster Fly.io relay (with automatic failover to Oracle if Fly is down) and binary streaming of the whole file."
             }
           }, {
             "@type": "Question",
             "name": "How do I transfer photos from Android to PC wirelessly?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Open OpenDrop on your PC. It starts a local server and creates a secure tunnel automatically. Scan the QR code with the OpenDrop Android app. If both devices are on the same Wi-Fi, it connects directly over LAN for maximum speed. Pick your photos and tap send."
+              "text": "Open OpenDrop on your PC. It starts a local server and connects to OpenDrop's encrypted relay automatically. Scan the QR code with the OpenDrop Android app. If both devices are on the same Wi-Fi, it connects directly over LAN for maximum speed. Pick your photos and tap send."
             }
           }, {
             "@type": "Question",
             "name": "How is OpenDrop different from Snapdrop?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Snapdrop needs a WebRTC signaling server and only runs in a browser. OpenDrop runs a native FastAPI server on your desktop with automatic LAN discovery (mDNS) and a Cloudflare tunnel for remote access. It works without any internet on the same Wi-Fi, and handles larger files, folder browsing, CLI mode, and native mobile apps."
+              "text": "Snapdrop needs a WebRTC signaling server and only runs in a browser. OpenDrop runs a native FastAPI server on your desktop with automatic LAN discovery (mDNS), plus its own direct peer-to-peer path (WebRTC over self-hosted STUN, with no third-party STUN and no TURN) and an encrypted relay fallback for remote access. It works without any internet on the same Wi-Fi, and handles larger files, folder browsing, CLI mode, and native mobile apps."
             }
           }, {
             "@type": "Question",
             "name": "Is there a mobile app for OpenDrop?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes! OpenDrop is available on both Android (Google Play) and iOS (App Store). The desktop server runs on Windows and Linux with both GUI and CLI support. A macOS server version is in development."
+              "text": "Yes. OpenDrop is available on iOS (App Store), Android (Google Play), Windows (Microsoft Store + direct .exe), and Linux (.AppImage). The desktop app has both GUI and CLI modes. A macOS build is in active development."
             }
           }]
         }
@@ -171,7 +171,7 @@
         }
 
         .info-card:hover {
-            border-color: rgba(124, 58, 237, 0.3);
+            border-color: rgba(37, 139, 244, 0.3);
         }
 
         .info-card h3 {
@@ -258,7 +258,7 @@
         .form-textarea:focus {
             outline: none;
             border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+            box-shadow: 0 0 0 3px rgba(37, 139, 244, 0.15);
         }
 
         .form-input::placeholder,
@@ -378,7 +378,7 @@
         .success-icon {
             width: 64px;
             height: 64px;
-            background: rgba(16, 185, 129, 0.15);
+            background: rgba(77, 184, 164, 0.15);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -463,7 +463,7 @@
             <aside class="support-sidebar">
                 <div class="info-card">
                     <h3><span>📧</span> Email Us</h3>
-                    <p>For general inquiries, reach out directly at <a href="mailto:Spot4nickgaming@gmail.com">Spot4nickgaming@gmail.com</a></p>
+                    <p>For general inquiries, reach out directly at <a href="mailto:support@nfdgames.com">support@nfdgames.com</a></p>
                 </div>
 
                 <div class="info-card">
@@ -509,8 +509,8 @@
                                 <option value="Windows">Windows</option>
                                 <option value="Linux">Linux</option>
                                 <option value="Android">Android</option>
-                                <option value="iOS">iOS (Beta)</option>
-                                <option value="macOS">macOS (Beta)</option>
+                                <option value="iOS">iOS</option>
+                                <option value="macOS">macOS (Preview)</option>
                                 <option value="Other">Other</option>
                             </select>
                         </div>
@@ -530,7 +530,7 @@
 
                     <div class="form-group">
                         <label for="version">OpenDrop Version</label>
-                        <input type="text" id="version" name="version" class="form-input" placeholder="e.g., v0.5.3">
+                        <input type="text" id="version" name="version" class="form-input" placeholder="e.g., v1.0.0">
                     </div>
 
                     <div class="form-group">
@@ -571,27 +571,27 @@
         <div class="faq-grid">
             <div class="faq-item">
                 <h4>Why won't my phone connect?</h4>
-                <p>If you're on the same Wi-Fi, OpenDrop uses mDNS to discover your PC automatically. Some routers block mDNS, so if local discovery fails, the app falls back to the Cloudflare tunnel URL in the QR code. Try refreshing the QR code on the server, or make sure your firewall allows connections on port 8000.</p>
+                <p>If you're on the same Wi-Fi, OpenDrop uses mDNS to discover your PC automatically. Some routers block mDNS, so if local discovery fails, the app falls back to OpenDrop's encrypted relay using the pairing details in the QR code. Try refreshing the QR code on the server, or make sure your firewall allows connections on port 8000.</p>
             </div>
             <div class="faq-item">
                 <h4>Are my files secure?</h4>
-                <p>Yes. Remote connections are encrypted with TLS 1.3 via Cloudflare Tunnels. Each session generates a unique secret key, and every request is signed with HMAC-SHA256 to prevent tampering. Files transfer directly between your devices and are never stored on any server.</p>
+                <p>Yes. File contents are end-to-end encrypted with ChaCha20-Poly1305 using a 256-bit key derived from your account's shared secret via HKDF-SHA256, only your own devices can decrypt them. On top of that, all connections run over TLS 1.2/1.3, and every request is signed with HMAC-SHA256 to prevent tampering and replay. When the cloud relay is used, it forwards encrypted bytes it cannot decrypt; nothing is persisted on our servers.</p>
             </div>
             <div class="faq-item">
                 <h4>What's the file size limit?</h4>
-                <p>On the same Wi-Fi (LAN transfers), there's no file size limit. Files stream directly at your network's full speed. Over a Cloudflare tunnel, free users transfer in 5 MB chunks. Pro subscribers get binary streaming for files up to 10 GB.</p>
+                <p>On the same Wi-Fi (LAN transfers), there's no file size limit. Files stream directly at your network's full speed. When your devices are on different networks, OpenDrop uses its own encrypted relay with no per-transfer size cap: free transfers go through our Oracle Cloud relay, and Pro subscribers get the faster Fly.io relay (with automatic failover to Oracle if Fly is down) and binary streaming of the whole file.</p>
             </div>
             <div class="faq-item">
                 <h4>Is there a mobile app?</h4>
-                <p>Yes! OpenDrop is available on both Android (Google Play) and iOS (App Store). The desktop server runs on Windows and Linux. A macOS server version is in development.</p>
+                <p>Yes. OpenDrop is on iOS (App Store), Android (Google Play), Windows (Microsoft Store + direct .exe), and Linux (.AppImage). The desktop app has both GUI and CLI modes. A macOS build is in active development.</p>
             </div>
             <div class="faq-item">
                 <h4>How do I transfer photos from Android to PC wirelessly?</h4>
-                <p>Open OpenDrop on your PC. It starts a local server and creates a secure tunnel automatically. Scan the QR code with the OpenDrop Android app. If both devices are on the same Wi-Fi, it connects directly over LAN for maximum speed. Pick your photos and tap send.</p>
+                <p>Open OpenDrop on your PC. It starts a local server and connects to OpenDrop's encrypted relay automatically. Scan the QR code with the OpenDrop Android app. If both devices are on the same Wi-Fi, it connects directly over LAN for maximum speed. Pick your photos and tap send.</p>
             </div>
             <div class="faq-item">
                 <h4>How is OpenDrop different from Snapdrop?</h4>
-                <p>Snapdrop requires a WebRTC connection through a signaling server and only works in a browser. OpenDrop runs a native FastAPI server on your desktop with automatic LAN discovery (mDNS) and a Cloudflare tunnel for remote access. It works without any internet at all on the same Wi-Fi, and supports larger files, folder browsing, and native mobile apps.</p>
+                <p>Snapdrop requires a WebRTC connection through a signaling server and only works in a browser. OpenDrop runs a native FastAPI server on your desktop with automatic LAN discovery (mDNS), plus its own direct peer-to-peer path (WebRTC over self-hosted STUN, with no third-party STUN and no TURN) and an encrypted relay fallback for remote access. It works without any internet at all on the same Wi-Fi, and supports larger files, folder browsing, and native mobile apps.</p>
             </div>
         </div>
     </section>
@@ -618,24 +618,30 @@
                     <a href="./#features">Features</a>
                     <a href="./#download">Download</a>
                     <a href="./#how-it-works">How It Works</a>
+                    <a href="changelog.html">What&rsquo;s new in 1.0</a>
+                    <a href="status.html">System status</a>
                 </div>
                 <div class="footer-col">
                     <h4>Resources</h4>
-                    <a href="https://www.nfdgames.com/OpenDrop/docs/export-compliance/">Documentation</a>
                     <a href="support.html">Support</a>
-                    <a href="https://github.com/nfantinodyer/nfdgames/releases">Changelog</a>
+                    <a href="https://www.nfdgames.com/OpenDrop/docs/export-compliance/">Documentation</a>
+                    <a href="press.html">Press kit</a>
+                    <a href="security.html">Security &amp; disclosure</a>
+                    <a href="accessibility.html">Accessibility</a>
                 </div>
                 <div class="footer-col">
                     <h4>Legal</h4>
                     <a href="PrivacyPolicy.html">Privacy Policy</a>
                     <a href="TermsOfService.html">Terms of Service</a>
+                    <a href="WithdrawalForm.html">EU/UK Withdrawal</a>
+                    <a href="third-party-notices.html">Third-party notices</a>
                 </div>
             </div>
         </div>
 
         <div class="footer-bottom">
             <p>© 2026 NFDGames. All rights reserved.</p>
-            <a href="mailto:Spot4nickgaming@gmail.com">Spot4nickgaming@gmail.com</a>
+            <a href="mailto:support@nfdgames.com">support@nfdgames.com</a>
         </div>
     </footer>
 
@@ -670,7 +676,7 @@
                     throw new Error('Form submission failed');
                 }
             } catch (error) {
-                alert('There was an error submitting your ticket. Please try emailing us directly at Spot4nickgaming@gmail.com');
+                alert('There was an error submitting your ticket. Please try emailing us directly at support@nfdgames.com');
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
             }

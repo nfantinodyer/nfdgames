@@ -7,9 +7,9 @@
     <meta name="description" content="A real walkthrough of setting up OpenDrop CLI for scripted file transfers, including the mistakes I made and how cron jobs tied it all together.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
     <meta name="author" content="NFDGames">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96x96.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/x-icon" href="/favicon-nfdgames.ico">
+    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96x96-nfdgames.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-nfdgames.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="canonical" href="https://www.nfdgames.com/blog/posts/opendrop-cli-automated-file-transfers.html" />
     <link rel="alternate" hreflang="en" href="https://www.nfdgames.com/blog/posts/opendrop-cli-automated-file-transfers.html" />
@@ -73,7 +73,7 @@
         ,
         {
           "@type": "FAQPage",
-          "mainEntity": [{"@type":"Question","name":"Can OpenDrop run without a GUI?","acceptedAnswer":{"@type":"Answer","text":"Yes. The 'opendrop serve' command runs the server headlessly in the terminal. It starts the HTTP server on port 8000, connects the Cloudflare tunnel, and blocks until you press Ctrl+C. You can run it in tmux, screen, or as a systemd service for persistent operation."}},{"@type":"Question","name":"How do I send files from the command line with OpenDrop?","acceptedAnswer":{"@type":"Answer","text":"Use 'opendrop send /path/to/file --target=\"Device Name\"'. The target name must match a device from the registry. Run 'opendrop devices' first to see available targets and their exact names."}},{"@type":"Question","name":"Can I use OpenDrop CLI in cron jobs?","acceptedAnswer":{"@type":"Answer","text":"Yes. The send command runs as a blocking operation and exits when done, making it compatible with cron. Make sure environment variables like HOME are set in your crontab or wrapper script, and consider adding retry logic in case the target device is temporarily unavailable."}},{"@type":"Question","name":"Does the CLI support remote transfers?","acceptedAnswer":{"@type":"Answer","text":"The serve command automatically starts a Cloudflare tunnel for remote access. For sending, the CLI can reach remote devices if they're registered in the cloud device registry, which requires signing in via the GUI at least once to set up cloud sync."}},{"@type":"Question","name":"What platforms support the OpenDrop CLI?","acceptedAnswer":{"@type":"Answer","text":"The CLI works on Windows, macOS, and Linux. All subcommands (serve, send, devices, register-context-menu) are available on every desktop platform. The right-click context menu registration is OS-specific but handled automatically by the register-context-menu command."}}]
+          "mainEntity": [{"@type":"Question","name":"Can OpenDrop run without a GUI?","acceptedAnswer":{"@type":"Answer","text":"Yes. The 'opendrop serve' command runs the server headlessly in the terminal. It starts the HTTP server on port 8000, connects to the OpenDrop relay for remote access, and blocks until you press Ctrl+C. You can run it in tmux, screen, or as a systemd service for persistent operation."}},{"@type":"Question","name":"How do I send files from the command line with OpenDrop?","acceptedAnswer":{"@type":"Answer","text":"Use 'opendrop send /path/to/file --target=\"Device Name\"'. The target name must match a device from the registry. Run 'opendrop devices' first to see available targets and their exact names."}},{"@type":"Question","name":"Can I use OpenDrop CLI in cron jobs?","acceptedAnswer":{"@type":"Answer","text":"Yes. The send command runs as a blocking operation and exits when done, making it compatible with cron. Make sure environment variables like HOME are set in your crontab or wrapper script, and consider adding retry logic in case the target device is temporarily unavailable."}},{"@type":"Question","name":"Does the CLI support remote transfers?","acceptedAnswer":{"@type":"Answer","text":"The serve command automatically connects to the OpenDrop relay for remote access — no separate tunnel binary to download or install. For sending, the CLI can reach remote devices if they're registered in the cloud device registry, which requires signing in via the GUI at least once to set up cloud sync."}},{"@type":"Question","name":"What platforms support the OpenDrop CLI?","acceptedAnswer":{"@type":"Answer","text":"The CLI works on Windows, macOS, and Linux. All subcommands (serve, send, devices, register-context-menu) are available on every desktop platform. The right-click context menu registration is OS-specific but handled automatically by the register-context-menu command."}}]
         }
       ]
     }
@@ -89,6 +89,8 @@
     <link rel="stylesheet" href="/styles/common.css">
     <link rel="stylesheet" href="/styles/blog.css">
 
+    <!-- Cookie consent / Google Consent Mode v2 preboot — must precede any Google tag -->
+    <script src="/scripts/opendrop-cookie-banner.js"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241"></script>
     <script>
@@ -168,13 +170,15 @@
 
 <p>My first try was simple. SSH into the ParrotOS laptop, run <code>opendrop serve</code>, and see what happens.</p>
 
-<p>The command started the FastAPI server on <code>0.0.0.0:8000</code> in a background thread, then kicked off the Cloudflare tunnel. Within a few seconds, the terminal printed the local server address and started waiting for the tunnel URL. After about 10-15 seconds, the tunnel connected and printed both the public URL and the shared secret.</p>
+<p>The command started the FastAPI server on <code>0.0.0.0:8000</code> in a background thread, then connected to the OpenDrop relay. Within a few seconds, the terminal printed the local server address and the relay connection, along with the shared secret. No <code>cloudflared</code> download, no waiting on a third-party tunnel to spin up.</p>
 
 <p>The output looked roughly like this:</p>
 
-<blockquote>OpenDrop server starting on 0.0.0.0:8000...<br>Server running on http://0.0.0.0:8000<br>Waiting for tunnel... (Press Ctrl+C to stop)<br>Tunnel connected: https://some-random-words.trycloudflare.com<br>Secret: a1b2c3d4...</blockquote>
+<blockquote>OpenDrop server starting on 0.0.0.0:8000...<br>Server running on http://127.0.0.1:8000<br>Waiting for tunnel... (Press Ctrl+C to stop)<br>Tunnel connected<br>URL: https://relay2.nfdgames.com/proxy/ab12cd34<br>Password: a1b2c3d4...</blockquote>
 
-<p>The server stayed running until I hit Ctrl+C. Clean shutdown, tunnel disconnected, process exited. First try worked. I was suspicious.</p>
+<p>(The CLI still labels the outbound relay session a &ldquo;tunnel&rdquo; in its status line &mdash; it&rsquo;s OpenDrop&rsquo;s own relay, not a third-party one to download.)</p>
+
+<p>The server stayed running until I hit Ctrl+C. Clean shutdown, relay disconnected, process exited. First try worked. I was suspicious.</p>
 
 <p>Then I closed the SSH session. The process died. Of course. I hadn't backgrounded it or used a session manager. Running <code>opendrop serve</code> in a <code>tmux</code> session or behind <code>nohup</code> fixed that. A systemd service file would be cleaner for production use, but tmux was fast for testing.</p>
 
@@ -192,17 +196,22 @@
 
 <p>When the send works, the output is straightforward. It prints the filename, file size in MB, creates a session with the target server, uploads the file, and prints a success message. The whole thing runs as a single blocking operation and exits when done. No daemon, no background process. Start, transfer, exit.</p>
 
-<p>The upload itself uses HTTP POST to the target's <code>/upload</code> endpoint. For LAN transfers, this is a direct connection to the target's port 8000. The file goes as a multipart form upload with metadata (filename, chunk index, total chunks). For a single-shot CLI transfer, it's one chunk with <code>chunk_index=0</code> and <code>total_chunks=1</code>. The transfer has a 10-minute timeout, which is generous enough for most files over LAN.</p>
+<p>The upload itself uses HTTP POST to the target's <code>/upload</code> endpoint. For LAN transfers, this is a direct connection to the target's port 8000. The file goes as a multipart form upload with metadata (filename, chunk index, total chunks), and the file contents are end-to-end encrypted with ChaCha20-Poly1305 before they leave the machine &mdash; the same AEAD encryption every OpenDrop transfer uses, with no plaintext fallback. For a single-shot CLI transfer, it's one chunk with <code>chunk_index=0</code> and <code>total_chunks=1</code>. The transfer has a 10-minute timeout, which is generous enough for most files over LAN.</p>
 
 <p>Where I hit a wall: the <code>--target</code> flag expects a device name, not a URL or IP address. If the CLI doesn't recognize the name you give it, it prints an error and lists available devices. My first few attempts failed because I was typing the device name slightly wrong. The name matching is exact.</p>
 
 <h2>The Device Registry and What Tripped Me Up</h2>
 
-<p>OpenDrop's CLI resolves target names through a device registry that combines local mDNS discovery results with cloud-synced device information. When you run <code>opendrop devices</code>, it shows you everything the system knows about: device name, URL, and whether the device was found locally or via cloud.</p>
+<p>OpenDrop's CLI resolves target names through a device registry that combines local mDNS discovery results with cloud-synced device information. When you run <code>opendrop devices</code>, it lists the device names it knows about; add <code>-v</code> and it also prints each device's ID and, for devices on your network, the LAN address.</p>
 
-<p>The output looks something like:</p>
+<p>The plain output is just the device names:</p>
 
-<blockquote>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;URL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Source<br>My Windows PC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;http://192.168.1.50:8000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;local<br>MacBook Pro&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;https://xxx.trycloudflare.com&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cloud</blockquote>
+<blockquote>My Windows PC<br>MacBook Pro</blockquote>
+
+<p>Add <code>-v</code> and it expands each entry with the device ID and, for devices on your network, the LAN address. Remote (cloud) devices like the MacBook below have no LAN line:</p>
+
+<blockquote>My Windows PC<br>&nbsp;&nbsp;&nbsp;&nbsp;ID:&nbsp;&nbsp;3f9a2b7c<br>&nbsp;&nbsp;&nbsp;&nbsp;LAN: 192.168.1.50:8000<br>MacBook Pro<br>&nbsp;&nbsp;&nbsp;&nbsp;ID:&nbsp;&nbsp;8d1e4f6a</blockquote>
+
 
 <p>The mistake I kept making: I assumed the device name would match whatever I'd set in the GUI's settings. It does, but only after the device has been discovered or synced. On a fresh install, the device list is empty. You need to either have both devices on the same network (so mDNS can find them) or be signed in with a Pro account (so cloud device sync works).</p>
 
@@ -318,7 +327,8 @@
         appId: "1:573883707762:web:e68643cce07c2cee3eadeb",
         measurementId: "G-ENWJJ78E3Q"
       });
-      getAnalytics(app);
+      // Gated on user consent — see /scripts/opendrop-cookie-banner.js
+      if (window.OpenDropConsent) { window.OpenDropConsent.onConsent(function () { getAnalytics(app); }); }
     </script>
 </body>
 </html>

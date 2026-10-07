@@ -7,9 +7,9 @@
     <meta name="description" content="Compared the top AirDrop alternatives for Windows: OpenDrop, LocalSend, Snapdrop, Nearby Share, and more. Tested speeds, limits, and real gotchas.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
     <meta name="author" content="NFDGames">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96x96.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/x-icon" href="/favicon-nfdgames.ico">
+    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96x96-nfdgames.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-nfdgames.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="canonical" href="https://www.nfdgames.com/blog/posts/best-airdrop-alternatives-windows-2026.html" />
     <link rel="alternate" hreflang="en" href="https://www.nfdgames.com/blog/posts/best-airdrop-alternatives-windows-2026.html" />
@@ -73,7 +73,7 @@
         ,
         {
           "@type": "FAQPage",
-          "mainEntity": [{"@type":"Question","name":"Does AirDrop work with Windows at all?","acceptedAnswer":{"@type":"Answer","text":"No. AirDrop is exclusive to Apple devices (iPhone, iPad, Mac). There is no official way to AirDrop a file from an iPhone to a Windows PC. You need a third-party alternative like OpenDrop, LocalSend, or PairDrop to transfer files between Apple devices and Windows."}},{"@type":"Question","name":"What is the fastest AirDrop alternative for Windows?","acceptedAnswer":{"@type":"Answer","text":"On a local network, native apps like OpenDrop and LocalSend are the fastest because they transfer directly between devices without routing through a cloud server. OpenDrop streams files up to 10GB over LAN with no chunking. Browser-based tools like PairDrop add WebRTC overhead and are slower for large files."}},{"@type":"Question","name":"Can I transfer files from iPhone to Windows PC without iTunes?","acceptedAnswer":{"@type":"Answer","text":"Yes. Install OpenDrop on both your iPhone (from the App Store) and your Windows PC. If they're on the same Wi-Fi, the app auto-discovers your PC and you can send files directly. If they're on different networks, OpenDrop routes through a free Cloudflare tunnel automatically."}},{"@type":"Question","name":"Do these AirDrop alternatives work over the internet, not just local Wi-Fi?","acceptedAnswer":{"@type":"Answer","text":"Most don't. LocalSend and PairDrop are LAN-only (PairDrop has a TURN fallback but it's unreliable for large files). OpenDrop and Send Anywhere both support cross-network transfers. OpenDrop uses Cloudflare tunnels on the free tier and a dedicated Fly.io relay on the Pro tier."}},{"@type":"Question","name":"Is it safe to use file transfer apps instead of AirDrop?","acceptedAnswer":{"@type":"Answer","text":"It depends on the app. Tools that route through cloud servers (like Send Anywhere) mean your files pass through a third party's infrastructure. OpenDrop on LAN transfers files directly between devices over your local network on port 8000, so data never leaves your network. For remote transfers, OpenDrop uses TLS encryption via Cloudflare or Fly.io."}}]
+          "mainEntity": [{"@type":"Question","name":"Does AirDrop work with Windows at all?","acceptedAnswer":{"@type":"Answer","text":"No. AirDrop is exclusive to Apple devices (iPhone, iPad, Mac). There is no official way to AirDrop a file from an iPhone to a Windows PC. You need a third-party alternative like OpenDrop, LocalSend, or PairDrop to transfer files between Apple devices and Windows."}},{"@type":"Question","name":"What is the fastest AirDrop alternative for Windows?","acceptedAnswer":{"@type":"Answer","text":"On a local network, native apps like OpenDrop and LocalSend are the fastest because they transfer directly between devices without routing through a cloud server. OpenDrop streams files of any size over LAN with no chunking. Browser-based tools like PairDrop add WebRTC overhead and are slower for large files."}},{"@type":"Question","name":"Can I transfer files from iPhone to Windows PC without iTunes?","acceptedAnswer":{"@type":"Answer","text":"Yes. Install OpenDrop on both your iPhone (from the App Store) and your Windows PC. If they're on the same Wi-Fi, the app auto-discovers your PC and you can send files directly. If they're on different networks, OpenDrop routes through its own end-to-end-encrypted relay automatically — nothing extra to install."}},{"@type":"Question","name":"Do these AirDrop alternatives work over the internet, not just local Wi-Fi?","acceptedAnswer":{"@type":"Answer","text":"Most don't. LocalSend and PairDrop are LAN-only (PairDrop has a TURN fallback but it's unreliable for large files). OpenDrop and Send Anywhere both support cross-network transfers. OpenDrop uses its own end-to-end-encrypted relay with automatic failover — an Oracle Cloud relay on the free tier and a dedicated Fly.io relay (with Oracle failover) on Pro — so there's no third-party tunnel to download and no single point of failure."}},{"@type":"Question","name":"Is it safe to use file transfer apps instead of AirDrop?","acceptedAnswer":{"@type":"Answer","text":"It depends on the app. Tools that route through cloud servers (like Send Anywhere) mean your files pass through a third party's infrastructure that can read the file contents. OpenDrop applies ChaCha20-Poly1305 end-to-end encryption (RFC 8439 IETF AEAD) to file contents on every transfer path — LAN, the encrypted relay, and Bluetooth Low Energy — with no plaintext fallback. The encryption is applied on the sending device before the bytes leave it, so any infrastructure in the middle sees only ciphertext."}}]
         }
       ]
     }
@@ -89,6 +89,8 @@
     <link rel="stylesheet" href="/styles/common.css">
     <link rel="stylesheet" href="/styles/blog.css">
 
+    <!-- Cookie consent / Google Consent Mode v2 preboot — must precede any Google tag -->
+    <script src="/scripts/opendrop-cookie-banner.js"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241"></script>
     <script>
@@ -184,9 +186,9 @@
 <li>If mDNS is blocked (common on hotel and corporate Wi-Fi), tap the QR icon on the desktop app and scan it from your phone. The QR encodes the server's IP and port directly, bypassing discovery entirely.</li>
 </ol>
 
-<p>Received files land in <code>~/Downloads/OpenDrop/Files</code> on Windows. You can change this in settings, but that's the default.</p>
+<p>Received files land in <code>%USERPROFILE%\Downloads\OpenDrop\Files</code> on Windows. You can change this in settings, but that's the default.</p>
 
-<div class="callout callout-tip"><div class="callout-title">Tip</div><p>OpenDrop doesn't require both devices to be on the same Wi-Fi. The free tier routes through a Cloudflare tunnel (5MB chunked uploads, around 8 Mbps). The Pro tier uses a dedicated relay with full streaming up to 10GB per file at 30-50+ Mbps. LAN is always fastest, but remote works from anywhere with internet.</p></div>
+<div class="callout callout-tip"><div class="callout-title">Tip</div><p>OpenDrop doesn't require both devices to be on the same Wi-Fi. Remote transfers run over OpenDrop's own end-to-end-encrypted relay with automatic failover — the free tier uses an Oracle Cloud relay, and Pro unlocks a faster, dedicated Fly.io relay (with Oracle failover). Nothing extra to install, no per-transfer size cap, and it works behind NAT and firewalls. LAN is always fastest, but remote works from anywhere with internet.</p></div>
 
 <p><strong>Gotcha you won't find in docs:</strong> Windows Defender's firewall will sometimes block the mDNS broadcast on port 5353 UDP. If your phone isn't discovering the PC, open Windows Security > Firewall > Allow an app through firewall, and make sure OpenDrop is allowed on Private networks. We added QR pairing specifically because three users emailed us in the same week about hotel Wi-Fi blocking multicast.</p>
 
@@ -249,7 +251,7 @@
 
 <p>It works across networks, which is a plus. The 6-digit code is simple enough that you can even tell someone over the phone. But there's a cost: files route through their cloud servers. For the free tier, you'll see ads on mobile. And there's a 10GB file size limit on free accounts with slower speeds because everything goes through their relay infrastructure.</p>
 
-<p>My bigger concern is privacy. Your files pass through Send Anywhere's servers. They say they don't store them, but you're trusting a third party with your data. With OpenDrop on LAN, traffic never leaves your local network. The file goes straight from device to device over HTTP on port 8000.</p>
+<p>My bigger concern is privacy. Your files pass through Send Anywhere's servers — they say they don't store them, but you're trusting a third party with your data and Send Anywhere's infrastructure can read the file contents in principle. With OpenDrop on LAN, traffic never leaves your local network: the file goes straight from device to device on port 8000, and the file body is end-to-end encrypted with ChaCha20-Poly1305 before it leaves the sending device so even a shared-WiFi observer sees ciphertext. On remote transfers, the same AEAD layer applies — the relay sees only ciphertext and cannot read the file contents.</p>
 
 <h2 id="speed-comparison">Real Speed Results on My Network</h2>
 
@@ -263,7 +265,7 @@
 <li><strong>Windows Nearby Share:</strong> Not applicable since my iPhone can't use it.</li>
 </ul>
 
-<p>For the remote test (iPhone on cellular to PC on home Wi-Fi), only OpenDrop and Send Anywhere could do it without extra configuration. OpenDrop's free tier managed the 850MB folder in about 15 minutes via the Cloudflare tunnel. Send Anywhere took about 12 minutes. OpenDrop Pro would cut that much with its dedicated Fly.io relay, though I'll admit I haven't benchmarked Pro on cellular recently enough to give a precise number.</p>
+<p>For the remote test (iPhone on cellular to PC on home Wi-Fi), only OpenDrop and Send Anywhere could do it without extra configuration. Send Anywhere took about 12 minutes. OpenDrop's free tier moved the same 850MB folder over our Oracle Cloud relay &mdash; the slower, throttled free path &mdash; and OpenDrop Pro is noticeably faster thanks to its dedicated Fly.io relay. Unlike Send Anywhere, OpenDrop's relay only ever sees ciphertext.</p>
 
 <h2 id="cross-platform">Cross-Platform Support: Where Most Tools Fall Apart</h2>
 
@@ -285,7 +287,7 @@
 
 <p><strong>If all your devices are Apple + Windows and always on the same network</strong>, LocalSend is a reasonable open-source option. Just be aware of the dual-NIC gotcha I mentioned and the LAN-only limitation.</p>
 
-<p><strong>If you need to transfer files between any combination of devices, across any network, with no file size surprises</strong>, that's the problem I built <a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> to solve. LAN transfers stream directly up to 10GB per file with no chunking. Remote transfers work automatically even when your devices are on different networks. The free tier handles remote via Cloudflare tunnels, and Pro gives you a dedicated relay that's 4-6x faster. Either way, your files never sit on someone else's cloud storage. On LAN, they don't even leave your local network.</p>
+<p><strong>If you need to transfer files between any combination of devices, across any network, with no file size surprises</strong>, that's the problem I built <a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> to solve. LAN transfers stream directly with no chunking and no size cap. Remote transfers work automatically even when your devices are on different networks. The free tier handles remote over our Oracle Cloud relay, and Pro gives you a faster, dedicated Fly.io relay with automatic Oracle failover. Either way, there's no third-party tunnel to download, no per-transfer size cap, and your files never sit on someone else's cloud storage. On LAN, they don't even leave your local network.</p>
 
 <p>I'm biased, obviously. But I'm also the person who tested all five of these tools on real hardware, hit real bugs, and chose to keep building OpenDrop because the alternatives kept letting me down in one way or another. The dual-NIC issue with LocalSend, the tab-crash issue with PairDrop, the ads in Send Anywhere, the Apple/Windows-only silos. I wanted one tool that just worked across everything, and when I couldn't find it, we built it.</p>
 
@@ -359,7 +361,8 @@
         appId: "1:573883707762:web:e68643cce07c2cee3eadeb",
         measurementId: "G-ENWJJ78E3Q"
       });
-      getAnalytics(app);
+      // Gated on user consent — see /scripts/opendrop-cookie-banner.js
+      if (window.OpenDropConsent) { window.OpenDropConsent.onConsent(function () { getAnalytics(app); }); }
     </script>
 </body>
 </html>

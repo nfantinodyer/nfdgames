@@ -1,0 +1,36 @@
+/* TEAM */
+
+ Founder, Engineer, Designer: Nicholas Fantino-Dyer
+ Company: NFDGames LLC
+ Location: Greenville, South Carolina, USA
+ Contact: support [at] nfdgames.com
+ Web: https://www.nfdgames.com/
+
+
+/* SITE */
+
+ Last update: 2026-06-04
+ Standards: HTML5, CSS3, ES2020+
+ Components: Plain HTML/CSS/JavaScript with no SPA framework and
+ no build step. Static pages served from GitHub Pages.
+ Fonts: Sora (body), Space Mono (display), via Google Fonts
+ Type system: rem-based, fluid clamp() for headings
+
+
+/* PRODUCTS */
+
+ OpenDrop, a cross-platform end-to-end-encrypted file transfer
+ app (iOS, Android, Windows, Linux; macOS in development).
+ Closed-source commercial software.
+
+ Gunslinger, a mobile game. Separate product, separate analytics.
+
+
+/* COLOPHON */
+
+ Built one-person. No agency. No VC.
+ Every commit is mine.
+
+ Security reports: see /.well-known/security.txt
+ Brand assets: see /OpenDrop/press.html
+ All inquiries: support@nfdgames.com

@@ -7,9 +7,9 @@
     <meta name="description" content="Three real security problems with wireless file transfers and how encryption, authentication, and network isolation actually solve them.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
     <meta name="author" content="NFDGames">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96x96.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/x-icon" href="/favicon-nfdgames.ico">
+    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96x96-nfdgames.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-nfdgames.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="canonical" href="https://www.nfdgames.com/blog/posts/wireless-file-transfer-security-encryption.html" />
     <link rel="alternate" hreflang="en" href="https://www.nfdgames.com/blog/posts/wireless-file-transfer-security-encryption.html" />
@@ -73,7 +73,7 @@
         ,
         {
           "@type": "FAQPage",
-          "mainEntity": [{"@type":"Question","name":"Is transferring files over WiFi safe?","acceptedAnswer":{"@type":"Answer","text":"On your home WiFi with WPA2 or WPA3 encryption, local file transfers are safe. The WiFi encryption protects against outside interception, and tools like OpenDrop add HMAC authentication to prevent unauthorized access. On public WiFi, use a tool with TLS encryption for the transfer itself."}},{"@type":"Question","name":"Does OpenDrop encrypt file transfers?","acceptedAnswer":{"@type":"Answer","text":"Remote transfers (across different networks) are encrypted with TLS via Cloudflare tunnels or Fly.io relay. LAN transfers use plain HTTP with HMAC-SHA256 authentication because the traffic stays on your local network and never reaches the internet. On public WiFi, use the remote transfer mode for full encryption."}},{"@type":"Question","name":"What is HMAC-SHA256 and why does OpenDrop use it?","acceptedAnswer":{"@type":"Answer","text":"HMAC-SHA256 is a cryptographic method for verifying that a request comes from an authorized device. OpenDrop signs every request with a shared secret and a timestamp. The server checks the signature before processing the request. The 30-second timestamp window prevents replay attacks."}},{"@type":"Question","name":"Are cloud file sharing services more secure than direct transfer?","acceptedAnswer":{"@type":"Answer","text":"Not necessarily. Cloud services encrypt data in transit and at rest, but the provider holds the encryption keys and can access your files. Direct local transfer keeps your data on your devices and off third-party servers entirely. The most private option is a direct device-to-device transfer on your own network."}},{"@type":"Question","name":"Should I use a VPN for file transfers?","acceptedAnswer":{"@type":"Answer","text":"On your home network, a VPN is unnecessary for file transfers. On public WiFi (coffee shops, airports), a VPN encrypts all your traffic including file transfers, which adds a useful layer of protection. Alternatively, use a file transfer tool's remote mode, which provides TLS encryption without needing a separate VPN."}}]
+          "mainEntity": [{"@type":"Question","name":"Is transferring files over WiFi safe?","acceptedAnswer":{"@type":"Answer","text":"On your home WiFi with WPA2 or WPA3 encryption, local file transfers are safe. The WiFi encryption protects against outside interception, and tools like OpenDrop add HMAC authentication plus end-to-end encryption to prevent unauthorized access and intercepted-traffic readback. On public WiFi, end-to-end encryption keeps file contents unreadable even if the network itself is hostile."}},{"@type":"Question","name":"Does OpenDrop encrypt file transfers?","acceptedAnswer":{"@type":"Answer","text":"Yes, on every transfer path. As of the v1.0 release, OpenDrop applies ChaCha20-Poly1305 end-to-end encryption to file contents on LAN, the encrypted relay used for cross-network transfers, and Bluetooth Low Energy. There is no plaintext fallback. Remote transfers also ride underneath TLS as defense in depth, but the file bytes are already encrypted before they leave the sending device."}},{"@type":"Question","name":"What is HMAC-SHA256 and why does OpenDrop use it?","acceptedAnswer":{"@type":"Answer","text":"HMAC-SHA256 is a cryptographic method for verifying that a request comes from an authorized device. OpenDrop signs every request with a shared secret and a timestamp. The server checks the signature before processing the request. The timestamp window prevents replay attacks. HMAC sits alongside the ChaCha20-Poly1305 end-to-end encryption layer: HMAC proves the request came from a trusted device, the AEAD proves the file contents were not read or tampered with in transit."}},{"@type":"Question","name":"Are cloud file sharing services more secure than direct transfer?","acceptedAnswer":{"@type":"Answer","text":"Not necessarily. Cloud services encrypt data in transit and at rest, but the provider holds the encryption keys and can access your files. Direct device-to-device transfer with end-to-end encryption keeps your data on your devices and off third-party servers entirely. The most private option is a direct device-to-device transfer where the encryption keys live only on the sending and receiving devices."}},{"@type":"Question","name":"Should I use a VPN for file transfers?","acceptedAnswer":{"@type":"Answer","text":"OpenDrop encrypts file contents end-to-end on every path with ChaCha20-Poly1305, so a VPN is not required to keep file contents private. A VPN can still be useful on public WiFi for masking the metadata around the transfer (which devices are talking, to which endpoints), since OpenDrop does not encrypt filenames or routing metadata."}}]
         }
       ]
     }
@@ -89,6 +89,8 @@
     <link rel="stylesheet" href="/styles/common.css">
     <link rel="stylesheet" href="/styles/blog.css">
 
+    <!-- Cookie consent / Google Consent Mode v2 preboot — must precede any Google tag -->
+    <script src="/scripts/opendrop-cookie-banner.js"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241"></script>
     <script>
@@ -157,9 +159,9 @@
 
 <p>TLS (Transport Layer Security) encrypts the data before it hits the network. Even if someone on your WiFi captures the packets, they see encrypted gibberish. TLS 1.3 is the current standard. It uses a handshake where both sides agree on encryption keys using ephemeral Diffie-Hellman key exchange, which means even if someone records the encrypted traffic today, they can't decrypt it later if they somehow get the server's private key (this property is called forward secrecy).</p>
 
-<p>File transfer tools that route through cloud services (Cloudflare, AWS, etc.) typically get TLS for free because the cloud infrastructure handles it. Tools that operate purely on the local network have a choice: add TLS themselves (with the overhead of certificate management) or rely on the network's encryption.</p>
+<p>File transfer tools that route through cloud relays typically get TLS for free because the relay infrastructure handles it. Tools that operate purely on the local network have a choice: add TLS themselves (with the overhead of certificate management) or rely on the network's encryption.</p>
 
-<p><a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> takes a hybrid approach. Remote transfers (across different networks) go through Cloudflare tunnels or a Fly.io relay, both of which provide TLS encryption automatically. LAN transfers (same network) use plain HTTP because the traffic never leaves the local network. The reasoning: on your home WiFi, the threat model is different from the public internet. Adding TLS to local transfers would add latency and complexity without meaningfully improving security for the common case of transferring files between your own devices on your own network.</p>
+<p><a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> applies end-to-end encryption to file contents on every transfer path: LAN HTTP, our own encrypted relay for cross-network transfers (Oracle Cloud on the free tier, Fly.io on Pro), and even Bluetooth Low Energy. The cipher is ChaCha20-Poly1305 (RFC 8439 IETF AEAD), with a 256-bit content key derived per-account via HKDF-SHA256 and a fresh random nonce prefix per transfer. The encryption happens on the sending device before the bytes leave it, and only the receiving device — which holds the same shared secret — can decrypt them. On top of that, remote transfers still ride underneath TLS as a second layer; the LAN path skips TLS because the AEAD layer already makes the bytes unreadable on the wire, and self-signed-cert TLS on every device would add complexity without strengthening the encryption guarantee.</p>
 
 <h2>Problem 2: An Unauthorized Device Connects to Your Server</h2>
 
@@ -171,9 +173,9 @@
 
 <p>Sending the password in plaintext with each request would be a bad idea (anyone capturing a single request would learn the secret). Instead, most implementations use HMAC (Hash-based Message Authentication Code). The client takes the request details (URL, timestamp, body hash), combines them with the shared secret, and computes a cryptographic hash. The server does the same computation and checks if the hashes match. The secret itself is never sent over the wire.</p>
 
-<p>OpenDrop uses HMAC-SHA256 with a 30-second timestamp window. Each request carries a signature computed from the request data and a shared secret that both devices know. If the timestamp is more than 30 seconds old, the request is rejected. This prevents replay attacks (capturing a valid request and resending it later) and makes it impractical to brute-force the secret in real time.</p>
+<p>OpenDrop uses HMAC-SHA256 with a 5-minute timestamp window. Each request carries a signature computed from the request data and a shared secret that both devices know. If the timestamp is more than 5 minutes old, the request is rejected. This prevents replay attacks (capturing a valid request and resending it later) and makes it impractical to brute-force the secret in real time.</p>
 
-<div class="callout callout-tip"><div class="callout-title">Tip</div><p>The 30-second timestamp window means your devices' clocks need to be roughly synchronized. If your phone's clock is more than 30 seconds off from your PC's clock, HMAC validation fails and transfers won't work. Most devices sync their clocks via NTP automatically, so this rarely causes issues.</p></div>
+<div class="callout callout-tip"><div class="callout-title">Tip</div><p>The 5-minute timestamp window means your devices' clocks need to be roughly synchronized. If your phone's clock is more than 5 minutes off from your PC's clock, HMAC validation fails and transfers won't work. Most devices sync their clocks via NTP automatically, so this rarely causes issues.</p></div>
 
 <p>Other tools use different authentication approaches. LocalSend uses self-signed TLS certificates for mutual authentication: each device generates a certificate, and they exchange fingerprints during pairing. AirDrop uses iCloud identity certificates tied to your Apple ID for its "Contacts Only" mode.</p>
 
@@ -187,9 +189,9 @@
 
 <p>On a local network, there's no reason for data to leave your network at all. Direct device-to-device transfer over LAN means the file goes from phone to PC through your router and never touches the internet. No third party sees it, stores it, or processes it.</p>
 
-<p>For remote transfers across different networks, some intermediary is unavoidable. The question is what that intermediary does. Cloudflare's tunnel service routes packets between your devices but doesn't store the file data. It's a transport layer, not a storage layer. The tunnel is ephemeral: when you close it, the URL dies and no data persists on Cloudflare's infrastructure.</p>
+<p>For remote transfers across different networks, some intermediary is unavoidable. The question is what that intermediary does. OpenDrop's relay forwards packets between your devices but never stores the file data. It's a transport layer, not a storage layer — and because the file bytes are already end-to-end encrypted before they reach it, the relay only ever sees ciphertext it can't read. Nothing persists on the relay after the transfer completes.</p>
 
-<p>OpenDrop's Pro relay (Fly.io) works similarly. Data flows as binary WebSocket frames from sender through the relay to receiver. The relay buffers small amounts of data in memory during transit but doesn't write files to disk. When the transfer completes or the connection closes, the data is gone from the relay's memory.</p>
+<p>OpenDrop runs that relay itself (the Fly.io relay for Pro, an Oracle Cloud relay for the free tier and as automatic failover). Data flows as binary WebSocket frames from sender through the relay to receiver. The relay buffers small amounts of data in memory during transit but doesn't write files to disk. When the transfer completes or the connection closes, the data is gone from the relay's memory.</p>
 
 <p>This is fundamentally different from uploading a file to Dropbox. Dropbox stores your file on their servers, indefinitely, until you delete it. A pass-through relay handles your data for milliseconds during transit. The privacy implications are not comparable.</p>
 
@@ -197,15 +199,15 @@
 
 <p>Coffee shops, airports, hotels, conference centers. Public WiFi networks are the worst case for file transfer security. Everyone on the network can potentially see everyone else's traffic. The network operator may log traffic. The encryption (if any) uses a shared password that everyone knows.</p>
 
-<p>On a public network, LAN-based file transfer without TLS is genuinely risky. Plain HTTP traffic between your devices can be captured by anyone else on that network. Authentication (HMAC) prevents unauthorized access to your server, but it doesn't encrypt the file contents in transit.</p>
+<p>On a public network, file-transfer tools that don't encrypt the payload are genuinely risky. Plain HTTP traffic between two devices on the same public WiFi can be captured by anyone else on that network. Authentication (HMAC) prevents unauthorized devices from connecting to your server, but on its own it doesn't make the file contents unreadable in transit.</p>
 
-<p><strong>Solution: Use remote transfer mode or a VPN on public networks.</strong></p>
+<p><strong>Solution: Use a transfer tool that encrypts payloads end-to-end.</strong></p>
 
-<p>The safest approach on public WiFi is to skip the local network entirely. Use a remote transfer method that encrypts the data with TLS before it hits the local network. With OpenDrop, this means using the Cloudflare tunnel or Fly.io relay even though both devices are technically on the same WiFi. The tunnel encrypts the transfer end-to-end through Cloudflare's infrastructure, so other devices on the public WiFi see only encrypted HTTPS traffic.</p>
+<p>The safest approach on public WiFi is to use a tool that encrypts file contents before they hit the wire — independent of whether the underlying network is TLS-encrypted or not. With OpenDrop, every transfer path (LAN, the encrypted relay, BLE) applies ChaCha20-Poly1305 to the file body before it leaves the sending device. Other devices on the public WiFi see only ciphertext, even on the LAN path that runs over plain HTTP. The HTTP carrier is irrelevant; the AEAD layer is what makes the bytes unreadable.</p>
 
-<p>A VPN is another option. If both devices are on a VPN, their traffic is encrypted before it reaches the local network. You can then use LAN-mode transfer within the VPN's virtual network.</p>
+<p>A VPN is still useful on public WiFi if you also want to hide the metadata of the transfer (which devices are talking, to which endpoints) — neither OpenDrop's AEAD nor TLS encrypts that. If both devices are on a VPN, the local-network observer can't even tell a transfer is happening.</p>
 
-<p>The worst approach: transferring sensitive files over plain HTTP on public WiFi without TLS or a VPN. If you're on your home network, the risk is minimal (you control who's on the network). On a public network, assume someone is watching.</p>
+<p>The worst approach: using a tool that sends file contents unencrypted on a public network. OpenDrop's v1.0 release closed this gap: there is no transfer mode that puts plaintext file bytes on the wire. On your home network, the risk is minimal anyway (you control who's on the network); on a public network, the encryption-everywhere posture is what makes the tool safe regardless of who else is listening.</p>
 
 <h2>How Different Tools Handle These Problems</h2>
 
@@ -217,14 +219,14 @@
 
 <p><strong>Cloud services</strong> (Google Drive, Dropbox, OneDrive) encrypt in transit (TLS) and at rest (AES-256, typically). However, the provider holds the encryption keys and can access your files. True privacy requires client-side encryption before upload, which these services don't offer by default.</p>
 
-<p><strong><a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a></strong> uses HMAC-SHA256 authentication on all requests, TLS for remote transfers (via Cloudflare/Fly.io), and plain HTTP for LAN transfers where traffic stays local. The design trades LAN encryption for lower overhead, with the assumption that your home network is trusted. On untrusted networks, the remote transfer path provides full TLS encryption.</p>
+<p><strong><a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a></strong> applies end-to-end encryption (ChaCha20-Poly1305 IETF AEAD, RFC 8439) to file contents on every transfer path: LAN HTTP, the encrypted relay, and Bluetooth Low Energy. There is no plaintext fallback. HMAC-SHA256 still signs every request so unauthorized devices are rejected at the auth layer, and remote transfers ride underneath TLS as a second encryption layer. The v1.0 release closed the prior "LAN is plain HTTP" gap; every byte that leaves the sending device is now AEAD-protected.</p>
 
-<p>No approach is universally "best." The right choice depends on your threat model. If you're transferring family photos on your home WiFi, HMAC authentication and local-only traffic are more than sufficient. If you're a journalist handling sensitive documents on a hotel network, you need TLS end-to-end and should treat the local network as hostile. Match the security level to the actual risk, not to an abstract ideal.</p>
+<p>No approach is universally "best." The right choice depends on your threat model. If you're transferring family photos on your home WiFi, end-to-end encryption is overkill but free. If you're a journalist handling sensitive documents on a hotel network, the AEAD layer is what makes the local network safe to use — the underlying HTTP carrier no longer matters, because the file bytes are encrypted before they hit the wire. Match the security level to the actual risk, but don't assume "LAN" automatically means "trusted."</p>
 
         <!-- CTA -->
         <div class="blog-cta">
             <h3>Secure Transfers on Your Terms</h3>
-            <p>OpenDrop authenticates every request with HMAC-SHA256 and encrypts remote transfers with TLS. Local transfers stay on your network and never touch the cloud.</p>
+            <p>OpenDrop applies ChaCha20-Poly1305 end-to-end encryption to every transfer path — LAN, relay, and Bluetooth — with HMAC-SHA256 request signing on top. No plaintext fallback, no exceptions.</p>
             <a href="/OpenDrop/" class="btn btn-primary">Download OpenDrop Free</a>
         </div>
     </article>
@@ -291,7 +293,8 @@
         appId: "1:573883707762:web:e68643cce07c2cee3eadeb",
         measurementId: "G-ENWJJ78E3Q"
       });
-      getAnalytics(app);
+      // Gated on user consent — see /scripts/opendrop-cookie-banner.js
+      if (window.OpenDropConsent) { window.OpenDropConsent.onConsent(function () { getAnalytics(app); }); }
     </script>
 </body>
 </html>

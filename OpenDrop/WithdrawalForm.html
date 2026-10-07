@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EU/UK Right of Withdrawal | OpenDrop Pro</title>
+    <meta name="description" content="14-day right of withdrawal for OpenDrop Pro subscribers in the EU, UK, and other applicable jurisdictions. Submit a withdrawal request or use the standard form per Directive 2011/83/EU Annex I(B).">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="NFDGames">
+    <link rel="icon" type="image/x-icon" href="favicon-opendrop.ico">
+    <link rel="icon" type="image/png" sizes="96x96" href="icon-96x96-opendrop.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-opendrop.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="canonical" href="https://www.nfdgames.com/OpenDrop/WithdrawalForm.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="EU/UK Right of Withdrawal | OpenDrop Pro">
+    <meta property="og:description" content="14-day right of withdrawal for EU and UK consumers, with a one-click form and the standard model statement per Directive 2011/83/EU Annex I(B).">
+    <meta property="og:image" content="https://www.nfdgames.com/OpenDrop/OpenDropIcon.png">
+    <meta property="og:url" content="https://www.nfdgames.com/OpenDrop/WithdrawalForm.html">
+    <meta property="og:site_name" content="NFDGames">
+    <meta name="twitter:card" content="summary">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+
+    <link rel="stylesheet" href="../styles/common.css">
+    <link rel="stylesheet" href="../styles/opendrop.css">
+
+    <style>
+        .doc-hero {
+            min-height: auto;
+            padding: 9rem var(--space-xl) var(--space-xl);
+            text-align: center;
+        }
+        .doc-hero h1 {
+            font-size: clamp(2rem, 5vw, 3.25rem);
+            margin-bottom: var(--space-md);
+        }
+        .doc-hero p {
+            color: var(--text-secondary);
+            max-width: 720px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+        }
+        .wf-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 var(--space-xl) var(--space-4xl);
+        }
+        .wf-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: var(--space-2xl);
+            margin-bottom: var(--space-3xl);
+        }
+        .wf-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+        }
+        .info-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            transition: all var(--transition-slow);
+        }
+        .info-card:hover { border-color: rgba(37, 139, 244, 0.3); }
+        .info-card h3 {
+            font-size: 1rem;
+            margin-bottom: var(--space-sm);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+        .info-card h3 span.icon {
+            font-size: 1.25rem;
+            line-height: 1;
+        }
+        .info-card p, .info-card li {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .info-card a {
+            color: var(--accent-glow);
+            text-decoration: none;
+        }
+        .info-card a:hover {
+            color: var(--text-primary);
+            text-decoration: underline;
+        }
+        .info-card ul {
+            margin: 0.4rem 0 0 1rem;
+            padding: 0;
+        }
+
+        .form-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-2xl);
+            position: relative;
+            overflow: hidden;
+        }
+        .form-container h2 {
+            font-size: 1.35rem;
+            margin-bottom: var(--space-sm);
+        }
+        .form-container > p.subtitle {
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            margin-bottom: var(--space-lg);
+        }
+        .form-group {
+            margin-bottom: var(--space-lg);
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: var(--space-sm);
+            color: var(--text-secondary);
+        }
+        .form-group label .required { color: var(--error); margin-left: 2px; }
+        .form-group label .hint {
+            display: block;
+            font-weight: 400;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-top: 0.2rem;
+        }
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: all var(--transition-fast);
+        }
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(37, 139, 244, 0.15);
+        }
+        .form-input::placeholder,
+        .form-textarea::placeholder { color: var(--text-muted); }
+        .form-select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239ca3af'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1.25rem;
+            padding-right: 2.5rem;
+        }
+        .form-select option {
+            background: var(--bg-dark);
+            color: var(--text-primary);
+        }
+        .form-textarea {
+            min-height: 110px;
+            resize: vertical;
+            line-height: 1.55;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-md);
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.65rem;
+            padding: var(--space-md);
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+        }
+        .checkbox-group input[type=checkbox] {
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            accent-color: var(--accent);
+            cursor: pointer;
+        }
+        .checkbox-group label {
+            margin: 0;
+            font-size: 0.88rem;
+            line-height: 1.5;
+            color: var(--text-secondary);
+            cursor: pointer;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background: var(--accent);
+            border: none;
+            border-radius: var(--radius-md);
+            color: white;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-sm);
+        }
+        .submit-btn:hover { background: var(--accent-glow); }
+        .submit-btn svg { width: 20px; height: 20px; }
+        .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: var(--space-2xl);
+        }
+        .success-message.show { display: block; }
+        .success-icon {
+            width: 64px;
+            height: 64px;
+            background: rgba(77, 184, 164, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-lg);
+            font-size: 2rem;
+        }
+        .success-message h3 { font-size: 1.25rem; margin-bottom: var(--space-sm); }
+        .success-message p { color: var(--text-secondary); font-size: 0.95rem; }
+
+        /* Legal-detail cards below the form, lower prominence. */
+        .legal-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            margin-bottom: var(--space-lg);
+        }
+        .legal-card h2 {
+            font-size: 1.15rem;
+            margin-bottom: var(--space-md);
+        }
+        .legal-card h3 {
+            margin: var(--space-lg) 0 var(--space-sm);
+            font-size: 0.98rem;
+            color: var(--text-primary);
+        }
+        .legal-card p, .legal-card li {
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            line-height: 1.7;
+        }
+        .legal-card strong { color: var(--text-primary); }
+        .legal-card a { color: var(--accent-glow); text-decoration: none; }
+        .legal-card a:hover { text-decoration: underline; }
+        .legal-card ul, .legal-card ol {
+            margin: var(--space-sm) 0 var(--space-md) 1.25rem;
+        }
+        .callout {
+            background: rgba(212,160,84,0.08);
+            border: 1px solid rgba(212,160,84,0.3);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md) var(--space-lg);
+            margin: var(--space-md) 0;
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+        }
+        .callout strong { color: #f0c98a; }
+        .legal-form-text {
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            margin-top: var(--space-md);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.88rem;
+            color: var(--text-primary);
+            line-height: 1.8;
+            white-space: pre-line;
+            overflow-x: auto;
+        }
+
+        @media (max-width: 900px) {
+            .wf-grid { grid-template-columns: 1fr; }
+            .wf-sidebar { order: 2; }
+            .form-row { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 720px) {
+            .doc-hero { padding: 7rem var(--space-lg) var(--space-lg); }
+            .wf-container { padding: 0 var(--space-lg) var(--space-3xl); }
+            .form-container, .legal-card { padding: var(--space-xl); }
+        }
+    </style>
+
+    <!-- Cookie consent / Google Consent Mode v2 preboot -->
+    <script src="/scripts/opendrop-cookie-banner.js"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-17319823241');
+    </script>
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "name": "EU/UK Right of Withdrawal",
+      "description": "14-day right of withdrawal for OpenDrop Pro subscribers in the EU, UK, and other applicable jurisdictions.",
+      "url": "https://www.nfdgames.com/OpenDrop/WithdrawalForm.html",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "NFDGames",
+        "url": "https://www.nfdgames.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "NFDGames LLC"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "NFDGames",
+          "item": "https://www.nfdgames.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "OpenDrop",
+          "item": "https://www.nfdgames.com/OpenDrop/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "EU/UK Right of Withdrawal",
+          "item": "https://www.nfdgames.com/OpenDrop/WithdrawalForm.html"
+        }
+      ]
+    }
+  ]
+}
+    </script>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+    <div class="noise"></div>
+
+    <nav>
+        <a href="./" class="logo">
+            <picture>
+                <source srcset="OpenDropIcon-logo.webp" type="image/webp">
+                <img src="OpenDropIcon.png" alt="OpenDrop" class="logo-icon" width="36" height="36" loading="lazy">
+            </picture>
+            OpenDrop
+        </a>
+        <div class="nav-links">
+            <a href="./#features">Features</a>
+            <a href="./#download">Download</a>
+            <a href="support.html">Support</a>
+            <a href="./#download" class="nav-cta">Get Started</a>
+        </div>
+    </nav>
+
+    <main>
+    <section class="doc-hero">
+        <h1>Right of Withdrawal</h1>
+        <p>If you bought OpenDrop Pro as a consumer in the EU, the UK, or another jurisdiction with an equivalent statutory right, you have <strong>14 days</strong> to withdraw from the contract without giving any reason. Submit the form below and we will respond within 1 business day.</p>
+    </section>
+
+    <div class="wf-container">
+
+        <div class="wf-grid">
+            <aside class="wf-sidebar">
+                <div class="info-card">
+                    <h3><span class="icon">14</span> Day window</h3>
+                    <p>You have 14 calendar days from the date of purchase to withdraw. The form below works for purchases made on Apple App Store, Google Play, Microsoft Store, and Stripe.</p>
+                </div>
+                <div class="info-card">
+                    <h3><span class="icon">&#9989;</span> What we do</h3>
+                    <p>We acknowledge your request within 1 business day, instruct the original purchase platform to refund you (or send you the platform's refund-request link), and confirm when it is processed.</p>
+                </div>
+                <div class="info-card">
+                    <h3><span class="icon">&#9202;</span> Refund timing</h3>
+                    <ul>
+                        <li>Apple App Store: 3 to 10 business days</li>
+                        <li>Google Play: 1 to 14 business days</li>
+                        <li>Microsoft Store: 3 to 5 business days</li>
+                        <li>Stripe: 5 to 10 business days</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3><span class="icon">&#128465;</span> Delete account too?</h3>
+                    <p>Withdrawing from your subscription does not delete your OpenDrop account. Use the hosted deletion page or in-app Settings to remove your account record and device entries:</p>
+                    <p style="margin-top:0.5rem;"><a href="https://opendrop.n-fantinodyer.workers.dev/delete-account" target="_blank" rel="noopener">opendrop.n-fantinodyer.workers.dev/delete-account</a></p>
+                </div>
+                <div class="info-card">
+                    <h3><span class="icon">&#9888;</span> Just want to cancel?</h3>
+                    <p>If you only want to stop your subscription from renewing at the end of the current term, you do <em>not</em> need this form. Cancel from your purchase platform's Subscriptions screen. See <a href="TermsOfService.html">Terms of Service Section 8</a>.</p>
+                </div>
+            </aside>
+
+            <div class="form-container">
+                <h2>Submit a withdrawal request</h2>
+                <p class="subtitle">All fields with <span style="color:var(--error);">*</span> are required. We treat your submission as an "unambiguous statement of withdrawal" under Directive 2011/83/EU Article 11(1).</p>
+
+                <form id="withdrawalForm" action="https://formspree.io/f/mwvvpjan" method="POST">
+                    <input type="hidden" name="_subject" value="OpenDrop Pro Withdrawal Request">
+                    <input type="hidden" name="form_type" value="eu-uk-withdrawal">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Full name <span class="required">*</span></label>
+                            <input type="text" id="name" name="name" class="form-input" placeholder="Your name as on the account" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="account_email">Account email <span class="required">*</span>
+                                <span class="hint">The email you signed in to OpenDrop with.</span>
+                            </label>
+                            <input type="email" id="account_email" name="account_email" class="form-input" placeholder="you@example.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="platform">Purchase platform <span class="required">*</span></label>
+                            <select id="platform" name="platform" class="form-select" required>
+                                <option value="" disabled selected>Select platform</option>
+                                <option value="Apple App Store (iOS / macOS in-app)">Apple App Store (iOS / macOS in-app)</option>
+                                <option value="Google Play Billing (Android in-app)">Google Play Billing (Android in-app)</option>
+                                <option value="Microsoft Store (Windows)">Microsoft Store (Windows)</option>
+                                <option value="Stripe (desktop web checkout)">Stripe (desktop web checkout)</option>
+                                <option value="Other / unsure">Other / unsure</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="purchase_date">Purchase date <span class="required">*</span>
+                                <span class="hint">From your receipt. Withdrawal window is 14 days from this date.</span>
+                            </label>
+                            <input type="date" id="purchase_date" name="purchase_date" class="form-input" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="subscription_tier">Subscription chosen <span class="required">*</span></label>
+                            <select id="subscription_tier" name="subscription_tier" class="form-select" required>
+                                <option value="" disabled selected>Select tier</option>
+                                <option value="Monthly ($2.99 USD)">Monthly ($2.99 USD)</option>
+                                <option value="Annual ($24.99 USD)">Annual ($24.99 USD)</option>
+                                <option value="Free trial">Free trial</option>
+                                <option value="Other / unsure">Other / unsure</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="country">Country of residence <span class="required">*</span>
+                                <span class="hint">Confirms statutory eligibility (EU member state, UK, etc.).</span>
+                            </label>
+                            <input type="text" id="country" name="country" class="form-input" placeholder="Germany, France, United Kingdom, ..." required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="reason">Reason for withdrawal (optional)
+                            <span class="hint">You are not required to give a reason. Anything you share helps us improve the product.</span>
+                        </label>
+                        <textarea id="reason" name="reason" class="form-textarea" placeholder="Optional"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="confirm_consumer" name="confirm_consumer" required>
+                            <label for="confirm_consumer"><strong>I am a consumer</strong> (a natural person acting outside my trade, business, craft, or profession) and I am submitting this withdrawal within 14 days of my purchase. <span class="required">*</span></label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="confirm_statement" name="confirm_statement" required>
+                            <label for="confirm_statement">I hereby give notice that I withdraw from my contract with NFDGames LLC for the supply of OpenDrop Pro. <span class="required">*</span></label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                        Submit Withdrawal Request
+                    </button>
+                </form>
+
+                <div class="success-message" id="successMessage">
+                    <div class="success-icon">&#10003;</div>
+                    <h3>Withdrawal request received</h3>
+                    <p>We have logged your withdrawal request. You will get an acknowledgment email at the address you provided within 1 business day. If you do not see it (check spam too), reply to that thread or email <a href="mailto:support@nfdgames.com" style="color:var(--accent-glow);">support@nfdgames.com</a>.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Legal background / fallback for users who want the full text. -->
+
+        <div class="legal-card">
+            <h2>Who this applies to</h2>
+            <p>The right of withdrawal on this page is granted by:</p>
+            <ul>
+                <li><strong>Directive 2011/83/EU on consumer rights</strong>, Articles 9 to 16, as transposed into each EU member state's national law.</li>
+                <li><strong>The Consumer Contracts (Information, Cancellation and Additional Charges) Regulations 2013</strong> (United Kingdom), regulations 27 to 38.</li>
+                <li>Analogous statutory rights in other jurisdictions (for example, certain Swiss, Norwegian, and Icelandic consumer-protection regimes).</li>
+            </ul>
+            <p>It applies if you are a <em>consumer</em> (a natural person acting for purposes outside your trade, business, craft, or profession) who purchased an OpenDrop Pro subscription from NFDGames LLC.</p>
+
+            <div class="callout">
+                <strong>Important.</strong> Under Article 16(m) of the Consumer Rights Directive, the 14-day withdrawal right does <em>not</em> apply to "the supply of digital content which is not supplied on a tangible medium if the performance has begun with the consumer's prior express consent and his acknowledgment that he thereby loses his right of withdrawal." When you purchase OpenDrop Pro and tap "Confirm" or "Buy", you give that express consent and acknowledgment so Pro unlocks immediately. If you would rather preserve your withdrawal right, ask us to delay activation until day 15 by emailing <a href="mailto:support@nfdgames.com">support@nfdgames.com</a> before you complete checkout.
+            </div>
+            <p>We honor withdrawal requests received within 14 days regardless of the Article 16(m) waiver, as a matter of customer service, on a pro-rata refund basis (the price of the days you had access is retained, the rest is refunded). Where mandatory consumer law of your country grants you a stronger right, that stronger right applies.</p>
+        </div>
+
+        <div class="legal-card">
+            <h2>What happens after you submit</h2>
+            <ul>
+                <li>You receive an automated confirmation that we got your form (from Formspree, our form processor).</li>
+                <li>NFDGames LLC acknowledges your withdrawal by email within 1 business day.</li>
+                <li>We instruct the platform that processed your purchase (Apple, Google, Microsoft, or Stripe) to issue a refund of all payments received from you. Where we cannot instruct the platform directly (Apple in particular controls App Store refunds), we email you the platform's refund-request link and follow up to verify it was processed.</li>
+                <li>The refund is issued using the same means of payment as your original transaction. You will not incur any fees for the refund.</li>
+                <li>If you exercised your withdrawal right before the 14-day period and we already began performance with your express consent, we may charge a pro-rata amount for the days you had Pro access, in line with Directive 2011/83/EU Article 14(3).</li>
+            </ul>
+        </div>
+
+        <div class="legal-card">
+            <h2>Standard model withdrawal statement (Annex I(B), Directive 2011/83/EU)</h2>
+            <p>The form above already incorporates the language required by Annex I(B). If you prefer to submit by email, copy the model statement below, fill in the bracketed fields, and send it to <a href="mailto:support@nfdgames.com">support@nfdgames.com</a> with the subject line "Withdrawal, OpenDrop Pro".</p>
+            <div class="legal-form-text">To: NFDGames LLC, 212 East Broad Street, Apt #1116, Greenville, SC 29601, United States. Email: support@nfdgames.com
+
+I/We [*] hereby give notice that I/We [*] withdraw from my/our [*] contract of sale of the following goods [*] / for the supply of the following service [*]:
+
+  OpenDrop Pro subscription
+  ____________________________________________________
+
+Ordered on [*] / received on [*]:
+
+  ____________________________________________________
+
+Name of consumer(s):
+
+  ____________________________________________________
+
+Address of consumer(s):
+
+  ____________________________________________________
+
+Email address used to purchase the subscription:
+
+  ____________________________________________________
+
+Signature of consumer(s) (only if this form is notified on paper):
+
+  ____________________________________________________
+
+Date:
+
+  ____________________________________________________
+
+[*] Delete as appropriate.</div>
+        </div>
+
+        <div class="legal-card">
+            <h2>What this page does not affect</h2>
+            <ul>
+                <li><strong>Auto-renewal cancellation.</strong> If you simply want to stop your subscription from auto-renewing at the end of the current term, you do not need to use this form. Open Settings on your purchase platform (Apple ID Settings &rarr; Subscriptions, Google Play &rarr; Subscriptions, Microsoft account &rarr; Subscriptions, or the Stripe customer portal) and cancel from there. See Section 8 of our <a href="TermsOfService.html">Terms of Service</a>.</li>
+                <li><strong>Platform-policy refunds.</strong> Apple, Google, and Stripe have their own consumer-friendly refund processes that may extend beyond the 14-day window. Use them in parallel with this page.</li>
+                <li><strong>Statutory warranty rights.</strong> Your mandatory consumer-warranty rights under EU and UK law (e.g., conformity rights under Directive (EU) 2019/770 on the supply of digital content) are independent of the withdrawal right and remain available after the 14-day period.</li>
+                <li><strong>Account deletion.</strong> Withdrawing from your subscription does not delete your OpenDrop account. To delete your account, use the hosted deletion page at <a href="https://opendrop.n-fantinodyer.workers.dev/delete-account" target="_blank" rel="noopener">opendrop.n-fantinodyer.workers.dev/delete-account</a> or follow Section 11 of our <a href="PrivacyPolicy.html">Privacy Policy</a>.</li>
+            </ul>
+        </div>
+
+        <p class="text-muted" style="text-align:center;font-size:0.85rem;margin-top:var(--space-xl);">
+            Last updated: June 4, 2026 &nbsp;&middot;&nbsp;
+            <a href="TermsOfService.html" style="color:var(--accent);">Terms of Service</a> &nbsp;&middot;&nbsp;
+            <a href="PrivacyPolicy.html" style="color:var(--accent);">Privacy Policy</a> &nbsp;&middot;&nbsp;
+            <a href="support.html" style="color:var(--accent);">Support</a>
+        </p>
+    </div>
+    </main>
+
+    <script>
+        (function () {
+            var form = document.getElementById('withdrawalForm');
+            var success = document.getElementById('successMessage');
+            if (!form || !success) return;
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                var submitBtn = form.querySelector('.submit-btn');
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = 'Sending...';
+
+                var formData = new FormData(form);
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                }).then(function (response) {
+                    if (response.ok) {
+                        form.style.display = 'none';
+                        success.classList.add('show');
+                    } else {
+                        response.json().then(function (data) {
+                            var msg = data && data.errors
+                                ? data.errors.map(function (e) { return e.message; }).join(', ')
+                                : 'Submission failed. Please email support@nfdgames.com directly.';
+                            alert(msg);
+                            submitBtn.disabled = false;
+                            submitBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width:20px;height:20px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg> Submit Withdrawal Request';
+                        });
+                    }
+                }).catch(function () {
+                    alert('Submission failed. Please email support@nfdgames.com directly with your withdrawal request.');
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width:20px;height:20px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg> Submit Withdrawal Request';
+                });
+            });
+        })();
+    </script>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-analytics.js";
+      const app = initializeApp({
+        apiKey: "AIzaSyD1XfHr0OtAM4Zm62sPLW4Rjg__8HlLE0c",
+        authDomain: "opendrop-3c111.firebaseapp.com",
+        projectId: "opendrop-3c111",
+        storageBucket: "opendrop-3c111.firebasestorage.app",
+        messagingSenderId: "573883707762",
+        appId: "1:573883707762:web:e68643cce07c2cee3eadeb",
+        measurementId: "G-ENWJJ78E3Q"
+      });
+      // Gated on user consent
+      if (window.OpenDropConsent) {
+        window.OpenDropConsent.onConsent(function () { getAnalytics(app); });
+      }
+    </script>
+</body>
+</html>

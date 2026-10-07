@@ -7,9 +7,9 @@
     <meta name="description" content="Five offline file transfer methods explained at the protocol level: USB, WiFi Direct, local HTTP servers, Bluetooth, and SD cards. What each actually does with your data.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
     <meta name="author" content="NFDGames">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96x96.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/x-icon" href="/favicon-nfdgames.ico">
+    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96x96-nfdgames.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-nfdgames.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="canonical" href="https://www.nfdgames.com/blog/posts/transfer-files-without-internet.html" />
     <link rel="alternate" hreflang="en" href="https://www.nfdgames.com/blog/posts/transfer-files-without-internet.html" />
@@ -89,6 +89,8 @@
     <link rel="stylesheet" href="/styles/common.css">
     <link rel="stylesheet" href="/styles/blog.css">
 
+    <!-- Cookie consent / Google Consent Mode v2 preboot — must precede any Google tag -->
+    <script src="/scripts/opendrop-cookie-banner.js"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241"></script>
     <script>
@@ -183,7 +185,7 @@
 
 <div class="callout callout-tip"><div class="callout-title">Tip</div><p>If you're on a network that blocks mDNS (multicast on port 5353 UDP), use QR code pairing to connect directly. The QR code encodes the server's IP and port, bypassing the discovery step entirely.</p></div>
 
-<p>HTTP-based LAN transfer is what most modern file sharing apps use under the hood. The protocol is well-understood, every platform has HTTP libraries, and it handles large files natively through streaming request bodies. Adding authentication (OpenDrop uses HMAC-SHA256 with a shared secret) prevents unauthorized devices from accessing the server.</p>
+<p>HTTP-based LAN transfer is what most modern file sharing apps use under the hood. The protocol is well-understood, every platform has HTTP libraries, and it handles large files natively through streaming request bodies. Adding authentication (OpenDrop uses HMAC-SHA256 with a shared secret) prevents unauthorized devices from accessing the server, and OpenDrop end-to-end encrypts the file contents with ChaCha20-Poly1305 on top, so even on a local network the bytes on the wire are ciphertext.</p>
 
 <h2>Bluetooth: The Slow Option That's Always There</h2>
 
@@ -235,13 +237,13 @@
     <section class="related-posts">
         <h3>Related Articles</h3>
         <div class="related-grid">
-            <a href="/blog/posts/share-files-local-network-no-software.html" class="related-card">
-    <h4>How to Share Files on a Local Network Without Software</h4>
-    <p>Built-in methods to share files between devices on your home or office network.</p>
+            <a href="/blog/posts/mdns-auto-discovery-explained.html" class="related-card">
+    <h4>How mDNS Auto-Discovery Finds Devices on Your Local Network</h4>
+    <p>The protocol that lets OpenDrop find your other devices on the same Wi-Fi without manual IP configuration.</p>
 </a>
-<a href="/blog/posts/fix-wireless-file-transfer-problems.html" class="related-card">
-    <h4>How to Fix Common Wireless File Transfer Problems</h4>
-    <p>Solutions for the most common issues when transferring files wirelessly between devices.</p>
+<a href="/blog/posts/wireless-file-transfer-beginners-guide.html" class="related-card">
+    <h4>Wireless File Transfer: A Beginner's Guide</h4>
+    <p>The fundamentals of moving files between devices over Wi-Fi, Bluetooth, and other wireless channels.</p>
 </a>
         </div>
     </section>
@@ -293,7 +295,8 @@
         appId: "1:573883707762:web:e68643cce07c2cee3eadeb",
         measurementId: "G-ENWJJ78E3Q"
       });
-      getAnalytics(app);
+      // Gated on user consent — see /scripts/opendrop-cookie-banner.js
+      if (window.OpenDropConsent) { window.OpenDropConsent.onConsent(function () { getAnalytics(app); }); }
     </script>
 </body>
 </html>

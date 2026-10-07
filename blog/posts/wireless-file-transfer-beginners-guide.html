@@ -7,9 +7,9 @@
     <meta name="description" content="Common myths about wireless file transfer debunked with real data. Bluetooth speed, WiFi requirements, security concerns, and what actually works.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
     <meta name="author" content="NFDGames">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96x96.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/x-icon" href="/favicon-nfdgames.ico">
+    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96x96-nfdgames.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-nfdgames.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="canonical" href="https://www.nfdgames.com/blog/posts/wireless-file-transfer-beginners-guide.html" />
     <link rel="alternate" hreflang="en" href="https://www.nfdgames.com/blog/posts/wireless-file-transfer-beginners-guide.html" />
@@ -73,7 +73,7 @@
         ,
         {
           "@type": "FAQPage",
-          "mainEntity": [{"@type":"Question","name":"Is Bluetooth or WiFi faster for file transfer?","acceptedAnswer":{"@type":"Answer","text":"WiFi is dramatically faster. Bluetooth 5.0 tops out around 2 Mbps in theory and typically delivers 200-300 KB/s in practice. WiFi transfers on a local network run at tens or hundreds of megabytes per second. A file that takes an hour over Bluetooth finishes in seconds over WiFi."}},{"@type":"Question","name":"Do both devices need to be on the same WiFi to transfer files?","acceptedAnswer":{"@type":"Answer","text":"Not necessarily. Same-WiFi transfers are fastest, but tools like OpenDrop support remote transfers across different networks using Cloudflare tunnels (free) or Fly.io relay (Pro). Same network is an optimization, not a requirement."}},{"@type":"Question","name":"Are wireless file transfers secure?","acceptedAnswer":{"@type":"Answer","text":"On a home network, local WiFi transfers stay inside your router and never touch the internet. Remote transfers through services like OpenDrop use TLS encryption via Cloudflare or Fly.io. The security concern is mainly with unencrypted transfers over public WiFi networks."}},{"@type":"Question","name":"What's the best free tool for wireless file transfer across all platforms?","acceptedAnswer":{"@type":"Answer","text":"OpenDrop works on Windows, macOS, Linux, iOS, and Android with a single app. It supports both local WiFi transfers and remote transfers across different networks. The free tier includes full LAN streaming and remote transfers through Cloudflare tunnels."}},{"@type":"Question","name":"Why not just use Google Drive or iCloud to move files between devices?","acceptedAnswer":{"@type":"Answer","text":"Cloud services require uploading and then downloading the file, which takes 5-10x longer than a direct transfer. They also have storage limits (15GB for Google, 5GB for iCloud free) and your files pass through third-party servers. Direct transfer is faster and more private for moving files between your own devices."}}]
+          "mainEntity": [{"@type":"Question","name":"Is Bluetooth or WiFi faster for file transfer?","acceptedAnswer":{"@type":"Answer","text":"WiFi is dramatically faster. Bluetooth 5.0 tops out around 2 Mbps in theory and typically delivers 200-300 KB/s in practice. WiFi transfers on a local network run at tens or hundreds of megabytes per second. A file that takes an hour over Bluetooth finishes in seconds over WiFi."}},{"@type":"Question","name":"Do both devices need to be on the same WiFi to transfer files?","acceptedAnswer":{"@type":"Answer","text":"Not necessarily. Same-WiFi transfers are fastest, but tools like OpenDrop support remote transfers across different networks using their own end-to-end-encrypted relay (an Oracle Cloud relay on the free tier, the faster Fly.io relay on Pro) — no third-party tunnel to download. Same network is an optimization, not a requirement."}},{"@type":"Question","name":"Are wireless file transfers secure?","acceptedAnswer":{"@type":"Answer","text":"On a home network, local WiFi transfers stay inside your router and never touch the internet. Remote transfers through services like OpenDrop add TLS on top of end-to-end encryption, so the relay only ever sees ciphertext. The security concern is mainly with unencrypted transfers over public WiFi networks."}},{"@type":"Question","name":"What's the best free tool for wireless file transfer across all platforms?","acceptedAnswer":{"@type":"Answer","text":"OpenDrop works on Windows, macOS, Linux, iOS, and Android with a single app. It supports both local WiFi transfers and remote transfers across different networks. The free tier includes full LAN streaming, plus remote transfers in resumable 5 MB chunks over its own Oracle Cloud relay (Pro adds a faster, streaming Fly.io relay)."}},{"@type":"Question","name":"Why not just use Google Drive or iCloud to move files between devices?","acceptedAnswer":{"@type":"Answer","text":"Cloud services require uploading and then downloading the file, which takes 5-10x longer than a direct transfer. They also have storage limits (15GB for Google, 5GB for iCloud free) and your files pass through third-party servers. Direct transfer is faster and more private for moving files between your own devices."}}]
         }
       ]
     }
@@ -89,6 +89,8 @@
     <link rel="stylesheet" href="/styles/common.css">
     <link rel="stylesheet" href="/styles/blog.css">
 
+    <!-- Cookie consent / Google Consent Mode v2 preboot — must precede any Google tag -->
+    <script src="/scripts/opendrop-cookie-banner.js"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241"></script>
     <script>
@@ -165,9 +167,9 @@
 
 <p>Same-network transfers are faster, yes. When both devices share a WiFi network, data travels directly between them through the router. It never leaves your house. An app like <a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> uses mDNS (multicast DNS) to automatically discover other devices on the network, so you don't even need to type in an IP address. The desktop server runs on port 8000, the mDNS service type is <code>_opendrop._tcp.local.</code>, and other devices find it within seconds.</p>
 
-<p>But same-network isn't required for wireless transfer. Plenty of tools work across different networks, including across the internet. OpenDrop, for instance, creates a Cloudflare tunnel that lets your phone on cellular connect to your home PC on WiFi. The transfer goes phone → internet → Cloudflare → your PC. Slower than LAN, but it works from anywhere.</p>
+<p>But same-network isn't required for wireless transfer. Plenty of tools work across different networks, including across the internet. OpenDrop, for instance, routes through its own relay so your phone on cellular can connect to your home PC on WiFi. The transfer goes phone → internet → OpenDrop relay → your PC, end-to-end encrypted the whole way. Slower than LAN, but it works from anywhere.</p>
 
-<p>I test this regularly: my phone on cellular in Greenville, SC connecting to my desktop at home. The tunnel takes a few seconds to establish, and then transfers work the same as they would locally, just at remote speeds (roughly 8 Mbps for free, 30-50+ Mbps with Pro).</p>
+<p>I test this regularly: my phone on cellular in Greenville, SC connecting to my desktop at home. The relay takes a few seconds to establish, and then transfers work the same as they would locally, just at remote speeds (the free Oracle Cloud relay is slower; Pro's Fly.io relay is faster).</p>
 
 <p>The distinction matters because "same WiFi" isn't always possible. Your phone on LTE, your laptop on office WiFi, your PC on home internet. Requiring same-network access makes a file transfer tool useless in half the situations where you'd actually want one.</p>
 
@@ -175,13 +177,13 @@
 
 <p>The fear is understandable. "Sending files over WiFi" sounds like broadcasting your data for anyone to intercept. But the reality depends entirely on what's between the two devices.</p>
 
-<p>On a local network, your file transfer stays inside your router. The data doesn't touch the internet. If someone wanted to intercept it, they'd need to be on your WiFi network already. For home networks, that's your family and your devices. The attack surface is tiny. OpenDrop's LAN transfers use plain HTTP for this reason: the data stays local, and adding encryption to local traffic adds latency without meaningfully improving security for the typical home network.</p>
+<p>On a local network, your file transfer stays inside your router. The data doesn't touch the internet. If someone wanted to intercept it, they'd need to be on your WiFi network already. For home networks, that's your family and your devices. OpenDrop still applies end-to-end encryption on LAN — ChaCha20-Poly1305 (RFC 8439 IETF AEAD) is applied to the file body before it leaves the sending device — so even a shared-WiFi observer or a family member on the same network sees only ciphertext, not file contents. The carrier on LAN is plain HTTP (not HTTPS), because the AEAD layer already makes the bytes unreadable; adding self-signed TLS would not strengthen the guarantee.</p>
 
-<p>Remote transfers over the internet are a different story. Here, your data does cross public infrastructure, and encryption matters. OpenDrop uses TLS encryption via Cloudflare for free remote transfers and via Fly.io for Pro relay connections. TLS (the same protocol that secures your banking website) encrypts the data in transit so that intermediaries can't read it.</p>
+<p>Remote transfers over the internet apply the same AEAD layer plus TLS underneath as defense in depth. OpenDrop routes through its own relay over TLS — an Oracle Cloud relay on the free tier, a faster Fly.io relay (with automatic Oracle failover) on Pro. In both cases the relay infrastructure sees only ciphertext — the file contents were already encrypted before they left your device.</p>
 
-<p>OpenDrop also signs every request with HMAC-SHA256 using a shared secret and a 30-second timestamp window. This prevents replay attacks (where someone captures a request and sends it again) and verifies that both devices are who they claim to be.</p>
+<p>OpenDrop also signs every request with HMAC-SHA256 using a shared secret and a timestamp. This prevents replay attacks (where someone captures a request and sends it again) and rejects unauthorized devices at the auth layer, alongside the AEAD layer that protects the file contents themselves.</p>
 
-<div class="callout callout-tip"><div class="callout-title">Tip</div><p>If you're on a public WiFi network (coffee shop, airport, hotel), use a remote transfer method rather than LAN. Public networks have other users who could potentially observe local traffic. A tunneled connection through Cloudflare encrypts everything end-to-end between your device and the transfer service.</p></div>
+<div class="callout callout-tip"><div class="callout-title">Tip</div><p>On a public WiFi network (coffee shop, airport, hotel), OpenDrop's end-to-end encryption keeps file contents safe regardless of which transfer path you use — LAN or remote. A VPN is still useful if you want to hide the metadata of the transfer (which devices are talking, to which endpoints), but the file bytes themselves are always encrypted.</p></div>
 
 <p>The tools that are actually insecure are the ones that send files through unencrypted HTTP over the open internet, or that upload your files to a third-party server where you don't control access. A direct device-to-device transfer on your home network is one of the safest ways to move files.</p>
 
@@ -193,7 +195,7 @@
 
 <p>None of these solutions work across all platforms. If you own an iPhone and a Windows PC (a very common combination), you have zero built-in options for fast wireless file transfer. Email attachments max out at 25MB. Cloud uploads require an internet connection and storage space. USB cables require, well, a cable and the right adapter.</p>
 
-<p>Cross-platform file transfer tools exist specifically to solve this problem. OpenDrop runs on Windows, macOS, Linux, iOS, and Android. One app, every combination. iPhone to Windows, Android to Mac, Linux to iPad. The transfer protocol doesn't care what OS is on either end because it's standard HTTP. The desktop apps include both a GUI and a command-line interface. The mobile apps are built with Flutter and available on the App Store, Google Play, and Microsoft Store.</p>
+<p>Cross-platform file transfer tools exist specifically to solve this problem. OpenDrop runs on Windows, macOS, Linux, iOS, and Android. One app, every combination. iPhone to Windows, Android to Mac, Linux to iPad. The transfer protocol doesn't care what OS is on either end because it's standard HTTP. The desktop apps include both a GUI and a command-line interface, and the Windows build is on the Microsoft Store. The mobile apps are built with Flutter and available on the App Store and Google Play.</p>
 
 <p>You install it once on each device and every platform combination just works. No per-vendor solutions, no OS-specific setup steps, no wondering whether your particular phone model is supported.</p>
 
@@ -215,7 +217,7 @@
 
 <p>For same-network transfers, a direct WiFi-based tool is fastest by a wide margin. No upload, no download, no cloud. The file goes straight from one device to the other. <a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> handles discovery automatically via mDNS, so you don't need to configure IP addresses or ports. Install on both devices, open the app, and start sending.</p>
 
-<p>For different-network transfers, you need a tool that supports tunneling or relay. Free options are slower (OpenDrop's free remote runs at about 8 Mbps through Cloudflare tunnels). Paid options are faster (OpenDrop Pro's Fly.io relay does 30-50+ Mbps). Either way, having the option to transfer files without being on the same network makes the tool useful in far more situations.</p>
+<p>For different-network transfers, you need a tool that supports a relay. OpenDrop routes through its own end-to-end-encrypted relay with no per-transfer size cap: the free tier runs on our Oracle Cloud relay, and Pro adds a faster Fly.io relay with automatic Oracle failover. Either way, having the option to transfer files without being on the same network makes the tool useful in far more situations.</p>
 
 <p>For tiny one-off files (under 5MB), the method barely matters. Email, messaging apps, Bluetooth. Speed differences are negligible at that size. Pick whatever's convenient.</p>
 
@@ -291,7 +293,8 @@
         appId: "1:573883707762:web:e68643cce07c2cee3eadeb",
         measurementId: "G-ENWJJ78E3Q"
       });
-      getAnalytics(app);
+      // Gated on user consent — see /scripts/opendrop-cookie-banner.js
+      if (window.OpenDropConsent) { window.OpenDropConsent.onConsent(function () { getAnalytics(app); }); }
     </script>
 </body>
 </html>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>NFDGames Blog, OpenDrop and file-transfer engineering</title>
+    <link>https://www.nfdgames.com/blog/</link>
+    <atom:link href="https://www.nfdgames.com/blog/feed.xml" rel="self" type="application/rss+xml" />
+    <description>Tutorials, release notes, and engineering essays from NFDGames LLC. Topics include OpenDrop file transfer, wireless transfer protocols (mDNS, Bonjour, BLE), end-to-end encrypted relay transfers, and cross-platform Flutter and Python development.</description>
+    <language>en-us</language>
+    <copyright>Copyright 2026 NFDGames LLC</copyright>
+    <managingEditor>support@nfdgames.com (NFDGames)</managingEditor>
+    <webMaster>support@nfdgames.com (NFDGames)</webMaster>
+    <lastBuildDate>Thu, 04 Jun 2026 00:00:00 +0000</lastBuildDate>
+    <generator>handwritten Python generator (scripts/gen_rss.py)</generator>
+    <image>
+      <url>https://www.nfdgames.com/NFDGamesLogoCircleTransparent.png</url>
+      <title>NFDGames Blog</title>
+      <link>https://www.nfdgames.com/blog/</link>
+    </image>
+    <item>
+      <title>What&#x27;s New in OpenDrop 1.0: Mandatory End-to-End Encryption, Multi-Platform Mesh, and Our Own Relay | NFDGames Blog</title>
+      <link>https://www.nfdgames.com/blog/posts/whats-new-in-opendrop-1-0.html</link>
+      <guid isPermaLink="true">https://www.nfdgames.com/blog/posts/whats-new-in-opendrop-1-0.html</guid>
+      <description>OpenDrop 1.0 ships with mandatory end-to-end encryption on every transfer path. Here&#x27;s what changed since the preview builds, what&#x27;s in the box, and what&#x27;s still on the roadmap.</description>
+      <pubDate>Thu, 04 Jun 2026 00:00:00 +0000</pubDate>
+      <category>Release Notes</category>
+      <author>support@nfdgames.com (NFDGames)</author>
+    </item>
+    <item>
+      <title>Best AirDrop Alternatives for Windows in 2026 | NFDGames Blog</title>
+      <link>https://www.nfdgames.com/blog/posts/best-airdrop-alternatives-windows-2026.html</link>
+      <guid isPermaLink="true">https://www.nfdgames.com/blog/posts/best-airdrop-alternatives-windows-2026.html</guid>
+      <description>Compared the top AirDrop alternatives for Windows: OpenDrop, LocalSend, Snapdrop, Nearby Share, and more. Tested speeds, limits, and real gotchas.</description>
+      <pubDate>Wed, 18 Feb 2026 00:00:00 +0000</pubDate>
+      <category>Comparison</category>
+      <author>support@nfdgames.com (NFDGames)</author>
+    </item>
+    <item>
+      <title>How to Transfer Files from Android to PC Without USB | NFDGames Blog</title>
+      <link>https://www.nfdgames.com/blog/posts/transfer-files-android-to-pc-without-usb.html</link>
+      <guid isPermaLink="true">https://www.nfdgames.com/blog/posts/transfer-files-android-to-pc-without-usb.html</guid>
+      <description>Transfer files from Android to PC wirelessly, no USB cable needed. Covers five methods with exact steps, speeds, and failure modes I&#x27;ve hit personally.</description>
+      <pubDate>Wed, 18 Feb 2026 00:00:00 +0000</pubDate>
+      <category>Tutorial</category>
+      <author>support@nfdgames.com (NFDGames)</author>
+    </item>
+    <item>
+      <title>How to Send Large Files Between Phone and PC for Free | NFDGames Blog</title>
+      <link>https://www.nfdgames.com/blog/posts/send-large-files-phone-to-pc-free.html</link>
+      <guid isPermaLink="true">https://www.nfdgames.com/blog/posts/send-large-files-phone-to-pc-free.html</guid>
+      <description>How free file transfers actually work between phones and PCs, from our own encrypted relay to LAN streaming, and why file size doesn&#x27;t have to be a limit.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 +0000</pubDate>
+      <category>Tutorial</category>
+      <author>support@nfdgames.com (NFDGames)</author>
+    </item>
+    <item>
+      <title>OpenDrop vs AirDrop: Which File Transfer Tool Is Better? | NFDGames Blog</title>
+      <link>https://www.nfdgames.com/blog/posts/opendrop-vs-airdrop-comparison.html</link>
+      <guid isPermaLink="true">https://www.nfdgames.com/blog/posts/opendrop-vs-airdrop-comparison.html</guid>
+      <description>A direct comparison of OpenDrop and Apple AirDrop across platform support, remote transfers, file size handling, and real-world speed.</description>
+      <pubDate>Thu, 12 Feb 2026 00:00:00 +0000</pubDate>
+      <category>Comparison</category>
+      <author>support@nfdgames.com (NFDGames)</author>
+    </item>
+    <item>
+      <title>How to Use OpenDrop CLI for Automated File Transfers | NFDGames Blog</title>
+      <link>https://www.nfdgames.com/blog/posts/opendrop-cli-automated-file-transfers.html</link>
+      <guid isPermaLink="true">https://www.nfdgames.com/blog/posts/opendrop-cli-automated-file-transfers.html</guid>
+      <description>A real walkthrough of setting up OpenDrop CLI for scripted file transfers, including the mistakes I made and how cron jobs tied it all together.</description>
+      <pubDate>Tue, 10 Feb 2026 00:00:00 +0000</pubDate>
+      <category>Tutorial</category>
+      <author>support@nfdgames.com (NFDGames)</author>
+    </item>
+    <item>
+      <title>Wireless File Transfer: Complete Beginner&#x27;s Guide | NFDGames Blog</title>
+      <link>https://www.nfdgames.com/blog/posts/wireless-file-transfer-beginners-guide.html</link>
+      <guid isPermaLink="true">https://www.nfdgames.com/blog/posts/wireless-file-transfer-beginners-guide.html</guid>
+      <description>Common myths about wireless file transfer debunked with real data. Bluetooth speed, WiFi requirements, security concerns, and what actually works.</description>
+      <pubDate>Sun, 08 Feb 2026 00:00:00 +0000</pubDate>
+      <category>Guide</category>
+      <author>support@nfdgames.com (NFDGames)</author>
+    </item>
+    <item>
+      <title>How to Transfer Photos from iPhone to Windows PC | NFDGames Blog</title>
+      <link>https://www.nfdgames.com/blog/posts/transfer-photos-iphone-to-windows-pc.html</link>
+      <guid isPermaLink="true">https://www.nfdgames.com/blog/posts/transfer-photos-iphone-to-windows-pc.html</guid>
+      <description>Five real methods for moving photos from iPhone to Windows PC compared side by side. Speed, file quality, and which method fits your situation.</description>
+      <pubDate>Fri, 06 Feb 2026 00:00:00 +0000</pubDate>
+      <category>Tutorial</category>
+      <author>support@nfdgames.com (NFDGames)</author>
+    </item>
+    <item>
+      <title>OpenDrop vs LocalSend: Feature-by-Feature Comparison | NFDGames Blog</title>
+      <link>https://www.nfdgames.com/blog/posts/opendrop-vs-localsend-comparison.html</link>
+      <guid isPermaLink="true">https://www.nfdgames.com/blog/posts/opendrop-vs-localsend-comparison.html</guid>
+      <description>OpenDrop and LocalSend compared feature by feature: remote transfers, CLI support, file size handling, platform coverage, and which fits your workflow.</description>
+      <pubDate>Wed, 04 Feb 2026 00:00:00 +0000</pubDate>
+      <category>Comparison</category>
+      <author>support@nfdgames.com (NFDGames)</author>
+    </item>
+    <item>
+      <title>5 Ways to Transfer Files Between Devices Without Internet | NFDGames Blog</title>
+      <link>https://www.nfdgames.com/blog/posts/transfer-files-without-internet.html</link>
+      <guid isPermaLink="true">https://www.nfdgames.com/blog/posts/transfer-files-without-internet.html</guid>
+      <description>Five offline file transfer methods explained at the protocol level: USB, WiFi Direct, local HTTP servers, Bluetooth, and SD cards. What each actually does with your data.</description>
+      <pubDate>Sat, 31 Jan 2026 00:00:00 +0000</pubDate>
+      <category>Tips &amp; Tricks</category>
+      <author>support@nfdgames.com (NFDGames)</author>
+    </item>
+    <item>
+      <title>Is Wireless File Transfer Secure? Encryption Explained | NFDGames Blog</title>
+      <link>https://www.nfdgames.com/blog/posts/wireless-file-transfer-security-encryption.html</link>
+      <guid isPermaLink="true">https://www.nfdgames.com/blog/posts/wireless-file-transfer-security-encryption.html</guid>
+      <description>Three real security problems with wireless file transfers and how encryption, authentication, and network isolation actually solve them.</description>
+      <pubDate>Thu, 29 Jan 2026 00:00:00 +0000</pubDate>
+      <category>Guide</category>
+      <author>support@nfdgames.com (NFDGames)</author>
+    </item>
+    <item>
+      <title>How to Transfer Files from PC to Android Phone Wirelessly | NFDGames Blog</title>
+      <link>https://www.nfdgames.com/blog/posts/transfer-files-pc-to-android-wirelessly.html</link>
+      <guid isPermaLink="true">https://www.nfdgames.com/blog/posts/transfer-files-pc-to-android-wirelessly.html</guid>
+      <description>A real walkthrough of sending files from a Windows PC to an Android phone wirelessly, including the MTP headaches that made me give up on cables.</description>
+      <pubDate>Tue, 27 Jan 2026 00:00:00 +0000</pubDate>
+      <category>Tutorial</category>
+      <author>support@nfdgames.com (NFDGames)</author>
+    </item>
+    <item>
+      <title>Top 10 Free File Transfer Apps for 2026 | NFDGames Blog</title>
+      <link>https://www.nfdgames.com/blog/posts/top-10-free-file-transfer-apps-2026.html</link>
+      <guid isPermaLink="true">https://www.nfdgames.com/blog/posts/top-10-free-file-transfer-apps-2026.html</guid>
+      <description>Most &quot;top 10&quot; file transfer lists get the basics wrong. Here are the apps that actually work in 2026, with myths about each one busted.</description>
+      <pubDate>Sun, 25 Jan 2026 00:00:00 +0000</pubDate>
+      <category>Comparison</category>
+      <author>support@nfdgames.com (NFDGames)</author>
+    </item>
+    <item>
+      <title>How to Use QR Codes for Quick File Pairing | NFDGames Blog</title>
+      <link>https://www.nfdgames.com/blog/posts/qr-code-file-transfer-pairing.html</link>
+      <guid isPermaLink="true">https://www.nfdgames.com/blog/posts/qr-code-file-transfer-pairing.html</guid>
+      <description>QR codes, mDNS, manual IP, Bluetooth — four ways to pair devices for file transfer. Here&#x27;s which one to pick based on your network and use case.</description>
+      <pubDate>Fri, 23 Jan 2026 00:00:00 +0000</pubDate>
+      <category>Tutorial</category>
+      <author>support@nfdgames.com (NFDGames)</author>
+    </item>
+    <item>
+      <title>Why Cloud File Sharing Isn&#x27;t Always the Best Option | NFDGames Blog</title>
+      <link>https://www.nfdgames.com/blog/posts/cloud-file-sharing-drawbacks.html</link>
+      <guid isPermaLink="true">https://www.nfdgames.com/blog/posts/cloud-file-sharing-drawbacks.html</guid>
+      <description>Cloud storage has real limitations for file sharing. Here are the drawbacks and when direct local transfer is the better choice.</description>
+      <pubDate>Wed, 21 Jan 2026 00:00:00 +0000</pubDate>
+      <category>Guide</category>
+      <author>support@nfdgames.com (NFDGames)</author>
+    </item>
+    <item>
+      <title>How to Transfer Files Between Windows and Linux | NFDGames Blog</title>
+      <link>https://www.nfdgames.com/blog/posts/transfer-files-windows-to-linux.html</link>
+      <guid isPermaLink="true">https://www.nfdgames.com/blog/posts/transfer-files-windows-to-linux.html</guid>
+      <description>Samba, SCP, USB, and zero-config tools each have their place. After years of cross-platform file sharing, here&#x27;s what actually works best.</description>
+      <pubDate>Mon, 19 Jan 2026 00:00:00 +0000</pubDate>
+      <category>Tutorial</category>
+      <author>support@nfdgames.com (NFDGames)</author>
+    </item>
+    <item>
+      <title>OpenDrop Setup Guide for Windows: Download to First Transfer | NFDGames Blog</title>
+      <link>https://www.nfdgames.com/blog/posts/opendrop-setup-guide-windows.html</link>
+      <guid isPermaLink="true">https://www.nfdgames.com/blog/posts/opendrop-setup-guide-windows.html</guid>
+      <description>Install OpenDrop on Windows, understand what happens under the hood at each step, and complete your first file transfer in under 5 minutes.</description>
+      <pubDate>Sat, 17 Jan 2026 00:00:00 +0000</pubDate>
+      <category>Tutorial</category>
+      <author>support@nfdgames.com (NFDGames)</author>
+    </item>
+    <item>
+      <title>mDNS Auto-Discovery: How Devices Find Each Other on Your Network | NFDGames Blog</title>
+      <link>https://www.nfdgames.com/blog/posts/mdns-auto-discovery-explained.html</link>
+      <guid isPermaLink="true">https://www.nfdgames.com/blog/posts/mdns-auto-discovery-explained.html</guid>
+      <description>How mDNS and Bonjour work to auto-discover devices on your local network, and how to fix the most common discovery failures.</description>
+      <pubDate>Thu, 15 Jan 2026 00:00:00 +0000</pubDate>
+      <category>Guide</category>
+      <author>support@nfdgames.com (NFDGames)</author>
+    </item>
+    <item>
+      <title>How to Share Files Between iPhone and Android | NFDGames Blog</title>
+      <link>https://www.nfdgames.com/blog/posts/share-files-iphone-android.html</link>
+      <guid isPermaLink="true">https://www.nfdgames.com/blog/posts/share-files-iphone-android.html</guid>
+      <description>Sharing files between iPhone and Android is surprisingly hard. Here&#x27;s what I tried, what failed, and what actually works in 2026.</description>
+      <pubDate>Tue, 13 Jan 2026 00:00:00 +0000</pubDate>
+      <category>Tutorial</category>
+      <author>support@nfdgames.com (NFDGames)</author>
+    </item>
+    <item>
+      <title>OpenDrop vs Snapdrop: Which Should You Use? | NFDGames Blog</title>
+      <link>https://www.nfdgames.com/blog/posts/opendrop-vs-snapdrop-comparison.html</link>
+      <guid isPermaLink="true">https://www.nfdgames.com/blog/posts/opendrop-vs-snapdrop-comparison.html</guid>
+      <description>OpenDrop and Snapdrop take very different approaches to file transfer. We bust the common myths about both tools and compare what matters.</description>
+      <pubDate>Sun, 11 Jan 2026 00:00:00 +0000</pubDate>
+      <category>Comparison</category>
+      <author>support@nfdgames.com (NFDGames)</author>
+    </item>
+  </channel>
+</rss>

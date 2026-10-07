@@ -1,0 +1,26 @@
+# security.txt for nfdgames.com (RFC 9116)
+# Reach the OpenDrop / NFDGames LLC security team for vulnerability
+# reports, abuse reports, and coordinated-disclosure questions.
+
+Contact: mailto:support@nfdgames.com
+Expires: 2027-05-18T23:59:59-04:00
+Preferred-Languages: en
+Canonical: https://www.nfdgames.com/.well-known/security.txt
+Policy: https://www.nfdgames.com/OpenDrop/security.html
+Acknowledgments: https://www.nfdgames.com/OpenDrop/security.html#hall-of-fame
+
+# In-scope: OpenDrop mobile app (iOS/Android), OpenDrop desktop
+# server (Python/PySide6), Cloudflare Worker control plane (incl. the
+# anonymous free-relay-token mint used for free-tier relay access),
+# our self-hosted file-relay infrastructure (the Fly.io Pro streaming
+# relay and the Oracle free/failover relay boxes, with self-hosted
+# STUN), the peer-to-peer/WebRTC layer, and nfdgames.com web
+# properties. See the full policy URL above for safe-harbor terms,
+# scope, and severity rubric.
+
+# Out-of-scope: third-party services we depend on (Cloudflare,
+# Fly.io, Oracle Cloud, Firebase, Apple, Google Play, Stripe,
+# RevenueCat). Please report those to the providers directly.
+
+# Please do not run automated DAST scans, denial-of-service tests,
+# or social-engineering tests against any production endpoint.

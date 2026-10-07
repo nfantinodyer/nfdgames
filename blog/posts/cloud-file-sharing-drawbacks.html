@@ -7,9 +7,9 @@
     <meta name="description" content="Cloud storage has real limitations for file sharing. Here are the drawbacks and when direct local transfer is the better choice.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
     <meta name="author" content="NFDGames">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96x96.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/x-icon" href="/favicon-nfdgames.ico">
+    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96x96-nfdgames.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-nfdgames.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="canonical" href="https://www.nfdgames.com/blog/posts/cloud-file-sharing-drawbacks.html" />
     <link rel="alternate" hreflang="en" href="https://www.nfdgames.com/blog/posts/cloud-file-sharing-drawbacks.html" />
@@ -73,7 +73,7 @@
         ,
         {
           "@type": "FAQPage",
-          "mainEntity": [{"@type":"Question","name":"Is cloud file sharing slower than direct transfer on the same network?","acceptedAnswer":{"@type":"Answer","text":"Yes, usually by a large margin. Cloud sharing requires uploading the file to a remote server and then downloading it back, which is limited by your internet speeds. Direct LAN transfer skips the internet entirely, using your local network's much higher throughput. For a 2GB file, the difference can be 7+ minutes vs under 30 seconds."}},{"@type":"Question","name":"Are my files private when stored in cloud services?","acceptedAnswer":{"@type":"Answer","text":"Cloud providers encrypt files in transit and at rest, but most hold the encryption keys themselves. This means they can technically access your data, and do scan files for policy violations. Direct local transfer keeps files on your own network and devices, never touching third-party servers."}},{"@type":"Question","name":"When should I use cloud storage instead of direct transfer?","acceptedAnswer":{"@type":"Answer","text":"Cloud storage is better for sharing files with people who don't have transfer software, for persistent access across all your devices, for real-time collaboration on documents, and for off-site backup. Direct transfer is better for moving files between devices you own, especially large files."}},{"@type":"Question","name":"Can direct transfer tools work when devices are on different networks?","acceptedAnswer":{"@type":"Answer","text":"Yes. OpenDrop supports remote transfers through Cloudflare tunnels (free) and a high-speed Fly.io relay (Pro). You don't need to be on the same WiFi, though same-network transfers are faster since they skip the internet entirely."}}]
+          "mainEntity": [{"@type":"Question","name":"Is cloud file sharing slower than direct transfer on the same network?","acceptedAnswer":{"@type":"Answer","text":"Yes, usually by a large margin. Cloud sharing requires uploading the file to a remote server and then downloading it back, which is limited by your internet speeds. Direct LAN transfer skips the internet entirely, using your local network's much higher throughput. For a 2GB file, the difference can be 7+ minutes vs under 30 seconds."}},{"@type":"Question","name":"Are my files private when stored in cloud services?","acceptedAnswer":{"@type":"Answer","text":"Cloud providers encrypt files in transit and at rest, but most hold the encryption keys themselves. This means they can technically access your data, and do scan files for policy violations. Direct local transfer keeps files on your own network and devices, never touching third-party servers."}},{"@type":"Question","name":"When should I use cloud storage instead of direct transfer?","acceptedAnswer":{"@type":"Answer","text":"Cloud storage is better for sharing files with people who don't have transfer software, for persistent access across all your devices, for real-time collaboration on documents, and for off-site backup. Direct transfer is better for moving files between devices you own, especially large files."}},{"@type":"Question","name":"Can direct transfer tools work when devices are on different networks?","acceptedAnswer":{"@type":"Answer","text":"Yes. OpenDrop supports remote transfers through its own encrypted relay — the Oracle Cloud relay on the free tier and a high-speed Fly.io relay (with automatic Oracle failover) on Pro. You don't need to be on the same WiFi, though same-network transfers are faster since they skip the internet entirely."}}]
         }
       ]
     }
@@ -89,6 +89,8 @@
     <link rel="stylesheet" href="/styles/common.css">
     <link rel="stylesheet" href="/styles/blog.css">
 
+    <!-- Cookie consent / Google Consent Mode v2 preboot — must precede any Google tag -->
+    <script src="/scripts/opendrop-cookie-banner.js"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241"></script>
     <script>
@@ -163,7 +165,7 @@
 
 <p>Dropbox Transfer has a 100MB limit on free accounts and 2GB on paid. WeTransfer free tops out at 2GB. These limits force you into workarounds: splitting files, compressing them, or upgrading to paid tiers.</p>
 
-<p>I ran into this last month trying to send a 6GB project archive to a friend. Google Drive would have worked, but my upload speed made it a 30-minute wait. WeTransfer refused the file entirely. I ended up using <a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> over a remote tunnel, which handled the full 6GB without splitting or compressing anything. On LAN, OpenDrop streams files up to 10GB with no chunking at all.</p>
+<p>I ran into this last month trying to send a 6GB project archive to a friend. Google Drive would have worked, but my upload speed made it a 30-minute wait. WeTransfer refused the file entirely. I ended up using <a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> over its remote relay, which handled the full 6GB without me having to split or compress anything. On LAN, OpenDrop streams multi-gigabyte files directly with no chunking at all and no practical size cap.</p>
 
 <div class="callout callout-tip"><div class="callout-title">Tip</div><p>If you regularly share large files and want to avoid cloud upload waits, keep a direct transfer tool installed alongside your cloud storage. Use cloud for collaboration and sharing links; use direct transfer for moving big files between your own devices.</p></div>
 
@@ -191,7 +193,7 @@
 
 <p>The difference is dramatic because cloud transfers are bound by your internet upload speed, while LAN transfers are bound by your local network speed. Your router's internal throughput is almost always faster than your ISP connection.</p>
 
-<p>Remote transfers change the equation. If devices are on different networks, cloud storage and direct-over-internet tools compete on more equal footing. OpenDrop's free remote mode uses Cloudflare tunnels with 5MB chunked transfers at around 8 Mbps. The Pro relay hits 30-50+ Mbps with true streaming. Cloud services vary depending on your connection and their server load.</p>
+<p>Remote transfers change the equation. If devices are on different networks, cloud storage and direct-over-internet tools compete on more equal footing. OpenDrop's free remote mode sends files over our Oracle Cloud relay in resumable 5 MB chunks, and Pro unlocks the faster Fly.io relay (with automatic failover to Oracle) that streams without chunking — both with no per-transfer size cap. Cloud services vary depending on your connection and their server load.</p>
 
 <h2 id="when-cloud-wins">When Cloud Storage Actually Makes Sense</h2>
 
@@ -215,7 +217,7 @@
 
 <h3>Step 2: Change Your Habit for Device-to-Device Transfers</h3>
 
-<p>Next time you need to move a file from your phone to your PC, reach for the direct transfer tool instead of uploading to cloud storage. On the same network, the transfer completes in seconds instead of minutes. Files land in a consistent location: <code>~/Downloads/OpenDrop/Files</code> on macOS, <code>%LOCALAPPDATA%\OpenDrop\Files</code> on Windows.</p>
+<p>Next time you need to move a file from your phone to your PC, reach for the direct transfer tool instead of uploading to cloud storage. On the same network, the transfer completes in seconds instead of minutes. Files land in a consistent location: <code>~/Downloads/OpenDrop/Files</code> on macOS, <code>%USERPROFILE%\Downloads\OpenDrop\Files</code> on Windows.</p>
 
 <h3>Step 3: Keep Cloud for What It Does Best</h3>
 
@@ -297,7 +299,8 @@
         appId: "1:573883707762:web:e68643cce07c2cee3eadeb",
         measurementId: "G-ENWJJ78E3Q"
       });
-      getAnalytics(app);
+      // Gated on user consent — see /scripts/opendrop-cookie-banner.js
+      if (window.OpenDropConsent) { window.OpenDropConsent.onConsent(function () { getAnalytics(app); }); }
     </script>
 </body>
 </html>

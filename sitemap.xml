@@ -2,151 +2,229 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
    <url>
       <loc>https://www.nfdgames.com/OpenDrop/</loc>
-      <lastmod>2026-02-17</lastmod>
+      <lastmod>2026-06-04</lastmod>
       <changefreq>weekly</changefreq>
       <priority>1.0</priority>
    </url>
    <url>
+      <loc>https://www.nfdgames.com/OpenDrop/#screenshots-section</loc>
+      <lastmod>2026-06-04</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.9</priority>
+   </url>
+   <url>
+      <loc>https://www.nfdgames.com/OpenDrop/#features</loc>
+      <lastmod>2026-06-04</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.9</priority>
+   </url>
+   <url>
+      <loc>https://www.nfdgames.com/OpenDrop/#compare</loc>
+      <lastmod>2026-06-04</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.9</priority>
+   </url>
+   <url>
+      <loc>https://www.nfdgames.com/OpenDrop/#download</loc>
+      <lastmod>2026-06-04</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.9</priority>
+   </url>
+   <url>
       <loc>https://www.nfdgames.com/</loc>
-      <lastmod>2026-02-17</lastmod>
+      <lastmod>2026-06-04</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.8</priority>
    </url>
    <url>
       <loc>https://www.nfdgames.com/OpenDrop/support.html</loc>
-      <lastmod>2026-02-17</lastmod>
+      <lastmod>2026-06-04</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.7</priority>
    </url>
    <url>
+      <loc>https://www.nfdgames.com/OpenDrop/PrivacyPolicy.html</loc>
+      <lastmod>2026-06-04</lastmod>
+      <changefreq>yearly</changefreq>
+      <priority>0.4</priority>
+   </url>
+   <url>
+      <loc>https://www.nfdgames.com/OpenDrop/TermsOfService.html</loc>
+      <lastmod>2026-06-04</lastmod>
+      <changefreq>yearly</changefreq>
+      <priority>0.4</priority>
+   </url>
+   <url>
+      <loc>https://www.nfdgames.com/OpenDrop/WithdrawalForm.html</loc>
+      <lastmod>2026-06-04</lastmod>
+      <changefreq>yearly</changefreq>
+      <priority>0.3</priority>
+   </url>
+   <url>
+      <loc>https://www.nfdgames.com/OpenDrop/third-party-notices.html</loc>
+      <lastmod>2026-06-04</lastmod>
+      <changefreq>yearly</changefreq>
+      <priority>0.3</priority>
+   </url>
+   <url>
+      <loc>https://www.nfdgames.com/OpenDrop/security.html</loc>
+      <lastmod>2026-06-04</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://www.nfdgames.com/OpenDrop/accessibility.html</loc>
+      <lastmod>2026-06-04</lastmod>
+      <changefreq>yearly</changefreq>
+      <priority>0.4</priority>
+   </url>
+   <url>
+      <loc>https://www.nfdgames.com/OpenDrop/status.html</loc>
+      <lastmod>2026-06-04</lastmod>
+      <changefreq>daily</changefreq>
+      <priority>0.6</priority>
+   </url>
+   <url>
+      <loc>https://www.nfdgames.com/OpenDrop/changelog.html</loc>
+      <lastmod>2026-06-04</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.6</priority>
+   </url>
+   <url>
+      <loc>https://www.nfdgames.com/OpenDrop/press.html</loc>
+      <lastmod>2026-06-04</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
       <loc>https://www.nfdgames.com/OpenDrop/docs/export-compliance/</loc>
-      <lastmod>2026-02-17</lastmod>
+      <lastmod>2026-06-04</lastmod>
       <changefreq>yearly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://www.nfdgames.com/blog/</loc>
-      <lastmod>2026-02-18</lastmod>
+      <lastmod>2026-06-04</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>
    <url>
+      <loc>https://www.nfdgames.com/blog/posts/whats-new-in-opendrop-1-0.html</loc>
+      <lastmod>2026-06-04</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+   <url>
       <loc>https://www.nfdgames.com/blog/posts/transfer-files-android-to-pc-without-usb.html</loc>
-      <lastmod>2026-02-18</lastmod>
+      <lastmod>2026-06-04</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.6</priority>
    </url>
    <url>
       <loc>https://www.nfdgames.com/blog/posts/best-airdrop-alternatives-windows-2026.html</loc>
-      <lastmod>2026-02-18</lastmod>
+      <lastmod>2026-06-04</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.6</priority>
    </url>
    <url>
       <loc>https://www.nfdgames.com/blog/posts/send-large-files-phone-to-pc-free.html</loc>
-      <lastmod>2026-02-18</lastmod>
+      <lastmod>2026-06-04</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.6</priority>
    </url>
    <url>
       <loc>https://www.nfdgames.com/blog/posts/opendrop-vs-airdrop-comparison.html</loc>
-      <lastmod>2026-02-18</lastmod>
+      <lastmod>2026-06-04</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.6</priority>
    </url>
    <url>
       <loc>https://www.nfdgames.com/blog/posts/opendrop-cli-automated-file-transfers.html</loc>
-      <lastmod>2026-02-18</lastmod>
+      <lastmod>2026-06-04</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.6</priority>
    </url>
    <url>
       <loc>https://www.nfdgames.com/blog/posts/wireless-file-transfer-beginners-guide.html</loc>
-      <lastmod>2026-02-18</lastmod>
+      <lastmod>2026-06-04</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.6</priority>
    </url>
    <url>
       <loc>https://www.nfdgames.com/blog/posts/transfer-photos-iphone-to-windows-pc.html</loc>
-      <lastmod>2026-02-18</lastmod>
+      <lastmod>2026-06-04</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.6</priority>
    </url>
    <url>
       <loc>https://www.nfdgames.com/blog/posts/opendrop-vs-localsend-comparison.html</loc>
-      <lastmod>2026-02-18</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.6</priority>
-   </url>
-   <url>
-      <loc>https://www.nfdgames.com/blog/posts/remote-file-transfer-cloudflare-tunnels.html</loc>
-      <lastmod>2026-02-18</lastmod>
+      <lastmod>2026-06-04</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.6</priority>
    </url>
    <url>
       <loc>https://www.nfdgames.com/blog/posts/transfer-files-without-internet.html</loc>
-      <lastmod>2026-02-18</lastmod>
+      <lastmod>2026-06-04</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.6</priority>
    </url>
    <url>
       <loc>https://www.nfdgames.com/blog/posts/wireless-file-transfer-security-encryption.html</loc>
-      <lastmod>2026-02-18</lastmod>
+      <lastmod>2026-06-04</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.6</priority>
    </url>
    <url>
       <loc>https://www.nfdgames.com/blog/posts/transfer-files-pc-to-android-wirelessly.html</loc>
-      <lastmod>2026-02-18</lastmod>
+      <lastmod>2026-06-04</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.6</priority>
    </url>
    <url>
       <loc>https://www.nfdgames.com/blog/posts/top-10-free-file-transfer-apps-2026.html</loc>
-      <lastmod>2026-02-18</lastmod>
+      <lastmod>2026-06-04</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.6</priority>
    </url>
    <url>
       <loc>https://www.nfdgames.com/blog/posts/qr-code-file-transfer-pairing.html</loc>
-      <lastmod>2026-02-18</lastmod>
+      <lastmod>2026-06-04</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.6</priority>
    </url>
    <url>
       <loc>https://www.nfdgames.com/blog/posts/cloud-file-sharing-drawbacks.html</loc>
-      <lastmod>2026-02-18</lastmod>
+      <lastmod>2026-06-04</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.6</priority>
    </url>
    <url>
       <loc>https://www.nfdgames.com/blog/posts/transfer-files-windows-to-linux.html</loc>
-      <lastmod>2026-02-18</lastmod>
+      <lastmod>2026-06-04</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.6</priority>
    </url>
    <url>
       <loc>https://www.nfdgames.com/blog/posts/opendrop-setup-guide-windows.html</loc>
-      <lastmod>2026-02-18</lastmod>
+      <lastmod>2026-06-04</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.6</priority>
    </url>
    <url>
       <loc>https://www.nfdgames.com/blog/posts/mdns-auto-discovery-explained.html</loc>
-      <lastmod>2026-02-18</lastmod>
+      <lastmod>2026-06-04</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.6</priority>
    </url>
    <url>
       <loc>https://www.nfdgames.com/blog/posts/share-files-iphone-android.html</loc>
-      <lastmod>2026-02-18</lastmod>
+      <lastmod>2026-06-04</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.6</priority>
    </url>
    <url>
       <loc>https://www.nfdgames.com/blog/posts/opendrop-vs-snapdrop-comparison.html</loc>
-      <lastmod>2026-02-18</lastmod>
+      <lastmod>2026-06-04</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.6</priority>
    </url>

@@ -7,9 +7,9 @@
     <meta name="description" content="Five real methods for moving photos from iPhone to Windows PC compared side by side. Speed, file quality, and which method fits your situation.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
     <meta name="author" content="NFDGames">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96x96.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/x-icon" href="/favicon-nfdgames.ico">
+    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96x96-nfdgames.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-nfdgames.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="canonical" href="https://www.nfdgames.com/blog/posts/transfer-photos-iphone-to-windows-pc.html" />
     <link rel="alternate" hreflang="en" href="https://www.nfdgames.com/blog/posts/transfer-photos-iphone-to-windows-pc.html" />
@@ -73,7 +73,7 @@
         ,
         {
           "@type": "FAQPage",
-          "mainEntity": [{"@type":"Question","name":"How do I transfer photos from iPhone to Windows without iTunes?","acceptedAnswer":{"@type":"Answer","text":"You have several options. USB cable with File Explorer (browse DCIM folders directly), iCloud for Windows (automatic sync), or a WiFi transfer app like OpenDrop (direct wireless transfer at original quality). iTunes is not required for any of these methods."}},{"@type":"Question","name":"Will my iPhone photos lose quality when transferred to PC?","acceptedAnswer":{"@type":"Answer","text":"That depends on the method. USB cable and direct WiFi transfer apps preserve original quality. iCloud preserves originals if you enable 'Download Originals' in settings. Email and messaging apps typically compress photos, reducing quality and file size."}},{"@type":"Question","name":"Why are my iPhone photos in HEIC format on Windows?","acceptedAnswer":{"@type":"Answer","text":"iPhones shoot in HEIC (High Efficiency Image Coding) by default because it produces smaller files than JPEG at the same quality. Windows 10/11 can view HEIC with the free HEIF Image Extensions from the Microsoft Store. You can switch your iPhone to JPEG in Settings, Camera, Formats, Most Compatible."}},{"@type":"Question","name":"Can I transfer photos from iPhone to PC wirelessly without the same WiFi?","acceptedAnswer":{"@type":"Answer","text":"Yes. Apps like OpenDrop support remote transfers through Cloudflare tunnels (free) or Fly.io relay (Pro), so your iPhone on cellular can send photos to your home PC. Same WiFi is faster but not required."}},{"@type":"Question","name":"What's the fastest way to transfer a large number of photos from iPhone to PC?","acceptedAnswer":{"@type":"Answer","text":"For bulk transfers of thousands of photos, USB cable offers the highest raw throughput. For regular batches of dozens to hundreds of photos, WiFi transfer apps like OpenDrop are faster in practice because you skip the cable and DCIM folder browsing."}}]
+          "mainEntity": [{"@type":"Question","name":"How do I transfer photos from iPhone to Windows without iTunes?","acceptedAnswer":{"@type":"Answer","text":"You have several options. USB cable with File Explorer (browse DCIM folders directly), iCloud for Windows (automatic sync), or a WiFi transfer app like OpenDrop (direct wireless transfer at original quality). iTunes is not required for any of these methods."}},{"@type":"Question","name":"Will my iPhone photos lose quality when transferred to PC?","acceptedAnswer":{"@type":"Answer","text":"That depends on the method. USB cable and direct WiFi transfer apps preserve original quality. iCloud preserves originals if you enable 'Download Originals' in settings. Email and messaging apps typically compress photos, reducing quality and file size."}},{"@type":"Question","name":"Why are my iPhone photos in HEIC format on Windows?","acceptedAnswer":{"@type":"Answer","text":"iPhones shoot in HEIC (High Efficiency Image Coding) by default because it produces smaller files than JPEG at the same quality. Windows 10/11 can view HEIC with the free HEIF Image Extensions from the Microsoft Store. You can switch your iPhone to JPEG in Settings, Camera, Formats, Most Compatible."}},{"@type":"Question","name":"Can I transfer photos from iPhone to PC wirelessly without the same WiFi?","acceptedAnswer":{"@type":"Answer","text":"Yes. OpenDrop supports remote transfers through its own encrypted relay — the Oracle Cloud relay on the free tier and the faster Fly.io relay on Pro — so your iPhone on cellular can send photos to your home PC. Nothing extra to install. Same WiFi is faster but not required."}},{"@type":"Question","name":"What's the fastest way to transfer a large number of photos from iPhone to PC?","acceptedAnswer":{"@type":"Answer","text":"For bulk transfers of thousands of photos, USB cable offers the highest raw throughput. For regular batches of dozens to hundreds of photos, WiFi transfer apps like OpenDrop are faster in practice because you skip the cable and DCIM folder browsing."}}]
         }
       ]
     }
@@ -89,6 +89,8 @@
     <link rel="stylesheet" href="/styles/common.css">
     <link rel="stylesheet" href="/styles/blog.css">
 
+    <!-- Cookie consent / Google Consent Mode v2 preboot — must precede any Google tag -->
+    <script src="/scripts/opendrop-cookie-banner.js"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241"></script>
     <script>
@@ -204,13 +206,13 @@
 
 <h2>Direct WiFi Transfer: The Speed Option</h2>
 
-<p>This is the method I use daily. Both devices are on the same WiFi network. A transfer app on the phone sends files directly to the PC over the local network. No cable, no cloud, no compression. On LAN, files up to 10GB stream directly.</p>
+<p>This is the method I use daily. Both devices are on the same WiFi network. A transfer app on the phone sends files directly to the PC over the local network. No cable, no cloud, no compression. On LAN, files of any size stream directly.</p>
 
-<p>OpenDrop works by running an HTTP server on the PC (port 8000) and using mDNS discovery (<code>_opendrop._tcp.local.</code>) so the iPhone app finds it automatically. Select photos on the phone, tap send, and they appear in <code>%LOCALAPPDATA%\OpenDrop\Files</code> on the Windows PC. The files transfer at whatever speed your WiFi supports, which on a decent router is fast enough that you'll wonder why you ever used a cable.</p>
+<p>OpenDrop works by running an HTTP server on the PC (port 8000) and using mDNS discovery (<code>_opendrop._tcp.local.</code>) so the iPhone app finds it automatically. Select photos on the phone, tap send, and they appear in <code>%USERPROFILE%\Downloads\OpenDrop\Files</code> on the Windows PC. The files transfer at whatever speed your WiFi supports, which on a decent router is fast enough that you'll wonder why you ever used a cable.</p>
 
 <p>HEIC files transfer as-is, at original quality. No conversion, no compression. If your PC can handle HEIC (Windows 10/11 with the free HEIF extension), you get the space savings. If you need JPEGs, OpenDrop Pro includes file conversion that handles the HEIC-to-JPEG step.</p>
 
-<div class="callout callout-tip"><div class="callout-title">Tip</div><p>You don't need to be on the same WiFi network. OpenDrop also works remotely through Cloudflare tunnels (free tier, 5MB chunks at ~8 Mbps) or a Fly.io relay (Pro tier, streaming at 30-50+ Mbps). Same network is faster, but not required.</p></div>
+<div class="callout callout-tip"><div class="callout-title">Tip</div><p>You don't need to be on the same WiFi network. OpenDrop also works remotely through its own encrypted relay: the Oracle Cloud relay on the free tier, and the faster Fly.io relay (with automatic failover to Oracle) on Pro. No tunnel binary to install, and it works behind NAT and firewalls. Same network is faster, but not required.</p></div>
 
 <p>The setup takes about two minutes. Download OpenDrop on both devices. Open both apps. They find each other. Start sending. There's no account required for LAN transfers, no pairing process, no configuration. QR code pairing is available as a backup if your network blocks mDNS (some hotel and corporate networks do).</p>
 
@@ -328,7 +330,8 @@
         appId: "1:573883707762:web:e68643cce07c2cee3eadeb",
         measurementId: "G-ENWJJ78E3Q"
       });
-      getAnalytics(app);
+      // Gated on user consent — see /scripts/opendrop-cookie-banner.js
+      if (window.OpenDropConsent) { window.OpenDropConsent.onConsent(function () { getAnalytics(app); }); }
     </script>
 </body>
 </html>

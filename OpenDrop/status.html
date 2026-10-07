@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>System Status | OpenDrop</title>
+ <meta name="description" content="Live operational status for OpenDrop services, control plane, encrypted relay, authentication, and website. Updated by NFDGames LLC.">
+ <meta name="robots" content="index, follow">
+ <meta name="author" content="NFDGames">
+ <link rel="icon" type="image/x-icon" href="favicon-opendrop.ico">
+ <link rel="icon" type="image/png" sizes="96x96" href="icon-96x96-opendrop.png">
+ <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-opendrop.png">
+ <link rel="manifest" href="/site.webmanifest">
+ <link rel="canonical" href="https://www.nfdgames.com/OpenDrop/status.html">
+ <meta property="og:type" content="website">
+ <meta property="og:title" content="OpenDrop System Status">
+ <meta property="og:description" content="Operational status for the OpenDrop relay, control plane, and authentication services.">
+ <meta property="og:image" content="https://www.nfdgames.com/OpenDrop/OpenDropIcon.png">
+ <meta property="og:url" content="https://www.nfdgames.com/OpenDrop/status.html">
+ <meta property="og:site_name" content="NFDGames">
+
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+ <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+
+ <link rel="stylesheet" href="../styles/common.css">
+ <link rel="stylesheet" href="../styles/opendrop.css">
+
+ <style>
+ .doc-hero {
+ min-height: auto;
+ padding: 9rem var(--space-xl) var(--space-xl);
+ text-align: center;
+ }
+ .doc-hero h1 {
+ font-size: clamp(2rem, 5vw, 3.25rem);
+ margin-bottom: var(--space-md);
+ }
+ .doc-hero p {
+ color: var(--text-secondary);
+ max-width: 720px;
+ margin: 0 auto;
+ font-size: 1.05rem;
+ }
+ .doc-container {
+ max-width: 920px;
+ margin: 0 auto;
+ padding: 0 var(--space-xl) var(--space-4xl);
+ }
+ .overall-banner {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ gap: 0.85rem;
+ background: rgba(77,184,164,0.10);
+ border: 1px solid rgba(77,184,164,0.4);
+ border-radius: var(--radius-xl);
+ padding: var(--space-lg);
+ margin-bottom: var(--space-xl);
+ font-size: 1.05rem;
+ color: #9bdbcb;
+ }
+ .overall-banner.degraded {
+ background: rgba(212,160,84,0.10);
+ border-color: rgba(212,160,84,0.4);
+ color: #f0c98a;
+ }
+ .overall-banner.major {
+ background: rgba(212,113,126,0.10);
+ border-color: rgba(212,113,126,0.4);
+ color: #f5a8b3;
+ }
+ .overall-banner .dot {
+ width: 12px;
+ height: 12px;
+ border-radius: 50%;
+ background: currentColor;
+ box-shadow: 0 0 12px currentColor;
+ }
+ .service-grid {
+ display: grid;
+ grid-template-columns: 1fr;
+ gap: var(--space-md);
+ margin-bottom: var(--space-xl);
+ }
+ .service-row {
+ background: var(--bg-card);
+ border: 1px solid var(--border);
+ border-radius: var(--radius-xl);
+ padding: var(--space-lg) var(--space-xl);
+ display: grid;
+ grid-template-columns: minmax(220px,1.4fr) 1fr auto;
+ align-items: center;
+ gap: var(--space-md);
+ }
+ .service-row .service-name {
+ font-weight: 600;
+ color: var(--text-primary);
+ font-size: 1rem;
+ }
+ .service-row .service-desc {
+ color: var(--text-muted);
+ font-size: 0.85rem;
+ display: block;
+ margin-top: 2px;
+ }
+ .service-row .service-meta {
+ color: var(--text-secondary);
+ font-size: 0.85rem;
+ }
+ .status-pill {
+ display: inline-flex;
+ align-items: center;
+ gap: 0.4rem;
+ padding: 0.35rem 0.85rem;
+ border-radius: var(--radius-full);
+ font-size: 0.78rem;
+ font-weight: 600;
+ border: 1px solid transparent;
+ white-space: nowrap;
+ }
+ .status-pill .dot {
+ width: 8px;
+ height: 8px;
+ border-radius: 50%;
+ background: currentColor;
+ }
+ .status-pill.ok { background: rgba(77,184,164,0.12); border-color: rgba(77,184,164,0.35); color: #9bdbcb; }
+ .status-pill.degraded { background: rgba(212,160,84,0.12); border-color: rgba(212,160,84,0.35); color: #f0c98a; }
+ .status-pill.major { background: rgba(212,113,126,0.12); border-color: rgba(212,113,126,0.35); color: #f5a8b3; }
+ .status-pill.maint { background: rgba(125,180,216,0.10); border-color: rgba(125,180,216,0.35); color: #afd2ea; }
+ .doc-card {
+ background: var(--bg-card);
+ border: 1px solid var(--border);
+ border-radius: var(--radius-2xl);
+ padding: var(--space-2xl);
+ margin-bottom: var(--space-lg);
+ }
+ .doc-card h2 {
+ font-size: 1.35rem;
+ margin-bottom: var(--space-md);
+ }
+ .doc-card p, .doc-card li {
+ color: var(--text-secondary);
+ font-size: 0.97rem;
+ line-height: 1.7;
+ }
+ .doc-card a {
+ color: var(--accent-glow);
+ text-decoration: none;
+ }
+ .doc-card a:hover { text-decoration: underline; }
+ .doc-card code {
+ font-family: 'Space Mono', monospace;
+ background: var(--bg-dark);
+ padding: 0.15rem 0.4rem;
+ border-radius: 4px;
+ font-size: 0.85em;
+ color: var(--accent-glow);
+ }
+ .incident {
+ padding: var(--space-md) 0;
+ border-bottom: 1px solid var(--border);
+ }
+ .incident:last-child { border-bottom: 0; }
+ .incident-title {
+ color: var(--text-primary);
+ font-weight: 600;
+ margin-bottom: 4px;
+ }
+ .incident-date {
+ color: var(--text-muted);
+ font-size: 0.82rem;
+ font-family: 'Space Mono', monospace;
+ }
+ .incident-body {
+ color: var(--text-secondary);
+ font-size: 0.92rem;
+ margin-top: var(--space-sm);
+ }
+ .updated-stamp {
+ color: var(--text-muted);
+ font-size: 0.82rem;
+ font-family: 'Space Mono', monospace;
+ text-align: right;
+ margin-bottom: var(--space-md);
+ }
+ @media (max-width: 720px) {
+ .doc-hero { padding: 7rem var(--space-lg) var(--space-lg); }
+ .doc-container { padding: 0 var(--space-lg) var(--space-3xl); }
+ .doc-card { padding: var(--space-xl); }
+ .service-row {
+ grid-template-columns: 1fr;
+ gap: var(--space-sm);
+ }
+ .service-row .service-meta { display: none; }
+ .overall-banner { font-size: 0.95rem; }
+ }
+ </style>
+
+    <!-- Cookie consent / Google Consent Mode v2 preboot -->
+    <script src="/scripts/opendrop-cookie-banner.js"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-17319823241');
+    </script>
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "name": "OpenDrop System Status",
+      "description": "Live operational status for OpenDrop services: control plane, encrypted relay, authentication, and website.",
+      "url": "https://www.nfdgames.com/OpenDrop/status.html",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "NFDGames",
+        "url": "https://www.nfdgames.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "NFDGames LLC"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "NFDGames",
+          "item": "https://www.nfdgames.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "OpenDrop",
+          "item": "https://www.nfdgames.com/OpenDrop/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "OpenDrop System Status",
+          "item": "https://www.nfdgames.com/OpenDrop/status.html"
+        }
+      ]
+    }
+  ]
+}
+    </script>
+</head>
+<body>
+ <div class="bg-gradient"></div>
+ <div class="noise"></div>
+
+ <nav>
+ <a href="./" class="logo">
+ <picture>
+ <source srcset="OpenDropIcon-logo.webp" type="image/webp">
+ <img src="OpenDropIcon.png" alt="OpenDrop" class="logo-icon" width="36" height="36" loading="lazy">
+ </picture>
+ OpenDrop
+ </a>
+ <div class="nav-links">
+ <a href="./#features">Features</a>
+ <a href="./#download">Download</a>
+ <a href="support.html">Support</a>
+ <a href="./#download" class="nav-cta">Get Started</a>
+ </div>
+ </nav>
+
+ <main>
+ <section class="doc-hero">
+ <h1>System Status</h1>
+ <p>Operational state of the cloud services that OpenDrop depends on. Local LAN and Bluetooth transfers between your own devices do not require any of these, they keep working even when every line below is red.</p>
+ </section>
+
+ <div class="doc-container">
+
+ <p class="updated-stamp" id="updated-stamp">Loading current status...</p>
+
+ <div class="overall-banner" role="status" aria-label="Overall system status" id="overall-banner">
+ <span class="dot" aria-hidden="true"></span>
+ <span id="overall-text">Checking system status</span>
+ </div>
+
+ <!-- Each service row carries data-service-id so the live-status JS can
+   patch the status pill in place. If the /api/status fetch fails, the
+   default "Operational" pills below stay visible and the updated-stamp
+   above shows a fallback notice. -->
+ <div class="service-grid" role="list" id="service-grid">
+ <div class="service-row" role="listitem" data-service-id="worker">
+ <div>
+ <span class="service-name">Cloudflare Worker (control plane)</span>
+ <span class="service-desc">Device pairing, presence, key exchange, account lookup</span>
+ </div>
+ <div class="service-meta">opendrop.n-fantinodyer.workers.dev</div>
+ <span class="status-pill ok" data-status-pill><span class="dot"></span> Operational</span>
+ </div>
+
+ <div class="service-row" role="listitem" data-service-id="p2p">
+ <div>
+ <span class="service-name">Peer-to-peer (direct)</span>
+ <span class="service-desc">Direct device-to-device transfers over WebRTC, using our own STUN servers for NAT traversal</span>
+ </div>
+ <div class="service-meta">WebRTC · self-hosted STUN</div>
+ <span class="status-pill ok" data-status-pill><span class="dot"></span> Operational</span>
+ </div>
+
+ <div class="service-row" role="listitem" data-service-id="relay">
+ <div>
+ <span class="service-name">Encrypted file-relay</span>
+ <span class="service-desc">Cross-network WebSocket relay — Fly.io for Pro (streaming), Oracle Cloud for free (chunked) and Pro failover</span>
+ </div>
+ <div class="service-meta">Fly.io + Oracle Cloud · multi-region</div>
+ <span class="status-pill ok" data-status-pill><span class="dot"></span> Operational</span>
+ </div>
+
+ <div class="service-row" role="listitem" data-service-id="auth">
+ <div>
+ <span class="service-name">Authentication (Firebase)</span>
+ <span class="service-desc">Sign in with Google, Apple, Microsoft, email/password</span>
+ </div>
+ <div class="service-meta">Google Firebase</div>
+ <span class="status-pill ok" data-status-pill><span class="dot"></span> Operational</span>
+ </div>
+
+ <div class="service-row" role="listitem" data-service-id="billing">
+ <div>
+ <span class="service-name">Subscription billing</span>
+ <span class="service-desc">Apple IAP, Google Play Billing, Stripe, RevenueCat sync</span>
+ </div>
+ <div class="service-meta">RevenueCat · Apple · Google · Stripe</div>
+ <span class="status-pill ok" data-status-pill><span class="dot"></span> Operational</span>
+ </div>
+
+ <div class="service-row" role="listitem" data-service-id="analytics">
+ <div>
+ <span class="service-name">In-app analytics ingest</span>
+ <span class="service-desc">Anonymous heartbeat collection, opt-out respected</span>
+ </div>
+ <div class="service-meta">Cloudflare Worker → Grafana Cloud</div>
+ <span class="status-pill ok" data-status-pill><span class="dot"></span> Operational</span>
+ </div>
+
+ <div class="service-row" role="listitem" data-service-id="website">
+ <div>
+ <span class="service-name">Marketing website</span>
+ <span class="service-desc">nfdgames.com, OpenDrop landing, blog, docs</span>
+ </div>
+ <div class="service-meta">GitHub Pages · Cloudflare CDN</div>
+ <span class="status-pill ok" data-status-pill><span class="dot"></span> Operational</span>
+ </div>
+
+ <div class="service-row" role="listitem" data-service-id="downloads">
+ <div>
+ <span class="service-name">App downloads &amp; updates</span>
+ <span class="service-desc">App Store, Google Play, Microsoft Store, GitHub Releases for Linux</span>
+ </div>
+ <div class="service-meta">Apple · Google · Microsoft · GitHub</div>
+ <span class="status-pill ok" data-status-pill><span class="dot"></span> Operational</span>
+ </div>
+ </div>
+
+ <div class="doc-card">
+ <h2>About this page</h2>
+ <p>Service statuses are refreshed every 15 minutes by a Cloudflare Worker cron that probes each external dependency and writes the result to KV. The page reads from that KV snapshot via the public API at <code>opendrop.n-fantinodyer.workers.dev/api/status</code>.</p>
+ <p>If the snapshot is older than 45 minutes, or the API itself is unreachable, the page falls back to manually-maintained rows and shows a notice at the top. Cloudflare and Worker outages will silence the cron, so during edge-wide incidents the page may stop updating until the platform recovers, that is itself a useful signal.</p>
+ <p><strong>If you are seeing a problem that this page does not reflect</strong>, email <a href="mailto:support@nfdgames.com">support@nfdgames.com</a> with the subject line "Status Report" and a one-line description. The fastest path to a fix is a clear repro and the timestamp you first saw the issue (in UTC if possible). Local-LAN and BLE transfers between your own devices keep working regardless of what shows here.</p>
+ <p>Status definitions:</p>
+ <ul>
+ <li><span class="status-pill ok"><span class="dot"></span> Operational</span> &nbsp; All known functionality of the service is available.</li>
+ <li><span class="status-pill degraded"><span class="dot"></span> Degraded</span> &nbsp; The service is partially impaired: elevated latency, intermittent errors, or a feature subset down.</li>
+ <li><span class="status-pill major"><span class="dot"></span> Major outage</span> &nbsp; The service is unreachable or returning errors for most requests.</li>
+ <li><span class="status-pill maint"><span class="dot"></span> Maintenance</span> &nbsp; Planned maintenance window in progress; impact described in the incident notes.</li>
+ </ul>
+ </div>
+
+ <div class="doc-card">
+ <h2>Recent incidents</h2>
+ <div class="incident">
+ <div class="incident-title">No incidents in the last 30 days.</div>
+ <div class="incident-date">As of 2026-06-04</div>
+ <div class="incident-body">Past incidents over 30 days old are pruned from this view. For incident history relevant to a contract or SLA matter, email <a href="mailto:support@nfdgames.com">support@nfdgames.com</a>.</div>
+ </div>
+ </div>
+
+ <div class="doc-card">
+ <h2>What we cannot guarantee</h2>
+ <p>OpenDrop's cloud services run on third-party infrastructure (Cloudflare, Fly.io, Oracle Cloud, Firebase, Apple, Google Play, Microsoft Store, Stripe, RevenueCat). When one of those providers has an outage, our services that depend on them go down with them and we report that here under the affected row. Per Section 11 and Section 18 of our <a href="TermsOfService.html">Terms of Service</a>, third-party outages are outside our reasonable control and do not constitute a breach of the Terms by NFDGames LLC.</p>
+ <p>For most users, the best mitigation is to <strong>keep at least one direct-LAN pairing</strong> between two of your devices. LAN and Bluetooth transfers don't touch our cloud and continue working when the cloud doesn't.</p>
+ </div>
+
+ <p class="text-muted" style="text-align:center;font-size:0.85rem;margin-top:var(--space-xl);">
+ <a href="TermsOfService.html" style="color:var(--accent);">Terms of Service</a> &nbsp;&middot;&nbsp;
+ <a href="PrivacyPolicy.html" style="color:var(--accent);">Privacy Policy</a> &nbsp;&middot;&nbsp;
+ <a href="support.html" style="color:var(--accent);">Support</a>
+ </p>
+ </div>
+ </main>
+
+ <script>
+ /* Live-status fetcher.
+  *
+  * Pulls /api/status from the OpenDrop Worker and patches the rows
+  * in-place. If the fetch fails or the snapshot is stale, the static
+  * rows (default "Operational" pills) stay visible and the notice
+  * above the grid switches to a fallback message. */
+ (function () {
+   'use strict';
+
+   var STATUS_API = 'https://opendrop.n-fantinodyer.workers.dev/api/status';
+
+   /* Map worker tier -> CSS class on .status-pill plus the human label. */
+   var TIER_TO_PILL = {
+     operational: { cls: 'ok',       label: 'Operational' },
+     degraded:    { cls: 'degraded', label: 'Degraded' },
+     major:       { cls: 'major',    label: 'Major outage' },
+     maintenance: { cls: 'maint',    label: 'Maintenance' }
+   };
+   var OVERALL_BANNER = {
+     operational: { cls: '',         text: 'All systems operational' },
+     degraded:    { cls: 'degraded', text: 'Some services degraded' },
+     major:       { cls: 'major',    text: 'Major outage in progress' },
+     maintenance: { cls: 'degraded', text: 'Maintenance in progress' }
+   };
+
+   function formatTimestamp(iso) {
+     try {
+       var d = new Date(iso);
+       if (isNaN(d.getTime())) return iso;
+       var pad = function (n) { return n < 10 ? '0' + n : '' + n; };
+       return d.getUTCFullYear() + '-' +
+              pad(d.getUTCMonth() + 1) + '-' +
+              pad(d.getUTCDate()) + ' ' +
+              pad(d.getUTCHours()) + ':' +
+              pad(d.getUTCMinutes()) + ' UTC';
+     } catch (e) { return iso; }
+   }
+
+   function setPill(row, tier, note) {
+     var pill = row.querySelector('[data-status-pill]');
+     if (!pill) return;
+     /* Replace all tier classes, keep the base "status-pill" class. */
+     pill.classList.remove('ok', 'degraded', 'major', 'maint');
+     var mapping = TIER_TO_PILL[tier] || TIER_TO_PILL.operational;
+     if (mapping.cls) pill.classList.add(mapping.cls);
+     pill.innerHTML = '<span class="dot"></span> ' + mapping.label;
+     if (note) pill.title = note;
+     else pill.removeAttribute('title');
+   }
+
+   function applySnapshot(snapshot) {
+     var stamp = document.getElementById('updated-stamp');
+     var banner = document.getElementById('overall-banner');
+     var bannerText = document.getElementById('overall-text');
+     if (!stamp || !banner || !bannerText) return;
+
+     if (!snapshot || snapshot.stale || !Array.isArray(snapshot.services) || !snapshot.services.length) {
+       stamp.textContent = 'Live status unavailable, showing last manually-confirmed state. ' +
+         (snapshot && snapshot.stale_reason ? '(' + snapshot.stale_reason + ')' : '');
+       /* Leave the static "Operational" pills alone. */
+       return;
+     }
+
+     var overall = snapshot.overall || 'operational';
+     var mapping = OVERALL_BANNER[overall] || OVERALL_BANNER.operational;
+     banner.classList.remove('degraded', 'major');
+     if (mapping.cls) banner.classList.add(mapping.cls);
+     bannerText.textContent = mapping.text;
+
+     stamp.textContent = 'Last updated: ' + formatTimestamp(snapshot.updated_at) +
+       ' (auto-refreshed every 15 minutes)';
+
+     snapshot.services.forEach(function (s) {
+       var row = document.querySelector('[data-service-id="' + s.id + '"]');
+       if (row) setPill(row, s.status, s.note);
+     });
+   }
+
+   function fallback(message) {
+     var stamp = document.getElementById('updated-stamp');
+     var banner = document.getElementById('overall-banner');
+     var bannerText = document.getElementById('overall-text');
+     if (stamp) stamp.textContent = message;
+     if (banner) banner.classList.remove('degraded', 'major');
+     if (bannerText) bannerText.textContent = 'Last manually-confirmed state shown below';
+   }
+
+   function fetchStatus() {
+     fetch(STATUS_API, { headers: { 'Accept': 'application/json' } })
+       .then(function (r) {
+         if (!r.ok) throw new Error('HTTP ' + r.status);
+         return r.json();
+       })
+       .then(function (snapshot) {
+         if (!snapshot || snapshot.stale) {
+           var reason = snapshot && snapshot.stale_reason
+             ? ' (' + snapshot.stale_reason + ')'
+             : '';
+           fallback('Live status unavailable' + reason + '. Showing last manually-confirmed state.');
+           return;
+         }
+         applySnapshot(snapshot);
+       })
+       .catch(function (err) {
+         fallback('Live status unavailable (' +
+           (err && err.message ? err.message : 'fetch failed') +
+           '). Showing last manually-confirmed state.');
+       });
+   }
+
+   if (document.readyState === 'loading') {
+     document.addEventListener('DOMContentLoaded', fetchStatus);
+   } else {
+     fetchStatus();
+   }
+ })();
+ </script>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-analytics.js";
+      const app = initializeApp({
+        apiKey: "AIzaSyD1XfHr0OtAM4Zm62sPLW4Rjg__8HlLE0c",
+        authDomain: "opendrop-3c111.firebaseapp.com",
+        projectId: "opendrop-3c111",
+        storageBucket: "opendrop-3c111.firebasestorage.app",
+        messagingSenderId: "573883707762",
+        appId: "1:573883707762:web:e68643cce07c2cee3eadeb",
+        measurementId: "G-ENWJJ78E3Q"
+      });
+      // Gated on user consent
+      if (window.OpenDropConsent) {
+        window.OpenDropConsent.onConsent(function () { getAnalytics(app); });
+      }
+    </script>
+</body>
+</html>

@@ -7,9 +7,9 @@
     <meta name="description" content="A direct comparison of OpenDrop and Apple AirDrop across platform support, remote transfers, file size handling, and real-world speed.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
     <meta name="author" content="NFDGames">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96x96.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/x-icon" href="/favicon-nfdgames.ico">
+    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96x96-nfdgames.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-nfdgames.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="canonical" href="https://www.nfdgames.com/blog/posts/opendrop-vs-airdrop-comparison.html" />
     <link rel="alternate" hreflang="en" href="https://www.nfdgames.com/blog/posts/opendrop-vs-airdrop-comparison.html" />
@@ -72,7 +72,7 @@
         ,
         {
           "@type": "FAQPage",
-          "mainEntity": [{"@type":"Question","name":"Can OpenDrop replace AirDrop completely?","acceptedAnswer":{"@type":"Answer","text":"For cross-platform transfers, yes. OpenDrop works between any combination of Windows, macOS, Linux, iOS, and Android. For Apple-to-Apple transfers where both devices are nearby, AirDrop is slightly more convenient since it's built into the OS. OpenDrop adds remote transfer capability that AirDrop doesn't have."}},{"@type":"Question","name":"Is OpenDrop as fast as AirDrop?","acceptedAnswer":{"@type":"Answer","text":"On the same WiFi network, OpenDrop LAN transfers are comparable in speed to AirDrop. Both use WiFi for the actual data transfer. AirDrop uses WiFi Direct while OpenDrop uses standard HTTP over your existing network. The practical speed difference for most files is negligible."}},{"@type":"Question","name":"Does AirDrop work with Windows PCs?","acceptedAnswer":{"@type":"Answer","text":"No. AirDrop only works between Apple devices (iPhone, iPad, Mac). There is no official AirDrop client for Windows, Linux, or Android. OpenDrop is a cross-platform alternative that supports all five major operating systems."}},{"@type":"Question","name":"Can I send files remotely with AirDrop?","acceptedAnswer":{"@type":"Answer","text":"No. AirDrop requires both devices to be within Bluetooth range (about 10 meters). It cannot send files over the internet or between different networks. OpenDrop supports remote transfers via Cloudflare tunnels (free) or Fly.io relay (Pro) for transfers across any distance."}},{"@type":"Question","name":"Is OpenDrop secure compared to AirDrop?","acceptedAnswer":{"@type":"Answer","text":"Both tools use different but appropriate security models. AirDrop uses TLS 1.2 and iCloud identity verification. OpenDrop uses HMAC-SHA256 request signing with a 30-second timestamp window, and remote transfers are encrypted via TLS through Cloudflare or Fly.io. LAN transfers use plain HTTP since data stays on your local network."}}]
+          "mainEntity": [{"@type":"Question","name":"Can OpenDrop replace AirDrop completely?","acceptedAnswer":{"@type":"Answer","text":"For cross-platform transfers, yes. OpenDrop works between any combination of Windows, macOS, Linux, iOS, and Android. For Apple-to-Apple transfers where both devices are nearby, AirDrop is slightly more convenient since it's built into the OS. OpenDrop adds remote transfer capability that AirDrop doesn't have."}},{"@type":"Question","name":"Is OpenDrop as fast as AirDrop?","acceptedAnswer":{"@type":"Answer","text":"On the same WiFi network, OpenDrop LAN transfers are comparable in speed to AirDrop. Both use WiFi for the actual data transfer. AirDrop uses WiFi Direct while OpenDrop uses standard HTTP over your existing network. The practical speed difference for most files is negligible."}},{"@type":"Question","name":"Does AirDrop work with Windows PCs?","acceptedAnswer":{"@type":"Answer","text":"No. AirDrop only works between Apple devices (iPhone, iPad, Mac). There is no official AirDrop client for Windows, Linux, or Android. OpenDrop is a cross-platform alternative that supports all five major operating systems."}},{"@type":"Question","name":"Can I send files remotely with AirDrop?","acceptedAnswer":{"@type":"Answer","text":"No. AirDrop requires both devices to be within Bluetooth range (about 10 meters). It cannot send files over the internet or between different networks. OpenDrop supports remote transfers through its own end-to-end-encrypted relay — an Oracle Cloud relay on the free tier and the faster Fly.io relay on Pro — for transfers across any distance, with no third-party tunnel to download."}},{"@type":"Question","name":"Is OpenDrop secure compared to AirDrop?","acceptedAnswer":{"@type":"Answer","text":"Both tools encrypt file transfers end-to-end. AirDrop uses TLS 1.2 with iCloud identity verification between Apple devices. OpenDrop applies ChaCha20-Poly1305 end-to-end encryption (RFC 8439 IETF AEAD) on every transfer path — LAN, the encrypted relay, and Bluetooth Low Energy — with no plaintext fallback. HMAC-SHA256 request signing sits alongside the AEAD layer so unauthorized devices are rejected at the auth layer."}}]
         }
       ]
     }
@@ -88,6 +88,8 @@
     <link rel="stylesheet" href="/styles/common.css">
     <link rel="stylesheet" href="/styles/blog.css">
 
+    <!-- Cookie consent / Google Consent Mode v2 preboot — must precede any Google tag -->
+    <script src="/scripts/opendrop-cookie-banner.js"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241"></script>
     <script>
@@ -166,9 +168,9 @@
 
 <p>OpenDrop works both locally and remotely. On the same network, it uses mDNS auto-discovery (the service type is <code>_opendrop._tcp.local.</code> on port 8000) to find devices automatically. No Bluetooth needed. The transfer goes over direct HTTP between the two devices.</p>
 
-<p>On different networks, OpenDrop creates a Cloudflare tunnel that connects the devices over the internet. Free users get chunked transfers through this tunnel (5MB chunks at roughly 8 Mbps). Pro users get a faster Fly.io relay with streaming binary WebSocket frames at 30-50+ Mbps. Either way, you can send files between your phone on cellular and your home PC without being anywhere near it.</p>
+<p>On different networks, OpenDrop connects the devices through its own relay over the internet. Both devices dial outbound to the relay, so it works behind NAT and firewalls — no port forwarding, no third-party tunnel to install, and no per-transfer size cap. Free transfers run on our Oracle Cloud relay; Pro unlocks a faster Fly.io relay with automatic Oracle failover. Either way, you can send files between your phone on cellular and your home PC without being anywhere near it.</p>
 
-<p>I test this regularly from my phone on cellular in Greenville, SC to my desktop at home. The tunnel connects in a few seconds, and transfers start immediately. For AirDrop to work, I'd need to physically walk to my Mac and stand next to it. That's not a file transfer solution; it's a sneakernet with extra steps.</p>
+<p>I test this regularly from my phone on cellular in Greenville, SC to my desktop at home. The relay connects in a few seconds, and transfers start immediately. For AirDrop to work, I'd need to physically walk to my Mac and stand next to it. That's not a file transfer solution; it's a sneakernet with extra steps.</p>
 
 <h2>The Large File Problem</h2>
 
@@ -176,11 +178,11 @@
 
 <p>Where AirDrop falls apart is reliability with large transfers. I've had AirDrop transfers fail mid-way on files over 1GB with no clear error message. The progress bar freezes, then the transfer quietly fails. You try again, sometimes it works, sometimes it doesn't. There's no resume capability. If a 4GB transfer fails at 90%, you start over from zero.</p>
 
-<p>OpenDrop's LAN streaming mode also handles large files directly. On the same network, files stream from sender to receiver with no intermediate storage, supporting files up to 10GB. The difference is in what happens when things go wrong on a remote connection.</p>
+<p>OpenDrop's LAN streaming mode also handles large files directly. On the same network, files stream from sender to receiver with no intermediate storage, supporting files of any size. The difference is in what happens when things go wrong on a remote connection.</p>
 
-<p>Free remote transfers use 5MB chunks through the Cloudflare tunnel. If chunk 200 of a large transfer fails, only that 5MB piece gets retried. You don't lose the previous 999MB of progress. The chunking is slower (roughly 8 Mbps), but for large files on unreliable connections, the reliability tradeoff is worth it.</p>
+<p>Remote transfers route over OpenDrop's own relay with no per-transfer size cap. Free remote transfers move in resumable 5 MB chunks, so a dropped connection picks back up at the last completed chunk instead of restarting from zero. On unreliable connections this resume behavior matters more than raw speed.</p>
 
-<p>Pro remote transfers stream files through the Fly.io relay at 30-50+ Mbps. For context, we originally used base64-encoded JSON payloads for remote transfers. Switching to binary WebSocket frames eliminated the 33% encoding overhead and significantly improved throughput.</p>
+<p>OpenDrop Pro adds a faster, dedicated Fly.io relay (with automatic failover to a backup Oracle Cloud relay if Fly is ever down). For context, we originally used base64-encoded JSON payloads for remote transfers. Switching to binary WebSocket frames eliminated the 33% encoding overhead and significantly improved throughput.</p>
 
 <div class="callout callout-tip"><div class="callout-title">Tip</div><p>If you're sending a large file between devices in the same location, connect both to the same WiFi network first. OpenDrop automatically switches to LAN streaming mode, which is dramatically faster than any remote transfer method.</p></div>
 
@@ -194,7 +196,7 @@
 
 <p>When mDNS doesn't work (hotels, corporate WiFi, networks that block multicast on port 5353 UDP), OpenDrop has QR code pairing as a fallback. We added this after multiple users in the same week emailed about hotel WiFi blocking mDNS. The QR code encodes the server's IP address and port directly, bypassing discovery entirely. Scan the code with your phone, and you're connected. No Bluetooth, no contact list, no toggling settings.</p>
 
-<p>For remote connections (different networks), discovery isn't relevant. The mobile app connects to the desktop through the tunnel URL. The desktop app displays a QR code containing the tunnel address, or you can connect by entering it manually.</p>
+<p>For remote connections (different networks), discovery isn't relevant. The mobile app connects to the desktop through the relay. The desktop app displays a QR code containing the relay endpoint, or you can connect by entering it manually.</p>
 
 <h2>Speed, Security, and the Stuff That Matters Less</h2>
 
@@ -202,9 +204,9 @@
 
 <p>OpenDrop LAN transfers also use WiFi, but over standard HTTP rather than WiFi Direct. The practical speed difference depends on your network hardware. On a modern WiFi 5 or WiFi 6 router, OpenDrop LAN transfers are fast enough that file size, not network speed, is the limiting factor for anything under several gigabytes.</p>
 
-<p>Security models differ. AirDrop uses TLS 1.2 encryption and verifies identities through iCloud certificates when using "Contacts Only" mode. OpenDrop uses HMAC-SHA256 request signing with a shared secret and a 30-second timestamp window to prevent replay attacks. Remote transfers get TLS encryption via Cloudflare (free tier) or Fly.io (Pro tier). LAN transfers use plain HTTP because the traffic stays on your local network and never touches the internet.</p>
+<p>Security models differ in detail but both encrypt the file contents end-to-end. AirDrop uses TLS 1.2 with iCloud-certificate identity verification when in "Contacts Only" mode. OpenDrop applies ChaCha20-Poly1305 IETF AEAD (RFC 8439) to file contents on every transfer path — LAN, the encrypted relay, and Bluetooth Low Energy — with no plaintext fallback. HMAC-SHA256 request signing sits alongside the AEAD layer so unauthorized devices are rejected at the auth layer. Remote transfers additionally ride underneath TLS on the relay as a second encryption layer.</p>
 
-<p>Neither approach is inherently more secure than the other for their intended use cases. AirDrop's identity verification is useful when receiving files from strangers. OpenDrop's HMAC signing is designed for transfers between your own devices, where you control both endpoints.</p>
+<p>Neither approach is inherently more secure than the other for their intended use cases. AirDrop's identity verification is useful when receiving files from strangers. OpenDrop's per-account shared-secret model is designed for transfers between your own devices, where you control both endpoints — the AEAD key derives from that secret, so only devices that hold it can decrypt the bytes.</p>
 
 <p>The real question isn't which tool is "better" in the abstract. If all your devices are Apple, AirDrop works well for local transfers and requires zero setup. The moment you need to send files to Windows, Linux, or Android, or the moment you need to send files remotely, AirDrop has nothing to offer. <a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> covers both the local and remote cases across all five major platforms. For a mixed-device household or anyone who transfers files between different ecosystems, it solves problems AirDrop was never designed to address.</p>
 
@@ -278,7 +280,8 @@
         appId: "1:573883707762:web:e68643cce07c2cee3eadeb",
         measurementId: "G-ENWJJ78E3Q"
       });
-      getAnalytics(app);
+      // Gated on user consent — see /scripts/opendrop-cookie-banner.js
+      if (window.OpenDropConsent) { window.OpenDropConsent.onConsent(function () { getAnalytics(app); }); }
     </script>
 </body>
 </html>

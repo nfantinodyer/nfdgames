@@ -1,0 +1,66 @@
+name: Refresh OpenDrop screenshots
+
+# Pulls fresh screenshots from the Microsoft Store, Mac App Store, and
+# iOS App Store, DOWNLOADS them into OpenDrop/screenshots/<platform>/,
+# and updates OpenDrop/screenshots-manifest.json so the page can serve
+# images from our own origin (no more hot-linking the stores' CDNs,
+# which used to break the gallery whenever Apple rotated a URL).
+#
+# Failure semantics live in scripts/refresh-screenshots-manifest.mjs:
+# per-platform store failure preserves the previous manifest section,
+# and per-image download failure falls back to the last good local
+# copy when one exists.
+#
+# Runs:
+#   - daily on a schedule (so new app updates surface within ~24h)
+#   - on demand via "Run workflow" in the Actions tab
+#   - on every push to main that touches the manifest script or this
+#     workflow (for immediate testing of script changes)
+on:
+  schedule:
+    # 07:17 UTC daily — odd minute to avoid the cron rush hour and
+    # reduce the chance of getting throttled by either store API.
+    - cron: '17 7 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/refresh-screenshots-manifest.mjs'
+      - '.github/workflows/refresh-screenshots.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Refresh manifest and download screenshots
+        run: node scripts/refresh-screenshots-manifest.mjs
+
+      - name: Commit changes
+        run: |
+          # Stage everything the script can touch: the manifest, the
+          # downloaded screenshot files (new + replaced), and the
+          # og:image patch in index.html.
+          git add OpenDrop/screenshots-manifest.json \
+                  OpenDrop/screenshots/ \
+                  OpenDrop/index.html
+          if git diff --cached --quiet; then
+            echo "No screenshot changes — skipping commit"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # Print the diff stat so the run log carries the change summary.
+          git diff --cached --stat
+          git commit -m "Refresh OpenDrop screenshots (auto)"
+          git push

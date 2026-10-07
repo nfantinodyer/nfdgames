@@ -1,9 +1,21 @@
 User-agent: *
 Allow: /
 
+# Don't index the Firebase email-action handler (one-time-use auth flow URLs)
+Disallow: /OpenDrop/auth/
+
+# Don't bother crawling raw asset directories
+Disallow: /scripts/
+Disallow: /styles/
+
+# Don't surface the screenshots manifest in search results
+Disallow: /OpenDrop/screenshots-manifest.json
+
+# Don't crawl the .well-known directory (security.txt etc. are not browsable content)
+Disallow: /.well-known/
+
 Sitemap: https://www.nfdgames.com/sitemap.xml
 
-# Crawl-delay suggestion for polite bots
 User-agent: Googlebot
 Allow: /
 

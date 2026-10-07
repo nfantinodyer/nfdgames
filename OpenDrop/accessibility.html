@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Accessibility Statement | OpenDrop</title>
+ <meta name="description" content="Accessibility statement for OpenDrop and nfdgames.com, WCAG 2.1 AA conformance status, known gaps, and how to request accommodations.">
+ <meta name="robots" content="index, follow">
+ <meta name="author" content="NFDGames">
+ <link rel="icon" type="image/x-icon" href="favicon-opendrop.ico">
+ <link rel="icon" type="image/png" sizes="96x96" href="icon-96x96-opendrop.png">
+ <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-opendrop.png">
+ <link rel="manifest" href="/site.webmanifest">
+ <link rel="canonical" href="https://www.nfdgames.com/OpenDrop/accessibility.html">
+ <meta property="og:type" content="website">
+ <meta property="og:title" content="OpenDrop Accessibility Statement">
+ <meta property="og:description" content="WCAG 2.1 AA conformance status and known gaps for OpenDrop and nfdgames.com.">
+ <meta property="og:image" content="https://www.nfdgames.com/OpenDrop/OpenDropIcon.png">
+ <meta property="og:url" content="https://www.nfdgames.com/OpenDrop/accessibility.html">
+ <meta property="og:site_name" content="NFDGames">
+
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+ <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+
+ <link rel="stylesheet" href="../styles/common.css">
+ <link rel="stylesheet" href="../styles/opendrop.css">
+
+ <style>
+ .doc-hero {
+ min-height: auto;
+ padding: 9rem var(--space-xl) var(--space-xl);
+ text-align: center;
+ }
+ .doc-hero h1 {
+ font-size: clamp(2rem, 5vw, 3.25rem);
+ margin-bottom: var(--space-md);
+ }
+ .doc-hero p {
+ color: var(--text-secondary);
+ max-width: 760px;
+ margin: 0 auto;
+ font-size: 1.05rem;
+ }
+ .doc-container {
+ max-width: 900px;
+ margin: 0 auto;
+ padding: 0 var(--space-xl) var(--space-4xl);
+ }
+ .doc-card {
+ background: var(--bg-card);
+ border: 1px solid var(--border);
+ border-radius: var(--radius-2xl);
+ padding: var(--space-2xl);
+ margin-bottom: var(--space-lg);
+ }
+ .doc-card h2 {
+ font-size: 1.35rem;
+ margin-bottom: var(--space-md);
+ }
+ .doc-card h3 {
+ margin: var(--space-lg) 0 var(--space-sm);
+ font-size: 1.0rem;
+ color: var(--text-primary);
+ }
+ .doc-card p, .doc-card li {
+ color: var(--text-secondary);
+ font-size: 0.97rem;
+ line-height: 1.7;
+ }
+ .doc-card strong { color: var(--text-primary); }
+ .doc-card a {
+ color: var(--accent-glow);
+ text-decoration: none;
+ }
+ .doc-card a:hover { text-decoration: underline; }
+ .doc-card ul, .doc-card ol {
+ margin: var(--space-sm) 0 var(--space-md) 1.25rem;
+ }
+ .doc-card li { margin-bottom: 0.4rem; }
+ .compliance-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+ gap: var(--space-md);
+ margin: var(--space-lg) 0;
+ }
+ .compliance-card {
+ background: var(--bg-dark);
+ border: 1px solid var(--border);
+ border-radius: var(--radius-lg);
+ padding: var(--space-md);
+ }
+ .compliance-card h4 {
+ color: var(--text-primary);
+ font-size: 0.95rem;
+ margin-bottom: 0.3rem;
+ }
+ .compliance-card p {
+ font-size: 0.85rem;
+ color: var(--text-secondary);
+ line-height: 1.55;
+ margin: 0;
+ }
+ .pill {
+ display: inline-flex;
+ align-items: center;
+ padding: 0.2rem 0.55rem;
+ border-radius: var(--radius-full);
+ font-size: 0.7rem;
+ font-weight: 700;
+ margin-left: 0.4rem;
+ letter-spacing: 0.04em;
+ }
+ .pill.ok { background: rgba(77,184,164,0.18); color: #9bdbcb; }
+ .pill.partial { background: rgba(212,160,84,0.18); color: #f0c98a; }
+ .pill.gap { background: rgba(212,113,126,0.18); color: #f5a8b3; }
+ @media (max-width: 720px) {
+ .doc-hero { padding: 7rem var(--space-lg) var(--space-lg); }
+ .doc-container { padding: 0 var(--space-lg) var(--space-3xl); }
+ .doc-card { padding: var(--space-xl); }
+ }
+ </style>
+
+    <!-- Cookie consent / Google Consent Mode v2 preboot -->
+    <script src="/scripts/opendrop-cookie-banner.js"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-17319823241');
+    </script>
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "name": "Accessibility Statement",
+      "description": "Accessibility statement for OpenDrop and nfdgames.com: WCAG 2.1 AA conformance status.",
+      "url": "https://www.nfdgames.com/OpenDrop/accessibility.html",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "NFDGames",
+        "url": "https://www.nfdgames.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "NFDGames LLC"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "NFDGames",
+          "item": "https://www.nfdgames.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "OpenDrop",
+          "item": "https://www.nfdgames.com/OpenDrop/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Accessibility Statement",
+          "item": "https://www.nfdgames.com/OpenDrop/accessibility.html"
+        }
+      ]
+    }
+  ]
+}
+    </script>
+</head>
+<body>
+ <div class="bg-gradient"></div>
+ <div class="noise"></div>
+
+ <nav>
+ <a href="./" class="logo">
+ <picture>
+ <source srcset="OpenDropIcon-logo.webp" type="image/webp">
+ <img src="OpenDropIcon.png" alt="OpenDrop" class="logo-icon" width="36" height="36" loading="lazy">
+ </picture>
+ OpenDrop
+ </a>
+ <div class="nav-links">
+ <a href="./#features">Features</a>
+ <a href="./#download">Download</a>
+ <a href="support.html">Support</a>
+ <a href="./#download" class="nav-cta">Get Started</a>
+ </div>
+ </nav>
+
+ <main>
+ <section class="doc-hero">
+ <h1>Accessibility Statement</h1>
+ <p>NFDGames LLC works to make OpenDrop and nfdgames.com usable by everyone. This page describes our current conformance status, known gaps we are working on, and how to request an accommodation.</p>
+ </section>
+
+ <div class="doc-container">
+
+ <div class="doc-card">
+ <h2>Conformance status</h2>
+ <p>We target <strong>Web Content Accessibility Guidelines (WCAG) 2.1 Level AA</strong> for our public web properties and <strong>Apple Human Interface Guidelines</strong> / <strong>Material Design 3</strong> accessibility patterns for the mobile and desktop applications. As of the date below, OpenDrop's public web properties are <strong>partially conformant</strong> with WCAG 2.1 Level AA, meaning the majority of the content meets the standard, but some content does not yet fully conform.</p>
+
+ <div class="compliance-grid">
+ <div class="compliance-card">
+ <h4>nfdgames.com web<span class="pill partial">Partial</span></h4>
+ <p>Marketing, blog, and policy pages. Conforms to most WCAG 2.1 AA criteria; known gaps listed below.</p>
+ </div>
+ <div class="compliance-card">
+ <h4>OpenDrop iOS<span class="pill ok">Targeted</span></h4>
+ <p>Apple HIG accessibility. Supports VoiceOver, Dynamic Type, Reduce Motion, Reduce Transparency, and Smart Invert.</p>
+ </div>
+ <div class="compliance-card">
+ <h4>OpenDrop Android<span class="pill ok">Targeted</span></h4>
+ <p>Material 3 accessibility. Supports TalkBack, Display Size, Font Size, and high-contrast text where the OS provides it.</p>
+ </div>
+ <div class="compliance-card">
+ <h4>OpenDrop desktop<span class="pill partial">Partial</span></h4>
+ <p>Qt accessibility bridge enabled for screen readers (NVDA, VoiceOver, AT-SPI). Some custom widgets need additional ARIA-style labeling.</p>
+ </div>
+ </div>
+ </div>
+
+ <div class="doc-card">
+ <h2>What works well today</h2>
+ <h3>Web</h3>
+ <ul>
+ <li>Semantic HTML5 throughout, proper landmarks (<code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;footer&gt;</code>) and heading hierarchy.</li>
+ <li>Color palette meets WCAG 2.1 contrast ratio AA on body text (≥ 4.5:1) and large headings (≥ 3:1) across the canonical OpenDrop Brand palette (cerulean blue on dark navy).</li>
+ <li>Keyboard navigation works on every interactive element; focus indicators are visible.</li>
+ <li>All icons have <code>alt</code> text or <code>aria-label</code>; decorative-only images use <code>alt=""</code>.</li>
+ <li>Forms have programmatic <code>&lt;label&gt;</code> associations and required-field indicators.</li>
+ <li>Cookie banner is reachable via <code>Tab</code>, is dismissible via Accept or Reject, and respects browser Global Privacy Control (GPC), see the <a href="PrivacyPolicy.html">Privacy Policy</a>.</li>
+ <li>Pages reflow at 320 px viewport width without horizontal scrolling.</li>
+ <li><code>prefers-reduced-motion</code> is honored where motion is used.</li>
+ </ul>
+ <h3>Mobile (iOS / Android)</h3>
+ <ul>
+ <li>VoiceOver and TalkBack labels on every interactive control; logical reading order.</li>
+ <li>Dynamic Type (iOS) and system Font Size / Display Size (Android) cause UI text to scale to user-set sizes; layout reflows.</li>
+ <li>Reduce Motion (iOS) disables card animations and transition transforms.</li>
+ <li>Color is never the only carrier of meaning, status icons pair color with shape/text.</li>
+ <li>Tap targets are at least 44×44 pt (iOS) / 48&times;48 dp (Android).</li>
+ <li>The QR-code pairing screen offers a visible text fallback URL for users who can't see the camera viewfinder.</li>
+ </ul>
+ <h3>Desktop</h3>
+ <ul>
+ <li>Qt accessibility bridge enables screen-reader navigation on Windows (NVDA, JAWS), macOS (VoiceOver), and Linux (Orca via AT-SPI).</li>
+ <li>Full keyboard navigation, every action that can be done with the mouse can also be done with the keyboard.</li>
+ <li>OS-level "Reduce motion" / "Reduce transparency" / dark-mode settings are honored.</li>
+ <li>Themed color palettes include high-contrast options.</li>
+ </ul>
+ </div>
+
+ <div class="doc-card">
+ <h2>Known gaps we are working on</h2>
+ <ul>
+ <li><strong>Blog post code blocks</strong> on nfdgames.com don't carry an <code>aria-label</code> announcing the language; this can make code samples harder for screen-reader users to skim.<span class="pill partial">Web</span></li>
+ <li><strong>Marketing-page coverflow carousel</strong> (the 3D screenshot stack on the OpenDrop landing page) is decorative; its underlying screenshots are reachable but the carousel controls are not keyboard-focusable. We plan to add focusable previous/next buttons and a pause-rotation control.<span class="pill gap">Web</span></li>
+ <li><strong>Cupertino dialogs on iOS 16</strong> can occasionally announce stale focus after dismissal. The 1.0 build mitigates this by re-focusing the previously-active element; it is not perfect.<span class="pill partial">iOS</span></li>
+ <li><strong>File-thumbnail grid on mobile</strong> announces "image" rather than a more descriptive label. We will add filename + size announcements.<span class="pill partial">Mobile</span></li>
+ <li><strong>Drag-and-drop on desktop</strong> requires a pointing device for some operations (e.g., reordering tabs). Keyboard equivalents are planned for a follow-up release.<span class="pill gap">Desktop</span></li>
+ <li><strong>Custom color-palette editor</strong> on desktop does not yet preview contrast ratios for the colors you choose. Until that ships, please prefer a built-in palette if you rely on contrast.<span class="pill partial">Desktop</span></li>
+ </ul>
+ </div>
+
+ <div class="doc-card">
+ <h2>Standards we follow</h2>
+ <ul>
+ <li><strong>WCAG 2.1 Level AA</strong> for web. <a href="https://www.w3.org/TR/WCAG21/">w3.org/TR/WCAG21</a></li>
+ <li><strong>WAI-ARIA 1.2</strong> for ARIA roles, states, and properties. <a href="https://www.w3.org/TR/wai-aria-1.2/">w3.org/TR/wai-aria-1.2</a></li>
+ <li><strong>Apple Human Interface Guidelines, Accessibility</strong> for iOS and macOS. <a href="https://developer.apple.com/design/human-interface-guidelines/accessibility">developer.apple.com</a></li>
+ <li><strong>Material Design 3, Accessibility</strong> for Android. <a href="https://m3.material.io/foundations/accessible-design/overview">m3.material.io</a></li>
+ <li><strong>EN 301 549</strong> (the European Accessibility Act baseline standard) for the EU, we track its requirements as we add features.</li>
+ <li><strong>Section 508 of the U.S. Rehabilitation Act.</strong> We are not a federal contractor, but our targets align with the 508 refresh that adopted WCAG 2.0 AA.</li>
+ </ul>
+ </div>
+
+ <div class="doc-card">
+ <h2>How to request an accommodation or report a barrier</h2>
+ <p>If you encounter an accessibility barrier, anywhere in the OpenDrop apps, on nfdgames.com, in our policy pages, or in our purchase flow, we want to hear about it. Please contact:</p>
+ <ul>
+ <li><strong>Email:</strong> <a href="mailto:support@nfdgames.com">support@nfdgames.com</a> with the subject line "Accessibility."</li>
+ <li><strong>Support form:</strong> <a href="support.html">nfdgames.com/OpenDrop/support.html</a>, pick "Accessibility" as the topic.</li>
+ <li><strong>What to include:</strong> the platform you're on (browser + OS, or iOS/Android version), the URL or screen, what assistive technology you use (screen reader, magnifier, switch control, etc.), and what behavior you expected.</li>
+ </ul>
+ <p><strong>Our commitment:</strong> we acknowledge accessibility reports within 3 business days. Critical barriers that prevent access to a paid feature you have purchased are prioritized for a same-week fix.</p>
+ <p>If we are unable to resolve a barrier, you may also reach out to your local accessibility-rights authority, for example, in the EU under the Web Accessibility Directive 2016/2102, or in the United States under the Americans with Disabilities Act (ADA).</p>
+ </div>
+
+ <div class="doc-card">
+ <h2>How this statement was prepared</h2>
+ <p>This statement was prepared on 2026-06-04 based on a self-evaluation by NFDGames LLC. The evaluation methods included automated testing with <strong>axe DevTools</strong> and Apple's <strong>Accessibility Inspector</strong>, manual keyboard navigation, screen-reader spot-checks with VoiceOver (macOS, iOS) and NVDA (Windows), and color-contrast verification with the WebAIM Contrast Checker. The mobile and desktop apps are also exercised against the OS-level accessibility scanner on every build.</p>
+ <p>This statement will be reviewed at least once per year, and after any major feature release.</p>
+ </div>
+
+ <p class="text-muted" style="text-align:center;font-size:0.85rem;margin-top:var(--space-xl);">
+ Last updated: June 4, 2026 &nbsp;&middot;&nbsp;
+ <a href="PrivacyPolicy.html" style="color:var(--accent);">Privacy Policy</a> &nbsp;&middot;&nbsp;
+ <a href="TermsOfService.html" style="color:var(--accent);">Terms of Service</a> &nbsp;&middot;&nbsp;
+ <a href="support.html" style="color:var(--accent);">Support</a>
+ </p>
+ </div>
+ </main>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-analytics.js";
+      const app = initializeApp({
+        apiKey: "AIzaSyD1XfHr0OtAM4Zm62sPLW4Rjg__8HlLE0c",
+        authDomain: "opendrop-3c111.firebaseapp.com",
+        projectId: "opendrop-3c111",
+        storageBucket: "opendrop-3c111.firebasestorage.app",
+        messagingSenderId: "573883707762",
+        appId: "1:573883707762:web:e68643cce07c2cee3eadeb",
+        measurementId: "G-ENWJJ78E3Q"
+      });
+      // Gated on user consent
+      if (window.OpenDropConsent) {
+        window.OpenDropConsent.onConsent(function () { getAnalytics(app); });
+      }
+    </script>
+</body>
+</html>

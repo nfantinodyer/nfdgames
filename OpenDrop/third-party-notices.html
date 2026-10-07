@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Third-Party Notices | OpenDrop 1.0</title>
+ <meta name="description" content="Open-source license attributions for components incorporated into OpenDrop 1.0. OpenDrop is proprietary software; the listed components retain their original licenses.">
+ <meta name="robots" content="index, follow">
+ <meta name="author" content="NFDGames">
+ <link rel="icon" type="image/x-icon" href="favicon-opendrop.ico">
+ <link rel="icon" type="image/png" sizes="96x96" href="icon-96x96-opendrop.png">
+ <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-opendrop.png">
+ <link rel="manifest" href="/site.webmanifest">
+ <link rel="canonical" href="https://www.nfdgames.com/OpenDrop/third-party-notices.html">
+ <meta property="og:type" content="website">
+ <meta property="og:title" content="OpenDrop Third-Party Notices">
+ <meta property="og:description" content="Open-source license attributions for components incorporated into OpenDrop 1.0.">
+ <meta property="og:image" content="https://www.nfdgames.com/OpenDrop/OpenDropIcon.png">
+ <meta property="og:url" content="https://www.nfdgames.com/OpenDrop/third-party-notices.html">
+ <meta property="og:site_name" content="NFDGames">
+
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+ <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+
+ <link rel="stylesheet" href="../styles/common.css">
+ <link rel="stylesheet" href="../styles/opendrop.css">
+
+ <style>
+ .doc-hero {
+ min-height: auto;
+ padding: 9rem var(--space-xl) var(--space-xl);
+ text-align: center;
+ }
+ .doc-hero h1 {
+ font-size: clamp(2rem, 5vw, 3rem);
+ margin-bottom: var(--space-md);
+ }
+ .doc-hero p {
+ color: var(--text-secondary);
+ max-width: 760px;
+ margin: 0 auto;
+ font-size: 1.02rem;
+ }
+ .doc-container {
+ max-width: 1000px;
+ margin: 0 auto;
+ padding: 0 var(--space-xl) var(--space-4xl);
+ }
+ .doc-card {
+ background: var(--bg-card);
+ border: 1px solid var(--border);
+ border-radius: var(--radius-2xl);
+ padding: var(--space-2xl);
+ margin-bottom: var(--space-lg);
+ }
+ .doc-card h2 {
+ font-size: 1.35rem;
+ margin-bottom: var(--space-md);
+ display: flex;
+ align-items: center;
+ gap: 0.55rem;
+ }
+ .doc-card h2 .platform-tag {
+ font-family: 'Space Mono', monospace;
+ font-size: 0.7rem;
+ padding: 0.18rem 0.55rem;
+ border-radius: var(--radius-full);
+ color: #0d1333;
+ background: var(--accent-glow);
+ font-weight: 700;
+ letter-spacing: 0.04em;
+ }
+ .doc-card h3 {
+ margin: var(--space-lg) 0 var(--space-sm);
+ font-size: 1.0rem;
+ color: var(--text-primary);
+ }
+ .doc-card p, .doc-card li {
+ color: var(--text-secondary);
+ font-size: 0.94rem;
+ line-height: 1.65;
+ }
+ .doc-card strong { color: var(--text-primary); }
+ .doc-card code {
+ font-family: 'Space Mono', monospace;
+ background: var(--bg-dark);
+ padding: 0.12rem 0.4rem;
+ border-radius: 4px;
+ font-size: 0.85em;
+ color: var(--accent-glow);
+ }
+ .doc-card a {
+ color: var(--accent-glow);
+ text-decoration: none;
+ }
+ .doc-card a:hover { text-decoration: underline; }
+ .pkg-grid {
+ margin: var(--space-sm) 0 var(--space-md);
+ padding: 0;
+ list-style: none;
+ display: grid;
+ grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+ gap: 0.45rem 1rem;
+ color: var(--text-secondary);
+ font-family: 'Space Mono', monospace;
+ font-size: 0.84rem;
+ }
+ .pkg-grid li {
+ line-height: 1.5;
+ padding: 0;
+ margin: 0;
+ }
+ .pkg-grid li::before { content: '· '; color: var(--text-muted); }
+ .license-callout {
+ background: rgba(212,113,126,0.08);
+ border: 1px solid rgba(212,113,126,0.35);
+ border-radius: var(--radius-lg);
+ padding: var(--space-md) var(--space-lg);
+ margin: var(--space-md) 0;
+ color: var(--text-secondary);
+ font-size: 0.92rem;
+ }
+ .license-callout strong { color: #f5a8b3; }
+ .toc {
+ background: var(--bg-dark);
+ border: 1px solid var(--border);
+ border-radius: var(--radius-lg);
+ padding: var(--space-md) var(--space-lg);
+ margin-bottom: var(--space-xl);
+ font-size: 0.9rem;
+ }
+ .toc h3 {
+ color: var(--text-primary);
+ margin-bottom: var(--space-sm);
+ font-size: 0.85rem;
+ text-transform: uppercase;
+ letter-spacing: 0.05em;
+ }
+ .toc ul {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+ gap: 0.4rem 1.5rem;
+ margin: 0;
+ padding-left: 1.1rem;
+ }
+ .toc a {
+ color: var(--text-secondary);
+ text-decoration: none;
+ }
+ .toc a:hover { color: var(--accent-glow); }
+ @media (max-width: 720px) {
+ .doc-hero { padding: 7rem var(--space-lg) var(--space-lg); }
+ .doc-container { padding: 0 var(--space-lg) var(--space-3xl); }
+ .doc-card { padding: var(--space-xl); }
+ }
+ </style>
+
+    <!-- Cookie consent / Google Consent Mode v2 preboot -->
+    <script src="/scripts/opendrop-cookie-banner.js"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-17319823241');
+    </script>
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "name": "Third-Party Notices",
+      "description": "Open-source license attributions for components incorporated into OpenDrop 1.0.",
+      "url": "https://www.nfdgames.com/OpenDrop/third-party-notices.html",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "NFDGames",
+        "url": "https://www.nfdgames.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "NFDGames LLC"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "NFDGames",
+          "item": "https://www.nfdgames.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "OpenDrop",
+          "item": "https://www.nfdgames.com/OpenDrop/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Third-Party Notices",
+          "item": "https://www.nfdgames.com/OpenDrop/third-party-notices.html"
+        }
+      ]
+    }
+  ]
+}
+    </script>
+</head>
+<body>
+ <div class="bg-gradient"></div>
+ <div class="noise"></div>
+
+ <nav>
+ <a href="./" class="logo">
+ <picture>
+ <source srcset="OpenDropIcon-logo.webp" type="image/webp">
+ <img src="OpenDropIcon.png" alt="OpenDrop" class="logo-icon" width="36" height="36" loading="lazy">
+ </picture>
+ OpenDrop
+ </a>
+ <div class="nav-links">
+ <a href="./#features">Features</a>
+ <a href="./#download">Download</a>
+ <a href="support.html">Support</a>
+ <a href="./#download" class="nav-cta">Get Started</a>
+ </div>
+ </nav>
+
+ <main>
+ <section class="doc-hero">
+ <h1>Third-Party Notices</h1>
+ <p>OpenDrop is proprietary software (&copy; NFDGames LLC, all rights reserved). The following open-source components are incorporated into the product and are used under their respective licenses. Their license texts are reproduced as required by each license; nothing on this page weakens the proprietary license of OpenDrop itself.</p>
+ </section>
+
+ <div class="doc-container">
+
+ <div class="toc">
+ <h3>On this page</h3>
+ <ul>
+ <li><a href="#mobile">Mobile apps (iOS, Android)</a></li>
+ <li><a href="#desktop">Desktop server (Win/Linux/macOS)</a></li>
+ <li><a href="#bundled-binaries">Bundled native binaries</a></li>
+ <li><a href="#worker">Cloudflare Worker</a></li>
+ <li><a href="#relay">OpenDrop relay (Fly.io + Oracle Cloud)</a></li>
+ <li><a href="#installers">Installers &amp; signing</a></li>
+ <li><a href="#fonts">Fonts &amp; web assets</a></li>
+ <li><a href="#how-to-request">Request a license text</a></li>
+ </ul>
+ </div>
+
+ <div class="doc-card" id="mobile">
+ <h2><span class="platform-tag">iOS / Android</span> Mobile apps</h2>
+ <p>The OpenDrop mobile apps are built with the Flutter SDK and incorporate the following packages. Resolved versions reflect the lockfile shipped with build <code>1.0.0+18</code>. Dev-only test/lint tooling is omitted.</p>
+
+ <h3>Apache License 2.0</h3>
+ <p><a href="https://www.apache.org/licenses/LICENSE-2.0">apache.org/licenses/LICENSE-2.0</a></p>
+ <ul class="pkg-grid">
+ <li>Flutter SDK and Dart SDK (Google)</li>
+ <li>background_downloader 9.5.4</li>
+ <li>cryptography 2.9.0</li>
+ <li>cryptography_flutter 2.3.4</li>
+ <li>google_fonts 8.1.0</li>
+ <li>multidict, yarl, frozenlist, aiosignal</li>
+ <li>com.android.tools:desugar_jdk_libs 2.1.4</li>
+ <li>Firebase Android client libraries (BoM 34.11.0)</li>
+ <li>Google Play services (play-services-auth/base/tasks)</li>
+ <li>Kotlin standard library / AndroidX (build tooling)</li>
+ </ul>
+
+ <h3>BSD 2-Clause / BSD 3-Clause</h3>
+ <p>The bulk of the Flutter ecosystem ships under BSD 3-Clause. <a href="https://opensource.org/license/bsd-3-clause">opensource.org/license/bsd-3-clause</a></p>
+ <ul class="pkg-grid">
+ <li>http 1.6.0</li>
+ <li>path 1.9.1 / path_provider 2.1.5</li>
+ <li>image_picker 1.2.2 (all platform packages)</li>
+ <li>receive_sharing_intent 1.8.1</li>
+ <li>mobile_scanner 7.2.0</li>
+ <li>shared_preferences 2.5.5 (all platform packages)</li>
+ <li>google_sign_in 7.2.0 (all platform packages)</li>
+ <li>intl 0.20.2</li>
+ <li>firebase_auth 6.5.1 / firebase_core 4.9.0</li>
+ <li>url_launcher 6.3.2 (all platform packages)</li>
+ <li>android_intent_plus 6.0.0</li>
+ <li>network_info_plus 8.1.0</li>
+ <li>flutter_pdfview 1.4.4</li>
+ <li>flutter_blue_plus 2.3.2 (all platform packages)</li>
+ <li>device_info_plus 13.1.0</li>
+ <li>flutter_local_notifications 21.0.0</li>
+ <li>flutter_secure_storage 10.2.0 (all platform packages)</li>
+ <li>package_info_plus 10.1.0</li>
+ <li>share_plus 13.1.0</li>
+ <li>crypto 3.0.7 (Dart)</li>
+ <li>collection, async, characters, convert, meta, mime, fixnum, source_span, stack_trace, stream_channel</li>
+ <li>CocoaLumberjack 3.9.1 (iOS pod)</li>
+ <li>win32 6.2.0, win32_registry 3.0.3 (Windows interop)</li>
+ </ul>
+
+ <h3>MIT License</h3>
+ <p><a href="https://opensource.org/license/mit">opensource.org/license/mit</a></p>
+ <ul class="pkg-grid">
+ <li>cupertino_icons 1.0.9</li>
+ <li>dio 5.9.2 / dio_web_adapter 2.1.2</li>
+ <li>file_picker 12.0.0-beta.3</li>
+ <li>permission_handler 12.0.1 (all platform packages)</li>
+ <li>purchases_flutter 10.1.0 / purchases_ui_flutter 10.1.0 (RevenueCat)</li>
+ <li>sign_in_with_apple 8.0.0</li>
+ <li>gal 2.3.2</li>
+ <li>bonsoir 6.1.0 (all platform packages)</li>
+ <li>cupertino_native_better 1.4.5</li>
+ <li>ble_peripheral 2.4.0</li>
+ <li>uuid 4.5.3</li>
+ <li>unorm_dart 0.3.2</li>
+ <li>SVGKit 3.0.0 (iOS pod)</li>
+ </ul>
+
+ <h3>MIT (with bundled Bouncy Castle notices)</h3>
+ <ul class="pkg-grid">
+ <li>pointycastle 4.0.0, ships a combined LICENSE notice covering the Legion of the Bouncy Castle (MIT-derived).</li>
+ </ul>
+ </div>
+
+ <div class="doc-card" id="desktop">
+ <h2><span class="platform-tag">Win / Linux / macOS</span> Desktop server</h2>
+ <p>The OpenDrop desktop server is a Python/PySide6 application. The components below are pulled from <code>pyproject.toml</code> and resolved at Nuitka build time. Dev-only tooling (nuitka, pytest, lints) is omitted.</p>
+
+ <div class="license-callout">
+ <strong>LGPL notice.</strong> Components marked <strong>LGPL</strong> are dynamically linked. NFDGames LLC will, on written request and at no charge, provide a complete machine-readable copy of the corresponding source code of any LGPL-licensed component that ships with OpenDrop. See <a href="#how-to-request">Request a license text</a> below.
+ </div>
+
+ <h3>LGPL, Qt for Python (PySide6)</h3>
+ <p>The desktop GUI is built on Qt for Python (PySide6) <strong>6.10.2</strong> (Qt 6.10.2). Upstream offers it under <code>LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only</code>; OpenDrop <strong>elects the LGPL-3.0</strong> option. The Qt/PySide6 libraries are <strong>dynamically linked</strong> — they ship as separate, replaceable shared libraries (<code>.dll</code> / <code>.dylib</code> / <code>.so</code>); the desktop app is not statically linked against Qt. The complete LGPLv3 and GPLv3 license texts are bundled with the installed application as <code>LICENSE.LGPLv3.txt</code> and <code>LICENSE.GPLv3.txt</code>.</p>
+ <ul class="pkg-grid">
+ <li>PySide6 / shiboken6 6.10.2, LGPL-3.0 (Qt for Python). <a href="https://www.qt.io/licensing/">qt.io/licensing</a></li>
+ <li>Corresponding source (PySide6 6.10.2): <a href="https://code.qt.io/cgit/pyside/pyside-setup.git/">code.qt.io/cgit/pyside/pyside-setup.git</a> · <a href="https://pypi.org/project/PySide6/6.10.2/#files">pypi.org/project/PySide6/6.10.2</a></li>
+ <li>Corresponding source (Qt 6.10.2): <a href="https://download.qt.io/archive/qt/6.10/6.10.2/single/">download.qt.io/archive/qt/6.10/6.10.2</a></li>
+ </ul>
+
+ <h3>Apache License 2.0</h3>
+ <ul class="pkg-grid">
+ <li>aiohttp + transitives (multidict, yarl, attrs, frozenlist, aiosignal, async-timeout)</li>
+ <li>requests + google-auth-oauthlib</li>
+ <li>cryptography (dual MIT/Apache; OpenSSL backend, see below)</li>
+ <li>typing-extensions / annotated-types</li>
+ <li>google-auth, cachetools (Apache)</li>
+ </ul>
+
+ <h3>MIT License</h3>
+ <ul class="pkg-grid">
+ <li>aiofiles</li>
+ <li>httpx (+ anyio, sniffio, h11, httpcore)</li>
+ <li>python-dotenv</li>
+ <li>python-multipart</li>
+ <li>qrcode</li>
+ <li>uvicorn (+ click, BSD-3)</li>
+ <li>pillow-heif</li>
+ <li>pydantic + pydantic-core</li>
+ <li>urllib3</li>
+ <li>charset-normalizer</li>
+ <li>oauthlib / requests-oauthlib</li>
+ <li>ifaddr</li>
+ <li>rawpy (Python binding only, LibRaw notice below)</li>
+ <li>pyobjc-framework-Quartz (macOS only)</li>
+ </ul>
+
+ <h3>BSD 3-Clause</h3>
+ <ul class="pkg-grid">
+ <li>fastapi</li>
+ <li>starlette</li>
+ <li>websockets</li>
+ <li>zeroconf</li>
+ <li>idna</li>
+ <li>pyasn1, pyasn1-modules, rsa</li>
+ </ul>
+
+ <h3>HPND (Historical Permission Notice), MIT-equivalent for attribution</h3>
+ <ul class="pkg-grid">
+ <li>Pillow (the PIL fork)</li>
+ </ul>
+
+ <h3>Mozilla Public License 2.0</h3>
+ <ul class="pkg-grid">
+ <li>certifi (Mozilla CA root certificate bundle)</li>
+ </ul>
+
+ <h3>OpenSSL Apache 2.0 (since OpenSSL 3.0)</h3>
+ <p>The Python <code>cryptography</code> wheel statically links a build of OpenSSL. OpenSSL is licensed under the Apache License 2.0 as of OpenSSL 3.0. <a href="https://www.openssl.org/source/license.html">openssl.org/source/license</a></p>
+ </div>
+
+ <div class="doc-card" id="bundled-binaries">
+ <h2>Bundled native binaries (shipped inside the desktop installer)</h2>
+ <p>The OpenDrop desktop installer ships the following pre-built native binaries alongside the Python application. Each retains its own license; the per-binary <code>ffmpeg-LICENSE.txt</code> (and <code>ffmpeg-thirdparty-LICENSES.txt</code>) file lives next to the binary in the installed application directory.</p>
+
+ <h3>ffmpeg (LGPL build), used for file conversion</h3>
+ <div class="license-callout">
+ <strong>LGPL notice.</strong> The ffmpeg build shipped with OpenDrop is the LGPL configuration. NFDGames LLC will, on written request and at no charge, provide complete corresponding source code for the ffmpeg build and any LGPL libraries (LAME) statically linked into it. The build is configured with <code>--enable-libvpx --enable-libmp3lame --enable-libopus</code>.
+ </div>
+ <ul>
+ <li>ffmpeg core, LGPL-2.1-or-later. <a href="https://www.ffmpeg.org/legal.html">ffmpeg.org/legal</a></li>
+ <li>libvpx (statically linked), BSD 3-Clause. <a href="https://www.webmproject.org/license/software/">webmproject.org/license/software</a></li>
+ <li>LAME (libmp3lame, statically linked), LGPL-2.0-or-later. <a href="https://lame.sourceforge.io/">lame.sourceforge.io</a></li>
+ <li>libopus (statically linked), BSD 3-Clause. <a href="https://www.opus-codec.org/license/">opus-codec.org/license</a></li>
+ </ul>
+
+ <h3>LibRaw, used inside the <code>rawpy</code> wheel for RAW conversion</h3>
+ <ul>
+ <li>License: LGPL-2.1 or CDDL-1.0 (dual). LGPL applies for the redistributed build. <a href="https://www.libraw.org/">libraw.org</a></li>
+ <li>Statically linked into the <code>rawpy</code> wheel; source available on request as described above.</li>
+ </ul>
+ </div>
+
+ <div class="doc-card" id="worker">
+ <h2><span class="platform-tag">Cloudflare Worker</span> Control plane</h2>
+ <p>The Cloudflare Worker that handles device pairing, presence, key exchange, and account lookup has <strong>no runtime third-party dependencies</strong>. All <code>npm</code> packages in its lockfile are dev-only (Wrangler, Vitest, the Cloudflare Workers test pool). The Worker source runs on Cloudflare's <code>workerd</code> runtime; <code>workerd</code> is licensed Apache-2.0 by Cloudflare and is not redistributed by OpenDrop.</p>
+ </div>
+
+ <div class="doc-card" id="relay">
+ <h2><span class="platform-tag">Relay</span> OpenDrop WebSocket relay</h2>
+ <ul>
+ <li><code>ws</code> 8.20.0, MIT. <a href="https://github.com/websockets/ws">github.com/websockets/ws</a> (the only Node.js runtime dependency)</li>
+ <li>Node.js 20 (Alpine base image), MIT for Node, with bundled musl/BusyBox components under their respective licenses (BSD-style and GPL-2.0). <a href="https://alpinelinux.org/about/">alpinelinux.org/about</a></li>
+ <li>coturn (self-hosted STUN server, run in STUN-only mode on the Oracle relay boxes), 3-clause BSD. <a href="https://github.com/coturn/coturn">github.com/coturn/coturn</a></li>
+ <li>Caddy (TLS-terminating reverse proxy in front of the Oracle relay boxes), Apache-2.0. <a href="https://caddyserver.com/">caddyserver.com</a></li>
+ </ul>
+ <p>The relay is operated by NFDGames LLC on Fly.io (primary, for Pro) and Oracle Cloud (free tier and Pro failover); it is not redistributed to end users. The Node.js/<code>ws</code> relay runs on both deployments; the Oracle boxes additionally run Caddy (TLS) and coturn (STUN), while the Fly.io Pro relay runs without Caddy or coturn.</p>
+ </div>
+
+ <div class="doc-card" id="installers">
+ <h2>Installers &amp; build tooling (not bundled at runtime)</h2>
+ <p>The following tools are used to build the installers but are <em>not</em> included in the shipping product. Listed here for completeness only.</p>
+ <ul class="pkg-grid">
+ <li>Inno Setup 6.3+ (Windows installer), Inno Setup License (modified BSD). <a href="https://jrsoftware.org/files/is/license.txt">jrsoftware.org/files/is/license</a></li>
+ <li>AppImageTool (Linux <code>.AppImage</code> packager), MIT.</li>
+ <li>Nuitka (Python standalone bundler), Apache-2.0.</li>
+ </ul>
+ </div>
+
+ <div class="doc-card" id="fonts">
+ <h2>Fonts &amp; web assets used on nfdgames.com</h2>
+ <ul>
+ <li><strong>Sora</strong> (body / UI typeface), SIL Open Font License 1.1. <a href="https://fonts.google.com/specimen/Sora/about">fonts.google.com/specimen/Sora</a></li>
+ <li><strong>Space Mono</strong> (display / monospace typeface), SIL Open Font License 1.1. <a href="https://fonts.google.com/specimen/Space+Mono/about">fonts.google.com/specimen/Space+Mono</a></li>
+ <li>Both fonts are served from Google Fonts via a <code>preconnect</code>-optimized <code>&lt;link&gt;</code> tag; they are not self-hosted.</li>
+ </ul>
+ </div>
+
+ <div class="doc-card" id="how-to-request">
+ <h2>Request a license text or LGPL source archive</h2>
+ <p>For the full verbatim license text of any component listed above (or for the corresponding source code of any LGPL-licensed component), email <a href="mailto:support@nfdgames.com">support@nfdgames.com</a> with the subject line "Third-Party License Request" and the component name. We will respond within 5 business days with a download link or, where the license text is short, the text inline.</p>
+ <p>The OpenDrop application itself, including every component developed by NFDGames LLC, is proprietary software. See <a href="TermsOfService.html">Terms of Service</a> Section 5 (Acceptable Use) for what you may and may not do with OpenDrop.</p>
+ </div>
+
+ <p class="text-muted" style="text-align:center;font-size:0.85rem;margin-top:var(--space-xl);">
+ Last updated: June 28, 2026 &nbsp;&middot;&nbsp; Build <code>1.0.0+18</code> (mobile) / <code>1.0.0</code> (desktop) &nbsp;&middot;&nbsp;
+ <a href="changelog.html" style="color:var(--accent);">Release notes</a>
+ </p>
+ </div>
+ </main>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-analytics.js";
+      const app = initializeApp({
+        apiKey: "AIzaSyD1XfHr0OtAM4Zm62sPLW4Rjg__8HlLE0c",
+        authDomain: "opendrop-3c111.firebaseapp.com",
+        projectId: "opendrop-3c111",
+        storageBucket: "opendrop-3c111.firebasestorage.app",
+        messagingSenderId: "573883707762",
+        appId: "1:573883707762:web:e68643cce07c2cee3eadeb",
+        measurementId: "G-ENWJJ78E3Q"
+      });
+      // Gated on user consent
+      if (window.OpenDropConsent) {
+        window.OpenDropConsent.onConsent(function () { getAnalytics(app); });
+      }
+    </script>
+</body>
+</html>

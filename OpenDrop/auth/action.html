@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="../favicon-opendrop.ico">
+    <link rel="icon" type="image/png" sizes="96x96" href="../icon-96x96-opendrop.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon-opendrop.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+    <title>Account Action — OpenDrop</title>
+    <meta name="description" content="Verify your email, reset your password, or confirm an account change for OpenDrop.">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="stylesheet" href="../../styles/common.css">
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-xl);
+        }
+
+        .auth-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-2xl);
+            padding: clamp(1.75rem, 4vw, 3rem);
+            width: 100%;
+            max-width: 460px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .auth-logo {
+            display: flex;
+            justify-content: center;
+            margin-bottom: var(--space-lg);
+        }
+
+        .auth-logo img {
+            width: 72px;
+            height: 72px;
+            border-radius: var(--radius-xl);
+        }
+
+        .auth-card h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+            text-align: center;
+        }
+
+        .auth-card .subtitle {
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: var(--space-xl);
+            line-height: 1.5;
+        }
+
+        .auth-card .subtitle strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .field {
+            margin-bottom: var(--space-md);
+        }
+
+        .field label {
+            display: block;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xs);
+            font-weight: 500;
+        }
+
+        .field input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color var(--transition-fast);
+        }
+
+        .field input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .auth-card .btn {
+            width: 100%;
+            justify-content: center;
+            margin-top: var(--space-md);
+        }
+
+        .auth-card .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .secondary-action {
+            text-align: center;
+            margin-top: var(--space-lg);
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        .secondary-action a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .secondary-action a:hover {
+            color: var(--accent-glow);
+        }
+
+        .status-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-md);
+            font-size: 28px;
+        }
+
+        .status-icon.success {
+            background: color-mix(in srgb, var(--success) 18%, transparent);
+            color: var(--success);
+        }
+
+        .status-icon.error {
+            background: color-mix(in srgb, var(--error) 18%, transparent);
+            color: var(--error);
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--border);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            margin: 0 auto var(--space-md);
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .field-error {
+            color: var(--error);
+            font-size: 0.875rem;
+            margin-top: var(--space-xs);
+            min-height: 1.25rem;
+        }
+
+        .password-hint {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: var(--space-xs);
+        }
+
+        [hidden] { display: none !important; }
+    </style>
+</head>
+<body>
+    <main class="auth-card" id="card">
+        <div class="auth-logo">
+            <img src="../OpenDropIcon.webp" alt="OpenDrop" width="72" height="72">
+        </div>
+
+        <!-- Loading state (default) -->
+        <section id="view-loading">
+            <div class="spinner" aria-hidden="true"></div>
+            <h1>One moment</h1>
+            <p class="subtitle">We're processing your request.</p>
+        </section>
+
+        <!-- Verify email success -->
+        <section id="view-verified" hidden>
+            <div class="status-icon success" aria-hidden="true">✓</div>
+            <h1>Email verified</h1>
+            <p class="subtitle">You can return to OpenDrop and continue using your account.</p>
+            <a id="continue-link" class="btn btn-primary" hidden>Open OpenDrop</a>
+            <p class="secondary-action">You can close this tab.</p>
+        </section>
+
+        <!-- Reset password form -->
+        <section id="view-reset-form" hidden>
+            <h1>Reset your password</h1>
+            <p class="subtitle">Choose a new password for <strong id="reset-email"></strong>.</p>
+            <form id="reset-form" novalidate>
+                <div class="field">
+                    <label for="new-password">New password</label>
+                    <input type="password" id="new-password" autocomplete="new-password" required minlength="8">
+                    <div class="password-hint">At least 8 characters.</div>
+                </div>
+                <div class="field">
+                    <label for="confirm-password">Confirm password</label>
+                    <input type="password" id="confirm-password" autocomplete="new-password" required minlength="8">
+                </div>
+                <div class="field-error" id="reset-error" role="alert" aria-live="polite"></div>
+                <button type="submit" class="btn btn-primary" id="reset-submit">Update password</button>
+            </form>
+        </section>
+
+        <!-- Reset password success -->
+        <section id="view-reset-done" hidden>
+            <div class="status-icon success" aria-hidden="true">✓</div>
+            <h1>Password updated</h1>
+            <p class="subtitle">You can now sign in with your new password.</p>
+            <a id="reset-continue-link" class="btn btn-primary" hidden>Open OpenDrop</a>
+            <p class="secondary-action">You can close this tab.</p>
+        </section>
+
+        <!-- Email recovered -->
+        <section id="view-recovered" hidden>
+            <div class="status-icon success" aria-hidden="true">✓</div>
+            <h1>Email change reverted</h1>
+            <p class="subtitle">
+                Your account email has been restored to <strong id="recovered-email"></strong>.
+                We've also sent a password reset link to that address as a security precaution —
+                whoever changed your email may also know your password.
+            </p>
+            <p class="secondary-action">You can close this tab.</p>
+        </section>
+
+        <!-- Generic error -->
+        <section id="view-error" hidden>
+            <div class="status-icon error" aria-hidden="true">!</div>
+            <h1 id="error-title">Something went wrong</h1>
+            <p class="subtitle" id="error-body">Please request a new link from OpenDrop and try again.</p>
+            <p class="secondary-action"><a href="https://www.nfdgames.com/OpenDrop/">Back to OpenDrop</a></p>
+        </section>
+    </main>
+
+    <script type="module">
+        // Firebase Web SDK 12.13.0 — modular CDN imports.
+        // We pull `apiKey` from the URL params Firebase appends, so the
+        // page is portable across NFDGames Firebase projects (just point
+        // each project's Action URL here). `authDomain` stays fixed
+        // because action codes are validated against the project that
+        // minted them — the apiKey alone is enough.
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+        import {
+            getAuth,
+            applyActionCode,
+            checkActionCode,
+            verifyPasswordResetCode,
+            confirmPasswordReset,
+            sendPasswordResetEmail,
+        } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+
+        const params = new URLSearchParams(window.location.search);
+        const mode = params.get("mode");
+        const oobCode = params.get("oobCode");
+        const apiKey = params.get("apiKey");
+        const continueUrl = params.get("continueUrl");
+
+        const $ = (id) => document.getElementById(id);
+        const views = {
+            loading: $("view-loading"),
+            verified: $("view-verified"),
+            resetForm: $("view-reset-form"),
+            resetDone: $("view-reset-done"),
+            recovered: $("view-recovered"),
+            error: $("view-error"),
+        };
+
+        function showView(name) {
+            for (const v of Object.values(views)) v.hidden = true;
+            views[name].hidden = false;
+        }
+
+        function showError(title, body) {
+            $("error-title").textContent = title;
+            $("error-body").textContent = body;
+            showView("error");
+        }
+
+        // Map Firebase error codes to user-friendly copy. Anchored to the
+        // exact codes the modular SDK throws so a future SDK rev that
+        // changes the strings won't silently fall through to "unknown".
+        function mapAuthError(err) {
+            const code = err?.code || "";
+            if (code === "auth/expired-action-code") {
+                return "This link has expired. Open OpenDrop and request a new one.";
+            }
+            if (code === "auth/invalid-action-code") {
+                return "This link is invalid or has already been used.";
+            }
+            if (code === "auth/user-disabled") {
+                return "This account has been disabled. Contact support if you think this is a mistake.";
+            }
+            if (code === "auth/user-not-found") {
+                return "We couldn't find that account.";
+            }
+            if (code === "auth/weak-password") {
+                return "Password is too weak. Use at least 8 characters.";
+            }
+            if (code === "auth/network-request-failed") {
+                return "Network error. Check your connection and reload this page.";
+            }
+            return err?.message || "Please try again.";
+        }
+
+        // Pre-flight: missing params means someone hit the page directly
+        // or the email client mangled the URL.
+        if (!mode || !oobCode || !apiKey) {
+            showError(
+                "Link looks incomplete",
+                "This page should be opened from a link in an email we sent you. If you typed the URL directly, please use the original email link instead."
+            );
+        } else {
+            initAndRoute().catch((err) => {
+                console.error("[auth-action] unexpected:", err);
+                showError("Something went wrong", mapAuthError(err));
+            });
+        }
+
+        async function initAndRoute() {
+            const app = initializeApp({
+                apiKey,
+                authDomain: "opendrop-3c111.firebaseapp.com",
+            });
+            const auth = getAuth(app);
+
+            switch (mode) {
+                case "verifyEmail":
+                    await handleVerifyEmail(auth);
+                    break;
+                case "resetPassword":
+                    await handleResetPassword(auth);
+                    break;
+                case "recoverEmail":
+                    await handleRecoverEmail(auth);
+                    break;
+                case "verifyAndChangeEmail":
+                    // Same operation as verifyEmail from the SDK's POV — Firebase
+                    // routes the change server-side once the code is applied.
+                    await handleVerifyEmail(auth);
+                    break;
+                default:
+                    showError("Unsupported action", `We don't know how to handle "${mode}".`);
+            }
+        }
+
+        async function handleVerifyEmail(auth) {
+            try {
+                await applyActionCode(auth, oobCode);
+                if (continueUrl) {
+                    const link = $("continue-link");
+                    link.href = continueUrl;
+                    link.hidden = false;
+                }
+                showView("verified");
+            } catch (err) {
+                showError("We couldn't verify this email", mapAuthError(err));
+            }
+        }
+
+        async function handleResetPassword(auth) {
+            let email;
+            try {
+                email = await verifyPasswordResetCode(auth, oobCode);
+            } catch (err) {
+                showError("We couldn't open this reset link", mapAuthError(err));
+                return;
+            }
+
+            $("reset-email").textContent = email;
+            if (continueUrl) {
+                const link = $("reset-continue-link");
+                link.href = continueUrl;
+                link.hidden = false;
+            }
+            showView("resetForm");
+
+            const form = $("reset-form");
+            const errorEl = $("reset-error");
+            const submitBtn = $("reset-submit");
+
+            form.addEventListener("submit", async (e) => {
+                e.preventDefault();
+                errorEl.textContent = "";
+                const pw = $("new-password").value;
+                const confirm = $("confirm-password").value;
+
+                if (pw.length < 8) {
+                    errorEl.textContent = "Password must be at least 8 characters.";
+                    return;
+                }
+                if (pw !== confirm) {
+                    errorEl.textContent = "Passwords don't match.";
+                    return;
+                }
+
+                submitBtn.disabled = true;
+                submitBtn.textContent = "Updating...";
+                try {
+                    await confirmPasswordReset(auth, oobCode, pw);
+                    showView("resetDone");
+                } catch (err) {
+                    errorEl.textContent = mapAuthError(err);
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = "Update password";
+                }
+            });
+        }
+
+        async function handleRecoverEmail(auth) {
+            // recoverEmail is the link sent to the OLD email when a user's
+            // address is changed. Clicking it both reverts the change AND,
+            // per Firebase's own guidance, should trigger a password reset
+            // — if an attacker changed the email they likely had the
+            // password too, so we lock them out by forcing a reset.
+            let restoredEmail = null;
+            try {
+                const info = await checkActionCode(auth, oobCode);
+                restoredEmail = info?.data?.email || null;
+                await applyActionCode(auth, oobCode);
+            } catch (err) {
+                showError("We couldn't revert this change", mapAuthError(err));
+                return;
+            }
+
+            if (restoredEmail) {
+                $("recovered-email").textContent = restoredEmail;
+                // Best-effort password reset send; if it fails the user
+                // can still request one manually. Don't block the success
+                // UI on this network call.
+                try {
+                    await sendPasswordResetEmail(auth, restoredEmail);
+                } catch (err) {
+                    console.warn("[auth-action] follow-up password reset send failed:", err);
+                }
+            } else {
+                $("recovered-email").textContent = "your previous email";
+            }
+            showView("recovered");
+        }
+    </script>
+</body>
+</html>

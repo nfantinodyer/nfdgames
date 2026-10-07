@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>How to Send Large Files Between Phone and PC for Free | NFDGames Blog</title>
-    <meta name="description" content="How free file transfers actually work between phones and PCs, from chunked uploads to LAN streaming, and why file size doesn&#x27;t have to be a limit.">
+    <meta name="description" content="How free file transfers actually work between phones and PCs, from our own encrypted relay to LAN streaming, and why file size doesn&#x27;t have to be a limit.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
     <meta name="author" content="NFDGames">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96x96.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/x-icon" href="/favicon-nfdgames.ico">
+    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96x96-nfdgames.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-nfdgames.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="canonical" href="https://www.nfdgames.com/blog/posts/send-large-files-phone-to-pc-free.html" />
     <link rel="alternate" hreflang="en" href="https://www.nfdgames.com/blog/posts/send-large-files-phone-to-pc-free.html" />
@@ -17,7 +17,7 @@
     <!-- Open Graph -->
     <meta property="og:type" content="article">
     <meta property="og:title" content="How to Send Large Files Between Phone and PC for Free">
-    <meta property="og:description" content="How free file transfers actually work between phones and PCs, from chunked uploads to LAN streaming, and why file size doesn&#x27;t have to be a limit.">
+    <meta property="og:description" content="How free file transfers actually work between phones and PCs, from our own encrypted relay to LAN streaming, and why file size doesn&#x27;t have to be a limit.">
     <meta property="og:image" content="https://www.nfdgames.com/NFDGamesLogoCircleTransparent.png">
     <meta property="og:url" content="https://www.nfdgames.com/blog/posts/send-large-files-phone-to-pc-free.html">
     <meta property="og:site_name" content="NFDGames">
@@ -32,7 +32,7 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="How to Send Large Files Between Phone and PC for Free">
-    <meta name="twitter:description" content="How free file transfers actually work between phones and PCs, from chunked uploads to LAN streaming, and why file size doesn&#x27;t have to be a limit.">
+    <meta name="twitter:description" content="How free file transfers actually work between phones and PCs, from our own encrypted relay to LAN streaming, and why file size doesn&#x27;t have to be a limit.">
     <meta name="twitter:image" content="https://www.nfdgames.com/NFDGamesLogoCircleTransparent.png">
 
     <!-- Schema.org JSON-LD -->
@@ -43,7 +43,7 @@
         {
           "@type": "Article",
           "headline": "How to Send Large Files Between Phone and PC for Free",
-          "description": "How free file transfers actually work between phones and PCs, from chunked uploads to LAN streaming, and why file size doesn&#x27;t have to be a limit.",
+          "description": "How free file transfers actually work between phones and PCs, from our own encrypted relay to LAN streaming, and why file size doesn&#x27;t have to be a limit.",
           "author": {
             "@type": "Organization",
             "name": "NFDGames",
@@ -73,7 +73,7 @@
         ,
         {
           "@type": "FAQPage",
-          "mainEntity": [{"@type":"Question","name":"Is there a file size limit for free transfers with OpenDrop?","acceptedAnswer":{"@type":"Answer","text":"On LAN (same WiFi network), there's no practical file size limit. You can stream files up to 10GB directly between devices. For remote transfers (different networks), the free tier uses 5MB chunks through Cloudflare tunnels. There's no hard cap on total file size, it just takes longer since each chunk is sent individually."}},{"@type":"Question","name":"Do I need an account to use OpenDrop?","acceptedAnswer":{"@type":"Answer","text":"No account is needed for LAN transfers. Just install OpenDrop on both devices, connect to the same WiFi, and start sending files. An account is only required for Pro features like the high-speed remote relay and shared folders."}},{"@type":"Question","name":"How fast are OpenDrop transfers compared to cloud services?","acceptedAnswer":{"@type":"Answer","text":"LAN transfers are dramatically faster since files go directly between devices without a cloud round-trip. Speeds depend on your WiFi hardware but are typically orders of magnitude faster than uploading to and downloading from a cloud service. Free remote transfers run at roughly 8 Mbps, and Pro remote transfers reach 30-50+ Mbps."}},{"@type":"Question","name":"Does OpenDrop work if my devices are on different WiFi networks?","acceptedAnswer":{"@type":"Answer","text":"Yes. OpenDrop works across different networks using Cloudflare tunnels (free tier) or a Fly.io relay (Pro tier). Same-network transfers are faster since they bypass the tunnel, but remote transfers work from anywhere with an internet connection."}},{"@type":"Question","name":"What platforms does OpenDrop support?","acceptedAnswer":{"@type":"Answer","text":"OpenDrop runs on Windows, macOS, Linux, iOS, and Android. The desktop versions include both a GUI and a CLI. Mobile apps are available on the iOS App Store and Google Play. You can also download directly from www.nfdgames.com/OpenDrop."}}]
+          "mainEntity": [{"@type":"Question","name":"Is there a file size limit for free transfers with OpenDrop?","acceptedAnswer":{"@type":"Answer","text":"On LAN (same WiFi network), you can stream files of any size directly between devices. For remote transfers (different networks), OpenDrop uses its own encrypted relay — an Oracle Cloud relay on the free tier and a faster Fly.io relay on Pro. There's no per-transfer size cap; Pro streams over the relay without chunking, while the free Oracle relay sends in resumable 5 MB chunks. Either way it just takes longer than LAN since the bytes travel over the internet."}},{"@type":"Question","name":"Do I need an account to use OpenDrop?","acceptedAnswer":{"@type":"Answer","text":"No account is needed for LAN transfers, and basic remote transfers over our free Oracle Cloud relay work without one too (just pair the devices with a QR code). A subscription is required for OpenDrop Pro features like the faster, dedicated Fly.io relay, cloud device sync, and shared folders."}},{"@type":"Question","name":"How fast are OpenDrop transfers compared to cloud services?","acceptedAnswer":{"@type":"Answer","text":"LAN transfers are dramatically faster since files go directly between devices without a cloud round-trip. Speeds depend on your WiFi hardware but are typically orders of magnitude faster than uploading to and downloading from a cloud service. Remote transfers run over OpenDrop's own relay; the free Oracle Cloud relay is the slower path, and Pro's dedicated Fly.io relay is faster."}},{"@type":"Question","name":"Does OpenDrop work if my devices are on different WiFi networks?","acceptedAnswer":{"@type":"Answer","text":"Yes. OpenDrop works across different networks using its own encrypted relay — an Oracle Cloud relay on the free tier and a faster Fly.io relay (with automatic Oracle failover) on Pro. Same-network transfers are faster since they skip the relay, but remote transfers work from anywhere with an internet connection."}},{"@type":"Question","name":"What platforms does OpenDrop support?","acceptedAnswer":{"@type":"Answer","text":"OpenDrop runs on Windows, macOS, Linux, iOS, and Android. The desktop versions include both a GUI and a CLI. Mobile apps are available on the iOS App Store and Google Play. You can also download directly from www.nfdgames.com/OpenDrop."}}]
         }
       ]
     }
@@ -89,6 +89,8 @@
     <link rel="stylesheet" href="/styles/common.css">
     <link rel="stylesheet" href="/styles/blog.css">
 
+    <!-- Cookie consent / Google Consent Mode v2 preboot — must precede any Google tag -->
+    <script src="/scripts/opendrop-cookie-banner.js"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241"></script>
     <script>
@@ -145,7 +147,7 @@
 
     <!-- Post Content -->
     <article class="blog-post-content">
-        <div class="toc"><ol><li>Why "Free" Usually Means "Limited"</li><li>How Chunked Uploads Actually Work</li><li>LAN Streaming: The Fast Path Nobody Talks About</li><li>The Cloudflare 5MB Wall and How to Get Around It</li><li>Putting It Together: A Real Transfer from Phone to PC</li><li>What Pro Relay Adds (and When You Don't Need It)</li></ol></div>
+        <div class="toc"><ol><li>Why "Free" Usually Means "Limited"</li><li>How Remote Transfers Work</li><li>LAN Streaming: The Fast Path Nobody Talks About</li><li>Remote Transfers Without a Tunnel: How the Relay Works</li><li>Putting It Together: A Real Transfer from Phone to PC</li><li>What OpenDrop Pro Adds (and When You Don't Need It)</li></ol></div>
 
 <h2>Why "Free" Usually Means "Limited"</h2>
 
@@ -153,53 +155,52 @@
 
 <p>I built <a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> because I got tired of emailing photos to myself just to get them from my iPhone 15 to my Windows PC. The core idea: if both devices are on the same network, why send files through a server in Virginia?</p>
 
-<p>Direct device-to-device transfer skips the cloud entirely. Your file goes from phone to PC in one hop. No storage limits apply because there's no intermediate storage. The file lands directly in the receive folder on the destination machine. On macOS that's <code>~/Downloads/OpenDrop/Files</code>, on Windows it's <code>%LOCALAPPDATA%\OpenDrop\Files</code>, and on Linux it respects <code>$XDG_CONFIG_HOME</code> (defaulting to <code>~/.config/opendrop/Files</code>).</p>
+<p>Direct device-to-device transfer skips the cloud entirely. Your file goes from phone to PC in one hop. No storage limits apply because there's no intermediate storage. The file lands directly in the receive folder on the destination machine. On macOS and Linux that's <code>~/Downloads/OpenDrop/Files</code>, and on Windows it's <code>%USERPROFILE%\Downloads\OpenDrop\Files</code>.</p>
 
 <p>But "direct" still has to deal with the physical reality of moving bytes across a network. The method matters enormously.</p>
 
-<h2>How Chunked Uploads Actually Work</h2>
+<h2>How Remote Transfers Work</h2>
 
 <p>When you transfer a file over HTTP, you're sending a request body from client to server. For small files (a few megabytes), you can stuff the whole thing into a single POST request. The server reads it, writes it to disk, sends back a 200. Done.</p>
 
-<p>Large files break this model. A 2GB video can't reliably go in one HTTP request. Network hiccups, timeouts, and memory constraints on both sides conspire against you. The solution is chunking: split the file into fixed-size pieces, send each piece as its own request, and reassemble them on the server side.</p>
+<p>Large files break that model when there's a server in the middle that caps how big a single request can be. The fix isn't to chop the file into hundreds of little requests; it's to open one persistent connection and stream the bytes through it.</p>
 
-<p>OpenDrop's free remote tier uses 5MB chunks. Each chunk is a separate HTTP POST through a Cloudflare tunnel. The server receives chunk 1, writes it to a temp file, receives chunk 2, appends it, and so on until the final chunk signals completion. If chunk 47 fails mid-transfer, only that 5MB piece needs to be retried, not the entire file.</p>
+<p>OpenDrop's remote transfers run over its own encrypted relay. On OpenDrop Pro the file streams straight through — the sending device's bytes flow to the relay and on to the receiver with minimal buffering, no breaking the file into HTTP chunks, and no per-request size ceiling. Free remote transfers first try a direct peer-to-peer link and otherwise fall back to our Oracle Cloud relay, sent in resumable 5 MB chunks either way. Either way there's no per-transfer size cap, and the relay only ever sees ciphertext, since the file is end-to-end encrypted before it leaves your device.</p>
 
-<div class="callout callout-tip"><div class="callout-title">Tip</div><p>Chunked transfers have no hard file size cap. You can send a 10GB file in 5MB chunks. It just takes longer because each chunk is a separate HTTP round-trip through the tunnel.</p></div>
+<div class="callout callout-tip"><div class="callout-title">Tip</div><p>Remote transfers have no per-request size cap. You can send a 10GB file over the relay — Pro carries it in one streamed connection, the free tier in resumable 5 MB chunks. It just takes longer than LAN because the bytes travel over the internet instead of your local network.</p></div>
 
-<p>The tradeoff is speed. Each chunk involves a full HTTP request/response cycle: TCP handshake, TLS negotiation (handled by Cloudflare), request headers, payload, response. That per-chunk overhead adds up. In practice, free remote transfers hit roughly 8 Mbps (about 1 MB/s). For a 500MB file, that's around 8 minutes. Workable, but not fast.</p>
+<p>The tradeoff is speed. Remote transfers travel over the public internet and through the relay rather than staying on your local network, so they're slower than LAN. Free transfers run on our Oracle Cloud relay (a smaller, always-free server, so it's the slower path); OpenDrop Pro adds a faster, dedicated Fly.io relay with automatic failover to Oracle if Fly is ever down.</p>
 
-<p>Why 5MB specifically? Cloudflare's tunnel infrastructure enforces a request body size limit. Anything larger gets rejected without a particularly helpful error message. I spent more time than I'd like to admit figuring that one out. We settled on 5MB chunks because they're well under the ceiling and large enough to keep the chunk count reasonable.</p>
+<p>That streaming model is a deliberate change from how OpenDrop used to work. Earlier versions tunneled remote transfers through a third-party service that capped HTTP request bodies, which forced the file into small chunks and capped throughput. Running our own relay removed that ceiling: there's no third-party request-size limit to design around, so Pro transfers stream end to end, and free transfers move in our own resumable 5 MB chunks by choice rather than being forced into tiny pieces by someone else's request cap — and there's nothing extra to download, nothing for antivirus or a firewall to flag.</p>
 
 <h2>LAN Streaming: The Fast Path Nobody Talks About</h2>
 
-<p>Chunking is a compromise for remote transfers. On a local network, you don't need it at all.</p>
+<p>Remote transfers travel over the relay and the public internet. On a local network, none of that applies.</p>
 
-<p>When your phone and PC are on the same WiFi, OpenDrop uses a completely different transfer path. The desktop app runs an HTTP server on port 8000. The mobile app discovers it via mDNS (the service type is <code>_opendrop._tcp.local.</code>) and connects directly. No tunnel, no relay, no cloud. Just your phone talking to your PC over your own router.</p>
+<p>When your phone and PC are on the same WiFi, OpenDrop uses a completely different transfer path. The desktop app runs an HTTP server on port 8000. The mobile app discovers it via mDNS (the service type is <code>_opendrop._tcp.local.</code>) and connects directly. No relay, no cloud, no internet round-trip at all. Just your phone talking to your PC over your own router.</p>
 
 <p>LAN transfers use streaming, the way file transfer should work. The phone opens a connection, starts writing the file data, and the server starts writing to disk as bytes arrive. No chunking, no reassembly, no per-piece overhead. The transfer speed is limited only by your WiFi hardware.</p>
 
-<p>On my home network, I regularly move multi-gigabyte files between my iPhone 15 and my Windows desktop. WiFi 5 (802.11ac) gets roughly 100-300 MB/s depending on signal strength and interference, though real-world numbers depend heavily on your specific router and environment. The point is: LAN streaming is an order of magnitude faster than chunked remote transfers.</p>
+<p>On my home network, I regularly move multi-gigabyte files between my iPhone 15 and my Windows desktop. WiFi 5 (802.11ac) gets roughly 100-300 MB/s depending on signal strength and interference, though real-world numbers depend heavily on your specific router and environment. The point is: LAN streaming is an order of magnitude faster than remote transfers over the relay.</p>
 
 <p>Every user gets LAN streaming for free. No account required, no Pro upgrade needed. If both devices are on the same network, you get the fast path automatically. OpenDrop detects the connection type and picks the right transfer mode without you doing anything.</p>
 
-<h2>The Cloudflare 5MB Wall and How to Get Around It</h2>
+<h2>Remote Transfers Without a Tunnel: How the Relay Works</h2>
 
 <p>Remote transfers (different networks) are where things get interesting. Your phone on cellular in Greenville, SC, your PC on home WiFi. They can't discover each other via mDNS because they're not on the same broadcast domain.</p>
 
-<p>OpenDrop solves this with Cloudflare's quick tunnel service (trycloudflare.com). The desktop app creates a temporary tunnel that gives it a public URL. The mobile app connects through that URL, and Cloudflare routes traffic between them. TLS encryption is handled by Cloudflare, so the data is protected in transit even though the local server uses plain HTTP.</p>
+<p>OpenDrop solves this with its own high-speed relay. Both the desktop and mobile apps dial outward to the relay — there's no third-party tunnel binary to download, no public URL to share, and nothing for antivirus or a firewall to flag. Because the apps dial outbound, it works behind NAT and restrictive firewalls without any port forwarding. The file contents are end-to-end encrypted with ChaCha20-Poly1305 (RFC 8439 IETF AEAD) before they ever reach the relay, so the relay sees only ciphertext — it forwards opaque bytes and cannot decrypt them. TLS sits underneath as a second encryption layer.</p>
 
-<p>The limitation is Cloudflare's 5MB request body cap. Every transfer through the tunnel gets chunked, with the per-chunk overhead described earlier. For someone sending a few photos or a document, it works fine. For someone moving 4GB of raw video footage, 8 Mbps feels slow.</p>
+<p>There's no per-request size cap to work around. For someone sending a few photos or a document, it's quick. For someone moving 4GB of raw video footage, it goes through end to end — on Pro as one continuous stream, on the free tier in resumable 5 MB chunks — slower than LAN, but no longer bottlenecked by a third party's request limits.</p>
 
-<p>Three options exist for people who need faster remote transfers:</p>
+<p>A couple of things are worth knowing for the fastest experience:</p>
 
 <ol>
-<li><strong>Wait it out.</strong> Chunked transfers are slow but reliable. A 4GB file at 8 Mbps takes roughly 70 minutes. Start it before lunch.</li>
-<li><strong>Get on the same network.</strong> If you can connect both devices to the same WiFi (even a phone hotspot works), you bypass the tunnel entirely and get streaming speed.</li>
-<li><strong>Use OpenDrop Pro's relay.</strong> Pro users get access to a Fly.io-based relay that uses WebSocket with binary frames. True streaming, no chunking, 30-50+ Mbps. That same 4GB file finishes in about 10-15 minutes.</li>
+<li><strong>Get on the same network when you can.</strong> If you can connect both devices to the same WiFi (even a phone hotspot works), you skip the relay entirely and get full LAN streaming speed.</li>
+<li><strong>Pro gets the faster relay.</strong> Free remote transfers run on our Oracle Cloud relay (sent in chunks); OpenDrop Pro adds a faster, dedicated Fly.io relay with automatic failover to Oracle that streams end to end without chunking. Neither tier imposes a per-transfer size cap.</li>
 </ol>
 
-<p>Option 2 is worth knowing about. If I'm at my desk and need to pull files from my Redbeat D5 (my budget Android test phone), I just make sure both are on my home WiFi. The transfer mode switches automatically from tunnel to LAN.</p>
+<p>The first one is worth knowing about. If I'm at my desk and need to pull files from my Redbeat D5 (my budget Android test phone), I just make sure both are on my home WiFi. The transfer mode switches automatically from relay to LAN.</p>
 
 <h2>Putting It Together: A Real Transfer from Phone to PC</h2>
 
@@ -207,21 +208,21 @@
 
 <p>The desktop app starts its HTTP server on <code>0.0.0.0:8000</code>. It registers the mDNS service (<code>_opendrop._tcp.local.</code>) so other devices can find it. The iPhone app scans for that service type using Bonjour (Apple's mDNS implementation) and finds the PC. You select the video file, tap send.</p>
 
-<p>The app opens an HTTP connection to the PC's local IP on port 8000. Each request is signed with HMAC-SHA256 using a shared secret, with a 30-second timestamp window to prevent replay attacks. The file streams as a single HTTP request body. The server writes incoming bytes to <code>%LOCALAPPDATA%\OpenDrop\Files</code> as they arrive.</p>
+<p>The app opens an HTTP connection to the PC's local IP on port 8000. Each request is signed with HMAC-SHA256 using a shared secret, with a timestamp window to prevent replay attacks. The file body itself is end-to-end encrypted with ChaCha20-Poly1305 (RFC 8439 IETF AEAD) before it leaves the phone, so even though the LAN carrier is plain HTTP, the bytes on the wire are ciphertext. The file streams as a single encrypted HTTP request body; the PC decrypts each frame as it arrives and writes plaintext to <code>%USERPROFILE%\Downloads\OpenDrop\Files</code>.</p>
 
 <p>No chunk boundaries, no reassembly step, no cloud round-trip. The file appears on the PC as it's being received. Total time for 1.5GB over WiFi 5 varies by hardware but typically finishes in well under a minute.</p>
 
-<p>Now consider the same transfer with both devices on different networks. The tunnel kicks in. That 1.5GB file gets split into roughly 307 chunks of 5MB each (plus a smaller final chunk). Each chunk goes phone → Cloudflare → PC. At 8 Mbps, it takes around 25 minutes. Still free, still no file size cap, just slower.</p>
+<p>Now consider the same transfer with both devices on different networks. The relay kicks in. On Pro that 1.5GB file streams as one continuous connection — phone → relay → PC — with no chunking; on the free Oracle relay it's sent in chunks. Either way there's no size cap. It's slower than LAN since the bytes travel over the internet, but it works from anywhere.</p>
 
-<h2>What Pro Relay Adds (and When You Don't Need It)</h2>
+<h2>What OpenDrop Pro Adds (and When You Don't Need It)</h2>
 
-<p>OpenDrop Pro replaces the Cloudflare tunnel with a Fly.io relay server. Instead of chunked HTTP, it opens a WebSocket connection and streams binary frames directly. The relay acts as a pass-through: bytes flow from phone to relay to PC with minimal buffering.</p>
+<p>Every remote transfer runs over OpenDrop's own relay. The free tier uses our Oracle Cloud relay; OpenDrop Pro adds a faster, dedicated Fly.io relay with automatic failover to a backup Oracle Cloud relay if Fly is ever down. Either way, the relay is a pass-through: bytes flow from phone to relay to PC with minimal buffering, as binary WebSocket frames.</p>
 
-<p>The speed difference is significant. Pro relay typically runs at 30-50+ Mbps (though this varies by your internet connection and the relay server's location). That 4-6x improvement over free remote comes from eliminating per-chunk overhead and using binary frames instead of base64-encoded JSON payloads. We discovered that base64 encoding added 33% overhead on top of the already-chunked data. Binary WebSocket frames solved both problems at once.</p>
+<p>The relay streams binary frames rather than base64-encoded JSON — we discovered base64 encoding added 33% overhead, so switching to binary frames meaningfully improved throughput. Pro's dedicated Fly.io relay is the faster path and streams the whole file; the free Oracle Cloud relay runs on a smaller, always-free server, so it's slower and sends the file in resumable 5 MB chunks, with no size cap on either.</p>
 
 <p>You don't need Pro if your devices are usually on the same network. LAN streaming is already the fastest option, and every user gets it. Pro makes sense if you frequently transfer large files between locations, like pulling footage off your phone while traveling to your home workstation.</p>
 
-<p>For most people, the free tier handles daily file transfers without issues. Share a photo album, move a presentation, send a batch of documents. Chunked remote transfers aren't fast, but they're free, reliable, and have no hard file size ceiling. LAN transfers are fast and free. That combination covers the majority of file transfer needs without paying for anything.</p>
+<p>For most people, the free tier handles daily file transfers without issues. Share a photo album, move a presentation, send a batch of documents. The free Oracle Cloud relay isn't fast, but it's free, reliable, and has no hard file size ceiling. LAN transfers are fast and free. That combination covers the majority of file transfer needs without paying for anything.</p>
 
 <p><a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> is available on Windows, macOS, Linux, iOS, and Android. Download it, open it on two devices, and send something. On the same network, the transfer starts immediately.</p>
 
@@ -295,7 +296,8 @@
         appId: "1:573883707762:web:e68643cce07c2cee3eadeb",
         measurementId: "G-ENWJJ78E3Q"
       });
-      getAnalytics(app);
+      // Gated on user consent — see /scripts/opendrop-cookie-banner.js
+      if (window.OpenDropConsent) { window.OpenDropConsent.onConsent(function () { getAnalytics(app); }); }
     </script>
 </body>
 </html>

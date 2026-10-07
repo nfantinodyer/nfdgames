@@ -7,9 +7,9 @@
     <meta name="description" content="How mDNS and Bonjour work to auto-discover devices on your local network, and how to fix the most common discovery failures.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
     <meta name="author" content="NFDGames">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96x96.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/x-icon" href="/favicon-nfdgames.ico">
+    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96x96-nfdgames.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-nfdgames.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="canonical" href="https://www.nfdgames.com/blog/posts/mdns-auto-discovery-explained.html" />
     <link rel="alternate" hreflang="en" href="https://www.nfdgames.com/blog/posts/mdns-auto-discovery-explained.html" />
@@ -90,6 +90,8 @@
     <link rel="stylesheet" href="/styles/common.css">
     <link rel="stylesheet" href="/styles/blog.css">
 
+    <!-- Cookie consent / Google Consent Mode v2 preboot — must precede any Google tag -->
+    <script src="/scripts/opendrop-cookie-banner.js"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241"></script>
     <script>
@@ -191,7 +193,7 @@
 <ol>
 <li><strong>Check firewall rules.</strong> On Windows, make sure the app is allowed through Windows Firewall for both private and public networks. On Linux, confirm UDP port 5353 is open: <code>sudo ufw allow 5353/udp</code>. On the router side, look for settings labeled "mDNS," "Bonjour," "multicast," or "AP isolation" and make sure multicast traffic is allowed between clients.</li>
 <li><strong>Use QR code pairing.</strong> OpenDrop can generate a QR code that encodes the server's IP address and port directly. The other device scans it and connects manually, bypassing mDNS discovery completely. This is the fastest workaround for restrictive networks.</li>
-<li><strong>Use remote transfer mode.</strong> If both devices have internet access but the local network blocks everything, OpenDrop's remote transfer through Cloudflare tunnels works regardless of local network restrictions. Free users get 5MB chunked transfers; Pro users get full-speed Fly.io relay streaming.</li>
+<li><strong>Use remote transfer mode.</strong> If both devices have internet access but the local network blocks everything, OpenDrop's own relay carries the transfer regardless of local network restrictions. Both devices dial outbound to the relay, so it works behind NAT and restrictive firewalls — with no third-party tunnel to install and no per-transfer size cap. Free transfers use our Oracle Cloud relay; Pro unlocks the faster Fly.io relay with automatic Oracle failover.</li>
 </ol>
 
 <div class="callout callout-tip"><div class="callout-title">Tip</div><p>If you're on a network that blocks mDNS and can't change the router settings, QR code pairing is the simplest fix. It takes 5 seconds and completely bypasses the discovery problem.</p></div>
@@ -200,11 +202,11 @@
 
 <p><strong>The problem:</strong> mDNS is link-local by design. It only works within a single network segment. If your laptop is on your home WiFi and your phone is on cellular data, or if you're at a coffee shop and your PC is at home, mDNS discovery won't find anything. This is by design, not a bug. Multicast packets have a time-to-live (TTL) of 1, meaning routers don't forward them beyond the local subnet.</p>
 
-<p><strong>How OpenDrop handles it:</strong> We separate discovery from transfer. mDNS handles local discovery. For remote scenarios, OpenDrop uses a cloud-based registration system. When the server starts, it registers with a Cloudflare Worker that stores the server's tunnel URL in KV storage. The mobile app queries this worker to find your server, regardless of network. This is how the "connect from anywhere" feature works without any port forwarding or dynamic DNS setup.</p>
+<p><strong>How OpenDrop handles it:</strong> We separate discovery from transfer. mDNS handles local discovery. For remote scenarios, OpenDrop uses a cloud-based registration system. When the server starts, it registers with a Cloudflare Worker that stores the server's relay address in KV storage. The mobile app queries this worker to find your server, regardless of network. This is how the "connect from anywhere" feature works without any port forwarding or dynamic DNS setup.</p>
 
-<p>The actual file transfer on different networks goes through either the Cloudflare tunnel (free, 5MB chunks at ~8 Mbps) or the Fly.io relay (Pro, true streaming at 30-50+ Mbps). The discovery mechanism just tells the client where to connect. The server also reports its LAN IP and port in the cloud registration, so if the mobile app discovers a direct LAN route is available, it automatically prefers it over the tunnel for speed.</p>
+<p>The actual file transfer on different networks goes through OpenDrop's own relay, end-to-end encrypted: free transfers are sent in resumable 5 MB chunks over our Oracle Cloud relay, while Pro streams over the faster Fly.io relay with automatic Oracle failover. The discovery mechanism just tells the client where to connect. The server also reports its LAN IP and port in the cloud registration, so if the mobile app discovers a direct LAN route is available, it automatically prefers it over the relay for speed.</p>
 
-<p><strong>What to do when it fails:</strong> Make sure both devices have internet access. The cloud registration requires the server to reach the Cloudflare Worker. If the server shows as "offline" in the mobile app when it's clearly running, check that the machine isn't behind a restrictive firewall that blocks outbound HTTPS. VPNs can also interfere, since they route all traffic through a different exit point, which can make the tunnel URL unreachable from the mobile app's network perspective.</p>
+<p><strong>What to do when it fails:</strong> Make sure both devices have internet access. The cloud registration requires the server to reach the Cloudflare Worker, and the relay requires outbound HTTPS. If the server shows as "offline" in the mobile app when it's clearly running, check that the machine isn't behind a restrictive firewall that blocks outbound HTTPS. VPNs can also interfere, since they route all traffic through a different exit point, which can make the relay unreachable from the mobile app's network perspective.</p>
 
 <h2 id="mdns-in-practice">How mDNS Works in Practice: A Packet-Level Walkthrough</h2>
 
@@ -290,7 +292,8 @@
         appId: "1:573883707762:web:e68643cce07c2cee3eadeb",
         measurementId: "G-ENWJJ78E3Q"
       });
-      getAnalytics(app);
+      // Gated on user consent — see /scripts/opendrop-cookie-banner.js
+      if (window.OpenDropConsent) { window.OpenDropConsent.onConsent(function () { getAnalytics(app); }); }
     </script>
 </body>
 </html>

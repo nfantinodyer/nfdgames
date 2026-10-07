@@ -7,12 +7,13 @@
     <meta name="description" content="Explore tutorials, guides, and tips about wireless file transfer, OpenDrop, and cross-platform file sharing. Learn how to transfer files between any device.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
     <meta name="author" content="NFDGames">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96x96.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/x-icon" href="/favicon-nfdgames.ico">
+    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96x96-nfdgames.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-nfdgames.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="canonical" href="https://www.nfdgames.com/blog/" />
     <link rel="alternate" hreflang="en" href="https://www.nfdgames.com/blog/" />
+    <link rel="alternate" type="application/rss+xml" title="NFDGames Blog RSS Feed" href="/blog/feed.xml" />
 
     <meta property="og:type" content="website">
     <meta property="og:title" content="Blog – File Transfer Tips, Tutorials &amp; Guides | NFDGames">
@@ -60,6 +61,8 @@
     <link rel="stylesheet" href="/styles/common.css">
     <link rel="stylesheet" href="/styles/blog.css">
 
+    <!-- Cookie consent / Google Consent Mode v2 preboot — must precede any Google tag -->
+    <script src="/scripts/opendrop-cookie-banner.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -106,6 +109,18 @@
     </div>
 
     <section class="blog-grid" id="blogGrid">
+        <a href="/blog/posts/whats-new-in-opendrop-1-0.html" class="blog-card" data-category="tips">
+            <div class="blog-card-meta">
+                <span class="blog-card-tag tips">Release Notes</span>
+                <span class="blog-card-date">May 2026</span>
+            </div>
+            <h2>What's New in OpenDrop 1.0</h2>
+            <p>Mandatory end-to-end encryption on every transfer path, multi-platform mesh, our own encrypted relay, and what's still on the roadmap.</p>
+            <span class="blog-card-read">
+                Read article
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+            </span>
+        </a>
         <a href="/blog/posts/transfer-files-android-to-pc-without-usb.html" class="blog-card" data-category="tutorial">
             <div class="blog-card-meta">
                 <span class="blog-card-tag tutorial">Tutorial</span>
@@ -197,18 +212,6 @@
             </div>
             <h2>OpenDrop vs LocalSend: Feature-by-Feature Comparison</h2>
             <p>Comparing OpenDrop and LocalSend on speed, remote transfers, CLI support, encryption, and platform support.</p>
-            <span class="blog-card-read">
-                Read article
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-            </span>
-        </a>
-        <a href="/blog/posts/remote-file-transfer-cloudflare-tunnels.html" class="blog-card" data-category="tutorial">
-            <div class="blog-card-meta">
-                <span class="blog-card-tag tutorial">Tutorial</span>
-                <span class="blog-card-date">2026</span>
-            </div>
-            <h2>How to Set Up Remote File Transfer with Cloudflare Tunnels</h2>
-            <p>Guide to setting up remote file transfers between devices on different networks using Cloudflare tunnels.</p>
             <span class="blog-card-read">
                 Read article
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
@@ -426,7 +429,8 @@
         appId: "1:573883707762:web:e68643cce07c2cee3eadeb",
         measurementId: "G-ENWJJ78E3Q"
       });
-      getAnalytics(app);
+      // Gated on user consent — see /scripts/opendrop-cookie-banner.js
+      if (window.OpenDropConsent) { window.OpenDropConsent.onConsent(function () { getAnalytics(app); }); }
     </script>
 </body>
 </html>
