@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>How to Transfer Files from Android to PC Without USB | NFDGames Blog</title>
-    <meta name="description" content="Transfer files from Android to PC wirelessly, no USB cable needed. Covers five methods with exact steps, speeds, and failure modes I&#x27;ve hit personally.">
+    <meta name="description" content="Transfer files from Android to PC wirelessly, no USB cable needed. Covers four methods with exact steps, what each needs from your network, and how to fix common failures.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
     <meta name="author" content="NFDGames">
     <link rel="icon" type="image/x-icon" href="/favicon-nfdgames.ico">
@@ -17,7 +17,7 @@
     <!-- Open Graph -->
     <meta property="og:type" content="article">
     <meta property="og:title" content="How to Transfer Files from Android to PC Without USB">
-    <meta property="og:description" content="Transfer files from Android to PC wirelessly, no USB cable needed. Covers five methods with exact steps, speeds, and failure modes I&#x27;ve hit personally.">
+    <meta property="og:description" content="Transfer files from Android to PC wirelessly, no USB cable needed. Covers four methods with exact steps, what each needs from your network, and how to fix common failures.">
     <meta property="og:image" content="https://www.nfdgames.com/NFDGamesLogoCircleTransparent.png">
     <meta property="og:url" content="https://www.nfdgames.com/blog/posts/transfer-files-android-to-pc-without-usb.html">
     <meta property="og:site_name" content="NFDGames">
@@ -33,7 +33,7 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="How to Transfer Files from Android to PC Without USB">
-    <meta name="twitter:description" content="Transfer files from Android to PC wirelessly, no USB cable needed. Covers five methods with exact steps, speeds, and failure modes I&#x27;ve hit personally.">
+    <meta name="twitter:description" content="Transfer files from Android to PC wirelessly, no USB cable needed. Covers four methods with exact steps, what each needs from your network, and how to fix common failures.">
     <meta name="twitter:image" content="https://www.nfdgames.com/NFDGamesLogoCircleTransparent.png">
 
     <!-- Schema.org JSON-LD -->
@@ -44,7 +44,7 @@
         {
           "@type": "Article",
           "headline": "How to Transfer Files from Android to PC Without USB",
-          "description": "Transfer files from Android to PC wirelessly, no USB cable needed. Covers five methods with exact steps, speeds, and failure modes I&#x27;ve hit personally.",
+          "description": "Transfer files from Android to PC wirelessly, no USB cable needed. Covers four methods with exact steps, what each needs from your network, and how to fix common failures.",
           "author": {
             "@type": "Organization",
             "name": "NFDGames",
@@ -59,7 +59,7 @@
             }
           },
           "datePublished": "2026-02-18",
-          "dateModified": "2026-02-18",
+          "dateModified": "2026-10-10",
           "mainEntityOfPage": "https://www.nfdgames.com/blog/posts/transfer-files-android-to-pc-without-usb.html",
           "keywords": ["android file transfer", "wireless file transfer", "android to pc", "no usb", "opendrop"]
         },
@@ -74,7 +74,7 @@
         ,
         {
           "@type": "FAQPage",
-          "mainEntity": [{"@type":"Question","name":"Do my Android phone and PC need to be on the same Wi-Fi network for wireless transfer?","acceptedAnswer":{"@type":"Answer","text":"Not with OpenDrop. On the same Wi-Fi network, transfers go over LAN at full speed with no file size limit. But OpenDrop also works across different networks through its own encrypted relay (an Oracle Cloud relay on the free tier, the faster Fly.io relay on Pro) — no tunnel binary to install, and it works behind NAT and firewalls. Most other wireless transfer methods like Quick Share and FTP do require the same network."}},{"@type":"Question","name":"Why can't my PC find my Android phone for wireless file transfer?","acceptedAnswer":{"@type":"Answer","text":"The most common cause is AP (client) isolation on your router, which prevents devices on the same Wi-Fi from communicating. Check your router's wireless settings for an \"AP isolation\" toggle and disable it. If you're on a hotel or corporate network where you can't change this, use OpenDrop's QR code pairing or remote transfer mode to bypass the restriction."}},{"@type":"Question","name":"Is wireless file transfer from Android to PC secure?","acceptedAnswer":{"@type":"Answer","text":"It depends on the method. FTP is completely unencrypted. Quick Share uses encryption for the transfer payload. OpenDrop applies ChaCha20-Poly1305 end-to-end encryption (RFC 8439 IETF AEAD) to file contents on every transfer path — LAN, the encrypted relay, and Bluetooth Low Energy — with no plaintext fallback, and signs every request with HMAC-SHA256 on top. Remote transfers additionally ride underneath TLS as a second encryption layer."}},{"@type":"Question","name":"How fast is wireless file transfer compared to USB?","acceptedAnswer":{"@type":"Answer","text":"USB 2.0, which most budget Android phones use, tops out at about 25-35 MB/s in practice. Wi-Fi 5 wireless transfers can hit 100-300 Mbps (roughly 12-37 MB/s), which is comparable. Wi-Fi 6 or 6E can exceed USB 2.0 speeds. USB 3.0 is faster than any current wireless method, but many phones don't support it."}},{"@type":"Question","name":"Does Quick Share work on Linux PCs?","acceptedAnswer":{"@type":"Answer","text":"No. Google's Quick Share desktop app is only available for Windows. There's no official Linux client and no announced plans for one. For Android-to-Linux transfers, OpenDrop, FTP, or cloud storage are your main options. OpenDrop supports Linux with both a GUI and a CLI."}}]
+          "mainEntity": [{"@type":"Question","name":"Do my Android phone and PC need to be on the same Wi-Fi network for wireless transfer?","acceptedAnswer":{"@type":"Answer","text":"Not with OpenDrop. On the same Wi-Fi network, files stream directly over your local network at full speed. On different networks, OpenDrop uses a direct peer-to-peer link or its own encrypted relay: a shared, speed-limited free relay on Free and a faster Pro relay, with automatic backup, on Pro. Neither plan has a file size cap, and there is no port forwarding to set up. Quick Share and FTP need both devices on the same network."}},{"@type":"Question","name":"Why can't my PC find my Android phone for wireless file transfer?","acceptedAnswer":{"@type":"Answer","text":"The most common cause is AP (client) isolation on your router, which prevents devices on the same Wi-Fi from communicating. Check your router's wireless settings for an \"AP isolation\" toggle and disable it. If you're on a hotel or corporate network where you can't change this, pair with OpenDrop's QR code: OpenDrop then reaches the PC over a peer-to-peer link or its encrypted relay instead of the local network."}},{"@type":"Question","name":"Is wireless file transfer from Android to PC secure?","acceptedAnswer":{"@type":"Answer","text":"It depends on the method. FTP is completely unencrypted. Quick Share encrypts transfers. OpenDrop encrypts file contents with ChaCha20-Poly1305 on your device before they leave it, on Wi-Fi, peer-to-peer and relay transfers, with no plaintext fallback, and authenticates requests between your devices with HMAC-SHA256. Relay servers carry file contents only in encrypted form, though they can see file names and sizes."}},{"@type":"Question","name":"How fast is wireless file transfer compared to USB?","acceptedAnswer":{"@type":"Answer","text":"USB 2.0, which most budget Android phones use, tops out at about 25-35 MB/s in practice. Wi-Fi 5 wireless transfers can hit 100-300 Mbps (roughly 12-37 MB/s), which is comparable. Wi-Fi 6 or 6E can exceed USB 2.0 speeds. USB 3 is faster than typical wireless transfers, but many phones only support USB 2.0."}},{"@type":"Question","name":"Does Quick Share work on Linux PCs?","acceptedAnswer":{"@type":"Answer","text":"No. Google's Quick Share desktop app is only available for Windows (64-bit Windows 10 or later). There's no official Linux client. For Android-to-Linux transfers, OpenDrop, FTP, or cloud storage are your main options. OpenDrop supports Linux with both a GUI and a CLI."}}]
         }
       ]
     }
@@ -90,7 +90,7 @@
     <link rel="stylesheet" href="/styles/common.css">
     <link rel="stylesheet" href="/styles/blog.css">
 
-    <!-- Cookie consent / Google Consent Mode v2 preboot — must precede any Google tag -->
+    <!-- Cookie consent / Google Consent Mode v2 preboot: must precede any Google tag -->
     <script src="/scripts/opendrop-cookie-banner.js"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241"></script>
@@ -101,27 +101,31 @@
       gtag('config', 'AW-17319823241');
     </script>
 </head>
-<body>
+<body class="page-blog-post">
+    <a class="skip-link" href="#main">Skip to content</a>
     <div class="bg-gradient"></div>
     <div class="noise"></div>
 
-    <!-- Navigation -->
-    <nav>
+    <nav class="site-nav" aria-label="Main">
         <a href="/" class="logo">
             <picture>
                 <source srcset="/NFDGamesLogoCircleTransparent.webp" type="image/webp">
-                <img src="/NFDGamesLogoCircleTransparent.png" alt="NFDGames Icon" class="logo-icon" width="36" height="36" loading="lazy">
+                <img src="/NFDGamesLogoCircleTransparent.png" alt="" class="logo-icon" width="36" height="36">
             </picture>
-            NFDGames
+            <span class="logo__word">NFDGames</span>
         </a>
-        <div class="nav-links">
+        <div class="nav-links" id="navLinks">
             <a href="/#projects">Projects</a>
-            <a href="/blog/">Blog</a>
-            <a href="/OpenDrop/" class="nav-cta">Get OpenDrop</a>
+            <a href="/blog/" aria-current="page">Blog</a>
+            <a href="/#about">About</a>
+        </div>
+        <div class="nav-actions">
+            <a href="/OpenDrop/" class="btn-cta btn-cta--sm">Get OpenDrop</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-controls="navLinks" aria-expanded="false" aria-label="Open menu"><span></span><span></span><span></span></button>
         </div>
     </nav>
 
-    <main>
+    <main id="main" tabindex="-1">
     <!-- Post Hero -->
     <header class="blog-post-hero">
         <div class="breadcrumb">
@@ -141,145 +145,147 @@
             <span class="blog-card-date">February 18, 2026</span>
             <span class="read-time">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                9 min read
+                8 min read
             </span>
         </div>
     </header>
 
     <!-- Post Content -->
     <article class="blog-post-content">
-        <div class="toc"><ol><li><a href="#why-usb">Why USB Transfers Keep Failing (And Why You're Here)</a></li><li><a href="#opendrop-method">Method 1: OpenDrop (My Recommendation)</a></li><li><a href="#nearby-share">Method 2: Quick Share (Google's Built-In Option)</a></li><li><a href="#ftp-method">Method 3: FTP Server on Android</a></li><li><a href="#cloud-method">Method 4: Cloud Storage as a Middleman</a></li><li><a href="#common-failures">Common Failures and How to Fix Them</a></li><li><a href="#speed-comparison">Speed Comparison Across Methods</a></li></ol></div>
+        <div class="toc"><ol><li><a href="#why-usb">Why USB Transfers Keep Failing</a></li><li><a href="#opendrop-method">Method 1: OpenDrop</a></li><li><a href="#nearby-share">Method 2: Quick Share (Google's Built-In Option)</a></li><li><a href="#ftp-method">Method 3: FTP Server on Android</a></li><li><a href="#cloud-method">Method 4: Cloud Storage as a Middleman</a></li><li><a href="#common-failures">Common Failures and How to Fix Them</a></li><li><a href="#speed-comparison">Speed Comparison Across Methods</a></li></ol></div>
 
-<h2 id="why-usb">Why USB Transfers Keep Failing (And Why You're Here)</h2>
+<h2 id="why-usb">Why USB Transfers Keep Failing</h2>
 
-<p>Most guides about Android-to-PC file transfer start with "just plug in a USB cable." That advice breaks down fast. MTP (Media Transfer Protocol), the default USB transfer mode on Android, is unreliable in ways that make me want to throw things. Files stall at 95%. The phone disconnects mid-transfer if the screen locks. Windows File Explorer shows a folder listing from three hours ago because MTP caches are stale. And if you're using a budget phone with a USB 2.0 port, you're capped at roughly 25-35 MB/s even when it works.</p>
+<p>The usual advice is to plug in a USB cable. On Android that means MTP (Media Transfer Protocol), and MTP has well-known problems. Large copies can stall partway. The connection can drop if the phone locks or the cable moves. File Explorer sometimes shows a stale folder listing until you unplug and reconnect. And many phones, especially budget ones, only have a USB 2.0 port, which manages roughly 25 to 35 MB/s in practice and often less over MTP.</p>
 
-<p>I ran into this constantly with my Redbeat D5, which I use for cross-platform testing. The USB-C port on that phone is finicky, and Windows would sometimes refuse to detect it entirely until I toggled USB debugging on and off twice. That's what pushed me to build a wireless-first workflow.</p>
+<p>Wireless transfer removes the cable, the port and the driver from the problem. In exchange, it depends on your network. This guide covers four methods, what each one needs from the network, and what to check when it fails: OpenDrop, Google's Quick Share, an FTP server on the phone, and cloud storage.</p>
 
-<p>The other gap I see in every "Android to PC without USB" article on the first page of Google: they list five methods and explain none of them well. No one mentions what happens when your Wi-Fi network blocks multicast. No one talks about transfer speed differences between LAN and remote relay. No one addresses the fact that Quick Share barely works on non-Samsung Windows machines. This article fills those gaps.</p>
+<h2 id="opendrop-method">Method 1: OpenDrop</h2>
 
-<h2 id="opendrop-method">Method 1: OpenDrop (My Recommendation)</h2>
-
-<p>I built <a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> because I was tired of emailing files to myself like it was 2009. The core idea: your PC runs a small server on port 8000, your Android phone discovers it via mDNS (service type <code>_opendrop._tcp.local.</code>), and files transfer directly over your local network. No cloud upload, no account required for basic transfers, no file touching a third-party server.</p>
+<p><a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> is our app, with a desktop version for Windows and Linux and a mobile version for Android, iPhone and iPad. The desktop app runs a small local server (port 8000 by default). Your phone pairs with it by scanning a QR code, then finds it on your Wi-Fi with mDNS and streams files to it directly. The Free plan needs no account.</p>
 
 <h3>Step 1: Install OpenDrop on Your PC</h3>
 
-<p>Download the desktop app from <a href="https://www.nfdgames.com/OpenDrop/">www.nfdgames.com/OpenDrop</a>, or grab it from the Microsoft Store on Windows. On Linux, download the <code>.AppImage</code> from the GitHub Releases page (x86_64 and aarch64 builds available) and run it directly — no extraction, no install. The server starts automatically and you'll see a dashboard with a QR code and a server status indicator.</p>
+<p>On Windows, install it from the Microsoft Store or download the installer from the <a href="/OpenDrop/#download">OpenDrop download page</a>. It needs Windows 10 version 1809 or later, 64-bit.</p>
 
-<p>Files land in <code>%USERPROFILE%\Downloads\OpenDrop\Files</code> on Windows and <code>~/Downloads/OpenDrop/Files</code> on Linux by default. You can change this in the app settings, but those are the paths to check if you're looking for where things went.</p>
+<p>On Linux, download the AppImage for your CPU (x86_64 or ARM64), make it executable and run it. There is nothing to install. It needs glibc 2.35 or newer (Ubuntu 22.04, Debian 12, Fedora 36 or later).</p>
+
+<p><code>chmod +x OpenDrop-1.0.0-x86_64.AppImage</code></p>
+
+<p>When the app starts, its dashboard shows a QR code. Received files go to <code>%USERPROFILE%\Downloads\OpenDrop\Files</code> on Windows and <code>~/Downloads/OpenDrop/Files</code> on Linux. You can change the folder in the app's settings.</p>
 
 <h3>Step 2: Install OpenDrop on Your Android Phone</h3>
 
-<p>Get it from Google Play. Open the app, and it will start scanning for OpenDrop servers on your network using mDNS/Bonsoir discovery.</p>
+<p>Install OpenDrop from Google Play (Android 7.0 or later). Open it and scan the QR code on your PC's dashboard. That pairs the phone with the PC.</p>
+
+<p>The QR code holds a private pairing key and the addresses your phone needs to reach your computer. Anyone who scans it can pair with your PC, so don't share screenshots of it.</p>
 
 <h3>Step 3: Connect and Transfer</h3>
 
-<p>If both devices are on the same Wi-Fi network, your PC should appear in the app's device list within a few seconds. Tap it, select files, hit send. That's it. Transfers happen over direct HTTP on your LAN with full streaming and no per-file size cap. For remote transfers (different networks), OpenDrop uses its own encrypted relay — on the free tier it first tries a direct peer-to-peer connection and falls back to an Oracle Cloud relay, sending the file in resumable 5 MB chunks, while Pro streams it over a faster Fly.io relay (with automatic Oracle failover) — with no per-transfer size cap.</p>
+<p>Once paired, your PC shows up in the app's device list. Tap it, pick files and send. On the same Wi-Fi, files stream straight to the PC at full speed with no file size cap, on both Free and Pro.</p>
 
-<p>If your PC doesn't appear, two things to check. First, make sure Windows Firewall isn't blocking port 8000. The installer should create the rule, but I've seen Windows updates silently remove firewall exceptions. Second, some routers block mDNS (multicast on UDP port 5353). If that's the case, scan the QR code displayed on the desktop app's dashboard instead. We added QR pairing specifically because three users emailed us in the same week about hotel and corporate Wi-Fi blocking multicast. The QR encodes the server's IP and port directly, bypassing discovery entirely.</p>
+<p>If the phone and PC are on different networks (say, the phone on cellular and the PC at home), OpenDrop picks the route for you:</p>
 
-<div class="callout callout-tip"><div class="callout-title">Tip</div><p>OpenDrop doesn't require both devices to be on the same network. If you're transferring from your phone on cellular to your PC at home, OpenDrop first tries a direct peer-to-peer link and otherwise routes through its own encrypted relay — free transfers move in resumable 5 MB chunks over an Oracle Cloud relay, and Pro streams over a faster, dedicated Fly.io relay with automatic Oracle failover. No tunnel binary to download, and it works behind NAT and firewalls. LAN is fastest, but it's not a requirement.</p></div>
+<ul>
+<li><strong>Free:</strong> a direct peer-to-peer link if one works, otherwise OpenDrop's shared free relay. Free remote transfers are speed-limited, move in resumable 5 MB pieces and share a weekly fair-use allowance on the free relay.</li>
+<li><strong>Pro:</strong> a faster Pro relay with automatic backup. It streams the whole file and has no weekly limit.</li>
+</ul>
+
+<p>Neither plan has a file size cap, and there is no port forwarding to set up. File contents are encrypted with ChaCha20-Poly1305 on the phone before they leave it. The relay carries them only in encrypted form, though it can see file names and sizes.</p>
+
+<div class="callout callout-tip"><div class="callout-title">Tip</div><p>Keep the app open for transfers on the same Wi-Fi or over a peer-to-peer link. Uploads through the relay keep going in the background for a while on Android, and if the connection drops, a remote transfer picks up where it left off instead of starting over.</p></div>
 
 <h3>Step 4: Verify the Transfer</h3>
 
-<p>On the desktop app, switch to the Files tab. Your transferred files show up with thumbnails. You can also just open <code>%USERPROFILE%\Downloads\OpenDrop\Files</code> in File Explorer. Every file keeps its original name and extension.</p>
+<p>In the desktop app, open the Files tab. New files show up there, with thumbnails for images, videos and PDFs. You can also open the Files folder from Step 1 in your file manager.</p>
 
 <h2 id="nearby-share">Method 2: Quick Share (Google's Built-In Option)</h2>
 
-<p>Google renamed Nearby Share to Quick Share in early 2024 and released a Windows desktop client. In theory, this is the simplest option since it's built into Android. In practice, it has some real limitations that the marketing materials don't mention.</p>
+<p>Quick Share (formerly Nearby Share) is built into Android, and Google makes a Quick Share app for Windows. If your PC meets its requirements, it needs nothing extra on the phone.</p>
 
 <h3>Setup Steps</h3>
 
 <ol>
-<li>On your PC, download Quick Share for Windows from <a href="https://www.android.com/better-together/quick-share-app/">android.com/better-together/quick-share-app</a>.</li>
-<li>Sign in with your Google account.</li>
-<li>On your Android phone, open Settings > Google > Devices & sharing > Quick Share. Make sure visibility is set to "Your devices" or "Everyone."</li>
-<li>On your phone, open the file you want to send, tap Share, then tap Quick Share.</li>
-<li>Select your PC from the list.</li>
+<li>On your PC, install Quick Share for Windows from <a href="https://www.android.com/better-together/quick-share-app/">android.com/better-together/quick-share-app</a>. It needs 64-bit Windows 10 or later, or Windows 11 on ARM PCs.</li>
+<li>Sign in with your Google account if you want every option. Basic use works without it.</li>
+<li>Turn on Wi-Fi and Bluetooth on both devices and connect them to the same network.</li>
+<li>On your phone, open the file, tap Share, then tap Quick Share.</li>
+<li>Pick your PC from the list. If it doesn't appear, check who is allowed to share with the PC in the Windows app's settings.</li>
 </ol>
 
-<p>The problem: device discovery is inconsistent. On my Redbeat D5 running Android 14, Quick Share finds my Windows 11 PC maybe 70% of the time on the first try. The other 30%, I'm toggling Bluetooth off and on, restarting the Quick Share app on Windows, or just giving up and using something else. The Windows client also tends to sit in the system tray consuming around 120MB of RAM even when idle.</p>
-
-<p>Quick Share also requires Bluetooth for the initial handshake even though the actual transfer goes over Wi-Fi Direct. If your PC doesn't have Bluetooth (many desktops don't), you're out of luck. My desktop has a Wi-Fi/BT combo card, so it works, but this is a genuine blocker for a lot of desktop setups.</p>
-
-<p>Quick Share has no Linux support at all. If you're running ParrotOS or Ubuntu or anything else, this method doesn't exist for you.</p>
+<p>Know the limits before you rely on it. Bluetooth has to be on, so a desktop without Bluetooth can't use it. Google says to keep the devices within about 5 meters (16 feet) of each other, and notes that PCs without Bluetooth LE extended advertising can be hard to find on some networks. Both devices have to be nearby, so it can't reach a PC at home while you're out. There is no Quick Share app for Linux.</p>
 
 <h2 id="ftp-method">Method 3: FTP Server on Android</h2>
 
-<p>This is the power-user approach. You run a tiny FTP server on your Android phone and connect to it from your PC's file manager or a command-line FTP client. No app needed on the PC side.</p>
+<p>This method needs nothing installed on the PC. You run an FTP server app on the phone and open it from your PC's file manager.</p>
 
 <h3>Setup Steps</h3>
 
 <ol>
-<li>Install "WiFi FTP Server" by Medha Apps from Google Play (free, ad-supported). There are dozens of these apps; I've used this one because it lets you pick a custom port and has a clear start/stop toggle.</li>
-<li>Open the app and tap Start. It will display an IP address and port, something like <code>ftp://192.168.1.147:2221</code>.</li>
-<li>On your Windows PC, open File Explorer and type that FTP address into the address bar. Hit Enter.</li>
-<li>You'll see your phone's file system. Navigate to the folder you want and drag files to your desktop.</li>
+<li>Install an FTP server app from Google Play. There are many. Pick one that lets you set a username and password and has a clear start and stop control.</li>
+<li>Start the server. The app shows an address such as <code>ftp://192.168.1.147:2221</code>.</li>
+<li>On Windows, type that address into the File Explorer address bar and press Enter.</li>
+<li>Browse to the folder you want and drag files to your PC.</li>
 </ol>
 
-<p>On Linux, you can connect from the terminal:</p>
+<p>On Linux, most file managers open the same address. In GNOME Files, use Other Locations and type it into Connect to Server. From a terminal, a client such as <code>lftp</code> works:</p>
 
-<p><code>ftp 192.168.1.147 2221</code></p>
+<p><code>lftp ftp://192.168.1.147:2221</code></p>
 
-<p>Or use Nautilus/Thunar's "Connect to Server" option with the same address.</p>
-
-<p>The catch with FTP: it's unencrypted. Every byte crosses your local network in plaintext. On your home Wi-Fi, this is probably fine. On a coffee shop network, don't do this. Also, FTP transfer speeds vary wildly depending on the app and phone. On my Redbeat D5, I see about 15-25 MB/s over FTP, which is slower than direct HTTP. And you need both devices on the same network with no exceptions. There's no remote fallback.</p>
+<p>Plain FTP is unencrypted: your files and your login cross the network in the clear. That's a small risk on your own home Wi-Fi and a real one on shared Wi-Fi. Speed depends a lot on the server app. Both devices must be on the same network, and there is no fallback when they aren't. Stop the server when you're done.</p>
 
 <h2 id="cloud-method">Method 4: Cloud Storage as a Middleman</h2>
 
-<p>Upload to Google Drive, iCloud, Dropbox, or OneDrive from your phone. Download on your PC. Everyone knows this method. I'm including it because it's the most universally reliable option, not because it's good.</p>
+<p>Upload to Google Drive, OneDrive or Dropbox from your phone, then download on your PC. It works on any network and needs only an account, which is why most people already use it as the fallback.</p>
 
-<p>The problems are obvious. You're uploading your files to someone else's server. For a 2GB video, you're waiting for a full upload on your phone's connection, then a full download on your PC, even if both devices are sitting three feet apart on the same network. That's double the transfer time and double the bandwidth. Google Drive's free tier caps at 15GB, and the upload speed depends entirely on your ISP's upstream.</p>
+<p>The cost is time and a copy of your files on someone else's server. Every file goes up over your internet upload speed and comes back down, even when the phone and PC sit next to each other. Upload is usually the bottleneck: at 50 Mbps up, a 1.2 GB file takes over three minutes just to upload. Free storage is limited too. A Google account comes with 15 GB shared across Gmail, Drive and Photos.</p>
 
-<p>For small files under 25MB, this is fine. For anything bigger, it's painfully slow compared to a direct LAN transfer. I used to email files to myself or drop them in a Discord DM before I built OpenDrop. It worked, but it felt absurd.</p>
+<p>For a few small files, that's fine. For large videos or whole folders, a direct transfer is faster.</p>
 
 <h2 id="common-failures">Common Failures and How to Fix Them</h2>
 
-<p>Every wireless transfer method shares some common failure modes. I've hit all of these personally, mostly while testing <a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> on different networks around Greenville, SC.</p>
+<p>Most wireless transfer failures come from the network or the operating system, not the app.</p>
 
 <h3>"Devices can't see each other"</h3>
 
-<p>This is almost always a network isolation issue. Many routers have "AP isolation" or "client isolation" enabled, which prevents devices on the same Wi-Fi from talking to each other. Check your router's admin panel (usually at 192.168.1.1 or 192.168.0.1) and look for this setting under Wireless > Advanced. Corporate and hotel networks almost always have this enabled, which is why mDNS discovery fails on those networks.</p>
+<p>The usual cause is AP isolation (also called client isolation), a router setting that stops devices on the same Wi-Fi from talking to each other. Guest networks, hotels and many offices use it. On your own router, open the admin page (often at 192.168.1.1 or 192.168.0.1) and look for the setting in the wireless or advanced options. Some routers also block multicast traffic, which breaks mDNS discovery (UDP port 5353).</p>
 
-<p>In OpenDrop, QR pairing bypasses the mDNS discovery step, but AP isolation will still block the actual transfer since both devices can't reach each other over LAN. In that case, use OpenDrop's remote mode, which routes through its own relay and doesn't need LAN connectivity at all.</p>
+<p>Quick Share and FTP can't get around isolation. OpenDrop can: once the phone is paired by QR code, it reaches the PC over a peer-to-peer link or its encrypted relay when the local network blocks the direct path.</p>
 
 <h3>"Transfer starts but stalls or drops"</h3>
 
-<p>If you're on Wi-Fi and the transfer hangs partway through, check if your phone switched to cellular mid-transfer. Android's "adaptive Wi-Fi" feature will silently drop a weak Wi-Fi connection and swap to mobile data. Go to Settings > Network & internet > Internet > your Wi-Fi network > gear icon, and look for "Switch to mobile data" or similar. Turn it off during large transfers.</p>
+<p>Check whether the phone left Wi-Fi mid-transfer. Many Android phones switch to mobile data when the Wi-Fi signal gets weak. The setting is usually under Settings &gt; Network &amp; internet (or Connections), with a name like "Switch to mobile data automatically". Turn it off for large transfers or move closer to the router. Battery savers can also pause apps in the background, so keep the screen on for long transfers.</p>
 
 <h3>"Windows Firewall blocked the connection"</h3>
 
-<p>If you're running an app that hosts a local server (like OpenDrop on port 8000, or an FTP server), Windows Firewall needs an inbound rule for that port. OpenDrop's installer creates this automatically, but if you installed via the Microsoft Store or the rule got cleared, you can add it manually:</p>
+<p>Apps that receive files over the network, like OpenDrop on port 8000, need Windows Firewall to allow incoming connections. The first time such an app starts, Windows usually asks whether to allow it. Allow it on private networks, and check that your home Wi-Fi is set to Private, not Public, in Windows network settings. If you dismissed the prompt, add a rule from an elevated Command Prompt or PowerShell:</p>
 
 <p><code>netsh advfirewall firewall add rule name="OpenDrop" dir=in action=allow protocol=TCP localport=8000</code></p>
 
-<p>Run that in an elevated Command Prompt or PowerShell. One line, done.</p>
-
 <h3>"Files received but can't open them"</h3>
 
-<p>This usually means the file extension got stripped or changed during transfer. MTP is notorious for this. Wireless methods generally preserve filenames better, but if you're using FTP with a client that renames duplicates, you might end up with <code>photo (1).jpg</code> that some apps choke on because of the space and parentheses. OpenDrop preserves original filenames as-is.</p>
+<p>The most common case is HEIC (HEIF) photos. Some Android cameras can save photos as HEIC to save space, and Windows needs Microsoft's HEIF Image Extensions and HEVC Video Extensions from the Microsoft Store to open them. Install those extensions, switch the camera to JPEG, or convert the files.</p>
+
+<div class="callout callout-tip"><div class="callout-title">Tip</div><p>OpenDrop Pro can convert HEIC photos to JPG automatically when they arrive on your PC, once you turn on a conversion rule. The conversion runs on the PC, so your photo editor gets a file it can open.</p></div>
 
 <h2 id="speed-comparison">Speed Comparison Across Methods</h2>
 
-<p>I tested each method by sending a 1.2GB video file from my Redbeat D5 to my Windows 11 desktop. Both devices were on my home Wi-Fi network. These numbers vary by hardware and network conditions, so treat them as ballpark, not benchmarks.</p>
+<p>Real speeds depend on your phone, your Wi-Fi hardware and how busy the network is, so there are no fixed numbers here. What matters is the path each method takes.</p>
 
 <ul>
-<li><strong>OpenDrop (LAN mode):</strong> Fastest of the wireless methods. Direct HTTP streaming on port 8000 with no chunking overhead. Speed depends on your Wi-Fi hardware, but on Wi-Fi 5 you can expect somewhere in the 100-300 Mbps range (varies by hardware).</li>
-<li><strong>Quick Share:</strong> Roughly comparable to OpenDrop on LAN since it uses Wi-Fi Direct for the payload. The slow part is the discovery handshake, which can add 10-30 seconds before the transfer even starts.</li>
-<li><strong>FTP:</strong> Slower than direct HTTP in my testing. The overhead of the FTP protocol and the Android FTP server apps being single-threaded puts a cap on throughput.</li>
-<li><strong>Cloud upload/download:</strong> Bottlenecked by your internet upload speed. On a 50 Mbps upstream connection, a 1.2GB file takes several minutes just for the upload, then more time to download.</li>
+<li><strong>OpenDrop on the same Wi-Fi:</strong> streams straight from phone to PC over your local network, with no chunking, on Free and Pro. The limit is your Wi-Fi link. Wi-Fi 5 commonly delivers 100 to 300 Mbps (about 12 to 37 MB/s), which is in the same range as USB 2.0 over MTP.</li>
+<li><strong>Quick Share:</strong> also sends directly between the two devices, so it lands in a similar range once the transfer starts. It has to find the PC over Bluetooth first.</li>
+<li><strong>FTP:</strong> direct over your Wi-Fi, but throughput varies a lot between server apps.</li>
+<li><strong>Cloud storage:</strong> limited by your internet upload speed, plus the download on the PC. Usually the slowest for large files.</li>
+<li><strong>OpenDrop across networks:</strong> limited by the slower of the two internet connections. Free remote transfers are also speed-limited; Pro uses a faster relay.</li>
 </ul>
 
-<p>For transfers between different networks (phone on cellular, PC on home Wi-Fi), OpenDrop is the only option in this list that handles it natively. It routes through its own encrypted relay with no third-party tunnel to install and no per-transfer size cap — the free tier sends resumable 5 MB chunks over an Oracle Cloud relay, and Pro streams over a faster Fly.io relay with automatic Oracle failover. Cloud storage technically works too, but you're paying for it with upload time and a copy of your files sitting on someone else's server.</p>
-
-<div class="callout callout-tip"><div class="callout-title">Tip</div><p>If you're transferring HEIC photos from a phone that shoots in that format, OpenDrop Pro can convert HEIC to JPG during the transfer. This saves you from needing a separate conversion step on your PC, which is one less thing to deal with if your photo editor doesn't handle HEIC natively.</p></div>
-
-<p>My daily workflow is simple. OpenDrop runs at startup on my Windows desktop. When I need to pull screenshots or test recordings off my Redbeat D5, I open the app, tap my PC's name, select files, and they're in <code>C:\Users\[me]\Downloads\OpenDrop\Files</code> within seconds. No cables, no cloud, no account. That's the whole point.</p>
+<p>A USB 3 cable is usually faster still, if your phone and cable support it. When the phone and PC are on different networks, Quick Share and FTP stop working. OpenDrop and cloud storage both still work, but OpenDrop sends the file to your PC directly or through its relay instead of keeping a copy in a cloud account.</p>
 
         <!-- CTA -->
         <div class="blog-cta">
             <h3>Stop Fumbling with USB Cables</h3>
-            <p>OpenDrop transfers files from your Android phone to your PC over Wi-Fi, no cables, no cloud uploads, no file size limits on LAN. Install it on your PC and your phone, and your files move in seconds. Free on Google Play, Microsoft Store, and direct download.</p>
+            <p>OpenDrop sends files from your Android phone to your Windows or Linux PC over Wi-Fi or the internet, with no file size cap. Install it on both, scan the QR code on your PC, and send. Free on Google Play, the Microsoft Store and as a direct download.</p>
             <a href="/OpenDrop/" class="btn btn-primary">Download OpenDrop Free</a>
         </div>
     </article>
@@ -290,45 +296,78 @@
         <div class="related-grid">
             <a href="/blog/posts/send-large-files-phone-to-pc-free.html" class="related-card">
     <h4>How to Send Large Files Between Phone and PC for Free</h4>
-    <p>Learn how to send files of any size between your phone and computer without cloud uploads or paid se</p>
+    <p>How free file transfers actually work between phones and PCs.</p>
 </a>
 <a href="/blog/posts/opendrop-cli-automated-file-transfers.html" class="related-card">
     <h4>How to Use OpenDrop CLI for Automated File Transfers</h4>
-    <p>Learn to use OpenDrop&#x27;s command-line interface to automate file transfers between devices via script</p>
+    <p>A real walkthrough of setting up OpenDrop CLI for scripted file transfers.</p>
 </a>
         </div>
     </section>
     </main>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-brand">
+    <div class="seam" aria-hidden="true"></div>
+    <footer class="site-footer">
+        <div class="wrap site-footer__grid">
+            <div class="site-footer__brand">
                 <a href="/" class="logo">
                     <picture>
                         <source srcset="/NFDGamesLogoCircleTransparent.webp" type="image/webp">
-                        <img src="/NFDGamesLogoCircleTransparent.png" alt="NFDGames Icon" class="logo-icon" width="36" height="36" loading="lazy">
+                        <img src="/NFDGamesLogoCircleTransparent.png" alt="" class="logo-icon" width="36" height="36" loading="lazy">
                     </picture>
                     NFDGames
                 </a>
-                <p>Indie studio building software utilities and mobile games.</p>
+                <p>Independent studio making OpenDrop and Gunslinger.</p>
             </div>
-            <div class="footer-links">
-                <div class="footer-col">
-                    <h4>Products</h4>
-                    <a href="/OpenDrop/">OpenDrop</a>
-                    <a href="/OpenDrop/support.html">Support</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Resources</h4>
-                    <a href="/blog/">Blog</a>
-                    <a href="/OpenDrop/PrivacyPolicy.html">Privacy Policy</a>
-                    <a href="/OpenDrop/TermsOfService.html">Terms of Service</a>
-                </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">OpenDrop</h2>
+                <ul>
+                    <li><a href="/OpenDrop/">Overview</a></li>
+                    <li><a href="/OpenDrop/#download">Download</a></li>
+                    <li><a href="/OpenDrop/#compare">Free vs Pro</a></li>
+                    <li><a href="/OpenDrop/changelog.html">What's new in 1.0</a></li>
+                    <li><a href="/OpenDrop/support.html">Support</a></li>
+                    <li><a href="/OpenDrop/status.html">System status</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Guides</h2>
+                <ul>
+                    <li><a href="/blog/posts/best-airdrop-alternatives-windows-2026.html">AirDrop alternatives</a></li>
+                    <li><a href="/blog/posts/share-files-iphone-android.html">iPhone to Android</a></li>
+                    <li><a href="/blog/posts/transfer-files-android-to-pc-without-usb.html">Android to PC, no USB</a></li>
+                    <li><a href="/blog/posts/transfer-photos-iphone-to-windows-pc.html">iPhone photos to PC</a></li>
+                    <li><a href="/blog/posts/transfer-files-windows-to-linux.html">Windows to Linux</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Studio</h2>
+                <ul>
+                    <li><a href="/">NFDGames home</a></li>
+                    <li><a href="/#gunslinger">Gunslinger</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/OpenDrop/press.html">Press kit</a></li>
+                    <li><a href="https://play.google.com/store/apps/dev?id=6331541447390891189&amp;hl=en_US" target="_blank" rel="noopener">Apps on Google Play</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Legal and security</h2>
+                <ul>
+                    <li><a href="/OpenDrop/PrivacyPolicy.html">Privacy Policy</a></li>
+                    <li><a href="/OpenDrop/TermsOfService.html">Terms of Service</a></li>
+                    <li><a href="/OpenDrop/security.html">Security and disclosure</a></li>
+                    <li><a href="/OpenDrop/accessibility.html">Accessibility</a></li>
+                </ul>
             </div>
         </div>
-        <div class="footer-bottom">
+        <div class="wrap site-footer__bottom">
             <p>&copy; 2026 NFDGames. All rights reserved.</p>
+            <div class="site-footer__legal">
+                <a href="/OpenDrop/WithdrawalForm.html">EU/UK withdrawal</a>
+                <a href="/OpenDrop/third-party-notices.html">Third-party notices</a>
+                <a href="/OpenDrop/docs/export-compliance/">Export compliance</a>
+                <a href="mailto:support@nfdgames.com">support@nfdgames.com</a>
+            </div>
         </div>
     </footer>
 
@@ -346,7 +385,7 @@
         appId: "1:573883707762:web:e68643cce07c2cee3eadeb",
         measurementId: "G-ENWJJ78E3Q"
       });
-      // Gated on user consent — see /scripts/opendrop-cookie-banner.js
+      // Gated on user consent, see /scripts/opendrop-cookie-banner.js
       if (window.OpenDropConsent) { window.OpenDropConsent.onConsent(function () { getAnalytics(app); }); }
     </script>
 </body>

@@ -57,7 +57,7 @@
             }
           },
           "datePublished": "2026-02-04",
-          "dateModified": "2026-02-04",
+          "dateModified": "2026-10-10",
           "mainEntityOfPage": "https://www.nfdgames.com/blog/posts/opendrop-vs-localsend-comparison.html",
           "keywords": ["opendrop vs localsend", "localsend alternative", "file sharing comparison"]
         },
@@ -72,7 +72,7 @@
         ,
         {
           "@type": "FAQPage",
-          "mainEntity": [{"@type":"Question","name":"Is LocalSend or OpenDrop faster for LAN transfers?","acceptedAnswer":{"@type":"Answer","text":"On the same local network, both tools transfer at speeds limited by your WiFi hardware rather than the software. For typical home networks, the speed difference between the two is negligible. Both stream files directly between devices without cloud intermediaries."}},{"@type":"Question","name":"Does LocalSend support remote file transfer?","acceptedAnswer":{"@type":"Answer","text":"No. LocalSend is designed exclusively for local network transfers. If both devices aren't on the same WiFi or LAN, LocalSend cannot connect them. OpenDrop supports remote transfers through its own encrypted relay — an Oracle Cloud relay on the free tier and the faster Fly.io relay on Pro."}},{"@type":"Question","name":"Is LocalSend free and open source?","acceptedAnswer":{"@type":"Answer","text":"Yes. LocalSend is MIT-licensed open source software with no paid tier. OpenDrop has a free tier (LAN streaming plus remote transfers over its own Oracle Cloud relay) and a paid Pro tier (the faster Fly.io relay with automatic Oracle failover, shared folders, file conversion). Both apps are free of ads."}},{"@type":"Question","name":"Which tool has better CLI support?","acceptedAnswer":{"@type":"Answer","text":"OpenDrop has purpose-built CLI subcommands: serve (headless server), send (file transfer), devices (list targets), and register-context-menu (OS integration). LocalSend supports basic CLI file sending but is primarily designed as a GUI application."}},{"@type":"Question","name":"Can I use both LocalSend and OpenDrop on the same device?","acceptedAnswer":{"@type":"Answer","text":"Yes. They don't conflict with each other. Both can be installed and run simultaneously. Some users keep LocalSend for quick LAN shares with others and OpenDrop for personal devices and remote transfers."}}]
+          "mainEntity": [{"@type":"Question","name":"Is LocalSend or OpenDrop faster for LAN transfers?","acceptedAnswer":{"@type":"Answer","text":"On the same local network, both send files directly between the two devices, so your Wi-Fi and hardware set the speed more than the app does. OpenDrop streams LAN transfers at full speed with no chunking on both Free and Pro."}},{"@type":"Question","name":"Does LocalSend support remote file transfer?","acceptedAnswer":{"@type":"Answer","text":"No. LocalSend works only when both devices are on the same network. OpenDrop also sends between different networks, over a direct peer-to-peer link or its own encrypted relay. Free remote transfers are speed-limited; Pro starts on a faster Pro relay with automatic backup and has no weekly limit."}},{"@type":"Question","name":"Is LocalSend free and open source?","acceptedAnswer":{"@type":"Answer","text":"Yes. LocalSend is open source under the Apache 2.0 license and free, with no account. OpenDrop is closed source. Its Free plan needs no account and covers same-network streaming plus speed-limited remote transfers. Pro adds a faster Pro relay with automatic backup, every device on one account, shared folders and photo and video conversion. OpenDrop has no ads."}},{"@type":"Question","name":"Which tool has better CLI support?","acceptedAnswer":{"@type":"Answer","text":"Both have one. LocalSend added a command line in v1.18.0. OpenDrop's CLI includes serve (headless), upload, download, ls and status, plus devices and -d commands that reach other devices with Pro, and fixed exit codes for scripts."}},{"@type":"Question","name":"Can I use both LocalSend and OpenDrop on the same device?","acceptedAnswer":{"@type":"Answer","text":"Yes. They are separate apps and can run at the same time. You might keep LocalSend for quick shares with other people on the same network and OpenDrop for your own devices and remote transfers."}}]
         }
       ]
     }
@@ -88,7 +88,7 @@
     <link rel="stylesheet" href="/styles/common.css">
     <link rel="stylesheet" href="/styles/blog.css">
 
-    <!-- Cookie consent / Google Consent Mode v2 preboot — must precede any Google tag -->
+    <!-- Cookie consent / Google Consent Mode v2 preboot: must precede any Google tag -->
     <script src="/scripts/opendrop-cookie-banner.js"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241"></script>
@@ -99,27 +99,31 @@
       gtag('config', 'AW-17319823241');
     </script>
 </head>
-<body>
+<body class="page-blog-post">
+    <a class="skip-link" href="#main">Skip to content</a>
     <div class="bg-gradient"></div>
     <div class="noise"></div>
 
-    <!-- Navigation -->
-    <nav>
+    <nav class="site-nav" aria-label="Main">
         <a href="/" class="logo">
             <picture>
                 <source srcset="/NFDGamesLogoCircleTransparent.webp" type="image/webp">
-                <img src="/NFDGamesLogoCircleTransparent.png" alt="NFDGames Icon" class="logo-icon" width="36" height="36" loading="lazy">
+                <img src="/NFDGamesLogoCircleTransparent.png" alt="" class="logo-icon" width="36" height="36">
             </picture>
-            NFDGames
+            <span class="logo__word">NFDGames</span>
         </a>
-        <div class="nav-links">
+        <div class="nav-links" id="navLinks">
             <a href="/#projects">Projects</a>
-            <a href="/blog/">Blog</a>
-            <a href="/OpenDrop/" class="nav-cta">Get OpenDrop</a>
+            <a href="/blog/" aria-current="page">Blog</a>
+            <a href="/#about">About</a>
+        </div>
+        <div class="nav-actions">
+            <a href="/OpenDrop/" class="btn-cta btn-cta--sm">Get OpenDrop</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-controls="navLinks" aria-expanded="false" aria-label="Open menu"><span></span><span></span><span></span></button>
         </div>
     </nav>
 
-    <main>
+    <main id="main" tabindex="-1">
     <!-- Post Hero -->
     <header class="blog-post-hero">
         <div class="breadcrumb">
@@ -136,96 +140,91 @@
                 NFDGames
             </span>
             <span class="blog-card-tag comparison">Comparison</span>
-            <span class="blog-card-date">February 04, 2026</span>
+            <span class="blog-card-date">February 4, 2026</span>
             <span class="read-time">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                8 min read
+                6 min read
             </span>
         </div>
     </header>
 
     <!-- Post Content -->
     <article class="blog-post-content">
-        <div class="toc"><ol><li>Step 1: Install Both and See What You Get</li><li>Step 2: Try a Same-Network Transfer</li><li>Step 3: Try a Remote Transfer (Different Networks)</li><li>Step 4: Test Large File Handling</li><li>Step 5: Try the Command Line</li><li>The Verdict: Which One Should You Keep?</li></ol></div>
+        <div class="toc"><ol><li>Step 1: Install Both and See What You Get</li><li>Step 2: Try a Same-Network Transfer</li><li>Step 3: Try a Remote Transfer (Different Networks)</li><li>Step 4: Test Large File Handling</li><li>Step 5: Try the Command Line</li><li>The Verdict: Which One to Keep</li></ol></div>
 
 <h2>Step 1: Install Both and See What You Get</h2>
 
-<p>The best way to compare two tools is to use them both. I installed LocalSend and <a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> on my iPhone 15, my Windows 11 desktop, and my M5 MacBook Pro. Here's what you get out of the box.</p>
+<p>LocalSend and <a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> both move files between your own devices without a cloud drive in the middle. They differ on platforms, on what happens when your devices are on different networks, and on price model. The quickest way to see it is to install both on a phone and a computer and walk through the steps below.</p>
 
-<p><strong>LocalSend</strong> is open source (MIT license) and available on Windows, macOS, Linux, Android, and iOS. The interface is minimal: you open the app, it shows nearby devices, you pick files and send. It's built with Flutter on all platforms, including desktop. No account required, no cloud, no ads. The app is free with no paid tier.</p>
+<p><strong>LocalSend</strong> runs on Windows, macOS, Linux, Android and iOS. It is open source under the Apache 2.0 license, free, and needs no account. Open it on two devices on the same network and each one shows the other in its list. That is most of the app, and the simplicity is the point.</p>
 
-<p><strong>OpenDrop</strong> is also available on Windows, macOS, Linux, Android, and iOS. The desktop apps are built with Python/PySide6 and include a full GUI plus a command-line interface. The mobile apps are Flutter-based. OpenDrop has a free tier (LAN streaming, remote transfers over its own Oracle Cloud relay) and a Pro tier (the faster Fly.io relay with automatic Oracle failover, shared folders, file conversion). No ads on either tier.</p>
+<p><strong>OpenDrop</strong> runs on Windows, Linux, iPhone, iPad and Android. macOS is coming soon but not released yet. It is closed source. The Free plan needs no account: you pair a phone with your computer by scanning a QR code, and each phone pairs with one computer. Pro adds sign-in (Google, Apple, Microsoft or email), connects every phone, tablet and computer on your account automatically, and adds phone to phone transfers, computer to computer transfers, shared folders and photo and video conversion. Neither plan shows ads.</p>
 
-<p>Both cover the same five platforms. The first visible difference is the desktop architecture: LocalSend's desktop app is Flutter, while OpenDrop's is native Python with PySide6. In practice, both feel responsive on modern hardware. OpenDrop's desktop app has more UI surface area (tabbed interface with dashboard, files, shared folders, settings), while LocalSend keeps things deliberately spartan.</p>
+<p>So on platform count, LocalSend is ahead today: it has a macOS app and OpenDrop does not. OpenDrop also does more than send: you can browse your computer's files from your phone (subfolders need Pro) and restore deleted files from Recently Deleted.</p>
 
 <h2>Step 2: Try a Same-Network Transfer</h2>
 
-<p>Connect both devices to the same WiFi. Open both apps. Try sending a 200MB video file from your phone to your PC.</p>
+<p>Put the phone and the computer on the same Wi-Fi and send a video from the phone to the computer.</p>
 
-<p><strong>LocalSend:</strong> Open the app on both devices. Your phone shows the PC in the "Nearby devices" list. Tap the PC, select the video, tap send. The PC shows an incoming transfer notification. Accept it. The file transfers. Simple.</p>
+<p><strong>LocalSend:</strong> Open the app on both devices. The computer shows up in the phone's list of nearby devices. Tap it, pick the video and send. Depending on its settings, the receiver may be asked to accept the transfer first. Any device on the network running LocalSend can show up in your list, which makes it handy for sending to other people's devices.</p>
 
-<p>LocalSend uses its own protocol built on HTTPS with self-signed TLS certificates. Device discovery happens via multicast UDP (similar in concept to mDNS but a custom implementation). The transfer itself is encrypted on LAN via the TLS layer, which adds CPU overhead but means data is protected even on shared networks.</p>
+<p><strong>OpenDrop:</strong> Scan the QR code shown in the desktop app with the phone. After pairing, the phone finds the computer on your Wi-Fi with mDNS. Pick the video and send it. On the same Wi-Fi the file streams directly at full speed with no chunking, on Free and on Pro. OpenDrop only talks to devices you paired, or on Pro, devices signed in to your account.</p>
 
-<p><strong>OpenDrop:</strong> Open the app on both devices. The phone finds the PC via mDNS (service type <code>_opendrop._tcp.local.</code> on port 8000). Select the video, tap send. The file streams to the PC and lands in <code>%USERPROFILE%\Downloads\OpenDrop\Files</code> on Windows. No acceptance prompt by default (you own both devices).</p>
+<p>Both encrypt the transfer on the local network. OpenDrop encrypts file contents with ChaCha20-Poly1305 on the sending device before they leave it, and authenticates requests between your devices with HMAC-SHA256. The OpenDrop mobile apps also pin your computer's certificate on the local network, so they only talk to the computer you paired with.</p>
 
-<p>OpenDrop also encrypts every LAN transfer end-to-end — using ChaCha20-Poly1305 IETF AEAD (RFC 8439) applied to the file body before it leaves the sending device — and signs every request with HMAC-SHA256 on top. The carrier is plain HTTP rather than TLS, because the AEAD layer already makes the file contents unreadable on the wire; running self-signed-cert TLS on every device adds complexity without strengthening the encryption guarantee. The practical result is the same as LocalSend's TLS-on-LAN model: shared-network observers see ciphertext, not file contents.</p>
-
-<p>Both tools complete the transfer quickly on a local network. Speed differences for a 200MB file are negligible. The workflow difference: LocalSend requires the receiver to accept each transfer. OpenDrop doesn't by default, since the assumption is you control both devices. For shared environments where multiple people use OpenDrop, you can configure it to require acceptance.</p>
+<p>Both send directly between the two devices on your network, so the transfer time depends on your Wi-Fi and hardware more than on the app.</p>
 
 <h2>Step 3: Try a Remote Transfer (Different Networks)</h2>
 
-<p>This is where the two tools diverge sharply.</p>
+<p>This is where the two apps split. Turn off Wi-Fi on the phone so it is on cellular data, then try the same send.</p>
 
-<p>Disconnect your phone from WiFi. Switch to cellular data. Try sending the same file to your PC.</p>
+<p><strong>LocalSend:</strong> The computer drops out of the list. LocalSend works on the same network only, and its FAQ says plainly that it does not work over the internet.</p>
 
-<p><strong>LocalSend:</strong> Nothing happens. Your PC disappears from the device list. LocalSend is LAN-only by design. If both devices aren't on the same local network, LocalSend can't connect them. The developers have explicitly stated that remote transfers are not a goal of the project. This is a philosophical choice, not a technical limitation they haven't gotten to yet.</p>
+<p><strong>OpenDrop:</strong> The transfer still goes through. OpenDrop picks the route for you: a direct peer-to-peer link or its own encrypted relay. Both devices dial out, so there is no port forwarding and nothing extra to install. The relay carries file contents only in encrypted form. It can see transfer details such as file names, file sizes and device names, which it needs to route the transfer.</p>
 
-<p><strong>OpenDrop:</strong> The app detects you're not on the same network and connects through OpenDrop's own relay. Both devices dial outbound to the relay (so it works behind NAT and firewalls), and the QR code on the dashboard hands the phone everything it needs to connect. The file is sent over the relay end-to-end encrypted, in resumable 5 MB chunks on the free Oracle Cloud relay. Slower than LAN, but it works.</p>
+<ul>
+<li><strong>Free</strong> tries peer-to-peer first, then the shared free relay. Remote transfers are speed-limited, move in resumable 5 MB pieces, and share a weekly fair-use allowance.</li>
+<li><strong>Pro</strong> starts on the faster Pro relay, which has automatic backup, and keeps peer-to-peer as another option. It streams the whole file at full speed with no weekly limit.</li>
+</ul>
 
-<p>With OpenDrop Pro, the transfer uses the faster Fly.io relay, with automatic failover to a backup Oracle Cloud relay if Fly is ever down. The relay streams binary WebSocket frames with no chunking and no per-transfer size cap.</p>
-
-<p>If you never need to transfer files between different networks, this distinction doesn't matter. If you regularly want to pull files from your phone while you're out to your home PC, LocalSend can't do it and OpenDrop can. I test this from my phone on cellular in Greenville, SC to my desktop at home, and the relay connects reliably in a few seconds.</p>
+<p>On either plan, a dropped connection picks up where it left off. If your devices are always on the same network, none of this matters to you. If you want to grab a file from your phone onto your home PC while you are out, LocalSend can't do that and OpenDrop can.</p>
 
 <h2>Step 4: Test Large File Handling</h2>
 
-<p>Try sending a 5GB file on the same network.</p>
+<p>Now send a file of several gigabytes on the same network.</p>
 
-<p><strong>LocalSend:</strong> Handles it. LocalSend streams files directly between devices on LAN with no size limit. The transfer takes however long your WiFi hardware needs to move 5GB. On a WiFi 5 network, expect a few minutes. LocalSend shows a progress bar during the transfer.</p>
+<p><strong>LocalSend:</strong> Sends it directly over your network. How long it takes depends on your Wi-Fi.</p>
 
-<p><strong>OpenDrop:</strong> Also handles it. LAN streaming mode has no practical size cap — multi-gigabyte files transfer fine. Same direct transfer, same dependence on your WiFi speed. OpenDrop shows transfer progress in the app's transfer list.</p>
+<p><strong>OpenDrop:</strong> Same idea. There is no file size cap, and on the same Wi-Fi the file streams directly at full speed on both plans.</p>
 
-<p>For LAN transfers, both tools handle large files equally well. Neither has a practical size cap on local networks (both support multi-gigabyte files over LAN).</p>
-
-<p>The difference shows up on remote transfers. Since LocalSend doesn't do remote, there's nothing to compare. OpenDrop sends the file over its own relay with no per-transfer size cap — a 5GB file goes through end-to-end encrypted on either tier, just slower than it would on LAN. The free Oracle Cloud relay sends it in resumable 5 MB chunks; Pro streams it over the faster Fly.io relay with automatic Oracle failover.</p>
+<p>On a local network, both handle big files fine. The difference is again remote transfers, which LocalSend doesn't do. OpenDrop has no file size cap over the relay either, on Free or Pro. A large file on Free goes through in 5 MB pieces at a limited speed and counts toward the weekly allowance. Pro streams it whole at full speed.</p>
 
 <h2>Step 5: Try the Command Line</h2>
 
-<p>Open a terminal. Try sending a file without the GUI.</p>
+<p>Open a terminal and send a file without the GUI.</p>
 
-<p><strong>LocalSend:</strong> LocalSend has a CLI mode accessed with the <code>--send-file</code> flag. Basic but functional. You can send files from the command line, though device targeting and discovery options are limited compared to the GUI.</p>
+<p><strong>LocalSend:</strong> LocalSend added a command-line interface in v1.18.0 (August 2026). Its README lists the current commands.</p>
 
-<p><strong>OpenDrop:</strong> OpenDrop has dedicated CLI subcommands. <code>opendrop serve</code> runs the server headlessly. <code>opendrop send file.txt --target="Device Name"</code> sends a file. <code>opendrop devices</code> lists known devices. <code>opendrop register-context-menu</code> adds a right-click "Send with OpenDrop" option to your OS. The CLI is designed for scripting and cron jobs, with specific exit codes and error messages for each failure mode.</p>
+<p><strong>OpenDrop:</strong> The desktop install includes an <code>opendrop</code> command. <code>opendrop serve</code> runs OpenDrop without the desktop app (add <code>--background</code> to detach). <code>opendrop upload file.txt</code> adds a file to this computer's OpenDrop folder, and <code>opendrop upload file.txt -d "Device Name"</code> sends it to another device. <code>opendrop devices</code> lists your online devices. Commands that reach another device (<code>devices</code> and anything with <code>-d</code>) need Pro. Other commands include <code>ls</code>, <code>download</code> and <code>status</code>.</p>
 
-<p>For headless servers (Linux boxes without a display, Raspberry Pi setups), OpenDrop's <code>serve</code> command is purpose-built. It starts the HTTP server, connects to the relay, and runs until you stop it. LocalSend can run headlessly but it's not the primary use case the developers optimize for.</p>
+<p>The CLI finds whichever OpenDrop is running on the same computer, the desktop app or a headless <code>serve</code>, so it works on a Linux box with no display. Exit codes are fixed for scripts and cron jobs: 0 ok, 1 bad arguments, 2 server not found, 3 network error, 4 update required.</p>
 
-<div class="callout callout-tip"><div class="callout-title">Tip</div><p>If you want to automate file transfers with cron jobs or shell scripts, test the CLI first with <code>opendrop devices</code> to confirm your target device is visible. The device name must match exactly.</p></div>
+<div class="callout callout-tip"><div class="callout-title">Tip</div><p>Before you put a <code>-d</code> command in a cron job or script, run <code>opendrop devices</code> (Pro), check that the target device is listed, and copy its name from that output.</p></div>
 
-<h2>The Verdict: Which One Should You Keep?</h2>
+<h2>The Verdict: Which One to Keep</h2>
 
-<p><strong>Choose LocalSend if:</strong> You only transfer files between devices on the same network, you value open source above all else, and you don't need CLI automation or remote transfers. LocalSend does one thing (LAN file transfer) and does it with minimal complexity. Free, no account, no cloud, no complications.</p>
+<p><strong>Choose LocalSend if:</strong> you only send files between devices on the same network, you need a macOS app today, or open source matters to you. It is free, needs no account, and does one job with very little setup.</p>
 
-<p><strong>Choose OpenDrop if:</strong> You need remote transfers across different networks, you want a CLI for scripting and headless operation, or you use Pro features like shared folders and file conversion. OpenDrop covers the same LAN use case as LocalSend and adds remote transfer, CLI tooling, and a Pro tier for power users.</p>
+<p><strong>Choose OpenDrop if:</strong> you need transfers between different networks, you want to browse your computer's files from your phone, or you want Pro features like shared folders, phone to phone transfers and photo and video conversion. Free covers same-network transfers and speed-limited remote transfers without an account.</p>
 
-<p><strong>Keep both if:</strong> Honestly, they don't conflict. Both can run on the same machine. Some people keep LocalSend for quick LAN shares with friends (the accept/reject prompt is good for shared environments) and <a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> for their own devices and remote transfers.</p>
+<p><strong>Keep both if:</strong> you send to other people's devices on the same network and also move files between your own devices. They are separate apps and can run on the same machine. LocalSend suits quick shares with friends nearby, and <a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> covers your own devices, at home or away.</p>
 
-<p>My take: I built OpenDrop because LocalSend's LAN-only approach didn't cover the remote transfer scenario I needed. Pulling photos off my iPhone while away from home, sending files between my test devices on different networks, running a headless server on my ParrotOS laptop. The remote transfer capability and CLI are the reasons OpenDrop exists as a separate project.</p>
-
-<p>If same-network transfers are your only use case, both tools work well and the choice comes down to preference. If remote transfers or CLI automation matter to you, OpenDrop is the only option of the two that supports them.</p>
+<p>If same-network transfers are all you need, both work well and it comes down to platforms and preference. If remote transfers matter, OpenDrop is the one of the two that does them.</p>
 
         <!-- CTA -->
         <div class="blog-cta">
             <h3>LAN Transfers Plus Remote Access in One App</h3>
-            <p>OpenDrop handles same-network and cross-network transfers. Free LAN streaming, remote transfers over its own Oracle Cloud relay, and a faster Fly.io relay (with automatic Oracle failover) on Pro — no third-party tunnel to download, no per-transfer size cap.</p>
+            <p>OpenDrop sends on the same Wi-Fi and across networks. Free streams at full speed on your Wi-Fi and sends speed-limited remote transfers with no account. Pro adds a faster relay with automatic backup. No file size cap on either plan.</p>
             <a href="/OpenDrop/" class="btn btn-primary">Download OpenDrop Free</a>
         </div>
     </article>
@@ -236,45 +235,78 @@
         <div class="related-grid">
             <a href="/blog/posts/best-airdrop-alternatives-windows-2026.html" class="related-card">
     <h4>Best AirDrop Alternatives for Windows in 2026</h4>
-    <p>Compare the top AirDrop alternatives available for Windows, including OpenDrop, Snapdrop, LocalSend,</p>
+    <p>We compared the top AirDrop alternatives for Windows.</p>
 </a>
 <a href="/blog/posts/opendrop-vs-airdrop-comparison.html" class="related-card">
-    <h4>OpenDrop vs AirDrop: Which File Transfer Tool Is Better?</h4>
-    <p>A detailed comparison of OpenDrop and Apple AirDrop covering platform support, speed, security, and </p>
+    <h4>OpenDrop vs AirDrop: Platforms, Range and Large Files Compared</h4>
+    <p>A direct comparison of OpenDrop and Apple AirDrop.</p>
 </a>
         </div>
     </section>
     </main>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-brand">
+    <div class="seam" aria-hidden="true"></div>
+    <footer class="site-footer">
+        <div class="wrap site-footer__grid">
+            <div class="site-footer__brand">
                 <a href="/" class="logo">
                     <picture>
                         <source srcset="/NFDGamesLogoCircleTransparent.webp" type="image/webp">
-                        <img src="/NFDGamesLogoCircleTransparent.png" alt="NFDGames Icon" class="logo-icon" width="36" height="36" loading="lazy">
+                        <img src="/NFDGamesLogoCircleTransparent.png" alt="" class="logo-icon" width="36" height="36" loading="lazy">
                     </picture>
                     NFDGames
                 </a>
-                <p>Indie studio building software utilities and mobile games.</p>
+                <p>Independent studio making OpenDrop and Gunslinger.</p>
             </div>
-            <div class="footer-links">
-                <div class="footer-col">
-                    <h4>Products</h4>
-                    <a href="/OpenDrop/">OpenDrop</a>
-                    <a href="/OpenDrop/support.html">Support</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Resources</h4>
-                    <a href="/blog/">Blog</a>
-                    <a href="/OpenDrop/PrivacyPolicy.html">Privacy Policy</a>
-                    <a href="/OpenDrop/TermsOfService.html">Terms of Service</a>
-                </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">OpenDrop</h2>
+                <ul>
+                    <li><a href="/OpenDrop/">Overview</a></li>
+                    <li><a href="/OpenDrop/#download">Download</a></li>
+                    <li><a href="/OpenDrop/#compare">Free vs Pro</a></li>
+                    <li><a href="/OpenDrop/changelog.html">What's new in 1.0</a></li>
+                    <li><a href="/OpenDrop/support.html">Support</a></li>
+                    <li><a href="/OpenDrop/status.html">System status</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Guides</h2>
+                <ul>
+                    <li><a href="/blog/posts/best-airdrop-alternatives-windows-2026.html">AirDrop alternatives</a></li>
+                    <li><a href="/blog/posts/share-files-iphone-android.html">iPhone to Android</a></li>
+                    <li><a href="/blog/posts/transfer-files-android-to-pc-without-usb.html">Android to PC, no USB</a></li>
+                    <li><a href="/blog/posts/transfer-photos-iphone-to-windows-pc.html">iPhone photos to PC</a></li>
+                    <li><a href="/blog/posts/transfer-files-windows-to-linux.html">Windows to Linux</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Studio</h2>
+                <ul>
+                    <li><a href="/">NFDGames home</a></li>
+                    <li><a href="/#gunslinger">Gunslinger</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/OpenDrop/press.html">Press kit</a></li>
+                    <li><a href="https://play.google.com/store/apps/dev?id=6331541447390891189&amp;hl=en_US" target="_blank" rel="noopener">Apps on Google Play</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Legal and security</h2>
+                <ul>
+                    <li><a href="/OpenDrop/PrivacyPolicy.html">Privacy Policy</a></li>
+                    <li><a href="/OpenDrop/TermsOfService.html">Terms of Service</a></li>
+                    <li><a href="/OpenDrop/security.html">Security and disclosure</a></li>
+                    <li><a href="/OpenDrop/accessibility.html">Accessibility</a></li>
+                </ul>
             </div>
         </div>
-        <div class="footer-bottom">
+        <div class="wrap site-footer__bottom">
             <p>&copy; 2026 NFDGames. All rights reserved.</p>
+            <div class="site-footer__legal">
+                <a href="/OpenDrop/WithdrawalForm.html">EU/UK withdrawal</a>
+                <a href="/OpenDrop/third-party-notices.html">Third-party notices</a>
+                <a href="/OpenDrop/docs/export-compliance/">Export compliance</a>
+                <a href="mailto:support@nfdgames.com">support@nfdgames.com</a>
+            </div>
         </div>
     </footer>
 
@@ -292,7 +324,7 @@
         appId: "1:573883707762:web:e68643cce07c2cee3eadeb",
         measurementId: "G-ENWJJ78E3Q"
       });
-      // Gated on user consent — see /scripts/opendrop-cookie-banner.js
+      // Gated on user consent, see /scripts/opendrop-cookie-banner.js
       if (window.OpenDropConsent) { window.OpenDropConsent.onConsent(function () { getAnalytics(app); }); }
     </script>
 </body>

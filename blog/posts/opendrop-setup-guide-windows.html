@@ -58,7 +58,7 @@
             }
           },
           "datePublished": "2026-01-17",
-          "dateModified": "2026-01-17",
+          "dateModified": "2026-10-10",
           "mainEntityOfPage": "https://www.nfdgames.com/blog/posts/opendrop-setup-guide-windows.html",
           "keywords": ["opendrop windows", "opendrop setup", "install opendrop", "windows file transfer setup"]
         },
@@ -73,7 +73,7 @@
         ,
         {
           "@type": "FAQPage",
-          "mainEntity": [{"@type":"Question","name":"Does OpenDrop work on Windows 10 and Windows 11?","acceptedAnswer":{"@type":"Answer","text":"Yes. OpenDrop supports both Windows 10 and Windows 11. It's available as a Microsoft Store app or as a direct download installer. Both are the same Inno Setup build, are functionally identical, and both include the CLI tool."}},{"@type":"Question","name":"Where do received files go on Windows?","acceptedAnswer":{"@type":"Answer","text":"By default, received files are saved to %USERPROFILE%\\Downloads\\OpenDrop\\Files\\. This is typically C:\\Users\\YourName\\Downloads\\OpenDrop\\Files\\. You can change this directory in the app's Settings at any time."}},{"@type":"Question","name":"Why can't other devices find my Windows PC?","acceptedAnswer":{"@type":"Answer","text":"The most common cause is Windows Firewall blocking mDNS discovery (UDP port 5353) or the OpenDrop server (TCP port 8000). Open Windows Security, go to Firewall settings, and make sure OpenDrop is allowed through for both private and public networks."}},{"@type":"Question","name":"Is OpenDrop free to use?","acceptedAnswer":{"@type":"Answer","text":"Yes. The free tier includes full LAN streaming (no file size limits on the same network) and remote transfers over OpenDrop's own Oracle Cloud relay. The Pro tier adds a faster, dedicated Fly.io relay (with automatic Oracle failover), shared folders, and file conversion features."}},{"@type":"Question","name":"Can I use OpenDrop from the command line on Windows?","acceptedAnswer":{"@type":"Answer","text":"Yes. Both the Microsoft Store and direct-download versions include a CLI alongside the GUI. The CLI supports the same transfer features and is useful for scripting automated transfers, integrating with batch files, or running transfers without the graphical interface."}}]
+          "mainEntity": [{"@type":"Question","name":"Does OpenDrop work on Windows 10 and Windows 11?","acceptedAnswer":{"@type":"Answer","text":"Yes. OpenDrop runs on Windows 10 version 1809 or later and on Windows 11, 64-bit. It's available as a Microsoft Store app or as a direct download installer. Both are the same Inno Setup build with the same desktop app and CLI; they differ only in how updates arrive."}},{"@type":"Question","name":"Where do received files go on Windows?","acceptedAnswer":{"@type":"Answer","text":"By default, received files are saved to %USERPROFILE%\\Downloads\\OpenDrop\\Files\\. This is typically C:\\Users\\YourName\\Downloads\\OpenDrop\\Files\\. You can change this directory in the app's Settings at any time."}},{"@type":"Question","name":"Why can't other devices find my Windows PC?","acceptedAnswer":{"@type":"Answer","text":"The most common cause is Windows Firewall blocking mDNS discovery (UDP port 5353) or the OpenDrop server (TCP port 8000 by default). Open Windows Security, go to Firewall settings, and make sure OpenDrop is allowed through on private networks. Also check that Windows has your Wi-Fi set as a private network."}},{"@type":"Question","name":"Is OpenDrop free to use?","acceptedAnswer":{"@type":"Answer","text":"Yes. The free plan needs no account and includes full-speed streaming on the same Wi-Fi plus speed-limited remote transfers over a direct peer-to-peer link or the shared free relay, with no file size cap. The Pro plan adds a faster Pro relay with automatic backup and no weekly limit, every device on one account, shared folders and file conversion."}},{"@type":"Question","name":"Can I use OpenDrop from the command line on Windows?","acceptedAnswer":{"@type":"Answer","text":"Yes. Both the Microsoft Store and direct-download versions include a CLI alongside the desktop app. CLI commands work with the running app, or you can run OpenDrop headless with opendrop serve. It is useful for scripts and batch files. Commands that reach another device need Pro."}}]
         }
       ]
     }
@@ -89,7 +89,7 @@
     <link rel="stylesheet" href="/styles/common.css">
     <link rel="stylesheet" href="/styles/blog.css">
 
-    <!-- Cookie consent / Google Consent Mode v2 preboot — must precede any Google tag -->
+    <!-- Cookie consent / Google Consent Mode v2 preboot: must precede any Google tag -->
     <script src="/scripts/opendrop-cookie-banner.js"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241"></script>
@@ -100,27 +100,31 @@
       gtag('config', 'AW-17319823241');
     </script>
 </head>
-<body>
+<body class="page-blog-post">
+    <a class="skip-link" href="#main">Skip to content</a>
     <div class="bg-gradient"></div>
     <div class="noise"></div>
 
-    <!-- Navigation -->
-    <nav>
+    <nav class="site-nav" aria-label="Main">
         <a href="/" class="logo">
             <picture>
                 <source srcset="/NFDGamesLogoCircleTransparent.webp" type="image/webp">
-                <img src="/NFDGamesLogoCircleTransparent.png" alt="NFDGames Icon" class="logo-icon" width="36" height="36" loading="lazy">
+                <img src="/NFDGamesLogoCircleTransparent.png" alt="" class="logo-icon" width="36" height="36">
             </picture>
-            NFDGames
+            <span class="logo__word">NFDGames</span>
         </a>
-        <div class="nav-links">
+        <div class="nav-links" id="navLinks">
             <a href="/#projects">Projects</a>
-            <a href="/blog/">Blog</a>
-            <a href="/OpenDrop/" class="nav-cta">Get OpenDrop</a>
+            <a href="/blog/" aria-current="page">Blog</a>
+            <a href="/#about">About</a>
+        </div>
+        <div class="nav-actions">
+            <a href="/OpenDrop/" class="btn-cta btn-cta--sm">Get OpenDrop</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-controls="navLinks" aria-expanded="false" aria-label="Open menu"><span></span><span></span><span></span></button>
         </div>
     </nav>
 
-    <main>
+    <main id="main" tabindex="-1">
     <!-- Post Hero -->
     <header class="blog-post-hero">
         <div class="breadcrumb">
@@ -140,7 +144,7 @@
             <span class="blog-card-date">January 17, 2026</span>
             <span class="read-time">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                9 min read
+                7 min read
             </span>
         </div>
     </header>
@@ -151,82 +155,90 @@
 
 <h2 id="before-install">Before You Install: What OpenDrop Actually Does</h2>
 
-<p><a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> is a file transfer application that moves files directly between devices without uploading them to any cloud server. I built it because I was tired of emailing files to myself just to get them from my iPhone to my Windows PC. The desktop version runs a local HTTP server on port 8000, advertises itself via mDNS so other devices can find it, and accepts file uploads from any OpenDrop client on the network.</p>
+<p><a href="/OpenDrop/">OpenDrop</a> moves files between your phone and your Windows PC. On the same Wi-Fi, the file goes straight from one device to the other. On different networks, it goes over a direct peer-to-peer link or OpenDrop's own encrypted relay. There is no cloud drive in the middle.</p>
 
-<p>On Windows specifically, the app includes both a graphical interface (the main window with drag-and-drop) and a command-line interface for scripting and automation. Both connect to the same underlying server. This guide covers the GUI path since that's what most people want, but I'll note where the CLI differs.</p>
+<p>The Windows app does three jobs. It runs a small local server, it announces itself on your network with mDNS so your phone can find it, and it dials out to the relay so your phone can still reach it when you are away from home.</p>
 
-<p>One thing worth understanding upfront: OpenDrop does NOT require both devices to be on the same WiFi network. Same network is faster because traffic stays local, but the app also supports remote transfers through OpenDrop's own encrypted relay (an Oracle Cloud relay on the free tier, a faster Fly.io relay on Pro). I'll explain both modes and when each kicks in.</p>
+<p>You get a desktop app and a command-line tool in the same install. This guide follows the desktop app. If you want scripts or a headless server instead, see <a href="/blog/posts/opendrop-cli-automated-file-transfers.html">automating transfers with the OpenDrop CLI</a>.</p>
+
+<p>What you need:</p>
+<ul>
+    <li>Windows 10 version 1809 or later, or Windows 11, 64-bit. Windows on ARM runs it through emulation.</li>
+    <li>A phone or tablet with the OpenDrop app: iPhone or iPad on iOS 16 or later, or Android 7.0 or later.</li>
+</ul>
+
+<p>The Free plan needs no account. You pair your phone with your PC by scanning a QR code. Pro needs a sign-in (Google, Apple, Microsoft or email); it connects every device on your account automatically and adds phone to phone and PC to PC transfers.</p>
 
 <h2 id="download-options">Download Options: Microsoft Store vs Direct Install</h2>
 
-<p>There are two ways to get OpenDrop on Windows, and they install the same application &mdash; the difference is mainly how you get updates.</p>
+<p>The Microsoft Store listing and the installer on the website are the same Inno Setup build, with the same desktop app and the same CLI. The only difference is how updates arrive.</p>
 
-<p><strong>Microsoft Store:</strong> Search "OpenDrop" in the Store app or visit the store link from www.nfdgames.com/OpenDrop. The Store version auto-updates and installs without needing admin privileges. It's the same Inno Setup installer as the direct download &mdash; not a sandboxed MSIX package &mdash; so it has full access to create its own firewall rules, adds itself to your PATH, and ships the CLI alongside the GUI just like the direct download.</p>
+<ul>
+    <li><strong>Microsoft Store:</strong> search for OpenDrop in the Store app, or use the Store link in the <a href="/OpenDrop/#download">download section</a>. When a new version is out, the app tells you and opens the Store page.</li>
+    <li><strong>Direct download:</strong> <code>OpenDropInstaller.exe</code> (about 147 MB) from the same download section. It checks for updates at launch and installs a new version in one click, verified with SHA-256.</li>
+</ul>
 
-<p><strong>Direct download:</strong> The .exe installer from the website is the very same build. It installs to <code>%LOCALAPPDATA%\Programs\OpenDrop\</code>, creates its own firewall rules during installation, and includes the CLI binary alongside the GUI. I use the direct download on my Windows 11 desktop (Intel i7-13700K, 48GB DDR5) so I get new versions the moment they ship rather than waiting on Store review.</p>
-
-<p>Both versions are identical &mdash; same installer, same GUI, same CLI, same firewall behavior. The Store version auto-updates; the direct download lets you grab new releases as soon as they're posted.</p>
+<p>Both install for your user account by default, so there is no admin prompt. The installer offers to add <code>opendrop</code> to your PATH. Tick it if you plan to use the CLI from any terminal.</p>
 
 <h2 id="installation-internals">Installation Internals: What Gets Put Where</h2>
 
-<p>After installation, OpenDrop creates a data directory at <code>%LOCALAPPDATA%\OpenDrop\</code>. This is NOT the same as your user profile's Downloads folder. Inside that directory:</p>
-
+<p>Three locations matter:</p>
 <ul>
-<li><code>Files\</code> is the default storage directory where received files land</li>
-<li><code>settings.json</code> stores your preferences (theme, storage path, server name)</li>
-<li><code>token.json</code> stores authentication data when you sign in</li>
+    <li><strong>Program files:</strong> <code>%LOCALAPPDATA%\Programs\OpenDrop\</code> for a per-user install, or Program Files if you choose to install for all users.</li>
+    <li><strong>Settings:</strong> <code>%LOCALAPPDATA%\OpenDrop\</code>. <code>settings.json</code> holds your preferences. <code>token.json</code> appears when you sign in for Pro.</li>
+    <li><strong>Received files:</strong> <code>%USERPROFILE%\Downloads\OpenDrop\Files\</code> by default. You can pick another folder in Settings.</li>
 </ul>
 
-<p>The application itself is compiled with Nuitka, a Python-to-C compiler. When compiled in windowed mode (no terminal window), Python's <code>sys.stdout</code> is <code>None</code>, so the very first lines of code redirect stdout and stderr to prevent crashes from stray print statements. This is a detail most users never see, but it explains why there's no console output even if you launch from a terminal.</p>
-
-<p>The GUI is built on PySide6 (Qt for Python). If you've used other Qt applications on Windows, you'll recognize the rendering style, though we apply a custom dark theme with our own color palette. The application uses roughly 80-120MB of RAM at idle, which is comparable to other Python GUI applications.</p>
+<p>The desktop app is written in Python with a PySide6 (Qt) interface. ffmpeg ships inside the build for Pro video conversion, so you don't need to install it separately.</p>
 
 <h2 id="first-launch">First Launch: mDNS, Firewall, and Device Discovery</h2>
 
-<p>When you first launch OpenDrop, three things happen in rapid sequence.</p>
+<p>When OpenDrop starts, three things happen.</p>
 
-<p><strong>The HTTP server starts on port 8000.</strong> This is the local server that handles incoming file transfers. It binds to <code>0.0.0.0</code> (all network interfaces) so it's reachable from any device on your network. The port number is fixed at 8000 and currently isn't configurable, though that rarely causes conflicts since most applications avoid that port.</p>
+<p><strong>The local server starts.</strong> It listens on port 8000 on all network interfaces (<code>0.0.0.0</code>), so your phone can reach it over Wi-Fi. If another program already holds port 8000, OpenDrop takes the next free port.</p>
 
-<p><strong>mDNS advertisement begins.</strong> The app registers itself as <code>_opendrop._tcp.local.</code> on port 8000 using the zeroconf library. This is the same mDNS/Bonjour protocol that Apple uses for AirDrop and printer discovery. Every other OpenDrop instance on the network listens for this service type and adds new devices to its dashboard. Discovery typically takes 2-5 seconds depending on your network.</p>
+<p><strong>mDNS announcement begins.</strong> The app registers the service type <code>_opendrop._tcp.local.</code> with the zeroconf library. mDNS is the multicast DNS that Bonjour and network printers use: a device asks the local network who offers a service, and the answer comes back without any central server. A phone paired with this PC uses it to find the PC on your Wi-Fi. <a href="/blog/posts/mdns-auto-discovery-explained.html">How mDNS auto-discovery works</a> covers the protocol in more detail.</p>
 
-<p><strong>Windows Firewall may prompt you.</strong> On first launch, Windows should ask whether to allow OpenDrop through the firewall. Click "Allow access" for both private and public networks. If this prompt doesn't appear, you'll need to add the rule manually: open Windows Security → Firewall → Allow an app through firewall → Add OpenDrop. Without this rule, other devices can't reach your server, and you'll see them on your dashboard but they won't be able to send files to you.</p>
+<p><strong>Windows Firewall asks for access.</strong> The first time an app listens for incoming connections, Windows Defender Firewall usually asks whether to allow it. Allow it on private networks. If you dismissed the prompt, open Windows Security, go to Firewall &amp; network protection, choose "Allow an app through firewall", and tick Private for OpenDrop. Without that rule, your phone cannot connect to the PC on your Wi-Fi.</p>
 
-<div class="callout callout-tip"><div class="callout-title">Tip</div><p>If device discovery isn't working, the issue is almost always the Windows Firewall blocking mDNS (UDP port 5353) or the HTTP server (TCP port 8000). Adding manual firewall rules for these two ports fixes the problem in the vast majority of cases.</p></div>
+<p>Check the network profile too. If Windows has your home Wi-Fi marked as Public, a rule for private networks does not apply. Switch the network to Private in Settings, under Network &amp; internet, or allow OpenDrop on public networks as well.</p>
 
-<p>After these three steps complete, your Windows machine appears on any other OpenDrop device on the same network. The dashboard shows connected devices with their names, IP addresses, and connection status.</p>
+<div class="callout callout-tip"><div class="callout-title">Tip</div><p>If your phone cannot find the PC on the same Wi-Fi, check the firewall first. mDNS uses UDP port 5353, and OpenDrop's server uses TCP port 8000 by default. Also make sure the phone is not on a guest network, since many routers stop guest devices from seeing each other.</p></div>
+
+<p>Now pair. The dashboard in the desktop app shows a QR code. Open OpenDrop on your phone and scan it. The QR code holds a private pairing key and the addresses your phone needs to reach your computer, plus a certificate fingerprint so the phone can check it is really your PC. Anyone who scans it can pair with your PC, so don't share screenshots of it.</p>
+
+<p>Each phone pairs with one computer at a time. Scanning a different computer's code replaces the first one. If the phone stops seeing your PC after the PC app restarts, scan the code again.</p>
 
 <h2 id="first-transfer">Your First Transfer: Sending and Receiving Files</h2>
 
-<p>With OpenDrop running on your Windows machine and at least one other device (phone, Mac, Linux machine), you're ready to transfer files.</p>
+<p><strong>Phone to PC:</strong> open OpenDrop on the phone, pick your PC, choose the files and send. Leave OpenDrop running on Windows. Files land in <code>Downloads\OpenDrop\Files\</code> and show up in the app's Files tab.</p>
 
-<p><strong>To receive files:</strong> Nothing to do. Just keep OpenDrop running. When someone sends a file from another device, it appears in <code>%USERPROFILE%\Downloads\OpenDrop\Files\</code> by default. A notification pops up showing the filename and size. You can change the storage directory in Settings if you prefer a different location.</p>
+<p><strong>PC to phone:</strong> drag files from File Explorer onto your phone's device tab in the desktop app. Keep the OpenDrop app open on the phone while it receives.</p>
 
-<p><strong>To send files from Windows:</strong> Click the upload button in the OpenDrop window or drag files directly onto the app. Select the target device from your connected devices list, and the transfer starts immediately. On the same network, files stream directly over HTTP without any size cap. You'll see a progress bar with the current transfer speed.</p>
+<p>On the same Wi-Fi, the file streams in one piece at full speed, with no size cap. If the phone is on cellular or another network, the transfer still works; it just takes a different route, described below. Remote uploads from the phone keep going in the background on iPhone, and for a while on Android.</p>
 
-<p><strong>To send files to Windows from a phone:</strong> Open the OpenDrop mobile app (available on iOS App Store and Google Play). Your Windows PC should appear in the device list within a few seconds. Tap it, select files, and send. The mobile apps are Flutter-based and handle the mDNS discovery, file selection, and upload progress natively on each platform.</p>
-
-<p>If both devices aren't on the same network, the transfer still works but takes a different path. I'll explain how in the next section.</p>
+<p>Free covers transfers between your phone and your PC. Sending phone to phone (iPhone and Android) or PC to PC needs Pro. For more ways to move files off a phone, see <a href="/blog/posts/transfer-files-android-to-pc-without-usb.html">Android to PC without USB</a> and <a href="/blog/posts/transfer-photos-iphone-to-windows-pc.html">iPhone photos to a Windows PC</a>.</p>
 
 <h2 id="under-the-hood">Under the Hood: How the Transfer Actually Happens</h2>
 
-<p>The transfer mechanism changes based on whether the devices are on the same network or not, and whether the user has a Pro subscription.</p>
+<p>The route depends on whether the two devices share a network, and on your plan. You don't pick it. The app tries the local network first and moves down the list for your plan.</p>
 
-<p><strong>LAN transfer (same network, all users):</strong> The sending device makes a direct HTTP POST to the receiving device's IP on port 8000. The file streams as a single request body with no chunking, no intermediate servers, and no size limits. This is the fastest mode. Every request is authenticated with HMAC-SHA256 signing: the client computes a signature over the HTTP method, path, timestamp, and body hash using a shared secret. The server verifies this signature and rejects requests with stale timestamps, which prevents replay attacks. The file contents are end-to-end encrypted with ChaCha20-Poly1305 (RFC 8439 IETF AEAD) before they leave the sending device — so even though the LAN carrier is plain HTTP (not HTTPS), the bytes on the wire are ciphertext, not readable file contents.</p>
+<p><strong>Same Wi-Fi (both plans):</strong> the phone sends the file to the PC's local server as one continuous stream. No chunking, no relay, no size cap.</p>
 
-<p><strong>Remote transfer (different networks):</strong> When devices aren't on the same network, OpenDrop connects through a direct peer-to-peer link or its own encrypted relay. Both the desktop and mobile apps dial outward to the relay — there's no tunnel binary to download, no public URL to manage, and nothing for antivirus or Windows SmartScreen to flag. Because the apps dial outbound, it works behind NAT and firewalls without any port forwarding. There's no per-request size cap; on Pro the file streams end to end without chunking, while free transfers first try a direct encrypted peer-to-peer connection and fall back to our Oracle Cloud relay — and on either the peer-to-peer or relay path, free transfers move in resumable 5 MB chunks. The same ChaCha20-Poly1305 end-to-end encryption applies — the relay sees only ciphertext — and TLS sits underneath as a second encryption layer.</p>
+<p><strong>Different networks, Free:</strong> OpenDrop tries a direct peer-to-peer link first, then the shared free relay. Both apps dial out, so there is no port forwarding and nothing extra to install. Free remote transfers are speed-limited, move in resumable 5 MB pieces, and share a weekly fair-use allowance on the free relay. There is no file size cap.</p>
 
-<p><strong>Remote Pro transfer (different networks, Pro users):</strong> Pro adds a faster, dedicated Fly.io relay, with automatic failover to a backup Oracle Cloud relay if Fly is ever down. It streams binary WebSocket frames (we switched from base64-encoded JSON to raw binary frames after discovering base64 added 33% overhead), supporting true streaming with no size cap. The relay forwards opaque bytes and never decrypts file contents — the ChaCha20-Poly1305 AEAD layer is applied client-side, and TLS sits underneath as a second encryption layer.</p>
+<p><strong>Different networks, Pro:</strong> OpenDrop starts on the faster Pro relay, which has automatic backup, and keeps peer-to-peer as a second option. It streams the whole file at full speed with no weekly limit. There is no file size cap here either.</p>
 
-<p>The connection priority is automatic: if both devices are on the same LAN, the transfer takes the direct local path. If not, it falls back to the remote path over the encrypted relay. You don't choose between these modes manually; the app handles the negotiation based on what it discovers during the mDNS phase and the relay connection state.</p>
+<p>There is no TURN server, so on networks that block direct links, the transfer goes through the relay. On either plan, a remote transfer that drops picks up where it left off.</p>
 
-<p>QR code pairing is available for situations where mDNS is blocked (hotels, corporate WiFi, some mesh networks). The QR code encodes the server's IP and port directly, bypassing the mDNS discovery step entirely. Scan it with the mobile app's camera and the connection establishes manually.</p>
+<p><strong>Encryption and authentication:</strong> file contents are encrypted with ChaCha20-Poly1305 on the sending device before they leave it, with a key derived (HKDF-SHA256) from the secret your devices share when you pair them. Encryption is mandatory on every route, and OpenDrop refuses to send or accept unencrypted file data. Requests between your devices are authenticated with HMAC-SHA256. Each signature covers the method, path, query, device ID and a timestamp, and expires after 5 minutes. On your local network, the OpenDrop mobile apps pin your PC's certificate, so they only talk to the computer you paired with.</p>
 
-<p>That covers the full path from download to your first transfer. The system is designed to be invisible once running: install, launch, and files move between your devices without thinking about protocols, ports, or network configuration. The complexity exists under the hood so you don't have to deal with it at the surface.</p>
+<p><strong>What the relay sees:</strong> relay servers carry file contents only in encrypted form. They can see transfer details such as file names, folder names, file sizes and device names, which they need to route transfers. On Free, your pairing key is made on your PC and shared only through the QR code; OpenDrop's servers never receive it. For more on this, read <a href="/blog/posts/wireless-file-transfer-security-encryption.html">wireless file transfer security</a>.</p>
 
         <!-- CTA -->
         <div class="blog-cta">
-            <h3>Ready to Start Transferring Files on Windows?</h3>
-            <p>Download OpenDrop for free from the Microsoft Store or directly from our website. Your first transfer takes under a minute to set up.</p>
+            <h3>Start Transferring Files on Windows</h3>
+            <p>Get OpenDrop from the Microsoft Store or as a direct download. Free needs no account: install it, scan the QR code with your phone, and send.</p>
             <a href="/OpenDrop/" class="btn btn-primary">Download OpenDrop Free</a>
         </div>
     </article>
@@ -237,45 +249,78 @@
         <div class="related-grid">
             <a href="/blog/posts/transfer-files-android-to-pc-without-usb.html" class="related-card">
     <h4>How to Transfer Files from Android to PC Without USB</h4>
-    <p>Step-by-step guide to wirelessly transferring files from your Android phone to your Windows or Linux</p>
+    <p>Transfer files from Android to PC wirelessly, no USB cable needed.</p>
 </a>
 <a href="/blog/posts/send-large-files-phone-to-pc-free.html" class="related-card">
     <h4>How to Send Large Files Between Phone and PC for Free</h4>
-    <p>Learn how to send files of any size between your phone and computer without cloud uploads or paid se</p>
+    <p>How free file transfers actually work between phones and PCs.</p>
 </a>
         </div>
     </section>
     </main>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-brand">
+    <div class="seam" aria-hidden="true"></div>
+    <footer class="site-footer">
+        <div class="wrap site-footer__grid">
+            <div class="site-footer__brand">
                 <a href="/" class="logo">
                     <picture>
                         <source srcset="/NFDGamesLogoCircleTransparent.webp" type="image/webp">
-                        <img src="/NFDGamesLogoCircleTransparent.png" alt="NFDGames Icon" class="logo-icon" width="36" height="36" loading="lazy">
+                        <img src="/NFDGamesLogoCircleTransparent.png" alt="" class="logo-icon" width="36" height="36" loading="lazy">
                     </picture>
                     NFDGames
                 </a>
-                <p>Indie studio building software utilities and mobile games.</p>
+                <p>Independent studio making OpenDrop and Gunslinger.</p>
             </div>
-            <div class="footer-links">
-                <div class="footer-col">
-                    <h4>Products</h4>
-                    <a href="/OpenDrop/">OpenDrop</a>
-                    <a href="/OpenDrop/support.html">Support</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Resources</h4>
-                    <a href="/blog/">Blog</a>
-                    <a href="/OpenDrop/PrivacyPolicy.html">Privacy Policy</a>
-                    <a href="/OpenDrop/TermsOfService.html">Terms of Service</a>
-                </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">OpenDrop</h2>
+                <ul>
+                    <li><a href="/OpenDrop/">Overview</a></li>
+                    <li><a href="/OpenDrop/#download">Download</a></li>
+                    <li><a href="/OpenDrop/#compare">Free vs Pro</a></li>
+                    <li><a href="/OpenDrop/changelog.html">What's new in 1.0</a></li>
+                    <li><a href="/OpenDrop/support.html">Support</a></li>
+                    <li><a href="/OpenDrop/status.html">System status</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Guides</h2>
+                <ul>
+                    <li><a href="/blog/posts/best-airdrop-alternatives-windows-2026.html">AirDrop alternatives</a></li>
+                    <li><a href="/blog/posts/share-files-iphone-android.html">iPhone to Android</a></li>
+                    <li><a href="/blog/posts/transfer-files-android-to-pc-without-usb.html">Android to PC, no USB</a></li>
+                    <li><a href="/blog/posts/transfer-photos-iphone-to-windows-pc.html">iPhone photos to PC</a></li>
+                    <li><a href="/blog/posts/transfer-files-windows-to-linux.html">Windows to Linux</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Studio</h2>
+                <ul>
+                    <li><a href="/">NFDGames home</a></li>
+                    <li><a href="/#gunslinger">Gunslinger</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/OpenDrop/press.html">Press kit</a></li>
+                    <li><a href="https://play.google.com/store/apps/dev?id=6331541447390891189&amp;hl=en_US" target="_blank" rel="noopener">Apps on Google Play</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Legal and security</h2>
+                <ul>
+                    <li><a href="/OpenDrop/PrivacyPolicy.html">Privacy Policy</a></li>
+                    <li><a href="/OpenDrop/TermsOfService.html">Terms of Service</a></li>
+                    <li><a href="/OpenDrop/security.html">Security and disclosure</a></li>
+                    <li><a href="/OpenDrop/accessibility.html">Accessibility</a></li>
+                </ul>
             </div>
         </div>
-        <div class="footer-bottom">
+        <div class="wrap site-footer__bottom">
             <p>&copy; 2026 NFDGames. All rights reserved.</p>
+            <div class="site-footer__legal">
+                <a href="/OpenDrop/WithdrawalForm.html">EU/UK withdrawal</a>
+                <a href="/OpenDrop/third-party-notices.html">Third-party notices</a>
+                <a href="/OpenDrop/docs/export-compliance/">Export compliance</a>
+                <a href="mailto:support@nfdgames.com">support@nfdgames.com</a>
+            </div>
         </div>
     </footer>
 
@@ -293,7 +338,7 @@
         appId: "1:573883707762:web:e68643cce07c2cee3eadeb",
         measurementId: "G-ENWJJ78E3Q"
       });
-      // Gated on user consent — see /scripts/opendrop-cookie-banner.js
+      // Gated on user consent, see /scripts/opendrop-cookie-banner.js
       if (window.OpenDropConsent) { window.OpenDropConsent.onConsent(function () { getAnalytics(app); }); }
     </script>
 </body>

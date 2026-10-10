@@ -59,7 +59,7 @@
             }
           },
           "datePublished": "2026-01-15",
-          "dateModified": "2026-01-15",
+          "dateModified": "2026-10-10",
           "mainEntityOfPage": "https://www.nfdgames.com/blog/posts/mdns-auto-discovery-explained.html",
           "keywords": ["mdns", "auto discovery", "bonjour", "zeroconf", "network discovery"]
         },
@@ -74,7 +74,7 @@
         ,
         {
           "@type": "FAQPage",
-          "mainEntity": [{"@type":"Question","name":"What is mDNS and how does it work?","acceptedAnswer":{"@type":"Answer","text":"mDNS (Multicast DNS) is a protocol that lets devices find each other on a local network without a central server. Devices send UDP multicast packets to address 224.0.0.251 on port 5353, announcing their services and querying for others. Apple's Bonjour is their implementation of mDNS."}},{"@type":"Question","name":"Why can't my devices find each other on the same WiFi?","acceptedAnswer":{"@type":"Answer","text":"The most common causes are firewall rules blocking UDP port 5353 (mDNS) or the application's listening port, router settings with AP isolation or multicast filtering enabled, or devices being on different subnets (e.g., 192.168.0.x vs 192.168.1.x). Check firewall rules and router settings first."}},{"@type":"Question","name":"Does mDNS work across different WiFi networks?","acceptedAnswer":{"@type":"Answer","text":"No. mDNS is strictly link-local and only works within a single network segment. For cross-network discovery, applications need a separate mechanism. OpenDrop uses cloud-based registration through Cloudflare Workers so devices can find each other regardless of network."}},{"@type":"Question","name":"How do I fix mDNS discovery on hotel or corporate WiFi?","acceptedAnswer":{"@type":"Answer","text":"Hotel and corporate networks typically block multicast traffic. You can't fix this at the network level without admin access. Instead, use QR code pairing (which bypasses mDNS by encoding the IP directly) or switch to remote transfer mode, which works through any internet connection."}},{"@type":"Question","name":"Is mDNS the same as Bonjour?","acceptedAnswer":{"@type":"Answer","text":"Bonjour is Apple's brand name for their implementation of mDNS and DNS-SD (DNS Service Discovery). The underlying protocols are identical. Bonjour is pre-installed on macOS and iOS. Windows and Linux use separate implementations like the zeroconf library or Avahi."}}]
+          "mainEntity": [{"@type":"Question","name":"What is mDNS and how does it work?","acceptedAnswer":{"@type":"Answer","text":"mDNS (Multicast DNS) is a protocol that lets devices find each other on a local network without a central server. Devices send UDP multicast packets to address 224.0.0.251 on port 5353, announcing their services and querying for others. Apple's Bonjour is their implementation of mDNS."}},{"@type":"Question","name":"Why can't my devices find each other on the same Wi-Fi?","acceptedAnswer":{"@type":"Answer","text":"The most common causes are firewall rules blocking UDP port 5353 (mDNS) or the application's listening port, router settings with AP isolation or multicast filtering enabled, or devices being on different subnets (e.g., 192.168.0.x vs 192.168.1.x). Check firewall rules and router settings first."}},{"@type":"Question","name":"Does mDNS work across different Wi-Fi networks?","acceptedAnswer":{"@type":"Answer","text":"No. mDNS is strictly link-local and only works within a single network segment. For cross-network connections, applications need a separate mechanism. In OpenDrop, the phone uses the addresses it got from the QR code (or, with Pro, your account) to reach your computer over a direct peer-to-peer link or OpenDrop's encrypted relay."}},{"@type":"Question","name":"How do I fix mDNS discovery on hotel or corporate Wi-Fi?","acceptedAnswer":{"@type":"Answer","text":"Hotel and corporate networks often block multicast traffic or stop devices from talking to each other, and you can't change that without admin access. Use QR code pairing instead: the code carries the addresses your phone needs, so it doesn't rely on mDNS. If the network also blocks device-to-device traffic, OpenDrop sends the transfer over the internet through a peer-to-peer link or its own encrypted relay."}},{"@type":"Question","name":"Is mDNS the same as Bonjour?","acceptedAnswer":{"@type":"Answer","text":"Bonjour is Apple's brand name for their implementation of mDNS and DNS-SD (DNS Service Discovery). The underlying protocols are identical. Bonjour is pre-installed on macOS and iOS. Linux usually uses Avahi, Windows 10 and later have built-in mDNS support, and apps can also bundle their own, such as the Python zeroconf library OpenDrop's desktop app uses."}}]
         }
       ]
     }
@@ -90,7 +90,7 @@
     <link rel="stylesheet" href="/styles/common.css">
     <link rel="stylesheet" href="/styles/blog.css">
 
-    <!-- Cookie consent / Google Consent Mode v2 preboot — must precede any Google tag -->
+    <!-- Cookie consent / Google Consent Mode v2 preboot: must precede any Google tag -->
     <script src="/scripts/opendrop-cookie-banner.js"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241"></script>
@@ -101,27 +101,31 @@
       gtag('config', 'AW-17319823241');
     </script>
 </head>
-<body>
+<body class="page-blog-post">
+    <a class="skip-link" href="#main">Skip to content</a>
     <div class="bg-gradient"></div>
     <div class="noise"></div>
 
-    <!-- Navigation -->
-    <nav>
+    <nav class="site-nav" aria-label="Main">
         <a href="/" class="logo">
             <picture>
                 <source srcset="/NFDGamesLogoCircleTransparent.webp" type="image/webp">
-                <img src="/NFDGamesLogoCircleTransparent.png" alt="NFDGames Icon" class="logo-icon" width="36" height="36" loading="lazy">
+                <img src="/NFDGamesLogoCircleTransparent.png" alt="" class="logo-icon" width="36" height="36">
             </picture>
-            NFDGames
+            <span class="logo__word">NFDGames</span>
         </a>
-        <div class="nav-links">
+        <div class="nav-links" id="navLinks">
             <a href="/#projects">Projects</a>
-            <a href="/blog/">Blog</a>
-            <a href="/OpenDrop/" class="nav-cta">Get OpenDrop</a>
+            <a href="/blog/" aria-current="page">Blog</a>
+            <a href="/#about">About</a>
+        </div>
+        <div class="nav-actions">
+            <a href="/OpenDrop/" class="btn-cta btn-cta--sm">Get OpenDrop</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-controls="navLinks" aria-expanded="false" aria-label="Open menu"><span></span><span></span><span></span></button>
         </div>
     </nav>
 
-    <main>
+    <main id="main" tabindex="-1">
     <!-- Post Hero -->
     <header class="blog-post-hero">
         <div class="breadcrumb">
@@ -141,7 +145,7 @@
             <span class="blog-card-date">January 15, 2026</span>
             <span class="read-time">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                9 min read
+                8 min read
             </span>
         </div>
     </header>
@@ -152,80 +156,81 @@
 
 <h2 id="what-mdns-does">What mDNS Actually Does (in Plain English)</h2>
 
-<p>Multicast DNS, usually shortened to mDNS, is a protocol that lets devices on a local network find each other by name without a central directory server. Apple calls their implementation Bonjour. It's the same protocol that makes AirPlay, AirDrop, and wireless printers appear automatically on your device list.</p>
+<p>Multicast DNS (mDNS) lets devices on the same local network find each other with no DNS server and no setup. It is defined in RFC 6762. Apple's implementation is called Bonjour. It is how AirPlay speakers, Chromecasts and network printers show up in a list without you typing an address.</p>
 
-<p>The core idea is simple: instead of asking a central DNS server "who is this device?", your device shouts the question to everyone on the network at once (multicast), and the matching device responds directly. No server, no configuration, no IT department required.</p>
+<p>Normal DNS asks a server. mDNS sends the question to a multicast address that every device on the network listens to, and the device that owns the answer replies. It is usually paired with DNS-SD (DNS Service Discovery, RFC 6763), which lets a device ask "who offers this kind of service?" instead of "what is the address for this name?".</p>
 
-<p>I rely on mDNS daily in <a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a>. When the app starts, it registers a service called <code>_opendrop._tcp.local.</code> on port 8000 using the zeroconf library. Every other OpenDrop instance on the same network watches for this service type and adds new devices to the dashboard within seconds. No IP addresses to look up, no QR codes to scan, no manual pairing. The devices just find each other.</p>
+<p><a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> uses both. The desktop app on Windows or Linux advertises a service of type <code>_opendrop._tcp.local.</code> on port 8000. After your phone pairs with the computer by scanning its QR code, the phone browses for that service type and finds the computer on the same Wi-Fi without you typing its address. With OpenDrop Pro, phones and computers signed in to the same account find each other the same way without a QR code.</p>
 
-<p>But mDNS has real failure modes. Most of the support emails I get about "device not showing up" trace back to one of four problems. Each one has a specific cause and a specific fix.</p>
+<p>When discovery fails, the cause is usually one of the four problems below.</p>
 
 <h2 id="problem-ip-addresses">Problem 1: Nobody Wants to Type IP Addresses</h2>
 
-<p><strong>The problem:</strong> Before mDNS existed, the only way for devices to communicate on a local network was by IP address. Your computer needed to know that the printer was at 192.168.1.105, the NAS was at 192.168.1.200, and the other PC was at 192.168.1.42. These addresses change when your router reboots or assigns new DHCP leases. Hard-coding them is fragile.</p>
+<p><strong>The problem:</strong> Without discovery, one device has to know the other's IP address, such as 192.168.1.42. Home routers hand out addresses with DHCP, and a device can get a different one after a reboot or when its lease runs out.</p>
 
-<p><strong>How mDNS solves it:</strong> Devices announce themselves with a service name instead of an IP. My Windows PC doesn't need to know that my iPhone is at 192.168.1.18. It just needs to know that a device advertising <code>_opendrop._tcp.local.</code> exists somewhere on the network. mDNS resolves the service name to an IP and port automatically.</p>
+<p><strong>How mDNS solves it:</strong> Devices look each other up by service type and name instead of by address. Your phone does not need to know that your PC is at 192.168.1.42. It asks for <code>_opendrop._tcp.local.</code>, and the answer includes the current address and port.</p>
 
-<p>The technical mechanism is a multicast UDP packet sent to address 224.0.0.251 on port 5353. This is a well-known multicast group that every mDNS-aware device listens on. When OpenDrop starts, it sends a query for all <code>_opendrop._tcp.local.</code> services. Devices that match respond with their IP address and port number. The whole exchange takes milliseconds.</p>
+<p>The questions and answers are UDP packets sent to the multicast group 224.0.0.251 on port 5353 (FF02::FB on IPv6). Every mDNS-aware device on the network joins that group. On a healthy network, a query gets its answer in well under a second.</p>
 
-<p><strong>What to do when it fails:</strong> If a device doesn't appear after 10-15 seconds, the multicast packets aren't reaching it. Check that both devices are actually on the same subnet (same first three octets for a /24 network, which covers most home networks). Run <code>ip addr</code> on Linux, <code>ipconfig</code> on Windows, or check WiFi settings on your phone. If one device is on 192.168.1.x and the other on 192.168.0.x, they're on different subnets and multicast won't cross between them.</p>
+<p><strong>What to do when it fails:</strong> If the computer still hasn't shown up after 15 seconds or so, the packets are not getting through. Start by checking that both devices are on the same subnet. Run <code>ipconfig</code> on Windows or <code>ip addr</code> on Linux, and look at the Wi-Fi details on your phone. On a typical home network (a /24), the first three numbers must match: 192.168.1.20 and 192.168.1.42 can see each other, 192.168.1.20 and 192.168.0.42 cannot. The usual culprits are a guest network, a second router running its own network, or a VPN, which can also block local traffic outright. Turn the VPN off and try again.</p>
 
 <h2 id="problem-configuration">Problem 2: Manual Network Configuration Is Error-Prone</h2>
 
-<p><strong>The problem:</strong> Traditional file sharing protocols like SMB (Samba) and NFS require manual configuration: editing config files, setting up user permissions, restarting services. Each step is a potential point of failure. A wrong path in <code>smb.conf</code>, a mismatched password, a firewall rule that blocks the port. I've debugged Samba setups on my ParrotOS laptop more times than I'd like to admit.</p>
+<p><strong>The problem:</strong> The traditional ways to share files between computers, SMB (Windows file sharing, or Samba on Linux) and NFS, need setup: shared folder paths, user accounts and passwords, and firewall rules. Every step is one more thing that can be wrong, and the error messages rarely tell you which one.</p>
 
-<p><strong>How mDNS solves it:</strong> mDNS is a "zero-configuration" protocol. It requires no config files, no server-side setup, and no credentials. Applications register their services and the protocol handles everything else. The original term for this family of protocols is "zeroconf," which includes mDNS for name resolution, DNS-SD (DNS Service Discovery) for finding services, and link-local addressing for IP auto-assignment.</p>
+<p><strong>How mDNS solves it:</strong> mDNS belongs to a family of protocols called zero-configuration networking, or zeroconf. The family has three parts: link-local addressing, which gives a device a 169.254.x.x address when there is no DHCP server; mDNS, which resolves names; and DNS-SD, which lists services. There are no config files and no server to set up. An app registers its service, and other apps browse for it.</p>
 
-<p>When I built OpenDrop's LAN discovery, the implementation was surprisingly simple. The zeroconf Python library handles all the multicast socket management. Registering a service is about 10 lines of code: create a ServiceInfo object with the service type (<code>_opendrop._tcp.local.</code>), port (8000), and a properties dict (server name, version), then register it with the Zeroconf instance. Discovery is similarly compact: create a ServiceBrowser with a listener callback, and the library calls your function whenever a service appears or disappears.</p>
+<p>In code it is short. OpenDrop's desktop app uses the Python <code>zeroconf</code> library: it builds a <code>ServiceInfo</code> with the service type, LAN address, port and a few text properties, and registers it. Browsing is a <code>ServiceBrowser</code> with a listener that the library calls when a matching service appears or goes away.</p>
 
-<p><strong>What to do when it fails:</strong> If mDNS works for some apps (like AirPlay or Chromecast discovery) but not others, the issue is usually that the specific application's service type is being filtered. Some enterprise-grade routers and mesh systems let you whitelist or blacklist mDNS service types. Check your router's mDNS or Bonjour settings. Also confirm the application's service is actually registering: on macOS, you can list all mDNS services with <code>dns-sd -B _services._dns-sd._udp</code>. On Linux, <code>avahi-browse -a</code> does the same thing.</p>
+<p><strong>What to do when it fails:</strong> If other devices work (AirPlay, a Chromecast, a printer) but one app's devices never appear, the network may be filtering by service type. Business Wi-Fi systems often run an mDNS gateway or Bonjour policy that only passes approved service types, so check your router or controller for mDNS or Bonjour settings. You can also look at what is being advertised. On a Mac, <code>dns-sd -B _services._dns-sd._udp</code> lists every service type on the network. On Linux, <code>avahi-browse -a</code> does the same, and <code>avahi-browse -r _opendrop._tcp</code> shows OpenDrop computers with their addresses. Run these from a different machine than the one running OpenDrop. If the OpenDrop computer is missing from the list, the problem is on that computer or its firewall, not on the phone.</p>
 
 <h2 id="problem-firewalls">Problem 3: Firewalls and Routers That Block Discovery</h2>
 
-<p><strong>The problem:</strong> mDNS uses UDP port 5353 with multicast. Many environments actively block this. Hotel WiFi almost universally blocks multicast traffic. Corporate networks do the same. Some consumer mesh WiFi systems (especially those with "AP isolation" or "client isolation" enabled) block device-to-device communication entirely. WiFi access points on different bands (2.4GHz vs 5GHz) sometimes segment multicast traffic depending on the router firmware.</p>
+<p><strong>The problem:</strong> mDNS depends on UDP multicast on port 5353, and many networks block or limit it. Hotel, campus and corporate Wi-Fi often do. Routers with "AP isolation" or "client isolation" turned on, which is the default on many guest networks, stop devices from talking to each other at all. Some routers also pass multicast badly between their 2.4 GHz and 5 GHz bands, or between mesh nodes.</p>
 
-<p>This is the single most common reason OpenDrop users can't find their devices. Three users emailed about this in the same week, all on hotel WiFi. That's what pushed us to add QR code pairing as a fallback.</p>
+<p>Firewalls on the computer cause the same symptom. Windows treats a network marked Public as untrusted and blocks most incoming local traffic.</p>
 
-<p><strong>How mDNS handles it (or doesn't):</strong> mDNS can't work around blocked multicast. The protocol fundamentally depends on UDP multicast packets reaching all devices. If the network blocks them, no mDNS-based discovery will work, for any application.</p>
+<p>mDNS has no way around this. If the multicast packets don't arrive, no app can discover anything with it.</p>
 
-<p><strong>What to do when it fails:</strong> Three approaches, in order of preference:</p>
+<p><strong>What to do when it fails:</strong> Work through these in order:</p>
 
 <ol>
-<li><strong>Check firewall rules.</strong> On Windows, make sure the app is allowed through Windows Firewall for both private and public networks. On Linux, confirm UDP port 5353 is open: <code>sudo ufw allow 5353/udp</code>. On the router side, look for settings labeled "mDNS," "Bonjour," "multicast," or "AP isolation" and make sure multicast traffic is allowed between clients.</li>
-<li><strong>Use QR code pairing.</strong> OpenDrop can generate a QR code that encodes the server's IP address and port directly. The other device scans it and connects manually, bypassing mDNS discovery completely. This is the fastest workaround for restrictive networks.</li>
-<li><strong>Use remote transfer mode.</strong> If both devices have internet access but the local network blocks everything, OpenDrop's own relay carries the transfer regardless of local network restrictions. Both devices dial outbound to the relay, so it works behind NAT and restrictive firewalls — with no third-party tunnel to install and no per-transfer size cap. Free transfers use our Oracle Cloud relay; Pro unlocks the faster Fly.io relay with automatic Oracle failover.</li>
+<li><strong>Check the firewalls.</strong> On Windows, open Settings, then Network and internet, and set your Wi-Fi network to Private. Then make sure OpenDrop is allowed through Windows Defender Firewall on private networks. On Linux with ufw, allow mDNS and OpenDrop's port: <code>sudo ufw allow 5353/udp</code> and <code>sudo ufw allow 8000/tcp</code>. On the router, look for settings named mDNS, Bonjour, multicast, AP isolation or client isolation. Turn isolation off, and keep your phone off the guest network.</li>
+<li><strong>Check Local Network access on iPhone and iPad.</strong> iOS asks before an app can use your local network. If that permission is off, the app can't find anything on your Wi-Fi. Turn it on in Settings, Privacy and Security, Local Network.</li>
+<li><strong>Use the QR code.</strong> OpenDrop's QR code holds a private pairing key and the addresses your phone needs to reach your computer, so the phone can connect without mDNS as long as the network lets the two devices talk directly. Anyone who scans it can pair with your PC, so don't share screenshots of it. There is more on this in <a href="/blog/posts/qr-code-file-transfer-pairing.html">how QR code pairing works</a>.</li>
+<li><strong>Send over the internet instead.</strong> If the local network blocks device-to-device traffic entirely, OpenDrop picks another route: a direct peer-to-peer link or OpenDrop's own encrypted relay. Both devices connect outward, so it works behind NAT and most firewalls, with no port forwarding and nothing extra to install. Neither plan has a file size cap. Free remote transfers are speed-limited and share a weekly allowance; Pro uses a faster relay with no weekly limit.</li>
 </ol>
 
-<div class="callout callout-tip"><div class="callout-title">Tip</div><p>If you're on a network that blocks mDNS and can't change the router settings, QR code pairing is the simplest fix. It takes 5 seconds and completely bypasses the discovery problem.</p></div>
+<div class="callout callout-tip"><div class="callout-title">Tip</div><p>If you can't change the router settings, scan the QR code first. It skips mDNS completely. If the network also blocks devices from reaching each other, OpenDrop sends the transfer over the internet instead.</p></div>
 
 <h2 id="problem-different-networks">Problem 4: Devices on Different Networks Can't Discover Each Other</h2>
 
-<p><strong>The problem:</strong> mDNS is link-local by design. It only works within a single network segment. If your laptop is on your home WiFi and your phone is on cellular data, or if you're at a coffee shop and your PC is at home, mDNS discovery won't find anything. This is by design, not a bug. Multicast packets have a time-to-live (TTL) of 1, meaning routers don't forward them beyond the local subnet.</p>
+<p><strong>The problem:</strong> mDNS only works on the local link. The address 224.0.0.251 is in the 224.0.0.0/24 block, which routers never forward to another network. So if your phone is on cellular data, or your laptop is at a café while your PC is at home, mDNS will not find anything. That is intentional: service announcements from your home network should not leak onto the internet.</p>
 
-<p><strong>How OpenDrop handles it:</strong> We separate discovery from transfer. mDNS handles local discovery. For remote scenarios, OpenDrop uses a cloud-based registration system. When the server starts, it registers with a Cloudflare Worker that stores the server's relay address in KV storage. The mobile app queries this worker to find your server, regardless of network. This is how the "connect from anywhere" feature works without any port forwarding or dynamic DNS setup.</p>
+<p><strong>How OpenDrop handles it:</strong> OpenDrop keeps discovery and transfer separate. mDNS is only used to find the computer on the local network. Away from home, the phone uses what it got from the QR code (or, with Pro, from your account) to reach the computer over a direct peer-to-peer link or OpenDrop's relay. You don't need port forwarding or dynamic DNS. When both devices are on the same Wi-Fi, OpenDrop uses the local route first, at full speed, on both plans.</p>
 
-<p>The actual file transfer on different networks goes through OpenDrop's own relay, end-to-end encrypted: free transfers are sent in resumable 5 MB chunks over our Oracle Cloud relay, while Pro streams over the faster Fly.io relay with automatic Oracle failover. The discovery mechanism just tells the client where to connect. The server also reports its LAN IP and port in the cloud registration, so if the mobile app discovers a direct LAN route is available, it automatically prefers it over the relay for speed.</p>
+<p>Away from your Wi-Fi, the route depends on the plan. Free tries peer-to-peer first, then the shared relay. Free remote transfers are speed-limited, move in resumable 5 MB pieces and share a weekly allowance. Pro starts on the faster Pro relay, keeps peer-to-peer as a backup, and streams whole files with no weekly limit. File contents are encrypted on your device before they leave it; the relay can still see file names, sizes and device names, which it needs to route the transfer. The <a href="/blog/posts/wireless-file-transfer-security-encryption.html">encryption guide</a> has the details.</p>
 
-<p><strong>What to do when it fails:</strong> Make sure both devices have internet access. The cloud registration requires the server to reach the Cloudflare Worker, and the relay requires outbound HTTPS. If the server shows as "offline" in the mobile app when it's clearly running, check that the machine isn't behind a restrictive firewall that blocks outbound HTTPS. VPNs can also interfere, since they route all traffic through a different exit point, which can make the relay unreachable from the mobile app's network perspective.</p>
+<p><strong>What to do when it fails:</strong> Both devices need a working internet connection that allows outbound HTTPS and secure WebSocket traffic. If the phone can't reach the computer from outside, check that the computer is awake, OpenDrop is running on it, and nothing on its network blocks outbound connections. A VPN on either device can also get in the way.</p>
 
 <h2 id="mdns-in-practice">How mDNS Works in Practice: A Packet-Level Walkthrough</h2>
 
-<p>To make this concrete, here's what happens when you launch OpenDrop on two devices on the same WiFi network.</p>
+<p>Here is what goes over the network when a Windows PC running OpenDrop and an iPhone that has already scanned its QR code are on the same Wi-Fi.</p>
 
-<p><strong>Device A (your Windows PC) starts first.</strong> It creates a UDP socket and joins the multicast group 224.0.0.251:5353. It sends a DNS record announcing: "I am OpenDrop, type _opendrop._tcp.local., running on 192.168.1.100 port 8000." This announcement goes to the multicast group, so every device on the subnet receives it.</p>
+<p><strong>1. The computer probes, then announces.</strong> When the desktop app starts, it joins the 224.0.0.251:5353 group. It first sends a few probe queries, a fraction of a second apart, to check that no other device already uses its service instance name. If one does, OpenDrop registers under a different unique name. Then it announces its records to the whole group: a PTR record saying "here is an instance of <code>_opendrop._tcp.local.</code>", an SRV record with its host name and port 8000, a TXT record with properties such as the device name and app version, and an A record with its IP address, for example 192.168.1.100.</p>
 
-<p><strong>Device B (your iPhone) starts second.</strong> It also joins 224.0.0.251:5353 and sends its own announcement. But first, it sends a query: "Are there any _opendrop._tcp.local. services on this network?" Device A receives this query and responds with its IP and port. Device B now knows about Device A, and since Device B also announced itself, Device A knows about Device B. Both dashboards update.</p>
+<p><strong>2. The phone asks.</strong> When the OpenDrop app opens, it sends a PTR query for <code>_opendrop._tcp.local.</code> to the same group. Every computer running OpenDrop on the network answers. The phone matches each answer against the computer it paired with and ignores the rest. Then it connects to that address and port, checks the computer's certificate against the fingerprint from the QR code, and signs its requests with the secret the two devices share.</p>
 
-<p><strong>The cache and refresh cycle.</strong> mDNS records have a TTL (time-to-live), typically 75 minutes for service records. Before the TTL expires, devices send refresh queries to make sure the service is still alive. When a device shuts down cleanly, it sends a "goodbye" packet (the same DNS record but with TTL=0), which tells other devices to remove it immediately.</p>
+<p><strong>3. Caching and refresh.</strong> Every record carries a TTL. RFC 6762 recommends 120 seconds for records that contain a host name (A, AAAA and SRV) and 75 minutes for the rest (PTR and TXT). A device that still cares about a record asks again when 80% of its TTL has passed, and again at 85, 90 and 95% if nobody answers. If there is still no answer, the record is dropped.</p>
 
-<p>Unclean shutdowns (app crashes, power loss, WiFi disconnection) don't send goodbye packets. Other devices will keep showing the dead service until its TTL expires. In OpenDrop, we supplement mDNS with application-level health checks to detect dead peers faster than waiting for TTL expiry.</p>
+<p><strong>4. Goodbye.</strong> When a service shuts down cleanly, it sends its records one more time with a TTL of 0. Other devices remove them about one second later.</p>
 
-<p>The whole system is elegant in its simplicity. No central server, no configuration, no accounts. Just multicast packets on a well-known port. It's the same foundation that makes your Chromecast appear on your phone, your wireless printer show up on your laptop, and your AirPlay speakers populate your Mac's audio menu. mDNS has rough edges around firewalls and network segmentation, but for the 90% case of devices on a normal home or office network, it just works.</p>
+<p>A crash, a power cut or a dropped Wi-Fi connection sends no goodbye. Other devices keep the stale entry until its TTL runs out, which is why a device can stay in a list for a while after it is gone.</p>
 
         <!-- CTA -->
         <div class="blog-cta">
-            <h3>Experience Zero-Config Device Discovery</h3>
-            <p>OpenDrop uses mDNS to find your devices automatically. No IP addresses, no setup, no configuration files.</p>
+            <h3>Find Your Computer Without Typing an IP Address</h3>
+            <p>Pair your phone and computer with a QR code, and OpenDrop uses mDNS to find your computer on the same Wi-Fi. No IP addresses and no configuration files.</p>
             <a href="/OpenDrop/" class="btn btn-primary">Download OpenDrop Free</a>
         </div>
     </article>
@@ -236,45 +241,78 @@
         <div class="related-grid">
             <a href="/blog/posts/wireless-file-transfer-beginners-guide.html" class="related-card">
     <h4>Wireless File Transfer: Complete Beginner&#x27;s Guide</h4>
-    <p>Everything beginners need to know about transferring files wirelessly between phones, tablets, and c</p>
+    <p>Common myths about wireless file transfer debunked with real data.</p>
 </a>
 <a href="/blog/posts/wireless-file-transfer-security-encryption.html" class="related-card">
-    <h4>Is Wireless File Transfer Secure? Encryption Explained</h4>
-    <p>Understand how encryption keeps your wireless file transfers secure, including TLS 1.3 and end-to-en</p>
+    <h4>Wireless File Transfer Security: Encryption Explained</h4>
+    <p>Four real security problems with wireless file transfers.</p>
 </a>
         </div>
     </section>
     </main>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-brand">
+    <div class="seam" aria-hidden="true"></div>
+    <footer class="site-footer">
+        <div class="wrap site-footer__grid">
+            <div class="site-footer__brand">
                 <a href="/" class="logo">
                     <picture>
                         <source srcset="/NFDGamesLogoCircleTransparent.webp" type="image/webp">
-                        <img src="/NFDGamesLogoCircleTransparent.png" alt="NFDGames Icon" class="logo-icon" width="36" height="36" loading="lazy">
+                        <img src="/NFDGamesLogoCircleTransparent.png" alt="" class="logo-icon" width="36" height="36" loading="lazy">
                     </picture>
                     NFDGames
                 </a>
-                <p>Indie studio building software utilities and mobile games.</p>
+                <p>Independent studio making OpenDrop and Gunslinger.</p>
             </div>
-            <div class="footer-links">
-                <div class="footer-col">
-                    <h4>Products</h4>
-                    <a href="/OpenDrop/">OpenDrop</a>
-                    <a href="/OpenDrop/support.html">Support</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Resources</h4>
-                    <a href="/blog/">Blog</a>
-                    <a href="/OpenDrop/PrivacyPolicy.html">Privacy Policy</a>
-                    <a href="/OpenDrop/TermsOfService.html">Terms of Service</a>
-                </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">OpenDrop</h2>
+                <ul>
+                    <li><a href="/OpenDrop/">Overview</a></li>
+                    <li><a href="/OpenDrop/#download">Download</a></li>
+                    <li><a href="/OpenDrop/#compare">Free vs Pro</a></li>
+                    <li><a href="/OpenDrop/changelog.html">What's new in 1.0</a></li>
+                    <li><a href="/OpenDrop/support.html">Support</a></li>
+                    <li><a href="/OpenDrop/status.html">System status</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Guides</h2>
+                <ul>
+                    <li><a href="/blog/posts/best-airdrop-alternatives-windows-2026.html">AirDrop alternatives</a></li>
+                    <li><a href="/blog/posts/share-files-iphone-android.html">iPhone to Android</a></li>
+                    <li><a href="/blog/posts/transfer-files-android-to-pc-without-usb.html">Android to PC, no USB</a></li>
+                    <li><a href="/blog/posts/transfer-photos-iphone-to-windows-pc.html">iPhone photos to PC</a></li>
+                    <li><a href="/blog/posts/transfer-files-windows-to-linux.html">Windows to Linux</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Studio</h2>
+                <ul>
+                    <li><a href="/">NFDGames home</a></li>
+                    <li><a href="/#gunslinger">Gunslinger</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/OpenDrop/press.html">Press kit</a></li>
+                    <li><a href="https://play.google.com/store/apps/dev?id=6331541447390891189&amp;hl=en_US" target="_blank" rel="noopener">Apps on Google Play</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Legal and security</h2>
+                <ul>
+                    <li><a href="/OpenDrop/PrivacyPolicy.html">Privacy Policy</a></li>
+                    <li><a href="/OpenDrop/TermsOfService.html">Terms of Service</a></li>
+                    <li><a href="/OpenDrop/security.html">Security and disclosure</a></li>
+                    <li><a href="/OpenDrop/accessibility.html">Accessibility</a></li>
+                </ul>
             </div>
         </div>
-        <div class="footer-bottom">
+        <div class="wrap site-footer__bottom">
             <p>&copy; 2026 NFDGames. All rights reserved.</p>
+            <div class="site-footer__legal">
+                <a href="/OpenDrop/WithdrawalForm.html">EU/UK withdrawal</a>
+                <a href="/OpenDrop/third-party-notices.html">Third-party notices</a>
+                <a href="/OpenDrop/docs/export-compliance/">Export compliance</a>
+                <a href="mailto:support@nfdgames.com">support@nfdgames.com</a>
+            </div>
         </div>
     </footer>
 
@@ -292,7 +330,7 @@
         appId: "1:573883707762:web:e68643cce07c2cee3eadeb",
         measurementId: "G-ENWJJ78E3Q"
       });
-      // Gated on user consent — see /scripts/opendrop-cookie-banner.js
+      // Gated on user consent, see /scripts/opendrop-cookie-banner.js
       if (window.OpenDropConsent) { window.OpenDropConsent.onConsent(function () { getAnalytics(app); }); }
     </script>
 </body>

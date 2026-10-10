@@ -58,7 +58,7 @@
             }
           },
           "datePublished": "2026-02-10",
-          "dateModified": "2026-02-10",
+          "dateModified": "2026-10-10",
           "mainEntityOfPage": "https://www.nfdgames.com/blog/posts/opendrop-cli-automated-file-transfers.html",
           "keywords": ["opendrop cli", "command line file transfer", "automated file transfer", "scripting"]
         },
@@ -73,7 +73,7 @@
         ,
         {
           "@type": "FAQPage",
-          "mainEntity": [{"@type":"Question","name":"Can OpenDrop run without a GUI?","acceptedAnswer":{"@type":"Answer","text":"Yes. The 'opendrop serve' command runs the server headlessly in the terminal. It starts the HTTP server on port 8000, connects to the OpenDrop relay for remote access, and blocks until you press Ctrl+C. You can run it in tmux, screen, or as a systemd service for persistent operation."}},{"@type":"Question","name":"How do I send files from the command line with OpenDrop?","acceptedAnswer":{"@type":"Answer","text":"Use 'opendrop send /path/to/file --target=\"Device Name\"'. The target name must match a device from the registry. Run 'opendrop devices' first to see available targets and their exact names."}},{"@type":"Question","name":"Can I use OpenDrop CLI in cron jobs?","acceptedAnswer":{"@type":"Answer","text":"Yes. The send command runs as a blocking operation and exits when done, making it compatible with cron. Make sure environment variables like HOME are set in your crontab or wrapper script, and consider adding retry logic in case the target device is temporarily unavailable."}},{"@type":"Question","name":"Does the CLI support remote transfers?","acceptedAnswer":{"@type":"Answer","text":"The serve command automatically connects to the OpenDrop relay for remote access — no separate tunnel binary to download or install. For sending, the CLI can reach remote devices if they're registered in the cloud device registry, which requires signing in via the GUI at least once to set up cloud sync."}},{"@type":"Question","name":"What platforms support the OpenDrop CLI?","acceptedAnswer":{"@type":"Answer","text":"The CLI works on Windows, macOS, and Linux. All subcommands (serve, send, devices, register-context-menu) are available on every desktop platform. The right-click context menu registration is OS-specific but handled automatically by the register-context-menu command."}}]
+          "mainEntity": [{"@type":"Question","name":"Can OpenDrop run without a GUI?","acceptedAnswer":{"@type":"Answer","text":"Yes. The 'opendrop serve' command runs the server headlessly in the terminal. It starts the server on port 8000, connects to the OpenDrop relay for remote access, and runs until you press Ctrl+C; add --background to detach. You can run it in tmux, screen, or as a systemd service for persistent operation."}},{"@type":"Question","name":"How do I send files from the command line with OpenDrop?","acceptedAnswer":{"@type":"Answer","text":"Use 'opendrop upload /path/to/file -d \"Device Name\"' (OpenDrop Pro). Run 'opendrop devices' first to see your online devices and their exact names."}},{"@type":"Question","name":"Can I use OpenDrop CLI in cron jobs?","acceptedAnswer":{"@type":"Answer","text":"Yes. The upload command runs as a blocking operation and exits when done, making it compatible with cron. Make sure environment variables like HOME are set in your crontab or wrapper script, and consider adding retry logic in case the target device is temporarily unavailable."}},{"@type":"Question","name":"Does the CLI support remote transfers?","acceptedAnswer":{"@type":"Answer","text":"The serve command automatically connects to the OpenDrop relay for remote access, with no separate tunnel binary to download or install. Sending to other devices needs OpenDrop Pro: sign in in the app or with opendrop sign-in."}},{"@type":"Question","name":"What platforms support the OpenDrop CLI?","acceptedAnswer":{"@type":"Answer","text":"The CLI works on Windows and Linux; macOS is still in development. Commands that reach another device (-d), plus devices, shares, share and unshare, need OpenDrop Pro."}}]
         }
       ]
     }
@@ -89,7 +89,7 @@
     <link rel="stylesheet" href="/styles/common.css">
     <link rel="stylesheet" href="/styles/blog.css">
 
-    <!-- Cookie consent / Google Consent Mode v2 preboot — must precede any Google tag -->
+    <!-- Cookie consent / Google Consent Mode v2 preboot: must precede any Google tag -->
     <script src="/scripts/opendrop-cookie-banner.js"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241"></script>
@@ -100,27 +100,31 @@
       gtag('config', 'AW-17319823241');
     </script>
 </head>
-<body>
+<body class="page-blog-post">
+    <a class="skip-link" href="#main">Skip to content</a>
     <div class="bg-gradient"></div>
     <div class="noise"></div>
 
-    <!-- Navigation -->
-    <nav>
+    <nav class="site-nav" aria-label="Main">
         <a href="/" class="logo">
             <picture>
                 <source srcset="/NFDGamesLogoCircleTransparent.webp" type="image/webp">
-                <img src="/NFDGamesLogoCircleTransparent.png" alt="NFDGames Icon" class="logo-icon" width="36" height="36" loading="lazy">
+                <img src="/NFDGamesLogoCircleTransparent.png" alt="" class="logo-icon" width="36" height="36">
             </picture>
-            NFDGames
+            <span class="logo__word">NFDGames</span>
         </a>
-        <div class="nav-links">
+        <div class="nav-links" id="navLinks">
             <a href="/#projects">Projects</a>
-            <a href="/blog/">Blog</a>
-            <a href="/OpenDrop/" class="nav-cta">Get OpenDrop</a>
+            <a href="/blog/" aria-current="page">Blog</a>
+            <a href="/#about">About</a>
+        </div>
+        <div class="nav-actions">
+            <a href="/OpenDrop/" class="btn-cta btn-cta--sm">Get OpenDrop</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-controls="navLinks" aria-expanded="false" aria-label="Open menu"><span></span><span></span><span></span></button>
         </div>
     </nav>
 
-    <main>
+    <main id="main" tabindex="-1">
     <!-- Post Hero -->
     <header class="blog-post-hero">
         <div class="breadcrumb">
@@ -140,127 +144,177 @@
             <span class="blog-card-date">February 10, 2026</span>
             <span class="read-time">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                9 min read
+                8 min read
             </span>
         </div>
     </header>
 
     <!-- Post Content -->
     <article class="blog-post-content">
-        <div class="toc"><ol><li>The Setup: Why I Wanted Headless Transfers</li><li>First Attempt: Running the Server Without a Screen</li><li>Sending Files from the Command Line</li><li>The Device Registry and What Tripped Me Up</li><li>Wiring It Into a Cron Job</li><li>Where the CLI Falls Short (For Now)</li></ol></div>
+        <div class="toc"><ol><li>The Setup: Why Headless Transfers</li><li>Running the Server Without a Screen</li><li>Sending Files from the Command Line</li><li>The Device Registry and Device Names</li><li>Wiring It Into a Cron Job</li><li>Where the CLI Falls Short</li></ol></div>
 
-<h2>The Setup: Why I Wanted Headless Transfers</h2>
+<h2>The Setup: Why Headless Transfers</h2>
 
-<p>I have an old HP laptop running ParrotOS that sits in a closet. It collects log files, runs a few background services, and has no monitor connected. Moving files off it used to involve either SSH and <code>scp</code>, or plugging in a monitor to use the GUI. Neither option was great for routine, scheduled transfers.</p>
+<p>A common setup: a Linux box with no monitor that collects logs or backups, and a desktop or phone where you actually want those files. SSH and <code>scp</code> work, but you manage keys and addresses for every machine. The <a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> desktop app has a command line built in, so the same box can serve files and push them on a schedule without ever opening a window.</p>
 
-<p>The <a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> GUI works well on my Windows desktop and MacBook, but launching a full PySide6 window on a headless Linux box isn't practical. I needed something that could run from a terminal, accept scripted input, and exit cleanly when done. That's what the CLI subcommands are for.</p>
+<p>The CLI ships with the Windows and Linux desktop builds. Running <code>opendrop</code> with no arguments opens the app. Any subcommand skips the window and runs in the terminal. On Linux, <code>opendrop install-cli</code> links the command into <code>/usr/local/bin</code>. The Windows installer has an option to add it to PATH.</p>
 
-<p>OpenDrop's CLI has four main subcommands:</p>
+<p>The commands this post uses:</p>
 
 <ol>
-<li><code>opendrop serve</code> — run the server without the GUI</li>
-<li><code>opendrop send &lt;file&gt; --target="Device Name"</code> — send a file to another device</li>
-<li><code>opendrop devices</code> — list known connected devices</li>
-<li><code>opendrop register-context-menu</code> / <code>unregister-context-menu</code> — add or remove the right-click "Send with OpenDrop" option on your OS</li>
+<li><code>opendrop serve</code>: run OpenDrop headless. Add <code>--background</code> to detach, and use <code>opendrop stop</code> to shut it down.</li>
+<li><code>opendrop upload &lt;files&gt;</code>: copy files or folders into this computer's OpenDrop storage. Add <code>-d "Device Name"</code> to send them to another device (Pro).</li>
+<li><code>opendrop devices</code>: list your devices that are online right now (Pro).</li>
+<li><code>opendrop status</code>: show whether the server is running and connected.</li>
+<li><code>opendrop sign-in</code>: sign in to your OpenDrop account from the terminal.</li>
 </ol>
 
-<p>Running <code>opendrop</code> with no arguments launches the GUI, same as double-clicking the app. The CLI subcommands skip the GUI entirely and work in the terminal.</p>
+<p>Commands that only touch this computer work on Free. Anything that reaches another device (the <code>-d</code> flag, <code>devices</code>, shared folders) needs OpenDrop Pro, because Pro is what links your devices through one account. <code>opendrop help &lt;command&gt;</code> prints the flags and examples for any command.</p>
 
-<h2>First Attempt: Running the Server Without a Screen</h2>
+<h2>Running the Server Without a Screen</h2>
 
-<p>My first try was simple. SSH into the ParrotOS laptop, run <code>opendrop serve</code>, and see what happens.</p>
+<p>SSH into the box and run <code>opendrop serve</code>. It starts the local server on port 8000, listening on all interfaces, then connects out to OpenDrop's own encrypted relay so your devices can reach it from other networks. There is nothing extra to install and no port to forward.</p>
 
-<p>The command started the FastAPI server on <code>0.0.0.0:8000</code> in a background thread, then connected to the OpenDrop relay. Within a few seconds, the terminal printed the local server address and the relay connection, along with the shared secret. No <code>cloudflared</code> download, no waiting on a third-party tunnel to spin up.</p>
+<p>The output looks roughly like this, with real values replaced by placeholders:</p>
 
-<p>The output looked roughly like this:</p>
+<pre><code>OpenDrop server starting on 0.0.0.0:8000...
+Not signed in (use 'opendrop sign-in' to authenticate)
+LAN IP: 192.168.1.20
+Server running on https://127.0.0.1:8000
+Waiting for tunnel... (Press Ctrl+C to stop)
+Tunnel connected (&lt;relay&gt;)
 
-<blockquote>OpenDrop server starting on 0.0.0.0:8000...<br>Server running on http://127.0.0.1:8000<br>Waiting for tunnel... (Press Ctrl+C to stop)<br>Tunnel connected<br>URL: https://relay2.nfdgames.com/proxy/ab12cd34<br>Password: a1b2c3d4...</blockquote>
+  URL:      &lt;connection URL&gt;
+  Password: &lt;pairing password&gt;
+  [QR code]</code></pre>
 
-<p>(The CLI still labels the outbound relay session a &ldquo;tunnel&rdquo; in its status line &mdash; it&rsquo;s OpenDrop&rsquo;s own relay, not a third-party one to download.)</p>
+<p>"Tunnel" here means the outbound connection to OpenDrop's relay. It is not a third-party tunnel you have to download.</p>
 
-<p>The server stayed running until I hit Ctrl+C. Clean shutdown, relay disconnected, process exited. First try worked. I was suspicious.</p>
+<p>The password and QR code pair a phone with this computer. Scan the QR code in the OpenDrop app and the box shows up on your phone. That part works on Free with no account: each phone pairs with one computer by scanning its QR code. Treat the QR code like a password. Anyone who scans it can pair with the box, so keep that output out of shared logs and screenshots.</p>
 
-<p>Then I closed the SSH session. The process died. Of course. I hadn't backgrounded it or used a session manager. Running <code>opendrop serve</code> in a <code>tmux</code> session or behind <code>nohup</code> fixed that. A systemd service file would be cleaner for production use, but tmux was fast for testing.</p>
+<p>A foreground <code>serve</code> stops when your SSH session closes. Three ways to keep it running:</p>
 
-<p>On the receiving end (my Windows desktop, same network), the ParrotOS server showed up automatically via mDNS. The service type <code>_opendrop._tcp.local.</code> on port 8000 let the GUI find it without any manual configuration. I could send files to the headless box from my phone or desktop just by selecting it in the app.</p>
+<ul>
+<li><code>opendrop serve --background</code> detaches, prints the connection info and returns you to the prompt. Its log, which also holds the pairing password and QR code, goes to <code>serve.log</code> in the OpenDrop config folder (<code>~/.config/opendrop/</code> on Linux). Stop it with <code>opendrop stop</code>.</li>
+<li>Run it inside <code>tmux</code> or <code>screen</code> if you want to watch the output.</li>
+<li>For a box that should always be reachable, make it a systemd service so it starts at boot and restarts if it exits.</li>
+</ul>
+
+<p>A minimal user service looks like this:</p>
+
+<pre><code>[Unit]
+Description=OpenDrop headless server
+
+[Service]
+ExecStart=/usr/local/bin/opendrop serve
+Restart=on-failure
+
+[Install]
+WantedBy=default.target</code></pre>
+
+<p>Save it as <code>~/.config/systemd/user/opendrop.service</code> and run <code>systemctl --user enable --now opendrop</code>. Run <code>loginctl enable-linger $USER</code> once so the service starts at boot without anyone logging in. Check on it any time with <code>opendrop status</code>. The service's output, including the pairing password and QR code, goes to the journal (<code>journalctl --user -u opendrop</code>), so treat that log as private. When you need to pair a phone, <code>opendrop connect-info</code> shows the URL, password and QR code again.</p>
 
 <h2>Sending Files from the Command Line</h2>
 
-<p>Receiving files on a headless server is the easy part. Sending files is where the CLI earns its keep.</p>
+<p>Without a target, <code>opendrop upload</code> copies files into this computer's own OpenDrop storage, where your paired phone can browse and download them. That needs OpenDrop running on the same computer, either the app or <code>opendrop serve</code>. If nothing is running, the command exits with code 2.</p>
 
-<p>The send command takes a file path and a target device name:</p>
+<p>With Pro, add <code>-d</code> to send straight to another device on your account:</p>
 
-<p><code>opendrop send /path/to/backup.tar.gz --target="My Windows PC"</code></p>
+<pre><code>opendrop upload /path/to/backup.tar.gz -d "My Windows PC"</code></pre>
 
-<p>The target name needs to match a device the CLI knows about. I'll get to how device resolution works in a moment, because it's where I spent the most time debugging.</p>
+<p>You can pass several files or a whole folder. Folders arrive with their directory tree intact. Add <code>-s Reports</code> to put the files in a subfolder on the receiving side.</p>
 
-<p>When the send works, the output is straightforward. It prints the filename, file size in MB, creates a session with the target server, uploads the file, and prints a success message. The whole thing runs as a single blocking operation and exits when done. No daemon, no background process. Start, transfer, exit.</p>
+<p>For each file the command prints the name and size, then <code>Uploaded:</code> when it lands. It blocks until every file is done and then exits, so the next line of your script only runs after the transfer has finished. Remote sends retry a few times on their own before they give up.</p>
 
-<p>The upload itself uses HTTP POST to the target's <code>/upload</code> endpoint. For LAN transfers, this is a direct connection to the target's port 8000. The file goes as a multipart form upload with metadata (filename, chunk index, total chunks), and the file contents are end-to-end encrypted with ChaCha20-Poly1305 before they leave the machine &mdash; the same AEAD encryption every OpenDrop transfer uses, with no plaintext fallback. For a single-shot CLI transfer, it's one chunk with <code>chunk_index=0</code> and <code>total_chunks=1</code>. The transfer has a 10-minute timeout, which is generous enough for most files over LAN.</p>
+<p>When the target is on the same network, the CLI sends to its LAN address. Otherwise the transfer goes through the relay. Either way, file contents are encrypted with ChaCha20-Poly1305 before they leave the box, and OpenDrop refuses to fall back to plaintext. The relay can still see file names, sizes and device names, which it needs to route the transfer, so don't put secrets in file names.</p>
 
-<p>Where I hit a wall: the <code>--target</code> flag expects a device name, not a URL or IP address. If the CLI doesn't recognize the name you give it, it prints an error and lists available devices. My first few attempts failed because I was typing the device name slightly wrong. The name matching is exact.</p>
+<h2>The Device Registry and Device Names</h2>
 
-<h2>The Device Registry and What Tripped Me Up</h2>
+<p>With <code>-d</code>, the CLI asks your OpenDrop account which of your devices are online right now, then picks the one you named. <code>opendrop devices</code> prints that list by name. Add <code>-v</code> to also see each device's ID and, for devices that reported one, the LAN address. A phone reachable only through the relay has no LAN line:</p>
 
-<p>OpenDrop's CLI resolves target names through a device registry that combines local mDNS discovery results with cloud-synced device information. When you run <code>opendrop devices</code>, it lists the device names it knows about; add <code>-v</code> and it also prints each device's ID and, for devices on your network, the LAN address.</p>
+<pre><code>Online devices (2):
+----------------------------------------
+  My Windows PC
+    ID:  &lt;device ID&gt;
+    LAN: 192.168.1.50:8000
+  My iPhone
+    ID:  &lt;device ID&gt;</code></pre>
 
-<p>The plain output is just the device names:</p>
+<p>Both <code>opendrop devices</code> and <code>-d</code> need the headless box signed in to the same Pro account as your other devices. Run <code>opendrop sign-in</code> and pick Google, Microsoft, Apple, or email and password. The first three use a browser sign-in, so email is the simplest choice on a machine with no desktop. Until the box is signed in to a Pro account, both stop with an error that tells you to sign in, or that the command needs Pro.</p>
 
-<blockquote>My Windows PC<br>MacBook Pro</blockquote>
+<p>How <code>-d</code> matches what you type:</p>
 
-<p>Add <code>-v</code> and it expands each entry with the device ID and, for devices on your network, the LAN address. Remote (cloud) devices like the MacBook below have no LAN line:</p>
+<ul>
+<li>An exact device name or device ID, ignoring case.</li>
+<li>Part of a name, at least 3 characters long, as long as it matches only one device. <code>-d windows</code> works if only one device has "windows" in its name.</li>
+<li>The first 8 or more characters of a device ID.</li>
+</ul>
 
-<blockquote>My Windows PC<br>&nbsp;&nbsp;&nbsp;&nbsp;ID:&nbsp;&nbsp;3f9a2b7c<br>&nbsp;&nbsp;&nbsp;&nbsp;LAN: 192.168.1.50:8000<br>MacBook Pro<br>&nbsp;&nbsp;&nbsp;&nbsp;ID:&nbsp;&nbsp;8d1e4f6a</blockquote>
+<p>If what you typed matches nothing, or matches more than one device, the CLI sends nothing. It lists the devices it could have meant (or every online device, when nothing matches) and exits with an error. That is on purpose: a script should never guess which machine gets your files.</p>
 
-
-<p>The mistake I kept making: I assumed the device name would match whatever I'd set in the GUI's settings. It does, but only after the device has been discovered or synced. On a fresh install, the device list is empty. You need to either have both devices on the same network (so mDNS can find them) or be signed in with a Pro account (so cloud device sync works).</p>
-
-<p>My ParrotOS box wasn't signed in. It was running <code>opendrop serve</code> headlessly. The device registry only had local mDNS entries. Since my Windows desktop was on the same network, it appeared in the list. But my iPhone on cellular didn't show up, because there was no cloud sync without authentication.</p>
-
-<p>For a pure LAN scripting setup, this works fine. Both devices are on the same network, mDNS handles discovery, and the CLI can resolve target names. For remote scripted transfers, you'd need to sign in via the GUI first to populate the cloud device registry, then use the CLI afterward.</p>
-
-<div class="callout callout-tip"><div class="callout-title">Tip</div><p>Run <code>opendrop devices</code> before trying to send. It confirms whether the target device is visible and shows you the exact name to use with the <code>--target</code> flag. Typos in device names are the most common reason CLI sends fail.</p></div>
+<div class="callout callout-tip"><div class="callout-title">Tip</div><p>Before you schedule anything, run <code>opendrop devices -v</code> by hand on the box. It confirms the box is signed in, shows whether the target is online, and gives you the exact name to put after <code>-d</code>. Device names can be changed in the app; the device ID is the steadier choice for a script that will run for months.</p></div>
 
 <h2>Wiring It Into a Cron Job</h2>
 
-<p>The real goal was automated, scheduled transfers. Every night at 2 AM, push the day's log files from the ParrotOS box to my Windows desktop.</p>
+<p>Say you want last night's logs on your desktop every morning. The crontab line:</p>
 
-<p>The cron job itself is simple:</p>
+<pre><code>0 2 * * * /usr/local/bin/opendrop upload /var/log/daily-report.tar.gz -d "My Windows PC" &gt;&gt; "$HOME/opendrop-sync.log" 2&gt;&amp;1</code></pre>
 
-<p><code>0 2 * * * /usr/local/bin/opendrop send /var/log/daily-report.tar.gz --target="My Windows PC" >> /var/log/opendrop-sync.log 2>&1</code></p>
+<p>Cron runs with a much smaller environment than your shell, and that causes most of the surprises:</p>
 
-<p>But getting it to actually work required dealing with a few things cron does differently than an interactive shell.</p>
+<ul>
+<li><strong>Use full paths.</strong> Cron's PATH usually leaves out <code>/usr/local/bin</code>, so call <code>/usr/local/bin/opendrop</code>, or wherever <code>which opendrop</code> points.</li>
+<li><strong>Same user, same config.</strong> The CLI keeps its sign-in and settings in <code>~/.config/opendrop/</code>, or in <code>$XDG_CONFIG_HOME/opendrop</code> when that variable is set. Cron does not read <code>.bashrc</code> or <code>.profile</code>. If you set <code>XDG_CONFIG_HOME</code> there, set it in the crontab too, or the job looks in the default folder, finds no sign-in and fails. Put the job in the crontab of the user who ran <code>opendrop sign-in</code>.</li>
+<li><strong>Always pass <code>-d</code>.</strong> Without it, <code>upload</code> stores the file on this box instead of sending it anywhere, and reports success.</li>
+<li><strong>Keep the log.</strong> Send stdout and stderr to a file. The CLI prints a specific message for a missing file, a device it cannot match, no devices online, and network failures, so the log usually tells you what went wrong.</li>
+</ul>
 
-<p>First, environment variables. Cron doesn't source <code>.bashrc</code> or <code>.profile</code>. If OpenDrop relies on any environment variables (like <code>XDG_CONFIG_HOME</code> for finding its config directory on Linux), you need to set them explicitly in the crontab or in a wrapper script. On my ParrotOS box, the default config path is <code>~/.config/opendrop/</code>, which worked because <code>$HOME</code> is set in cron. But <code>XDG_CONFIG_HOME</code> wasn't, so if I'd set a custom config path, it would have silently fallen back to the default.</p>
+<p>The exit code tells a script what happened:</p>
 
-<p>Second, the target device needs to be online when the cron job fires. If my Windows desktop is asleep at 2 AM, the CLI send fails with a connection error. I added a simple retry wrapper:</p>
+<ul>
+<li><code>0</code>: every file went through.</li>
+<li><code>1</code>: bad arguments or a missing file, or some files failed while others went through.</li>
+<li><code>2</code>: the CLI could not find its target (no running server, not signed in, or no matching device online).</li>
+<li><code>3</code>: a network error, or every file failed.</li>
+<li><code>4</code>: this copy of OpenDrop needs an update.</li>
+</ul>
 
-<p><code>for i in 1 2 3; do opendrop send /var/log/daily-report.tar.gz --target="My Windows PC" && break || sleep 60; done</code></p>
+<p>The target also has to be awake when the job fires. If your desktop sleeps at 2 AM, the upload fails. Schedule the job for a time the target is usually on, or wrap it in a script that retries:</p>
 
-<p>Three attempts, one minute apart. If the desktop is set to wake briefly for network access (Windows has this option in power settings), the second or third attempt usually succeeds.</p>
+<pre><code>#!/bin/bash
+LOG="$HOME/opendrop-sync.log"
+FILE=/var/log/daily-report.tar.gz
+TARGET="My Windows PC"
 
-<p>Third, logging. Redirect stdout and stderr to a log file. When something fails at 2 AM and you don't notice until morning, the log is your only diagnostic tool. The CLI prints specific error messages for connection failures, unknown targets, and file-not-found errors, so the logs are usually enough to diagnose the problem.</p>
+echo "$(date): starting transfer" &gt;&gt; "$LOG"
+for i in 1 2 3; do
+  if /usr/local/bin/opendrop upload "$FILE" -d "$TARGET" &gt;&gt; "$LOG" 2&gt;&amp;1; then
+    exit 0
+  fi
+  echo "$(date): attempt $i failed" &gt;&gt; "$LOG"
+  sleep 60
+done
+echo "$(date): giving up" &gt;&gt; "$LOG"
+exit 1</code></pre>
 
-<p>A more complete wrapper script might look like this:</p>
+<p>Point the crontab at the script instead of the raw command.</p>
 
-<blockquote>#!/bin/bash<br>export HOME=/home/myuser<br>LOG=/var/log/opendrop-sync.log<br>FILE=/var/log/daily-report.tar.gz<br>TARGET="My Windows PC"<br><br>echo "$(date): Starting transfer" >> $LOG<br>for i in 1 2 3; do<br>&nbsp;&nbsp;/usr/local/bin/opendrop send "$FILE" --target="$TARGET" >> $LOG 2>&1 && break<br>&nbsp;&nbsp;echo "$(date): Attempt $i failed, retrying in 60s" >> $LOG<br>&nbsp;&nbsp;sleep 60<br>done</blockquote>
+<h2>Where the CLI Falls Short</h2>
 
-<h2>Where the CLI Falls Short (For Now)</h2>
+<p>There is no one-shot receive command. <code>opendrop serve</code> runs until you stop it and saves incoming files to its storage folder. If a script needs to react when a file arrives, watch that folder yourself, for example with <code>inotifywait</code>. On Linux the default folder is <code>~/Downloads/OpenDrop/Files</code>, or <code>~/.local/share/opendrop/Files</code> on systems with no Downloads folder. If you moved it, <code>opendrop config storage-directory</code> prints where it is.</p>
 
-<p>The CLI covers the core use case: send a file to a known device, run a headless server, list devices. But there are gaps.</p>
+<p>Uploads show no progress bar. A large send prints its name and size, then nothing until it finishes or fails. <code>opendrop download</code> does show a progress bar.</p>
 
-<p>There's no <code>opendrop receive</code> command that waits for a single incoming file and exits. The <code>serve</code> command runs indefinitely, which is fine for a persistent server but not ideal for a one-shot "accept the next transfer and quit" workflow. You'd need to monitor the receive directory for new files and handle that externally.</p>
+<p>Commands that reach another device need <a href="/OpenDrop/#compare">OpenDrop Pro</a>, with both devices signed in to the same account. On Free, the CLI still manages this computer's own storage (upload, list, rename, move, delete) and runs the headless server your paired phone connects to.</p>
 
-<p>Wildcard or multi-file sends aren't built in. If you want to send everything in a directory, you write a shell loop: <code>for f in /path/to/files/*; do opendrop send "$f" --target="Name"; done</code>. Each send is a separate session and upload, which is fine for a handful of files but adds per-file overhead for large batches. Wrapping the files in a tar archive before sending is usually faster.</p>
+<p>There is no macOS build yet. The CLI comes with the Windows and Linux apps, and macOS is still in development.</p>
 
-<p>There's no progress bar in the CLI output. For large files over slower connections, the command blocks silently until it finishes or times out. Adding <code>--verbose</code> output with transfer progress would make debugging easier, especially in unattended scripts where you're reading logs after the fact.</p>
-
-<p>Despite those limitations, the CLI does what I originally needed: move files between machines on a schedule without opening a GUI. The <code>serve</code> command turns any Linux box into a headless file receiver. The <code>send</code> command plugs into bash scripts, cron jobs, and CI pipelines. For my ParrotOS-in-a-closet setup, it works reliably. <a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> handles the networking, mDNS discovery, and transfer protocol so the scripts stay short.</p>
+<p>For a box that pushes files on a schedule, that is enough: <code>serve</code> under systemd, <code>upload -d</code> in a short script, and cron to run it. <a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> handles discovery, routing and encryption, so the scripts stay short.</p>
 
         <!-- CTA -->
         <div class="blog-cta">
             <h3>Automate Your File Transfers with OpenDrop CLI</h3>
-            <p>OpenDrop's command-line interface works on Windows, macOS, and Linux. Run headless servers, script file sends, and integrate transfers into your existing workflows.</p>
+            <p>The OpenDrop CLI comes with the Windows and Linux apps. Run a headless server and script uploads for free, and send to your other devices with Pro.</p>
             <a href="/OpenDrop/" class="btn btn-primary">Download OpenDrop Free</a>
         </div>
     </article>
@@ -271,45 +325,78 @@
         <div class="related-grid">
             <a href="/blog/posts/transfer-files-android-to-pc-without-usb.html" class="related-card">
     <h4>How to Transfer Files from Android to PC Without USB</h4>
-    <p>Step-by-step guide to wirelessly transferring files from your Android phone to your Windows or Linux</p>
+    <p>Transfer files from Android to PC wirelessly, no USB cable needed.</p>
 </a>
 <a href="/blog/posts/send-large-files-phone-to-pc-free.html" class="related-card">
     <h4>How to Send Large Files Between Phone and PC for Free</h4>
-    <p>Learn how to send files of any size between your phone and computer without cloud uploads or paid se</p>
+    <p>How free file transfers actually work between phones and PCs.</p>
 </a>
         </div>
     </section>
     </main>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-brand">
+    <div class="seam" aria-hidden="true"></div>
+    <footer class="site-footer">
+        <div class="wrap site-footer__grid">
+            <div class="site-footer__brand">
                 <a href="/" class="logo">
                     <picture>
                         <source srcset="/NFDGamesLogoCircleTransparent.webp" type="image/webp">
-                        <img src="/NFDGamesLogoCircleTransparent.png" alt="NFDGames Icon" class="logo-icon" width="36" height="36" loading="lazy">
+                        <img src="/NFDGamesLogoCircleTransparent.png" alt="" class="logo-icon" width="36" height="36" loading="lazy">
                     </picture>
                     NFDGames
                 </a>
-                <p>Indie studio building software utilities and mobile games.</p>
+                <p>Independent studio making OpenDrop and Gunslinger.</p>
             </div>
-            <div class="footer-links">
-                <div class="footer-col">
-                    <h4>Products</h4>
-                    <a href="/OpenDrop/">OpenDrop</a>
-                    <a href="/OpenDrop/support.html">Support</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Resources</h4>
-                    <a href="/blog/">Blog</a>
-                    <a href="/OpenDrop/PrivacyPolicy.html">Privacy Policy</a>
-                    <a href="/OpenDrop/TermsOfService.html">Terms of Service</a>
-                </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">OpenDrop</h2>
+                <ul>
+                    <li><a href="/OpenDrop/">Overview</a></li>
+                    <li><a href="/OpenDrop/#download">Download</a></li>
+                    <li><a href="/OpenDrop/#compare">Free vs Pro</a></li>
+                    <li><a href="/OpenDrop/changelog.html">What's new in 1.0</a></li>
+                    <li><a href="/OpenDrop/support.html">Support</a></li>
+                    <li><a href="/OpenDrop/status.html">System status</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Guides</h2>
+                <ul>
+                    <li><a href="/blog/posts/best-airdrop-alternatives-windows-2026.html">AirDrop alternatives</a></li>
+                    <li><a href="/blog/posts/share-files-iphone-android.html">iPhone to Android</a></li>
+                    <li><a href="/blog/posts/transfer-files-android-to-pc-without-usb.html">Android to PC, no USB</a></li>
+                    <li><a href="/blog/posts/transfer-photos-iphone-to-windows-pc.html">iPhone photos to PC</a></li>
+                    <li><a href="/blog/posts/transfer-files-windows-to-linux.html">Windows to Linux</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Studio</h2>
+                <ul>
+                    <li><a href="/">NFDGames home</a></li>
+                    <li><a href="/#gunslinger">Gunslinger</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/OpenDrop/press.html">Press kit</a></li>
+                    <li><a href="https://play.google.com/store/apps/dev?id=6331541447390891189&amp;hl=en_US" target="_blank" rel="noopener">Apps on Google Play</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Legal and security</h2>
+                <ul>
+                    <li><a href="/OpenDrop/PrivacyPolicy.html">Privacy Policy</a></li>
+                    <li><a href="/OpenDrop/TermsOfService.html">Terms of Service</a></li>
+                    <li><a href="/OpenDrop/security.html">Security and disclosure</a></li>
+                    <li><a href="/OpenDrop/accessibility.html">Accessibility</a></li>
+                </ul>
             </div>
         </div>
-        <div class="footer-bottom">
+        <div class="wrap site-footer__bottom">
             <p>&copy; 2026 NFDGames. All rights reserved.</p>
+            <div class="site-footer__legal">
+                <a href="/OpenDrop/WithdrawalForm.html">EU/UK withdrawal</a>
+                <a href="/OpenDrop/third-party-notices.html">Third-party notices</a>
+                <a href="/OpenDrop/docs/export-compliance/">Export compliance</a>
+                <a href="mailto:support@nfdgames.com">support@nfdgames.com</a>
+            </div>
         </div>
     </footer>
 
@@ -327,7 +414,7 @@
         appId: "1:573883707762:web:e68643cce07c2cee3eadeb",
         measurementId: "G-ENWJJ78E3Q"
       });
-      // Gated on user consent — see /scripts/opendrop-cookie-banner.js
+      // Gated on user consent, see /scripts/opendrop-cookie-banner.js
       if (window.OpenDropConsent) { window.OpenDropConsent.onConsent(function () { getAnalytics(app); }); }
     </script>
 </body>

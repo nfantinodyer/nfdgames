@@ -57,7 +57,7 @@
             }
           },
           "datePublished": "2026-01-25",
-          "dateModified": "2026-01-25",
+          "dateModified": "2026-10-10",
           "mainEntityOfPage": "https://www.nfdgames.com/blog/posts/top-10-free-file-transfer-apps-2026.html",
           "keywords": ["free file transfer apps", "best file sharing apps", "file transfer app 2026"]
         },
@@ -72,7 +72,7 @@
         ,
         {
           "@type": "FAQPage",
-          "mainEntity": [{"@type":"Question","name":"What is the best free file transfer app for all platforms?","acceptedAnswer":{"@type":"Answer","text":"OpenDrop supports Windows, macOS, Linux, Android, and iOS with both GUI and CLI interfaces. It handles LAN transfers with uncapped streaming and remote transfers across different networks. LocalSend is another strong cross-platform option for LAN-only transfers."}},{"@type":"Question","name":"Are free file transfer apps safe to use?","acceptedAnswer":{"@type":"Answer","text":"Open-source apps like OpenDrop, LocalSend, Syncthing, and Croc are safe because their code is publicly auditable. Be cautious with ad-supported apps that request excessive permissions or include content feeds unrelated to file transfer. Check what permissions an app requests before installing."}},{"@type":"Question","name":"Can I transfer files between devices on different WiFi networks for free?","acceptedAnswer":{"@type":"Answer","text":"Yes. OpenDrop offers free remote transfers through its own end-to-end-encrypted relay (an Oracle Cloud relay on the free tier, the faster Fly.io relay on Pro) — no third-party tunnel binary to download and no per-transfer size cap. Croc also supports cross-network transfers through free relay servers. Most LAN-only tools like LocalSend and Warpinator cannot transfer across different networks."}},{"@type":"Question","name":"Which free file transfer app handles large files best?","acceptedAnswer":{"@type":"Answer","text":"For same-network transfers, OpenDrop streams files of any size on LAN without chunking. Syncthing also handles large files well for continuous synchronization. Browser-based tools like PairDrop struggle with files over a few hundred megabytes due to browser memory constraints."}},{"@type":"Question","name":"Do I need to create an account to use file transfer apps?","acceptedAnswer":{"@type":"Answer","text":"Most of the best free transfer apps do not require accounts. OpenDrop, LocalSend, PairDrop, Croc, and Warpinator all work without any account creation. Platform-specific tools like Quick Share require a Google account, and AirDrop requires an Apple ID."}}]
+          "mainEntity": [{"@type":"Question","name":"What is the best free file transfer app for all platforms?","acceptedAnswer":{"@type":"Answer","text":"OpenDrop runs on Windows, Linux, iPhone, iPad and Android, with macOS coming soon, and has a desktop app and a command line. It streams files at full speed on the same Wi-Fi and also sends across networks. LocalSend is a strong open-source option when your devices are on the same network, and it includes macOS."}},{"@type":"Question","name":"Are free file transfer apps safe to use?","acceptedAnswer":{"@type":"Answer","text":"Open-source apps like LocalSend, Syncthing and Croc publish their code for anyone to audit. OpenDrop is closed source; it encrypts file contents on your device before they are sent and lists its bundled open-source components in its third-party licenses file. Be cautious with ad-supported apps that ask for permissions unrelated to file transfer or bundle content feeds."}},{"@type":"Question","name":"Can I transfer files between devices on different Wi-Fi networks for free?","acceptedAnswer":{"@type":"Answer","text":"Yes. OpenDrop's free plan sends files across networks over a direct peer-to-peer link or its own encrypted relay, with nothing extra to install and no file size cap. Free remote transfers are speed-limited with a weekly allowance; Pro uses a faster relay with no weekly limit. Croc also crosses networks through a free relay. LAN-only tools like LocalSend and Warpinator only work on the same network."}},{"@type":"Question","name":"Which free file transfer app handles large files best?","acceptedAnswer":{"@type":"Answer","text":"On the same network, OpenDrop streams files of any size directly, without chunking. Syncthing handles large folders well for continuous synchronization. Browser-based tools like PairDrop need the browser tab open for the whole transfer, which is harder to manage with very large files."}},{"@type":"Question","name":"Do I need to create an account to use file transfer apps?","acceptedAnswer":{"@type":"Answer","text":"Most of the best free transfer apps do not require accounts. OpenDrop Free, LocalSend, PairDrop, Croc and Warpinator all work without creating an account. Quick Share does not require you to sign in, and AirDrop needs no account between Apple devices."}}]
         }
       ]
     }
@@ -88,7 +88,7 @@
     <link rel="stylesheet" href="/styles/common.css">
     <link rel="stylesheet" href="/styles/blog.css">
 
-    <!-- Cookie consent / Google Consent Mode v2 preboot — must precede any Google tag -->
+    <!-- Cookie consent / Google Consent Mode v2 preboot: must precede any Google tag -->
     <script src="/scripts/opendrop-cookie-banner.js"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241"></script>
@@ -99,27 +99,31 @@
       gtag('config', 'AW-17319823241');
     </script>
 </head>
-<body>
+<body class="page-blog-post">
+    <a class="skip-link" href="#main">Skip to content</a>
     <div class="bg-gradient"></div>
     <div class="noise"></div>
 
-    <!-- Navigation -->
-    <nav>
+    <nav class="site-nav" aria-label="Main">
         <a href="/" class="logo">
             <picture>
                 <source srcset="/NFDGamesLogoCircleTransparent.webp" type="image/webp">
-                <img src="/NFDGamesLogoCircleTransparent.png" alt="NFDGames Icon" class="logo-icon" width="36" height="36" loading="lazy">
+                <img src="/NFDGamesLogoCircleTransparent.png" alt="" class="logo-icon" width="36" height="36">
             </picture>
-            NFDGames
+            <span class="logo__word">NFDGames</span>
         </a>
-        <div class="nav-links">
+        <div class="nav-links" id="navLinks">
             <a href="/#projects">Projects</a>
-            <a href="/blog/">Blog</a>
-            <a href="/OpenDrop/" class="nav-cta">Get OpenDrop</a>
+            <a href="/blog/" aria-current="page">Blog</a>
+            <a href="/#about">About</a>
+        </div>
+        <div class="nav-actions">
+            <a href="/OpenDrop/" class="btn-cta btn-cta--sm">Get OpenDrop</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-controls="navLinks" aria-expanded="false" aria-label="Open menu"><span></span><span></span><span></span></button>
         </div>
     </nav>
 
-    <main>
+    <main id="main" tabindex="-1">
     <!-- Post Hero -->
     <header class="blog-post-hero">
         <div class="breadcrumb">
@@ -146,88 +150,98 @@
 
     <!-- Post Content -->
     <article class="blog-post-content">
-        <div class="toc"><ol><li><a href="#myth-all-free-apps-are-the-same">Myth: All Free File Transfer Apps Do the Same Thing</a></li><li><a href="#the-actual-top-10">The Actual Top 10 Free File Transfer Apps for 2026</a></li><li><a href="#myth-browser-apps-are-always-easier">Myth: Browser-Based Apps Are Always Easier</a></li><li><a href="#myth-free-means-your-data-pays">Myth: Free Always Means Your Data Is the Product</a></li><li><a href="#myth-lan-only-apps-are-useless">Myth: LAN-Only Apps Are Useless in 2026</a></li><li><a href="#what-actually-matters-choosing">What Actually Matters When Choosing</a></li></ol></div>
+        <div class="toc"><ol><li><a href="#myth-all-free-apps-are-the-same">Myth: All Free File Transfer Apps Do the Same Thing</a></li><li><a href="#the-actual-top-10">The Actual Top 10 Free File Transfer Apps for 2026</a></li><li><a href="#myth-browser-apps-are-always-easier">Myth: Browser-Based Transfer Is Always Easier Than Installing an App</a></li><li><a href="#myth-free-means-your-data-pays">Myth: If a File Transfer App Is Free, Your Data Is the Product</a></li><li><a href="#myth-lan-only-apps-are-useless">Myth: LAN-Only Transfer Apps Are Useless in 2026</a></li><li><a href="#what-actually-matters-choosing">What Actually Matters When Choosing a Free File Transfer App</a></li></ol></div>
 
 <h2 id="myth-all-free-apps-are-the-same">Myth: All Free File Transfer Apps Do the Same Thing</h2>
 
-<p>Every "top 10 file transfer apps" article I've read lumps together tools that work in completely different ways. Cloud storage services next to LAN transfer apps next to browser-based relays next to native apps with CLI support. Comparing Google Drive to LocalSend is like comparing a post office to a walkie-talkie. They both move information, but the mechanisms, tradeoffs, and use cases are different.</p>
+<p>Most "top 10" lists rank cloud storage, local network apps, browser tools and command-line tools against each other as if they were the same kind of product. They move files in very different ways, so one ranking across all of them doesn't tell you much.</p>
 
-<p>Free file transfer apps in 2026 fall into three distinct categories. First, apps that transfer files directly between devices over your local network. Second, apps that relay files through a cloud server. Third, hybrid apps that do both. The category determines your speed ceiling, your privacy model, and whether you need an internet connection at all.</p>
+<p>Free transfer apps fall into three groups:</p>
 
-<p>I've tested every app on this list across my Windows 11 PC, M5 MacBook Pro, iPhone 15 on iOS 26.2, and Redbeat D5 Android phone. The results aren't what most listicles would have you believe.</p>
+<ul>
+    <li><strong>Local network apps</strong> send files directly between devices on the same Wi-Fi. They are fast and private, and they stop working once the two devices are on different networks.</li>
+    <li><strong>Relay apps</strong> send files through a server on the internet. They work from anywhere, but your upload speed sets the pace.</li>
+    <li><strong>Hybrid apps</strong> do both. They use the local network when the devices share one, and a direct internet link or a relay when they don't.</li>
+</ul>
+
+<p>The group decides your top speed, which servers handle your data on the way, and whether both devices need to be on the same network. Work out which group you need first, then compare features.</p>
 
 <h2 id="the-actual-top-10">The Actual Top 10 Free File Transfer Apps for 2026</h2>
 
-<p><strong>1. <a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a></strong> — works across Windows, macOS, Linux, Android, and iOS with both a desktop GUI and CLI. On the same WiFi, it transfers via direct HTTP on port 8000 with mDNS auto-discovery, and every user gets full LAN streaming with no size cap. For remote transfers across different networks, OpenDrop runs its own end-to-end-encrypted relay (an Oracle Cloud relay on the free tier, the faster Fly.io relay on Pro) — nothing extra to install, no per-transfer size cap, and it works behind NAT and firewalls. It's the only app on this list with both a native desktop app and a command-line interface, which matters if you want to script transfers or run headless on a server. Also has QR code pairing for networks where mDNS is blocked.</p>
+<p>Here is what each app does, what it runs on, and where it stops.</p>
 
-<p><strong>2. LocalSend</strong> — open-source, LAN-only file transfer that works on all major platforms. Clean interface, reliable on home networks. The limitation is right in the name: local only. No remote transfer capability. If your devices aren't on the same WiFi, LocalSend can't help you.</p>
+<p><strong>1. <a href="/OpenDrop/">OpenDrop</a></strong>: our app, for Windows, Linux, iPhone, iPad and Android, with macOS coming soon. It has a desktop app and a command line that can also run headless with <code>opendrop serve</code>. On the same Wi-Fi, you pair your phone with your computer by scanning a QR code, and files stream directly at full speed. On a different network it picks the route for you: a direct peer-to-peer link or OpenDrop's own encrypted relay. You don't need port forwarding or anything extra to install, and neither plan has a file size cap. Free needs no account. Free remote transfers are speed-limited and share a weekly allowance. Pro adds a faster relay with no weekly limit, phone to phone and computer to computer transfers, and photo and video conversion. OpenDrop is closed source.</p>
 
-<p><strong>3. Google Quick Share (formerly Nearby Share)</strong> — built into Android and available for Windows. Good integration with Android devices, but limited to the Google ecosystem. No iOS support, no macOS, no Linux. Works on local networks and has some proximity-based transfer capability.</p>
+<p><strong>2. LocalSend</strong>: open source (Apache 2.0) and available for Windows, macOS, Linux, iOS and Android. No account. It works only when both devices are on the same network; its own FAQ says it does not work over the internet. It now has a command line too. If your devices share a Wi-Fi network and you want open source, it's a good place to start. See our <a href="/blog/posts/opendrop-vs-localsend-comparison.html">OpenDrop vs LocalSend comparison</a> for the details.</p>
 
-<p><strong>4. AirDrop</strong> — Apple's native solution. Fast and polished within the Apple ecosystem. Completely useless if you have even one non-Apple device in the mix. I keep my iPhone 15 and MacBook Pro in the house, but my Windows PC and Android phone can't participate.</p>
+<p><strong>3. Google Quick Share (formerly Nearby Share)</strong>: built into Android, with an app for 64-bit Windows 10 and 11. There is no macOS or Linux app. It only reaches devices nearby, and signing in is optional. Android to Android works without a Wi-Fi network. On select Android phones it can also send to an iPhone through AirDrop, with the iPhone set to Everyone for 10 Minutes.</p>
 
-<p><strong>5. Snapdrop / PairDrop</strong> — browser-based transfer tools. No installation needed, which is genuinely convenient for one-time transfers. The tradeoff: files route through a relay server (even on the same network in some implementations), browser tab must stay open, and large files can be flaky. PairDrop is the actively maintained fork.</p>
+<p><strong>4. AirDrop</strong>: built into iPhone, iPad and Mac. It needs Wi-Fi turned on but no Wi-Fi network or router. A transfer has to start with the devices nearby; on iOS 17.1 and later it can finish over the internet if you walk away. There is no Windows or Linux version. Select Android phones can exchange files with it through Quick Share. More in <a href="/blog/posts/opendrop-vs-airdrop-comparison.html">OpenDrop vs AirDrop</a>.</p>
 
-<p><strong>6. Syncthing</strong> — continuous file synchronization rather than one-time transfers. Open source, encrypted, works across networks. Excellent for keeping folders in sync between machines. Overkill if you just want to move a file once, and the setup takes longer than any other option here.</p>
+<p><strong>5. PairDrop (and Snapdrop)</strong>: runs in the browser on any computer or phone. No install, no account, and it's open source. It works on the same network by default and can cross networks if you pair devices or join a public room. Both browser tabs have to stay open for the whole transfer. PairDrop began as a fork of Snapdrop and is the one to use now: snapdrop.net is run by LimeWire and shows ads, and Snapdrop's public code hasn't changed since August 2024. See <a href="/blog/posts/opendrop-vs-snapdrop-comparison.html">OpenDrop vs Snapdrop</a>.</p>
 
-<p><strong>7. KDE Connect</strong> — deep integration between Android and Linux/Windows desktops. Handles file transfers, clipboard sync, notification mirroring, and media controls. No iOS support. More of a device integration suite than a pure file transfer tool, but the transfer feature works well.</p>
+<p><strong>6. Syncthing</strong>: keeps folders in sync between machines instead of sending one-off files. Open source, encrypted, and it works across networks. It's excellent for keeping a folder identical on several computers. It also takes longer to set up than anything else here, and it's more than you need to move one file.</p>
 
-<p><strong>8. Warpinator</strong> — Linux Mint's built-in file transfer tool, also available on other Linux distros, Android, and Windows. Simple and effective for LAN transfers. Limited platform support compared to cross-platform alternatives, and no remote transfer option.</p>
+<p><strong>7. KDE Connect</strong>: links a phone to a desktop for file sending, clipboard sharing, notification mirroring and media controls. It's strongest with an Android phone and a Linux desktop. It's more of a phone and desktop companion than a pure transfer tool, but sending files works well.</p>
 
-<p><strong>9. Croc</strong> — command-line file transfer that works across networks using relay servers. Generates a short code phrase for the receiver to type. No GUI, so it's a developer tool, but it handles remote transfers well and the relay infrastructure is free to use.</p>
+<p><strong>8. Warpinator</strong>: Linux Mint's local network transfer tool, also available on other Linux distributions, with community-made versions for Android and Windows. Simple to use on a home network. Same network only.</p>
 
-<p><strong>10. LANDrop</strong> — lightweight, cross-platform LAN transfer app. Available on Windows, macOS, Linux, Android, and iOS. Minimal interface, does one thing. No remote transfer capability, and development has slowed in recent months.</p>
+<p><strong>9. Croc</strong>: a command-line tool that sends files between any two computers through a relay. The sender gets a short code phrase and the receiver types it in. It's open source and the public relay is free to use. There's no GUI, so it suits developers and people comfortable in a terminal.</p>
+
+<p><strong>10. LANDrop</strong>: a small local network transfer app with desktop and mobile versions. It does one thing with a minimal interface. No remote transfers.</p>
 
 <h2 id="myth-browser-apps-are-always-easier">Myth: Browser-Based Transfer Is Always Easier Than Installing an App</h2>
 
-<p>The appeal of browser-based tools like PairDrop is obvious. No installation, just open a URL. I recommended browser tools myself for years before building OpenDrop. Then I started tracking what actually goes wrong.</p>
+<p>Browser tools like PairDrop skip the install. You open a page on both devices and send. For a one-off transfer to someone else's phone, nothing is quicker to start.</p>
 
-<p>Browser tabs get closed. Someone bumps their phone, the screen locks, Safari suspends the background tab, and the transfer dies at 60%. I've seen this happen to friends trying to send me videos. Large file transfers through browsers are also subject to browser memory limits. A 2GB video file held in browser memory while chunking through a WebSocket connection will crash lower-end phones.</p>
+<p>The cost shows up on large or long transfers. Both people have to keep the page open until the transfer finishes. Mobile browsers pause tabs in the background, so a locked screen or a switch to another app can stop the transfer. How well a browser copes with a multi-gigabyte file depends on the browser and the phone.</p>
 
-<p>Native apps handle transfers in the background, resume after interruptions, and use the OS file system directly instead of holding everything in memory. The 30-second installation cost pays for itself the second time you need to send a file.</p>
+<p>A native app writes files straight to storage and can recover from a dropped connection. OpenDrop picks up an interrupted transfer where it left off. Remote uploads from the phone keep going in the background on iPhone, and for a while on Android. Transfers over your own Wi-Fi need the app open.</p>
 
-<p>There's a middle ground: use browser tools for quick, small, one-time transfers with someone else's device. Use a native app for your own devices and anything over a few hundred megabytes.</p>
+<p>A simple rule: use a browser tool for quick, small transfers with someone else's device. Use a native app for your own devices and for anything large.</p>
 
 <h2 id="myth-free-means-your-data-pays">Myth: If a File Transfer App Is Free, Your Data Is the Product</h2>
 
-<p>This myth has enough truth behind it to be dangerous. Some free file transfer apps absolutely do monetize user data. SHAREit, one of the most downloaded transfer apps globally, has faced multiple security audits revealing tracking libraries and data collection. Xender has a content feed built into what should be a utility app. When a file transfer tool has a news feed, something is off.</p>
+<p>There is some truth in this one. Some of the most downloaded transfer apps on Android are ad-supported and bundle news feeds, videos or games into what should be a simple utility.</p>
 
-<p>But the business model isn't binary. Several apps on this list are genuinely free without data harvesting.</p>
+<p>But free apps have more than one business model:</p>
 
-<p>Open-source apps like LocalSend, Syncthing, and Croc have their source code publicly auditable. If they were collecting data, someone would have found it. OpenDrop's free tier exists as a path to the Pro tier, which adds high-speed remote relay transfers via Fly.io, shared folders, and file conversion. The free version isn't crippled bait; it's a full LAN transfer tool with basic remote capability.</p>
+<ul>
+    <li><strong>Open source.</strong> LocalSend, Syncthing, Croc and PairDrop publish their code, so anyone can check what they do with your data.</li>
+    <li><strong>Platform features.</strong> AirDrop and Quick Share are free because they make Apple and Google devices more useful. They are a reason to stay in that ecosystem, not a way to sell your files.</li>
+    <li><strong>Free plan plus paid plan.</strong> OpenDrop works this way. Free covers phone to computer transfers with no account and no ads. Pro adds full-speed remote transfers with no weekly limit, every device on one account, phone to phone and computer to computer transfers, shared folders and photo and video conversion.</li>
+</ul>
 
-<p>Platform-native tools like AirDrop and Quick Share are free because they lock you into their respective ecosystems. Apple and Google benefit from you staying within their platforms, not from scanning your transferred files.</p>
+<p>Since OpenDrop is closed source, here is what it does with your data. File contents are encrypted on your device with ChaCha20-Poly1305 before they are sent, on every route. Relay servers carry file contents only in encrypted form, but they can see file names, sizes and device names, which they need to route transfers. The app sends basic usage statistics (active users, app version and platform, error counts) to our own server, and you can turn that off in Settings. The <a href="/blog/posts/wireless-file-transfer-security-encryption.html">wireless file transfer security guide</a> covers how this compares with other apps.</p>
 
-<div class="callout callout-tip"><div class="callout-title">Tip</div><p>Before installing any file transfer app, check two things: is the source code open, and does the app request permissions beyond what file transfer needs? A flashlight app asking for your contacts is suspicious. A file transfer app asking for storage access is expected. A file transfer app asking for your location is a red flag.</p></div>
-
-<p>The pattern to watch for: ad-supported transfer apps that show interstitial ads between transfers, apps that require account creation before you can send a single file, and apps that request network permissions beyond what local discovery requires.</p>
+<div class="callout callout-tip"><div class="callout-title">Tip</div><p>Before installing a transfer app, look at the permissions it asks for. Storage and local network access are expected. Nearby devices or Bluetooth access is normal for finding other devices, and older Android versions tie that to the location permission. Requests for contacts, call logs or SMS are a red flag, and so are full-screen ads between transfers.</p></div>
 
 <h2 id="myth-lan-only-apps-are-useless">Myth: LAN-Only Transfer Apps Are Useless in 2026</h2>
 
-<p>With remote work and people accessing files from everywhere, you'd think a LAN-only app is obsolete. Not true. The majority of file transfers happen between devices in the same room. Your phone to your PC at your desk. Your laptop to your desktop at home. Your tablet to your work computer in the office.</p>
+<p>Most transfers happen between devices in the same room: your phone to the PC on your desk, or your laptop to your desktop at home. A local network app handles that well, and it's the fastest option.</p>
 
-<p>LAN transfers are faster than anything going through the cloud. When both devices are on my home WiFi, I get the full speed of my local network. Files that take minutes through a cloud relay finish in seconds over LAN. OpenDrop runs direct HTTP transfers on the local network, and on WiFi the bottleneck is usually the wireless link speed, not the app.</p>
+<p>On the same network, files never touch the internet, so your internet upload speed doesn't matter. The limit is your Wi-Fi or Ethernet link. OpenDrop streams files directly on the same Wi-Fi, with no chunking on either plan.</p>
 
-<p>That said, a LAN-only app does leave a gap. When I'm out on cellular with my Redbeat D5 and need a file from my PC, LAN tools can't help. That's where hybrid apps that support both LAN and remote transfer have an edge. OpenDrop, Syncthing, and Croc all handle cross-network transfers. LocalSend, Warpinator, and LANDrop don't.</p>
+<p>The gap appears when you leave. On cellular data, a LAN-only app can't reach the PC at home. OpenDrop, Syncthing and Croc all work across networks, and PairDrop can once devices are paired. LocalSend, Warpinator, LANDrop and Quick Share need the devices on the same network or nearby. AirDrop needs the devices nearby to start a transfer.</p>
 
-<p>If your devices are always on the same network, a LAN-only app is all you need, and it'll be the fastest option. If you travel or work from multiple locations, choose something with remote transfer built in.</p>
+<p>If your devices are always on one network, a LAN-only app is all you need. If you travel or work from more than one place, pick something with remote transfer built in.</p>
 
 <h2 id="what-actually-matters-choosing">What Actually Matters When Choosing a Free File Transfer App</h2>
 
-<p>After testing all ten of these apps across four different operating systems on five devices, the deciding factors come down to three questions.</p>
+<p>Three questions narrow the list quickly.</p>
 
-<p><strong>What platforms do you actually use?</strong> If you're all-Apple, AirDrop is hard to beat. All-Android with Windows, Quick Share covers you. Mixed ecosystem with any combination of operating systems, you need a true cross-platform tool like OpenDrop, LocalSend, or PairDrop.</p>
+<p><strong>Which devices do you use?</strong> All Apple: AirDrop is already there. Android and Windows: Quick Share is built into Android and a free app on Windows. A mix of brands: you need a cross-platform tool like OpenDrop, LocalSend or PairDrop. With OpenDrop, phone to computer is free; sending straight from an iPhone to an Android phone needs Pro, and there is no Mac app yet.</p>
 
-<p><strong>Do you need remote transfer?</strong> Most people think they don't until they're stuck at a coffee shop needing a file from home. If there's any chance you'll transfer files across different networks, pick an app that supports it from the start. Switching apps later means re-learning workflows and re-configuring everything.</p>
+<p><strong>Do you need remote transfer?</strong> If there's a real chance you'll want a file from home while you're out, pick an app that supports it now. Switching later means pairing everything again and learning a new app.</p>
 
-<p><strong>How big are your files?</strong> For documents and photos under 50MB, almost anything works. For multi-gigabyte videos, you need an app with proper streaming support and background transfer capability. Browser-based tools fall apart here. Native apps with streaming, like OpenDrop on LAN (no size cap) or Syncthing, handle large files without blinking.</p>
+<p><strong>How big are your files?</strong> For photos and documents, almost anything works. For multi-gigabyte videos, use a native app that streams and resumes. OpenDrop has no file size cap on either plan. On the same Wi-Fi every transfer streams at full speed; away from home, Free sends in resumable 5 MB pieces at a limited speed, and Pro streams the whole file on a faster relay. Syncthing handles large folders well if you want them kept in sync.</p>
 
-<p>Every app on this list works. The question is which tradeoffs match your setup. Don't pick the one with the highest star rating. Pick the one that covers your actual devices, your actual network situation, and your actual file sizes.</p>
+<p>Every app on this list works. Pick the one that covers your devices, your network setup and your file sizes, not the one with the highest star rating.</p>
 
         <!-- CTA -->
         <div class="blog-cta">
             <h3>Cross-Platform File Transfer That Actually Works</h3>
-            <p>OpenDrop covers Windows, macOS, Linux, Android, and iOS with LAN streaming and remote transfers. No account needed for the free tier.</p>
+            <p>OpenDrop runs on Windows, Linux, iPhone, iPad and Android. Full-speed transfers on your Wi-Fi, encrypted remote transfers when you're away, and no account needed on Free.</p>
             <a href="/OpenDrop/" class="btn btn-primary">Download OpenDrop Free</a>
         </div>
     </article>
@@ -238,45 +252,78 @@
         <div class="related-grid">
             <a href="/blog/posts/best-airdrop-alternatives-windows-2026.html" class="related-card">
     <h4>Best AirDrop Alternatives for Windows in 2026</h4>
-    <p>Compare the top AirDrop alternatives available for Windows, including OpenDrop, Snapdrop, LocalSend,</p>
+    <p>We compared the top AirDrop alternatives for Windows.</p>
 </a>
 <a href="/blog/posts/opendrop-vs-airdrop-comparison.html" class="related-card">
-    <h4>OpenDrop vs AirDrop: Which File Transfer Tool Is Better?</h4>
-    <p>A detailed comparison of OpenDrop and Apple AirDrop covering platform support, speed, security, and </p>
+    <h4>OpenDrop vs AirDrop: Platforms, Range and Large Files Compared</h4>
+    <p>A direct comparison of OpenDrop and Apple AirDrop.</p>
 </a>
         </div>
     </section>
     </main>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-brand">
+    <div class="seam" aria-hidden="true"></div>
+    <footer class="site-footer">
+        <div class="wrap site-footer__grid">
+            <div class="site-footer__brand">
                 <a href="/" class="logo">
                     <picture>
                         <source srcset="/NFDGamesLogoCircleTransparent.webp" type="image/webp">
-                        <img src="/NFDGamesLogoCircleTransparent.png" alt="NFDGames Icon" class="logo-icon" width="36" height="36" loading="lazy">
+                        <img src="/NFDGamesLogoCircleTransparent.png" alt="" class="logo-icon" width="36" height="36" loading="lazy">
                     </picture>
                     NFDGames
                 </a>
-                <p>Indie studio building software utilities and mobile games.</p>
+                <p>Independent studio making OpenDrop and Gunslinger.</p>
             </div>
-            <div class="footer-links">
-                <div class="footer-col">
-                    <h4>Products</h4>
-                    <a href="/OpenDrop/">OpenDrop</a>
-                    <a href="/OpenDrop/support.html">Support</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Resources</h4>
-                    <a href="/blog/">Blog</a>
-                    <a href="/OpenDrop/PrivacyPolicy.html">Privacy Policy</a>
-                    <a href="/OpenDrop/TermsOfService.html">Terms of Service</a>
-                </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">OpenDrop</h2>
+                <ul>
+                    <li><a href="/OpenDrop/">Overview</a></li>
+                    <li><a href="/OpenDrop/#download">Download</a></li>
+                    <li><a href="/OpenDrop/#compare">Free vs Pro</a></li>
+                    <li><a href="/OpenDrop/changelog.html">What's new in 1.0</a></li>
+                    <li><a href="/OpenDrop/support.html">Support</a></li>
+                    <li><a href="/OpenDrop/status.html">System status</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Guides</h2>
+                <ul>
+                    <li><a href="/blog/posts/best-airdrop-alternatives-windows-2026.html">AirDrop alternatives</a></li>
+                    <li><a href="/blog/posts/share-files-iphone-android.html">iPhone to Android</a></li>
+                    <li><a href="/blog/posts/transfer-files-android-to-pc-without-usb.html">Android to PC, no USB</a></li>
+                    <li><a href="/blog/posts/transfer-photos-iphone-to-windows-pc.html">iPhone photos to PC</a></li>
+                    <li><a href="/blog/posts/transfer-files-windows-to-linux.html">Windows to Linux</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Studio</h2>
+                <ul>
+                    <li><a href="/">NFDGames home</a></li>
+                    <li><a href="/#gunslinger">Gunslinger</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/OpenDrop/press.html">Press kit</a></li>
+                    <li><a href="https://play.google.com/store/apps/dev?id=6331541447390891189&amp;hl=en_US" target="_blank" rel="noopener">Apps on Google Play</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Legal and security</h2>
+                <ul>
+                    <li><a href="/OpenDrop/PrivacyPolicy.html">Privacy Policy</a></li>
+                    <li><a href="/OpenDrop/TermsOfService.html">Terms of Service</a></li>
+                    <li><a href="/OpenDrop/security.html">Security and disclosure</a></li>
+                    <li><a href="/OpenDrop/accessibility.html">Accessibility</a></li>
+                </ul>
             </div>
         </div>
-        <div class="footer-bottom">
+        <div class="wrap site-footer__bottom">
             <p>&copy; 2026 NFDGames. All rights reserved.</p>
+            <div class="site-footer__legal">
+                <a href="/OpenDrop/WithdrawalForm.html">EU/UK withdrawal</a>
+                <a href="/OpenDrop/third-party-notices.html">Third-party notices</a>
+                <a href="/OpenDrop/docs/export-compliance/">Export compliance</a>
+                <a href="mailto:support@nfdgames.com">support@nfdgames.com</a>
+            </div>
         </div>
     </footer>
 
@@ -294,7 +341,7 @@
         appId: "1:573883707762:web:e68643cce07c2cee3eadeb",
         measurementId: "G-ENWJJ78E3Q"
       });
-      // Gated on user consent — see /scripts/opendrop-cookie-banner.js
+      // Gated on user consent, see /scripts/opendrop-cookie-banner.js
       if (window.OpenDropConsent) { window.OpenDropConsent.onConsent(function () { getAnalytics(app); }); }
     </script>
 </body>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>How to Use QR Codes for Quick File Pairing | NFDGames Blog</title>
-    <meta name="description" content="QR codes, mDNS, manual IP, Bluetooth — four ways to pair devices for file transfer. Here&#x27;s which one to pick based on your network and use case.">
+    <meta name="description" content="QR codes, mDNS, manual IP and Bluetooth: four ways to pair devices for file transfer, and which one to pick for your network.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
     <meta name="author" content="NFDGames">
     <link rel="icon" type="image/x-icon" href="/favicon-nfdgames.ico">
@@ -17,7 +17,7 @@
     <!-- Open Graph -->
     <meta property="og:type" content="article">
     <meta property="og:title" content="How to Use QR Codes for Quick File Pairing">
-    <meta property="og:description" content="QR codes, mDNS, manual IP, Bluetooth — four ways to pair devices for file transfer. Here&#x27;s which one to pick based on your network and use case.">
+    <meta property="og:description" content="QR codes, mDNS, manual IP and Bluetooth: four ways to pair devices for file transfer, and which one to pick for your network.">
     <meta property="og:image" content="https://www.nfdgames.com/NFDGamesLogoCircleTransparent.png">
     <meta property="og:url" content="https://www.nfdgames.com/blog/posts/qr-code-file-transfer-pairing.html">
     <meta property="og:site_name" content="NFDGames">
@@ -32,7 +32,7 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="How to Use QR Codes for Quick File Pairing">
-    <meta name="twitter:description" content="QR codes, mDNS, manual IP, Bluetooth — four ways to pair devices for file transfer. Here&#x27;s which one to pick based on your network and use case.">
+    <meta name="twitter:description" content="QR codes, mDNS, manual IP and Bluetooth: four ways to pair devices for file transfer, and which one to pick for your network.">
     <meta name="twitter:image" content="https://www.nfdgames.com/NFDGamesLogoCircleTransparent.png">
 
     <!-- Schema.org JSON-LD -->
@@ -43,7 +43,7 @@
         {
           "@type": "Article",
           "headline": "How to Use QR Codes for Quick File Pairing",
-          "description": "QR codes, mDNS, manual IP, Bluetooth — four ways to pair devices for file transfer. Here&#x27;s which one to pick based on your network and use case.",
+          "description": "QR codes, mDNS, manual IP and Bluetooth: four ways to pair devices for file transfer, and which one to pick for your network.",
           "author": {
             "@type": "Organization",
             "name": "NFDGames",
@@ -58,7 +58,7 @@
             }
           },
           "datePublished": "2026-01-23",
-          "dateModified": "2026-01-23",
+          "dateModified": "2026-10-10",
           "mainEntityOfPage": "https://www.nfdgames.com/blog/posts/qr-code-file-transfer-pairing.html",
           "keywords": ["qr code pairing", "quick connect", "qr file transfer", "device pairing"]
         },
@@ -73,7 +73,7 @@
         ,
         {
           "@type": "FAQPage",
-          "mainEntity": [{"@type":"Question","name":"What is QR code pairing for file transfer?","acceptedAnswer":{"@type":"Answer","text":"QR code pairing lets you connect your phone to a file transfer server by scanning a code displayed on the server's screen. The code contains the server URL and authentication credentials, so one scan sets up the full connection. No typing required."}},{"@type":"Question","name":"Why can't my devices find each other on the same WiFi?","acceptedAnswer":{"@type":"Answer","text":"Your network likely has client isolation or multicast blocking enabled. This is common on hotel WiFi, university eduroam networks, and corporate guest networks. These settings prevent mDNS auto-discovery from working. Use QR code pairing or manual IP entry as a workaround."}},{"@type":"Question","name":"Is QR code pairing secure for file transfers?","acceptedAnswer":{"@type":"Answer","text":"Yes. The QR code transmits the authentication secret optically from screen to camera, not over the network. An attacker would need physical line of sight to your screen to intercept it. After pairing, all API calls are authenticated with HMAC-SHA256 signatures."}},{"@type":"Question","name":"Can I use QR code pairing for remote file transfers across different networks?","acceptedAnswer":{"@type":"Answer","text":"Yes. The QR code can encode a remote relay endpoint instead of a local IP address. Scan the code on your phone while on cellular data, and it connects to your PC at home through the OpenDrop relay. You can also send a screenshot of the QR code to scan later."}},{"@type":"Question","name":"Which pairing method is fastest for file transfer?","acceptedAnswer":{"@type":"Answer","text":"mDNS auto-discovery is fastest when it works, requiring zero manual input. QR code scanning takes 1-3 seconds and is the fastest method when mDNS is blocked. Manual IP entry takes 8-12 seconds on a phone keyboard. Bluetooth discovery takes 5-15 seconds."}}]
+          "mainEntity": [{"@type":"Question","name":"What is QR code pairing for file transfer?","acceptedAnswer":{"@type":"Answer","text":"QR code pairing lets you connect your phone to your computer by scanning a code shown on the computer's screen. The code holds a private pairing key and the addresses your phone needs, so scanning it pairs the two with nothing to type."}},{"@type":"Question","name":"Why can't my devices find each other on the same Wi-Fi?","acceptedAnswer":{"@type":"Answer","text":"The network probably filters multicast traffic or uses client isolation, which is common on hotel, campus and guest networks. Multicast filtering stops mDNS discovery. Client isolation blocks all traffic between devices, so typing the IP address won't help either. In OpenDrop, a phone paired by QR code reaches the computer over a peer-to-peer link or the encrypted relay instead."}},{"@type":"Question","name":"Is QR code pairing secure for file transfers?","acceptedAnswer":{"@type":"Answer","text":"Yes. The pairing key travels from screen to camera, not over the network, so someone would need to see your screen to copy it. On OpenDrop Free, OpenDrop's servers never receive it. After pairing, requests between your devices are authenticated with HMAC-SHA256 signatures. Don't share screenshots of the code: anyone who scans it can pair with your PC."}},{"@type":"Question","name":"Can I use QR code pairing for remote file transfers across different networks?","acceptedAnswer":{"@type":"Answer","text":"Yes. The phone uses the addresses it got from the QR code to reach your PC at home over a direct peer-to-peer link or the OpenDrop relay, even on cellular data. Free remote transfers are speed-limited with a weekly allowance, Pro uses a faster relay with no weekly limit, and neither plan caps file size."}},{"@type":"Question","name":"Which pairing method is fastest for file transfer?","acceptedAnswer":{"@type":"Answer","text":"For a first connection, scanning a QR code is quickest because there is nothing to type. After that, on the same Wi-Fi, mDNS finds a paired computer with no input at all. Typing an IP address on a phone keyboard is slow and easy to get wrong, and Bluetooth suits only small files between nearby phones."}}]
         }
       ]
     }
@@ -89,7 +89,7 @@
     <link rel="stylesheet" href="/styles/common.css">
     <link rel="stylesheet" href="/styles/blog.css">
 
-    <!-- Cookie consent / Google Consent Mode v2 preboot — must precede any Google tag -->
+    <!-- Cookie consent / Google Consent Mode v2 preboot: must precede any Google tag -->
     <script src="/scripts/opendrop-cookie-banner.js"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241"></script>
@@ -100,27 +100,31 @@
       gtag('config', 'AW-17319823241');
     </script>
 </head>
-<body>
+<body class="page-blog-post">
+    <a class="skip-link" href="#main">Skip to content</a>
     <div class="bg-gradient"></div>
     <div class="noise"></div>
 
-    <!-- Navigation -->
-    <nav>
+    <nav class="site-nav" aria-label="Main">
         <a href="/" class="logo">
             <picture>
                 <source srcset="/NFDGamesLogoCircleTransparent.webp" type="image/webp">
-                <img src="/NFDGamesLogoCircleTransparent.png" alt="NFDGames Icon" class="logo-icon" width="36" height="36" loading="lazy">
+                <img src="/NFDGamesLogoCircleTransparent.png" alt="" class="logo-icon" width="36" height="36">
             </picture>
-            NFDGames
+            <span class="logo__word">NFDGames</span>
         </a>
-        <div class="nav-links">
+        <div class="nav-links" id="navLinks">
             <a href="/#projects">Projects</a>
-            <a href="/blog/">Blog</a>
-            <a href="/OpenDrop/" class="nav-cta">Get OpenDrop</a>
+            <a href="/blog/" aria-current="page">Blog</a>
+            <a href="/#about">About</a>
+        </div>
+        <div class="nav-actions">
+            <a href="/OpenDrop/" class="btn-cta btn-cta--sm">Get OpenDrop</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-controls="navLinks" aria-expanded="false" aria-label="Open menu"><span></span><span></span><span></span></button>
         </div>
     </nav>
 
-    <main>
+    <main id="main" tabindex="-1">
     <!-- Post Hero -->
     <header class="blog-post-hero">
         <div class="breadcrumb">
@@ -147,96 +151,113 @@
 
     <!-- Post Content -->
     <article class="blog-post-content">
-        <div class="toc"><ol><li><a href="#four-ways-to-pair">Four Ways Devices Connect for File Transfer</a></li><li><a href="#mdns-auto-discovery">mDNS Auto-Discovery: The Default Choice</a></li><li><a href="#qr-code-pairing">QR Code Pairing: When Discovery Fails</a></li><li><a href="#manual-connection">Manual IP and URL Entry: The Fallback</a></li><li><a href="#bluetooth-nfc">Bluetooth and NFC: The Slow Alternatives</a></li><li><a href="#recommendation-framework">Which Pairing Method to Use: A Decision Framework</a></li></ol></div>
+        <div class="toc"><ol><li><a href="#four-ways-to-pair">Four Ways Devices Connect for File Transfer</a></li><li><a href="#mdns-auto-discovery">mDNS Auto-Discovery: Finding Devices on the Same Network</a></li><li><a href="#qr-code-pairing">QR Code Pairing: The Visual Handshake</a></li><li><a href="#manual-connection">Manual IP and URL Entry: The Fallback</a></li><li><a href="#bluetooth-nfc">Bluetooth and NFC: The Slow Alternatives</a></li><li><a href="#recommendation-framework">Which Pairing Method to Use: A Decision Framework</a></li></ol></div>
 
 <h2 id="four-ways-to-pair">Four Ways Devices Connect for File Transfer</h2>
 
-<p>Before any file moves between your phone and computer, the two devices need to find each other. This pairing step is where most people hit their first wall. The transfer itself is usually fast. Getting connected in the first place is the bottleneck.</p>
+<p>Before a file can move between your phone and your computer, the two devices have to find each other and agree to trust each other. The transfer itself is rarely the slow part. Pairing is where things go wrong, because every network blocks something different.</p>
 
-<p>I've been building <a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> for a while now, and pairing is the feature I've spent the most time on. Not because the code is complicated, but because different network environments break different pairing methods. What works flawlessly on your home WiFi fails silently at a hotel. What works at the office fails at the airport.</p>
+<p>There are four common ways to pair devices:</p>
 
-<p>There are four common approaches to device pairing for file transfer: mDNS auto-discovery, QR code scanning, manual IP/URL entry, and proximity protocols like Bluetooth or NFC. Each has a clear best-case scenario and specific situations where it falls apart. This guide will help you pick the right one for where you actually are, not where you wish you were.</p>
+<ul>
+<li><strong>mDNS auto-discovery:</strong> devices announce themselves on the local network.</li>
+<li><strong>QR code pairing:</strong> one device shows a code, the other scans it with its camera.</li>
+<li><strong>Manual IP or URL entry:</strong> you type the address yourself.</li>
+<li><strong>Bluetooth or NFC:</strong> devices find each other by radio when they are close.</li>
+</ul>
 
-<h2 id="mdns-auto-discovery">mDNS Auto-Discovery: The Default Choice</h2>
+<p>Each one suits some networks and fails on others. The sections below cover both cases, with notes on how <a href="/OpenDrop/">OpenDrop</a> uses each method.</p>
 
-<p>Multicast DNS is how devices find each other without any manual input. Your phone broadcasts a question on the local network asking "who's running a file transfer server?" and the server responds with its address. OpenDrop advertises itself as <code>_opendrop._tcp.local.</code> on port 8000, and mobile apps pick this up within a few seconds of opening.</p>
+<h2 id="mdns-auto-discovery">mDNS Auto-Discovery: Finding Devices on the Same Network</h2>
 
-<p>mDNS is the same technology behind Apple's Bonjour, which is how AirDrop and AirPrint find nearby devices. It's also how Chromecast, smart speakers, and most IoT devices announce themselves on your network. The protocol is battle-tested.</p>
+<p>Multicast DNS (mDNS) lets devices find each other with no setup. A device sends a query to a multicast address on the local network asking who offers a service, and every device offering it replies with its name, address and port. Apple's implementation is called Bonjour. Network printers, Chromecasts and smart speakers announce themselves the same way. For a longer walkthrough, see <a href="/blog/posts/mdns-auto-discovery-explained.html">mDNS auto-discovery explained</a>.</p>
 
-<p><strong>When mDNS works:</strong> home WiFi networks, small office networks, any network where the router allows multicast traffic between devices. If both devices are on the same WiFi and the router isn't running client isolation, mDNS will find the server in 2-5 seconds automatically.</p>
+<p>OpenDrop's desktop app advertises an <code>_opendrop._tcp</code> service, on port 8000 by default. Discovery alone doesn't pair anything, though. On OpenDrop Free, your phone first pairs with the computer by QR code. After that, whenever both are on the same Wi-Fi, the phone finds the computer by mDNS and streams files to it directly at full speed. With Pro, devices signed in to the same account find each other this way without a QR scan.</p>
 
-<p><strong>When mDNS fails:</strong> the list is longer than you'd expect. Hotel WiFi almost always blocks multicast traffic. University eduroam networks typically enable client isolation. Corporate guest networks, airport lounges, conference venue WiFi, co-working spaces with managed access points. I ran into this at a conference in Greenville, SC, where my iPhone 15 and Windows PC were both on the same network, but the access point had AP isolation turned on. Both devices were online, but invisible to each other.</p>
+<p><strong>Where mDNS works:</strong> home Wi-Fi and small office networks where the router passes multicast traffic between devices.</p>
 
-<p>mDNS also doesn't work across different networks. If your phone is on cellular and your PC is on home WiFi, there's no shared network for multicast traffic. The protocol is local-only by design.</p>
+<p><strong>Where mDNS fails:</strong></p>
 
-<p><strong>Recommendation:</strong> mDNS should be your default. Don't change it, don't think about it. If it works, you're done in seconds with zero effort. Only move to another pairing method when mDNS can't find your device.</p>
+<ul>
+<li>Networks with client isolation (also called AP isolation). It is common on hotel, airport, cafe and guest Wi-Fi. Devices on the same network can't reach each other at all.</li>
+<li>Networks that filter multicast traffic, which many campus and corporate networks do.</li>
+<li>Separate subnets or VLANs. mDNS doesn't cross routers by default, so a phone on the guest network won't find a PC on the main one.</li>
+<li>Different networks entirely. A phone on cellular data and a PC on home Wi-Fi share no local network, so there is nothing to discover.</li>
+</ul>
 
-<h2 id="qr-code-pairing">QR Code Pairing: When Discovery Fails</h2>
+<p>When discovery fails, the phone needs another way to learn where the computer is. That is the job a QR code does well.</p>
 
-<p>QR code pairing exists to solve the exact situations where mDNS breaks down. Instead of devices finding each other over the network, you point your phone's camera at a code on your computer screen. The code contains everything needed to connect: the server URL and the authentication secret.</p>
+<h2 id="qr-code-pairing">QR Code Pairing: The Visual Handshake</h2>
 
-<p>In OpenDrop, the QR code encodes a compact JSON payload with two fields: the server URL (<code>u</code>) &mdash; either a local IP address for LAN connections, or the OpenDrop relay endpoint (<code>https://relayN.nfdgames.com/proxy/&lt;id&gt;</code>) for remote connections &mdash; and the HMAC shared secret (<code>s</code>) used for request signing. Every API call after pairing is authenticated with HMAC-SHA256 and a 5-minute timestamp window. One scan bootstraps the entire authentication chain.</p>
+<p>QR pairing skips network discovery. The computer shows a code on screen and you scan it with your phone. Everything the phone needs is in the code, so pairing works on networks that block multicast, and when the two devices aren't on the same network at all. OpenDrop's phone app has a built-in scanner.</p>
 
-<p>The scan takes 1-3 seconds. Modern iPhones and Android phones have QR scanning built into the default camera app, so no extra software is needed on the phone side.</p>
+<p>In OpenDrop, the QR code holds a private pairing key and the addresses your phone needs to reach your computer, plus a certificate fingerprint so the phone can check it is really your PC. On Free, the pairing key is made on your computer and shared only through the QR code. OpenDrop's servers never receive it.</p>
 
-<p><strong>When QR pairing works best:</strong> networks with blocked mDNS (hotels, universities, corporate guest WiFi), first-time remote connections where the phone is on cellular and needs the relay endpoint, and onboarding someone else's device where you want zero-explanation setup.</p>
+<p>After pairing, that shared secret does two jobs:</p>
 
-<p><strong>When QR pairing doesn't work:</strong> if you can't physically see the other device's screen. Remote pairing where you're in a different location from the computer requires sending the QR code as a screenshot (which works, but adds a step). Also not ideal for fully headless servers with no display attached.</p>
+<ul>
+<li><strong>It signs requests.</strong> Requests between your devices are authenticated with HMAC-SHA256. Each signature covers the method, path, query, device ID and a timestamp, and expires after 5 minutes.</li>
+<li><strong>It encrypts files.</strong> File contents are encrypted with ChaCha20-Poly1305 on your device before they leave it, with a key derived (HKDF-SHA256) from the shared secret.</li>
+</ul>
 
-<div class="callout callout-tip"><div class="callout-title">Tip</div><p>The QR code carries the authentication secret through light, from screen to camera. No secret is transmitted over the network during pairing. This makes QR pairing more secure than methods that exchange credentials wirelessly, since an attacker would need physical line of sight to intercept it.</p></div>
+<p>Because the code also carries your computer's addresses, the phone can reach the computer when it isn't on the same Wi-Fi, for example on cellular data. OpenDrop picks the route for you: a direct peer-to-peer link or its own encrypted relay. Free tries peer-to-peer first. Pro starts on the faster Pro relay and keeps peer-to-peer as a backup. No port forwarding is needed. The relay carries file contents only in encrypted form, though it can see file names, sizes and device names, which it needs to route transfers. Free remote transfers are speed-limited and share a weekly allowance. Pro has no weekly limit. Neither plan caps file size.</p>
 
-<p>I tested QR pairing with my M5 MacBook Pro displaying the code and my Redbeat D5 Android phone scanning it on cellular data. The phone connected through the OpenDrop relay within three seconds of scanning. Dictating the endpoint by hand would have taken a minute and at least one typo.</p>
+<p><strong>Where QR pairing works best:</strong> first-time setup, networks that block mDNS, and pairing a phone that will later send files from somewhere else.</p>
 
-<p><strong>Recommendation:</strong> QR pairing is your second-line method. When mDNS fails to find a device within 10-15 seconds, switch to QR. It's also the best method for first-time connections and guest devices.</p>
+<p><strong>Where it doesn't:</strong> you need to see the computer's screen. If the computer has no display, OpenDrop's command line can show the code in a terminal (see the next section).</p>
+
+<div class="callout callout-tip"><div class="callout-title">Tip</div><p>The pairing key travels from screen to camera as light, not over the network, so someone would have to see your screen to copy it. The flip side: anyone who scans the code can pair with your PC. Don't post or send screenshots of it.</p></div>
+
+<p>On Free, the desktop app makes a new pairing key each time it starts. If your phone can't reach the computer after the desktop app restarts, scan the code again.</p>
 
 <h2 id="manual-connection">Manual IP and URL Entry: The Fallback</h2>
 
-<p>Every file transfer app supports typing in an IP address or URL directly. It's the most reliable method because it works regardless of what the network allows or blocks. If you have the address, you can connect.</p>
+<p>Typing an address is the oldest method, and most tools offer it somewhere. For a local connection you need the computer's LAN IP address and port, something like <code>192.168.1.20:8000</code>. For a remote one you need whatever address the app's relay or tunnel hands out.</p>
 
-<p>For LAN connections, you need the server's local IP address and port. In OpenDrop's case, that looks like <code>http://192.168.1.47:8000</code>. For remote connections, it's the OpenDrop relay endpoint. You can find both in the server's dashboard.</p>
+<p>It has three weaknesses:</p>
 
-<p><strong>When manual entry works best:</strong> headless servers with no display for QR codes, scripted or automated connections where you're using the CLI, and situations where you already know the server's address from a previous session.</p>
+<ul>
+<li><strong>Phone keyboards.</strong> An IP address with a port means switching keyboard layouts, and one wrong digit just fails to connect. Relay addresses are longer and worse.</li>
+<li><strong>Changing addresses.</strong> Your router assigns local IPs by DHCP, and a computer can come back with a different address after a lease expires or a reboot. If you depend on a typed address, add a DHCP reservation for the computer in your router so it keeps the same IP.</li>
+<li><strong>Client isolation.</strong> Typing the address gets around multicast filtering, but not isolation. If the network blocks traffic between devices, a correct address still won't connect. Only a route that leaves the local network, such as a relay, works there.</li>
+</ul>
 
-<p><strong>When manual entry is painful:</strong> on phone keyboards. Typing an IP address with port number requires switching between the letter keyboard, number keyboard, and symbol keyboard multiple times. I time this at 8-12 seconds on a phone with zero typos, and most people make at least one mistake. Relay endpoints are even worse to type, with long opaque tokens.</p>
-
-<p>Manual entry also requires you to know the IP address, which changes when your router reassigns it. DHCP lease times vary, and what worked yesterday might not work today. You can set a static IP on the server to solve this, but that's extra configuration most people won't bother with.</p>
-
-<p><strong>Recommendation:</strong> reserve manual IP entry for CLI usage, headless servers, and scripted automation. For interactive use on a phone, QR scanning is faster and less error-prone. If you find yourself typing the same IP repeatedly, that's a sign you should either use mDNS (which handles address changes automatically) or set a static IP on the server.</p>
+<p>Typed addresses do make sense for scripts and headless machines. OpenDrop's phone app doesn't ask you to type an address, because even a computer with no display can show a QR code. Run <code>opendrop serve</code> to start OpenDrop headless; it prints the pairing password and a QR code in the terminal. Later, <code>opendrop connect-info</code> shows the connection URL, password and QR code again. If you are logged in over SSH, you can scan the code from your terminal window. The <a href="/blog/posts/opendrop-cli-automated-file-transfers.html">OpenDrop CLI guide</a> covers scripting in more detail.</p>
 
 <h2 id="bluetooth-nfc">Bluetooth and NFC: The Slow Alternatives</h2>
 
-<p>Some file transfer apps use Bluetooth or NFC for device pairing. These proximity-based protocols detect nearby devices without network infrastructure. AirDrop uses a combination of Bluetooth for discovery and WiFi for the actual transfer. Android's Quick Share uses a similar approach.</p>
+<p>Bluetooth and NFC find devices by being close, not by sharing a network. Most tools use them only to find the other device and then move the data over Wi-Fi. AirDrop works this way: Bluetooth to discover nearby devices, then a direct Wi-Fi link for the transfer. Android's Quick Share also combines Bluetooth and Wi-Fi.</p>
 
-<p>Bluetooth pairing for file transfer has a well-known problem: it's slow. Bluetooth 5.0 maxes out at about 2 Mbps in practice. A 100MB file takes nearly seven minutes over Bluetooth alone. Most apps that use Bluetooth only use it for discovery and initial handshake, then switch to WiFi for the data transfer. But even the discovery phase can be sluggish, with Bluetooth scans taking 5-15 seconds depending on the devices.</p>
+<p>The reason is speed. Bluetooth Low Energy tops out at 2 Mbit/s over the air with Bluetooth 5, and real throughput is lower. Even at 2 Mbit/s, a 100 MB file takes more than six minutes. Over a decent Wi-Fi link the same file takes seconds.</p>
 
-<p>NFC pairing requires physically tapping devices together, which limits it to phone-to-phone transfers. Your phone doesn't have NFC range to reach your desktop across the room. NFC is also unavailable on most laptops and desktops.</p>
+<p>NFC needs the devices a few centimeters apart. Phones have it; most laptops and desktops don't. It can start a connection between two phones and not much else.</p>
 
-<p><strong>When Bluetooth/NFC works:</strong> when both devices support it and you're standing right next to them. Phone-to-phone transfers in the same room. Apple-to-Apple transfers where AirDrop handles everything automatically.</p>
+<p>Cross-platform support is the other problem. iPhones don't send files over classic Bluetooth, so Bluetooth transfer between an iPhone and an Android phone or a PC needs an app on both ends.</p>
 
-<p><strong>When Bluetooth/NFC doesn't work:</strong> cross-platform scenarios (classic Bluetooth pairing protocols differ between ecosystems), transfers to desktop computers that lack Bluetooth, any distance beyond a few feet for NFC. OpenDrop uses Bluetooth Low Energy as a fallback transport when Wi-Fi isn't available, but it doesn't use classic Bluetooth pairing or NFC — discovery and key exchange happen through mDNS, QR codes, or the cloud control plane instead.</p>
+<p>OpenDrop doesn't use classic Bluetooth pairing or NFC. With OpenDrop Pro, two phones signed in to the same account, iPhone or Android, can send files over Bluetooth Low Energy when there is no Wi-Fi or internet. Computers always connect over Wi-Fi or the internet, and Free doesn't use Bluetooth. More on offline options in <a href="/blog/posts/transfer-files-without-internet.html">how to transfer files without internet</a>.</p>
 
-<p><strong>Recommendation:</strong> if you're in a single ecosystem (all Apple or all Android) and both devices have Bluetooth, the built-in platform tools handle this fine. For cross-platform transfers or any scenario involving a desktop PC, network-based pairing (mDNS or QR) is faster and more reliable; OpenDrop's BLE fallback handles the rest when Wi-Fi isn't available.</p>
+<p><strong>Where Bluetooth or NFC fits:</strong> finding a nearby phone, or sending small files between two phones in the same room. <strong>Where it doesn't:</strong> large files, computers, and anything beyond the room.</p>
 
 <h2 id="recommendation-framework">Which Pairing Method to Use: A Decision Framework</h2>
 
-<p>After testing across my Windows 11 PC, M5 MacBook Pro, iPhone 15, Redbeat D5 Android, and my ParrotOS Linux laptop, here's the framework I use every time.</p>
+<p>For a phone and a computer with OpenDrop, the order is short:</p>
 
-<p><strong>Step 1: Try mDNS first.</strong> Open the app, wait 5-10 seconds. If the server appears in the device list, tap it and you're connected. This works most of the time on home and small office networks. No action needed on your part.</p>
+<ol>
+<li><strong>Scan the QR code.</strong> Open the Dashboard in the desktop app, tap Scan QR in the OpenDrop phone app and point it at the code. That pairs them.</li>
+<li><strong>On the same Wi-Fi, do nothing.</strong> The paired phone finds the computer by mDNS and sends directly at full speed.</li>
+<li><strong>On another network, or one that blocks mDNS, also do nothing.</strong> The phone uses the addresses from the QR code to reach the computer over a peer-to-peer link or the encrypted relay.</li>
+<li><strong>No screen on the computer?</strong> Run <code>opendrop serve</code> or <code>opendrop connect-info</code> and scan the code from the terminal.</li>
+<li><strong>Two phones and no Wi-Fi or internet?</strong> With Pro, phones on the same account switch to Bluetooth. Otherwise use AirDrop or Quick Share if both phones support it.</li>
+</ol>
 
-<p><strong>Step 2: If mDNS fails, scan the QR code.</strong> Look for the QR code on the desktop app's dashboard. Point your phone camera at it. Connected in 1-3 seconds. This covers hotel WiFi, university networks, corporate guest networks, and first-time remote connections.</p>
+<p>For pairing tools in general: use mDNS when the network allows it, a QR code when it doesn't or on first setup, typed addresses for scripts and headless machines, and Bluetooth only for small files between nearby phones.</p>
 
-<p><strong>Step 3: If you can't see the screen, type the URL.</strong> This applies to headless servers, remote machines you're accessing via SSH, or CLI-based automation. Copy the server URL from the terminal output and paste or type it into the mobile app's manual connect field.</p>
-
-<p><strong>Step 4: If Wi-Fi is completely unavailable, fall back to BLE.</strong> OpenDrop will use Bluetooth Low Energy automatically when both devices are nearby but neither can see the other on Wi-Fi. It's slower than LAN, but it works in places no other network does (airplane mode with Bluetooth on, separated guest networks, dead-zone basements). For same-ecosystem phone-to-phone where AirDrop or Quick Share already exists, those tools are still convenient — pick whichever is in front of you.</p>
-
-<p>The pattern is simple: automatic first, visual second, manual third, proximity last. Each step is a fallback for when the previous one doesn't apply. Most of the time, you'll never get past step 1. On tricky networks, step 2 handles it. Steps 3 and 4 are edge cases.</p>
-
-<p><a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> supports mDNS auto-discovery, QR pairing, manual URL entry, and BLE fallback across all five platforms. The design goal was to make sure there's always a way to connect, regardless of what the network throws at you. mDNS for the easy case, QR for the common failure case, manual entry for the power-user case, BLE when there's no network at all. No single pairing method works everywhere, but the combination covers every scenario I've tested on.</p>
+<p>With <a href="/OpenDrop/#compare">OpenDrop Pro</a> you can skip the QR step: every phone, tablet and computer signed in to your account connects automatically. Pro also adds phone to phone and computer to computer transfers.</p>
 
         <!-- CTA -->
         <div class="blog-cta">
             <h3>Connect Your Devices in Seconds</h3>
-            <p>OpenDrop supports mDNS auto-discovery, QR code pairing, manual connection, and BLE fallback across Windows, macOS, Linux, Android, and iOS. Pick the method that fits your network.</p>
+            <p>Pair your phone and computer with a QR code. OpenDrop finds the computer on the same Wi-Fi and connects across networks when you're away. Windows, Linux, iPhone, iPad and Android, with no account needed on Free.</p>
             <a href="/OpenDrop/" class="btn btn-primary">Download OpenDrop Free</a>
         </div>
     </article>
@@ -247,45 +268,78 @@
         <div class="related-grid">
             <a href="/blog/posts/transfer-files-android-to-pc-without-usb.html" class="related-card">
     <h4>How to Transfer Files from Android to PC Without USB</h4>
-    <p>Step-by-step guide to wirelessly transferring files from your Android phone to your Windows or Linux</p>
+    <p>Transfer files from Android to PC wirelessly, no USB cable needed.</p>
 </a>
 <a href="/blog/posts/send-large-files-phone-to-pc-free.html" class="related-card">
     <h4>How to Send Large Files Between Phone and PC for Free</h4>
-    <p>Learn how to send files of any size between your phone and computer without cloud uploads or paid se</p>
+    <p>How free file transfers actually work between phones and PCs.</p>
 </a>
         </div>
     </section>
     </main>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-brand">
+    <div class="seam" aria-hidden="true"></div>
+    <footer class="site-footer">
+        <div class="wrap site-footer__grid">
+            <div class="site-footer__brand">
                 <a href="/" class="logo">
                     <picture>
                         <source srcset="/NFDGamesLogoCircleTransparent.webp" type="image/webp">
-                        <img src="/NFDGamesLogoCircleTransparent.png" alt="NFDGames Icon" class="logo-icon" width="36" height="36" loading="lazy">
+                        <img src="/NFDGamesLogoCircleTransparent.png" alt="" class="logo-icon" width="36" height="36" loading="lazy">
                     </picture>
                     NFDGames
                 </a>
-                <p>Indie studio building software utilities and mobile games.</p>
+                <p>Independent studio making OpenDrop and Gunslinger.</p>
             </div>
-            <div class="footer-links">
-                <div class="footer-col">
-                    <h4>Products</h4>
-                    <a href="/OpenDrop/">OpenDrop</a>
-                    <a href="/OpenDrop/support.html">Support</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Resources</h4>
-                    <a href="/blog/">Blog</a>
-                    <a href="/OpenDrop/PrivacyPolicy.html">Privacy Policy</a>
-                    <a href="/OpenDrop/TermsOfService.html">Terms of Service</a>
-                </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">OpenDrop</h2>
+                <ul>
+                    <li><a href="/OpenDrop/">Overview</a></li>
+                    <li><a href="/OpenDrop/#download">Download</a></li>
+                    <li><a href="/OpenDrop/#compare">Free vs Pro</a></li>
+                    <li><a href="/OpenDrop/changelog.html">What's new in 1.0</a></li>
+                    <li><a href="/OpenDrop/support.html">Support</a></li>
+                    <li><a href="/OpenDrop/status.html">System status</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Guides</h2>
+                <ul>
+                    <li><a href="/blog/posts/best-airdrop-alternatives-windows-2026.html">AirDrop alternatives</a></li>
+                    <li><a href="/blog/posts/share-files-iphone-android.html">iPhone to Android</a></li>
+                    <li><a href="/blog/posts/transfer-files-android-to-pc-without-usb.html">Android to PC, no USB</a></li>
+                    <li><a href="/blog/posts/transfer-photos-iphone-to-windows-pc.html">iPhone photos to PC</a></li>
+                    <li><a href="/blog/posts/transfer-files-windows-to-linux.html">Windows to Linux</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Studio</h2>
+                <ul>
+                    <li><a href="/">NFDGames home</a></li>
+                    <li><a href="/#gunslinger">Gunslinger</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/OpenDrop/press.html">Press kit</a></li>
+                    <li><a href="https://play.google.com/store/apps/dev?id=6331541447390891189&amp;hl=en_US" target="_blank" rel="noopener">Apps on Google Play</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Legal and security</h2>
+                <ul>
+                    <li><a href="/OpenDrop/PrivacyPolicy.html">Privacy Policy</a></li>
+                    <li><a href="/OpenDrop/TermsOfService.html">Terms of Service</a></li>
+                    <li><a href="/OpenDrop/security.html">Security and disclosure</a></li>
+                    <li><a href="/OpenDrop/accessibility.html">Accessibility</a></li>
+                </ul>
             </div>
         </div>
-        <div class="footer-bottom">
+        <div class="wrap site-footer__bottom">
             <p>&copy; 2026 NFDGames. All rights reserved.</p>
+            <div class="site-footer__legal">
+                <a href="/OpenDrop/WithdrawalForm.html">EU/UK withdrawal</a>
+                <a href="/OpenDrop/third-party-notices.html">Third-party notices</a>
+                <a href="/OpenDrop/docs/export-compliance/">Export compliance</a>
+                <a href="mailto:support@nfdgames.com">support@nfdgames.com</a>
+            </div>
         </div>
     </footer>
 
@@ -303,7 +357,7 @@
         appId: "1:573883707762:web:e68643cce07c2cee3eadeb",
         measurementId: "G-ENWJJ78E3Q"
       });
-      // Gated on user consent — see /scripts/opendrop-cookie-banner.js
+      // Gated on user consent, see /scripts/opendrop-cookie-banner.js
       if (window.OpenDropConsent) { window.OpenDropConsent.onConsent(function () { getAnalytics(app); }); }
     </script>
 </body>

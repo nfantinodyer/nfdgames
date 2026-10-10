@@ -22,7 +22,7 @@
     <meta property="og:site_name" content="NFDGames">
     <meta property="article:published_time" content="2026-06-04">
     <meta property="article:author" content="NFDGames">
-    <meta property="article:section" content="Release Notes">
+    <meta property="article:section" content="Release notes">
     <meta property="article:tag" content="opendrop 1.0">
     <meta property="article:tag" content="release notes">
     <meta property="article:tag" content="end-to-end encryption">
@@ -55,7 +55,7 @@
             }
           },
           "datePublished": "2026-06-04",
-          "dateModified": "2026-06-04",
+          "dateModified": "2026-10-10",
           "mainEntityOfPage": "https://www.nfdgames.com/blog/posts/whats-new-in-opendrop-1-0.html",
           "keywords": ["opendrop 1.0", "release notes", "end-to-end encryption", "file transfer"]
         },
@@ -90,26 +90,31 @@
       gtag('config', 'AW-17319823241');
     </script>
 </head>
-<body>
+<body class="page-blog-post">
+    <a class="skip-link" href="#main">Skip to content</a>
     <div class="bg-gradient"></div>
     <div class="noise"></div>
 
-    <nav>
+    <nav class="site-nav" aria-label="Main">
         <a href="/" class="logo">
             <picture>
                 <source srcset="/NFDGamesLogoCircleTransparent.webp" type="image/webp">
-                <img src="/NFDGamesLogoCircleTransparent.png" alt="NFDGames Icon" class="logo-icon" width="36" height="36" loading="lazy">
+                <img src="/NFDGamesLogoCircleTransparent.png" alt="" class="logo-icon" width="36" height="36">
             </picture>
-            NFDGames
+            <span class="logo__word">NFDGames</span>
         </a>
-        <div class="nav-links">
+        <div class="nav-links" id="navLinks">
             <a href="/#projects">Projects</a>
-            <a href="/blog/">Blog</a>
-            <a href="/OpenDrop/" class="nav-cta">Get OpenDrop</a>
+            <a href="/blog/" aria-current="page">Blog</a>
+            <a href="/#about">About</a>
+        </div>
+        <div class="nav-actions">
+            <a href="/OpenDrop/" class="btn-cta btn-cta--sm">Get OpenDrop</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-controls="navLinks" aria-expanded="false" aria-label="Open menu"><span></span><span></span><span></span></button>
         </div>
     </nav>
 
-    <main>
+    <main id="main" tabindex="-1">
     <header class="blog-post-hero">
         <div class="breadcrumb">
             <a href="/">Home</a>
@@ -124,7 +129,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
                 NFDGames
             </span>
-            <span class="blog-card-tag tips">Release Notes</span>
+            <span class="blog-card-tag news">Release notes</span>
             <span class="blog-card-date">June 4, 2026</span>
             <span class="read-time">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
@@ -136,7 +141,7 @@
     <article class="blog-post-content">
         <div class="toc"><ol>
             <li><a href="#headline">The headline: encryption everywhere, no exceptions</a></li>
-            <li><a href="#transport">Auto-fallback transport: Wi-Fi, Bluetooth, and the cloud</a></li>
+            <li><a href="#transport">Auto-fallback transport: Wi-Fi, peer-to-peer, and the cloud</a></li>
             <li><a href="#cross-platform">Cross-platform parity at launch</a></li>
             <li><a href="#pro">What OpenDrop Pro adds</a></li>
             <li><a href="#ux">UX and theming</a></li>
@@ -146,110 +151,119 @@
             <li><a href="#limits">What's still in flight</a></li>
         </ol></div>
 
-        <p>OpenDrop 1.0 is out. This is the first build I'd put in front of anyone — preview releases were always meant for me, and a few patient testers, to break things. 1.0 is the baseline I'd want on my own phone, on my own desktop, with my own files moving across it. Here's what's new, what changed since the previews, and what isn't in the box yet. If you'd rather skim the full machine-readable list, the <a href="/OpenDrop/changelog.html">changelog page</a> has the version markers and protocol numbers.</p>
+        <p>OpenDrop 1.0 is the first stable release. Earlier builds were previews. This post covers what 1.0 does, what changed since the previews, and what is not finished yet. The <a href="/OpenDrop/changelog.html">changelog page</a> has the same changes as a plain list.</p>
 
         <h2 id="headline">The headline: encryption everywhere, no exceptions</h2>
 
-        <p>Every file you transfer through OpenDrop 1.0 is end-to-end encrypted on the sending device with <strong>ChaCha20-Poly1305 IETF AEAD</strong> (RFC 8439). The 32-byte content key is derived with <strong>HKDF-SHA256</strong> from your account's shared secret &mdash; computed identically on each of your devices, so the key never travels over the network &mdash; with a fresh random 12-byte nonce prefix per transfer. Encryption is applied on every path:</p>
+        <p>File contents are encrypted on the sending device before they leave it. The cipher is <strong>ChaCha20-Poly1305</strong>, the IETF AEAD construction from RFC 8439. The key is derived with <strong>HKDF-SHA256</strong> from the secret your devices share when you pair them, and each transfer gets a random nonce prefix so no nonce repeats inside it.</p>
+        <p>Who holds that secret depends on the plan. On Free, it is made on your computer and shared only through the QR code. OpenDrop's servers never receive it. On Pro, OpenDrop's account service also stores it, so a new device you sign in to can join your others.</p>
+        <p>Encryption is mandatory on every route:</p>
         <ul>
-            <li>Chunked uploads, true-streaming uploads, and downloads (including range-sliced byte ranges)</li>
-            <li>Thumbnails fetched from remote devices</li>
-            <li>Direct desktop-to-desktop relays</li>
-            <li>LAN and Wi-Fi HTTP/HTTPS transfers</li>
-            <li>Phone-to-phone nearby Wi-Fi transfers</li>
-            <li>Bluetooth Low Energy fallback transfers</li>
+            <li>Phone to computer on the same Wi-Fi</li>
+            <li>Peer-to-peer links between different networks</li>
+            <li>Relay transfers, chunked or streamed, uploads and downloads</li>
+            <li>Thumbnails loaded from another device</li>
+            <li>Phone to phone over nearby Wi-Fi or Bluetooth Low Energy, and computer to computer (Pro)</li>
         </ul>
-        <p>On iOS we run the cipher through Apple <strong>CryptoKit</strong>; on Android API 28+ we use BoringSSL; older Android devices and the desktop run a pure-Dart or pure-Python fallback. The wire format is byte-identical across every implementation and is pinned by a shared test-vector file in the repo. Our infrastructure (the Cloudflare Worker control plane and our Fly.io / Oracle Cloud relay) routes ciphertext only and cannot read your files.</p>
-
-        <p>The desktop server and mobile clients advertise and require <code>X-OpenDrop-Protocol: 2</code> on every request. Servers respond with <strong>HTTP 426 Upgrade Required</strong> to any client below protocol v2, and v1.0 clients refuse to connect to a server that reports a lower protocol version. The goal is to remove the downgrade-attack surface: there is no plaintext fallback, no "compatibility mode," no flag to disable encryption.</p>
+        <p>On iPhone and iPad the cipher runs through Apple <strong>CryptoKit</strong>. On Android 9 (API 28) and later it uses BoringSSL, and older Android versions use a pure Dart fallback. Every implementation writes the same wire format, so any of your devices can decrypt what another one sent.</p>
+        <p>Relay servers carry file contents only in encrypted form. They can see transfer details such as file names, folder names, file sizes and device names, which they need to route transfers.</p>
+        <p>Every 1.0 app and server speaks protocol version 2, and outdated apps are asked to update. There is no plaintext fallback and no setting that turns encryption off.</p>
 
         <h2 id="transport">Auto-fallback transport: Wi-Fi, peer-to-peer, and the cloud</h2>
 
-        <p>One of the questions I hear most often is "what does it use when?" The short answer: whatever's fastest and available, automatically.</p>
+        <p>You never pick a route. OpenDrop tries the routes below and uses the first one that works. The order depends on your plan, as explained after the list.</p>
         <ul>
-            <li><strong>Same Wi-Fi.</strong> mDNS discovery via Bonjour (<code>_opendrop._tcp.local.</code>) finds your other devices on the same network. Files stream directly over LAN with no chunking and no size cap.</li>
-            <li><strong>Peer-to-peer.</strong> Across different networks, OpenDrop tries a direct device-to-device connection over WebRTC, using our own self-hosted STUN servers for NAT traversal (no third-party STUN, and no TURN). The free tier prefers this path to keep large transfers off the metered relay; on free, peer-to-peer transfers are sent in resumable 5 MB chunks (including downloads, via a forced byte-range request), while Pro streams over peer-to-peer.</li>
-            <li><strong>Bluetooth Low Energy.</strong> When the two devices are nearby but not on the same Wi-Fi (hotel Wi-Fi blocking mDNS, etc.), BLE handles small payloads.</li>
-            <li><strong>Encrypted relay.</strong> When a direct connection isn't possible, both apps dial out to OpenDrop's own relay, coordinated through our Cloudflare Worker control plane &mdash; there's no tunnel binary to download and no public URL to share. Free transfers go through our Oracle Cloud relay.</li>
-            <li><strong>Pro relay.</strong> Pro subscribers get the high-throughput Fly.io WebSocket relay (true streaming, no size cap) with automatic failover to a backup Oracle Cloud relay if Fly is ever down. Pro prefers this fast relay, with peer-to-peer as its fallback.</li>
+            <li><strong>Same Wi-Fi.</strong> After you pair with a QR code, your phone finds your computer through mDNS (the <code>_opendrop._tcp.local.</code> service) and streams files directly at full speed. No chunking and no size cap, on either plan.</li>
+            <li><strong>Peer-to-peer.</strong> On different networks, OpenDrop tries a direct WebRTC link. NAT traversal uses OpenDrop's own STUN servers. There is no TURN server, so when a network blocks direct links the transfer goes over the relay.</li>
+            <li><strong>Encrypted relay.</strong> Both apps dial out to OpenDrop's relay. There is no port forwarding, no tunnel program to install and no public URL to share.</li>
+            <li><strong>Bluetooth Low Energy (Pro).</strong> With no Wi-Fi or internet, two phones signed in to the same Pro account can send files over Bluetooth, iPhone or Android. Computers always connect over Wi-Fi or the internet.</li>
         </ul>
-        <p>You do not pick the path manually. The app negotiates based on what it discovers during the mDNS phase and the relay connection state.</p>
+        <p>Free goes same Wi-Fi, then peer-to-peer, then the shared free relay. Away from your Wi-Fi, Free transfers are speed-limited and move in resumable 5 MB pieces, and transfers over the free relay share a weekly allowance. Pro goes same Wi-Fi, then the faster Pro relay (with backup relays behind it), then peer-to-peer, then Bluetooth between two phones. Pro streams whole files with no weekly limit. Neither plan has a file size cap, and on both a dropped connection picks up where it left off.</p>
 
         <h2 id="cross-platform">Cross-platform parity at launch</h2>
 
-        <p>1.0 ships at the same baseline on iOS, Android, Windows, and Linux. The macOS desktop is the same Nuitka-compiled PySide6 build that ships on Windows and Linux, still in active development and not yet on the Mac App Store. The Flutter mobile apps use Apple CryptoKit on iOS and BoringSSL-accelerated AEAD on Android API 28+. The desktop server bundles an LGPL ffmpeg build for file conversion.</p>
+        <p>1.0 ships as the same version on iPhone, iPad, Android, Windows and Linux. The mobile apps are built with Flutter. The desktop app is the same Python and Qt (PySide6) program on Windows and Linux, and it bundles ffmpeg for media conversion. macOS is not released yet.</p>
 
-        <table class="comparison-table" style="width:100%; margin-top:1.5rem; border-collapse:collapse;">
+        <table class="comparison-table">
             <thead>
-                <tr style="border-bottom: 1px solid #ccc;">
-                    <th style="text-align:left; padding: 8px 12px;">Platform</th>
-                    <th style="text-align:left; padding: 8px 12px;">Minimum version</th>
-                    <th style="text-align:left; padding: 8px 12px;">Distribution</th>
+                <tr>
+                    <th>Platform</th>
+                    <th>Minimum version</th>
+                    <th>Distribution</th>
                 </tr>
             </thead>
             <tbody>
-                <tr><td style="padding:8px 12px;">iOS</td><td style="padding:8px 12px;">16.0+</td><td style="padding:8px 12px;">Apple App Store</td></tr>
-                <tr><td style="padding:8px 12px;">Android</td><td style="padding:8px 12px;">7.0 (API 24)+</td><td style="padding:8px 12px;">Google Play Store</td></tr>
-                <tr><td style="padding:8px 12px;">Windows</td><td style="padding:8px 12px;">10 or 11</td><td style="padding:8px 12px;">Microsoft Store + direct .exe</td></tr>
-                <tr><td style="padding:8px 12px;">Linux</td><td style="padding:8px 12px;">Ubuntu 22.04+, Debian 10+ (x86_64 and aarch64)</td><td style="padding:8px 12px;">.AppImage</td></tr>
-                <tr><td style="padding:8px 12px;">macOS</td><td style="padding:8px 12px;">12+</td><td style="padding:8px 12px;">PySide6 desktop, in development; Mac App Store coming</td></tr>
+                <tr><td>iPhone and iPad</td><td>iOS 16 or later</td><td>Apple App Store</td></tr>
+                <tr><td>Android</td><td>Android 7.0 (API 24) or later</td><td>Google Play</td></tr>
+                <tr><td>Windows</td><td>Windows 10 version 1809 or later, 64-bit</td><td>Microsoft Store or the installer from the download page</td></tr>
+                <tr><td>Linux</td><td>x86_64 or ARM64 with glibc 2.35 or newer (Ubuntu 22.04, Debian 12, Fedora 36 or later)</td><td>AppImage</td></tr>
+                <tr><td>macOS</td><td>Planned: macOS 12 or later, Apple Silicon</td><td>Not released yet; planned for the Mac App Store</td></tr>
             </tbody>
         </table>
 
         <h2 id="pro">What OpenDrop Pro adds</h2>
 
-        <p>The free tier covers direct-LAN streaming, remote transfers over our Oracle Cloud relay, QR pairing, BLE nearby transfer, and the single-device mesh. <strong>OpenDrop Pro</strong> at $2.99/month or $24.99/year (about 30% off annual) adds:</p>
+        <p>Free needs no account. Each phone pairs with one computer by scanning its QR code, transfers on the same Wi-Fi run at full speed, and transfers across networks are speed-limited. <strong>OpenDrop Pro</strong> is $2.99 a month or $24.99 a year in the Windows and Linux app. The App Store and Google Play show your price before you subscribe. Pro adds:</p>
         <ul>
-            <li><strong>Multi-device mesh.</strong> Pair multiple phones and multiple desktops to a single account, with same-account auto-connect via mDNS account hash.</li>
-            <li><strong>High-throughput Fly.io relay</strong> for large cross-network transfers (10 GB+), with automatic failover to a backup Oracle Cloud relay and no per-transfer size cap.</li>
-            <li><strong>Cross-device file conversion.</strong> Image (HEIC/PNG/JPG/WebP/BMP/TIFF), video (MP4/MOV/AVI/MKV/WebM), and RAW formats (CR2/NEF/ARW/RAF). Phone files queue against the desktop's <code>ffmpeg</code>; one-click undo restores from per-conversion backups.</li>
-            <li><strong>Cross-platform entitlement</strong> via RevenueCat. One subscription unlocks Pro on every device linked to your account, regardless of where you bought it (App Store, Google Play, or Stripe).</li>
+            <li><strong>Multi-device mesh.</strong> Every phone, tablet and computer signed in to your account connects automatically, with no QR code. That includes phone to phone (iPhone and Android) and computer to computer.</li>
+            <li><strong>Faster remote transfers.</strong> The Pro relay streams whole files at full speed with no weekly limit, and has backup relays.</li>
+            <li><strong>Bluetooth between phones</strong> when there is no Wi-Fi or internet.</li>
+            <li><strong>Folders.</strong> Browse your computer's subfolders with breadcrumbs, create folders, send or download whole folders from your phone, and open shared folders on your computer from your phone or your other computers.</li>
+            <li><strong>Media conversion.</strong> Images (HEIC, HEIF, JPG, PNG, WebP, BMP, TIFF), video (MOV, MP4, M4V, AVI, MKV, WMV, FLV, WebM, or MP3 audio out) and RAW camera files (DNG, CR2, CR3, NEF, ARW, RAF and more). Conversion always runs on a computer. Queue phone files and they convert as soon as your computer is reachable, then come back to the phone. Conversion history with undo puts the original back on the computer that converted it.</li>
+            <li><strong>One subscription for every device.</strong> Pro is tied to your OpenDrop account, so it works on every device you sign in to, whether you subscribed through the App Store, Google Play or the desktop app. Sign in with Google, Apple, Microsoft or email.</li>
         </ul>
 
         <h2 id="ux">UX and theming</h2>
 
-        <p>Nine built-in color palettes ship at 1.0: <em>OpenDrop Brand</em> (cerulean blue plus aqua cyan, the default), <em>Ocean Breeze</em>, <em>Tide Pool</em>, <em>Sea Glass</em>, <em>Lilac Night</em>, <em>Cloud Blue</em>, <em>Peach Cream</em>, <em>Rose Petal</em>, and <em>Lavender Mist</em>. Light, dark, and follow-system modes. iOS Cupertino dialogs honor system text size and Dynamic Type.</p>
-        <p>Other UX additions:</p>
+        <p>Nine color themes ship with 1.0 on both plans. OpenDrop (the default), Ocean Breeze, Tide Pool, Sea Glass and Lilac Night are dark. Cloud Blue, Peach Cream, Rose Petal and Lavender Mist are light. The desktop app also has a Custom theme with a color picker. You pick the theme yourself; it does not follow the system's light or dark setting.</p>
+        <p>Other additions, on both plans unless marked:</p>
         <ul>
-            <li>Thumbnails for images, videos, PDFs, and SVGs across local and remote devices</li>
-            <li>In-app preview for images (with <code>InteractiveViewer</code> zoom), code/text files, and PDFs</li>
-            <li>Multi-select bottom action bar; breadcrumb folder navigation</li>
-            <li>Recently Deleted with 30-day retention on the desktop server</li>
-            <li>Drag-and-drop between tabs on desktop and across the mobile file and folder views</li>
-            <li>Chrome-style device tab bar on desktop with per-device favicons</li>
+            <li>Thumbnails for images, RAW photos, videos, PDFs and SVGs, in the desktop app and when you browse your computer from your phone. Folder preview tiles in the desktop app are Pro.</li>
+            <li>A built-in viewer in the mobile app for photos, PDFs and text or code files. Other files open in the app of your choice.</li>
+            <li>Multi-select on mobile to send, download, share or delete several files at once.</li>
+            <li>Recently Deleted: restore files you deleted on your phone or computer.</li>
+            <li>Drag files onto a device tab in the desktop app to send them. Dragging between the Files and Shared Folders tabs, and into subfolders, is Pro.</li>
+            <li>Star favorite devices in the desktop app so they show first. Devices with the same name get a short ID tag.</li>
         </ul>
 
         <h2 id="privacy">New privacy controls</h2>
 
-        <p>The 1.0 release includes a few launch-day privacy improvements:</p>
         <ul>
-            <li><strong>Analytics opt-out</strong> in Settings on both mobile and desktop. When disabled, the app sends an <code>X-OpenDrop-Analytics-OptOut: 1</code> header and our infrastructure discards the heartbeat without recording it.</li>
-            <li><strong>Site-wide cookie banner</strong> on nfdgames.com with Google Consent Mode v2, default-deny posture, and honoring of the browser <strong>Global Privacy Control (GPC)</strong> signal.</li>
-            <li><strong>New <a href="/OpenDrop/security.html">Vulnerability Disclosure Policy</a></strong> with coordinated-disclosure timelines and a safe-harbor clause for security researchers.</li>
-            <li><strong>EU/UK 14-day withdrawal form</strong> reproducing Directive 2011/83/EU Annex I(B). See <a href="/OpenDrop/WithdrawalForm.html">the withdrawal page</a>.</li>
-            <li><strong>Public <a href="/OpenDrop/status.html">status page</a></strong> auto-updated every 15 minutes by a Cloudflare Worker cron that probes each external service we depend on.</li>
+            <li><strong>Analytics opt-out.</strong> The app has no ads. It sends basic usage statistics (active users, app version and platform, error counts) to OpenDrop's own server. Turn it off in Settings with Disable basic analytics.</li>
+            <li><strong>No account on Free.</strong> You only sign in to subscribe to Pro. You can delete your account at any time from Settings in the app or on the account deletion page.</li>
+            <li><strong>Cookie banner</strong> on nfdgames.com using Google Consent Mode v2. Analytics stay off until you accept, and the browser's <strong>Global Privacy Control</strong> signal is honored.</li>
+            <li><strong><a href="/OpenDrop/security.html">Vulnerability Disclosure Policy</a></strong> with coordinated disclosure timelines and safe-harbor terms for security researchers.</li>
+            <li><strong>EU/UK 14-day withdrawal form</strong> using the model form from Directive 2011/83/EU, Annex I(B). See <a href="/OpenDrop/WithdrawalForm.html">the withdrawal page</a>.</li>
+            <li><strong>Public <a href="/OpenDrop/status.html">status page</a></strong>, refreshed every 15 minutes by an automatic check of each service OpenDrop depends on.</li>
         </ul>
 
         <h2 id="cli">Headless and CLI mode</h2>
 
-        <p>The desktop server can run without a GUI. A CLI client talks to a running GUI through a shared connection file, and single-instance detection on a dynamically chosen port keeps multiple invocations from colliding. The CLI is included in every desktop build and is the same binary as the GUI — there's no separate install. For automation, the CLI accepts pipes and lets you script transfers from a shell or scheduled task.</p>
+        <p>Use the desktop app, or run it headless with <code>opendrop serve</code> (add <code>--background</code> to detach). CLI commands find whichever OpenDrop is running on the same computer through a private local connection file. Commands that reach another device (<code>-d</code>) need Pro. The CLI comes with every desktop build, so there is nothing extra to install.</p>
+        <pre><code>opendrop serve --background
+opendrop status
+opendrop ls
+opendrop upload report.pdf</code></pre>
+        <p>The <a href="/blog/posts/opendrop-cli-automated-file-transfers.html">CLI guide</a> covers scripting and exit codes.</p>
 
         <h2 id="upgrade">If you have an older build</h2>
 
-        <p>Pre-1.0 builds were internal previews only. They cannot interoperate with the 1.0 protocol — any pre-1.0 client connecting to a 1.0 server gets <code>HTTP 426 Upgrade Required</code>. There is no compatibility mode and no plan to add one; the security goal is to eliminate the plaintext path. Please install the latest 1.0+ build from the <a href="/OpenDrop/#download">download page</a> before continuing to use OpenDrop.</p>
+        <p>Builds before 1.0 cannot talk to 1.0. A computer running 1.0 answers an older client with <code>HTTP 426 Upgrade Required</code>. There is no compatibility mode, because one would mean keeping an unencrypted path. Install the current build from the <a href="/OpenDrop/#download">download page</a>.</p>
+        <p>From 1.0 on, the desktop downloads check for updates at launch and install a new version in one click, verified with SHA-256. The Microsoft Store version tells you when an update is out and opens the Store page.</p>
 
         <h2 id="limits">What's still in flight</h2>
 
         <ul>
-            <li><strong>macOS desktop is still in active development at 1.0.</strong> It's the same PySide6 desktop server that ships on Windows and Linux, just not yet released to the Mac App Store. iOS and Android cover the mobile side.</li>
-            <li><strong>Discovery is local-network-aware, not location-aware.</strong> Devices find each other through mDNS on Wi-Fi, Bluetooth Low Energy proximity, or cloud pairing. There is no GPS in the loop, and the apps don't read your coordinates.</li>
+            <li><strong>macOS is not released.</strong> It is planned for the Mac App Store, for Apple Silicon Macs on macOS 12 or later. Until then, iPhone and iPad work with a Windows or Linux computer.</li>
+            <li><strong>Background transfers are partial.</strong> Remote uploads from your phone keep going in the background on iPhone, and for a while on Android. Same-Wi-Fi and peer-to-peer transfers, and all downloads to the phone, need the app open.</li>
+            <li><strong>Discovery is local-network-aware, not location-aware.</strong> Devices find each other through QR pairing and mDNS on Wi-Fi, through your account on Pro, or over Bluetooth between Pro phones. There is no location-based discovery.</li>
         </ul>
 
-        <p>That's the 1.0 line. Thank you to everyone who tested the preview builds, filed bugs, and yelled at me when something broke. The next milestones on the roadmap are: macOS desktop to GA, per-device and per-purpose key derivation (the <code>info</code>-tag work outlined in the AEAD module), and per-account subprocessor configurability for self-hosters. If something on that list matters to you, email <a href="mailto:support@nfdgames.com">support@nfdgames.com</a>; I'm the engineer and I'll read it.</p>
+        <p>Bug reports and feature requests go to <a href="mailto:support@nfdgames.com">support@nfdgames.com</a>.</p>
 
         <div class="blog-cta">
             <h3>Try OpenDrop 1.0</h3>
-            <p>Download for iOS, Android, Windows, or Linux. Free, no account required for direct LAN transfers.</p>
+            <p>Download for iPhone, iPad, Android, Windows or Linux. Free, with no account.</p>
             <a href="/OpenDrop/" class="btn btn-primary">Download OpenDrop</a>
         </div>
     </article>
@@ -258,45 +272,79 @@
         <h3>Related Articles</h3>
         <div class="related-grid">
             <a href="/blog/posts/wireless-file-transfer-security-encryption.html" class="related-card">
-                <h4>How Wireless File Transfer Security Works</h4>
-                <p>The encryption primitives, threat models, and design trade-offs behind secure wireless file transfer.</p>
+                <h4>Wireless File Transfer Security: Encryption Explained</h4>
+                <p>Four real security problems with wireless file transfers.</p>
             </a>
             <a href="/blog/posts/opendrop-vs-localsend-comparison.html" class="related-card">
-                <h4>OpenDrop vs LocalSend Compared</h4>
-                <p>Two open-protocol file-transfer apps, head to head. Where each one wins.</p>
+                <h4>OpenDrop vs LocalSend: Feature-by-Feature Comparison</h4>
+                <p>OpenDrop and LocalSend compared feature by feature.</p>
             </a>
         </div>
     </section>
     </main>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-brand">
+    <div class="seam" aria-hidden="true"></div>
+    <footer class="site-footer">
+        <div class="wrap site-footer__grid">
+            <div class="site-footer__brand">
                 <a href="/" class="logo">
                     <picture>
                         <source srcset="/NFDGamesLogoCircleTransparent.webp" type="image/webp">
-                        <img src="/NFDGamesLogoCircleTransparent.png" alt="NFDGames Icon" class="logo-icon" width="36" height="36" loading="lazy">
+                        <img src="/NFDGamesLogoCircleTransparent.png" alt="" class="logo-icon" width="36" height="36" loading="lazy">
                     </picture>
                     NFDGames
                 </a>
-                <p>Indie studio building software utilities and mobile games.</p>
+                <p>Independent studio making OpenDrop and Gunslinger.</p>
             </div>
-            <div class="footer-links">
-                <div class="footer-col">
-                    <h4>Products</h4>
-                    <a href="/OpenDrop/">OpenDrop</a>
-                    <a href="/OpenDrop/support.html">Support</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Resources</h4>
-                    <a href="/blog/">Blog</a>
-                    <a href="/OpenDrop/PrivacyPolicy.html">Privacy Policy</a>
-                    <a href="/OpenDrop/TermsOfService.html">Terms of Service</a>
-                </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">OpenDrop</h2>
+                <ul>
+                    <li><a href="/OpenDrop/">Overview</a></li>
+                    <li><a href="/OpenDrop/#download">Download</a></li>
+                    <li><a href="/OpenDrop/#compare">Free vs Pro</a></li>
+                    <li><a href="/OpenDrop/changelog.html">What's new in 1.0</a></li>
+                    <li><a href="/OpenDrop/support.html">Support</a></li>
+                    <li><a href="/OpenDrop/status.html">System status</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Guides</h2>
+                <ul>
+                    <li><a href="/blog/posts/best-airdrop-alternatives-windows-2026.html">AirDrop alternatives</a></li>
+                    <li><a href="/blog/posts/share-files-iphone-android.html">iPhone to Android</a></li>
+                    <li><a href="/blog/posts/transfer-files-android-to-pc-without-usb.html">Android to PC, no USB</a></li>
+                    <li><a href="/blog/posts/transfer-photos-iphone-to-windows-pc.html">iPhone photos to PC</a></li>
+                    <li><a href="/blog/posts/transfer-files-windows-to-linux.html">Windows to Linux</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Studio</h2>
+                <ul>
+                    <li><a href="/">NFDGames home</a></li>
+                    <li><a href="/#gunslinger">Gunslinger</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/OpenDrop/press.html">Press kit</a></li>
+                    <li><a href="https://play.google.com/store/apps/dev?id=6331541447390891189&amp;hl=en_US" target="_blank" rel="noopener">Apps on Google Play</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Legal and security</h2>
+                <ul>
+                    <li><a href="/OpenDrop/PrivacyPolicy.html">Privacy Policy</a></li>
+                    <li><a href="/OpenDrop/TermsOfService.html">Terms of Service</a></li>
+                    <li><a href="/OpenDrop/security.html">Security and disclosure</a></li>
+                    <li><a href="/OpenDrop/accessibility.html">Accessibility</a></li>
+                </ul>
             </div>
         </div>
-        <div class="footer-bottom">
+        <div class="wrap site-footer__bottom">
             <p>&copy; 2026 NFDGames. All rights reserved.</p>
+            <div class="site-footer__legal">
+                <a href="/OpenDrop/WithdrawalForm.html">EU/UK withdrawal</a>
+                <a href="/OpenDrop/third-party-notices.html">Third-party notices</a>
+                <a href="/OpenDrop/docs/export-compliance/">Export compliance</a>
+                <a href="mailto:support@nfdgames.com">support@nfdgames.com</a>
+            </div>
         </div>
     </footer>
 

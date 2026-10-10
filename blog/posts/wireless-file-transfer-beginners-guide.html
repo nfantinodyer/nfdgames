@@ -58,7 +58,7 @@
             }
           },
           "datePublished": "2026-02-08",
-          "dateModified": "2026-02-08",
+          "dateModified": "2026-10-10",
           "mainEntityOfPage": "https://www.nfdgames.com/blog/posts/wireless-file-transfer-beginners-guide.html",
           "keywords": ["wireless file transfer", "how to transfer files wirelessly", "wifi file transfer", "beginner guide"]
         },
@@ -73,7 +73,7 @@
         ,
         {
           "@type": "FAQPage",
-          "mainEntity": [{"@type":"Question","name":"Is Bluetooth or WiFi faster for file transfer?","acceptedAnswer":{"@type":"Answer","text":"WiFi is dramatically faster. Bluetooth 5.0 tops out around 2 Mbps in theory and typically delivers 200-300 KB/s in practice. WiFi transfers on a local network run at tens or hundreds of megabytes per second. A file that takes an hour over Bluetooth finishes in seconds over WiFi."}},{"@type":"Question","name":"Do both devices need to be on the same WiFi to transfer files?","acceptedAnswer":{"@type":"Answer","text":"Not necessarily. Same-WiFi transfers are fastest, but tools like OpenDrop support remote transfers across different networks using their own end-to-end-encrypted relay (an Oracle Cloud relay on the free tier, the faster Fly.io relay on Pro) — no third-party tunnel to download. Same network is an optimization, not a requirement."}},{"@type":"Question","name":"Are wireless file transfers secure?","acceptedAnswer":{"@type":"Answer","text":"On a home network, local WiFi transfers stay inside your router and never touch the internet. Remote transfers through services like OpenDrop add TLS on top of end-to-end encryption, so the relay only ever sees ciphertext. The security concern is mainly with unencrypted transfers over public WiFi networks."}},{"@type":"Question","name":"What's the best free tool for wireless file transfer across all platforms?","acceptedAnswer":{"@type":"Answer","text":"OpenDrop works on Windows, macOS, Linux, iOS, and Android with a single app. It supports both local WiFi transfers and remote transfers across different networks. The free tier includes full LAN streaming, plus remote transfers in resumable 5 MB chunks over its own Oracle Cloud relay (Pro adds a faster, streaming Fly.io relay)."}},{"@type":"Question","name":"Why not just use Google Drive or iCloud to move files between devices?","acceptedAnswer":{"@type":"Answer","text":"Cloud services require uploading and then downloading the file, which takes 5-10x longer than a direct transfer. They also have storage limits (15GB for Google, 5GB for iCloud free) and your files pass through third-party servers. Direct transfer is faster and more private for moving files between your own devices."}}]
+          "mainEntity": [{"@type":"Question","name":"Is Bluetooth or Wi-Fi faster for file transfer?","acceptedAnswer":{"@type":"Answer","text":"Wi-Fi is much faster. Classic Bluetooth file transfer tops out at 2 to 3 Mbps on paper and usually runs at a few hundred kilobytes per second or less. A transfer on a home Wi-Fi network runs at tens of megabytes per second, so a 1 GB file that takes over an hour over Bluetooth takes a minute or two over Wi-Fi."}},{"@type":"Question","name":"Do both devices need to be on the same Wi-Fi to transfer files?","acceptedAnswer":{"@type":"Answer","text":"No. The same Wi-Fi is the fastest route, but apps with a relay or a peer-to-peer link work across networks. OpenDrop connects over a direct peer-to-peer link or its own encrypted relay, with nothing extra to install and no port forwarding. Free remote transfers are speed-limited; Pro uses a faster relay."}},{"@type":"Question","name":"Are wireless file transfers secure?","acceptedAnswer":{"@type":"Answer","text":"Yes, with the right app. A local transfer on your home network stays inside your router. OpenDrop encrypts file contents with ChaCha20-Poly1305 on your device before they are sent, over Wi-Fi, peer-to-peer, the relay or Bluetooth. Relay servers carry file contents only in encrypted form, though they can see file names and sizes. The main risk is tools that send files unencrypted."}},{"@type":"Question","name":"What's the best free tool for wireless file transfer across all platforms?","acceptedAnswer":{"@type":"Answer","text":"OpenDrop works on Windows, Linux, iPhone, iPad and Android, with macOS coming soon. Phone to computer is free with no account: full-speed streaming on the same Wi-Fi, plus speed-limited remote transfers in resumable 5 MB pieces with no file size cap. Pro adds phone to phone, computer to computer, and a faster relay that streams the whole file. LocalSend is a free open-source option for devices on the same network."}},{"@type":"Question","name":"Why not just use Google Drive or iCloud to move files between devices?","acceptedAnswer":{"@type":"Answer","text":"Cloud services make you upload the file and then download it again, so the transfer depends on your internet upload speed. Free storage is limited (15 GB on Google, 5 GB on iCloud), and the file sits on a third-party server. A direct transfer is faster and more private for moving files between your own devices."}}]
         }
       ]
     }
@@ -89,7 +89,7 @@
     <link rel="stylesheet" href="/styles/common.css">
     <link rel="stylesheet" href="/styles/blog.css">
 
-    <!-- Cookie consent / Google Consent Mode v2 preboot — must precede any Google tag -->
+    <!-- Cookie consent / Google Consent Mode v2 preboot: must precede any Google tag -->
     <script src="/scripts/opendrop-cookie-banner.js"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241"></script>
@@ -100,27 +100,31 @@
       gtag('config', 'AW-17319823241');
     </script>
 </head>
-<body>
+<body class="page-blog-post">
+    <a class="skip-link" href="#main">Skip to content</a>
     <div class="bg-gradient"></div>
     <div class="noise"></div>
 
-    <!-- Navigation -->
-    <nav>
+    <nav class="site-nav" aria-label="Main">
         <a href="/" class="logo">
             <picture>
                 <source srcset="/NFDGamesLogoCircleTransparent.webp" type="image/webp">
-                <img src="/NFDGamesLogoCircleTransparent.png" alt="NFDGames Icon" class="logo-icon" width="36" height="36" loading="lazy">
+                <img src="/NFDGamesLogoCircleTransparent.png" alt="" class="logo-icon" width="36" height="36">
             </picture>
-            NFDGames
+            <span class="logo__word">NFDGames</span>
         </a>
-        <div class="nav-links">
+        <div class="nav-links" id="navLinks">
             <a href="/#projects">Projects</a>
-            <a href="/blog/">Blog</a>
-            <a href="/OpenDrop/" class="nav-cta">Get OpenDrop</a>
+            <a href="/blog/" aria-current="page">Blog</a>
+            <a href="/#about">About</a>
+        </div>
+        <div class="nav-actions">
+            <a href="/OpenDrop/" class="btn-cta btn-cta--sm">Get OpenDrop</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-controls="navLinks" aria-expanded="false" aria-label="Open menu"><span></span><span></span><span></span></button>
         </div>
     </nav>
 
-    <main>
+    <main id="main" tabindex="-1">
     <!-- Post Hero -->
     <header class="blog-post-hero">
         <div class="breadcrumb">
@@ -137,96 +141,98 @@
                 NFDGames
             </span>
             <span class="blog-card-tag guide">Guide</span>
-            <span class="blog-card-date">February 08, 2026</span>
+            <span class="blog-card-date">February 8, 2026</span>
             <span class="read-time">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                8 min read
+                7 min read
             </span>
         </div>
     </header>
 
     <!-- Post Content -->
     <article class="blog-post-content">
-        <div class="toc"><ol><li>Myth: Bluetooth Is Fine for Transferring Files</li><li>Myth: You Need Both Devices on the Same WiFi</li><li>Myth: Wireless Transfers Aren't Secure</li><li>Myth: You Need Special Software for Every Platform Combination</li><li>Myth: Cloud Services Are the Easiest Way to Move Files</li><li>What Actually Works in Practice</li></ol></div>
+        <div class="toc"><ol><li><a href="#bluetooth">Myth: Bluetooth Is Fine for Transferring Files</a></li><li><a href="#same-wifi">Myth: You Need Both Devices on the Same Wi-Fi</a></li><li><a href="#security">Myth: Wireless Transfers Aren&#x27;t Secure</a></li><li><a href="#platforms">Myth: You Need Special Software for Every Platform Combination</a></li><li><a href="#cloud">Myth: Cloud Services Are the Easiest Way to Move Files</a></li><li><a href="#what-works">What Actually Works in Practice</a></li></ol></div>
 
-<h2>Myth: Bluetooth Is Fine for Transferring Files</h2>
+<p>Wireless file transfer means moving a file between two of your devices without a cable. It happens one of three ways: over Bluetooth, over your Wi-Fi network, or over the internet through a relay or a cloud service. Most of the confusion comes from a few old assumptions. This guide goes through them one at a time.</p>
 
-<p>Bluetooth is everywhere. Every phone has it, every laptop has it, and it sounds like the obvious way to send files wirelessly. The problem is speed.</p>
+<h2 id="bluetooth">Myth: Bluetooth Is Fine for Transferring Files</h2>
 
-<p>Bluetooth 5.0, the version in most current devices, has a theoretical maximum data rate of 2 Mbps. Real-world Bluetooth file transfers run slower than that, typically 200-300 KB/s. A 100MB photo album takes over five minutes. A 1GB video file takes more than an hour, assuming the connection doesn't drop partway through.</p>
+<p>Every phone and laptop has Bluetooth, so it looks like the obvious choice. The problem is speed.</p>
 
-<p>WiFi-based file transfer is a completely different category. On a typical home network, local WiFi transfers move data at tens or hundreds of megabytes per second. That same 1GB file finishes in seconds over WiFi instead of an hour over Bluetooth.</p>
+<p>Classic Bluetooth, the kind phones use to send files, tops out at 2 to 3 Mbps on paper. Real file transfers usually run at a few hundred kilobytes per second or less. At 250 KB/s, a 100 MB photo album takes about seven minutes and a 1 GB video takes over an hour, if the connection holds.</p>
 
-<p>Bluetooth also has range and pairing limitations. Two devices need to be paired (or at least visible to each other), and the practical range is about 10 meters. Move to the next room with a wall between you and the connection gets unreliable. WiFi covers your entire house and doesn't require manual device pairing.</p>
+<p>Wi-Fi is a different class. On a typical home network, a transfer between two devices runs at tens of megabytes per second. The same 1 GB file takes a minute or two.</p>
 
-<p>The one scenario where Bluetooth makes sense is when you have no WiFi at all and the file is tiny. A single photo, a contact card, a small document. For anything else, WiFi-based transfer is faster by such a wide margin that Bluetooth isn't worth considering.</p>
+<p>Range is the other limit. Bluetooth reaches roughly 10 meters indoors, and less through walls. Wi-Fi covers the whole house, because each device only needs to reach the router.</p>
 
-<h2>Myth: You Need Both Devices on the Same WiFi</h2>
+<p>Bluetooth still has a place: no Wi-Fi at all, and a small file like a photo or a contact card. OpenDrop follows the same logic. With Pro, two phones signed in to the same account can send files over Bluetooth Low Energy when there is no Wi-Fi or internet. Computers always connect over Wi-Fi or the internet.</p>
 
-<p>This is the most common misconception I encounter. People assume that wireless file transfer only works when both devices are on the same WiFi network. Some tools reinforce this assumption because they genuinely do require it. AirDrop needs proximity. Many LAN-only tools need the same network. So the belief persists.</p>
+<h2 id="same-wifi">Myth: You Need Both Devices on the Same Wi-Fi</h2>
 
-<p>Same-network transfers are faster, yes. When both devices share a WiFi network, data travels directly between them through the router. It never leaves your house. An app like <a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> uses mDNS (multicast DNS) to automatically discover other devices on the network, so you don't even need to type in an IP address. The desktop server runs on port 8000, the mDNS service type is <code>_opendrop._tcp.local.</code>, and other devices find it within seconds.</p>
+<p>Many people assume wireless transfer only works when both devices share a Wi-Fi network. Some tools do require it. LocalSend works on the same network only, and AirDrop and Quick Share are built for devices that are physically close to each other.</p>
 
-<p>But same-network isn't required for wireless transfer. Plenty of tools work across different networks, including across the internet. OpenDrop, for instance, routes through its own relay so your phone on cellular can connect to your home PC on WiFi. The transfer goes phone → internet → OpenDrop relay → your PC, end-to-end encrypted the whole way. Slower than LAN, but it works from anywhere.</p>
+<p>Same network is the fast path. Data goes from one device to the router to the other device and never leaves your house. With <a href="/OpenDrop/">OpenDrop</a>, you pair your phone and computer with a QR code. After that, your phone finds the computer on your Wi-Fi with <a href="/blog/posts/mdns-auto-discovery-explained.html">mDNS</a>, so you never type an IP address, and files stream directly at full speed, even on Free.</p>
 
-<p>I test this regularly: my phone on cellular in Greenville, SC connecting to my desktop at home. The relay takes a few seconds to establish, and then transfers work the same as they would locally, just at remote speeds (the free Oracle Cloud relay is slower; Pro's Fly.io relay is faster).</p>
+<p>Same network is not a requirement, though. A tool with a relay or a peer-to-peer link works across networks: your phone on cellular, your PC on home Wi-Fi. OpenDrop picks the route for you. Free tries a direct peer-to-peer link first, then its shared relay. Pro starts on the faster Pro relay and keeps peer-to-peer as a backup. There is nothing extra to install and no port forwarding.</p>
 
-<p>The distinction matters because "same WiFi" isn't always possible. Your phone on LTE, your laptop on office WiFi, your PC on home internet. Requiring same-network access makes a file transfer tool useless in half the situations where you'd actually want one.</p>
+<p>Remote transfers are slower than local ones. On Free they are speed-limited, move in resumable 5 MB pieces, and share a weekly fair-use allowance on the free relay. There is no file size cap. Pro streams the whole file on the faster relay with no weekly limit. Transfers on the same Wi-Fi are never limited on either plan.</p>
 
-<h2>Myth: Wireless Transfers Aren't Secure</h2>
+<p>This matters because the same Wi-Fi often isn&#x27;t an option: phone on LTE, laptop on office Wi-Fi, desktop at home. A tool that only works on one network fails in exactly those cases. <a href="/blog/posts/send-large-files-phone-to-pc-free.html">Sending large files between phone and PC</a> covers the remote routes in more detail.</p>
 
-<p>The fear is understandable. "Sending files over WiFi" sounds like broadcasting your data for anyone to intercept. But the reality depends entirely on what's between the two devices.</p>
+<h2 id="security">Myth: Wireless Transfers Aren&#x27;t Secure</h2>
 
-<p>On a local network, your file transfer stays inside your router. The data doesn't touch the internet. If someone wanted to intercept it, they'd need to be on your WiFi network already. For home networks, that's your family and your devices. OpenDrop still applies end-to-end encryption on LAN — ChaCha20-Poly1305 (RFC 8439 IETF AEAD) is applied to the file body before it leaves the sending device — so even a shared-WiFi observer or a family member on the same network sees only ciphertext, not file contents. The carrier on LAN is plain HTTP (not HTTPS), because the AEAD layer already makes the bytes unreadable; adding self-signed TLS would not strengthen the guarantee.</p>
+<p>&quot;Sending files over Wi-Fi&quot; sounds like broadcasting them. Whether that is a real risk depends on what sits between the two devices and whether the tool encrypts.</p>
 
-<p>Remote transfers over the internet apply the same AEAD layer plus TLS underneath as defense in depth. OpenDrop routes through its own relay over TLS — an Oracle Cloud relay on the free tier, a faster Fly.io relay (with automatic Oracle failover) on Pro. In both cases the relay infrastructure sees only ciphertext — the file contents were already encrypted before they left your device.</p>
+<p>On your home network, a local transfer stays inside your router. To intercept it, someone would already need to be on your Wi-Fi. OpenDrop encrypts anyway. File contents are encrypted with ChaCha20-Poly1305 on your device before they leave it, with a key derived (HKDF-SHA256) from a secret your paired devices share. Encryption is mandatory on Wi-Fi, peer-to-peer, relay and Bluetooth transfers, and OpenDrop refuses to send or accept unencrypted file data.</p>
 
-<p>OpenDrop also signs every request with HMAC-SHA256 using a shared secret and a timestamp. This prevents replay attacks (where someone captures a request and sends it again) and rejects unauthorized devices at the auth layer, alongside the AEAD layer that protects the file contents themselves.</p>
+<p>The OpenDrop mobile apps also pin your computer&#x27;s certificate on your local network, so they only talk to the computer you paired with. Requests between your devices are authenticated with HMAC-SHA256 using the secret your devices share. Each signature covers the method, path, query, device ID and a timestamp, and expires after 5 minutes.</p>
 
-<div class="callout callout-tip"><div class="callout-title">Tip</div><p>On a public WiFi network (coffee shop, airport, hotel), OpenDrop's end-to-end encryption keeps file contents safe regardless of which transfer path you use — LAN or remote. A VPN is still useful if you want to hide the metadata of the transfer (which devices are talking, to which endpoints), but the file bytes themselves are always encrypted.</p></div>
+<p>Remote transfers use the same encryption. Relay servers carry file contents only in encrypted form. They can see transfer details such as file names, folder names, file sizes and device names, which they need to route transfers. If the file names themselves are sensitive, send on your own Wi-Fi, where no relay is involved.</p>
 
-<p>The tools that are actually insecure are the ones that send files through unencrypted HTTP over the open internet, or that upload your files to a third-party server where you don't control access. A direct device-to-device transfer on your home network is one of the safest ways to move files.</p>
+<div class="callout callout-tip"><div class="callout-title">Tip</div><p>On public Wi-Fi (a coffee shop, airport or hotel), OpenDrop&#x27;s encryption still protects file contents on every route. A VPN hides which servers your devices connect to from others on that network. You don&#x27;t need one to protect the file itself.</p></div>
 
-<h2>Myth: You Need Special Software for Every Platform Combination</h2>
+<p>The real risks are elsewhere: tools that send files over plain HTTP, and services that keep your files on someone else&#x27;s server where you don&#x27;t control access. LocalSend, Quick Share and AirDrop all encrypt in transit too, so any mainstream direct-transfer tool is a safe choice on a home network. <a href="/blog/posts/wireless-file-transfer-security-encryption.html">Wireless file transfer security</a> covers the details.</p>
 
-<p>iPhone to Mac? AirDrop. Android to Android? Nearby Share (or Quick Share, Google keeps renaming it). Android to Windows? Samsung's Link to Windows, maybe? iPhone to Windows? Good luck.</p>
+<h2 id="platforms">Myth: You Need Special Software for Every Platform Combination</h2>
 
-<p>The platform fragmentation is real, and each vendor pushes their own solution that only works within their walled garden. Apple made AirDrop. Google made Nearby Share. Samsung made their own thing on top of Google's thing. Microsoft has Phone Link, which does some file transfer but requires specific phone models and a Microsoft account.</p>
+<p>Each platform ships its own sharing tool, and each one stops at its own border. AirDrop works between Apple devices, and with select Android phones that support Quick Share, as long as the iPhone is set to Everyone for 10 Minutes. Quick Share works on Android and on 64-bit Windows 10 or 11 PCs. Neither one connects an iPhone to a Windows PC, and neither runs on Linux.</p>
 
-<p>None of these solutions work across all platforms. If you own an iPhone and a Windows PC (a very common combination), you have zero built-in options for fast wireless file transfer. Email attachments max out at 25MB. Cloud uploads require an internet connection and storage space. USB cables require, well, a cable and the right adapter.</p>
+<p>So if you own an iPhone and a Windows PC, a very common pair, there is no built-in tool that works like AirDrop between them. The fallbacks all have catches. Email attachments are capped at around 20 to 25 MB on most services. Cloud uploads need an internet connection and storage space. USB needs the right cable, and often an adapter.</p>
 
-<p>Cross-platform file transfer tools exist specifically to solve this problem. OpenDrop runs on Windows, macOS, Linux, iOS, and Android. One app, every combination. iPhone to Windows, Android to Mac, Linux to iPad. The transfer protocol doesn't care what OS is on either end because it's standard HTTP. The desktop apps include both a GUI and a command-line interface, and the Windows build is on the Microsoft Store. The mobile apps are built with Flutter and available on the App Store and Google Play.</p>
+<p>Cross-platform apps fill that gap. LocalSend runs on Windows, macOS, Linux, iOS and Android, on the same network. OpenDrop runs on Windows, Linux, iPhone, iPad and Android, with macOS coming soon. Phone to computer is free and needs no account. Phone to phone and computer to computer come with OpenDrop Pro. See <a href="/blog/posts/share-files-iphone-android.html">sharing files between iPhone and Android</a> and <a href="/blog/posts/transfer-photos-iphone-to-windows-pc.html">moving iPhone photos to a Windows PC</a> for those specific pairs.</p>
 
-<p>You install it once on each device and every platform combination just works. No per-vendor solutions, no OS-specific setup steps, no wondering whether your particular phone model is supported.</p>
+<p>Setup is the same on every platform: install the app on your phone and your computer, scan the QR code the computer shows, and send in either direction. You need iOS 16 or later, Android 7.0 or later, 64-bit Windows 10 version 1809 or later, or Linux on x86_64 or ARM64 with glibc 2.35 or newer. The Windows build is also on the Microsoft Store, and the desktop app has a <a href="/blog/posts/opendrop-cli-automated-file-transfers.html">command-line interface</a> if you want to script transfers.</p>
 
-<h2>Myth: Cloud Services Are the Easiest Way to Move Files</h2>
+<h2 id="cloud">Myth: Cloud Services Are the Easiest Way to Move Files</h2>
 
-<p>Google Drive, iCloud, Dropbox, OneDrive. Upload from one device, download on another. It works, and for many people it's the default approach because they already have accounts on these services.</p>
+<p>Google Drive, iCloud, Dropbox and OneDrive all work: upload on one device, download on the other. Most people already have an account, so it becomes the default.</p>
 
-<p>The hidden costs add up. Upload speed depends on your internet upload bandwidth, which for many home connections is much slower than download speed. A 2GB file on a 10 Mbps upload connection takes nearly 30 minutes just to upload. Then you wait for it to process on the server. Then you download it on the other device. The total time for a round-trip through the cloud can be 5-10x longer than a direct local transfer.</p>
+<p>The cost is time. The file goes up over your internet upload, which on many home connections is much slower than download. A 2 GB file on a 10 Mbps upload takes about 27 minutes just to upload. Then the other device downloads it. A direct transfer on the same Wi-Fi skips both trips.</p>
 
-<p>Storage limits are the other issue. Google gives you 15GB shared across Gmail, Drive, and Photos. iCloud gives 5GB. Dropbox free is 2GB. If you're transferring files regularly, you'll hit these limits or need to pay for more space. And the files aren't being stored on purpose. You uploaded a file just to download it on another device. Now it's sitting in your cloud storage, counting against your quota, until you remember to delete it.</p>
+<p>Storage is the second cost. Free tiers are small: 15 GB on Google, shared across Gmail, Drive and Photos; 5 GB on iCloud; 2 GB on Dropbox. A file you uploaded only to move it sits in your storage, counting against the quota, until you delete it.</p>
 
-<p>Privacy is a third consideration. When you upload a file to Google Drive, Google can access that file. Their terms of service grant them the right to scan content for various purposes. For personal photos and work documents, many people aren't comfortable with that tradeoff. Direct device-to-device transfer keeps your files on your devices and nobody else's servers.</p>
+<p>Privacy is the third. A cloud upload leaves a copy on the provider&#x27;s servers, under its terms. Most consumer cloud storage is not end-to-end encrypted by default, so the provider can read what you store. A direct transfer keeps the file on your own devices.</p>
 
-<p>Cloud services are great for what they're designed for: backing up files, sharing documents with multiple people, accessing files from any device over time. For the specific task of moving a file from device A to device B right now, they're the slow, complicated option.</p>
+<p>Cloud storage is the right tool for backups, for sharing with other people, and for reaching files from anywhere over time. For moving a file from your phone to your computer right now, it is the slow route. <a href="/blog/posts/cloud-file-sharing-drawbacks.html">Why cloud file sharing isn&#x27;t always the best option</a> goes further.</p>
 
-<h2>What Actually Works in Practice</h2>
+<h2 id="what-works">What Actually Works in Practice</h2>
 
-<p>After testing dozens of file transfer methods across my devices (iPhone 15, M5 MacBook Pro, Windows 11 desktop, Redbeat D5 Android phone, ParrotOS laptop), a few things are clear.</p>
+<p>Pick the method by situation:</p>
 
-<p>For same-network transfers, a direct WiFi-based tool is fastest by a wide margin. No upload, no download, no cloud. The file goes straight from one device to the other. <a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> handles discovery automatically via mDNS, so you don't need to configure IP addresses or ports. Install on both devices, open the app, and start sending.</p>
+<ul>
+<li><strong>Same Wi-Fi:</strong> use a direct Wi-Fi app. No upload, no download, no cloud. With <a href="/OpenDrop/">OpenDrop</a>, pair with a QR code and your phone finds your computer on the same Wi-Fi, with no IP addresses or ports to set up. It runs at full speed on Free.</li>
+<li><strong>Different networks:</strong> use an app with a relay or a peer-to-peer link. OpenDrop does this on both plans with no file size cap. Free is speed-limited and has a weekly allowance. Pro uses a faster relay with no weekly limit.</li>
+<li><strong>No Wi-Fi at all:</strong> Bluetooth works for small files. With OpenDrop Pro, two phones on the same account can use Bluetooth Low Energy.</li>
+<li><strong>Tiny one-off files:</strong> for a few megabytes, anything works. Email, a messaging app, Bluetooth. Use whatever is already open.</li>
+<li><strong>Sharing with other people, or keeping a backup:</strong> use cloud storage. That is what it is for.</li>
+</ul>
 
-<p>For different-network transfers, you need a tool that supports a relay. OpenDrop routes through its own end-to-end-encrypted relay with no per-transfer size cap: the free tier runs on our Oracle Cloud relay, and Pro adds a faster Fly.io relay with automatic Oracle failover. Either way, having the option to transfer files without being on the same network makes the tool useful in far more situations.</p>
-
-<p>For tiny one-off files (under 5MB), the method barely matters. Email, messaging apps, Bluetooth. Speed differences are negligible at that size. Pick whatever's convenient.</p>
-
-<p>For everything else, WiFi-based direct transfer is the answer. Faster than Bluetooth by orders of magnitude. More private than cloud uploads. Works across platforms if you pick the right tool. The myths persist because the technology has changed faster than people's habits. WiFi file transfer in 2026 is reliable, fast, and doesn't require the technical knowledge it once did. You install an app and send files. That's it.</p>
+<p>In most cases, a direct Wi-Fi transfer is faster than Bluetooth, more private than a cloud upload, and works across platforms with the right app.</p>
 
         <!-- CTA -->
         <div class="blog-cta">
             <h3>Skip the Myths, Start Transferring</h3>
-            <p>OpenDrop does WiFi file transfer across every platform. Same network or different networks. No cloud uploads, no Bluetooth crawl, no platform restrictions.</p>
+            <p>OpenDrop sends files over Wi-Fi or the internet on Windows, Linux, iPhone, iPad and Android. Phone to computer is free, with no account. No cloud uploads, no Bluetooth crawl.</p>
             <a href="/OpenDrop/" class="btn btn-primary">Download OpenDrop Free</a>
         </div>
     </article>
@@ -236,46 +242,79 @@
         <h3>Related Articles</h3>
         <div class="related-grid">
             <a href="/blog/posts/wireless-file-transfer-security-encryption.html" class="related-card">
-    <h4>Is Wireless File Transfer Secure? Encryption Explained</h4>
-    <p>Understand how encryption keeps your wireless file transfers secure, including TLS 1.3 and end-to-en</p>
+    <h4>Wireless File Transfer Security: Encryption Explained</h4>
+    <p>Four real security problems with wireless file transfers.</p>
 </a>
 <a href="/blog/posts/cloud-file-sharing-drawbacks.html" class="related-card">
     <h4>Why Cloud File Sharing Isn&#x27;t Always the Best Option</h4>
-    <p>The limitations of cloud-based file sharing and when local or direct transfer is the better choice.</p>
+    <p>Cloud storage has real limitations for file sharing.</p>
 </a>
         </div>
     </section>
     </main>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-brand">
+    <div class="seam" aria-hidden="true"></div>
+    <footer class="site-footer">
+        <div class="wrap site-footer__grid">
+            <div class="site-footer__brand">
                 <a href="/" class="logo">
                     <picture>
                         <source srcset="/NFDGamesLogoCircleTransparent.webp" type="image/webp">
-                        <img src="/NFDGamesLogoCircleTransparent.png" alt="NFDGames Icon" class="logo-icon" width="36" height="36" loading="lazy">
+                        <img src="/NFDGamesLogoCircleTransparent.png" alt="" class="logo-icon" width="36" height="36" loading="lazy">
                     </picture>
                     NFDGames
                 </a>
-                <p>Indie studio building software utilities and mobile games.</p>
+                <p>Independent studio making OpenDrop and Gunslinger.</p>
             </div>
-            <div class="footer-links">
-                <div class="footer-col">
-                    <h4>Products</h4>
-                    <a href="/OpenDrop/">OpenDrop</a>
-                    <a href="/OpenDrop/support.html">Support</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Resources</h4>
-                    <a href="/blog/">Blog</a>
-                    <a href="/OpenDrop/PrivacyPolicy.html">Privacy Policy</a>
-                    <a href="/OpenDrop/TermsOfService.html">Terms of Service</a>
-                </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">OpenDrop</h2>
+                <ul>
+                    <li><a href="/OpenDrop/">Overview</a></li>
+                    <li><a href="/OpenDrop/#download">Download</a></li>
+                    <li><a href="/OpenDrop/#compare">Free vs Pro</a></li>
+                    <li><a href="/OpenDrop/changelog.html">What's new in 1.0</a></li>
+                    <li><a href="/OpenDrop/support.html">Support</a></li>
+                    <li><a href="/OpenDrop/status.html">System status</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Guides</h2>
+                <ul>
+                    <li><a href="/blog/posts/best-airdrop-alternatives-windows-2026.html">AirDrop alternatives</a></li>
+                    <li><a href="/blog/posts/share-files-iphone-android.html">iPhone to Android</a></li>
+                    <li><a href="/blog/posts/transfer-files-android-to-pc-without-usb.html">Android to PC, no USB</a></li>
+                    <li><a href="/blog/posts/transfer-photos-iphone-to-windows-pc.html">iPhone photos to PC</a></li>
+                    <li><a href="/blog/posts/transfer-files-windows-to-linux.html">Windows to Linux</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Studio</h2>
+                <ul>
+                    <li><a href="/">NFDGames home</a></li>
+                    <li><a href="/#gunslinger">Gunslinger</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/OpenDrop/press.html">Press kit</a></li>
+                    <li><a href="https://play.google.com/store/apps/dev?id=6331541447390891189&amp;hl=en_US" target="_blank" rel="noopener">Apps on Google Play</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Legal and security</h2>
+                <ul>
+                    <li><a href="/OpenDrop/PrivacyPolicy.html">Privacy Policy</a></li>
+                    <li><a href="/OpenDrop/TermsOfService.html">Terms of Service</a></li>
+                    <li><a href="/OpenDrop/security.html">Security and disclosure</a></li>
+                    <li><a href="/OpenDrop/accessibility.html">Accessibility</a></li>
+                </ul>
             </div>
         </div>
-        <div class="footer-bottom">
+        <div class="wrap site-footer__bottom">
             <p>&copy; 2026 NFDGames. All rights reserved.</p>
+            <div class="site-footer__legal">
+                <a href="/OpenDrop/WithdrawalForm.html">EU/UK withdrawal</a>
+                <a href="/OpenDrop/third-party-notices.html">Third-party notices</a>
+                <a href="/OpenDrop/docs/export-compliance/">Export compliance</a>
+                <a href="mailto:support@nfdgames.com">support@nfdgames.com</a>
+            </div>
         </div>
     </footer>
 
@@ -293,7 +332,7 @@
         appId: "1:573883707762:web:e68643cce07c2cee3eadeb",
         measurementId: "G-ENWJJ78E3Q"
       });
-      // Gated on user consent — see /scripts/opendrop-cookie-banner.js
+      // Gated on user consent, see /scripts/opendrop-cookie-banner.js
       if (window.OpenDropConsent) { window.OpenDropConsent.onConsent(function () { getAnalytics(app); }); }
     </script>
 </body>

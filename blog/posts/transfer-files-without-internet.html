@@ -58,7 +58,7 @@
             }
           },
           "datePublished": "2026-01-31",
-          "dateModified": "2026-01-31",
+          "dateModified": "2026-10-10",
           "mainEntityOfPage": "https://www.nfdgames.com/blog/posts/transfer-files-without-internet.html",
           "keywords": ["offline file transfer", "no internet file sharing", "local file transfer", "wifi direct"]
         },
@@ -73,7 +73,7 @@
         ,
         {
           "@type": "FAQPage",
-          "mainEntity": [{"@type":"Question","name":"Can I transfer files between devices without any internet connection?","acceptedAnswer":{"@type":"Answer","text":"Yes. USB cables, Bluetooth, local WiFi (including phone hotspots without cellular data), and physical media like flash drives all work without internet. The files transfer directly between devices over whatever local connection is available."}},{"@type":"Question","name":"Does OpenDrop work without internet?","acceptedAnswer":{"@type":"Answer","text":"Yes, for LAN transfers. OpenDrop uses your local WiFi network to transfer files directly between devices. No internet needed. You can even create a WiFi network with a phone hotspot (no cellular data required) and transfer over that. Remote transfers across different networks do require internet."}},{"@type":"Question","name":"What's the fastest way to transfer files offline?","acceptedAnswer":{"@type":"Answer","text":"For raw speed, a USB 3.0 cable or portable SSD is fastest, reaching hundreds of megabytes per second. For wireless convenience, WiFi LAN transfer is the best balance. Bluetooth is the slowest option at around 200-300 KB/s but requires no infrastructure."}},{"@type":"Question","name":"Can I use a phone hotspot for file transfer without using cellular data?","acceptedAnswer":{"@type":"Answer","text":"Yes. Turning on your phone's hotspot creates a local WiFi network even without cellular data. Devices connected to this hotspot can communicate with each other over the local network. File transfer apps that use LAN mode will work over this connection."}},{"@type":"Question","name":"Why is Bluetooth file transfer so slow?","acceptedAnswer":{"@type":"Answer","text":"Bluetooth 5.0 classic mode (used for file transfer) has a maximum data rate of 2 Mbps, with real-world speeds around 200-300 KB/s. This is a protocol limitation. WiFi operates at much higher data rates, which is why WiFi-based file transfer is orders of magnitude faster."}}]
+          "mainEntity": [{"@type":"Question","name":"Can I transfer files between devices without any internet connection?","acceptedAnswer":{"@type":"Answer","text":"Yes. USB cables, Bluetooth, local Wi-Fi (including phone hotspots without cellular data), and physical media like flash drives all work without internet. The files transfer directly between devices over whatever local connection is available."}},{"@type":"Question","name":"Does OpenDrop work without internet?","acceptedAnswer":{"@type":"Answer","text":"Yes, on a local network. After you pair your phone and computer with a QR code, OpenDrop sends files directly between them over Wi-Fi without going through the internet, and a phone hotspot works as that network. With OpenDrop Pro, two phones signed in to the same account can also send files over Bluetooth Low Energy with no network at all. Transfers between devices on different networks do need internet."}},{"@type":"Question","name":"What's the fastest way to transfer files offline?","acceptedAnswer":{"@type":"Answer","text":"For raw speed, a USB 3 cable or a portable SSD is fastest, reaching hundreds of megabytes per second. For wireless convenience, Wi-Fi LAN transfer is the best balance. Bluetooth is the slowest option, a few hundred KB/s at most, but needs no network."}},{"@type":"Question","name":"Can I use a phone hotspot for file transfer without using cellular data?","acceptedAnswer":{"@type":"Answer","text":"Yes. A phone hotspot creates a local Wi-Fi network, and traffic between the phone and devices connected to it stays local and does not use cellular data. Android lets you run a hotspot with mobile data off. On iPhone, Personal Hotspot generally needs cellular data switched on, but local transfers still don't use it. File transfer apps that work over a LAN will work over this connection."}},{"@type":"Question","name":"Why is Bluetooth file transfer so slow?","acceptedAnswer":{"@type":"Answer","text":"Classic Bluetooth, the mode used for file transfer, peaks at 3 Mbps with Enhanced Data Rate, about 2.1 Mbps of usable throughput or roughly 260 KB/s, and real transfers are usually slower. That is a protocol limit. Wi-Fi runs at hundreds of megabits per second, which is why Wi-Fi file transfer is around two orders of magnitude faster."}}]
         }
       ]
     }
@@ -89,7 +89,7 @@
     <link rel="stylesheet" href="/styles/common.css">
     <link rel="stylesheet" href="/styles/blog.css">
 
-    <!-- Cookie consent / Google Consent Mode v2 preboot — must precede any Google tag -->
+    <!-- Cookie consent / Google Consent Mode v2 preboot: must precede any Google tag -->
     <script src="/scripts/opendrop-cookie-banner.js"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241"></script>
@@ -100,27 +100,31 @@
       gtag('config', 'AW-17319823241');
     </script>
 </head>
-<body>
+<body class="page-blog-post">
+    <a class="skip-link" href="#main">Skip to content</a>
     <div class="bg-gradient"></div>
     <div class="noise"></div>
 
-    <!-- Navigation -->
-    <nav>
+    <nav class="site-nav" aria-label="Main">
         <a href="/" class="logo">
             <picture>
                 <source srcset="/NFDGamesLogoCircleTransparent.webp" type="image/webp">
-                <img src="/NFDGamesLogoCircleTransparent.png" alt="NFDGames Icon" class="logo-icon" width="36" height="36" loading="lazy">
+                <img src="/NFDGamesLogoCircleTransparent.png" alt="" class="logo-icon" width="36" height="36">
             </picture>
-            NFDGames
+            <span class="logo__word">NFDGames</span>
         </a>
-        <div class="nav-links">
+        <div class="nav-links" id="navLinks">
             <a href="/#projects">Projects</a>
-            <a href="/blog/">Blog</a>
-            <a href="/OpenDrop/" class="nav-cta">Get OpenDrop</a>
+            <a href="/blog/" aria-current="page">Blog</a>
+            <a href="/#about">About</a>
+        </div>
+        <div class="nav-actions">
+            <a href="/OpenDrop/" class="btn-cta btn-cta--sm">Get OpenDrop</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-controls="navLinks" aria-expanded="false" aria-label="Open menu"><span></span><span></span><span></span></button>
         </div>
     </nav>
 
-    <main>
+    <main id="main" tabindex="-1">
     <!-- Post Hero -->
     <header class="blog-post-hero">
         <div class="breadcrumb">
@@ -136,7 +140,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
                 NFDGames
             </span>
-            <span class="blog-card-tag tips">Tips & Tricks</span>
+            <span class="blog-card-tag tips">Tips</span>
             <span class="blog-card-date">January 31, 2026</span>
             <span class="read-time">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
@@ -147,88 +151,94 @@
 
     <!-- Post Content -->
     <article class="blog-post-content">
-        <div class="toc"><ol><li>USB: The Protocol Stack Nobody Thinks About</li><li>Local WiFi Without a Router</li><li>HTTP Over a LAN (No Internet Required)</li><li>Bluetooth: The Slow Option That's Always There</li><li>Physical Media: SD Cards, Flash Drives, and External SSDs</li><li>Choosing Based on What You're Actually Transferring</li></ol></div>
+        <div class="toc"><ol><li>USB: The Protocol Stack Nobody Thinks About</li><li>Local Wi-Fi Without a Router</li><li>HTTP Over a LAN (No Internet Required)</li><li>Bluetooth: The Slow Option That Needs No Network</li><li>Physical Media: SD Cards, Flash Drives, and External SSDs</li><li>Choosing Based on What You're Actually Transferring</li></ol></div>
 
 <h2>USB: The Protocol Stack Nobody Thinks About</h2>
 
-<p>Plugging a USB cable between a phone and a computer is the most common offline transfer method. Most people think of it as simple. It's not, technically, but the complexity is hidden well.</p>
+<p>A USB cable is the most common offline option, and it does more behind the scenes than most people expect.</p>
 
-<p>When you connect an iPhone to a Windows PC via USB, the phone presents itself as a PTP (Picture Transfer Protocol) or MTP (Media Transfer Protocol) device. PTP is the older standard, designed for digital cameras. MTP is Microsoft's extension that handles a wider range of file types. iPhones use a variant of PTP that only exposes the DCIM photo folders, which is why you can browse photos over USB but not arbitrary files.</p>
+<p>A phone plugged into a computer does not show up as a plain disk. It presents itself as a PTP (Picture Transfer Protocol) or MTP (Media Transfer Protocol) device. PTP was designed for digital cameras. MTP is Microsoft's extension of it and handles any file type. Both let the phone keep control of its own storage while the computer browses it.</p>
 
-<p>Android phones typically use MTP, which exposes more of the filesystem. Connect an Android phone via USB, tap the "Charging this device via USB" notification, switch to "File Transfer" mode, and the PC mounts the phone's storage as a browsable drive. You can copy files in either direction.</p>
+<p>An iPhone on Windows exposes only its camera roll, the DCIM folder. You can copy photos and videos off it and nothing else. Copying files onto the iPhone, or reaching files that belong to apps, needs the Apple Devices app or iTunes.</p>
 
-<p>USB transfer speeds depend on the protocol version. USB 2.0 (most Lightning cables) maxes out at 480 Mbps theoretical, with real-world throughput around 25-35 MB/s. USB 3.0 (some USB-C connections) jumps to 5 Gbps theoretical, delivering 200-400 MB/s in practice. The bottleneck is usually the phone's flash storage rather than the cable.</p>
+<p>Android uses MTP and exposes most of its shared storage. Plug the phone in, tap the USB notification, choose File transfer, and it shows up in File Explorer. You can copy in both directions. Most Linux file managers speak MTP too.</p>
 
-<p>The advantage of USB: it works everywhere, with no network of any kind. No WiFi, no Bluetooth, no internet. The disadvantage: you need a cable, you need the right cable (Lightning vs USB-C, USB-A vs USB-C on the PC end), and on iPhones you're limited to photos unless you use iTunes or a third-party tool.</p>
+<p>Speed depends on the USB version the phone supports, not the shape of the connector. USB 2.0 is 480 Mbps on paper, roughly 30 to 40 MB/s in practice. USB 3 starts at 5 Gbps. Lightning iPhones run at USB 2.0 speed, and plenty of phones with a USB-C port do too, so check the spec sheet before you count on a fast cable. MTP also adds overhead per file, so a folder of thousands of small photos copies slower than one large video of the same total size.</p>
 
-<h2>Local WiFi Without a Router</h2>
+<p>The upside of USB is that it needs no network of any kind. The downsides: you need the right cable for both ends, and on an iPhone you only get photos unless you install Apple's software.</p>
 
-<p>Most people associate WiFi with an internet connection. They're separate things. WiFi is a local radio protocol. Internet is a connection to external networks. You can have WiFi without internet, and that WiFi can transfer files just fine.</p>
+<h2>Local Wi-Fi Without a Router</h2>
 
-<p>Two approaches work here. The first is WiFi Direct, a standard that lets two devices create an ad-hoc WiFi connection without a router. One device acts as a software access point, the other connects to it. Android supports WiFi Direct natively. Windows supports it through various apps. iOS support is limited (Apple prefers you use AirDrop, which has its own WiFi Direct-like mechanism under the hood).</p>
+<p>Wi-Fi and internet access are separate things. Wi-Fi is a local radio link. The internet is whatever your router connects to upstream. Two devices on the same Wi-Fi network can exchange data when that upstream link is down or was never there.</p>
 
-<p>The second approach is a phone hotspot. Turn on your phone's mobile hotspot (without cellular data, just the local WiFi network it creates). Connect your PC to that hotspot. Both devices are now on the same local network. No internet flows through it, but local traffic works perfectly. Any LAN-based file transfer tool will function over this connection.</p>
+<p>There are two ways to get a shared network without a router.</p>
 
-<p><a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> works over a phone hotspot because it uses standard HTTP over the local network. The desktop server starts on port 8000, mDNS broadcasts the service type <code>_opendrop._tcp.local.</code>, and the other device discovers it. The transfer stays entirely local. I've used this in hotel rooms where the WiFi was too slow or unreliable: turn on my iPhone's hotspot, connect my laptop, and transfer files at local WiFi speeds without touching the hotel network.</p>
+<p><strong>Wi-Fi Direct.</strong> Two devices form a direct Wi-Fi link: one acts as a small access point and the other joins it. Android supports it natively, and Windows exposes it to apps. iPhones don't support standard Wi-Fi Direct. AirDrop uses Apple's own peer-to-peer Wi-Fi link instead.</p>
 
-<p>Hotspot-based transfers are faster than you'd expect. Even without cellular data flowing, a phone hotspot creates a WiFi network capable of moving data at the phone's WiFi radio speed. For a modern phone, that's WiFi 5 or WiFi 6 speeds between devices connected to it.</p>
+<p><strong>A phone hotspot.</strong> Turn on the phone's hotspot and connect the computer to it. Both devices are now on the same local network, and traffic between them never leaves the room. Android lets you run a hotspot with mobile data turned off. On iPhone, Personal Hotspot generally needs cellular data switched on and a plan that includes hotspot use, but traffic between the phone and the computer is local and does not use your data. The computer may still send its own background traffic, such as updates, over the hotspot, so watch that if your plan is small.</p>
+
+<p>Speed on a hotspot network is set by the phone's Wi-Fi radio, not its cellular signal. A weak cellular signal doesn't slow down a local transfer.</p>
+
+<p><a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> works on a hotspot network because its Wi-Fi mode only needs the phone and the computer on the same local network. The desktop app runs a local server (port 8000 by default) and announces itself over mDNS as <code>_opendrop._tcp.local.</code>. A phone that has paired with it by QR code finds it and streams files straight to it at full speed, with no chunking, on Free and Pro. Nothing goes through the internet.</p>
 
 <h2>HTTP Over a LAN (No Internet Required)</h2>
 
-<p>This deserves its own section because it's the most misunderstood option. HTTP is a protocol, not an internet service. You can run an HTTP server on a device and have another device on the same network make HTTP requests to it. No internet connection involved. The data travels from device to device through whatever network they share, whether that's a home router, an office switch, or a phone hotspot.</p>
+<p>This is the most misunderstood option. HTTP is a protocol, not an internet service. One device can run an HTTP server and another device on the same network can talk to it. The data only travels as far as the router, switch or hotspot the two share.</p>
 
-<p>The mechanism is straightforward. One device runs a web server bound to its local IP address and a port (OpenDrop uses port 8000). Another device sends HTTP requests to that IP and port. The server responds with data. For file transfer, the client sends a POST request with the file in the request body, and the server writes it to disk.</p>
+<p>The mechanism is simple. One device runs a web server on its local IP address and a port. The other sends requests to that address. To send a file, the client makes a POST request with the file as the body, and the server writes it to disk. The body is streamed, so a large file never has to fit in memory. Most LAN file sharing apps work this way, because every platform has solid HTTP libraries.</p>
 
-<p>Device discovery is the challenge in an offline scenario. On a normal network, mDNS handles this: the server broadcasts its presence, clients listen for the broadcast. mDNS uses multicast UDP on port 5353, which works on most home and office networks but can be blocked on restrictive networks.</p>
+<p>The hard part is discovery: how does the phone learn the computer's address? On most home and office networks, mDNS handles it. The server announces itself with multicast on UDP port 5353 and clients listen. Some networks block multicast. Guest Wi-Fi often goes further and blocks all traffic between devices (client isolation), and then no LAN method works. A phone hotspot gets around that.</p>
 
-<p>When mDNS doesn't work, you need another way to tell the client where the server is. OpenDrop solves this with QR code pairing. The server generates a QR code containing its local IP address and port. The client scans the code and connects directly. No discovery protocol needed, no internet needed, just a camera pointed at a screen.</p>
+<p>OpenDrop handles the blocked-multicast case with its QR code. The code holds a private pairing key and the addresses your phone needs to reach your computer, plus a certificate fingerprint so the phone can check it is really your PC. The phone scans it and connects directly, with no discovery step.</p>
 
-<div class="callout callout-tip"><div class="callout-title">Tip</div><p>If you're on a network that blocks mDNS (multicast on port 5353 UDP), use QR code pairing to connect directly. The QR code encodes the server's IP and port, bypassing the discovery step entirely.</p></div>
+<div class="callout callout-tip"><div class="callout-title">Tip</div><p>If your network blocks mDNS (multicast on UDP port 5353), the QR code still connects you, because it carries the addresses your phone needs. Don't share screenshots of it: anyone who scans it can pair with your PC.</p></div>
 
-<p>HTTP-based LAN transfer is what most modern file sharing apps use under the hood. The protocol is well-understood, every platform has HTTP libraries, and it handles large files natively through streaming request bodies. Adding authentication (OpenDrop uses HMAC-SHA256 with a shared secret) prevents unauthorized devices from accessing the server, and OpenDrop end-to-end encrypts the file contents with ChaCha20-Poly1305 on top, so even on a local network the bytes on the wire are ciphertext.</p>
+<p>A local network is not private by default, so OpenDrop adds two layers on top of HTTP. Requests between your devices are signed with HMAC-SHA256 using the secret your devices share when you pair them. File contents are encrypted with ChaCha20-Poly1305 on the sending device before they leave it, so other devices on the same Wi-Fi can't read the contents off the wire.</p>
 
-<h2>Bluetooth: The Slow Option That's Always There</h2>
+<h2>Bluetooth: The Slow Option That Needs No Network</h2>
 
-<p>Bluetooth file transfer uses the OBEX (Object Exchange) protocol, originally designed for exchanging business cards between PDAs in the late 1990s. The protocol still works, and it's available on virtually every phone, laptop, and tablet manufactured in the last 15 years.</p>
+<p>Classic Bluetooth file transfer uses OBEX (Object Exchange), a protocol that started on infrared links in the 1990s for swapping things like contact cards. Most Android phones, Windows PCs and Linux desktops still support it. iPhones do not: iOS has no Bluetooth file transfer, and Apple routes sharing through AirDrop.</p>
 
-<p>The speed hasn't kept up. Bluetooth 5.0 has a theoretical maximum data rate of 2 Mbps for classic Bluetooth (the mode used for file transfer). Real-world throughput is typically 200-300 KB/s. Bluetooth Low Energy (BLE) is faster for small data packets but isn't designed for bulk file transfer.</p>
+<p>Speed is the catch. Classic Bluetooth with Enhanced Data Rate peaks at 3 Mbps on paper and about 2.1 Mbps of usable throughput, roughly 260 KB/s. Real transfers usually land below that. Bluetooth 5 doesn't change this for file transfer: its 2 Mbps mode belongs to Bluetooth Low Energy, which is built for small, low-power messages.</p>
 
-<p>To put that in perspective: a 1GB file takes about 55 minutes at 300 KB/s. The same file over a WiFi LAN transfer takes seconds. Bluetooth file transfer is two orders of magnitude slower than WiFi for bulk data.</p>
+<p>At 260 KB/s, a 1 GB file takes more than an hour. Wi-Fi is around two orders of magnitude faster for bulk data.</p>
 
-<p>Bluetooth also has pairing friction. Both devices need to be in discoverable mode. You select the target device from a list. Sometimes you confirm a pairing code. On some Android versions, you need to explicitly enable Bluetooth file sharing in settings. iOS doesn't support standard Bluetooth file transfer at all (Apple routes everything through AirDrop instead).</p>
+<p>Pairing adds friction. Both devices need Bluetooth on and visible, you pick the target from a list, and you may have to confirm a code. On Windows you also have to open the Bluetooth file transfer window and choose Receive files before the other side sends.</p>
 
-<p>Where Bluetooth makes sense: transferring a single contact card, a small document, or a photo when you have absolutely nothing else available. No WiFi, no cable, no USB drive. Just two devices with Bluetooth radios. The range is about 10 meters, the speed is glacial, but it works without any infrastructure whatsoever.</p>
+<p>Bluetooth makes sense for a contact, a small document or a single photo when there is nothing else: no Wi-Fi, no cable, no drive. Range is about 10 meters.</p>
+
+<p>OpenDrop uses Bluetooth Low Energy in a narrower way. With Pro, two phones signed in to the same OpenDrop account can send files to each other over BLE when there is no Wi-Fi or internet, iPhone or Android. It's slower than Wi-Fi but needs no network, and file contents are still encrypted. Computers don't use Bluetooth in OpenDrop; they connect over Wi-Fi or the internet.</p>
 
 <h2>Physical Media: SD Cards, Flash Drives, and External SSDs</h2>
 
-<p>Sometimes the fastest network is a person walking between two computers carrying a USB drive. This is only half a joke.</p>
+<p>For a very large one-off copy, a drive carried between two machines is often the fastest link you have.</p>
 
-<p>A USB 3.0 flash drive reads and writes at 100-200 MB/s. A portable SSD over USB 3.2 can hit 1000+ MB/s. For a one-time transfer of a very large dataset (50GB, 100GB, an entire photo library), physical media can be faster than any wireless method simply because the read/write speeds are so high and there's no network overhead.</p>
+<p>A good USB 3 flash drive reads at 100 MB/s or more, though cheap drives write far slower. A portable SSD on a 10 Gbps USB port can approach 1,000 MB/s. For 50 or 100 GB, such as a whole photo library, that beats any wireless option.</p>
 
-<p>The workflow is crude but effective: copy files to the drive from device A, physically carry the drive to device B, copy files from the drive. For phones, you need an adapter (Lightning-to-USB, USB-C OTG) and an app that can access external storage. Android handles this natively through the Files app. iOS added external storage support in iOS 13 through the Files app, though it's pickier about file systems (prefers exFAT or FAT32).</p>
+<p>The workflow: copy to the drive on machine A, carry it over, copy off on machine B. Phones need an adapter (USB-C OTG, or Apple's Lightning to USB 3 Camera Adapter for older iPhones) and a file app. Most Android phones read USB drives in their Files app. iPhone and iPad have read external drives in the Files app since iOS 13. Format the drive as exFAT and it works on Windows, iPhone, most Android phones and current Linux distributions.</p>
 
-<p>SD cards serve the same role in a smaller form factor. Many laptops still have SD card slots. Phones rarely do anymore (most manufacturers dropped the microSD slot years ago), but USB-C card readers bridge the gap.</p>
+<p>SD cards do the same job in a smaller package. Many laptops still have a card slot. Most phones dropped microSD, but a USB-C card reader covers that.</p>
 
-<p>Physical media is the only method on this list that works with truly zero electronics on the receiving end during transfer. The drive holds the data independently. You can transfer files between two machines that are never powered on at the same time, which matters for some air-gapped or security-sensitive environments.</p>
+<p>Physical media is also the only method here where the two machines never need to be connected, or even switched on at the same time. That is why air-gapped and security-sensitive setups rely on it.</p>
 
 <h2>Choosing Based on What You're Actually Transferring</h2>
 
-<p>Each method has a sweet spot defined by file size, available hardware, and how often you do this.</p>
+<p>Pick by file size, the hardware you have, and how often you do it.</p>
 
-<p><strong>A few small files (under 50MB):</strong> Bluetooth works if both devices support it and you don't mind waiting. USB is faster if you have a cable handy.</p>
+<p><strong>A few small files (under 50 MB):</strong> Bluetooth works between Android phones and computers if you can wait. A cable is faster if you have one.</p>
 
-<p><strong>Medium transfers (50MB to 5GB):</strong> Local WiFi is the best balance of speed and convenience. A phone hotspot creates the network if no router is available. <a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> or similar tools handle the actual transfer over that local connection. On my test setup, I regularly move multi-gigabyte files between my iPhone 15 and my Windows desktop this way.</p>
+<p><strong>Medium transfers (50 MB to 5 GB):</strong> Local Wi-Fi is the best balance of speed and convenience. Use a phone hotspot if there's no router. <a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> or a similar tool handles the transfer over that local link.</p>
 
-<p><strong>Large transfers (5GB+):</strong> USB cable or a fast external SSD. WiFi LAN transfer works too, but raw throughput matters at this scale and wired connections are faster. If you have a USB 3.0 cable and port on both sides, that's the fastest option.</p>
+<p><strong>Large transfers (5 GB+):</strong> A USB 3 cable or a portable SSD. Wi-Fi works too, but at this size raw throughput matters. The exception: if the phone only does USB 2.0, a strong Wi-Fi 5 or Wi-Fi 6 connection can beat the cable.</p>
 
-<p><strong>Regular recurring transfers:</strong> Set up a local WiFi transfer tool permanently. OpenDrop runs on Windows, macOS, Linux, iOS, and Android. Install it on both devices, and any future transfer is a tap-and-send operation. No cables, no drives, no searching for the right adapter. Even without internet, as long as both devices are on any shared WiFi (including a phone hotspot), transfers work.</p>
+<p><strong>Regular recurring transfers:</strong> Install a local transfer tool and leave it set up. OpenDrop runs on Windows, Linux, iPhone, iPad and Android, with macOS coming soon. Free needs no account: pair your phone with your computer by scanning a QR code, then send files over whatever local network the two share, home Wi-Fi or a phone hotspot. With Pro, the phones, tablets and computers signed in to your account connect automatically, and two phones can use Bluetooth when there's no Wi-Fi.</p>
 
-<p>The internet is useful for many things, but moving files between your own devices in the same room isn't one of them. Every method here works offline, and most are faster than uploading to a cloud service and downloading on the other end.</p>
+<p>None of these methods need the internet. For devices in the same room, most of them are also faster than uploading to a cloud service and downloading again.</p>
 
         <!-- CTA -->
         <div class="blog-cta">
             <h3>Transfer Files Locally, No Internet Needed</h3>
-            <p>OpenDrop moves files over your local WiFi network without touching the internet. Works over phone hotspots, office networks, and home WiFi. No cloud, no cables.</p>
+            <p>On the same Wi-Fi, OpenDrop sends files straight between your phone and your computer without touching the internet. A phone hotspot works too. Free, with no account.</p>
             <a href="/OpenDrop/" class="btn btn-primary">Download OpenDrop Free</a>
         </div>
     </article>
@@ -238,46 +248,79 @@
         <h3>Related Articles</h3>
         <div class="related-grid">
             <a href="/blog/posts/mdns-auto-discovery-explained.html" class="related-card">
-    <h4>How mDNS Auto-Discovery Finds Devices on Your Local Network</h4>
-    <p>The protocol that lets OpenDrop find your other devices on the same Wi-Fi without manual IP configuration.</p>
+    <h4>mDNS Auto-Discovery: How Devices Find Each Other on Your Network</h4>
+    <p>How mDNS and Bonjour work to auto-discover devices on your local network.</p>
 </a>
 <a href="/blog/posts/wireless-file-transfer-beginners-guide.html" class="related-card">
-    <h4>Wireless File Transfer: A Beginner's Guide</h4>
-    <p>The fundamentals of moving files between devices over Wi-Fi, Bluetooth, and other wireless channels.</p>
+    <h4>Wireless File Transfer: Complete Beginner&#x27;s Guide</h4>
+    <p>Common myths about wireless file transfer debunked with real data.</p>
 </a>
         </div>
     </section>
     </main>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-brand">
+    <div class="seam" aria-hidden="true"></div>
+    <footer class="site-footer">
+        <div class="wrap site-footer__grid">
+            <div class="site-footer__brand">
                 <a href="/" class="logo">
                     <picture>
                         <source srcset="/NFDGamesLogoCircleTransparent.webp" type="image/webp">
-                        <img src="/NFDGamesLogoCircleTransparent.png" alt="NFDGames Icon" class="logo-icon" width="36" height="36" loading="lazy">
+                        <img src="/NFDGamesLogoCircleTransparent.png" alt="" class="logo-icon" width="36" height="36" loading="lazy">
                     </picture>
                     NFDGames
                 </a>
-                <p>Indie studio building software utilities and mobile games.</p>
+                <p>Independent studio making OpenDrop and Gunslinger.</p>
             </div>
-            <div class="footer-links">
-                <div class="footer-col">
-                    <h4>Products</h4>
-                    <a href="/OpenDrop/">OpenDrop</a>
-                    <a href="/OpenDrop/support.html">Support</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Resources</h4>
-                    <a href="/blog/">Blog</a>
-                    <a href="/OpenDrop/PrivacyPolicy.html">Privacy Policy</a>
-                    <a href="/OpenDrop/TermsOfService.html">Terms of Service</a>
-                </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">OpenDrop</h2>
+                <ul>
+                    <li><a href="/OpenDrop/">Overview</a></li>
+                    <li><a href="/OpenDrop/#download">Download</a></li>
+                    <li><a href="/OpenDrop/#compare">Free vs Pro</a></li>
+                    <li><a href="/OpenDrop/changelog.html">What's new in 1.0</a></li>
+                    <li><a href="/OpenDrop/support.html">Support</a></li>
+                    <li><a href="/OpenDrop/status.html">System status</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Guides</h2>
+                <ul>
+                    <li><a href="/blog/posts/best-airdrop-alternatives-windows-2026.html">AirDrop alternatives</a></li>
+                    <li><a href="/blog/posts/share-files-iphone-android.html">iPhone to Android</a></li>
+                    <li><a href="/blog/posts/transfer-files-android-to-pc-without-usb.html">Android to PC, no USB</a></li>
+                    <li><a href="/blog/posts/transfer-photos-iphone-to-windows-pc.html">iPhone photos to PC</a></li>
+                    <li><a href="/blog/posts/transfer-files-windows-to-linux.html">Windows to Linux</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Studio</h2>
+                <ul>
+                    <li><a href="/">NFDGames home</a></li>
+                    <li><a href="/#gunslinger">Gunslinger</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/OpenDrop/press.html">Press kit</a></li>
+                    <li><a href="https://play.google.com/store/apps/dev?id=6331541447390891189&amp;hl=en_US" target="_blank" rel="noopener">Apps on Google Play</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Legal and security</h2>
+                <ul>
+                    <li><a href="/OpenDrop/PrivacyPolicy.html">Privacy Policy</a></li>
+                    <li><a href="/OpenDrop/TermsOfService.html">Terms of Service</a></li>
+                    <li><a href="/OpenDrop/security.html">Security and disclosure</a></li>
+                    <li><a href="/OpenDrop/accessibility.html">Accessibility</a></li>
+                </ul>
             </div>
         </div>
-        <div class="footer-bottom">
+        <div class="wrap site-footer__bottom">
             <p>&copy; 2026 NFDGames. All rights reserved.</p>
+            <div class="site-footer__legal">
+                <a href="/OpenDrop/WithdrawalForm.html">EU/UK withdrawal</a>
+                <a href="/OpenDrop/third-party-notices.html">Third-party notices</a>
+                <a href="/OpenDrop/docs/export-compliance/">Export compliance</a>
+                <a href="mailto:support@nfdgames.com">support@nfdgames.com</a>
+            </div>
         </div>
     </footer>
 
@@ -295,7 +338,7 @@
         appId: "1:573883707762:web:e68643cce07c2cee3eadeb",
         measurementId: "G-ENWJJ78E3Q"
       });
-      // Gated on user consent — see /scripts/opendrop-cookie-banner.js
+      // Gated on user consent, see /scripts/opendrop-cookie-banner.js
       if (window.OpenDropConsent) { window.OpenDropConsent.onConsent(function () { getAnalytics(app); }); }
     </script>
 </body>

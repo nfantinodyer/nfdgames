@@ -9,7 +9,7 @@
     <copyright>Copyright 2026 NFDGames LLC</copyright>
     <managingEditor>support@nfdgames.com (NFDGames)</managingEditor>
     <webMaster>support@nfdgames.com (NFDGames)</webMaster>
-    <lastBuildDate>Thu, 04 Jun 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 10 Oct 2026 00:00:00 +0000</lastBuildDate>
     <generator>handwritten Python generator (scripts/gen_rss.py)</generator>
     <image>
       <url>https://www.nfdgames.com/NFDGamesLogoCircleTransparent.png</url>
@@ -22,7 +22,7 @@
       <guid isPermaLink="true">https://www.nfdgames.com/blog/posts/whats-new-in-opendrop-1-0.html</guid>
       <description>OpenDrop 1.0 ships with mandatory end-to-end encryption on every transfer path. Here&#x27;s what changed since the preview builds, what&#x27;s in the box, and what&#x27;s still on the roadmap.</description>
       <pubDate>Thu, 04 Jun 2026 00:00:00 +0000</pubDate>
-      <category>Release Notes</category>
+      <category>Release notes</category>
       <author>support@nfdgames.com (NFDGames)</author>
     </item>
     <item>
@@ -38,7 +38,7 @@
       <title>How to Transfer Files from Android to PC Without USB | NFDGames Blog</title>
       <link>https://www.nfdgames.com/blog/posts/transfer-files-android-to-pc-without-usb.html</link>
       <guid isPermaLink="true">https://www.nfdgames.com/blog/posts/transfer-files-android-to-pc-without-usb.html</guid>
-      <description>Transfer files from Android to PC wirelessly, no USB cable needed. Covers four methods with exact steps, speeds, and failure modes I&#x27;ve hit personally.</description>
+      <description>Transfer files from Android to PC wirelessly, no USB cable needed. Covers four methods with exact steps, what each needs from your network, and how to fix common failures.</description>
       <pubDate>Wed, 18 Feb 2026 00:00:00 +0000</pubDate>
       <category>Tutorial</category>
       <author>support@nfdgames.com (NFDGames)</author>
@@ -103,7 +103,7 @@
       <guid isPermaLink="true">https://www.nfdgames.com/blog/posts/transfer-files-without-internet.html</guid>
       <description>Five offline file transfer methods explained at the protocol level: USB, WiFi Direct, local HTTP servers, Bluetooth, and SD cards. What each actually does with your data.</description>
       <pubDate>Sat, 31 Jan 2026 00:00:00 +0000</pubDate>
-      <category>Tips &amp; Tricks</category>
+      <category>Tips</category>
       <author>support@nfdgames.com (NFDGames)</author>
     </item>
     <item>

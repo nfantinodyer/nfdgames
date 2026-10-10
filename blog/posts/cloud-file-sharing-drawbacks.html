@@ -58,7 +58,7 @@
             }
           },
           "datePublished": "2026-01-21",
-          "dateModified": "2026-01-21",
+          "dateModified": "2026-10-10",
           "mainEntityOfPage": "https://www.nfdgames.com/blog/posts/cloud-file-sharing-drawbacks.html",
           "keywords": ["cloud storage problems", "local vs cloud", "privacy file sharing", "file size limits cloud"]
         },
@@ -73,7 +73,7 @@
         ,
         {
           "@type": "FAQPage",
-          "mainEntity": [{"@type":"Question","name":"Is cloud file sharing slower than direct transfer on the same network?","acceptedAnswer":{"@type":"Answer","text":"Yes, usually by a large margin. Cloud sharing requires uploading the file to a remote server and then downloading it back, which is limited by your internet speeds. Direct LAN transfer skips the internet entirely, using your local network's much higher throughput. For a 2GB file, the difference can be 7+ minutes vs under 30 seconds."}},{"@type":"Question","name":"Are my files private when stored in cloud services?","acceptedAnswer":{"@type":"Answer","text":"Cloud providers encrypt files in transit and at rest, but most hold the encryption keys themselves. This means they can technically access your data, and do scan files for policy violations. Direct local transfer keeps files on your own network and devices, never touching third-party servers."}},{"@type":"Question","name":"When should I use cloud storage instead of direct transfer?","acceptedAnswer":{"@type":"Answer","text":"Cloud storage is better for sharing files with people who don't have transfer software, for persistent access across all your devices, for real-time collaboration on documents, and for off-site backup. Direct transfer is better for moving files between devices you own, especially large files."}},{"@type":"Question","name":"Can direct transfer tools work when devices are on different networks?","acceptedAnswer":{"@type":"Answer","text":"Yes. OpenDrop supports remote transfers through its own encrypted relay — the Oracle Cloud relay on the free tier and a high-speed Fly.io relay (with automatic Oracle failover) on Pro. You don't need to be on the same WiFi, though same-network transfers are faster since they skip the internet entirely."}}]
+          "mainEntity": [{"@type":"Question","name":"Is cloud file sharing slower than direct transfer on the same network?","acceptedAnswer":{"@type":"Answer","text":"Usually, yes. A cloud share uploads the file to a remote server and then downloads it again, so it is limited by your internet connection, and most of all by your upload speed. A direct transfer on the same network skips the internet and runs at local network speed."}},{"@type":"Question","name":"Are my files private when stored in cloud services?","acceptedAnswer":{"@type":"Answer","text":"Cloud providers encrypt files in transit and at rest, but for standard storage most of them hold the encryption keys, so they can technically access your data, and they scan stored files for malware and policy violations. A direct transfer on your local network keeps files on your own network and devices."}},{"@type":"Question","name":"When should I use cloud storage instead of direct transfer?","acceptedAnswer":{"@type":"Answer","text":"Cloud storage is better for sharing files with people who don't have transfer software, for persistent access across all your devices, for real-time collaboration on documents, and for off-site backup. Direct transfer is better for moving files between devices you own, especially large files."}},{"@type":"Question","name":"Can direct transfer tools work when devices are on different networks?","acceptedAnswer":{"@type":"Answer","text":"Yes. OpenDrop sends remote transfers over a direct peer-to-peer link or its own encrypted relay. Free uses a shared relay and is speed-limited with a weekly allowance. Pro uses a faster relay with no weekly limit. Neither plan has a file size cap. Transfers on the same Wi-Fi are faster because they skip the internet."}}]
         }
       ]
     }
@@ -89,7 +89,7 @@
     <link rel="stylesheet" href="/styles/common.css">
     <link rel="stylesheet" href="/styles/blog.css">
 
-    <!-- Cookie consent / Google Consent Mode v2 preboot — must precede any Google tag -->
+    <!-- Cookie consent / Google Consent Mode v2 preboot: must precede any Google tag -->
     <script src="/scripts/opendrop-cookie-banner.js"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241"></script>
@@ -100,27 +100,31 @@
       gtag('config', 'AW-17319823241');
     </script>
 </head>
-<body>
+<body class="page-blog-post">
+    <a class="skip-link" href="#main">Skip to content</a>
     <div class="bg-gradient"></div>
     <div class="noise"></div>
 
-    <!-- Navigation -->
-    <nav>
+    <nav class="site-nav" aria-label="Main">
         <a href="/" class="logo">
             <picture>
                 <source srcset="/NFDGamesLogoCircleTransparent.webp" type="image/webp">
-                <img src="/NFDGamesLogoCircleTransparent.png" alt="NFDGames Icon" class="logo-icon" width="36" height="36" loading="lazy">
+                <img src="/NFDGamesLogoCircleTransparent.png" alt="" class="logo-icon" width="36" height="36">
             </picture>
-            NFDGames
+            <span class="logo__word">NFDGames</span>
         </a>
-        <div class="nav-links">
+        <div class="nav-links" id="navLinks">
             <a href="/#projects">Projects</a>
-            <a href="/blog/">Blog</a>
-            <a href="/OpenDrop/" class="nav-cta">Get OpenDrop</a>
+            <a href="/blog/" aria-current="page">Blog</a>
+            <a href="/#about">About</a>
+        </div>
+        <div class="nav-actions">
+            <a href="/OpenDrop/" class="btn-cta btn-cta--sm">Get OpenDrop</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-controls="navLinks" aria-expanded="false" aria-label="Open menu"><span></span><span></span><span></span></button>
         </div>
     </nav>
 
-    <main>
+    <main id="main" tabindex="-1">
     <!-- Post Hero -->
     <header class="blog-post-hero">
         <div class="breadcrumb">
@@ -140,99 +144,107 @@
             <span class="blog-card-date">January 21, 2026</span>
             <span class="read-time">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                7 min read
+                6 min read
             </span>
         </div>
     </header>
 
     <!-- Post Content -->
     <article class="blog-post-content">
-        <div class="toc"><ol><li><a href="#upload-download-trap">The Upload-Then-Download Trap</a></li><li><a href="#size-limits">File Size Limits Nobody Tells You About</a></li><li><a href="#privacy-cost">The Privacy Cost of "Free" Cloud Storage</a></li><li><a href="#speed-comparison">Speed: Cloud Round-Trip vs Direct Transfer</a></li><li><a href="#when-cloud-wins">When Cloud Storage Actually Makes Sense</a></li><li><a href="#direct-alternative">Setting Up Direct Transfer as Your Default</a></li></ol></div>
+        <div class="toc"><ol><li><a href="#upload-download-trap">The Upload-Then-Download Trap</a></li><li><a href="#size-limits">File Size Limits in Email and Cloud Sharing</a></li><li><a href="#privacy-cost">The Privacy Cost of Free Cloud Storage</a></li><li><a href="#speed-comparison">Speed: Cloud Round-Trip vs Direct Transfer</a></li><li><a href="#when-cloud-wins">When Cloud Storage Makes Sense</a></li><li><a href="#direct-alternative">Setting Up Direct Transfer as Your Default</a></li></ol></div>
 
 <h2 id="upload-download-trap">The Upload-Then-Download Trap</h2>
 
-<p>Here's something that bothers me every time I watch someone share a file using cloud storage: the file leaves their device, travels to a data center (often hundreds of miles away), gets stored on someone else's server, and then travels all the way back to a device sitting three feet from the original one.</p>
+<p>When you share a file through Google Drive, iCloud or Dropbox, the file goes up to the provider's servers and then comes back down to the other device. That happens even when both devices sit on the same Wi-Fi network, a few feet apart.</p>
 
-<p>I'm not exaggerating. When you share a photo from your phone to your PC using Google Drive, iCloud, or Dropbox, the file takes a round trip through the internet even if both devices are on the same WiFi network. Your home router sends it out, the file hits a server in Virginia or Oregon, and then your router pulls it back down.</p>
+<p>For one photo, nobody notices. For a 4 GB video, you wait for two full transfers instead of one, and the first one is the slow one. Most home internet plans upload much more slowly than they download, so the upload sets the pace.</p>
 
-<p>For a single photo, this doesn't matter. For a 4GB video file, you're waiting for two full transfers instead of one. Your upload speed is almost always slower than your download speed on residential internet, so that upload leg becomes the bottleneck. On my connection in Greenville, SC, I get about 300 Mbps down but only 35 Mbps up. Uploading a 4GB video takes over 15 minutes before the download even starts.</p>
+<p>The math is simple. 4 GB is about 32,000 megabits. At 20 Mbps up, that is roughly 27 minutes before the other device can start downloading. At 100 Mbps up, it is still over 5 minutes.</p>
 
-<p>Direct local transfer skips the round trip entirely. The file goes straight from device A to device B over your local network at LAN speeds, which on WiFi 5 or 6 can hit 100-300 MB/s real-world throughput.</p>
+<p>A direct transfer on your local network skips the round trip. The file goes from one device to the other through your router and never crosses your internet connection, so your upload speed does not matter.</p>
 
-<h2 id="size-limits">File Size Limits Nobody Tells You About</h2>
+<h2 id="size-limits">File Size Limits in Email and Cloud Sharing</h2>
 
-<p>Cloud providers advertise storage capacity but bury the per-file limits. Google Drive caps individual uploads at 5TB (generous), but Gmail attachments max out at 25MB. Outlook attachments cap at 20MB. iCloud Mail goes up to 20MB per attachment.</p>
+<p>Storage plans advertise total space. The limits that actually stop you are per file or per message.</p>
 
-<p>Dropbox Transfer has a 100MB limit on free accounts and 2GB on paid. WeTransfer free tops out at 2GB. These limits force you into workarounds: splitting files, compressing them, or upgrading to paid tiers.</p>
+<ul>
+<li><strong>Email attachments.</strong> Gmail caps attachments at 25 MB, and most other email services sit in the 20 to 25 MB range. Anything bigger gets turned into a cloud link anyway.</li>
+<li><strong>Cloud drives.</strong> Google Drive accepts single files up to 5 TB, so the cap is rarely the problem. The upload time is.</li>
+<li><strong>Transfer-link services.</strong> Free tiers cap the size of each transfer and expire the link after a while. The numbers change often, so check the current plan before you count on one.</li>
+</ul>
 
-<p>I ran into this last month trying to send a 6GB project archive to a friend. Google Drive would have worked, but my upload speed made it a 30-minute wait. WeTransfer refused the file entirely. I ended up using <a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> over its remote relay, which handled the full 6GB without me having to split or compress anything. On LAN, OpenDrop streams multi-gigabyte files directly with no chunking at all and no practical size cap.</p>
+<p>When you hit a cap, the workarounds are all annoying: split the file, compress it, or pay for a bigger plan.</p>
 
-<div class="callout callout-tip"><div class="callout-title">Tip</div><p>If you regularly share large files and want to avoid cloud upload waits, keep a direct transfer tool installed alongside your cloud storage. Use cloud for collaboration and sharing links; use direct transfer for moving big files between your own devices.</p></div>
+<p><a href="/OpenDrop/">OpenDrop</a> has no per-file size cap on either plan. On the same Wi-Fi it streams the whole file directly, with no chunking, even on Free. Away from home, Free sends the file in resumable 5 MB pieces and Pro streams it whole. In both cases a dropped connection picks up where it left off.</p>
 
-<h2 id="privacy-cost">The Privacy Cost of "Free" Cloud Storage</h2>
+<div class="callout callout-tip"><div class="callout-title">Tip</div><p>Keep a direct transfer tool installed next to your cloud storage. Use the cloud for share links and collaboration. Use direct transfer to move big files between your own devices.</p></div>
 
-<p>Every file you upload to a cloud service exists on hardware you don't control. That's the fundamental trade-off.</p>
+<h2 id="privacy-cost">The Privacy Cost of Free Cloud Storage</h2>
 
-<p>Google scans Drive files for policy violations. Dropbox employees have access to file metadata and, in some cases, content for debugging. iCloud uses server-side encryption by default (not end-to-end), which means Apple holds the decryption keys. Microsoft's terms of service for OneDrive include the right to scan content for violations of their acceptable use policy.</p>
+<p>Every file you upload to a cloud service sits on hardware you don't control. That is the basic trade.</p>
 
-<p>For most personal files, this is fine. Nobody cares about your vacation photos. But for sensitive documents like tax returns, medical records, legal contracts, or unreleased creative work, routing them through third-party servers adds risk that a direct device-to-device transfer avoids entirely.</p>
+<p>The big providers encrypt files in transit and at rest, but for standard storage they hold the keys. Apple, for example, holds the keys for most iCloud data unless you turn on Advanced Data Protection. Providers also scan stored files for malware and for content that breaks their terms.</p>
 
-<p>Local network transfers never leave your router. The data goes from one device to another over your home WiFi and never touches the public internet. That's not a feature you need to enable or pay for; it's just how local networking works.</p>
+<p>For vacation photos, that is fine. For tax returns, medical records, contracts or unreleased work, routing them through a third party leaves a copy somewhere you don't need one.</p>
 
-<p>I started building OpenDrop partly for this reason. I didn't trust third-party transfer tools with my files, and I didn't want everything living on someone else's server just so I could move it between my own devices.</p>
+<p>A transfer on your local network stays inside it. The data goes from one device to the other through your router and never reaches the public internet. You don't have to turn anything on for that. It is how local networking works.</p>
+
+<p>Once your devices are on different networks, something has to carry the data. OpenDrop uses a direct peer-to-peer link or its own encrypted relay. File contents are encrypted with ChaCha20-Poly1305 on your device before they leave it. The relay carries them only in encrypted form, but it can see file names, file sizes and device names, which it needs to route the transfer. The <a href="/blog/posts/wireless-file-transfer-security-encryption.html">encryption guide</a> covers this in more detail.</p>
 
 <h2 id="speed-comparison">Speed: Cloud Round-Trip vs Direct Transfer</h2>
 
-<p>Numbers tell the story better than arguments. I tested transferring a 2GB file between my Windows 11 desktop and my M5 MacBook Pro, both on the same home network.</p>
+<p>A cloud transfer is bound by your internet upload speed. A local transfer is bound by your Wi-Fi or wired network. On most home setups the local network is the faster of the two.</p>
 
-<p><strong>Google Drive:</strong> Upload took 6 minutes 40 seconds (constrained by my 35 Mbps upload). Download took about 50 seconds. Total wall clock time: roughly 7.5 minutes.</p>
+<p>Here is where the time goes when you share through the cloud between two devices in the same room:</p>
 
-<p><strong>Dropbox:</strong> Similar numbers. Upload was the bottleneck at about 6 minutes. Download was fast. The sync delay added another 20-30 seconds before the file appeared on the other machine.</p>
+<ol>
+<li>Upload the whole file at your upload speed.</li>
+<li>Wait for the service to finish processing it and for the other device to notice it. Sync clients can add a delay here.</li>
+<li>Download the whole file at your download speed.</li>
+</ol>
 
-<p><strong>OpenDrop (LAN):</strong> Direct transfer at LAN speed. The 2GB file moved in about 18 seconds. Both devices were on WiFi 6, which helped, but even on WiFi 5 I'd expect under 40 seconds for that file size.</p>
+<p>A direct LAN transfer is one step: send the file at local network speed. A good Wi-Fi 5 or Wi-Fi 6 link often moves a few hundred megabits per second in practice, and wired gigabit Ethernet does better. That is usually several times a typical home upload speed.</p>
 
-<p>The difference is dramatic because cloud transfers are bound by your internet upload speed, while LAN transfers are bound by your local network speed. Your router's internal throughput is almost always faster than your ISP connection.</p>
+<p>Remote transfers are a closer contest. When the devices are on different networks, the cloud and a direct tool both depend on your internet connection. OpenDrop Free sends remote transfers over a direct peer-to-peer link or the shared free relay. They are speed-limited and share a weekly fair-use allowance. Pro uses a faster relay with no weekly limit. Transfers on the same Wi-Fi are never limited on either plan. See <a href="/blog/posts/send-large-files-phone-to-pc-free.html">sending large files from phone to PC</a> for the details.</p>
 
-<p>Remote transfers change the equation. If devices are on different networks, cloud storage and direct-over-internet tools compete on more equal footing. OpenDrop's free remote mode sends files over our Oracle Cloud relay in resumable 5 MB chunks, and Pro unlocks the faster Fly.io relay (with automatic failover to Oracle) that streams without chunking — both with no per-transfer size cap. Cloud services vary depending on your connection and their server load.</p>
+<h2 id="when-cloud-wins">When Cloud Storage Makes Sense</h2>
 
-<h2 id="when-cloud-wins">When Cloud Storage Actually Makes Sense</h2>
+<p>Cloud storage is the right tool for several jobs, and direct transfer does not replace it for these.</p>
 
-<p>I'm not here to tell you cloud storage is bad. I use Google Drive daily for documents I need to access from multiple devices, and I keep project backups in iCloud. Cloud storage wins in specific scenarios.</p>
+<p><strong>Sharing with other people.</strong> To send a file to someone who has no special app installed, maybe on another continent, a share link is hard to beat. You can't expect everyone to install a transfer app.</p>
 
-<p><strong>Sharing with external people.</strong> If you need to send a file to someone who doesn't have any software installed and might be on a different continent, a shareable link from Google Drive or Dropbox is hard to beat. You can't expect everyone to install a transfer app.</p>
+<p><strong>Access from every device.</strong> Sync keeps your files on every device, all the time. Edit a document on your phone at lunch and it is on your desktop that evening. A direct transfer is a one-time copy, not ongoing sync.</p>
 
-<p><strong>Persistent access across devices.</strong> Cloud sync keeps your files available on every device all the time. If you edit a document on your phone during lunch and need it on your desktop later, auto-sync handles that. Direct transfer is a point-in-time action, not ongoing sync.</p>
+<p><strong>Collaboration.</strong> Real-time co-editing in Google Docs and similar tools needs a shared server. Direct transfer doesn't do that.</p>
 
-<p><strong>Collaboration.</strong> Google Docs, Notion, and similar tools exist because they're cloud-native. Real-time co-editing requires a shared server. Direct transfer doesn't solve this use case.</p>
-
-<p><strong>Backup and redundancy.</strong> Cloud storage provides off-site backup. If your house floods, your local NAS is gone but your cloud backup survives. Direct transfer tools move files but don't provide backup.</p>
+<p><strong>Off-site backup.</strong> If your house floods, the drive in the closet is gone and the cloud copy survives. Transfer tools move files. They are not a backup.</p>
 
 <h2 id="direct-alternative">Setting Up Direct Transfer as Your Default</h2>
 
-<p>The best workflow uses both approaches: cloud for sharing and collaboration, direct transfer for moving files between your own devices.</p>
+<p>Use both. Cloud for sharing, sync and backup. Direct transfer for moving files between your own devices.</p>
 
 <h3>Step 1: Install a Direct Transfer Tool</h3>
 
-<p>OpenDrop runs on Windows, macOS, Linux, iOS, and Android. Install it on the devices you own. It auto-discovers other devices on your network using mDNS (<code>_opendrop._tcp.local.</code> on port 8000), so there's no manual setup after installation.</p>
+<p>OpenDrop runs on Windows, Linux, iPhone, iPad and Android. macOS is coming soon. Install it on your computer and your phone, then scan the QR code on the computer with the phone. Free needs no account. On the same Wi-Fi, the phone then finds the computer over mDNS and streams files directly at full speed.</p>
+
+<p>On Free, each phone pairs with one computer. Pro connects every phone, tablet and computer signed in to your account, and adds phone to phone and computer to computer transfers. The <a href="/blog/posts/opendrop-setup-guide-windows.html">Windows setup guide</a> walks through the install.</p>
 
 <h3>Step 2: Change Your Habit for Device-to-Device Transfers</h3>
 
-<p>Next time you need to move a file from your phone to your PC, reach for the direct transfer tool instead of uploading to cloud storage. On the same network, the transfer completes in seconds instead of minutes. Files land in a consistent location: <code>~/Downloads/OpenDrop/Files</code> on macOS, <code>%USERPROFILE%\Downloads\OpenDrop\Files</code> on Windows.</p>
+<p>Next time you need a file from your phone on your PC, send it directly instead of uploading it somewhere. Received files land in <code>%USERPROFILE%\Downloads\OpenDrop\Files</code> on Windows and <code>~/Downloads/OpenDrop/Files</code> on Linux.</p>
 
 <h3>Step 3: Keep Cloud for What It Does Best</h3>
 
-<p>Reserve cloud storage for files that need to be accessible from anywhere, shared with other people, or backed up off-site. Synced folders, shared documents, and photo backup all make sense in the cloud. Moving a video file from your phone to your desktop for editing does not.</p>
+<p>Keep the cloud for files that need to be reachable from anywhere, shared with other people, or backed up off-site. Synced folders, shared documents and photo backup belong there. A video you are moving from your phone to your desktop for editing does not.</p>
 
 <h3>Step 4: Test the Speed Difference</h3>
 
-<p>Pick a file over 500MB and try both methods. Time the cloud round-trip (upload plus download) against a direct LAN transfer. The difference is usually enough to change your default behavior permanently. On my network, the direct transfer is typically 10-20x faster for files over 1GB.</p>
-
-<p>Cloud storage is a tool with real strengths. But using it as your primary method for moving files between your own devices is like mailing a package to yourself via FedEx when the recipient is in the next room. There are better options for that specific job.</p>
+<p>Pick a file over 500 MB and time both methods. For the cloud, measure from the start of the upload to the end of the download. Then time a direct transfer on the same Wi-Fi. Your own numbers are the ones that matter, since they depend on your internet plan and your router.</p>
 
         <!-- CTA -->
         <div class="blog-cta">
             <h3>Move Files Between Your Devices Without the Cloud</h3>
-            <p>OpenDrop transfers files directly between your devices on the same network. No upload waits, no file size limits, no third-party servers.</p>
+            <p>On the same Wi-Fi, OpenDrop sends files straight from one device to the other. No upload wait, no file size cap, and no account on Free.</p>
             <a href="/OpenDrop/" class="btn btn-primary">Download OpenDrop Free</a>
         </div>
     </article>
@@ -243,45 +255,78 @@
         <div class="related-grid">
             <a href="/blog/posts/wireless-file-transfer-beginners-guide.html" class="related-card">
     <h4>Wireless File Transfer: Complete Beginner&#x27;s Guide</h4>
-    <p>Everything beginners need to know about transferring files wirelessly between phones, tablets, and c</p>
+    <p>Common myths about wireless file transfer debunked with real data.</p>
 </a>
 <a href="/blog/posts/wireless-file-transfer-security-encryption.html" class="related-card">
-    <h4>Is Wireless File Transfer Secure? Encryption Explained</h4>
-    <p>Understand how encryption keeps your wireless file transfers secure, including TLS 1.3 and end-to-en</p>
+    <h4>Wireless File Transfer Security: Encryption Explained</h4>
+    <p>Four real security problems with wireless file transfers.</p>
 </a>
         </div>
     </section>
     </main>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-brand">
+    <div class="seam" aria-hidden="true"></div>
+    <footer class="site-footer">
+        <div class="wrap site-footer__grid">
+            <div class="site-footer__brand">
                 <a href="/" class="logo">
                     <picture>
                         <source srcset="/NFDGamesLogoCircleTransparent.webp" type="image/webp">
-                        <img src="/NFDGamesLogoCircleTransparent.png" alt="NFDGames Icon" class="logo-icon" width="36" height="36" loading="lazy">
+                        <img src="/NFDGamesLogoCircleTransparent.png" alt="" class="logo-icon" width="36" height="36" loading="lazy">
                     </picture>
                     NFDGames
                 </a>
-                <p>Indie studio building software utilities and mobile games.</p>
+                <p>Independent studio making OpenDrop and Gunslinger.</p>
             </div>
-            <div class="footer-links">
-                <div class="footer-col">
-                    <h4>Products</h4>
-                    <a href="/OpenDrop/">OpenDrop</a>
-                    <a href="/OpenDrop/support.html">Support</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Resources</h4>
-                    <a href="/blog/">Blog</a>
-                    <a href="/OpenDrop/PrivacyPolicy.html">Privacy Policy</a>
-                    <a href="/OpenDrop/TermsOfService.html">Terms of Service</a>
-                </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">OpenDrop</h2>
+                <ul>
+                    <li><a href="/OpenDrop/">Overview</a></li>
+                    <li><a href="/OpenDrop/#download">Download</a></li>
+                    <li><a href="/OpenDrop/#compare">Free vs Pro</a></li>
+                    <li><a href="/OpenDrop/changelog.html">What's new in 1.0</a></li>
+                    <li><a href="/OpenDrop/support.html">Support</a></li>
+                    <li><a href="/OpenDrop/status.html">System status</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Guides</h2>
+                <ul>
+                    <li><a href="/blog/posts/best-airdrop-alternatives-windows-2026.html">AirDrop alternatives</a></li>
+                    <li><a href="/blog/posts/share-files-iphone-android.html">iPhone to Android</a></li>
+                    <li><a href="/blog/posts/transfer-files-android-to-pc-without-usb.html">Android to PC, no USB</a></li>
+                    <li><a href="/blog/posts/transfer-photos-iphone-to-windows-pc.html">iPhone photos to PC</a></li>
+                    <li><a href="/blog/posts/transfer-files-windows-to-linux.html">Windows to Linux</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Studio</h2>
+                <ul>
+                    <li><a href="/">NFDGames home</a></li>
+                    <li><a href="/#gunslinger">Gunslinger</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/OpenDrop/press.html">Press kit</a></li>
+                    <li><a href="https://play.google.com/store/apps/dev?id=6331541447390891189&amp;hl=en_US" target="_blank" rel="noopener">Apps on Google Play</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Legal and security</h2>
+                <ul>
+                    <li><a href="/OpenDrop/PrivacyPolicy.html">Privacy Policy</a></li>
+                    <li><a href="/OpenDrop/TermsOfService.html">Terms of Service</a></li>
+                    <li><a href="/OpenDrop/security.html">Security and disclosure</a></li>
+                    <li><a href="/OpenDrop/accessibility.html">Accessibility</a></li>
+                </ul>
             </div>
         </div>
-        <div class="footer-bottom">
+        <div class="wrap site-footer__bottom">
             <p>&copy; 2026 NFDGames. All rights reserved.</p>
+            <div class="site-footer__legal">
+                <a href="/OpenDrop/WithdrawalForm.html">EU/UK withdrawal</a>
+                <a href="/OpenDrop/third-party-notices.html">Third-party notices</a>
+                <a href="/OpenDrop/docs/export-compliance/">Export compliance</a>
+                <a href="mailto:support@nfdgames.com">support@nfdgames.com</a>
+            </div>
         </div>
     </footer>
 
@@ -299,7 +344,7 @@
         appId: "1:573883707762:web:e68643cce07c2cee3eadeb",
         measurementId: "G-ENWJJ78E3Q"
       });
-      // Gated on user consent — see /scripts/opendrop-cookie-banner.js
+      // Gated on user consent, see /scripts/opendrop-cookie-banner.js
       if (window.OpenDropConsent) { window.OpenDropConsent.onConsent(function () { getAnalytics(app); }); }
     </script>
 </body>

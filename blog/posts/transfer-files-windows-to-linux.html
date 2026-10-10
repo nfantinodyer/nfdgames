@@ -58,7 +58,7 @@
             }
           },
           "datePublished": "2026-01-19",
-          "dateModified": "2026-01-19",
+          "dateModified": "2026-10-10",
           "mainEntityOfPage": "https://www.nfdgames.com/blog/posts/transfer-files-windows-to-linux.html",
           "keywords": ["windows to linux", "cross platform transfer", "linux file transfer", "samba alternative"]
         },
@@ -73,7 +73,7 @@
         ,
         {
           "@type": "FAQPage",
-          "mainEntity": [{"@type":"Question","name":"Do I need Samba to share files between Windows and Linux?","acceptedAnswer":{"@type":"Answer","text":"No. Samba is one option, but there are simpler alternatives. SCP works if SSH is running on the Linux machine (most distros include it). Zero-config tools like OpenDrop use mDNS auto-discovery and require no network configuration at all."}},{"@type":"Question","name":"What's the fastest way to transfer files between Windows and Linux on the same network?","acceptedAnswer":{"@type":"Answer","text":"A USB 3.2 drive is fastest for raw throughput (300+ MB/s). For wireless, a zero-config LAN transfer tool like OpenDrop streams at WiFi speeds without the upload bottleneck that cloud storage creates. A 2GB file transfers in under 30 seconds on WiFi 6."}},{"@type":"Question","name":"Can I transfer files between Windows and Linux when they're on different networks?","acceptedAnswer":{"@type":"Answer","text":"Yes. SCP works over the internet if you forward port 22. OpenDrop supports remote transfers through its own end-to-end-encrypted relay — an Oracle Cloud relay on the free tier and the faster Fly.io relay (streaming, with automatic Oracle failover) on Pro. No port forwarding, no tunnel binary to install, and no per-transfer size cap. It works across any network with internet access."}},{"@type":"Question","name":"What filesystem should I use on a USB drive shared between Windows and Linux?","acceptedAnswer":{"@type":"Answer","text":"exFAT is the best choice. Both Windows and modern Linux distributions support it natively with full read and write capability. NTFS works too, but Linux writes to NTFS through the ntfs-3g driver, which is slower than native filesystem support."}},{"@type":"Question","name":"Does OpenDrop work on all Linux distributions?","acceptedAnswer":{"@type":"Answer","text":"OpenDrop ships as a self-contained .AppImage that runs on most modern Linux distributions (tested on Ubuntu 22.04+, Debian 10+, Fedora, Arch, Linux Mint, and ParrotOS). The AppImage bundles its own runtime so no system Python install is required. Both x86_64 and aarch64 builds are available from the GitHub Releases page."}}]
+          "mainEntity": [{"@type":"Question","name":"Do I need Samba to share files between Windows and Linux?","acceptedAnswer":{"@type":"Answer","text":"No. Samba is the right tool for a share that is always mounted, but there are simpler options for moving files. SCP works if the Linux machine runs an SSH server, and Windows 10 and 11 include the scp client. Transfer apps like OpenDrop need no network configuration: with OpenDrop Pro, sign in on both computers and they find each other automatically."}},{"@type":"Question","name":"What's the fastest way to transfer files between Windows and Linux on the same network?","acceptedAnswer":{"@type":"Answer","text":"For a one-time bulk move, an external SSD or fast USB drive is usually quickest. Over the network, SCP or a transfer app like OpenDrop Pro sends files directly between the two machines on your own network, with no cloud upload in between."}},{"@type":"Question","name":"Can I transfer files between Windows and Linux when they're on different networks?","acceptedAnswer":{"@type":"Answer","text":"Yes. SCP works over the internet if the Linux machine's SSH port is reachable, which usually means setting up port forwarding. With OpenDrop Pro, your Windows and Linux computers connect through your account, over the faster Pro relay or a direct peer-to-peer link. No port forwarding, nothing extra to install, and no file size cap."}},{"@type":"Question","name":"What filesystem should I use on a USB drive shared between Windows and Linux?","acceptedAnswer":{"@type":"Answer","text":"exFAT. Windows and modern Linux distributions both read and write it natively, and unlike FAT32 it handles files larger than 4 GB. NTFS also works: Linux kernels from 5.15 include the ntfs3 driver, and older systems use the slower ntfs-3g driver."}},{"@type":"Question","name":"Does OpenDrop work on all Linux distributions?","acceptedAnswer":{"@type":"Answer","text":"OpenDrop for Linux is an AppImage that needs glibc 2.35 or newer, which covers Ubuntu 22.04, Debian 12, Fedora 36 and later. Builds for x86_64 and ARM64 (aarch64) are on the GitHub Releases page. Run chmod +x on the file before the first launch."}}]
         }
       ]
     }
@@ -89,7 +89,7 @@
     <link rel="stylesheet" href="/styles/common.css">
     <link rel="stylesheet" href="/styles/blog.css">
 
-    <!-- Cookie consent / Google Consent Mode v2 preboot — must precede any Google tag -->
+    <!-- Cookie consent / Google Consent Mode v2 preboot: must precede any Google tag -->
     <script src="/scripts/opendrop-cookie-banner.js"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241"></script>
@@ -100,27 +100,31 @@
       gtag('config', 'AW-17319823241');
     </script>
 </head>
-<body>
+<body class="page-blog-post">
+    <a class="skip-link" href="#main">Skip to content</a>
     <div class="bg-gradient"></div>
     <div class="noise"></div>
 
-    <!-- Navigation -->
-    <nav>
+    <nav class="site-nav" aria-label="Main">
         <a href="/" class="logo">
             <picture>
                 <source srcset="/NFDGamesLogoCircleTransparent.webp" type="image/webp">
-                <img src="/NFDGamesLogoCircleTransparent.png" alt="NFDGames Icon" class="logo-icon" width="36" height="36" loading="lazy">
+                <img src="/NFDGamesLogoCircleTransparent.png" alt="" class="logo-icon" width="36" height="36">
             </picture>
-            NFDGames
+            <span class="logo__word">NFDGames</span>
         </a>
-        <div class="nav-links">
+        <div class="nav-links" id="navLinks">
             <a href="/#projects">Projects</a>
-            <a href="/blog/">Blog</a>
-            <a href="/OpenDrop/" class="nav-cta">Get OpenDrop</a>
+            <a href="/blog/" aria-current="page">Blog</a>
+            <a href="/#about">About</a>
+        </div>
+        <div class="nav-actions">
+            <a href="/OpenDrop/" class="btn-cta btn-cta--sm">Get OpenDrop</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-controls="navLinks" aria-expanded="false" aria-label="Open menu"><span></span><span></span><span></span></button>
         </div>
     </nav>
 
-    <main>
+    <main id="main" tabindex="-1">
     <!-- Post Hero -->
     <header class="blog-post-hero">
         <div class="breadcrumb">
@@ -140,47 +144,51 @@
             <span class="blog-card-date">January 19, 2026</span>
             <span class="read-time">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                8 min read
+                6 min read
             </span>
         </div>
     </header>
 
     <!-- Post Content -->
     <article class="blog-post-content">
-        <div class="toc"><ol><li><a href="#hot-take">The Unpopular Opinion: Samba Is Overrated for Casual Use</a></li><li><a href="#samba-reality">What Samba Actually Costs You</a></li><li><a href="#scp-underrated">SCP: The Most Underrated Option</a></li><li><a href="#zero-config">Zero-Config Transfer Tools Changed Everything</a></li><li><a href="#usb-still-wins">USB Still Wins One Scenario</a></li><li><a href="#verdict">My Verdict After Five Years of Daily Cross-Platform Transfers</a></li></ol></div>
+        <div class="toc"><ol><li><a href="#hot-take">Samba Is Overrated for Casual Use</a></li><li><a href="#samba-reality">What Samba Actually Costs You</a></li><li><a href="#scp-underrated">SCP: The Most Underrated Option</a></li><li><a href="#zero-config">Zero-Config Transfer Tools</a></li><li><a href="#usb-still-wins">USB Still Wins One Scenario</a></li><li><a href="#verdict">Verdict: Which Windows to Linux Method to Use</a></li></ol></div>
 
-<h2 id="hot-take">The Unpopular Opinion: Samba Is Overrated for Casual Use</h2>
+<h2 id="hot-take">Samba Is Overrated for Casual Use</h2>
 
-<p>Every time someone asks "how do I share files between Windows and Linux?" the first answer is always Samba. Install it, edit smb.conf, set up user permissions, restart the service, configure your firewall, and hope the Windows machine can see the share. It's become the default recommendation in every forum, every tutorial, every StackOverflow answer.</p>
+<p>Ask how to share files between Windows and Linux and the first answer is usually Samba. Samba makes a Linux folder show up as a Windows network share, using SMB, the same protocol Windows uses for its own file sharing. For some jobs it is the right tool.</p>
 
-<p>I think that's wrong for most people.</p>
-
-<p>I've maintained a Samba setup between my Windows 11 desktop and my ParrotOS laptop for years. It works once configured. But I've also spent more time troubleshooting Samba than any other piece of software on my network. Permission denied errors, SMB version mismatches, shares that disappear after a system update, Windows suddenly unable to browse the network. The protocol is 40 years old and it shows.</p>
-
-<p>For IT departments managing persistent file shares across dozens of machines, Samba is the right tool. For someone who needs to move a PDF from their Linux laptop to their Windows desktop, it's overkill in the same way renting a moving truck is overkill for carrying a backpack across the street.</p>
+<p>For moving one PDF from a laptop to a desktop, it is a lot of setup. You install a service, edit a config file, add a separate password, open the firewall, and then work out why Windows can't see the share. If you need a folder that is always mounted, that work pays off. If you move files now and then, there are quicker routes.</p>
 
 <h2 id="samba-reality">What Samba Actually Costs You</h2>
 
-<p>The installation itself is fast: <code>sudo apt install samba</code> on Debian-based distros, <code>sudo dnf install samba</code> on Fedora. But installation is maybe 5% of the work.</p>
+<p>Installing it is one command: <code>sudo apt install samba</code> on Debian and Ubuntu, <code>sudo dnf install samba</code> on Fedora. The rest is configuration.</p>
 
-<p>You need to edit <code>/etc/samba/smb.conf</code>, a config file whose syntax dates back to the early 1990s. A minimal share definition looks simple enough:</p>
+<p>Add a share to <code>/etc/samba/smb.conf</code>:</p>
 
 <p><code>[MyShare]</code><br>
 <code>path = /home/youruser/Shared</code><br>
 <code>writable = yes</code><br>
 <code>valid users = youruser</code></p>
 
-<p>Then you create a Samba-specific password with <code>sudo smbpasswd -a youruser</code> (because Samba doesn't use your Linux login password by default). Restart with <code>sudo systemctl restart smbd</code>. Open firewall ports 139 and 445. On the Windows side, type <code>\\linux-hostname\MyShare</code> in File Explorer and enter the credentials.</p>
+<p>Samba keeps its own password database, so give your user a Samba password with <code>sudo smbpasswd -a youruser</code>. Restart the service with <code>sudo systemctl restart smbd</code> (the unit is called <code>smb</code> on Fedora). Then allow SMB through the firewall. Modern clients only need TCP port 445. On Ubuntu with ufw, <code>sudo ufw allow samba</code> covers it. On Fedora, run <code>sudo firewall-cmd --permanent --add-service=samba</code> and reload. Fedora's SELinux also blocks sharing folders in your home directory until you set the right label or boolean.</p>
 
-<p>That's the happy path. The unhappy path involves <code>mount error(13): Permission denied</code> because Windows 11 defaults to SMB3 and your Samba version is negotiating SMB1. Or the share appearing but being read-only because the Linux directory permissions don't match the Samba config. Or Windows credential caching showing you someone else's stored login. I've hit all of these on my own network.</p>
+<p>On Windows, type <code>\\linux-hostname\MyShare</code> (or the IP address) into File Explorer and log in with the Samba username and password.</p>
 
-<p>The maintenance cost is real too. Samba configs don't migrate cleanly between Linux distro upgrades. I've had to reconfigure after updating ParrotOS twice. And if either machine changes IP address (common on home networks with DHCP), bookmarked shares break.</p>
+<p>The common ways it goes wrong:</p>
+
+<ul>
+<li><strong>The share doesn't appear under Network.</strong> Windows 10 and 11 no longer browse the network over SMB1, and Samba doesn't announce itself the way Windows now expects. Type the address directly, or install <code>wsdd</code> on the Linux machine so it shows up.</li>
+<li><strong>Access denied, or the share is read-only.</strong> Samba checks both its own config and the Linux file permissions. If your Linux user can't write to the folder, Windows can't either.</li>
+<li><strong>Guest shares stop working.</strong> Recent Windows versions block unauthenticated guest access by default, so a <code>guest ok = yes</code> share that once worked may now refuse to connect. Use a real Samba user.</li>
+<li><strong>Windows uses a stale saved login.</strong> Windows caches credentials per server. Remove old entries in Credential Manager, or disconnect with <code>net use * /delete</code>.</li>
+<li><strong>The address changes.</strong> If your router gives the Linux machine a new IP address, mapped drives that point at the old one break. Use the hostname or set a DHCP reservation.</li>
+</ul>
 
 <h2 id="scp-underrated">SCP: The Most Underrated Option</h2>
 
-<p>If your Linux machine runs SSH (and most do out of the box, or after <code>sudo apt install openssh-server</code>), you already have a file transfer system that works.</p>
+<p>If the Linux machine runs an SSH server, you already have an encrypted file transfer tool. Many desktop distros don't install one by default. Add it with <code>sudo apt install openssh-server</code>, or on Fedora <code>sudo dnf install openssh-server</code> followed by <code>sudo systemctl enable --now sshd</code>.</p>
 
-<p>Windows 10 and 11 ship with an SSH client in PowerShell. No extra software needed. To send a file from Windows to Linux:</p>
+<p>Windows 10 (version 1809 and later) and Windows 11 include the OpenSSH client, so <code>scp</code> works from PowerShell or Command Prompt with nothing else installed. To send a file from Windows to Linux:</p>
 
 <p><code>scp C:\Users\You\report.pdf user@192.168.1.42:/home/user/</code></p>
 
@@ -188,48 +196,54 @@
 
 <p><code>scp user@192.168.1.42:/home/user/data.csv C:\Users\You\Downloads\</code></p>
 
-<p>That's it. No config files, no service restarts, no permission juggling. The transfer is encrypted by default over SSH. Speed is limited by your network, not by protocol overhead.</p>
+<p>Add <code>-r</code> to copy a whole folder, and quote any path that contains spaces. Find the Linux machine's address with <code>hostname -I</code> or <code>ip addr</code>.</p>
 
-<p>The downsides are real: you need to know the Linux machine's IP address, and you need to be comfortable with a terminal. For developers and sysadmins, this is a non-issue. For everyone else, it's a dealbreaker. WinSCP adds a GUI layer for Windows users who want drag-and-drop over SSH, which helps, but it's still another piece of software to install and configure.</p>
+<p>There is no share to define, no extra password and no service to restart. SSH encrypts the traffic. For large folders you sync often, <code>rsync</code> over SSH copies only what changed, though Windows doesn't ship rsync, so you would run it from WSL.</p>
 
-<h2 id="zero-config">Zero-Config Transfer Tools Changed Everything</h2>
+<p>The downsides: you need the Linux machine's IP address or hostname, and you need to be comfortable in a terminal. If you'd rather drag and drop, WinSCP gives you a file manager window over the same SSH connection.</p>
 
-<p>What I wanted was AirDrop for Windows and Linux. No IP addresses, no config files, no prerequisites. Just install something on both machines and send files.</p>
+<h2 id="zero-config">Zero-Config Transfer Tools</h2>
 
-<p>That's why I built <a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a>. Both machines run the app, mDNS auto-discovery (the <code>_opendrop._tcp.local.</code> service on port 8000) finds every device on the network, and you drag a file to send it. Files land in <code>%USERPROFILE%\Downloads\OpenDrop\Files</code> on Windows and <code>~/Downloads/OpenDrop/Files</code> on Linux.</p>
+<p>The third option is an app on both machines that finds the other one for you. No IP addresses and no config files.</p>
 
-<p>On LAN, transfers stream directly at network speed with no file size cap. I regularly move multi-gigabyte database exports between my Windows desktop and the ParrotOS laptop. A 2GB file finishes in under 30 seconds, where the same file over cloud storage would take 7+ minutes waiting for the upload alone.</p>
+<p><a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a> is the one we make. It runs on Windows and Linux, plus iPhone, iPad and Android. Sending between two computers is an OpenDrop Pro feature. Sign in to the same account on both (Google, Apple, Microsoft or email) and they find each other: over mDNS (the <code>_opendrop._tcp.local.</code> service) on the same network, or through your account when they're on different networks. Drag a file onto the other computer's tab to send it. Received files land in <code>%USERPROFILE%\Downloads\OpenDrop\Files</code> on Windows and <code>~/Downloads/OpenDrop/Files</code> on Linux.</p>
 
-<p>The argument against zero-config tools is that they require software on both ends. Fair. But so does Samba, and Samba requires significantly more configuration. The trade-off is clear: two installs and zero config versus two installs plus 20 minutes of config file editing and troubleshooting.</p>
+<p>On the same network, files stream directly between the two machines at full speed, with no file size cap. File contents are encrypted with ChaCha20-Poly1305 before they leave the sending machine.</p>
 
-<div class="callout callout-tip"><div class="callout-title">Tip</div><p>If your Windows and Linux machines aren't on the same network, OpenDrop still works. It routes the transfer through its own end-to-end-encrypted relay — an Oracle Cloud relay on the free tier, the faster Fly.io relay (with automatic Oracle failover) on Pro — with nothing extra to install and no per-transfer size cap. Same WiFi is faster but not a requirement.</p></div>
+<p>On Linux, OpenDrop ships as an AppImage for x86_64 or ARM64 (aarch64) and needs glibc 2.35 or newer (Ubuntu 22.04, Debian 12, Fedora 36 or later). Run <code>chmod +x</code> on the file before the first launch. On Windows it needs Windows 10 version 1809 or later, 64-bit.</p>
 
-<p>LocalSend is another option in this category, using a similar mDNS-based approach. It's LAN-only though, which means no transfers when your machines are on different networks. For same-network use, both tools get the job done.</p>
+<p>The free plan is built around your phone: each phone pairs with one computer by scanning a QR code, with no account. Free doesn't send computer to computer, so Windows to Linux needs Pro.</p>
+
+<div class="callout callout-tip"><div class="callout-title">Tip</div><p>If your Windows and Linux machines aren't on the same network, OpenDrop Pro still connects them, over the faster Pro relay or a direct peer-to-peer link, with nothing extra to install and no port forwarding. The relay carries file contents only in encrypted form, though it can see file names, sizes and device names. On the same network, transfers skip the internet entirely.</p></div>
+
+<p>LocalSend is a free, open-source alternative that runs on Windows and Linux and finds devices on the local network automatically. It only works when both machines are on the same network. If that's always true for you and you want free computer-to-computer transfers, it's a good pick.</p>
+
+<p>The trade-off with any app like this is installing it on both machines, where SCP and Samba lean on software Windows already has.</p>
 
 <h2 id="usb-still-wins">USB Still Wins One Scenario</h2>
 
-<p>I'll give credit where it's due. For a one-time bulk migration of 100+ GB, a USB 3.2 flash drive formatted as exFAT is still the fastest option. Real-world USB 3.2 throughput hits 300+ MB/s, which beats any WiFi connection. Format as exFAT because both Windows and modern Linux distros read it natively. Avoid NTFS for Linux use if you can, since the ntfs-3g driver is slower than native filesystem support.</p>
+<p>For a one-time move of 100 GB or more, a USB drive is hard to beat. USB 3.2 Gen 1 signals at 5 Gbit/s and Gen 2 at 10 Gbit/s. A cheap flash drive won't get close to that, but an external SSD on a fast port usually outruns Wi-Fi, and it doesn't depend on your network at all.</p>
 
-<p>The USB approach doesn't scale for daily use, obviously. Plugging in a drive, copying, walking to the other machine, and plugging in again is fine once. Doing it five times a day makes you question your life choices.</p>
+<p>Format the drive as exFAT. Windows reads and writes it natively, and Linux has a native exFAT driver from kernel 5.7 on. Skip FAT32, which can't hold files over 4 GB. NTFS works too: kernels from 5.15 include the ntfs3 driver, and older systems use ntfs-3g, which is slower. Eject the drive properly on both sides, because exFAT has no journal and pulling it mid-write can corrupt files.</p>
 
-<h2 id="verdict">My Verdict After Five Years of Daily Cross-Platform Transfers</h2>
+<p>It doesn't work for daily use. Carrying a drive between machines is fine once and tedious the fifth time in a day.</p>
 
-<p>I transfer files between Windows and Linux almost every day. I've tried everything described in this article extensively, and my preferences have changed over the years as better tools became available.</p>
+<h2 id="verdict">Verdict: Which Windows to Linux Method to Use</h2>
 
-<p><strong>For daily device-to-device file moves:</strong> Zero-config tools like OpenDrop. No contest. Install once, never configure, transfer files in seconds. This handles 90% of my transfers.</p>
+<p><strong>Everyday files between your own machines:</strong> a transfer app. OpenDrop Pro if you also want it to work across networks, or LocalSend if both machines always share a network.</p>
 
-<p><strong>For persistent shared directories:</strong> Samba, if you're willing to invest the setup time and maintain it through updates. The payoff is real for workflows that need a mounted shared drive available at all times.</p>
+<p><strong>A folder that's always shared:</strong> Samba. The setup is worth it when you want a mapped drive available all the time.</p>
 
-<p><strong>For scripted or automated transfers:</strong> SCP over SSH. It's already there, it's encrypted, and it works well in shell scripts and cron jobs. OpenDrop's CLI is another option here if you want auto-discovery instead of hardcoded IPs.</p>
+<p><strong>Scripts and automation:</strong> SCP or rsync over SSH. They work in shell scripts and cron jobs. OpenDrop's CLI is another option: with Pro, <code>opendrop upload &lt;file&gt; -d "Device Name"</code> sends to another signed-in computer by name instead of IP address, and <code>opendrop serve</code> runs OpenDrop without the window.</p>
 
-<p><strong>For one-time large migrations:</strong> USB drive, formatted exFAT. Nothing wireless matches the raw throughput of a direct physical connection for 100GB+ transfers.</p>
+<p><strong>One big migration:</strong> an exFAT USB drive or external SSD.</p>
 
-<p>The Samba-first mentality in the Linux community comes from an era when persistent network shares were the only game in town. For point-to-point file transfers between your own devices, there are simpler options now. The right tool depends on how often you transfer, how much you're moving, and how much time you want to spend on initial setup versus just getting it done.</p>
+<p>Samba became the default answer when a network share was the main way to move files. For sending files between two of your own machines, SCP or a transfer app takes far less setup.</p>
 
         <!-- CTA -->
         <div class="blog-cta">
             <h3>Skip the Samba Config for Your Next Transfer</h3>
-            <p>OpenDrop auto-discovers your Windows and Linux machines on the same network. No smb.conf, no firewall rules, no IP addresses to look up.</p>
+            <p>Download OpenDrop free, then add Pro to have your Windows and Linux machines find each other through your account. No smb.conf, no IP addresses to look up.</p>
             <a href="/OpenDrop/" class="btn btn-primary">Download OpenDrop Free</a>
         </div>
     </article>
@@ -240,45 +254,78 @@
         <div class="related-grid">
             <a href="/blog/posts/transfer-files-android-to-pc-without-usb.html" class="related-card">
     <h4>How to Transfer Files from Android to PC Without USB</h4>
-    <p>Step-by-step guide to wirelessly transferring files from your Android phone to your Windows or Linux</p>
+    <p>Transfer files from Android to PC wirelessly, no USB cable needed.</p>
 </a>
 <a href="/blog/posts/send-large-files-phone-to-pc-free.html" class="related-card">
     <h4>How to Send Large Files Between Phone and PC for Free</h4>
-    <p>Learn how to send files of any size between your phone and computer without cloud uploads or paid se</p>
+    <p>How free file transfers actually work between phones and PCs.</p>
 </a>
         </div>
     </section>
     </main>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-brand">
+    <div class="seam" aria-hidden="true"></div>
+    <footer class="site-footer">
+        <div class="wrap site-footer__grid">
+            <div class="site-footer__brand">
                 <a href="/" class="logo">
                     <picture>
                         <source srcset="/NFDGamesLogoCircleTransparent.webp" type="image/webp">
-                        <img src="/NFDGamesLogoCircleTransparent.png" alt="NFDGames Icon" class="logo-icon" width="36" height="36" loading="lazy">
+                        <img src="/NFDGamesLogoCircleTransparent.png" alt="" class="logo-icon" width="36" height="36" loading="lazy">
                     </picture>
                     NFDGames
                 </a>
-                <p>Indie studio building software utilities and mobile games.</p>
+                <p>Independent studio making OpenDrop and Gunslinger.</p>
             </div>
-            <div class="footer-links">
-                <div class="footer-col">
-                    <h4>Products</h4>
-                    <a href="/OpenDrop/">OpenDrop</a>
-                    <a href="/OpenDrop/support.html">Support</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Resources</h4>
-                    <a href="/blog/">Blog</a>
-                    <a href="/OpenDrop/PrivacyPolicy.html">Privacy Policy</a>
-                    <a href="/OpenDrop/TermsOfService.html">Terms of Service</a>
-                </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">OpenDrop</h2>
+                <ul>
+                    <li><a href="/OpenDrop/">Overview</a></li>
+                    <li><a href="/OpenDrop/#download">Download</a></li>
+                    <li><a href="/OpenDrop/#compare">Free vs Pro</a></li>
+                    <li><a href="/OpenDrop/changelog.html">What's new in 1.0</a></li>
+                    <li><a href="/OpenDrop/support.html">Support</a></li>
+                    <li><a href="/OpenDrop/status.html">System status</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Guides</h2>
+                <ul>
+                    <li><a href="/blog/posts/best-airdrop-alternatives-windows-2026.html">AirDrop alternatives</a></li>
+                    <li><a href="/blog/posts/share-files-iphone-android.html">iPhone to Android</a></li>
+                    <li><a href="/blog/posts/transfer-files-android-to-pc-without-usb.html">Android to PC, no USB</a></li>
+                    <li><a href="/blog/posts/transfer-photos-iphone-to-windows-pc.html">iPhone photos to PC</a></li>
+                    <li><a href="/blog/posts/transfer-files-windows-to-linux.html">Windows to Linux</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Studio</h2>
+                <ul>
+                    <li><a href="/">NFDGames home</a></li>
+                    <li><a href="/#gunslinger">Gunslinger</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/OpenDrop/press.html">Press kit</a></li>
+                    <li><a href="https://play.google.com/store/apps/dev?id=6331541447390891189&amp;hl=en_US" target="_blank" rel="noopener">Apps on Google Play</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Legal and security</h2>
+                <ul>
+                    <li><a href="/OpenDrop/PrivacyPolicy.html">Privacy Policy</a></li>
+                    <li><a href="/OpenDrop/TermsOfService.html">Terms of Service</a></li>
+                    <li><a href="/OpenDrop/security.html">Security and disclosure</a></li>
+                    <li><a href="/OpenDrop/accessibility.html">Accessibility</a></li>
+                </ul>
             </div>
         </div>
-        <div class="footer-bottom">
+        <div class="wrap site-footer__bottom">
             <p>&copy; 2026 NFDGames. All rights reserved.</p>
+            <div class="site-footer__legal">
+                <a href="/OpenDrop/WithdrawalForm.html">EU/UK withdrawal</a>
+                <a href="/OpenDrop/third-party-notices.html">Third-party notices</a>
+                <a href="/OpenDrop/docs/export-compliance/">Export compliance</a>
+                <a href="mailto:support@nfdgames.com">support@nfdgames.com</a>
+            </div>
         </div>
     </footer>
 
@@ -296,7 +343,7 @@
         appId: "1:573883707762:web:e68643cce07c2cee3eadeb",
         measurementId: "G-ENWJJ78E3Q"
       });
-      // Gated on user consent — see /scripts/opendrop-cookie-banner.js
+      // Gated on user consent, see /scripts/opendrop-cookie-banner.js
       if (window.OpenDropConsent) { window.OpenDropConsent.onConsent(function () { getAnalytics(app); }); }
     </script>
 </body>

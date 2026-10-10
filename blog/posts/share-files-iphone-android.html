@@ -57,7 +57,7 @@
             }
           },
           "datePublished": "2026-01-13",
-          "dateModified": "2026-01-13",
+          "dateModified": "2026-10-10",
           "mainEntityOfPage": "https://www.nfdgames.com/blog/posts/share-files-iphone-android.html",
           "keywords": ["iphone to android", "cross platform file sharing", "ios android transfer"]
         },
@@ -72,7 +72,7 @@
         ,
         {
           "@type": "FAQPage",
-          "mainEntity": [{"@type":"Question","name":"Can I use Bluetooth to send files between iPhone and Android?","acceptedAnswer":{"@type":"Answer","text":"No. While Android supports Bluetooth file transfer through the OBEX protocol, iOS does not support OBEX for arbitrary file transfers. Bluetooth pairing between iPhone and Android works for audio devices, but not for sending files directly."}},{"@type":"Question","name":"What's the fastest way to transfer files between iPhone and Android?","acceptedAnswer":{"@type":"Answer","text":"A direct transfer app like OpenDrop on the same WiFi network is the fastest option. Files transfer at LAN speed without uploading to any server. A 1GB video moves in about 10-15 seconds on WiFi 5 or 6, compared to several minutes through cloud storage."}},{"@type":"Question","name":"Do iPhones send photos in a format Android can open?","acceptedAnswer":{"@type":"Answer","text":"iPhones default to HEIC format, which most modern Android devices can view. Some older Android devices may not support HEIC. You can change the iPhone camera format to JPEG in Settings, Camera, Formats, Most Compatible, or use a conversion tool after transfer."}},{"@type":"Question","name":"Can I transfer files between iPhone and Android without WiFi?","acceptedAnswer":{"@type":"Answer","text":"If both phones have cellular data, you can use an app with remote transfer support. OpenDrop's remote mode works across different networks through its own encrypted relay (the Oracle Cloud relay on the free tier, the faster Fly.io relay on Pro) — nothing extra to install. Cloud storage apps like Google Drive also work over cellular, though they're slower due to the upload-then-download process."}}]
+          "mainEntity": [{"@type":"Question","name":"Can I use Bluetooth to send files between iPhone and Android?","acceptedAnswer":{"@type":"Answer","text":"Not with the phones' built-in Bluetooth menus. Android can send files over Bluetooth using OBEX, but iOS does not support OBEX file transfer, so an iPhone won't receive them. An app installed on both phones can still use Bluetooth Low Energy. OpenDrop Pro does this: two phones signed in to the same OpenDrop account, iPhone or Android, can send files over Bluetooth Low Energy when there is no Wi-Fi."}},{"@type":"Question","name":"What's the fastest way to transfer files between iPhone and Android?","acceptedAnswer":{"@type":"Answer","text":"A direct transfer app with both phones on the same Wi-Fi network. The file goes straight between the phones and never uploads to a server, so your internet upload speed doesn't matter. OpenDrop Pro does this between an iPhone and an Android phone signed in to the same account, and LocalSend does it on the same network with no account. Cloud storage is slower because the whole file has to upload and then download."}},{"@type":"Question","name":"Do iPhones send photos in a format Android can open?","acceptedAnswer":{"@type":"Answer","text":"iPhones default to HEIC format, which most modern Android devices can view. Some older Android devices may not support HEIC. You can change the iPhone camera format to JPEG in Settings, Camera, Formats, Most Compatible, or use a conversion tool after transfer."}},{"@type":"Question","name":"Can I transfer files between iPhone and Android without Wi-Fi?","acceptedAnswer":{"@type":"Answer","text":"Yes. With OpenDrop Pro, two phones signed in to the same account can send over cellular data through the Pro relay or a direct peer-to-peer link, or over Bluetooth Low Energy when there is no Wi-Fi or internet at all. Cloud storage apps like Google Drive also work over cellular, though they're slower because the file uploads in full before it downloads."}}]
         }
       ]
     }
@@ -88,7 +88,7 @@
     <link rel="stylesheet" href="/styles/common.css">
     <link rel="stylesheet" href="/styles/blog.css">
 
-    <!-- Cookie consent / Google Consent Mode v2 preboot — must precede any Google tag -->
+    <!-- Cookie consent / Google Consent Mode v2 preboot: must precede any Google tag -->
     <script src="/scripts/opendrop-cookie-banner.js"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241"></script>
@@ -99,27 +99,31 @@
       gtag('config', 'AW-17319823241');
     </script>
 </head>
-<body>
+<body class="page-blog-post">
+    <a class="skip-link" href="#main">Skip to content</a>
     <div class="bg-gradient"></div>
     <div class="noise"></div>
 
-    <!-- Navigation -->
-    <nav>
+    <nav class="site-nav" aria-label="Main">
         <a href="/" class="logo">
             <picture>
                 <source srcset="/NFDGamesLogoCircleTransparent.webp" type="image/webp">
-                <img src="/NFDGamesLogoCircleTransparent.png" alt="NFDGames Icon" class="logo-icon" width="36" height="36" loading="lazy">
+                <img src="/NFDGamesLogoCircleTransparent.png" alt="" class="logo-icon" width="36" height="36">
             </picture>
-            NFDGames
+            <span class="logo__word">NFDGames</span>
         </a>
-        <div class="nav-links">
+        <div class="nav-links" id="navLinks">
             <a href="/#projects">Projects</a>
-            <a href="/blog/">Blog</a>
-            <a href="/OpenDrop/" class="nav-cta">Get OpenDrop</a>
+            <a href="/blog/" aria-current="page">Blog</a>
+            <a href="/#about">About</a>
+        </div>
+        <div class="nav-actions">
+            <a href="/OpenDrop/" class="btn-cta btn-cta--sm">Get OpenDrop</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-controls="navLinks" aria-expanded="false" aria-label="Open menu"><span></span><span></span><span></span></button>
         </div>
     </nav>
 
-    <main>
+    <main id="main" tabindex="-1">
     <!-- Post Hero -->
     <header class="blog-post-hero">
         <div class="breadcrumb">
@@ -139,85 +143,89 @@
             <span class="blog-card-date">January 13, 2026</span>
             <span class="read-time">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                8 min read
+                6 min read
             </span>
         </div>
     </header>
 
     <!-- Post Content -->
     <article class="blog-post-content">
-        <div class="toc"><ol><li><a href="#the-wall">The Wall Between iPhone and Android</a></li><li><a href="#bluetooth-fail">What Went Wrong: Bluetooth File Transfer</a></li><li><a href="#cloud-workaround">The Cloud Workaround (And Why It's Slow)</a></li><li><a href="#messaging-apps">Messaging Apps: Compression Is the Enemy</a></li><li><a href="#what-actually-works">What Actually Works: Direct Transfer Apps</a></li><li><a href="#my-setup">My Current Setup for iPhone-Android Transfers</a></li></ol></div>
+        <div class="toc"><ol><li><a href="#the-wall">The Wall Between iPhone and Android</a></li><li><a href="#bluetooth-fail">What Goes Wrong with Bluetooth File Transfer</a></li><li><a href="#cloud-workaround">The Cloud Workaround (And Why It's Slow)</a></li><li><a href="#messaging-apps">Messaging Apps: Compression Is the Enemy</a></li><li><a href="#what-actually-works">What Actually Works: Direct Transfer Apps</a></li><li><a href="#my-setup">A Practical Setup for iPhone-Android Transfers</a></li></ol></div>
 
 <h2 id="the-wall">The Wall Between iPhone and Android</h2>
 
-<p>Apple and Google have both built file sharing into their platforms. AirDrop works between Apple devices. Google's Quick Share (formerly Nearby Share) works between Android and Chrome OS. Neither works with the other platform.</p>
+<p>Each platform has its own sharing feature. AirDrop works between iPhones, iPads and Macs. Quick Share (formerly Nearby Share) works between Android phones, Chromebooks and Windows PCs. Neither was built to talk to the other.</p>
 
-<p>This isn't a technical limitation. Both protocols use similar underlying technology: Wi-Fi Direct for the actual data transfer, Bluetooth LE for discovery. The barrier is a business decision. Apple wants you to buy another iPhone. Google wants you to stay on Android. Cross-platform file sharing doesn't serve either company's interests, so they don't build it.</p>
+<p>That is starting to change. On select Android phones, Quick Share can now exchange files with an iPhone through AirDrop, as long as the iPhone is set to receive from Everyone for 10 Minutes. If your Android phone is on that list, try it first. Most Android phones are not, so you need another route.</p>
 
-<p>I own an iPhone 15 running iOS 26.2 and a Redbeat D5 (budget Android 14 phone, 6GB RAM) that I use for cross-platform testing. Getting files between these two devices without a computer in the middle should be simple. It took me an embarrassing amount of trial and error to find a reliable method.</p>
+<p>The gap isn't about hardware. Both features use Bluetooth Low Energy to find nearby devices and a direct Wi-Fi link to move the data, and every modern phone has those radios. What's missing on most phones is a shared protocol between the two systems.</p>
 
-<h2 id="bluetooth-fail">What Went Wrong: Bluetooth File Transfer</h2>
+<h2 id="bluetooth-fail">What Goes Wrong with Bluetooth File Transfer</h2>
 
-<p>The first thing most people try is Bluetooth. It's on both phones, it should work, right?</p>
+<p>Bluetooth is the first thing most people try, because both phones have it.</p>
 
-<p>Android supports Bluetooth file transfer natively through the OBEX protocol. You can send any file to any Bluetooth device that accepts it. iOS, however, does not support OBEX file transfer. Apple locked down the Bluetooth stack years ago. You can pair an iPhone with an Android phone for audio (headphones, car stereo), but you cannot send files over Bluetooth between them.</p>
+<p>Android can send files over Bluetooth using OBEX Object Push, the same protocol older phones used to swap contacts and photos. iOS doesn't support OBEX file transfer. An iPhone uses Bluetooth for headphones, watches, keyboards and cars, but it has no receiver for a file pushed from an Android phone. You may see the iPhone in Android's Bluetooth list, but a file sent to it won't arrive.</p>
 
-<p>I spent 20 minutes confirming this when I first tested the Redbeat D5 with my iPhone 15. The Android phone showed the iPhone in its Bluetooth list, I tapped "Send file," selected a photo, and got a "Transfer failed" error. The iPhone never even displayed a file transfer prompt. It wasn't a connection issue; the protocol just doesn't exist on the iOS side for arbitrary file transfer.</p>
-
-<p>This rules out Bluetooth entirely for iPhone-to-Android file sharing. Don't waste your time pairing them.</p>
+<p>So the built-in Bluetooth menus are out. Bluetooth itself isn't the problem: an app installed on both phones can use Bluetooth Low Energy to move data between them. OpenDrop Pro does this between two phones signed in to the same account when there is no Wi-Fi. Bluetooth is much slower than Wi-Fi, so treat it as a fallback for when there's no network.</p>
 
 <h2 id="cloud-workaround">The Cloud Workaround (And Why It's Slow)</h2>
 
-<p>The next approach most people land on is uploading to a cloud service and downloading on the other device. Google Drive, iCloud Drive, Dropbox, or OneDrive. All of these work, technically.</p>
+<p>Next, most people reach for cloud storage: upload from one phone to Google Drive, Dropbox or OneDrive, then download on the other. It works, and for a document or a few photos it's fine.</p>
 
-<p>I tried Google Drive for a 1.2GB video file shot on the iPhone. The upload from iPhone to Google Drive took about 4 minutes on my home WiFi (limited by my ~35 Mbps upload speed in Greenville, SC). Then downloading it on the Redbeat D5 took another 45 seconds. Total time: just under 5 minutes for a file between two phones sitting on the same table.</p>
+<p>For video it gets slow. The file leaves your network, goes to a data center and comes back, even when both phones are on the same table. Most home connections upload much more slowly than they download, so the upload is the bottleneck. You wait for the whole file to upload before the other phone can start downloading it.</p>
 
-<p>For a single photo or document, cloud transfer is fast enough. For videos, project files, or batches of photos, the upload bottleneck makes it painfully slow. The file has to leave your local network entirely, travel to Google's data center, and come back. You're paying the full round-trip tax even though the destination device is within Bluetooth range.</p>
-
-<p>There's also the storage quota issue. Google gives 15GB free, iCloud gives 5GB. If you're moving large video files regularly, you'll hit limits fast.</p>
+<p>Storage quotas get in the way too. A Google account comes with 15 GB free, shared across Gmail, Drive and Photos. iCloud gives 5 GB, and iCloud Drive has no Android app, so Google Drive or Dropbox is usually the easier cloud route between the two phones. More on the trade-offs in <a href="/blog/posts/cloud-file-sharing-drawbacks.html">the drawbacks of cloud file sharing</a>.</p>
 
 <h2 id="messaging-apps">Messaging Apps: Compression Is the Enemy</h2>
 
-<p>Some people share files through messaging apps. iMessage, WhatsApp, Telegram, Discord. This works for casual sharing, but every one of these apps compresses media files.</p>
+<p>Sending a file to yourself through a messaging app is another common workaround. It's fine for a quick photo, but most messaging apps recompress photos and video by default to save bandwidth. What arrives is smaller and lower quality than the original.</p>
 
-<p>WhatsApp compresses video heavily, often cutting quality by 60-70%. iMessage doesn't work with Android at all (it falls back to SMS/MMS, which is even worse). Telegram preserves quality if you explicitly choose "Send as File" instead of the default media attachment, but it still uploads to Telegram's servers first.</p>
+<ul>
+<li><strong>Messages on iPhone:</strong> iMessage only works between Apple devices. Messages to an Android phone go over RCS or MMS instead, which limit attachment size and can reduce media quality.</li>
+<li><strong>WhatsApp:</strong> compresses photos and video by default. Sending the file as a document keeps the original.</li>
+<li><strong>Telegram:</strong> compresses media by default. Sending it as a file keeps the original.</li>
+<li><strong>Discord:</strong> keeps the original file, but free accounts have a small upload size limit.</li>
+</ul>
 
-<p>Discord is the one I used to rely on before building OpenDrop. Upload a file to a channel, download on the other device. File quality is preserved for most file types. The problems: 25MB file size limit for free users (100MB with Nitro), and the file round-trips through Discord's servers. For a 500MB video, you're looking at a multi-minute upload on a typical home connection.</p>
-
-<p>I was literally uploading files to a private Discord server and downloading them on the other device as my main file transfer method. That's when I decided the problem needed a real solution.</p>
+<p>All of these route the file through the company's servers, so they share the cloud problem: the full file uploads before the other phone can download it. They're good for sending a photo to someone else, because the recipient already has the app. For moving files between your own phones, a direct transfer is better.</p>
 
 <h2 id="what-actually-works">What Actually Works: Direct Transfer Apps</h2>
 
-<p>The solution is a cross-platform transfer app that sends files directly between devices without routing through a cloud server. Several exist. I'll cover the ones I've actually tested.</p>
+<p>A direct transfer app runs on both phones and sends the file between them over your local network, without uploading it anywhere first. On the same Wi-Fi, the speed depends on your router and your phones, not your internet connection, and the file arrives unchanged.</p>
 
-<p><strong><a href="https://www.nfdgames.com/OpenDrop/">OpenDrop</a></strong> is the one I built. Install the iOS app (App Store) and Android app (Google Play). Both devices find each other automatically via mDNS (<code>_opendrop._tcp.local.</code> on port 8000) when on the same WiFi. Select files, tap send, and the transfer goes directly between phones at LAN speed. No upload wait, no compression, full streaming with no per-file size cap.</p>
+<p><strong>Quick Share with AirDrop</strong> needs no extra app if your Android phone supports it. Set AirDrop on the iPhone to Everyone for 10 Minutes and share from Quick Share. The list of supported phones is short, so check yours before relying on it.</p>
 
-<p>The 1.2GB video that took 5 minutes through Google Drive transferred in about 12 seconds over my home WiFi. Original quality, no compression, no cloud server involved.</p>
+<p><strong>LocalSend</strong> is free, open source (Apache 2.0) and needs no account. Install it on both phones and they find each other on the same network and send in either direction. It only works on the same network: if one phone is on Wi-Fi and the other is on cellular, LocalSend can't connect them. There's a longer comparison in <a href="/blog/posts/opendrop-vs-localsend-comparison.html">OpenDrop vs LocalSend</a>.</p>
 
-<p>When the phones aren't on the same network (one on WiFi, one on cellular), OpenDrop's remote mode kicks in. Free phone-to-phone transfers first try a direct encrypted peer-to-peer link, fall back to our Oracle Cloud relay, and move in resumable 5 MB chunks; Pro streams continuously over the faster Fly.io relay with automatic failover to Oracle if Fly is ever down. There's no tunnel binary to install and no per-transfer size cap.</p>
+<p><strong><a href="/OpenDrop/">OpenDrop</a></strong> is the app we make. It runs on iPhone, iPad, Android, Windows and Linux. How it handles iPhone to Android depends on the plan:</p>
 
-<p><strong>LocalSend</strong> is a similar option, also open-source. It handles LAN transfers well and uses a comparable mDNS discovery approach. The main limitation: it's LAN-only with no remote transfer mode. If your iPhone is on WiFi and your Android is on cellular, LocalSend can't connect them.</p>
+<ul>
+<li><strong>Pro:</strong> sign in to the same OpenDrop account on both phones, with Google, Apple, Microsoft or email. On the same Wi-Fi they find each other automatically over <a href="/blog/posts/mdns-auto-discovery-explained.html">mDNS</a> and send directly at full speed, in original quality. On different networks, for example one phone on cellular, the transfer goes over the faster Pro relay, with a direct peer-to-peer link as a backup. With no Wi-Fi or internet at all, the two phones can send over Bluetooth Low Energy. There is no file size cap.</li>
+<li><strong>Free:</strong> no account needed, but no phone-to-phone transfers. Each phone pairs with a Windows or Linux computer by scanning its QR code. Send from the iPhone to the computer, then pick the file up on the Android phone, or the other way round. On the same Wi-Fi this runs at full speed. Away from your Wi-Fi, Free transfers go peer-to-peer or through the shared relay. They are speed-limited and move in resumable 5 MB pieces, and relay transfers count against a weekly allowance. There is no file size cap.</li>
+</ul>
 
-<p><strong>SHAREit</strong> and <strong>Xender</strong> are popular in some regions. Both work but come with aggressive ads and privacy concerns. SHAREit has been flagged by multiple security researchers for data collection practices. I'd avoid them for privacy reasons alone.</p>
+<p>OpenDrop encrypts file contents on the sending device before they leave it. When a transfer goes through a relay, the relay carries the contents only in encrypted form, but it can see details such as file names, sizes and device names, which it needs to route the transfer. The other apps here also encrypt in transit.</p>
 
-<div class="callout callout-tip"><div class="callout-title">Tip</div><p>When transferring photos from iPhone to Android, be aware that iPhones shoot in HEIC format by default. Most Android devices can view HEIC, but some older ones can't. You can change your iPhone camera settings to shoot in JPEG (Settings → Camera → Formats → Most Compatible) or convert files after transfer.</p></div>
+<p><strong>SHAREit</strong> and <strong>Xender</strong> are popular in some regions. Both are ad-supported, so check the permissions they ask for and their privacy policies before you install them.</p>
 
-<h2 id="my-setup">My Current Setup for iPhone-Android Transfers</h2>
+<div class="callout callout-tip"><div class="callout-title">Tip</div><p>iPhones save photos as HEIC by default. Recent Android phones open HEIC, but some older phones and apps don't. To shoot JPEG instead, go to Settings → Camera → Formats and choose Most Compatible. You can also convert after the transfer. OpenDrop Pro converts HEIC to JPG, but the conversion runs on your Windows or Linux computer, so you need one in the setup. For moving iPhone photos to a PC, see <a href="/blog/posts/transfer-photos-iphone-to-windows-pc.html">how to transfer photos from iPhone to a Windows PC</a>.</p></div>
 
-<p>After trying everything above, here's what I actually use day to day.</p>
+<h2 id="my-setup">A Practical Setup for iPhone-Android Transfers</h2>
 
-<p>For quick transfers between my iPhone 15 and the Redbeat D5, I open OpenDrop on both phones. Both are usually on my home WiFi, so the mDNS discovery connects them in about 3 seconds. I select files on the sending phone, tap the other device, and watch the progress bar fill. A batch of 50 photos takes about 8 seconds. A 2GB video takes under 30 seconds.</p>
+<p>The right method depends on how often you move files and how big they are.</p>
 
-<p>When I'm testing remotely (phone on cellular in Greenville, SC, the other on WiFi at home), I use the remote transfer mode. Pro relay streaming handles it well enough that I don't even think about switching methods. The same files, same process, just a bit slower because the data crosses the internet instead of staying local.</p>
-
-<p>For sharing a single photo with someone else (not my own device), I still use messaging apps. Telegram with "Send as File" preserves quality, and the recipient doesn't need to install anything new. But for my own devices, a direct transfer app saves so much time that going back to the cloud upload dance feels absurd.</p>
-
-<p>The fundamental problem, that Apple and Google don't let their file sharing features talk to each other, isn't going away. Both companies have too much incentive to keep their walled gardens intact. Third-party apps that bridge the gap are the only real solution, and they work well enough that the platform lock-in doesn't matter for file sharing anymore.</p>
+<ul>
+<li><strong>An occasional photo or document:</strong> a messaging app or cloud drive is fine. Use WhatsApp's document option or Telegram's send-as-file option when quality matters.</li>
+<li><strong>Your Android phone supports Quick Share with AirDrop:</strong> use it for nearby transfers. Nothing to install.</li>
+<li><strong>Regular transfers at home, no account:</strong> LocalSend on both phones, or OpenDrop Free with both phones paired to your computer.</li>
+<li><strong>Phones on different networks, or no Wi-Fi at all:</strong> OpenDrop Pro on both phones, signed in to the same account. It picks the route for you: Wi-Fi when both phones are on it, the Pro relay or peer-to-peer over the internet, and Bluetooth when there is no network.</li>
+<li><strong>Large videos:</strong> transfer on the same Wi-Fi when you can. A local transfer skips your internet upload entirely, which is the slowest part of any cloud or relay route.</li>
+</ul>
 
         <!-- CTA -->
         <div class="blog-cta">
-            <h3>Share Files Between iPhone and Android in Seconds</h3>
-            <p>OpenDrop works on both iOS and Android. Install on both phones, and they find each other automatically. No cloud upload, no compression, full streaming with no per-file size cap on LAN.</p>
+            <h3>Share Files Between iPhone and Android</h3>
+            <p>OpenDrop runs on iPhone, iPad, Android, Windows and Linux. With OpenDrop Pro, sign in on both phones and they find each other automatically, over Wi-Fi, the internet or Bluetooth. On Free, pair each phone with your computer by QR code. Original quality and no file size cap on either plan.</p>
             <a href="/OpenDrop/" class="btn btn-primary">Download OpenDrop Free</a>
         </div>
     </article>
@@ -228,45 +236,78 @@
         <div class="related-grid">
             <a href="/blog/posts/transfer-files-android-to-pc-without-usb.html" class="related-card">
     <h4>How to Transfer Files from Android to PC Without USB</h4>
-    <p>Step-by-step guide to wirelessly transferring files from your Android phone to your Windows or Linux</p>
+    <p>Transfer files from Android to PC wirelessly, no USB cable needed.</p>
 </a>
 <a href="/blog/posts/send-large-files-phone-to-pc-free.html" class="related-card">
     <h4>How to Send Large Files Between Phone and PC for Free</h4>
-    <p>Learn how to send files of any size between your phone and computer without cloud uploads or paid se</p>
+    <p>How free file transfers actually work between phones and PCs.</p>
 </a>
         </div>
     </section>
     </main>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-brand">
+    <div class="seam" aria-hidden="true"></div>
+    <footer class="site-footer">
+        <div class="wrap site-footer__grid">
+            <div class="site-footer__brand">
                 <a href="/" class="logo">
                     <picture>
                         <source srcset="/NFDGamesLogoCircleTransparent.webp" type="image/webp">
-                        <img src="/NFDGamesLogoCircleTransparent.png" alt="NFDGames Icon" class="logo-icon" width="36" height="36" loading="lazy">
+                        <img src="/NFDGamesLogoCircleTransparent.png" alt="" class="logo-icon" width="36" height="36" loading="lazy">
                     </picture>
                     NFDGames
                 </a>
-                <p>Indie studio building software utilities and mobile games.</p>
+                <p>Independent studio making OpenDrop and Gunslinger.</p>
             </div>
-            <div class="footer-links">
-                <div class="footer-col">
-                    <h4>Products</h4>
-                    <a href="/OpenDrop/">OpenDrop</a>
-                    <a href="/OpenDrop/support.html">Support</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Resources</h4>
-                    <a href="/blog/">Blog</a>
-                    <a href="/OpenDrop/PrivacyPolicy.html">Privacy Policy</a>
-                    <a href="/OpenDrop/TermsOfService.html">Terms of Service</a>
-                </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">OpenDrop</h2>
+                <ul>
+                    <li><a href="/OpenDrop/">Overview</a></li>
+                    <li><a href="/OpenDrop/#download">Download</a></li>
+                    <li><a href="/OpenDrop/#compare">Free vs Pro</a></li>
+                    <li><a href="/OpenDrop/changelog.html">What's new in 1.0</a></li>
+                    <li><a href="/OpenDrop/support.html">Support</a></li>
+                    <li><a href="/OpenDrop/status.html">System status</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Guides</h2>
+                <ul>
+                    <li><a href="/blog/posts/best-airdrop-alternatives-windows-2026.html">AirDrop alternatives</a></li>
+                    <li><a href="/blog/posts/share-files-iphone-android.html">iPhone to Android</a></li>
+                    <li><a href="/blog/posts/transfer-files-android-to-pc-without-usb.html">Android to PC, no USB</a></li>
+                    <li><a href="/blog/posts/transfer-photos-iphone-to-windows-pc.html">iPhone photos to PC</a></li>
+                    <li><a href="/blog/posts/transfer-files-windows-to-linux.html">Windows to Linux</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Studio</h2>
+                <ul>
+                    <li><a href="/">NFDGames home</a></li>
+                    <li><a href="/#gunslinger">Gunslinger</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/OpenDrop/press.html">Press kit</a></li>
+                    <li><a href="https://play.google.com/store/apps/dev?id=6331541447390891189&amp;hl=en_US" target="_blank" rel="noopener">Apps on Google Play</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Legal and security</h2>
+                <ul>
+                    <li><a href="/OpenDrop/PrivacyPolicy.html">Privacy Policy</a></li>
+                    <li><a href="/OpenDrop/TermsOfService.html">Terms of Service</a></li>
+                    <li><a href="/OpenDrop/security.html">Security and disclosure</a></li>
+                    <li><a href="/OpenDrop/accessibility.html">Accessibility</a></li>
+                </ul>
             </div>
         </div>
-        <div class="footer-bottom">
+        <div class="wrap site-footer__bottom">
             <p>&copy; 2026 NFDGames. All rights reserved.</p>
+            <div class="site-footer__legal">
+                <a href="/OpenDrop/WithdrawalForm.html">EU/UK withdrawal</a>
+                <a href="/OpenDrop/third-party-notices.html">Third-party notices</a>
+                <a href="/OpenDrop/docs/export-compliance/">Export compliance</a>
+                <a href="mailto:support@nfdgames.com">support@nfdgames.com</a>
+            </div>
         </div>
     </footer>
 
@@ -284,7 +325,7 @@
         appId: "1:573883707762:web:e68643cce07c2cee3eadeb",
         measurementId: "G-ENWJJ78E3Q"
       });
-      // Gated on user consent — see /scripts/opendrop-cookie-banner.js
+      // Gated on user consent, see /scripts/opendrop-cookie-banner.js
       if (window.OpenDropConsent) { window.OpenDropConsent.onConsent(function () { getAnalytics(app); }); }
     </script>
 </body>
