@@ -10,123 +10,143 @@
  <link rel="icon" type="image/png" sizes="96x96" href="icon-96x96-opendrop.png">
  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-opendrop.png">
  <link rel="manifest" href="/site.webmanifest">
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+ <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+ <link rel="stylesheet" href="../styles/common.css">
+ <link rel="stylesheet" href="../styles/subpage.css">
  <style>
- :root{
- --bg:#0b0b12;
- --card:#101024;
- --text:#eef0ff;
- --muted:#b7bbd6;
- --link:#9b87ff;
- --border:rgba(255,255,255,.10);
+ /* Legal document: page-only rules. Fonts, colours, nav, footer, header and the
+    card surface come from common.css and subpage.css. */
+ .legal-doc > ol {
+ margin: 0;
+ padding-left: 1.75rem;
  }
- *{box-sizing:border-box}
- body{
- margin:0;
- font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
- background: radial-gradient(1000px 600px at 20% -10%, rgba(120,78,255,.25), transparent 60%),
- radial-gradient(900px 700px at 90% 10%, rgba(155,135,255,.18), transparent 55%),
- var(--bg);
- color:var(--text);
- line-height:1.55;
+ .legal-doc > ol > li {
+ margin: 0;
+ padding: var(--sp-6) 0;
+ border-top: 1px solid var(--hairline);
  }
- a{color:var(--link); text-decoration:none}
- a:hover{text-decoration:underline}
- header{
- max-width: 920px;
- margin: 40px auto 18px;
- padding: 0 18px;
+ .legal-doc > ol > li:first-child {
+ padding-top: 0;
+ border-top: 0;
  }
- .badge{
- display:inline-flex;
- gap:10px;
- align-items:center;
- padding: 8px 12px;
- border:1px solid var(--border);
- background: rgba(155,135,255,.12);
- border-radius: 999px;
- color: var(--muted);
- font-size: 14px;
+ .legal-doc > ol > li::marker {
+ font: 700 1.0625rem/1 var(--font-mono);
+ color: var(--accent-glow);
  }
- h1{
- margin: 14px 0 6px;
- font-size: clamp(28px, 4vw, 40px);
- letter-spacing: -.02em;
+ .legal-doc > ol > li > h2 {
+ margin: 0 0 var(--sp-3);
+ font-size: 1.25rem;
+ color: var(--text-primary);
  }
- .sub{
- margin:0;
- color: var(--muted);
- font-size: 15px;
+ .legal-doc li > ul,
+ .legal-doc li > ol {
+ margin: var(--sp-2) 0 var(--sp-3) 1.25rem;
  }
- main{
- max-width: 920px;
- margin: 0 auto 56px;
- padding: 0 18px;
+ .legal-doc li > p + p,
+ .legal-doc li > ul + p,
+ .legal-doc li > ol + p,
+ .legal-doc li > div + p {
+ margin-top: var(--sp-3);
  }
- .card{
- background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
- border:1px solid var(--border);
- border-radius: 16px;
- padding: 22px;
- box-shadow: 0 16px 50px rgba(0,0,0,.35);
+ .legal-doc .muted { color: var(--text-subtle); }
+ .legal-doc .legal-updated {
+ margin-top: var(--sp-6);
+ padding-top: var(--sp-4);
+ border-top: 1px solid var(--hairline);
+ font-size: var(--fs-small);
  }
- h2{
- margin: 22px 0 10px;
- font-size: 18px;
- letter-spacing: -.01em;
+ .contact {
+ display: inline-block;
+ margin-top: var(--sp-2);
+ padding: var(--sp-3) var(--sp-4);
+ border-radius: var(--r-md);
+ background: var(--bg-deep);
+ border: 1px solid var(--hairline);
+ font-size: var(--fs-small);
+ line-height: 1.7;
+ color: var(--text-secondary);
+ overflow-wrap: anywhere;
  }
- h2:first-child{margin-top:0}
- p, li{color:var(--text)}
- .muted{color:var(--muted)}
- ol{margin: 0; padding-left: 20px;}
- ol > li{margin: 14px 0;}
- ul{margin: 10px 0 0; padding-left: 18px;}
- code{
- font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
- font-size: .95em;
- color: #f1efff;
+ .contact strong { color: var(--text-primary); }
+ .callout {
+ margin-top: var(--sp-3);
+ padding: var(--sp-3) var(--sp-4);
+ border-radius: var(--r-md);
+ background: var(--accent-tint);
+ border: 1px solid var(--accent-edge);
+ font-size: var(--fs-small);
+ line-height: 1.65;
+ color: var(--text-secondary);
  }
- footer{
- max-width: 920px;
- margin: 18px auto 36px;
- padding: 0 18px;
- color: var(--muted);
- font-size: 14px;
+ .callout strong { color: var(--text-primary); }
+ .cookie-prefs-btn {
+ display: flex;
+ width: fit-content;
+ margin-top: var(--sp-2);
+ font-size: var(--fs-small);
  }
- .contact{
- display:inline-block;
- margin-top:8px;
- padding: 10px 12px;
- border:1px solid var(--border);
- border-radius: 12px;
- background: rgba(0,0,0,.18);
+ .noscript-note { font-size: 0.8125rem; }
+ /* Phones: the document runs full width instead of sitting in a card */
+ @media (max-width: 640px) {
+ .legal-doc {
+ padding: 0;
+ background: none;
+ border: 0;
+ border-radius: 0;
  }
- .callout{
- margin-top: 12px;
- padding: 12px 14px;
- border:1px solid var(--border);
- border-radius: 14px;
- background: rgba(155,135,255,.08);
- color: var(--muted);
+ .legal-doc > ol { padding-left: 1.5rem; }
+ .legal-doc > ol > li { padding: var(--sp-5) 0; }
+ .legal-doc > ol > li > h2 { font-size: 1.125rem; }
  }
  </style>
 </head>
-<body>
- <header>
- <div class="badge" aria-label="Effective date">
- <span>Effective Date</span>
- <strong>August 28, 2026</strong>
- </div>
- <h1>Terms of Service for OpenDrop</h1>
- <p class="sub">
- These Terms of Service are a legal agreement between you and NFDGames LLC. They govern your use of
- the OpenDrop mobile application and associated desktop server software. By using OpenDrop, you
- agree to these Terms, which include a binding arbitration agreement and class-action waiver
- (Section 16).
- </p>
- </header>
+<body class="page-subpage page-terms">
+    <a class="skip-link" href="#main">Skip to content</a>
 
- <main>
- <section class="card">
+    <nav class="site-nav" aria-label="Main">
+        <span class="nav-lockup">
+            <a href="/" class="nav-lockup__home" aria-label="NFDGames home">
+                <picture>
+                    <source srcset="/NFDGamesLogoCircleTransparent.webp" type="image/webp">
+                    <img src="/NFDGamesLogoCircleTransparent.png" alt="" width="28" height="28">
+                </picture>
+            </a>
+            <span class="nav-lockup__sep" aria-hidden="true">/</span>
+            <a href="/OpenDrop/" class="logo">
+                <picture>
+                    <source srcset="/OpenDrop/OpenDropIcon-logo.webp" type="image/webp">
+                    <img src="/OpenDrop/OpenDropIcon.png" alt="" class="logo-icon" width="32" height="32">
+                </picture>
+                <span class="logo__word">OpenDrop</span>
+            </a>
+        </span>
+        <div class="nav-links" id="navLinks">
+            <a href="/OpenDrop/#features">Features</a>
+            <a href="/OpenDrop/#compare">Free vs Pro</a>
+            <a href="/blog/">Blog</a>
+            <a href="/OpenDrop/support.html">Support</a>
+        </div>
+        <div class="nav-actions">
+            <a href="/OpenDrop/#download" class="btn-cta btn-cta--sm">Download</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-controls="navLinks" aria-expanded="false" aria-label="Open menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+ <main id="main" tabindex="-1">
+    <header class="subpage-head">
+        <div class="subpage-wrap section-head">
+            <p class="eyebrow">Legal</p>
+            <h1 class="section-title">Terms of Service for OpenDrop</h1>
+            <p class="section-lede">These Terms of Service are a legal agreement between you and NFDGames LLC. They govern your use of the OpenDrop mobile application and associated desktop server software. By using OpenDrop, you agree to these Terms, which include a binding arbitration agreement and class-action waiver (Section 16).</p>
+            <p class="subpage-meta"><span>Effective Date</span><strong>October 10, 2026</strong></p>
+        </div>
+    </header>
+
+ <div class="subpage-wrap subpage-body">
+ <section class="doc-card legal-doc">
  <ol>
  <li>
  <h2>Acceptance of These Terms</h2>
@@ -157,9 +177,12 @@
  <div class="callout">
  OpenDrop is designed so your files remain on your devices. File contents are end-to-end
  encrypted in transit on <em>every</em> transfer path, including Wi-Fi / LAN, direct peer-to-peer connections, our own
- WebSocket relay, and Bluetooth Low Energy, using ChaCha20-Poly1305 IETF
- AEAD (RFC 8439) with keys derived from your account's shared secret via HKDF-SHA256. Our
- infrastructure routes ciphertext only and cannot read your files. The v1.0 app release
+ WebSocket relay, and Bluetooth Low Energy (between phones, with OpenDrop Pro), using
+ ChaCha20-Poly1305 IETF AEAD (RFC 8439) with keys derived via HKDF-SHA256 from the secret
+ your devices share when you pair them. Our relay servers carry file contents only in
+ encrypted form, but they can see file names, folder names, file sizes and device names,
+ which they need to route transfers. With OpenDrop Pro, our account service also stores the
+ shared secret so your signed-in devices can connect to each other. The v1.0 app release
  (mobile and desktop) advertises protocol version 2 of the OpenDrop wire format, which
  makes end-to-end encryption mandatory: the v1.0 client and server refuse to send or accept
  unencrypted file bodies. Pre-1.0 clients running protocol version 0 or 1 (which predate
@@ -193,6 +216,10 @@
  <h2>Accounts and Authentication</h2>
  <ul>
  <li>
+ <strong>When you need an account.</strong> The free tier of OpenDrop works without an
+ account. You need an account to subscribe to and use OpenDrop Pro.
+ </li>
+ <li>
  <strong>Sign-in providers.</strong> The Service supports sign-in via Google, Apple,
  Microsoft, and direct email/password (operated by Firebase Authentication). Your use of
  a third-party sign-in is also subject to the terms of that provider.
@@ -205,8 +232,9 @@
  access.
  </li>
  <li>
- <strong>Account deletion.</strong> You may delete your account at any time from the
- Settings menu of either app, as described in our Privacy Policy. Deletion is permanent and
+ <strong>Account deletion.</strong> You may delete your account at any time from
+ Settings in the mobile app or on our account deletion page (the desktop app links to it
+ from its sign-in window), as described in our Privacy Policy. Deletion is permanent and
  cannot be reversed.
  </li>
  </ul>
@@ -240,8 +268,9 @@
  <li>
  <strong>Copyright and other intellectual-property rights: you alone are responsible.</strong>
  OpenDrop is a general-purpose pipe between your own devices. NFDGames LLC does not
- inspect, index, host, or have visibility into the files you transfer (file contents are
- end-to-end encrypted on every transfer path; see Section 2 and our Privacy Policy).
+ inspect, index, or host the files you transfer (file contents are end-to-end encrypted on
+ every transfer path, although our relay servers can see transfer details such as file
+ names, folder names and file sizes; see Section 2 and our Privacy Policy).
  <strong>You, the user, are solely responsible for ensuring that any file, image, video,
  audio recording, document, software, or other content you transmit, store, share, or
  receive through OpenDrop is one you own, have a valid license for, or are otherwise
@@ -273,15 +302,17 @@
  <h2>Subscriptions, Auto-Renewal, and Cancellation (OpenDrop Pro)</h2>
  <p>
  Certain features of the Service are made available through a paid subscription
- ("OpenDrop Pro"). Current pricing as of the Effective Date is US $2.99 per month or
- US $24.99 per year, charged through the platform on which you subscribe. Local taxes may
- apply. Pricing may change with notice.
+ ("OpenDrop Pro"). The rest of the Service is free to use. For OpenDrop Pro bought from the
+ Windows or Linux desktop app, current pricing as of the Effective Date is US $2.99 per
+ month or US $24.99 per year. On the Apple App Store and Google Play, the current price is
+ shown in the app before you subscribe. Subscriptions are charged through the platform on
+ which you subscribe. Local taxes may apply. Pricing may change with notice.
  </p>
  <p><strong>Billing.</strong> Subscriptions are processed by one of:</p>
  <ul>
- <li><strong>Apple App Store</strong> (iOS / macOS in-app purchase)</li>
+ <li><strong>Apple App Store</strong> (iPhone and iPad in-app purchase)</li>
  <li><strong>Google Play Billing</strong> (Android in-app purchase)</li>
- <li><strong>Stripe, Inc.</strong> via Stripe Payment Links (desktop web purchases)</li>
+ <li><strong>Stripe, Inc.</strong> via Stripe Payment Links (purchases made from the Windows and Linux desktop apps)</li>
  </ul>
  <p>
  Payment is collected by the applicable processor. NFDGames does not see or store your full
@@ -293,14 +324,9 @@
  annually, as applicable) and your payment method will be charged the then-current
  subscription fee, until you cancel. You can review and manage your subscription, including
  cancellation, in the Settings of your purchase platform: Apple ID Settings → Subscriptions
- (iOS / macOS App Store), Google Play → Subscriptions (Android), or the Stripe customer
- portal linked from your purchase email (desktop web). Cancellation takes effect at the end
+ (iPhone and iPad), Google Play → Subscriptions (Android), or the Stripe customer portal
+ linked from your purchase email (Windows and Linux). Cancellation takes effect at the end
  of the current billing period; you keep access until then.
- </p>
- <p>
- <strong>Free trials, if offered.</strong> If your subscription includes a free trial, your
- payment method will be charged the subscription fee at the end of the trial unless you
- cancel at least 24 hours before the trial ends.
  </p>
  <p>
  <strong>Refunds.</strong> Refunds are handled by the platform that processed your purchase
@@ -532,9 +558,9 @@
  of these Terms by NFDGames LLC.</strong>
  </p>
  <p>
- <strong>AI-Assisted Development Disclosure.</strong> Portions of the Service — including
+ <strong>AI-Assisted Development Disclosure.</strong> Portions of the Service (including
  application and server source code, our websites and documentation, and these legal
- documents — were created with the assistance of artificial-intelligence ("AI") developer
+ documents) were created with the assistance of artificial-intelligence ("AI") developer
  tools, working under human direction and review by NFDGames. NFDGames, and not any AI-tool
  vendor, is solely responsible for the Service. The Service itself does not currently
  include AI or generative-AI features: no AI system processes your files or personal
@@ -713,21 +739,79 @@
  </li>
  </ol>
 
- <p class="muted" style="margin-top:18px;">
- Last updated: August 28, 2026
+ <p class="muted legal-updated">
+ Last updated: October 10, 2026
  </p>
  </section>
+ </div>
  </main>
 
- <footer>
- <span class="muted">© 2026 NFDGames LLC</span> &nbsp;·&nbsp;
- <a href="PrivacyPolicy.html">Privacy</a> &nbsp;·&nbsp;
- <a href="WithdrawalForm.html">EU/UK Withdrawal</a> &nbsp;·&nbsp;
- <a href="third-party-notices.html">Third-party notices</a> &nbsp;·&nbsp;
- <a href="security.html">Security</a> &nbsp;·&nbsp;
- <a href="accessibility.html">Accessibility</a> &nbsp;·&nbsp;
- <a href="status.html">Status</a> &nbsp;·&nbsp;
- <a href="changelog.html">v1.0 notes</a>
- </footer>
+    <div class="seam" aria-hidden="true"></div>
+
+    <footer class="site-footer">
+        <div class="wrap site-footer__grid">
+            <div class="site-footer__brand">
+                <a href="/OpenDrop/" class="logo">
+                    <picture>
+                        <source srcset="/OpenDrop/OpenDropIcon-logo.webp" type="image/webp">
+                        <img src="/OpenDrop/OpenDropIcon.png" alt="" class="logo-icon" width="36" height="36" loading="lazy">
+                    </picture>
+                    OpenDrop
+                </a>
+                <p>OpenDrop by NFDGames. File transfer for Windows, Linux, iPhone, iPad and Android.</p>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">OpenDrop</h2>
+                <ul>
+                    <li><a href="/OpenDrop/">Overview</a></li>
+                    <li><a href="/OpenDrop/#download">Download</a></li>
+                    <li><a href="/OpenDrop/#compare">Free vs Pro</a></li>
+                    <li><a href="/OpenDrop/changelog.html">What's new in 1.0</a></li>
+                    <li><a href="/OpenDrop/support.html">Support</a></li>
+                    <li><a href="/OpenDrop/status.html">System status</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Guides</h2>
+                <ul>
+                    <li><a href="/blog/posts/best-airdrop-alternatives-windows-2026.html">AirDrop alternatives</a></li>
+                    <li><a href="/blog/posts/share-files-iphone-android.html">iPhone to Android</a></li>
+                    <li><a href="/blog/posts/transfer-files-android-to-pc-without-usb.html">Android to PC, no USB</a></li>
+                    <li><a href="/blog/posts/transfer-photos-iphone-to-windows-pc.html">iPhone photos to PC</a></li>
+                    <li><a href="/blog/posts/transfer-files-windows-to-linux.html">Windows to Linux</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Studio</h2>
+                <ul>
+                    <li><a href="/">NFDGames home</a></li>
+                    <li><a href="/#gunslinger">Gunslinger</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/OpenDrop/press.html">Press kit</a></li>
+                    <li><a href="https://play.google.com/store/apps/dev?id=6331541447390891189&amp;hl=en_US" target="_blank" rel="noopener">Apps on Google Play</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Legal and security</h2>
+                <ul>
+                    <li><a href="/OpenDrop/PrivacyPolicy.html">Privacy Policy</a></li>
+                    <li><a href="/OpenDrop/TermsOfService.html">Terms of Service</a></li>
+                    <li><a href="/OpenDrop/security.html">Security and disclosure</a></li>
+                    <li><a href="/OpenDrop/accessibility.html">Accessibility</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="wrap site-footer__bottom">
+            <p>&copy; 2026 NFDGames. All rights reserved.</p>
+            <div class="site-footer__legal">
+                <a href="/OpenDrop/WithdrawalForm.html">EU/UK withdrawal</a>
+                <a href="/OpenDrop/third-party-notices.html">Third-party notices</a>
+                <a href="/OpenDrop/docs/export-compliance/">Export compliance</a>
+                <a href="mailto:support@nfdgames.com">support@nfdgames.com</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/scripts/common.js"></script>
 </body>
 </html>
