@@ -1,0 +1,538 @@
+/* ============================================
+   OpenDrop Support page (body.page-support), refresh 2026-10
+   Tokens and shared components (site-nav, nav-actions, btn-cta,
+   eyebrow, section-title, tile, link-arrow, disclosure, seam,
+   site-footer, skip-link) come from common.css under
+   "Refresh 2026-10: shared design system". Page rules only, all
+   scoped to body.page-support.
+   ============================================ */
+
+body.page-support {
+    color-scheme: dark;
+}
+
+body.page-support main code {
+    padding: 1px 6px;
+    border-radius: 6px;
+    background: rgba(148, 163, 192, 0.12);
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    white-space: nowrap;
+}
+
+body.page-support .section[id] {
+    scroll-margin-top: calc(var(--nav-h) + 16px);
+}
+
+/* ---------- Nav: family lockup (same look as the product page) ---------- */
+body.page-support .nav-lockup__home {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 44px;
+    border-radius: var(--r-sm);
+}
+
+body.page-support .nav-lockup__home img {
+    display: block;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+}
+
+body.page-support .nav-lockup .logo {
+    gap: 10px;
+    min-height: 44px;
+    font-size: 1.125rem;
+}
+
+body.page-support .nav-lockup .logo-icon {
+    width: 32px;
+    height: 32px;
+}
+
+/* ---------- Page header and contact tiles ---------- */
+body.page-support .support-hero {
+    padding: calc(var(--nav-h) + 48px) 0 var(--section-y);
+    background: var(--glow-hero);
+}
+
+body.page-support .support-hero h1 {
+    margin: var(--sp-4) 0 var(--sp-4);
+    font-size: var(--fs-h1);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+}
+
+body.page-support .support-tiles {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--sp-4);
+    margin: var(--sp-10) 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+body.page-support .support-tile {
+    gap: var(--sp-2);
+    padding: var(--sp-6);
+}
+
+body.page-support .support-tile:hover {
+    border-color: var(--accent-edge);
+}
+
+body.page-support .support-tile__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    width: 44px;
+    height: 44px;
+    margin-bottom: var(--sp-2);
+    border-radius: var(--r-md);
+    background: var(--accent-tint-strong);
+    color: var(--accent-glow);
+}
+
+body.page-support .support-tile__icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+body.page-support .support-tile__title {
+    margin: 0;
+    padding-right: var(--sp-8);
+    font-size: 1.0625rem;
+    font-weight: 600;
+    line-height: 1.35;
+}
+
+/* The title link covers the whole tile, so the tile is one tap target
+   and one focus stop. Its ring is drawn on the covering layer. */
+body.page-support .support-tile__link {
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+body.page-support .support-tile__link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: var(--r-xl);
+}
+
+body.page-support .support-tile__link:focus-visible {
+    outline: none;
+}
+
+body.page-support .support-tile__link:focus-visible::after {
+    outline: 2px solid var(--accent-glow);
+    outline-offset: 3px;
+}
+
+body.page-support .support-tile__text {
+    margin: 0;
+    font-size: var(--fs-small);
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+
+body.page-support .support-tile__text strong {
+    font-weight: 600;
+    color: var(--text-primary);
+    overflow-wrap: anywhere;
+}
+
+body.page-support .support-tile__arrow {
+    position: absolute;
+    top: var(--sp-6);
+    right: var(--sp-6);
+    width: 20px;
+    height: 20px;
+    color: var(--text-subtle);
+    transition: color 0.15s ease;
+}
+
+body.page-support .support-tile:hover .support-tile__arrow,
+body.page-support .support-tile:focus-within .support-tile__arrow {
+    color: var(--accent-glow);
+}
+
+/* ---------- FAQ ---------- */
+body.page-support .faq-cols {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--sp-12);
+    align-items: start;
+}
+
+body.page-support .faq-group + .faq-group {
+    margin-top: var(--sp-8);
+}
+
+body.page-support .faq-group__title {
+    margin: 0 0 var(--sp-3);
+    font: 700 var(--fs-micro)/1.2 var(--font-mono);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+}
+
+body.page-support .disclosure > summary {
+    border-radius: var(--r-sm);
+}
+
+body.page-support .disclosure__body p:last-child {
+    margin-bottom: 0;
+}
+
+body.page-support .disclosure__body a,
+body.page-support .support-ticket a:not([class]) {
+    color: var(--accent-glow);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+body.page-support .disclosure__body a:hover,
+body.page-support .support-ticket a:not([class]):hover {
+    color: var(--text-primary);
+}
+
+/* ---------- Ticket: checklist and form ---------- */
+body.page-support .support-ticket__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--sp-12);
+    align-items: start;
+}
+
+body.page-support .support-ticket__intro {
+    display: grid;
+    gap: var(--sp-3);
+}
+
+body.page-support .support-checklist {
+    margin-top: var(--sp-5);
+    padding-top: var(--sp-5);
+    border-top: 1px solid var(--hairline);
+}
+
+body.page-support .support-checklist__title {
+    margin: 0 0 var(--sp-3);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.35;
+}
+
+body.page-support .support-checklist__list {
+    display: grid;
+    gap: var(--sp-3);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+body.page-support .support-checklist__list li {
+    display: flex;
+    gap: var(--sp-3);
+    font-size: var(--fs-body);
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+
+body.page-support .support-checklist__list strong {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+body.page-support .support-checklist__list svg {
+    flex: none;
+    width: 16px;
+    height: 16px;
+    margin-top: 4px;
+    color: var(--state-yes);
+}
+
+body.page-support .support-ticket__intro .link-arrow {
+    justify-self: start;
+}
+
+body.page-support .support-form-panel {
+    padding: var(--sp-8);
+    border-radius: var(--r-xl);
+    background: var(--surface-1);
+    border: 1px solid var(--hairline);
+}
+
+body.page-support .support-fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--sp-5) var(--sp-4);
+}
+
+body.page-support .field {
+    min-width: 0;
+}
+
+body.page-support .field--full {
+    grid-column: 1 / -1;
+}
+
+body.page-support .field__label {
+    display: block;
+    margin-bottom: var(--sp-2);
+    font-size: var(--fs-small);
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--text-primary);
+}
+
+body.page-support .field__optional {
+    font-weight: 400;
+    color: var(--text-subtle);
+}
+
+body.page-support .field__control {
+    display: block;
+    width: 100%;
+    min-height: 44px;
+    margin: 0;
+    padding: 12px 14px;
+    border: 1px solid var(--line-ui);
+    border-radius: var(--r-md);
+    background-color: var(--bg-deep);
+    color: var(--text-primary);
+    font: 400 1rem/1.4 var(--font-sans);
+    transition: border-color 0.15s ease;
+}
+
+body.page-support .field__control::placeholder {
+    color: var(--text-subtle);
+    opacity: 1;
+}
+
+body.page-support .field__control:hover {
+    border-color: var(--accent-secondary);
+}
+
+body.page-support .field__control:focus,
+body.page-support .field__control:focus-visible {
+    border-color: var(--accent-glow);
+    outline: 2px solid var(--accent-glow);
+    outline-offset: 2px;
+}
+
+body.page-support .field__control:user-invalid {
+    border-color: var(--error);
+}
+
+/* Selects: native arrow off, a 16px chevron drawn as a background,
+   and 40px of right padding so the label never runs under it. */
+body.page-support select.field__control {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding-right: 40px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none' stroke='%238a97b4' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px 16px;
+}
+
+body.page-support select.field__control:invalid {
+    color: var(--text-subtle);
+}
+
+body.page-support select.field__control option {
+    color: var(--text-primary);
+    background-color: var(--bg-dark);
+}
+
+body.page-support textarea.field__control {
+    min-height: 168px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+body.page-support .support-form__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--sp-3) var(--sp-5);
+    margin-top: var(--sp-6);
+}
+
+body.page-support .support-form__note {
+    flex: 1 1 240px;
+    margin: 0;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--text-subtle);
+}
+
+body.page-support .support-form__note a {
+    color: var(--text-secondary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+body.page-support .submit-btn:disabled {
+    cursor: progress;
+    opacity: 0.8;
+}
+
+/* Success state: the inline submit handler adds .show */
+body.page-support .success-message {
+    display: none;
+    padding: var(--sp-8) 0;
+    text-align: center;
+}
+
+body.page-support .success-message.show {
+    display: block;
+}
+
+body.page-support .success-message:focus {
+    outline: none;
+}
+
+body.page-support .success-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    margin: 0 auto var(--sp-4);
+    border-radius: 50%;
+    background: rgba(74, 222, 128, 0.12);
+    color: var(--state-yes);
+}
+
+body.page-support .success-icon svg {
+    width: 28px;
+    height: 28px;
+}
+
+body.page-support .success-message h3 {
+    margin: 0 0 var(--sp-2);
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+body.page-support .success-message p {
+    max-width: 44ch;
+    margin: 0 auto;
+    color: var(--text-secondary);
+}
+
+/* ---------- Tablet ---------- */
+@media (max-width: 1023px) {
+    body.page-support .support-tiles {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    body.page-support .support-ticket__grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--sp-8);
+    }
+}
+
+@media (max-width: 899px) {
+    body.page-support .faq-cols {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    body.page-support .faq-cols > .faq-col + .faq-col {
+        margin-top: var(--sp-8);
+    }
+}
+
+@media (max-width: 768px) {
+    body.page-support .nav-lockup {
+        gap: 4px;
+    }
+
+    body.page-support .nav-lockup .logo {
+        gap: 8px;
+        font-size: 1rem;
+    }
+
+    body.page-support .nav-lockup .logo-icon {
+        width: 28px;
+        height: 28px;
+    }
+
+    body.page-support .support-hero {
+        padding-top: calc(var(--nav-h) + 32px);
+    }
+}
+
+/* ---------- Phone ---------- */
+@media (max-width: 640px) {
+    /* Tiles become compact rows: icon left, text right. */
+    body.page-support .support-tiles {
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--sp-3);
+        margin-top: var(--sp-8);
+    }
+
+    body.page-support .support-tile {
+        display: grid;
+        grid-template-columns: 40px minmax(0, 1fr);
+        column-gap: var(--sp-4);
+        row-gap: 2px;
+        padding: var(--sp-4);
+    }
+
+    body.page-support .support-tile__link::after {
+        border-radius: var(--r-lg);
+    }
+
+    body.page-support .support-tile__icon {
+        grid-row: 1 / span 2;
+        width: 40px;
+        height: 40px;
+        margin: 0;
+    }
+
+    body.page-support .support-tile__arrow {
+        top: var(--sp-4);
+        right: var(--sp-4);
+        width: 18px;
+        height: 18px;
+    }
+
+    body.page-support .support-form-panel {
+        padding: var(--sp-5);
+        border-radius: var(--r-lg);
+    }
+}
+
+@media (max-width: 560px) {
+    body.page-support .support-fields {
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--sp-4);
+    }
+
+    body.page-support .support-form__actions .submit-btn {
+        width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body.page-support .field__control,
+    body.page-support .support-tile__arrow,
+    body.page-support .disclosure > summary::after {
+        transition: none;
+    }
+}

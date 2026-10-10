@@ -8,196 +8,216 @@
     <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon-opendrop.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
-    <title>Account Action — OpenDrop</title>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+    <title>Account Action | OpenDrop</title>
     <meta name="description" content="Verify your email, reset your password, or confirm an account change for OpenDrop.">
     <meta name="robots" content="noindex, nofollow">
     <link rel="stylesheet" href="../../styles/common.css">
+    <link rel="stylesheet" href="../../styles/subpage.css">
     <style>
-        body {
-            min-height: 100vh;
+        /* Account action page: page-only rules. Nav, footer and type come from common.css and subpage.css. */
+        body.page-auth-action { --subpage-w: 520px; }
+        .auth-shell {
+            padding: calc(var(--nav-h) + 56px) 0 var(--section-y);
+            background: var(--glow-hero);
+        }
+        .auth-card {
+            padding: clamp(1.5rem, 4vw, 2.5rem);
+            border-radius: var(--r-xl);
+            background: var(--surface-1);
+            border: 1px solid var(--hairline);
+            box-shadow: var(--shadow-2);
+        }
+        .auth-brand {
             display: flex;
             align-items: center;
-            justify-content: center;
-            padding: var(--space-xl);
+            gap: var(--sp-3);
+            margin-bottom: var(--sp-6);
         }
-
-        .auth-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-2xl);
-            padding: clamp(1.75rem, 4vw, 3rem);
-            width: 100%;
-            max-width: 460px;
-            box-shadow: var(--shadow-lg);
+        .auth-brand img {
+            flex: none;
+            width: 40px;
+            height: 40px;
+            border-radius: var(--r-md);
         }
-
-        .auth-logo {
-            display: flex;
-            justify-content: center;
-            margin-bottom: var(--space-lg);
+        .auth-card .section-title {
+            margin-bottom: var(--sp-2);
+            font-size: 1.625rem;
         }
-
-        .auth-logo img {
-            width: 72px;
-            height: 72px;
-            border-radius: var(--radius-xl);
+        .auth-card .section-lede {
+            margin-bottom: var(--sp-6);
+            font-size: var(--fs-body);
         }
-
-        .auth-card h1 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: var(--space-sm);
-            text-align: center;
-        }
-
-        .auth-card .subtitle {
-            color: var(--text-secondary);
-            text-align: center;
-            margin-bottom: var(--space-xl);
-            line-height: 1.5;
-        }
-
-        .auth-card .subtitle strong {
+        .auth-card .section-lede strong {
             color: var(--text-primary);
             font-weight: 600;
+            overflow-wrap: anywhere;
         }
-
         .field {
-            margin-bottom: var(--space-md);
+            margin-bottom: var(--sp-4);
         }
-
         .field label {
             display: block;
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-            margin-bottom: var(--space-xs);
+            margin-bottom: var(--sp-1);
+            font-size: var(--fs-small);
             font-weight: 500;
+            color: var(--text-secondary);
         }
-
         .field input {
             width: 100%;
+            min-height: 48px;
             padding: 0.75rem 1rem;
-            background: var(--bg-elevated);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
+            border-radius: var(--r-md);
+            background: var(--bg-deep);
+            border: 1px solid var(--line-ui);
             color: var(--text-primary);
             font-family: inherit;
             font-size: 1rem;
-            transition: border-color var(--transition-fast);
+            transition: border-color 0.15s ease, box-shadow 0.15s ease;
         }
-
         .field input:focus {
             outline: none;
-            border-color: var(--accent);
+            border-color: var(--accent-glow);
+            box-shadow: 0 0 0 3px rgba(70, 216, 229, 0.18);
         }
-
-        .auth-card .btn {
+        .auth-card .btn-cta {
             width: 100%;
-            justify-content: center;
-            margin-top: var(--space-md);
+            margin-top: var(--sp-2);
+            font-family: inherit;
         }
-
-        .auth-card .btn:disabled {
+        .auth-card .btn-cta:disabled {
             opacity: 0.6;
             cursor: not-allowed;
         }
-
         .secondary-action {
-            text-align: center;
-            margin-top: var(--space-lg);
-            color: var(--text-muted);
-            font-size: 0.875rem;
+            margin-top: var(--sp-5);
+            font-size: var(--fs-small);
+            color: var(--text-subtle);
         }
-
         .secondary-action a {
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .secondary-action a:hover {
+            display: inline-flex;
+            align-items: center;
+            min-height: 44px;
             color: var(--accent-glow);
+            font-weight: 600;
+            text-decoration: none;
         }
-
+        .secondary-action a:hover {
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
         .status-icon {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto var(--space-md);
-            font-size: 28px;
+            width: 48px;
+            height: 48px;
+            margin-bottom: var(--sp-4);
+            border-radius: 50%;
         }
-
+        .status-icon svg { width: 24px; height: 24px; }
         .status-icon.success {
-            background: color-mix(in srgb, var(--success) 18%, transparent);
-            color: var(--success);
+            background: rgba(77, 184, 164, 0.15);
+            color: #9bdbcb;
         }
-
         .status-icon.error {
-            background: color-mix(in srgb, var(--error) 18%, transparent);
-            color: var(--error);
+            background: rgba(212, 113, 126, 0.15);
+            color: #f5a8b3;
         }
-
         .spinner {
             width: 40px;
             height: 40px;
-            border: 3px solid var(--border);
+            margin-bottom: var(--sp-4);
+            border: 3px solid var(--hairline-strong);
             border-top-color: var(--accent);
             border-radius: 50%;
-            margin: 0 auto var(--space-md);
             animation: spin 0.8s linear infinite;
         }
-
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
-
+        @media (prefers-reduced-motion: reduce) {
+            .spinner { animation: none; }
+        }
         .field-error {
-            color: var(--error);
-            font-size: 0.875rem;
-            margin-top: var(--space-xs);
             min-height: 1.25rem;
+            margin-top: var(--sp-1);
+            font-size: var(--fs-small);
+            color: #f5a8b3;
         }
-
         .password-hint {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-top: var(--space-xs);
+            margin-top: var(--sp-1);
+            font-size: 0.8125rem;
+            color: var(--text-subtle);
         }
-
+        @media (max-width: 768px) {
+            .auth-shell { padding: calc(var(--nav-h) + 32px) 0 var(--section-y); }
+        }
         [hidden] { display: none !important; }
     </style>
 </head>
-<body>
-    <main class="auth-card" id="card">
-        <div class="auth-logo">
-            <img src="../OpenDropIcon.webp" alt="OpenDrop" width="72" height="72">
+<body class="page-subpage page-auth-action">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <nav class="site-nav" aria-label="Main">
+        <span class="nav-lockup">
+            <a href="/" class="nav-lockup__home" aria-label="NFDGames home">
+                <picture>
+                    <source srcset="/NFDGamesLogoCircleTransparent.webp" type="image/webp">
+                    <img src="/NFDGamesLogoCircleTransparent.png" alt="" width="28" height="28">
+                </picture>
+            </a>
+            <span class="nav-lockup__sep" aria-hidden="true">/</span>
+            <a href="/OpenDrop/" class="logo">
+                <picture>
+                    <source srcset="/OpenDrop/OpenDropIcon-logo.webp" type="image/webp">
+                    <img src="/OpenDrop/OpenDropIcon.png" alt="" class="logo-icon" width="32" height="32">
+                </picture>
+                <span class="logo__word">OpenDrop</span>
+            </a>
+        </span>
+        <div class="nav-links" id="navLinks">
+            <a href="/OpenDrop/#features">Features</a>
+            <a href="/OpenDrop/#compare">Free vs Pro</a>
+            <a href="/blog/">Blog</a>
+            <a href="/OpenDrop/support.html">Support</a>
+        </div>
+        <div class="nav-actions">
+            <a href="/OpenDrop/#download" class="btn-cta btn-cta--sm">Download</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-controls="navLinks" aria-expanded="false" aria-label="Open menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <main id="main" tabindex="-1">
+    <div class="auth-shell">
+    <div class="subpage-wrap">
+    <div class="auth-card" id="card">
+        <div class="auth-brand">
+            <img src="../OpenDropIcon.webp" alt="OpenDrop" width="40" height="40">
+            <p class="eyebrow">Account</p>
         </div>
 
         <!-- Loading state (default) -->
         <section id="view-loading">
             <div class="spinner" aria-hidden="true"></div>
-            <h1>One moment</h1>
-            <p class="subtitle">We're processing your request.</p>
+            <h1 class="section-title">One moment</h1>
+            <p class="section-lede">We're processing your request.</p>
         </section>
 
         <!-- Verify email success -->
         <section id="view-verified" hidden>
-            <div class="status-icon success" aria-hidden="true">✓</div>
-            <h1>Email verified</h1>
-            <p class="subtitle">You can return to OpenDrop and continue using your account.</p>
-            <a id="continue-link" class="btn btn-primary" hidden>Open OpenDrop</a>
+            <div class="status-icon success" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+            <h1 class="section-title">Email verified</h1>
+            <p class="section-lede">You can return to OpenDrop and continue using your account.</p>
+            <a id="continue-link" class="btn-cta" hidden>Open OpenDrop</a>
             <p class="secondary-action">You can close this tab.</p>
         </section>
 
         <!-- Reset password form -->
         <section id="view-reset-form" hidden>
-            <h1>Reset your password</h1>
-            <p class="subtitle">Choose a new password for <strong id="reset-email"></strong>.</p>
+            <h1 class="section-title">Reset your password</h1>
+            <p class="section-lede">Choose a new password for <strong id="reset-email"></strong>.</p>
             <form id="reset-form" novalidate>
                 <div class="field">
                     <label for="new-password">New password</label>
@@ -209,26 +229,26 @@
                     <input type="password" id="confirm-password" autocomplete="new-password" required minlength="8">
                 </div>
                 <div class="field-error" id="reset-error" role="alert" aria-live="polite"></div>
-                <button type="submit" class="btn btn-primary" id="reset-submit">Update password</button>
+                <button type="submit" class="btn-cta" id="reset-submit">Update password</button>
             </form>
         </section>
 
         <!-- Reset password success -->
         <section id="view-reset-done" hidden>
-            <div class="status-icon success" aria-hidden="true">✓</div>
-            <h1>Password updated</h1>
-            <p class="subtitle">You can now sign in with your new password.</p>
-            <a id="reset-continue-link" class="btn btn-primary" hidden>Open OpenDrop</a>
+            <div class="status-icon success" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+            <h1 class="section-title">Password updated</h1>
+            <p class="section-lede">You can now sign in with your new password.</p>
+            <a id="reset-continue-link" class="btn-cta" hidden>Open OpenDrop</a>
             <p class="secondary-action">You can close this tab.</p>
         </section>
 
         <!-- Email recovered -->
         <section id="view-recovered" hidden>
-            <div class="status-icon success" aria-hidden="true">✓</div>
-            <h1>Email change reverted</h1>
-            <p class="subtitle">
+            <div class="status-icon success" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+            <h1 class="section-title">Email change reverted</h1>
+            <p class="section-lede">
                 Your account email has been restored to <strong id="recovered-email"></strong>.
-                We've also sent a password reset link to that address as a security precaution —
+                We've also sent a password reset link to that address as a security precaution:
                 whoever changed your email may also know your password.
             </p>
             <p class="secondary-action">You can close this tab.</p>
@@ -236,20 +256,91 @@
 
         <!-- Generic error -->
         <section id="view-error" hidden>
-            <div class="status-icon error" aria-hidden="true">!</div>
-            <h1 id="error-title">Something went wrong</h1>
-            <p class="subtitle" id="error-body">Please request a new link from OpenDrop and try again.</p>
+            <div class="status-icon error" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 6v8M12 18v.01"/></svg></div>
+            <h1 class="section-title" id="error-title">Something went wrong</h1>
+            <p class="section-lede" id="error-body">Please request a new link from OpenDrop and try again.</p>
             <p class="secondary-action"><a href="https://www.nfdgames.com/OpenDrop/">Back to OpenDrop</a></p>
         </section>
+    </div>
+    </div>
+    </div>
     </main>
 
+    <div class="seam" aria-hidden="true"></div>
+
+    <footer class="site-footer">
+        <div class="wrap site-footer__grid">
+            <div class="site-footer__brand">
+                <a href="/OpenDrop/" class="logo">
+                    <picture>
+                        <source srcset="/OpenDrop/OpenDropIcon-logo.webp" type="image/webp">
+                        <img src="/OpenDrop/OpenDropIcon.png" alt="" class="logo-icon" width="36" height="36" loading="lazy">
+                    </picture>
+                    OpenDrop
+                </a>
+                <p>OpenDrop by NFDGames. File transfer for Windows, Linux, iPhone, iPad and Android.</p>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">OpenDrop</h2>
+                <ul>
+                    <li><a href="/OpenDrop/">Overview</a></li>
+                    <li><a href="/OpenDrop/#download">Download</a></li>
+                    <li><a href="/OpenDrop/#compare">Free vs Pro</a></li>
+                    <li><a href="/OpenDrop/changelog.html">What's new in 1.0</a></li>
+                    <li><a href="/OpenDrop/support.html">Support</a></li>
+                    <li><a href="/OpenDrop/status.html">System status</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Guides</h2>
+                <ul>
+                    <li><a href="/blog/posts/best-airdrop-alternatives-windows-2026.html">AirDrop alternatives</a></li>
+                    <li><a href="/blog/posts/share-files-iphone-android.html">iPhone to Android</a></li>
+                    <li><a href="/blog/posts/transfer-files-android-to-pc-without-usb.html">Android to PC, no USB</a></li>
+                    <li><a href="/blog/posts/transfer-photos-iphone-to-windows-pc.html">iPhone photos to PC</a></li>
+                    <li><a href="/blog/posts/transfer-files-windows-to-linux.html">Windows to Linux</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Studio</h2>
+                <ul>
+                    <li><a href="/">NFDGames home</a></li>
+                    <li><a href="/#gunslinger">Gunslinger</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/OpenDrop/press.html">Press kit</a></li>
+                    <li><a href="https://play.google.com/store/apps/dev?id=6331541447390891189&amp;hl=en_US" target="_blank" rel="noopener">Apps on Google Play</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Legal and security</h2>
+                <ul>
+                    <li><a href="/OpenDrop/PrivacyPolicy.html">Privacy Policy</a></li>
+                    <li><a href="/OpenDrop/TermsOfService.html">Terms of Service</a></li>
+                    <li><a href="/OpenDrop/security.html">Security and disclosure</a></li>
+                    <li><a href="/OpenDrop/accessibility.html">Accessibility</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="wrap site-footer__bottom">
+            <p>&copy; 2026 NFDGames. All rights reserved.</p>
+            <div class="site-footer__legal">
+                <a href="/OpenDrop/WithdrawalForm.html">EU/UK withdrawal</a>
+                <a href="/OpenDrop/third-party-notices.html">Third-party notices</a>
+                <a href="/OpenDrop/docs/export-compliance/">Export compliance</a>
+                <a href="mailto:support@nfdgames.com">support@nfdgames.com</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/scripts/common.js"></script>
+
     <script type="module">
-        // Firebase Web SDK 12.13.0 — modular CDN imports.
+        // Firebase Web SDK 12.13.0, modular CDN imports.
         // We pull `apiKey` from the URL params Firebase appends, so the
         // page is portable across NFDGames Firebase projects (just point
         // each project's Action URL here). `authDomain` stays fixed
         // because action codes are validated against the project that
-        // minted them — the apiKey alone is enough.
+        // minted them. The apiKey alone is enough.
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
         import {
             getAuth,
@@ -345,7 +436,7 @@
                     await handleRecoverEmail(auth);
                     break;
                 case "verifyAndChangeEmail":
-                    // Same operation as verifyEmail from the SDK's POV — Firebase
+                    // Same operation as verifyEmail from the SDK's POV: Firebase
                     // routes the change server-side once the code is applied.
                     await handleVerifyEmail(auth);
                     break;
@@ -420,8 +511,8 @@
         async function handleRecoverEmail(auth) {
             // recoverEmail is the link sent to the OLD email when a user's
             // address is changed. Clicking it both reverts the change AND,
-            // per Firebase's own guidance, should trigger a password reset
-            // — if an attacker changed the email they likely had the
+            // per Firebase's own guidance, should trigger a password reset.
+            // If an attacker changed the email they likely had the
             // password too, so we lock them out by forcing a reset.
             let restoredEmail = null;
             try {

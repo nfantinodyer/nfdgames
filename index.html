@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NFDGames – Indie Games & Software Tools | OpenDrop File Transfer</title>
-    <meta name="description" content="NFDGames is an indie studio building software utilities like OpenDrop (free AirDrop alternative for Windows & Android) and mobile games. Explore our projects and download free tools.">
+    <title>NFDGames: Indie Games and Software Tools | OpenDrop File Transfer</title>
+    <meta name="description" content="NFDGames is a one-person studio. It makes OpenDrop, a free AirDrop alternative for Windows, Linux, iPhone, iPad and Android, and Gunslinger, a western shooter for Android.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="author" content="NFDGames">
     <link rel="icon" type="image/x-icon" href="/favicon-nfdgames.ico">
@@ -15,14 +15,14 @@
     <link rel="alternate" hreflang="en" href="https://www.nfdgames.com/" />
     <link rel="alternate" type="application/rss+xml" title="NFDGames Blog RSS Feed" href="/blog/feed.xml" />
     <meta property="og:type" content="website">
-    <meta property="og:title" content="NFDGames – Indie Games & Software Tools | OpenDrop File Transfer">
-    <meta property="og:description" content="Indie studio building software utilities like OpenDrop (free AirDrop alternative) and mobile games.">
+    <meta property="og:title" content="NFDGames: Indie Games and Software Tools | OpenDrop File Transfer">
+    <meta property="og:description" content="NFDGames is a one-person studio. It makes OpenDrop, a free AirDrop alternative for Windows, Linux, iPhone, iPad and Android, and Gunslinger, a western shooter for Android.">
     <meta property="og:image" content="https://www.nfdgames.com/NFDGamesLogoCircleTransparent.png">
     <meta property="og:url" content="https://www.nfdgames.com/">
     <meta property="og:site_name" content="NFDGames">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="NFDGames – Indie Games & Software Tools | OpenDrop File Transfer">
-    <meta name="twitter:description" content="Indie studio building software utilities like OpenDrop (free AirDrop alternative) and mobile games.">
+    <meta name="twitter:title" content="NFDGames: Indie Games and Software Tools | OpenDrop File Transfer">
+    <meta name="twitter:description" content="NFDGames is a one-person studio. It makes OpenDrop, a free AirDrop alternative for Windows, Linux, iPhone, iPad and Android, and Gunslinger, a western shooter for Android.">
     <meta name="twitter:image" content="https://www.nfdgames.com/NFDGamesLogoCircleTransparent.png">
     <link rel="dns-prefetch" href="//www.googletagmanager.com">
     <link rel="dns-prefetch" href="//www.gstatic.com">
@@ -34,7 +34,7 @@
           "@type": "Organization",
           "name": "NFDGames",
           "url": "https://www.nfdgames.com/",
-          "description": "Indie studio building software utilities like OpenDrop and mobile games.",
+          "description": "One-person studio making OpenDrop, a file transfer app, and Gunslinger, a western shooter for Android.",
           "logo": "https://www.nfdgames.com/NFDGamesLogoCircleTransparent.png"
         },
         {
@@ -69,7 +69,7 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="styles/common.css">
     <link rel="stylesheet" href="styles/index.css">
-    <!-- Cookie consent / Google Consent Mode v2 preboot — must precede any Google tag -->
+    <!-- Cookie consent / Google Consent Mode v2 preboot: must precede any Google tag -->
     <script src="/scripts/opendrop-cookie-banner.js"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17319823241">
@@ -78,123 +78,316 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-    
+
       gtag('config', 'AW-17319823241');
     </script>
+    <!-- Live App Store rating for the stat strip (rewrites the first .trust-bar .trust-item only) -->
+    <script src="/scripts/opendrop-app-store-data.js" defer></script>
 </head>
-<body>
-    <div class="bg-gradient"></div>
+<body class="page-home">
+    <a class="skip-link" href="#main">Skip to content</a>
     <div class="noise"></div>
 
     <!-- Navigation -->
-    <nav>
-        <a href="#" class="logo">
+    <nav class="site-nav" aria-label="Main">
+        <a href="/" class="logo">
             <picture>
-                <source srcset="NFDGamesLogoCircleTransparent.webp" type="image/webp">
-                <img src="NFDGamesLogoCircleTransparent.png" alt="NFDGames Icon" class="logo-icon" width="36" height="36" loading="lazy">
+                <source srcset="/NFDGamesLogoCircleTransparent.webp" type="image/webp">
+                <img src="/NFDGamesLogoCircleTransparent.png" alt="" class="logo-icon" width="36" height="36">
             </picture>
-            NFDGames
+            <span class="logo__word">NFDGames</span>
         </a>
-        <div class="nav-links">
+        <div class="nav-links" id="navLinks">
             <a href="#projects">Projects</a>
             <a href="/blog/">Blog</a>
-            <a href="https://play.google.com/store/apps/dev?id=6331541447390891189&hl=en_US" target="_blank">Google Play</a>
+            <a href="#about">About</a>
+        </div>
+        <div class="nav-actions">
+            <a href="/OpenDrop/" class="btn-cta btn-cta--sm">Get OpenDrop</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-controls="navLinks" aria-expanded="false" aria-label="Open menu"><span></span><span></span><span></span></button>
         </div>
     </nav>
 
-    <main>
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>Building <span class="gradient">Tools</span> &<br>Crafting <span style="color: var(--accent-secondary);">Games</span></h1>
-        <p class="hero-subtitle">Indie studio building software utilities and mobile games.</p>
-        
-        <div class="hero-actions">
-            <a href="#projects" class="btn btn-primary">Explore Projects</a>
-            <a href="https://play.google.com/store/apps/dev?id=6331541447390891189&hl=en_US" target="_blank" class="btn btn-outline">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M3 20.5v-17c0-.83.52-1.28 1-1.5l10 10-10 10c-.48-.22-1-.67-1-1.5zm1.5-16.5l8.5 8.5-8.5 8.5v-17zm16.5 8.5l-4 2.5-2.5-2.5 2.5-2.5 4 2.5zm-6-3.5l-2 2-6-6 1-.5 7 4.5zm-2 7l2 2-7 4.5-1-.5 6-6z"/>
-                </svg>
-                Google Play Store
-            </a>
+    <main id="main">
+    <!-- Hero -->
+    <section class="hero hero--split home-hero" id="top">
+        <div class="wrap">
+            <div class="hero__grid">
+                <div class="home-hero__copy">
+                    <p class="eyebrow home-hero__eyebrow">Independent studio</p>
+                    <h1>Building <span class="gradient">tools</span> and crafting <span class="accent-2">games</span></h1>
+                    <p class="hero__lede">NFDGames is a one-person studio. It makes OpenDrop, a free file transfer app, and Gunslinger, a western shooter for Android.</p>
+                    <div class="hero__actions">
+                        <a href="/OpenDrop/" class="btn-cta btn-cta--lg">Get OpenDrop</a>
+                        <a href="#projects" class="btn-ghost">See projects</a>
+                    </div>
+                    <p class="hero__meta">OpenDrop 1.0 is out on Windows, Linux, iPhone, iPad and Android. macOS&nbsp;coming&nbsp;soon.</p>
+                </div>
+
+                <div class="device-pair">
+                    <figure class="device-pair__window">
+                        <img src="/OpenDrop/screenshots/windows/0d374850ece0.png" data-shot="windows:2" width="1234" height="1397" fetchpriority="high" alt="OpenDrop on Windows, Files tab with photo thumbnails">
+                    </figure>
+                    <figure class="device-pair__phone">
+                        <img src="/OpenDrop/screenshots/ios/2ef9dc605994.webp" data-shot="ios:2" width="1080" height="2341" loading="lazy" alt="OpenDrop on iPhone browsing the files on a computer">
+                    </figure>
+                    <svg class="device-pair__link" viewBox="0 0 560 440" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+                        <path class="device-pair__path" d="M174 330 C 250 330, 260 410, 360 410 S 470 380, 470 340"/>
+                        <circle class="device-pair__end" cx="174" cy="330" r="2.5"/>
+                        <circle class="device-pair__end" cx="470" cy="340" r="2.5"/>
+                    </svg>
+                    <span class="device-pair__chip chip chip--neutral">Encrypted, phone to PC</span>
+                </div>
+            </div>
+
+            <div class="home-hero__glance">
+                <p class="eyebrow">OpenDrop at a glance</p>
+                <div class="stat-strip trust-bar">
+                    <a class="stat trust-item" href="https://apps.apple.com/us/app/opendrop/id6757438202" target="_blank" rel="noopener">
+                        <span class="stat__value"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.94 5.96 6.58.96-4.76 4.64 1.12 6.55L12 17.52l-5.88 3.09 1.12-6.55L2.48 9.42l6.58-.96z"/></svg><span class="trust-value">5.0</span></span>
+                        <span class="stat__label trust-label">2 ratings · App Store</span>
+                        <span class="sr-only"> (opens the App Store in a new tab)</span>
+                    </a>
+                    <div class="stat"><span class="stat__value">4</span><span class="stat__label">Platforms, macOS soon</span></div>
+                    <div class="stat"><span class="stat__value">3</span><span class="stat__label">Stores: App Store, Google Play, Microsoft Store</span></div>
+                    <div class="stat"><span class="stat__value">Free</span><span class="stat__label">No account needed</span></div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section class="projects" id="projects">
-        <div class="section-header">
-            <h2>Featured Projects</h2>
-        </div>
+    <div class="seam" aria-hidden="true"></div>
 
-        <div class="project-grid">
-            <!-- OpenDrop Card -->
-            <article class="project-card">
-                <div class="card-image opendrop-bg">
-                    <picture>
-                        <source srcset="OpenDrop/OpenDropIcon.webp" type="image/webp">
-                        <img src="OpenDrop/OpenDropIcon.png" alt="OpenDrop - Free AirDrop Alternative File Transfer App" class="card-icon" width="440" height="440" loading="lazy">
-                    </picture>
-                </div>
-                <div class="card-content">
-                    <span class="project-type">Utility / Tool</span>
-                    <h3>OpenDrop</h3>
-                    <p>Send files between your phone and PC. Instant, private, no file size limits.</p>
-                    <div class="card-actions">
-                        <a href="OpenDrop/" class="card-link">
-                            Learn more about OpenDrop
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </article>
+    <!-- Projects -->
+    <section class="section" id="projects">
+        <div class="wrap">
+            <div class="section-head">
+                <p class="eyebrow">Projects</p>
+                <h2 class="section-title">What NFDGames makes</h2>
+                <p class="section-lede">Two apps, both on the stores today.</p>
+            </div>
 
-            <!-- Gunslinger Card -->
-            <article class="project-card">
-                <div class="card-image gunslinger-bg">
-                    <picture>
-                        <source srcset="Gunslinger/GunSlingerIcon.webp" type="image/webp">
-                        <img src="Gunslinger/GunSlingerIcon.png" alt="Gunslinger Mobile Game" class="card-icon" width="512" height="512" loading="lazy">
-                    </picture>
-                </div>
-                <div class="card-content">
-                    <span class="project-type game">Mobile Game</span>
-                    <h3>Gunslinger</h3>
-                    <p>A fast-paced action game for mobile. Test your reflexes and accuracy in this stylized western shooter.</p>
-                    <div class="card-actions">
-                        <a href="https://play.google.com/store/apps/details?id=com.NFDGames.Gunslinger" class="card-link" target="_blank">
-                            View on Store
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                            </svg>
-                        </a>
+            <div class="bento">
+                <article class="tile tile--feature span-8 project--opendrop">
+                    <div class="project__grid">
+                        <div class="project__main">
+                            <div class="project__intro">
+                                <picture>
+                                    <source srcset="/OpenDrop/OpenDropIcon.webp" type="image/webp">
+                                    <img src="/OpenDrop/OpenDropIcon.png" alt="" class="project__icon" width="56" height="56" loading="lazy">
+                                </picture>
+                                <div class="project__chips">
+                                    <span class="chip chip--neutral">File transfer</span>
+                                    <span class="chip chip--free">Free</span>
+                                </div>
+                            </div>
+                            <h3 class="tile__title">OpenDrop</h3>
+                            <p class="tile__text">Send files between your phone and your computer over Wi-Fi or the internet. Free, with no account and no file size cap. Pro adds phone to phone, computer to computer, and photo and video conversion.</p>
+                            <ul class="check-list">
+                                <li><svg aria-hidden="true" viewBox="0 0 16 16"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Windows, Linux, iPhone, iPad and Android</span></li>
+                                <li><svg aria-hidden="true" viewBox="0 0 16 16"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>File contents encrypted on your device</span></li>
+                                <li><svg aria-hidden="true" viewBox="0 0 16 16"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Desktop app and command line</span></li>
+                            </ul>
+                            <div class="project__actions">
+                                <a href="/OpenDrop/" class="btn-cta">Explore OpenDrop</a>
+                                <a href="/OpenDrop/#compare" class="link-arrow">Free vs Pro<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                            </div>
+                        </div>
+
+                        <div class="where">
+                            <p class="eyebrow">Where to get it</p>
+                            <ul class="spine store-badges where__list">
+                                <li class="spine__item">
+                                    <a class="store-badge" href="https://apps.apple.com/us/app/opendrop/id6757438202" target="_blank" rel="noopener">
+                                        <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M17.523 15.341c-.022-2.261 1.845-3.345 1.929-3.398-1.05-1.537-2.686-1.747-3.267-1.771-1.39-.141-2.714.82-3.42.82-.705 0-1.795-.799-2.949-.778-1.518.023-2.918.884-3.699 2.245-1.577 2.738-.403 6.794 1.133 9.016.751 1.086 1.647 2.307 2.824 2.263 1.133-.045 1.561-.733 2.931-.733 1.37 0 1.753.733 2.949.71 1.22-.022 1.99-1.107 2.736-2.196.862-1.26 1.217-2.481 1.238-2.544-.027-.012-2.377-.913-2.405-3.634M15.287 5.051c.624-.757 1.045-1.81.931-2.858-.9.037-1.99.6-2.636 1.357-.58.67-1.087 1.74-.951 2.767 1.005.078 2.032-.511 2.656-1.266"/></svg>
+                                        <span class="store-badge__text"><span class="store-badge__kicker">Download on the</span><span class="store-badge__name">App Store</span></span>
+                                        <span class="sr-only"> (opens in a new tab)</span>
+                                    </a>
+                                </li>
+                                <li class="spine__item">
+                                    <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.nfdgames.opendrop" target="_blank" rel="noopener">
+                                        <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087L1.337.924zm12.207 10.065l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179l11.04 10.973zm0 2.067l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54-3.23-3.21z"/></svg>
+                                        <span class="store-badge__text"><span class="store-badge__kicker">Get it on</span><span class="store-badge__name">Google Play</span></span>
+                                        <span class="sr-only"> (opens in a new tab)</span>
+                                    </a>
+                                </li>
+                                <li class="spine__item">
+                                    <a class="store-badge" href="https://apps.microsoft.com/store/detail/XP99SJJTQXZ9WT" target="_blank" rel="noopener">
+                                        <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M0 0h11.5v11.5H0V0zm12.5 0H24v11.5H12.5V0zM0 12.5h11.5V24H0V12.5zm12.5 0H24V24H12.5V12.5z"/></svg>
+                                        <span class="store-badge__text"><span class="store-badge__kicker">Get it from</span><span class="store-badge__name">Microsoft Store</span></span>
+                                        <span class="sr-only"> (opens in a new tab)</span>
+                                    </a>
+                                </li>
+                                <li class="spine__item">
+                                    <a class="store-badge" href="/OpenDrop/#dl-linux">
+                                        <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489a.424.424 0 00-.11.135c-.26.268-.45.6-.663.839-.199.199-.485.267-.797.4-.313.136-.658.269-.864.68-.09.189-.136.394-.132.602 0 .199.027.4.055.536.058.399.116.728.04.97-.249.68-.28 1.145-.106 1.484.174.334.535.47.94.601.81.2 1.91.135 2.774.6.926.466 1.866.67 2.616.47.526-.116.97-.464 1.208-.946.587-.003 1.23-.269 2.26-.334.699-.058 1.574.267 2.577.2.025.134.063.198.114.333l.003.003c.391.778 1.113 1.132 1.884 1.071.771-.06 1.592-.536 2.257-1.306.631-.765 1.683-1.084 2.378-1.503.348-.199.629-.469.649-.853.023-.4-.2-.811-.714-1.376v-.097l-.003-.003c-.17-.2-.25-.535-.338-.926-.085-.401-.182-.786-.492-1.046h-.003c-.059-.054-.123-.067-.188-.135a.357.357 0 00-.19-.064c.431-1.278.264-2.55-.173-3.694-.533-1.41-1.465-2.638-2.175-3.483-.796-1.005-1.576-1.957-1.56-3.368.026-2.152.236-6.133-3.544-6.139zm.529 3.405h.013c.213 0 .396.062.584.198.19.135.33.332.438.533.105.259.158.459.166.724 0-.02.006-.04.006-.06v.105a.086.086 0 01-.004-.021l-.004-.024a1.807 1.807 0 01-.15.706.953.953 0 01-.213.335.71.71 0 00-.088-.042c-.104-.045-.198-.064-.284-.133a1.312 1.312 0 00-.22-.066c.05-.06.146-.133.183-.198.053-.128.082-.264.088-.402v-.02a1.21 1.21 0 00-.061-.4c-.045-.134-.101-.2-.183-.333-.084-.066-.167-.132-.267-.132h-.016c-.093 0-.176.03-.262.132a.8.8 0 00-.205.334 1.18 1.18 0 00-.09.4v.019c.002.089.008.179.02.267-.193-.067-.438-.135-.607-.202a1.635 1.635 0 01-.018-.2v-.02a1.772 1.772 0 01.15-.768c.082-.22.232-.406.43-.533a.985.985 0 01.594-.2zm-2.962.059h.036c.142 0 .27.048.399.135.146.129.264.288.344.465.09.199.14.4.153.667v.004c.007.134.006.2-.002.266v.08c-.03.007-.056.018-.083.024-.152.055-.274.135-.393.2.012-.09.013-.18.003-.267v-.015c-.012-.133-.04-.2-.082-.333a.613.613 0 00-.166-.267.248.248 0 00-.183-.064h-.021c-.071.006-.13.04-.186.132a.552.552 0 00-.12.27.944.944 0 00-.023.33v.015c.012.135.037.2.08.334.046.134.098.2.166.268.01.009.02.018.034.024-.07.057-.117.07-.176.136a.304.304 0 01-.131.068 2.62 2.62 0 01-.275-.402 1.772 1.772 0 01-.155-.667 1.759 1.759 0 01.08-.668 1.43 1.43 0 01.283-.535c.128-.133.26-.2.418-.2zm1.37 1.706c.332 0 .733.065 1.216.399.293.2.523.269 1.052.468h.003c.255.136.405.266.478.399v-.131a.571.571 0 01.016.47c-.123.31-.516.643-1.063.842v.002c-.268.135-.501.333-.775.465-.276.135-.588.292-1.012.267a1.139 1.139 0 01-.448-.067 3.566 3.566 0 01-.322-.198c-.195-.135-.363-.332-.612-.465v-.005h-.005c-.4-.246-.616-.512-.686-.71-.07-.268-.005-.47.193-.6.224-.135.38-.271.483-.336.104-.074.143-.102.176-.131h.002v-.003c.169-.202.436-.47.839-.601.139-.036.294-.065.466-.065zm2.8 2.142c.358 1.417 1.196 3.475 1.735 4.473.286.534.855 1.659 1.102 3.024.156-.005.33.018.513.064.646-1.671-.546-3.467-1.089-3.966-.22-.2-.232-.335-.123-.335.59.534 1.365 1.572 1.646 2.757.13.535.16 1.104.021 1.67.067.028.135.06.205.067 1.032.534 1.413.938 1.23 1.537v-.002c-.06-.135-.12-.2-.283-.334-.164-.066-.39-.2-.674-.267.05.23.083.465.083.668-.066.006-.135.015-.2.015-.058-.464-.18-.93-.427-1.336-.253-.399-.682-.735-1.277-.933-.187-.064-.332-.197-.479-.332-.14-.135-.298-.27-.448-.402-.645-.53-1.128-.133-1.737.403l-.5.467c-.154.135-.436.267-.684.4-.246.067-.479.135-.724.068-.053-.066-.106-.2-.093-.4-.04-.066-.076-.132-.117-.2a.256.256 0 00-.192-.063c-.053 0-.104.02-.15.06-.143.136-.378.334-.637.465-.263.134-.546.2-.845.2-.066-.135-.127-.266-.18-.4-.036-.066-.066-.133-.098-.2-.024-.066-.048-.132-.065-.2-.141-.397-.37-.665-.57-.865-.135-.133-.265-.2-.38-.266-.218-.135-.31-.466-.152-.865a.64.64 0 00-.015-.535c-.017-.066-.083-.132-.166-.2-.089-.066-.213-.132-.4-.199-.182-.065-.285-.135-.349-.198-.026-.065-.026-.133-.017-.2.017-.132.1-.264.266-.4.096-.068.216-.133.36-.2a1.546 1.546 0 01.245-.131c.146-.067.264-.135.351-.2.089-.067.145-.1.202-.2.057-.066.057-.133.012-.2-.045-.098-.162-.197-.361-.265-.203-.067-.447-.133-.672-.267-.138-.067-.286-.135-.363-.2a.161.161 0 01-.057-.1c.006-.066.053-.066.137-.066.08-.003.15.003.204.033.154.066.31.133.459.2.09.065.178.13.267.198.195.13.37.2.52.2.087 0 .166-.033.232-.1a.27.27 0 00.087-.2c0-.066-.025-.133-.062-.2-.037-.064-.09-.132-.15-.198-.09-.133-.2-.2-.32-.266-.123-.066-.212-.133-.303-.2-.09-.066-.176-.132-.26-.2-.085-.066-.135-.198-.154-.332.053 0 .107.002.16.002.127.004.243.035.358.062.264.067.505.135.702.334.19.135.36.332.477.534.149.268.267.535.31.865.02.135.03.267.03.4v.066c.012.266.086.53.12.73.03.132.04.2 0 .265-.04.067-.106.067-.18.067zm-1.706 3.86v.066c-.08.67-.48 1.334-1.154 1.667h-.002c-.128.065-.262.133-.4.198-.15.066-.29.135-.432.2-.35.133-.662.268-.9.468-.227.2-.394.468-.49.8-.08.265-.073.535-.007.8a.857.857 0 00.137.334c.053.066.124.132.2.199.155.131.332.265.445.397.112.134.157.267.14.467-.027.4-.37.668-.87.868-.503.198-1.152.265-1.733.198-.273-.4-.62-1.067-.873-2-.26-.932-.418-1.866-.536-2.533a2.76 2.76 0 00-.157-.53c.01-.066.01-.133.01-.2.01-.466.105-.867.26-1.2.155-.333.373-.6.646-.8.272-.133.574-.267.91-.334.335-.066.697-.066 1.075-.066h.26c.4 0 .736.066 1.025.133.287.133.507.266.65.466.154.133.235.333.235.533 0 .2-.077.466-.204.667a1.437 1.437 0 01-.538.534c.192.198.383.268.634.268.25-.002.48-.136.645-.335.164-.197.264-.463.264-.73 0-.268-.1-.534-.23-.8-.17-.27-.394-.534-.624-.8l-.49-.602c-.135-.2-.237-.334-.3-.467-.066-.134-.1-.267-.1-.4 0-.2.066-.4.2-.534.133-.2.333-.334.633-.4.3-.067.7-.067 1.2 0 .5.065 1.133.198 1.9.465l.1.066zm-2.233 7.266c-.197.134-.464.198-.768.198h-.002c-.257 0-.513-.066-.734-.198-.106-.066-.196-.132-.261-.2a.626.626 0 01-.123-.2v.002c-.014-.064-.022-.132-.022-.2 0-.198.066-.398.178-.598.112-.197.278-.398.492-.597.213-.2.402-.399.574-.598.177-.2.31-.4.4-.598.13.2.26.398.44.598.187.2.37.398.552.598.184.198.33.398.427.598.1.2.142.398.143.598 0 .067-.005.135-.02.2a.587.587 0 01-.132.2 1.21 1.21 0 01-.272.198c-.217.134-.478.2-.738.2h-.005c-.285 0-.55-.066-.746-.2-.158-.067-.336-.134-.467 0-.128.132-.107.267.09.4z"/></svg>
+                                        <span class="store-badge__text"><span class="store-badge__kicker">Download for</span><span class="store-badge__name">Linux</span></span>
+                                        <span class="sr-only"> (x86_64 and ARM64 AppImage)</span>
+                                    </a>
+                                </li>
+                                <li class="spine__item spine__item--muted where__soon">macOS: in development</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-            </article>
+                </article>
+
+                <article class="tile tile--media span-4 project--gunslinger" id="gunslinger">
+                    <img class="tile__media" src="/Gunslinger/GunslingerFeatureGraphic.png" width="1024" height="500" loading="lazy" alt="Gunslinger key art">
+                    <div class="tile__body">
+                        <div class="project__chips">
+                            <span class="chip chip--neutral">Mobile game</span>
+                            <span class="chip chip--neutral">Android</span>
+                        </div>
+                        <h3 class="tile__title">Gunslinger</h3>
+                        <p class="tile__text">A western shooter for Android. Test your reflexes and your aim.</p>
+                        <div class="tile__foot">
+                            <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.NFDGames.Gunslinger" target="_blank" rel="noopener">
+                                <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087L1.337.924zm12.207 10.065l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179l11.04 10.973zm0 2.067l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54-3.23-3.21z"/></svg>
+                                <span class="store-badge__text"><span class="store-badge__kicker">Get it on</span><span class="store-badge__name">Google Play</span></span>
+                                <span class="sr-only"> (opens in a new tab)</span>
+                            </a>
+                            <a class="link-arrow" href="https://play.google.com/store/apps/dev?id=6331541447390891189&amp;hl=en_US" target="_blank" rel="noopener">More on Google Play<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="sr-only"> (opens in a new tab)</span></a>
+                        </div>
+                    </div>
+                </article>
+            </div>
         </div>
     </section>
 
+    <div class="seam" aria-hidden="true"></div>
+
+    <!-- From the blog -->
+    <section class="section" id="blog">
+        <div class="wrap">
+            <div class="section-head section-head--split">
+                <p class="eyebrow">Blog</p>
+                <h2 class="section-title">Guides and release notes</h2>
+                <div class="section-head__aside">
+                    <a href="/blog/" class="link-arrow">All articles<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                </div>
+            </div>
+
+            <div class="post-grid">
+                <a href="/blog/posts/whats-new-in-opendrop-1-0.html" class="post-card">
+                    <div class="post-card__meta">
+                        <span class="post-tag post-tag--news">Release notes</span>
+                        <time datetime="2026-06-04">Jun 4, 2026</time>
+                    </div>
+                    <h3 class="post-card__title">What's New in OpenDrop 1.0</h3>
+                    <p class="post-card__excerpt">Encryption on every transfer route, the Pro device mesh, OpenDrop's own relay and what is still on the roadmap.</p>
+                    <span class="post-card__more">Read article<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                </a>
+                <a href="/blog/posts/transfer-files-android-to-pc-without-usb.html" class="post-card">
+                    <div class="post-card__meta">
+                        <span class="post-tag post-tag--tutorial">Tutorial</span>
+                        <time datetime="2026-02-18">Feb 18, 2026</time>
+                    </div>
+                    <h3 class="post-card__title">How to Transfer Files from Android to PC Without USB</h3>
+                    <p class="post-card__excerpt">Four ways to send files from Android to a Windows or Linux PC without a cable, step by step.</p>
+                    <span class="post-card__more">Read article<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                </a>
+                <a href="/blog/posts/best-airdrop-alternatives-windows-2026.html" class="post-card">
+                    <div class="post-card__meta">
+                        <span class="post-tag post-tag--comparison">Comparison</span>
+                        <time datetime="2026-02-18">Feb 18, 2026</time>
+                    </div>
+                    <h3 class="post-card__title">Best AirDrop Alternatives for Windows in 2026</h3>
+                    <p class="post-card__excerpt">How OpenDrop, LocalSend and other AirDrop alternatives for Windows compare.</p>
+                    <span class="post-card__more">Read article<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div class="seam" aria-hidden="true"></div>
+
+    <!-- About -->
+    <section class="section" id="about">
+        <div class="wrap about__grid">
+            <div class="about__copy">
+                <p class="eyebrow">About</p>
+                <h2 class="section-title">A one-person studio</h2>
+                <p>NFDGames LLC is a one-person studio in Greenville, South Carolina, founded and run by Nicholas Fantino-Dyer, with no outside investment.</p>
+                <p>Support, press and security reports all go to one inbox.</p>
+            </div>
+            <div class="tile about__contact">
+                <h3 class="tile__title">Get in touch</h3>
+                <a class="link-arrow" href="mailto:support@nfdgames.com">support@nfdgames.com<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                <ul class="row-list contact-list">
+                    <li><a href="/OpenDrop/support.html">Support<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+                    <li><a href="/OpenDrop/press.html">Press kit<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+                    <li><a href="/OpenDrop/security.html">Security and disclosure<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+                    <li><a href="/OpenDrop/status.html">System status<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
     </main>
 
+    <div class="seam" aria-hidden="true"></div>
+
     <!-- Footer -->
-    <footer class="footer-simple">
-        <div class="footer-content">
-            <a href="#" class="logo">
-                <picture>
-                    <source srcset="NFDGamesLogoCircleTransparent.webp" type="image/webp">
-                    <img src="NFDGamesLogoCircleTransparent.png" alt="NFDGames Icon" class="logo-icon" width="36" height="36" loading="lazy">
-                </picture>
-                NFDGames
-            </a>
-            <p class="text-muted" style="margin-top:0.75rem;">
-                <a href="OpenDrop/PrivacyPolicy.html" style="color:var(--text-secondary);text-decoration:none;">Privacy</a> &nbsp;·&nbsp;
-                <a href="OpenDrop/TermsOfService.html" style="color:var(--text-secondary);text-decoration:none;">Terms</a> &nbsp;·&nbsp;
-                <a href="OpenDrop/security.html" style="color:var(--text-secondary);text-decoration:none;">Security</a> &nbsp;·&nbsp;
-                <a href="OpenDrop/accessibility.html" style="color:var(--text-secondary);text-decoration:none;">Accessibility</a> &nbsp;·&nbsp;
-                <a href="OpenDrop/press.html" style="color:var(--text-secondary);text-decoration:none;">Press</a> &nbsp;·&nbsp;
-                <a href="OpenDrop/status.html" style="color:var(--text-secondary);text-decoration:none;">Status</a>
-            </p>
-            <p class="text-muted" style="margin-top:0.5rem;">© 2026 NFDGames. All rights reserved.</p>
+    <footer class="site-footer">
+        <div class="wrap site-footer__grid">
+            <div class="site-footer__brand">
+                <a href="/" class="logo">
+                    <picture>
+                        <source srcset="/NFDGamesLogoCircleTransparent.webp" type="image/webp">
+                        <img src="/NFDGamesLogoCircleTransparent.png" alt="" class="logo-icon" width="36" height="36" loading="lazy">
+                    </picture>
+                    NFDGames
+                </a>
+                <p>Independent studio making OpenDrop and Gunslinger.</p>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">OpenDrop</h2>
+                <ul>
+                    <li><a href="/OpenDrop/">Overview</a></li>
+                    <li><a href="/OpenDrop/#download">Download</a></li>
+                    <li><a href="/OpenDrop/#compare">Free vs Pro</a></li>
+                    <li><a href="/OpenDrop/changelog.html">What's new in 1.0</a></li>
+                    <li><a href="/OpenDrop/support.html">Support</a></li>
+                    <li><a href="/OpenDrop/status.html">System status</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Guides</h2>
+                <ul>
+                    <li><a href="/blog/posts/best-airdrop-alternatives-windows-2026.html">AirDrop alternatives</a></li>
+                    <li><a href="/blog/posts/share-files-iphone-android.html">iPhone to Android</a></li>
+                    <li><a href="/blog/posts/transfer-files-android-to-pc-without-usb.html">Android to PC, no USB</a></li>
+                    <li><a href="/blog/posts/transfer-photos-iphone-to-windows-pc.html">iPhone photos to PC</a></li>
+                    <li><a href="/blog/posts/transfer-files-windows-to-linux.html">Windows to Linux</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Studio</h2>
+                <ul>
+                    <li><a href="/">NFDGames home</a></li>
+                    <li><a href="/#gunslinger">Gunslinger</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/OpenDrop/press.html">Press kit</a></li>
+                    <li><a href="https://play.google.com/store/apps/dev?id=6331541447390891189&amp;hl=en_US" target="_blank" rel="noopener">Apps on Google Play</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Legal and security</h2>
+                <ul>
+                    <li><a href="/OpenDrop/PrivacyPolicy.html">Privacy Policy</a></li>
+                    <li><a href="/OpenDrop/TermsOfService.html">Terms of Service</a></li>
+                    <li><a href="/OpenDrop/security.html">Security and disclosure</a></li>
+                    <li><a href="/OpenDrop/accessibility.html">Accessibility</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="wrap site-footer__bottom">
+            <p>&copy; 2026 NFDGames. All rights reserved.</p>
+            <div class="site-footer__legal">
+                <a href="/OpenDrop/WithdrawalForm.html">EU/UK withdrawal</a>
+                <a href="/OpenDrop/third-party-notices.html">Third-party notices</a>
+                <a href="/OpenDrop/docs/export-compliance/">Export compliance</a>
+                <a href="mailto:support@nfdgames.com">support@nfdgames.com</a>
+            </div>
         </div>
     </footer>
 
@@ -203,7 +396,7 @@
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
       import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-analytics.js";
-    
+
       const firebaseConfig = {
         apiKey: "AIzaSyD1XfHr0OtAM4Zm62sPLW4Rjg__8HlLE0c",
         authDomain: "opendrop-3c111.firebaseapp.com",
@@ -213,10 +406,10 @@
         appId: "1:573883707762:web:e68643cce07c2cee3eadeb",
         measurementId: "G-ENWJJ78E3Q"
       };
-    
+
       // Initialize Firebase
       const app = initializeApp(firebaseConfig);
-      // Gated on user consent — analytics is rebound inside the callback so any
+      // Gated on user consent: analytics is rebound inside the callback so any
       // later use waits until the user accepts.
       let analytics = null;
       if (window.OpenDropConsent) {

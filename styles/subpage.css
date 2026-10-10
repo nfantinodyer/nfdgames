@@ -1,0 +1,275 @@
+/* ==========================================================
+   Subpages: release notes, press kit, status, security,
+   accessibility, legal pages, third-party notices, 404 and the
+   account action page. Builds on the shared design system in
+   common.css ("Refresh 2026-10"); every rule is scoped to
+   body.page-subpage so no other page is affected. The scope sits
+   in :where() so a page's own <style> block can override any rule
+   here with a plain class selector.
+   ========================================================== */
+
+/* ---------- Nav: the family lockup, sized as on /OpenDrop/ ---------- */
+:where(body.page-subpage) .nav-lockup__home {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 44px;
+    border-radius: var(--r-sm);
+}
+
+:where(body.page-subpage) .nav-lockup__home img {
+    display: block;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+}
+
+:where(body.page-subpage) .nav-lockup .logo {
+    gap: 10px;
+    min-height: 44px;
+    font-size: 1.125rem;
+}
+
+:where(body.page-subpage) .nav-lockup .logo-icon {
+    width: 32px;
+    height: 32px;
+}
+
+/* In-page anchors land below the fixed nav */
+:where(body.page-subpage) main [id] {
+    scroll-margin-top: calc(var(--nav-h) + 16px);
+}
+
+/* ---------- Page column ---------- */
+:where(body.page-subpage) {
+    --subpage-w: 920px;
+}
+
+:where(body.page-subpage) .subpage-wrap {
+    width: min(var(--subpage-w), 100% - 2 * var(--gutter));
+    margin-inline: auto;
+}
+
+/* ---------- Page header: eyebrow, title, lede ---------- */
+:where(body.page-subpage) .subpage-head {
+    padding: calc(var(--nav-h) + 56px) 0 var(--sp-10);
+    background: var(--glow-hero);
+}
+
+:where(body.page-subpage) .subpage-head .section-head {
+    margin-bottom: 0;
+}
+
+:where(body.page-subpage) .subpage-head .section-title {
+    font-size: clamp(1.875rem, 1.25rem + 1.9vw, 2.625rem);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+}
+
+:where(body.page-subpage) .subpage-head .section-lede {
+    max-width: 68ch;
+}
+
+:where(body.page-subpage) .subpage-head .section-lede a {
+    color: var(--accent-glow);
+}
+
+/* Meta row under the lede: version, dates, effective date */
+:where(body.page-subpage) .subpage-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--sp-2) var(--sp-3);
+    margin: var(--sp-1) 0 0;
+    font: 400 var(--fs-small)/1.4 var(--font-mono);
+    color: var(--text-subtle);
+}
+
+:where(body.page-subpage) .subpage-meta strong {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+/* ---------- Body ---------- */
+:where(body.page-subpage) .subpage-body {
+    padding-bottom: var(--section-y);
+}
+
+/* Document card (same surface as .tile) */
+:where(body.page-subpage) .doc-card {
+    position: relative;
+    margin-bottom: var(--sp-4);
+    padding: var(--sp-8);
+    border-radius: var(--r-xl);
+    background: var(--surface-1);
+    border: 1px solid var(--hairline);
+}
+
+:where(body.page-subpage) .doc-card h2 {
+    margin: 0 0 var(--sp-4);
+    color: var(--text-primary);
+    font-size: 1.375rem;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+}
+
+:where(body.page-subpage) .doc-card h3 {
+    margin: var(--sp-6) 0 var(--sp-2);
+    font-size: 1.0625rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--text-primary);
+}
+
+:where(body.page-subpage) .doc-card p,
+:where(body.page-subpage) .doc-card li {
+    font-size: var(--fs-body);
+    line-height: 1.7;
+    color: var(--text-secondary);
+}
+
+:where(body.page-subpage) .doc-card p + p {
+    margin-top: var(--sp-3);
+}
+
+:where(body.page-subpage) .doc-card ul,
+:where(body.page-subpage) .doc-card ol {
+    margin: var(--sp-2) 0 var(--sp-4) 1.25rem;
+}
+
+:where(body.page-subpage) .doc-card li {
+    margin-bottom: 0.4rem;
+}
+
+:where(body.page-subpage) .doc-card strong {
+    color: var(--text-primary);
+}
+
+/* Text links in the page body (buttons keep their own colours) */
+:where(body.page-subpage) .subpage-body a:where(:not(.btn-cta, .btn-ghost)) {
+    color: var(--accent-glow);
+    text-decoration: none;
+    overflow-wrap: anywhere;
+}
+
+:where(body.page-subpage) .subpage-body a:where(:not(.btn-cta, .btn-ghost)):hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+:where(body.page-subpage) code {
+    padding: 0.12rem 0.4rem;
+    border-radius: 4px;
+    background: var(--bg-deep);
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    color: var(--accent-glow);
+    overflow-wrap: anywhere;
+}
+
+/* Monospace contact block (press, security) */
+:where(body.page-subpage) .contact-block {
+    margin-top: var(--sp-4);
+    padding: var(--sp-5) var(--sp-6);
+    border-radius: var(--r-lg);
+    background: var(--bg-deep);
+    border: 1px solid var(--hairline);
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    line-height: 1.85;
+    color: var(--text-primary);
+    overflow-wrap: anywhere;
+}
+
+/* Data tables inside cards scroll sideways on their own, never the page */
+:where(body.page-subpage) .table-scroll {
+    margin-top: var(--sp-4);
+    overflow-x: auto;
+}
+
+:where(body.page-subpage) .doc-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--fs-small);
+}
+
+:where(body.page-subpage) .doc-table th,
+:where(body.page-subpage) .doc-table td {
+    padding: 0.75rem;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid var(--hairline);
+    color: var(--text-secondary);
+}
+
+/* Keep identifiers whole inside table cells (the table scrolls if it must) */
+:where(body.page-subpage) .doc-table code {
+    overflow-wrap: normal;
+}
+
+:where(body.page-subpage) .doc-table th {
+    font: 700 var(--fs-micro)/1.3 var(--font-mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+}
+
+/* Closing note under the cards: last updated and related pages */
+:where(body.page-subpage) .subpage-note {
+    margin-top: var(--sp-6);
+    font-size: var(--fs-small);
+    line-height: 2.2;
+    color: var(--text-subtle);
+}
+
+/* Inline links (so a separator never starts a line); the padding widens the tap area */
+:where(body.page-subpage) .subpage-note a {
+    padding-block: 10px;
+}
+
+/* Small print inside a card */
+:where(body.page-subpage) .doc-card .doc-aside {
+    margin-top: var(--sp-4);
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    color: var(--text-subtle);
+}
+
+/* ---------- Phone ---------- */
+@media (max-width: 768px) {
+    :where(body.page-subpage) .nav-lockup {
+        gap: 4px;
+    }
+
+    :where(body.page-subpage) .nav-lockup .logo {
+        gap: 8px;
+        font-size: 1rem;
+    }
+
+    :where(body.page-subpage) .nav-lockup .logo-icon {
+        width: 28px;
+        height: 28px;
+    }
+
+    :where(body.page-subpage) .subpage-head {
+        padding: calc(var(--nav-h) + 32px) 0 var(--sp-8);
+    }
+}
+
+@media (max-width: 640px) {
+    :where(body.page-subpage) .doc-card {
+        padding: var(--sp-5);
+        border-radius: var(--r-lg);
+    }
+
+    :where(body.page-subpage) .doc-card h2 {
+        font-size: 1.1875rem;
+    }
+
+    :where(body.page-subpage) .contact-block {
+        padding: var(--sp-4);
+        font-size: 0.8125rem;
+    }
+}

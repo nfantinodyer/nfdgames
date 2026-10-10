@@ -49,11 +49,14 @@ jobs:
       - name: Commit changes
         run: |
           # Stage everything the script can touch: the manifest, the
-          # downloaded screenshot files (new + replaced), and the
-          # og:image patch in index.html.
+          # downloaded screenshot files (new + replaced), the og:image
+          # patch in OpenDrop/index.html, and the home page hero shots
+          # (root index.html) that the script points at the newest
+          # Windows and iPhone screenshots.
           git add OpenDrop/screenshots-manifest.json \
                   OpenDrop/screenshots/ \
-                  OpenDrop/index.html
+                  OpenDrop/index.html \
+                  index.html
           if git diff --cached --quiet; then
             echo "No screenshot changes — skipping commit"
             exit 0

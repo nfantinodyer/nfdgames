@@ -1,173 +1,444 @@
 /* ============================================
-   NFDGames - Index Page Styles
+   NFDGames home page (body.page-home).
+   Shared components (nav, buttons, chips, stat strip,
+   bento, store badges, spine, post cards, footer) live
+   in common.css. Only page layout lives here.
    ============================================ */
 
-/* Index-specific background */
-.bg-gradient {
-    background: none;
-}
-
-/* Projects Section */
-.projects {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: var(--space-3xl) var(--space-xl) 8rem;
-}
-
-.projects .section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    flex-wrap: wrap;
-    gap: var(--space-md);
-}
-
-/* Project Grid */
-.project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: var(--space-xl);
-}
-
-/* Project Cards */
-.project-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-2xl);
-    overflow: hidden;
-    transition: all var(--transition-slow);
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.project-card:hover {
-    border-color: var(--accent);
-}
-
-.card-image {
-    height: 220px;
-    background: var(--bg-dark);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-bottom: 1px solid var(--border);
-    position: relative;
-    overflow: hidden;
-}
-
-.card-image.opendrop-bg {
-    background: var(--bg-dark);
-}
-
-.card-image.gunslinger-bg {
-    background: var(--bg-dark);
-}
-
-.card-image picture {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.card-icon {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-}
-
-.card-content {
-    padding: var(--space-xl);
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-}
-
-.project-type {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #60a5fa;
-    margin-bottom: 0.75rem;
-}
-
-.project-type.game {
+.accent-2 {
     color: var(--accent-secondary);
 }
 
-.card-content h3 {
-    font-size: 1.5rem;
-    margin-bottom: var(--space-md);
+/* ---------- Hero ---------- */
+.home-hero__eyebrow {
+    margin-bottom: var(--sp-4);
 }
 
-.card-content p {
-    color: var(--text-secondary);
-    margin-bottom: var(--space-xl);
-    flex-grow: 1;
+.home-hero__glance {
+    display: grid;
+    gap: var(--sp-3);
+    margin-top: var(--sp-10);
 }
 
-.card-actions {
-    display: flex;
-    gap: var(--space-md);
+/* "macOS coming soon." is kept on one line in the markup; pretty wrapping
+   avoids a short last line if the sentence breaks elsewhere */
+.home-hero .hero__meta {
+    text-wrap: pretty;
 }
 
-.card-link {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    text-decoration: none;
-    display: inline-flex;
+/* Side by side, the ghost button matches the 52px primary (they stack at 768) */
+@media (min-width: 769px) {
+    .home-hero .hero__actions .btn-ghost {
+        min-height: 52px;
+        padding: 0 24px;
+        font-size: 1.0625rem;
+    }
+}
+
+/* Device pair: the Windows app and the iPhone app joined by a dashed link */
+.device-pair {
+    position: relative;
+    justify-self: end;
+    width: 100%;
+    max-width: 560px;
+    aspect-ratio: 560 / 440;
+}
+
+.device-pair__window,
+.device-pair__phone {
+    position: absolute;
+    margin: 0;
+    overflow: hidden;
+    border: 1px solid var(--hairline-strong);
+    background: #0b0f1a;
+    box-shadow: var(--shadow-float);
+}
+
+.device-pair__window {
+    right: 0;
+    top: 0;
+    width: 67.9%;
+    height: 77.3%;
+    border-radius: 14px;
+}
+
+/* No CSS title bar: the screenshot's own Windows title bar is the chrome */
+.device-pair__window img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+}
+
+.device-pair__phone {
+    left: 4.3%;
+    bottom: 0;
+    z-index: 2;
+    width: 26.8%;
+    height: 73.9%;
+    border-radius: 24px;
+}
+
+.device-pair__phone img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+}
+
+.device-pair__link {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+}
+
+.device-pair__path {
+    fill: none;
+    stroke: #46d8e5;
+    stroke-width: 1.5;
+    stroke-dasharray: 6 8;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+    animation: device-link-flow 1.6s linear infinite;
+}
+
+.device-pair__end {
+    fill: #46d8e5;
+}
+
+@keyframes device-link-flow {
+    from { stroke-dashoffset: 0; }
+    to { stroke-dashoffset: -28; }
+}
+
+.device-pair__chip {
+    position: absolute;
+    left: 64%;
+    top: 93%;
+    z-index: 3;
+    transform: translate(-50%, -50%);
+    /* Solid fill so the dashed link does not show through the chip */
+    background: linear-gradient(rgba(148, 163, 192, 0.1), rgba(148, 163, 192, 0.1)), var(--bg-deep);
+}
+
+/* ---------- Projects ---------- */
+/* /#gunslinger (footer link on every page) lands below the fixed nav */
+#gunslinger {
+    scroll-margin-top: calc(var(--nav-h) + 16px);
+}
+
+.project__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 240px;
+    gap: var(--sp-8);
     align-items: center;
-    gap: var(--space-sm);
-    transition: color var(--transition-fast);
+    height: 100%;
 }
 
-.card-link:hover {
+.project__main {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+    min-width: 0;
+}
+
+.project__intro {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-4);
+    margin-bottom: var(--sp-1);
+}
+
+.project__intro picture {
+    flex: none;
+    display: block;
+}
+
+.project__icon {
+    display: block;
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+}
+
+.project__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-2);
+}
+
+.project--opendrop .tile__title {
+    font-size: 1.75rem;
+}
+
+.check-list {
+    display: grid;
+    gap: var(--sp-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.check-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: var(--fs-small);
+    line-height: 1.45;
+    color: var(--text-primary);
+}
+
+.check-list svg {
+    flex: none;
+    width: 16px;
+    height: 16px;
+    margin-top: 2px;
+    color: var(--state-yes);
+}
+
+.project__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--sp-3) var(--sp-5);
+    margin-top: var(--sp-5);
+}
+
+.where {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--sp-4);
+    min-width: 0;
+}
+
+.where__list {
+    --spine-ring: var(--surface-1);
+    flex-direction: column;
+}
+
+/* The rail runs through the nodes, so they need no ring; a ring in the
+   tile's flat colour would show as a dark halo over the feature tint. */
+.where__list .spine__item::before {
+    box-shadow: none;
+}
+
+.where__list .store-badge {
+    width: 100%;
+    min-width: 0;
+}
+
+.where__soon {
+    --spine-node-y: 11px;
+    display: flex;
+    align-items: center;
+    min-height: 32px;
+    font-size: 0.8125rem;
+    color: var(--text-subtle);
+}
+
+.project--gunslinger .tile__foot {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--sp-1);
+}
+
+/* ---------- From the blog ---------- */
+.post-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--sp-4);
+}
+
+/* ---------- About ---------- */
+.about__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: var(--sp-12);
+    align-items: start;
+}
+
+.about__copy {
+    display: grid;
+    gap: var(--sp-3);
+}
+
+.about__copy .section-title {
+    margin-bottom: var(--sp-2);
+}
+
+.about__copy p:not(.eyebrow) {
+    margin: 0;
+    max-width: 60ch;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+}
+
+.about__contact {
+    gap: var(--sp-2);
+}
+
+.contact-list {
+    margin-top: var(--sp-2);
+}
+
+.contact-list > li {
+    padding: 0;
+}
+
+.contact-list a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-3);
+    width: 100%;
+    min-height: 48px;
+    color: var(--text-primary);
+    font-size: var(--fs-body);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+.contact-list a:hover,
+.contact-list a:focus-visible {
     color: var(--accent-glow);
 }
 
-/* Social Links */
-.social-links {
-    display: flex;
-    gap: var(--space-lg);
+.contact-list svg {
+    flex: none;
+    width: 16px;
+    height: 16px;
+    color: var(--text-subtle);
 }
 
-.social-links a {
-    color: var(--text-secondary);
-    transition: color var(--transition-fast);
+.contact-list a:hover svg,
+.contact-list a:focus-visible svg {
+    color: currentColor;
 }
 
-.social-links a:hover {
-    color: var(--text-primary);
+/* ---------- Responsive ---------- */
+@media (max-width: 1023px) {
+    .device-pair {
+        justify-self: center;
+    }
+
+    .project__grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--sp-6);
+    }
+
+    /* Stacked: the badges sit in a wrapping row, so the vertical spine is dropped */
+    .where__list {
+        flex-direction: row;
+        padding-left: 0;
+    }
+
+    .where__list::before,
+    .where__list .spine__item::before {
+        display: none;
+    }
+
+    .where__list .store-badge {
+        width: auto;
+        min-width: 176px;
+    }
+
+    /* Two teaser cards keep full excerpts at tablet widths */
+    .post-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .post-grid .post-card:nth-child(3) {
+        display: none;
+    }
 }
 
-/* Index-specific footer (centered, simpler) */
-.footer-simple {
-    text-align: center;
+@media (min-width: 641px) and (max-width: 1023px) {
+    /* Full-width Gunslinger tile: art beside the text instead of a 400px banner */
+    .project--gunslinger {
+        display: grid;
+        grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    }
+
+    .project--gunslinger .tile__media {
+        height: 100%;
+        aspect-ratio: auto;
+        object-position: 60% center;
+    }
 }
 
-.footer-simple .footer-content {
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-lg);
+@media (max-width: 900px) {
+    .about__grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--sp-8);
+    }
 }
 
-/* Responsive */
 @media (max-width: 768px) {
-    .projects {
-        padding: var(--space-2xl) var(--space-lg);
+    body.page-home {
+        --section-y: 40px;
     }
 
-    .projects .section-header {
+    body.page-home .section-head {
+        margin-bottom: var(--sp-6);
+    }
+
+    .post-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .home-hero__glance {
+        margin-top: var(--sp-6);
+    }
+}
+
+@media (max-width: 640px) {
+    /* Keep the teaser short on phones: two newest posts, titles only.
+       The comparison guide stays one tap away in the footer Guides column. */
+    .post-grid .post-card__excerpt,
+    .post-grid .post-card:nth-child(n+3) {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Button and link share one row inside the tile */
+    .project__actions {
+        gap: var(--sp-3);
+    }
+
+    .project__actions .btn-cta {
+        padding: 0 18px;
+    }
+
+    .where__list {
         flex-direction: column;
-        align-items: flex-start;
     }
 
-    .project-grid {
-        grid-template-columns: 1fr;
+    .where__list .store-badge {
+        width: 100%;
+        min-width: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .device-pair__path {
+        animation: none;
+    }
+
+    .contact-list a {
+        transition: none;
     }
 }

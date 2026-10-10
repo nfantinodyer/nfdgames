@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-09T14:21:53.977Z",
+  "generated": "2026-10-10T05:17:58.767Z",
   "sources": {
     "windows": "https://apps.microsoft.com/store/detail/XP99SJJTQXZ9WT",
     "ios": "https://apps.apple.com/us/app/opendrop/id6757438202",
@@ -7,121 +7,171 @@
   },
   "windows": [
     {
-      "url": "screenshots/windows/8d4254e918b4.png",
-      "source_url": "https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxnVsw_ms9ZuVpZ5c61SOaIW33JA2Np7hO5HLyY2.KEGy.D3UNTTS.9zyIIXvujVv_fBi68CSbfVXFDcD7P5Ncww-&format=source",
+      "url": "screenshots/windows/b633f22766ab.png",
+      "source_url": "https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxnVsw_ms9ZuVpZ5c61SOaIWT3boUEM1ThFABHUgAM2WMGFnyTrUTemVugY3oBhNrc34ZpHI9177tiCAUxNsuCjI-&format=source",
       "alt": "OpenDrop Windows screenshot 1",
-      "width": 1054,
+      "width": 1234,
       "height": 1397,
       "reused": true
     },
     {
-      "url": "screenshots/windows/e5b50884557c.png",
-      "source_url": "https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxnVsw_ms9ZuVpZ5c61SOaIXcCJnDixpOKGI2IvUh08EJHIauJhZvGJ3ksW9EoiYPJ6qXQDpIVIczLkVtD_9JAjk-&format=source",
+      "url": "screenshots/windows/3ee65010f001.png",
+      "source_url": "https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxnVsw_ms9ZuVpZ5c61SOaIWbKqqDUUJK786T_IS8i2IPGc.6pf_na6uehz76f.aQca7DrElcY_7MPOLtD_1sYMk-&format=source",
       "alt": "OpenDrop Windows screenshot 2",
-      "width": 1084,
+      "width": 1234,
       "height": 1397,
       "reused": true
     },
     {
-      "url": "screenshots/windows/9526aca7a302.png",
-      "source_url": "https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxnVsw_ms9ZuVpZ5c61SOaIVoRB9sZ.1B.6AlZj0dyehRFITNeEblWKn8uC7Mv_q83lvWI99nF4jXv8wiiyRMzeM-&format=source",
+      "url": "screenshots/windows/0d374850ece0.png",
+      "source_url": "https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxnVsw_ms9ZuVpZ5c61SOaIUdZkJ5ZG7AG7CKlSe40rdBBExgV9KmfUeJp.y2SGiEJBNCApNrJeiLBaVR6gnaC5s-&format=source",
       "alt": "OpenDrop Windows screenshot 3",
-      "width": 1084,
+      "width": 1234,
       "height": 1397,
       "reused": true
     },
     {
-      "url": "screenshots/windows/e046265245e0.png",
-      "source_url": "https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxnVsw_ms9ZuVpZ5c61SOaIXPmWS_lAwGtM80J4XlBiBGn8XbmcL8b0nm_GwHKASfymacpWluEua4bXC1rtrmGwg-&format=source",
+      "url": "screenshots/windows/fecaabf199c6.png",
+      "source_url": "https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxnVsw_ms9ZuVpZ5c61SOaIWwF2vmZtAzX1yzswcML8UvFZzSKUgVTWIPfI_zDNhvofvUt4scjURfJ2fi5orrH0U-&format=source",
       "alt": "OpenDrop Windows screenshot 4",
-      "width": 1084,
+      "width": 1234,
       "height": 1397,
       "reused": true
     },
     {
-      "url": "screenshots/windows/ec5e91074f7e.png",
-      "source_url": "https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxnVsw_ms9ZuVpZ5c61SOaIX5E7IdIOAC83oqh3cAd3Rlesq35WKbMiEdNFCjX_iwudGxzSL2x56PTXZuLUJdM3A-&format=source",
+      "url": "screenshots/windows/120da5616199.png",
+      "source_url": "https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxnVsw_ms9ZuVpZ5c61SOaIVWLnSFbBHubxDPlAXzh_YCX2ob3f.on_HGUmkcswleDz6c7W7P9rtpZYkjSJX3224-&format=source",
       "alt": "OpenDrop Windows screenshot 5",
-      "width": 1084,
+      "width": 1234,
+      "height": 1397,
+      "reused": true
+    },
+    {
+      "url": "screenshots/windows/96c03329287e.png",
+      "source_url": "https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxnVsw_ms9ZuVpZ5c61SOaIU8lPHKetDNViFkgkeY.GXdfwOdUc.DvK1b4bzNxnh6EnsktcHuGPxvAeI__Y_YGYI-&format=source",
+      "alt": "OpenDrop Windows screenshot 6",
+      "width": 1234,
+      "height": 1397,
+      "reused": true
+    },
+    {
+      "url": "screenshots/windows/1418c4674110.png",
+      "source_url": "https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxnVsw_ms9ZuVpZ5c61SOaIVXdBGLkIvL.3iTw6cIo4reqDhnz.t_7gsGsMEOMHpxO9uy.9RrRx6r3FRaniUsqsg-&format=source",
+      "alt": "OpenDrop Windows screenshot 7",
+      "width": 1234,
+      "height": 1397,
+      "reused": true
+    },
+    {
+      "url": "screenshots/windows/7866741dc60f.png",
+      "source_url": "https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxnVsw_ms9ZuVpZ5c61SOaIXATvJ7wuz3safS2.0iX8E2HLiPR73EdNJUkmMY.kJyCpaFWwkkgIJJ4WKCuod.GIM-&format=source",
+      "alt": "OpenDrop Windows screenshot 8",
+      "width": 1234,
+      "height": 1397,
+      "reused": true
+    },
+    {
+      "url": "screenshots/windows/4f4e68a552d2.png",
+      "source_url": "https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxnVsw_ms9ZuVpZ5c61SOaIUyv90WNg8TDRiDwiQdmEOz9nF1iv8b92kVKyD3A438HvNHy6OAOeCOvM6a0WHJnLs-&format=source",
+      "alt": "OpenDrop Windows screenshot 9",
+      "width": 1234,
       "height": 1397,
       "reused": true
     }
   ],
   "ios": [
     {
-      "url": "screenshots/ios/7f2a1290bc72.jpg",
-      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/37/58/cc/3758cc10-a7dd-cafb-c316-4aca780c69dc/image_C3A81486-F222-4C91-8AEC-CEF5B846AA22_1770142608.png/320x480bb.jpg",
-      "alt": "OpenDrop iOS screenshot 1",
-      "reused": true
+      "url": "screenshots/ios/bd376f34d4c7.webp",
+      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/30/f5/82/30f582ae-eb26-5e7a-876a-4f5081397806/image_A070DC9C-CF6B-478E-892A-B001FE4EEDF2_1778257667.png/1080x0w.webp",
+      "alt": "OpenDrop iOS screenshot 1"
     },
     {
-      "url": "screenshots/ios/320922516867.jpg",
-      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/20/85/f7/2085f7d6-4906-8817-e3ef-171b7e51cee1/image_E3875B53-72CB-4754-9A56-7BF566913FAD_1770142608.png/320x480bb.jpg",
-      "alt": "OpenDrop iOS screenshot 2",
-      "reused": true
+      "url": "screenshots/ios/f57bb7192d8d.webp",
+      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/a7/70/81/a770813b-d329-9a59-79c0-558d60b56988/image_108500A8-FABE-4A93-8023-34BA748DAAE8_1778257667.png/1080x0w.webp",
+      "alt": "OpenDrop iOS screenshot 2"
     },
     {
-      "url": "screenshots/ios/d4282c88b7c8.jpg",
-      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/a3/f0/e4/a3f0e429-6843-4bcd-8785-b2ce4b3ac39f/image_20500661-4FF4-40EF-BC68-28440AFB4F06_1770142608.png/320x480bb.jpg",
-      "alt": "OpenDrop iOS screenshot 3",
-      "reused": true
+      "url": "screenshots/ios/2ef9dc605994.webp",
+      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/02/d1/68/02d1682c-022a-a160-cb0d-1d95f970d2bb/image_B892F809-48E4-468E-9A7A-41394B4471DB_1778257667.png/1080x0w.webp",
+      "alt": "OpenDrop iOS screenshot 3"
     },
     {
-      "url": "screenshots/ios/291c907da637.jpg",
-      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/c2/0e/5b/c20e5b14-2d74-c768-db23-07150eb65fdf/image_5DA39DF8-42C1-45A4-9A68-53A520BF3518_1770142608.png/320x480bb.jpg",
-      "alt": "OpenDrop iOS screenshot 4",
-      "reused": true
+      "url": "screenshots/ios/7ff8548ba50b.webp",
+      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/cc/90/eb/cc90eb10-7599-2349-bcc9-c1b8c80d2443/image_8B2A0233-4912-44E6-A371-F95C24AB1A4A_1778257667.png/1080x0w.webp",
+      "alt": "OpenDrop iOS screenshot 4"
     },
     {
-      "url": "screenshots/ios/d0ebe9b5bc4c.jpg",
-      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/73/04/0c/73040ca3-bd39-9533-fea5-9af7da8509c4/image_F6186C16-FB5F-4408-9EDC-967E1C5AFA43_1770142608.png/320x480bb.jpg",
-      "alt": "OpenDrop iOS screenshot 5",
-      "reused": true
+      "url": "screenshots/ios/f1f540828c3b.webp",
+      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/b8/c3/a6/b8c3a608-f43d-91d9-ac07-6998113eac7d/image_99381B2D-208C-4B04-BADD-985227245AA9_1778257667.png/1080x0w.webp",
+      "alt": "OpenDrop iOS screenshot 5"
     },
     {
-      "url": "screenshots/ios/7ff37e2e14b8.jpg",
-      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/00/b3/db/00b3db6a-6301-227c-8b75-fe71900fe07a/image_22D4E5EA-F25E-408D-9AEB-2BF008F1C15B_1770142852.png/320x480bb.jpg",
-      "alt": "OpenDrop iOS screenshot 6",
-      "reused": true
+      "url": "screenshots/ios/9dae5cd3ebf2.webp",
+      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/c9/30/c6/c930c658-7dc0-dd47-0ad8-a661cd145bb0/image_83AEEFA6-E16F-4741-823B-EF62608B614A_1778257667.png/1080x0w.webp",
+      "alt": "OpenDrop iOS screenshot 6"
+    },
+    {
+      "url": "screenshots/ios/ac88e1055f3a.webp",
+      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/31/85/bc/3185bc8e-ad74-9b20-aefd-6b2badd9f18e/image_E58CE087-7D41-4ECB-8AEF-EC678EE39890_1778257667.png/1080x0w.webp",
+      "alt": "OpenDrop iOS screenshot 7"
+    },
+    {
+      "url": "screenshots/ios/fd772b07ea32.webp",
+      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/22/2c/a8/222ca857-36d0-669b-5996-b29cb840eab7/image_AED9AE9E-48D2-4671-A8C2-75444636F1A7_1778257667.png/1080x0w.webp",
+      "alt": "OpenDrop iOS screenshot 8"
+    },
+    {
+      "url": "screenshots/ios/136896a93d7d.webp",
+      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/2e/69/18/2e6918bb-7ac8-3705-901f-129dd53f8d75/image_9FA49CC1-F49B-4E6E-BC2A-05B8A5B25930_1778257667.png/1080x0w.webp",
+      "alt": "OpenDrop iOS screenshot 9"
     }
   ],
   "mac": [
     {
-      "url": "screenshots/mac/7f2a1290bc72.jpg",
-      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/37/58/cc/3758cc10-a7dd-cafb-c316-4aca780c69dc/image_C3A81486-F222-4C91-8AEC-CEF5B846AA22_1770142608.png/320x480bb.jpg",
-      "alt": "OpenDrop macOS screenshot 1",
-      "reused": true
+      "url": "screenshots/mac/bd376f34d4c7.webp",
+      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/30/f5/82/30f582ae-eb26-5e7a-876a-4f5081397806/image_A070DC9C-CF6B-478E-892A-B001FE4EEDF2_1778257667.png/1080x0w.webp",
+      "alt": "OpenDrop macOS screenshot 1"
     },
     {
-      "url": "screenshots/mac/320922516867.jpg",
-      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/20/85/f7/2085f7d6-4906-8817-e3ef-171b7e51cee1/image_E3875B53-72CB-4754-9A56-7BF566913FAD_1770142608.png/320x480bb.jpg",
-      "alt": "OpenDrop macOS screenshot 2",
-      "reused": true
+      "url": "screenshots/mac/f57bb7192d8d.webp",
+      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/a7/70/81/a770813b-d329-9a59-79c0-558d60b56988/image_108500A8-FABE-4A93-8023-34BA748DAAE8_1778257667.png/1080x0w.webp",
+      "alt": "OpenDrop macOS screenshot 2"
     },
     {
-      "url": "screenshots/mac/d4282c88b7c8.jpg",
-      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/a3/f0/e4/a3f0e429-6843-4bcd-8785-b2ce4b3ac39f/image_20500661-4FF4-40EF-BC68-28440AFB4F06_1770142608.png/320x480bb.jpg",
-      "alt": "OpenDrop macOS screenshot 3",
-      "reused": true
+      "url": "screenshots/mac/2ef9dc605994.webp",
+      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/02/d1/68/02d1682c-022a-a160-cb0d-1d95f970d2bb/image_B892F809-48E4-468E-9A7A-41394B4471DB_1778257667.png/1080x0w.webp",
+      "alt": "OpenDrop macOS screenshot 3"
     },
     {
-      "url": "screenshots/mac/291c907da637.jpg",
-      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/c2/0e/5b/c20e5b14-2d74-c768-db23-07150eb65fdf/image_5DA39DF8-42C1-45A4-9A68-53A520BF3518_1770142608.png/320x480bb.jpg",
-      "alt": "OpenDrop macOS screenshot 4",
-      "reused": true
+      "url": "screenshots/mac/7ff8548ba50b.webp",
+      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/cc/90/eb/cc90eb10-7599-2349-bcc9-c1b8c80d2443/image_8B2A0233-4912-44E6-A371-F95C24AB1A4A_1778257667.png/1080x0w.webp",
+      "alt": "OpenDrop macOS screenshot 4"
     },
     {
-      "url": "screenshots/mac/d0ebe9b5bc4c.jpg",
-      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/73/04/0c/73040ca3-bd39-9533-fea5-9af7da8509c4/image_F6186C16-FB5F-4408-9EDC-967E1C5AFA43_1770142608.png/320x480bb.jpg",
-      "alt": "OpenDrop macOS screenshot 5",
-      "reused": true
+      "url": "screenshots/mac/f1f540828c3b.webp",
+      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/b8/c3/a6/b8c3a608-f43d-91d9-ac07-6998113eac7d/image_99381B2D-208C-4B04-BADD-985227245AA9_1778257667.png/1080x0w.webp",
+      "alt": "OpenDrop macOS screenshot 5"
     },
     {
-      "url": "screenshots/mac/7ff37e2e14b8.jpg",
-      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/00/b3/db/00b3db6a-6301-227c-8b75-fe71900fe07a/image_22D4E5EA-F25E-408D-9AEB-2BF008F1C15B_1770142852.png/320x480bb.jpg",
-      "alt": "OpenDrop macOS screenshot 6",
-      "reused": true
+      "url": "screenshots/mac/9dae5cd3ebf2.webp",
+      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/c9/30/c6/c930c658-7dc0-dd47-0ad8-a661cd145bb0/image_83AEEFA6-E16F-4741-823B-EF62608B614A_1778257667.png/1080x0w.webp",
+      "alt": "OpenDrop macOS screenshot 6"
+    },
+    {
+      "url": "screenshots/mac/ac88e1055f3a.webp",
+      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/31/85/bc/3185bc8e-ad74-9b20-aefd-6b2badd9f18e/image_E58CE087-7D41-4ECB-8AEF-EC678EE39890_1778257667.png/1080x0w.webp",
+      "alt": "OpenDrop macOS screenshot 7"
+    },
+    {
+      "url": "screenshots/mac/fd772b07ea32.webp",
+      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/22/2c/a8/222ca857-36d0-669b-5996-b29cb840eab7/image_AED9AE9E-48D2-4671-A8C2-75444636F1A7_1778257667.png/1080x0w.webp",
+      "alt": "OpenDrop macOS screenshot 8"
+    },
+    {
+      "url": "screenshots/mac/136896a93d7d.webp",
+      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/2e/69/18/2e6918bb-7ac8-3705-901f-129dd53f8d75/image_9FA49CC1-F49B-4E6E-BC2A-05B8A5B25930_1778257667.png/1080x0w.webp",
+      "alt": "OpenDrop macOS screenshot 9"
     }
   ],
-  "heroImage": "https://www.nfdgames.com/OpenDrop/screenshots/ios/7f2a1290bc72.jpg"
+  "heroImage": "https://www.nfdgames.com/OpenDrop/screenshots/ios/bd376f34d4c7.webp"
 }

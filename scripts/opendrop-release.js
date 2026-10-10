@@ -31,6 +31,7 @@ const OpenDropRelease = (function() {
         heroDownloadText: 'heroDownloadText',
         windowsDownload: 'windowsDownloadBtn',
         linuxDownload: 'linuxDownloadBtn',
+        linuxArmDownload: 'linuxArmDownloadBtn',
         downloadModal: 'downloadModal',
         closeModal: 'closeModal',
         modalMicrosoftStore: 'modalMicrosoftStore',
@@ -55,7 +56,11 @@ const OpenDropRelease = (function() {
 
     // Store the current release for modal use
     let currentRelease = null;
-    let currentLinuxAssetName = 'OpenDrop-x86_64.AppImage';
+    const DEFAULT_LINUX_ASSETS = {
+        x86_64: 'OpenDrop-1.0.0-x86_64.AppImage',
+        aarch64: 'OpenDrop-1.0.0-aarch64.AppImage',
+    };
+    let currentLinuxAssetName = DEFAULT_LINUX_ASSETS.x86_64;
 
     /**
      * Detect the user's operating system
@@ -67,6 +72,12 @@ const OpenDropRelease = (function() {
         
         // Check for iOS first (before Mac check since iPad can report as Mac)
         if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+            return PLATFORMS.IOS;
+        }
+
+        // iPadOS asks for the desktop site and reports a Macintosh UA,
+        // but unlike a Mac it has a multi-touch screen.
+        if (/Macintosh/i.test(userAgent) && (navigator.maxTouchPoints || 0) > 1) {
             return PLATFORMS.IOS;
         }
         
@@ -85,6 +96,11 @@ const OpenDropRelease = (function() {
             return PLATFORMS.MACOS;
         }
         
+        // ChromeOS reports Linux in its UA; it gets the platform list
+        if (/CrOS/.test(userAgent)) {
+            return PLATFORMS.UNKNOWN;
+        }
+
         // Check for Linux
         if (/Linux/i.test(platform) || /Linux/i.test(userAgent)) {
             return PLATFORMS.LINUX;
@@ -116,25 +132,25 @@ const OpenDropRelease = (function() {
                 name: 'macOS', 
                 available: false, 
                 extension: null,
-                action: 'macOS Coming Soon'
+                action: 'See all platforms'
             },
             [PLATFORMS.IOS]: { 
                 name: 'iPhone', 
                 available: true, 
                 extension: null,
-                action: 'Get on App Store'
+                action: 'Get it on the App Store'
             },
             [PLATFORMS.ANDROID]: { 
                 name: 'Android', 
                 available: true, 
                 extension: null,
-                action: 'Get on Play Store'
+                action: 'Get it on Google Play'
             },
             [PLATFORMS.UNKNOWN]: { 
                 name: 'Desktop', 
                 available: true, 
                 extension: null,
-                action: 'Download'
+                action: 'Choose your platform'
             },
         };
         return info[platform] || info[PLATFORMS.UNKNOWN];
@@ -255,46 +271,48 @@ const OpenDropRelease = (function() {
     }
 
     /**
-     * Find the Linux AppImage asset from release assets
-     * Specifically looks for OpenDrop-x86_64.AppImage
+     * Detect the CPU architecture to offer Linux users
+     * @returns {string} 'aarch64' or 'x86_64'
+     */
+    function detectLinuxArch() {
+        const ua = navigator.userAgent || '';
+        const platform = navigator.platform || '';
+        return /aarch64|arm64|armv8/i.test(ua + ' ' + platform) ? 'aarch64' : 'x86_64';
+    }
+
+    /**
+     * Find the Linux AppImage asset for an architecture.
+     * Matches OpenDrop-<version>-x86_64.AppImage or
+     * OpenDrop-<version>-aarch64.AppImage first, then any AppImage
+     * naming the architecture. A missing ARM64 build falls back to x86_64.
      * @param {Array} assets - Release assets
+     * @param {string} arch - 'x86_64' (default) or 'aarch64'
      * @returns {Object|null} Linux asset or null
      */
-    function pickLinuxAsset(assets) {
+    function pickLinuxAsset(assets, arch) {
         if (!Array.isArray(assets) || assets.length === 0) {
             return null;
         }
-
-        // Look specifically for OpenDrop-x86_64.AppImage first
-        const exactMatch = assets.find(a => 
-            a && typeof a.name === 'string' && 
-            a.name === 'OpenDrop-x86_64.AppImage'
+        const wanted = arch === 'aarch64' ? 'aarch64' : 'x86_64';
+        const appImages = assets.filter(a =>
+            a && typeof a.name === 'string' && /\.appimage$/i.test(a.name)
         );
+        if (appImages.length === 0) return null;
+
+        const exact = new RegExp('^OpenDrop-[0-9][0-9A-Za-z.+-]*-' + wanted + '\\.AppImage$');
+        const exactMatch = appImages.find(a => exact.test(a.name));
         if (exactMatch) return exactMatch;
 
-        // Fallback: any AppImage with OpenDrop and x86_64 in the name
-        const preferred = assets.find(a => 
-            a && typeof a.name === 'string' && 
-            a.name.toLowerCase().endsWith('.appimage') &&
-            /opendrop/i.test(a.name) && 
-            /x86_64/i.test(a.name)
-        );
-        if (preferred) return preferred;
+        const archPattern = wanted === 'aarch64' ? /aarch64|arm64/i : /x86_64|amd64/i;
+        const looseMatch = appImages.find(a => archPattern.test(a.name));
+        if (looseMatch) return looseMatch;
 
-        // Fallback: any OpenDrop AppImage
-        const opendropAny = assets.find(a => 
-            a && typeof a.name === 'string' && 
-            a.name.toLowerCase().endsWith('.appimage') &&
-            /opendrop/i.test(a.name)
-        );
-        if (opendropAny) return opendropAny;
+        if (wanted === 'aarch64') {
+            return pickLinuxAsset(assets, 'x86_64');
+        }
 
-        // Last fallback: first AppImage
-        const anyAppImage = assets.find(a => 
-            a && typeof a.name === 'string' && 
-            a.name.toLowerCase().endsWith('.appimage')
-        );
-        return anyAppImage || null;
+        // Older releases used a name with no architecture in it
+        return appImages.find(a => !/aarch64|arm64/i.test(a.name)) || null;
     }
 
     /**
@@ -352,54 +370,108 @@ const OpenDropRelease = (function() {
         }
     }
 
+    let lastFocus = null;
+    let trapHandler = null;
+
+    const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), ' +
+        'select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+    /**
+     * Build a keydown handler that keeps Tab and Shift+Tab inside the
+     * open dialog, so focus never lands on the dimmed page behind it
+     * @param {HTMLElement} modal - Overlay element
+     * @returns {function(KeyboardEvent): void}
+     */
+    function makeFocusTrap(modal) {
+        const dialog = modal.querySelector('.download-modal-content') || modal;
+        return (e) => {
+            if (e.key !== 'Tab') return;
+            const items = Array.from(dialog.querySelectorAll(FOCUSABLE))
+                .filter((el) => el.getClientRects().length > 0);
+            if (!items.length) {
+                e.preventDefault();
+                return;
+            }
+            const first = items[0];
+            const last = items[items.length - 1];
+            const active = document.activeElement;
+            const outside = !dialog.contains(active);
+            if (e.shiftKey && (active === first || outside)) {
+                e.preventDefault();
+                last.focus();
+            } else if (!e.shiftKey && (active === last || outside)) {
+                e.preventDefault();
+                first.focus();
+            }
+        };
+    }
+
+    /**
+     * Open a modal overlay, move focus into it and keep it there
+     * @param {HTMLElement} modal - Overlay element
+     * @param {string} focusId - Id of the element to focus
+     */
+    function openModal(modal, focusId) {
+        if (!modal) return;
+        lastFocus = document.activeElement;
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        if (trapHandler) document.removeEventListener('keydown', trapHandler);
+        trapHandler = makeFocusTrap(modal);
+        document.addEventListener('keydown', trapHandler);
+        const focusEl = document.getElementById(focusId);
+        if (focusEl) focusEl.focus();
+    }
+
+    /**
+     * Close a modal overlay and return focus to where it was
+     * @param {HTMLElement} modal - Overlay element
+     */
+    function closeModal(modal) {
+        if (!modal || modal.style.display === 'none') return;
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+        if (trapHandler) {
+            document.removeEventListener('keydown', trapHandler);
+            trapHandler = null;
+        }
+        if (lastFocus && typeof lastFocus.focus === 'function') {
+            lastFocus.focus();
+        }
+        lastFocus = null;
+    }
+
     /**
      * Show the download choice modal for Windows users
      */
     function showDownloadModal() {
-        const modal = document.getElementById(ELEMENTS.downloadModal);
-        if (modal) {
-            modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
+        openModal(document.getElementById(ELEMENTS.downloadModal), ELEMENTS.closeModal);
     }
 
     /**
      * Hide the download choice modal
      */
     function hideDownloadModal() {
-        const modal = document.getElementById(ELEMENTS.downloadModal);
-        if (modal) {
-            modal.style.display = 'none';
-            document.body.style.overflow = '';
-        }
+        closeModal(document.getElementById(ELEMENTS.downloadModal));
     }
 
     /**
      * Show the Linux download modal with instructions
      */
     function showLinuxDownloadModal() {
-        const modal = document.getElementById(ELEMENTS.linuxDownloadModal);
-        if (modal) {
-            modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-            
-            // Update the command with the actual filename
-            const commandEl = document.getElementById(ELEMENTS.linuxCommand);
-            if (commandEl) {
-                commandEl.textContent = `chmod +x ${currentLinuxAssetName}`;
-            }
+        // Update the command with the actual filename
+        const commandEl = document.getElementById(ELEMENTS.linuxCommand);
+        if (commandEl) {
+            commandEl.textContent = `chmod +x ${currentLinuxAssetName}`;
         }
+        openModal(document.getElementById(ELEMENTS.linuxDownloadModal), ELEMENTS.linuxModalOk);
     }
 
     /**
      * Hide the Linux download modal
      */
     function hideLinuxDownloadModal() {
-        const modal = document.getElementById(ELEMENTS.linuxDownloadModal);
-        if (modal) {
-            modal.style.display = 'none';
-            document.body.style.overflow = '';
-        }
+        closeModal(document.getElementById(ELEMENTS.linuxDownloadModal));
     }
 
     /**
@@ -529,74 +601,109 @@ const OpenDropRelease = (function() {
     }
 
     /**
-     * Handle Linux download button click
-     * @param {Event} e - Click event
-     * @param {string} downloadUrl - URL to download
+     * Show the chmod instructions for one Linux AppImage after its
+     * download has started
+     * @param {string} assetName - File name shown in the chmod command
      */
-    function handleLinuxDownload(e, downloadUrl) {
-        // Allow the download to proceed (don't prevent default)
-        // Show the modal after a brief delay to let download start
+    function handleLinuxDownload(assetName) {
+        currentLinuxAssetName = assetName || DEFAULT_LINUX_ASSETS.x86_64;
+        // Let the download start before the modal opens
         setTimeout(() => {
             showLinuxDownloadModal();
         }, 100);
     }
 
     /**
-     * Update hero button based on detected OS
+     * Bind the two Linux download links once. Each reads its own asset
+     * name at click time, so the modal always names the file that was
+     * actually downloaded.
+     */
+    function initLinuxButtons() {
+        [
+            [ELEMENTS.linuxDownload, DEFAULT_LINUX_ASSETS.x86_64],
+            [ELEMENTS.linuxArmDownload, DEFAULT_LINUX_ASSETS.aarch64],
+        ].forEach(([id, fallbackName]) => {
+            const btn = document.getElementById(id);
+            if (!btn || btn.dataset.bound) return;
+            btn.dataset.bound = '1';
+            btn.addEventListener('click', () => {
+                handleLinuxDownload(btn.dataset.assetName || fallbackName);
+            });
+        });
+    }
+
+    /**
+     * Click handler for the hero button. Reads the state at click time
+     * because the button is updated again after the release loads.
+     * @param {Event} e - Click event
+     */
+    function onHeroClick(e) {
+        const os = document.documentElement.dataset.os || detectOS();
+        const heroBtn = e.currentTarget;
+        if (os === PLATFORMS.WINDOWS) {
+            e.preventDefault();
+            showDownloadModal();
+        } else if (os === PLATFORMS.LINUX && heroBtn.dataset.assetName) {
+            handleLinuxDownload(heroBtn.dataset.assetName);
+        }
+    }
+
+    /**
+     * Update hero button based on detected OS.
+     * Called before and after the release fetch.
      * @param {Object} release - GitHub release object (optional)
      */
     function updateHeroForOS(release) {
         const detectedOS = detectOS();
         const platformInfo = getPlatformInfo(detectedOS);
-        
+
         const heroBtn = document.getElementById(ELEMENTS.heroDownload);
         const heroText = document.getElementById(ELEMENTS.heroDownloadText);
-        
+
         if (!heroBtn || !heroText) return;
 
-        // Update button text
         setTextSafe(heroText, platformInfo.action);
 
-        // For Windows, intercept click to show modal
-        if (detectedOS === PLATFORMS.WINDOWS) {
-            heroBtn.href = '#';
-            heroBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                showDownloadModal();
-            });
-            return;
+        if (!heroBtn.dataset.bound) {
+            heroBtn.dataset.bound = '1';
+            heroBtn.addEventListener('click', onHeroClick);
         }
 
-        // Update button href based on platform
-        if (detectedOS === PLATFORMS.ANDROID) {
-            heroBtn.href = URLS.playStore;
-            heroBtn.target = '_blank';
-        } else if (detectedOS === PLATFORMS.IOS) {
-            heroBtn.href = URLS.appStore;
-            heroBtn.target = '_blank';
-        } else if (detectedOS === PLATFORMS.MACOS) {
-            // For unavailable platforms, link to download section
-            heroBtn.href = '#download';
-            heroBtn.classList.remove('btn-primary');
-            heroBtn.classList.add('btn-secondary');
-        } else if (detectedOS === PLATFORMS.LINUX && release) {
-            // For Linux, set appropriate download link and show modal on click
-            const asset = pickLinuxAsset(release.assets);
-            const downloadUrl = asset?.browser_download_url || 
-                               release.html_url || 
-                               URLS.latestRelease;
-            heroBtn.href = downloadUrl;
-            
-            if (asset) {
-                currentLinuxAssetName = asset.name;
+        switch (detectedOS) {
+            case PLATFORMS.WINDOWS:
+                // Click opens the Microsoft Store or .exe choice
+                heroBtn.href = '#';
+                break;
+            case PLATFORMS.ANDROID:
+                heroBtn.href = URLS.playStore;
+                heroBtn.target = '_blank';
+                heroBtn.rel = 'noopener';
+                break;
+            case PLATFORMS.IOS:
+                heroBtn.href = URLS.appStore;
+                heroBtn.target = '_blank';
+                heroBtn.rel = 'noopener';
+                break;
+            case PLATFORMS.LINUX: {
+                const asset = release ? pickLinuxAsset(release.assets, detectLinuxArch()) : null;
+                if (asset && asset.browser_download_url) {
+                    heroBtn.href = asset.browser_download_url;
+                    heroBtn.dataset.assetName = asset.name;
+                } else {
+                    heroBtn.href = '#download';
+                    delete heroBtn.dataset.assetName;
+                }
+                break;
             }
-            
-            heroBtn.addEventListener('click', (e) => {
-                handleLinuxDownload(e, downloadUrl);
-            });
-        } else if (release) {
-            // For unknown OS with release
-            heroBtn.href = release.html_url || URLS.latestRelease;
+            default:
+                // macOS (no release yet) and anything unrecognised: a
+                // working primary button that scrolls to the platform list.
+                // No conversion event, since nothing is downloaded.
+                heroBtn.href = '#download';
+                heroBtn.removeAttribute('target');
+                heroBtn.onclick = null;
+                heroBtn.removeAttribute('onclick');
+                break;
         }
     }
 
@@ -612,12 +719,12 @@ const OpenDropRelease = (function() {
 
         const tag = release.tag_name || '';
         const cleaned = String(tag).trim().replace(/^v/i, '');
-        
+
         // Update badge
         const badgeText = document.getElementById(ELEMENTS.badgeText);
         const badgeLink = document.getElementById(ELEMENTS.badgeLink);
-        const versionLabel = cleaned ? `Version ${cleaned} • Now Available` : 'Now Available';
-        
+        const versionLabel = cleaned ? `Version ${cleaned} \u2022 Now available` : 'Now available';
+
         setTextSafe(badgeText, versionLabel);
         if (badgeLink) {
             badgeLink.href = release.html_url || URLS.latestRelease;
@@ -626,28 +733,28 @@ const OpenDropRelease = (function() {
         // Update Windows version text
         const versionText = document.getElementById(ELEMENTS.versionText);
         if (versionText) {
-            const display = cleaned ? `v${cleaned} • 64-bit` : '64-bit';
+            const display = cleaned ? `v${cleaned} \u2022 64-bit` : '64-bit';
             setTextSafe(versionText, display);
         }
 
         // Update Linux version text
         const linuxVersionText = document.getElementById(ELEMENTS.linuxVersionText);
         if (linuxVersionText) {
-            const display = cleaned ? `v${cleaned} • x86_64` : 'x86_64';
+            const display = cleaned ? `v${cleaned} \u2022 x86_64 and ARM64` : 'x86_64 and ARM64';
             setTextSafe(linuxVersionText, display);
         }
-       
-       const schemaTag = document.getElementById('opendrop-schema');
+
+        // Keep the SoftwareApplication node's softwareVersion current
+        const schemaTag = document.getElementById('opendrop-schema');
         if (schemaTag && cleaned) {
             try {
                 const schema = JSON.parse(schemaTag.textContent);
-                // Schema uses @graph array; softwareVersion is on the first entry
-                if (schema['@graph'] && schema['@graph'][0]) {
-                    schema['@graph'][0].softwareVersion = cleaned;
-                } else if (schema.softwareVersion !== undefined) {
-                    schema.softwareVersion = cleaned;
+                const graph = Array.isArray(schema['@graph']) ? schema['@graph'] : [schema];
+                const app = graph.find(node => node && node['@type'] === 'SoftwareApplication');
+                if (app) {
+                    app.softwareVersion = cleaned;
+                    schemaTag.textContent = JSON.stringify(schema, null, 2);
                 }
-                schemaTag.textContent = JSON.stringify(schema, null, 2);
             } catch (e) {
                 console.warn('Failed to update SEO schema:', e);
             }
@@ -660,26 +767,19 @@ const OpenDropRelease = (function() {
                                    URLS.latestRelease;
         setHrefSafe(document.getElementById(ELEMENTS.windowsDownload), windowsDownloadUrl);
 
-        // Update Linux download button
-        const linuxAsset = pickLinuxAsset(release.assets);
-        const linuxDownloadUrl = linuxAsset?.browser_download_url ||
-                                 release.html_url ||
-                                 URLS.latestRelease;
-
-        const linuxBtn = document.getElementById(ELEMENTS.linuxDownload);
-        if (linuxBtn) {
-            setHrefSafe(linuxBtn, linuxDownloadUrl);
-
-            // Store the asset name for the modal
-            if (linuxAsset) {
-                currentLinuxAssetName = linuxAsset.name;
+        // Update the two Linux download links (x86_64 and ARM64)
+        [
+            [ELEMENTS.linuxDownload, 'x86_64'],
+            [ELEMENTS.linuxArmDownload, 'aarch64'],
+        ].forEach(([id, arch]) => {
+            const btn = document.getElementById(id);
+            if (!btn) return;
+            const asset = pickLinuxAsset(release.assets, arch);
+            setHrefSafe(btn, asset?.browser_download_url || release.html_url || URLS.latestRelease);
+            if (asset) {
+                btn.dataset.assetName = asset.name;
             }
-
-            // Add click handler to show Linux modal
-            linuxBtn.addEventListener('click', (e) => {
-                handleLinuxDownload(e, linuxDownloadUrl);
-            });
-        }
+        });
 
         // Update modal web download button
         const webBtn = document.getElementById(ELEMENTS.modalWebDownload);
@@ -741,6 +841,12 @@ const OpenDropRelease = (function() {
         fetchLatestRelease();
         initModal();
         initLinuxModal();
+        initLinuxButtons();
+    }
+
+    // Expose the detected platform to CSS and opendrop-page.js right away
+    if (typeof document !== 'undefined') {
+        document.documentElement.dataset.os = detectOS();
     }
 
     // Public API
@@ -758,6 +864,7 @@ const OpenDropRelease = (function() {
         _pickBestRelease: pickBestRelease,
         _pickWindowsAsset: pickWindowsAsset,
         _pickLinuxAsset: pickLinuxAsset,
+        _detectLinuxArch: detectLinuxArch,
     };
 })();
 

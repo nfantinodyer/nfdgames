@@ -26,138 +26,119 @@
     <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
 
     <link rel="stylesheet" href="../styles/common.css">
-    <link rel="stylesheet" href="../styles/opendrop.css">
+    <link rel="stylesheet" href="../styles/subpage.css">
 
     <style>
-        .doc-hero {
-            min-height: auto;
-            padding: 9rem var(--space-xl) var(--space-xl);
-            text-align: center;
-        }
-        .doc-hero h1 {
-            font-size: clamp(2rem, 5vw, 3.25rem);
-            margin-bottom: var(--space-md);
-        }
-        .doc-hero p {
-            color: var(--text-secondary);
-            max-width: 720px;
-            margin: 0 auto;
-            font-size: 1.05rem;
-        }
-        .wf-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 var(--space-xl) var(--space-4xl);
-        }
+        /* Withdrawal form: page-only rules. Shared card and header styles live in subpage.css. */
+        body.page-withdrawal { --subpage-w: 1100px; }
         .wf-grid {
             display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: var(--space-2xl);
-            margin-bottom: var(--space-3xl);
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
+            gap: var(--sp-8);
+            margin-bottom: var(--sp-12);
         }
         .wf-sidebar {
             display: flex;
             flex-direction: column;
-            gap: var(--space-lg);
+            gap: var(--sp-3);
         }
         .info-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-xl);
-            padding: var(--space-xl);
-            transition: all var(--transition-slow);
+            padding: var(--sp-5) var(--sp-6);
+            border-radius: var(--r-lg);
+            background: var(--surface-1);
+            border: 1px solid var(--hairline);
         }
-        .info-card:hover { border-color: rgba(37, 139, 244, 0.3); }
-        .info-card h3 {
-            font-size: 1rem;
-            margin-bottom: var(--space-sm);
+        .info-card h2 {
             display: flex;
             align-items: center;
-            gap: var(--space-sm);
+            gap: var(--sp-3);
+            margin-bottom: var(--sp-2);
+            font-size: 1rem;
+            font-weight: 600;
         }
-        .info-card h3 span.icon {
-            font-size: 1.25rem;
-            line-height: 1;
+        .info-card .icon {
+            flex: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: var(--r-sm);
+            background: var(--accent-tint-strong);
+            color: var(--accent-secondary);
+            font: 700 0.8125rem/1 var(--font-mono);
         }
+        .info-card .icon svg { width: 18px; height: 18px; }
         .info-card p, .info-card li {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
+            font-size: var(--fs-small);
             line-height: 1.6;
-        }
-        .info-card a {
-            color: var(--accent-glow);
-            text-decoration: none;
-        }
-        .info-card a:hover {
-            color: var(--text-primary);
-            text-decoration: underline;
+            color: var(--text-secondary);
         }
         .info-card ul {
             margin: 0.4rem 0 0 1rem;
             padding: 0;
         }
-
+        .info-card .info-link { margin-top: 0.5rem; }
         .form-container {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-2xl);
-            padding: var(--space-2xl);
             position: relative;
-            overflow: hidden;
+            padding: var(--sp-8);
+            border-radius: var(--r-xl);
+            background: var(--surface-1);
+            border: 1px solid var(--hairline);
         }
         .form-container h2 {
-            font-size: 1.35rem;
-            margin-bottom: var(--space-sm);
+            margin-bottom: var(--sp-2);
+            font-size: 1.375rem;
+            font-weight: 600;
         }
         .form-container > p.subtitle {
+            margin-bottom: var(--sp-6);
+            font-size: var(--fs-small);
             color: var(--text-secondary);
-            font-size: 0.92rem;
-            margin-bottom: var(--space-lg);
         }
-        .form-group {
-            margin-bottom: var(--space-lg);
-        }
+        .form-group { margin-bottom: var(--sp-5); }
         .form-group label {
             display: block;
-            font-size: 0.85rem;
+            margin-bottom: var(--sp-2);
+            font-size: var(--fs-small);
             font-weight: 500;
-            margin-bottom: var(--space-sm);
             color: var(--text-secondary);
         }
-        .form-group label .required { color: var(--error); margin-left: 2px; }
+        .required { color: #f5a8b3; margin-left: 2px; }
         .form-group label .hint {
             display: block;
-            font-weight: 400;
-            font-size: 0.78rem;
-            color: var(--text-muted);
             margin-top: 0.2rem;
+            font-size: 0.8125rem;
+            font-weight: 400;
+            color: var(--text-subtle);
         }
         .form-input,
         .form-select,
         .form-textarea {
             width: 100%;
-            padding: 0.875rem 1rem;
-            background: var(--bg-dark);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
+            min-height: 48px;
+            padding: 0.75rem 1rem;
+            border-radius: var(--r-md);
+            background: var(--bg-deep);
+            border: 1px solid var(--line-ui);
             color: var(--text-primary);
             font-family: inherit;
-            font-size: 0.95rem;
-            transition: all var(--transition-fast);
+            font-size: 0.9375rem;
+            transition: border-color 0.15s ease, box-shadow 0.15s ease;
         }
         .form-input:focus,
         .form-select:focus,
         .form-textarea:focus {
             outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(37, 139, 244, 0.15);
+            border-color: var(--accent-glow);
+            box-shadow: 0 0 0 3px rgba(70, 216, 229, 0.18);
         }
         .form-input::placeholder,
-        .form-textarea::placeholder { color: var(--text-muted); }
+        .form-textarea::placeholder { color: var(--text-subtle); }
         .form-select {
             cursor: pointer;
             appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239ca3af'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%238a97b4'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: right 1rem center;
             background-size: 1.25rem;
@@ -167,6 +148,7 @@
             background: var(--bg-dark);
             color: var(--text-primary);
         }
+        .form-input[type="date"] { color-scheme: dark; }
         .form-textarea {
             min-height: 110px;
             resize: vertical;
@@ -174,134 +156,92 @@
         }
         .form-row {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--space-md);
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            align-items: end;
+            gap: var(--sp-4);
         }
         .checkbox-group {
             display: flex;
             align-items: flex-start;
             gap: 0.65rem;
-            padding: var(--space-md);
-            background: var(--bg-dark);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
+            padding: var(--sp-4);
+            border-radius: var(--r-md);
+            background: var(--bg-deep);
+            border: 1px solid var(--hairline);
         }
         .checkbox-group input[type=checkbox] {
-            width: 18px;
-            height: 18px;
+            flex: none;
+            width: 20px;
+            height: 20px;
             margin-top: 2px;
             accent-color: var(--accent);
             cursor: pointer;
         }
-        .checkbox-group label {
+        .form-group .checkbox-group label {
             margin: 0;
-            font-size: 0.88rem;
+            font-size: 0.875rem;
             line-height: 1.5;
-            color: var(--text-secondary);
             cursor: pointer;
         }
+        .checkbox-group label strong { color: var(--text-primary); }
         .submit-btn {
             width: 100%;
-            padding: 1rem 1.5rem;
-            background: var(--accent);
-            border: none;
-            border-radius: var(--radius-md);
-            color: white;
             font-family: inherit;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background var(--transition-fast);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: var(--space-sm);
         }
-        .submit-btn:hover { background: var(--accent-glow); }
-        .submit-btn svg { width: 20px; height: 20px; }
         .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
-
         .success-message {
             display: none;
+            padding: var(--sp-8) 0;
             text-align: center;
-            padding: var(--space-2xl);
         }
         .success-message.show { display: block; }
         .success-icon {
-            width: 64px;
-            height: 64px;
-            background: rgba(77, 184, 164, 0.15);
-            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto var(--space-lg);
-            font-size: 2rem;
+            width: 64px;
+            height: 64px;
+            margin: 0 auto var(--sp-5);
+            border-radius: 50%;
+            background: rgba(77, 184, 164, 0.15);
+            color: #9bdbcb;
         }
-        .success-message h3 { font-size: 1.25rem; margin-bottom: var(--space-sm); }
-        .success-message p { color: var(--text-secondary); font-size: 0.95rem; }
-
-        /* Legal-detail cards below the form, lower prominence. */
-        .legal-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-xl);
-            padding: var(--space-xl);
-            margin-bottom: var(--space-lg);
-        }
-        .legal-card h2 {
-            font-size: 1.15rem;
-            margin-bottom: var(--space-md);
-        }
-        .legal-card h3 {
-            margin: var(--space-lg) 0 var(--space-sm);
-            font-size: 0.98rem;
-            color: var(--text-primary);
-        }
-        .legal-card p, .legal-card li {
+        .success-icon svg { width: 30px; height: 30px; }
+        .success-message h3 { margin-bottom: var(--sp-2); font-size: 1.25rem; }
+        .success-message p { font-size: var(--fs-body); color: var(--text-secondary); }
+        .doc-card .callout {
+            margin: var(--sp-4) 0;
+            padding: var(--sp-4) var(--sp-5);
+            border-radius: var(--r-md);
+            background: rgba(224, 179, 106, 0.08);
+            border: 1px solid rgba(224, 179, 106, 0.3);
+            font-size: var(--fs-small);
+            line-height: 1.65;
             color: var(--text-secondary);
-            font-size: 0.92rem;
-            line-height: 1.7;
         }
-        .legal-card strong { color: var(--text-primary); }
-        .legal-card a { color: var(--accent-glow); text-decoration: none; }
-        .legal-card a:hover { text-decoration: underline; }
-        .legal-card ul, .legal-card ol {
-            margin: var(--space-sm) 0 var(--space-md) 1.25rem;
-        }
-        .callout {
-            background: rgba(212,160,84,0.08);
-            border: 1px solid rgba(212,160,84,0.3);
-            border-radius: var(--radius-lg);
-            padding: var(--space-md) var(--space-lg);
-            margin: var(--space-md) 0;
-            color: var(--text-secondary);
-            font-size: 0.92rem;
-        }
-        .callout strong { color: #f0c98a; }
+        .doc-card .callout strong { color: #f0c98a; }
         .legal-form-text {
-            background: var(--bg-dark);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: var(--space-lg);
-            margin-top: var(--space-md);
-            font-family: 'Space Mono', monospace;
-            font-size: 0.88rem;
-            color: var(--text-primary);
+            margin-top: var(--sp-4);
+            padding: var(--sp-5);
+            border-radius: var(--r-md);
+            background: var(--bg-deep);
+            border: 1px solid var(--hairline);
+            font-family: var(--font-mono);
+            font-size: 0.8125rem;
             line-height: 1.8;
+            color: var(--text-primary);
             white-space: pre-line;
-            overflow-x: auto;
+            overflow-wrap: anywhere;
         }
-
         @media (max-width: 900px) {
-            .wf-grid { grid-template-columns: 1fr; }
+            .wf-grid { grid-template-columns: minmax(0, 1fr); }
             .wf-sidebar { order: 2; }
-            .form-row { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: minmax(0, 1fr); gap: 0; }
         }
-        @media (max-width: 720px) {
-            .doc-hero { padding: 7rem var(--space-lg) var(--space-lg); }
-            .wf-container { padding: 0 var(--space-lg) var(--space-3xl); }
-            .form-container, .legal-card { padding: var(--space-xl); }
+        @media (max-width: 640px) {
+            .form-container { padding: var(--sp-5); border-radius: var(--r-lg); }
+            .info-card { padding: var(--sp-4); }
+            .legal-form-text { padding: var(--sp-4); }
         }
     </style>
 
@@ -362,67 +302,83 @@
 }
     </script>
 </head>
-<body>
+<body class="page-subpage page-withdrawal">
+    <a class="skip-link" href="#main">Skip to content</a>
     <div class="bg-gradient"></div>
     <div class="noise"></div>
 
-    <nav>
-        <a href="./" class="logo">
-            <picture>
-                <source srcset="OpenDropIcon-logo.webp" type="image/webp">
-                <img src="OpenDropIcon.png" alt="OpenDrop" class="logo-icon" width="36" height="36" loading="lazy">
-            </picture>
-            OpenDrop
-        </a>
-        <div class="nav-links">
-            <a href="./#features">Features</a>
-            <a href="./#download">Download</a>
-            <a href="support.html">Support</a>
-            <a href="./#download" class="nav-cta">Get Started</a>
+    <nav class="site-nav" aria-label="Main">
+        <span class="nav-lockup">
+            <a href="/" class="nav-lockup__home" aria-label="NFDGames home">
+                <picture>
+                    <source srcset="/NFDGamesLogoCircleTransparent.webp" type="image/webp">
+                    <img src="/NFDGamesLogoCircleTransparent.png" alt="" width="28" height="28">
+                </picture>
+            </a>
+            <span class="nav-lockup__sep" aria-hidden="true">/</span>
+            <a href="/OpenDrop/" class="logo">
+                <picture>
+                    <source srcset="/OpenDrop/OpenDropIcon-logo.webp" type="image/webp">
+                    <img src="/OpenDrop/OpenDropIcon.png" alt="" class="logo-icon" width="32" height="32">
+                </picture>
+                <span class="logo__word">OpenDrop</span>
+            </a>
+        </span>
+        <div class="nav-links" id="navLinks">
+            <a href="/OpenDrop/#features">Features</a>
+            <a href="/OpenDrop/#compare">Free vs Pro</a>
+            <a href="/blog/">Blog</a>
+            <a href="/OpenDrop/support.html">Support</a>
+        </div>
+        <div class="nav-actions">
+            <a href="/OpenDrop/#download" class="btn-cta btn-cta--sm">Download</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-controls="navLinks" aria-expanded="false" aria-label="Open menu"><span></span><span></span><span></span></button>
         </div>
     </nav>
 
-    <main>
-    <section class="doc-hero">
-        <h1>Right of Withdrawal</h1>
-        <p>If you bought OpenDrop Pro as a consumer in the EU, the UK, or another jurisdiction with an equivalent statutory right, you have <strong>14 days</strong> to withdraw from the contract without giving any reason. Submit the form below and we will respond within 1 business day.</p>
-    </section>
+    <main id="main" tabindex="-1">
+    <header class="subpage-head">
+        <div class="subpage-wrap section-head">
+            <p class="eyebrow">Legal</p>
+            <h1 class="section-title">Right of Withdrawal</h1>
+            <p class="section-lede">If you bought OpenDrop Pro as a consumer in the EU, the UK, or another jurisdiction with an equivalent statutory right, you have <strong>14 days</strong> to withdraw from the contract without giving any reason. Submit the form below and we will respond within 1 business day.</p>
+        </div>
+    </header>
 
-    <div class="wf-container">
+    <div class="subpage-wrap subpage-body">
 
         <div class="wf-grid">
             <aside class="wf-sidebar">
                 <div class="info-card">
-                    <h3><span class="icon">14</span> Day window</h3>
-                    <p>You have 14 calendar days from the date of purchase to withdraw. The form below works for purchases made on Apple App Store, Google Play, Microsoft Store, and Stripe.</p>
+                    <h2><span class="icon" aria-hidden="true">14</span> Day window</h2>
+                    <p>You have 14 calendar days from the date of purchase to withdraw. The form below works for purchases made on Apple App Store, Google Play, and Stripe (desktop).</p>
                 </div>
                 <div class="info-card">
-                    <h3><span class="icon">&#9989;</span> What we do</h3>
+                    <h2><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span> What we do</h2>
                     <p>We acknowledge your request within 1 business day, instruct the original purchase platform to refund you (or send you the platform's refund-request link), and confirm when it is processed.</p>
                 </div>
                 <div class="info-card">
-                    <h3><span class="icon">&#9202;</span> Refund timing</h3>
+                    <h2><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg></span> Refund timing</h2>
                     <ul>
                         <li>Apple App Store: 3 to 10 business days</li>
                         <li>Google Play: 1 to 14 business days</li>
-                        <li>Microsoft Store: 3 to 5 business days</li>
                         <li>Stripe: 5 to 10 business days</li>
                     </ul>
                 </div>
                 <div class="info-card">
-                    <h3><span class="icon">&#128465;</span> Delete account too?</h3>
+                    <h2><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg></span> Delete account too?</h2>
                     <p>Withdrawing from your subscription does not delete your OpenDrop account. Use the hosted deletion page or in-app Settings to remove your account record and device entries:</p>
-                    <p style="margin-top:0.5rem;"><a href="https://opendrop.n-fantinodyer.workers.dev/delete-account" target="_blank" rel="noopener">opendrop.n-fantinodyer.workers.dev/delete-account</a></p>
+                    <p class="info-link"><a href="https://opendrop.n-fantinodyer.workers.dev/delete-account" target="_blank" rel="noopener">opendrop.n-fantinodyer.workers.dev/delete-account</a></p>
                 </div>
                 <div class="info-card">
-                    <h3><span class="icon">&#9888;</span> Just want to cancel?</h3>
+                    <h2><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9.5 16.5h-19z"/><path d="M12 10v4M12 17.5v.01"/></svg></span> Just want to cancel?</h2>
                     <p>If you only want to stop your subscription from renewing at the end of the current term, you do <em>not</em> need this form. Cancel from your purchase platform's Subscriptions screen. See <a href="TermsOfService.html">Terms of Service Section 8</a>.</p>
                 </div>
             </aside>
 
             <div class="form-container">
                 <h2>Submit a withdrawal request</h2>
-                <p class="subtitle">All fields with <span style="color:var(--error);">*</span> are required. We treat your submission as an "unambiguous statement of withdrawal" under Directive 2011/83/EU Article 11(1).</p>
+                <p class="subtitle">All fields with <span class="required">*</span> are required. We treat your submission as an "unambiguous statement of withdrawal" under Directive 2011/83/EU Article 11(1).</p>
 
                 <form id="withdrawalForm" action="https://formspree.io/f/mwvvpjan" method="POST">
                     <input type="hidden" name="_subject" value="OpenDrop Pro Withdrawal Request">
@@ -446,9 +402,8 @@
                             <label for="platform">Purchase platform <span class="required">*</span></label>
                             <select id="platform" name="platform" class="form-select" required>
                                 <option value="" disabled selected>Select platform</option>
-                                <option value="Apple App Store (iOS / macOS in-app)">Apple App Store (iOS / macOS in-app)</option>
+                                <option value="Apple App Store (iPhone / iPad in-app)">Apple App Store (iPhone / iPad in-app)</option>
                                 <option value="Google Play Billing (Android in-app)">Google Play Billing (Android in-app)</option>
-                                <option value="Microsoft Store (Windows)">Microsoft Store (Windows)</option>
                                 <option value="Stripe (desktop web checkout)">Stripe (desktop web checkout)</option>
                                 <option value="Other / unsure">Other / unsure</option>
                             </select>
@@ -468,7 +423,6 @@
                                 <option value="" disabled selected>Select tier</option>
                                 <option value="Monthly ($2.99 USD)">Monthly ($2.99 USD)</option>
                                 <option value="Annual ($24.99 USD)">Annual ($24.99 USD)</option>
-                                <option value="Free trial">Free trial</option>
                                 <option value="Other / unsure">Other / unsure</option>
                             </select>
                         </div>
@@ -501,23 +455,23 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="submit-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    <button type="submit" class="btn-cta submit-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                         Submit Withdrawal Request
                     </button>
                 </form>
 
                 <div class="success-message" id="successMessage">
-                    <div class="success-icon">&#10003;</div>
+                    <div class="success-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
                     <h3>Withdrawal request received</h3>
-                    <p>We have logged your withdrawal request. You will get an acknowledgment email at the address you provided within 1 business day. If you do not see it (check spam too), reply to that thread or email <a href="mailto:support@nfdgames.com" style="color:var(--accent-glow);">support@nfdgames.com</a>.</p>
+                    <p>We have logged your withdrawal request. You will get an acknowledgment email at the address you provided within 1 business day. If you do not see it (check spam too), reply to that thread or email <a href="mailto:support@nfdgames.com">support@nfdgames.com</a>.</p>
                 </div>
             </div>
         </div>
 
         <!-- Legal background / fallback for users who want the full text. -->
 
-        <div class="legal-card">
+        <div class="doc-card legal-card">
             <h2>Who this applies to</h2>
             <p>The right of withdrawal on this page is granted by:</p>
             <ul>
@@ -533,18 +487,18 @@
             <p>We honor withdrawal requests received within 14 days regardless of the Article 16(m) waiver, as a matter of customer service, on a pro-rata refund basis (the price of the days you had access is retained, the rest is refunded). Where mandatory consumer law of your country grants you a stronger right, that stronger right applies.</p>
         </div>
 
-        <div class="legal-card">
+        <div class="doc-card legal-card">
             <h2>What happens after you submit</h2>
             <ul>
                 <li>You receive an automated confirmation that we got your form (from Formspree, our form processor).</li>
                 <li>NFDGames LLC acknowledges your withdrawal by email within 1 business day.</li>
-                <li>We instruct the platform that processed your purchase (Apple, Google, Microsoft, or Stripe) to issue a refund of all payments received from you. Where we cannot instruct the platform directly (Apple in particular controls App Store refunds), we email you the platform's refund-request link and follow up to verify it was processed.</li>
+                <li>We instruct the platform that processed your purchase (Apple, Google, or Stripe) to issue a refund of all payments received from you. Where we cannot instruct the platform directly (Apple in particular controls App Store refunds), we email you the platform's refund-request link and follow up to verify it was processed.</li>
                 <li>The refund is issued using the same means of payment as your original transaction. You will not incur any fees for the refund.</li>
                 <li>If you exercised your withdrawal right before the 14-day period and we already began performance with your express consent, we may charge a pro-rata amount for the days you had Pro access, in line with Directive 2011/83/EU Article 14(3).</li>
             </ul>
         </div>
 
-        <div class="legal-card">
+        <div class="doc-card legal-card">
             <h2>Standard model withdrawal statement (Annex I(B), Directive 2011/83/EU)</h2>
             <p>The form above already incorporates the language required by Annex I(B). If you prefer to submit by email, copy the model statement below, fill in the bracketed fields, and send it to <a href="mailto:support@nfdgames.com">support@nfdgames.com</a> with the subject line "Withdrawal, OpenDrop Pro".</p>
             <div class="legal-form-text">To: NFDGames LLC, 212 East Broad Street, Apt #1116, Greenville, SC 29601, United States. Email: support@nfdgames.com
@@ -581,24 +535,92 @@ Date:
 [*] Delete as appropriate.</div>
         </div>
 
-        <div class="legal-card">
+        <div class="doc-card legal-card">
             <h2>What this page does not affect</h2>
             <ul>
-                <li><strong>Auto-renewal cancellation.</strong> If you simply want to stop your subscription from auto-renewing at the end of the current term, you do not need to use this form. Open Settings on your purchase platform (Apple ID Settings &rarr; Subscriptions, Google Play &rarr; Subscriptions, Microsoft account &rarr; Subscriptions, or the Stripe customer portal) and cancel from there. See Section 8 of our <a href="TermsOfService.html">Terms of Service</a>.</li>
+                <li><strong>Auto-renewal cancellation.</strong> If you simply want to stop your subscription from auto-renewing at the end of the current term, you do not need to use this form. Open Settings on your purchase platform (Apple ID Settings &rarr; Subscriptions, Google Play &rarr; Subscriptions, or the Stripe customer portal) and cancel from there. See Section 8 of our <a href="TermsOfService.html">Terms of Service</a>.</li>
                 <li><strong>Platform-policy refunds.</strong> Apple, Google, and Stripe have their own consumer-friendly refund processes that may extend beyond the 14-day window. Use them in parallel with this page.</li>
                 <li><strong>Statutory warranty rights.</strong> Your mandatory consumer-warranty rights under EU and UK law (e.g., conformity rights under Directive (EU) 2019/770 on the supply of digital content) are independent of the withdrawal right and remain available after the 14-day period.</li>
                 <li><strong>Account deletion.</strong> Withdrawing from your subscription does not delete your OpenDrop account. To delete your account, use the hosted deletion page at <a href="https://opendrop.n-fantinodyer.workers.dev/delete-account" target="_blank" rel="noopener">opendrop.n-fantinodyer.workers.dev/delete-account</a> or follow Section 11 of our <a href="PrivacyPolicy.html">Privacy Policy</a>.</li>
             </ul>
         </div>
 
-        <p class="text-muted" style="text-align:center;font-size:0.85rem;margin-top:var(--space-xl);">
-            Last updated: June 4, 2026 &nbsp;&middot;&nbsp;
-            <a href="TermsOfService.html" style="color:var(--accent);">Terms of Service</a> &nbsp;&middot;&nbsp;
-            <a href="PrivacyPolicy.html" style="color:var(--accent);">Privacy Policy</a> &nbsp;&middot;&nbsp;
-            <a href="support.html" style="color:var(--accent);">Support</a>
+        <p class="subpage-note">
+            Last updated: June 4, 2026&nbsp;&middot; 
+            <a href="TermsOfService.html">Terms of Service</a>&nbsp;&middot; 
+            <a href="PrivacyPolicy.html">Privacy Policy</a>&nbsp;&middot; 
+            <a href="support.html">Support</a>
         </p>
     </div>
     </main>
+
+    <div class="seam" aria-hidden="true"></div>
+
+    <footer class="site-footer">
+        <div class="wrap site-footer__grid">
+            <div class="site-footer__brand">
+                <a href="/OpenDrop/" class="logo">
+                    <picture>
+                        <source srcset="/OpenDrop/OpenDropIcon-logo.webp" type="image/webp">
+                        <img src="/OpenDrop/OpenDropIcon.png" alt="" class="logo-icon" width="36" height="36" loading="lazy">
+                    </picture>
+                    OpenDrop
+                </a>
+                <p>OpenDrop by NFDGames. File transfer for Windows, Linux, iPhone, iPad and Android.</p>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">OpenDrop</h2>
+                <ul>
+                    <li><a href="/OpenDrop/">Overview</a></li>
+                    <li><a href="/OpenDrop/#download">Download</a></li>
+                    <li><a href="/OpenDrop/#compare">Free vs Pro</a></li>
+                    <li><a href="/OpenDrop/changelog.html">What's new in 1.0</a></li>
+                    <li><a href="/OpenDrop/support.html">Support</a></li>
+                    <li><a href="/OpenDrop/status.html">System status</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Guides</h2>
+                <ul>
+                    <li><a href="/blog/posts/best-airdrop-alternatives-windows-2026.html">AirDrop alternatives</a></li>
+                    <li><a href="/blog/posts/share-files-iphone-android.html">iPhone to Android</a></li>
+                    <li><a href="/blog/posts/transfer-files-android-to-pc-without-usb.html">Android to PC, no USB</a></li>
+                    <li><a href="/blog/posts/transfer-photos-iphone-to-windows-pc.html">iPhone photos to PC</a></li>
+                    <li><a href="/blog/posts/transfer-files-windows-to-linux.html">Windows to Linux</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Studio</h2>
+                <ul>
+                    <li><a href="/">NFDGames home</a></li>
+                    <li><a href="/#gunslinger">Gunslinger</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/OpenDrop/press.html">Press kit</a></li>
+                    <li><a href="https://play.google.com/store/apps/dev?id=6331541447390891189&amp;hl=en_US" target="_blank" rel="noopener">Apps on Google Play</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Legal and security</h2>
+                <ul>
+                    <li><a href="/OpenDrop/PrivacyPolicy.html">Privacy Policy</a></li>
+                    <li><a href="/OpenDrop/TermsOfService.html">Terms of Service</a></li>
+                    <li><a href="/OpenDrop/security.html">Security and disclosure</a></li>
+                    <li><a href="/OpenDrop/accessibility.html">Accessibility</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="wrap site-footer__bottom">
+            <p>&copy; 2026 NFDGames. All rights reserved.</p>
+            <div class="site-footer__legal">
+                <a href="/OpenDrop/WithdrawalForm.html">EU/UK withdrawal</a>
+                <a href="/OpenDrop/third-party-notices.html">Third-party notices</a>
+                <a href="/OpenDrop/docs/export-compliance/">Export compliance</a>
+                <a href="mailto:support@nfdgames.com">support@nfdgames.com</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/scripts/common.js"></script>
 
     <script>
         (function () {
@@ -627,13 +649,13 @@ Date:
                                 : 'Submission failed. Please email support@nfdgames.com directly.';
                             alert(msg);
                             submitBtn.disabled = false;
-                            submitBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width:20px;height:20px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg> Submit Withdrawal Request';
+                            submitBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg> Submit Withdrawal Request';
                         });
                     }
                 }).catch(function () {
                     alert('Submission failed. Please email support@nfdgames.com directly with your withdrawal request.');
                     submitBtn.disabled = false;
-                    submitBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width:20px;height:20px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg> Submit Withdrawal Request';
+                    submitBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg> Submit Withdrawal Request';
                 });
             });
         })();

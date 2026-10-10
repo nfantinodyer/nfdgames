@@ -29,153 +29,82 @@
  <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
 
  <link rel="stylesheet" href="../styles/common.css">
- <link rel="stylesheet" href="../styles/opendrop.css">
+ <link rel="stylesheet" href="../styles/subpage.css">
 
  <style>
- .doc-hero {
- min-height: auto;
- padding: 9rem var(--space-xl) var(--space-xl);
- text-align: center;
- }
- .doc-hero .version-pill {
- display: inline-flex;
- align-items: center;
- gap: 0.5rem;
- padding: 0.4rem 1rem;
- font-family: 'Space Mono', monospace;
- font-size: 0.85rem;
- background: rgba(59,142,245,0.12);
- border: 1px solid rgba(59,142,245,0.4);
- border-radius: var(--radius-full);
- color: var(--accent-glow);
- margin-bottom: var(--space-md);
- }
- .doc-hero h1 {
- font-size: clamp(2rem, 5vw, 3.25rem);
- margin-bottom: var(--space-md);
- }
- .doc-hero p {
- color: var(--text-secondary);
- max-width: 760px;
- margin: 0 auto;
- font-size: 1.05rem;
- }
- .doc-container {
- max-width: 960px;
- margin: 0 auto;
- padding: 0 var(--space-xl) var(--space-4xl);
- }
- .release-block {
- background: var(--bg-card);
- border: 1px solid var(--border);
- border-radius: var(--radius-2xl);
- padding: var(--space-2xl);
- margin-bottom: var(--space-lg);
- }
+ /* Release notes: page-only rules. Shared card, header and table styles live in subpage.css. */
+ body.page-changelog { --subpage-w: 960px; }
  .release-meta {
  display: flex;
- gap: var(--space-md);
  flex-wrap: wrap;
  align-items: center;
- margin-bottom: var(--space-lg);
- color: var(--text-muted);
- font-size: 0.85rem;
- font-family: 'Space Mono', monospace;
+ gap: var(--sp-1) var(--sp-3);
+ margin-bottom: var(--sp-5);
+ font: 400 0.8125rem/1.6 var(--font-mono);
+ color: var(--text-subtle);
  }
  .release-meta .v {
  color: var(--accent-glow);
  font-weight: 700;
  }
- .release-block h2 {
- font-size: 1.6rem;
- margin-bottom: var(--space-sm);
+ @media (max-width: 640px) {
+ .release-meta { flex-direction: column; align-items: flex-start; gap: 2px; }
+ .release-meta > span:nth-child(even) { display: none; }
+ /* Version table: component above its value instead of two squeezed columns */
+ .version-table thead {
+ position: absolute;
+ width: 1px;
+ height: 1px;
+ overflow: hidden;
+ clip: rect(0, 0, 0, 0);
+ }
+ .version-table, .version-table tbody, .version-table tr, .version-table td { display: block; width: 100%; }
+ .version-table tr { padding: var(--sp-3) 0; border-bottom: 1px solid var(--hairline); }
+ .version-table td { padding: 0; border-bottom: 0; }
+ .version-table td:first-child { margin-bottom: 4px; font-size: 0.8125rem; color: var(--text-subtle); }
+ .version-table code { overflow-wrap: anywhere; }
  }
  .release-block h3 {
- margin: var(--space-xl) 0 var(--space-sm);
- font-size: 1.15rem;
  display: flex;
+ flex-wrap: wrap;
  align-items: center;
- gap: 0.55rem;
+ gap: var(--sp-2) var(--sp-3);
+ margin-top: var(--sp-8);
  }
- .release-block h3 .marker {
- font-family: 'Space Mono', monospace;
- font-size: 0.75rem;
- padding: 0.18rem 0.55rem;
- border-radius: var(--radius-full);
- color: #0d1333;
- background: var(--accent-glow);
- font-weight: 700;
- letter-spacing: 0.04em;
- }
- .release-block p, .release-block li {
- color: var(--text-secondary);
- line-height: 1.7;
- font-size: 0.97rem;
- }
- .release-block ul {
- margin: var(--space-sm) 0 var(--space-md) 1.25rem;
- }
- .release-block li {
- margin-bottom: 0.45rem;
- }
- .release-block strong {
- color: var(--text-primary);
- }
- .release-block code {
- font-family: 'Space Mono', monospace;
- background: var(--bg-dark);
- padding: 0.15rem 0.4rem;
- border-radius: 4px;
- font-size: 0.85em;
- color: var(--accent-glow);
- }
- .platform-table {
- width: 100%;
- border-collapse: collapse;
- margin-top: var(--space-md);
- font-size: 0.92rem;
- }
- .platform-table th, .platform-table td {
- padding: 0.7rem 0.85rem;
- text-align: left;
- border-bottom: 1px solid var(--border);
- color: var(--text-secondary);
- vertical-align: top;
- }
- .platform-table th {
- color: var(--text-primary);
- font-size: 0.8rem;
+ .marker {
+ flex: none;
+ padding: 3px 8px;
+ border-radius: var(--r-pill);
+ font: 700 0.6875rem/1.2 var(--font-mono);
+ letter-spacing: 0.06em;
  text-transform: uppercase;
- letter-spacing: 0.05em;
+ color: var(--text-on-light);
+ background: var(--accent-glow);
  }
+ .marker--new { color: #cfe3fb; background: var(--accent-tint-strong); box-shadow: inset 0 0 0 1px var(--accent-edge); }
+ .marker--heads-up { color: #e0b36a; background: rgba(224, 179, 106, 0.12); box-shadow: inset 0 0 0 1px rgba(224, 179, 106, 0.35); }
+ .marker--reference { color: var(--text-secondary); background: rgba(148, 163, 192, 0.1); box-shadow: inset 0 0 0 1px var(--hairline-strong); }
  .feat-grid {
  display: grid;
- grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
- gap: var(--space-md);
- margin: var(--space-lg) 0;
+ grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+ gap: var(--sp-3);
+ margin: var(--sp-4) 0 var(--sp-2);
  }
  .feat-card {
- background: var(--bg-dark);
- border: 1px solid var(--border);
- border-radius: var(--radius-lg);
- padding: var(--space-md);
+ padding: var(--sp-4);
+ border-radius: var(--r-md);
+ background: var(--bg-deep);
+ border: 1px solid var(--hairline);
  }
  .feat-card h4 {
- color: var(--text-primary);
- font-size: 0.95rem;
  margin-bottom: 0.3rem;
+ font-size: 0.9375rem;
+ color: var(--text-primary);
  }
- .feat-card p {
- font-size: 0.85rem;
- color: var(--text-secondary);
- line-height: 1.55;
+ .release-block .feat-card p {
  margin: 0;
- }
- @media (max-width: 720px) {
- .doc-hero { padding: 7rem var(--space-lg) var(--space-lg); }
- .doc-container { padding: 0 var(--space-lg) var(--space-3xl); }
- .release-block { padding: var(--space-xl); }
- .platform-table { font-size: 0.85rem; }
+ font-size: var(--fs-small);
+ line-height: 1.55;
  }
  </style>
 
@@ -243,36 +172,53 @@
 }
     </script>
 </head>
-<body>
+<body class="page-subpage page-changelog">
+    <a class="skip-link" href="#main">Skip to content</a>
  <div class="bg-gradient"></div>
  <div class="noise"></div>
 
- <nav>
- <a href="./" class="logo">
- <picture>
- <source srcset="OpenDropIcon-logo.webp" type="image/webp">
- <img src="OpenDropIcon.png" alt="OpenDrop" class="logo-icon" width="36" height="36" loading="lazy">
- </picture>
- OpenDrop
- </a>
- <div class="nav-links">
- <a href="./#features">Features</a>
- <a href="./#download">Download</a>
- <a href="support.html">Support</a>
- <a href="./#download" class="nav-cta">Get Started</a>
- </div>
- </nav>
+    <nav class="site-nav" aria-label="Main">
+        <span class="nav-lockup">
+            <a href="/" class="nav-lockup__home" aria-label="NFDGames home">
+                <picture>
+                    <source srcset="/NFDGamesLogoCircleTransparent.webp" type="image/webp">
+                    <img src="/NFDGamesLogoCircleTransparent.png" alt="" width="28" height="28">
+                </picture>
+            </a>
+            <span class="nav-lockup__sep" aria-hidden="true">/</span>
+            <a href="/OpenDrop/" class="logo">
+                <picture>
+                    <source srcset="/OpenDrop/OpenDropIcon-logo.webp" type="image/webp">
+                    <img src="/OpenDrop/OpenDropIcon.png" alt="" class="logo-icon" width="32" height="32">
+                </picture>
+                <span class="logo__word">OpenDrop</span>
+            </a>
+        </span>
+        <div class="nav-links" id="navLinks">
+            <a href="/OpenDrop/#features">Features</a>
+            <a href="/OpenDrop/#compare">Free vs Pro</a>
+            <a href="/blog/">Blog</a>
+            <a href="/OpenDrop/support.html">Support</a>
+        </div>
+        <div class="nav-actions">
+            <a href="/OpenDrop/#download" class="btn-cta btn-cta--sm">Download</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-controls="navLinks" aria-expanded="false" aria-label="Open menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
 
- <main>
- <section class="doc-hero">
- <span class="version-pill">v1.0.0 &nbsp;·&nbsp; June 4, 2026</span>
- <h1>What's new in OpenDrop 1.0</h1>
- <p>The 1.0 release is the end-to-end-encryption baseline. Every file-content path &mdash; Wi-Fi LAN, direct peer-to-peer, our own WebSocket relay, and Bluetooth Low Energy &mdash; now requires authenticated AEAD encryption on the wire. There is no plaintext fallback.</p>
- </section>
+ <main id="main" tabindex="-1">
+    <header class="subpage-head">
+        <div class="subpage-wrap section-head">
+            <p class="eyebrow">Release notes</p>
+            <h1 class="section-title">What's new in OpenDrop 1.0</h1>
+            <p class="section-lede">The 1.0 release is the end-to-end-encryption baseline. Every file-content path (Wi-Fi LAN, direct peer-to-peer, our own WebSocket relay, and Bluetooth Low Energy) now requires authenticated AEAD encryption on the wire. There is no plaintext fallback.</p>
+            <p class="subpage-meta"><strong>v1.0.0</strong><span aria-hidden="true">&middot;</span><span>June 4, 2026</span></p>
+        </div>
+    </header>
 
- <div class="doc-container">
+ <div class="subpage-wrap subpage-body">
 
- <article class="release-block">
+ <article class="doc-card release-block">
  <div class="release-meta">
  <span class="v">v1.0.0</span>
  <span>·</span>
@@ -282,17 +228,17 @@
  </div>
 
  <h2>The launch release</h2>
- <p>1.0 is the first OpenDrop release we recommend for everyone. It's the version that ships in the App Store, Google Play, Microsoft Store, GitHub Releases for Linux, and to existing macOS preview testers. The desktop server, mobile apps, control plane, and encrypted relay are all on the same protocol baseline.</p>
+ <p>1.0 is the first OpenDrop release we recommend for everyone. It's the version that ships in the App Store, Google Play, the Microsoft Store, and GitHub Releases (the Windows installer and the Linux AppImages). macOS is not released yet. The desktop server, mobile apps, control plane, and encrypted relay are all on the same protocol baseline.</p>
 
  <h3><span class="marker">Headline</span> End-to-end encryption on every transfer path</h3>
- <p>File contents are encrypted on the sending device with <strong>ChaCha20-Poly1305 IETF AEAD</strong> (RFC 8439). The 32-byte content key is derived with <strong>HKDF-SHA256</strong> from your account's shared secret &mdash; computed identically on each of your devices, so the key is never sent over the network &mdash; with a fresh random 12-byte nonce prefix per transfer. The encryption applies to:</p>
+ <p>File contents are encrypted on the sending device with <strong>ChaCha20-Poly1305 IETF AEAD</strong> (RFC 8439). The 32-byte content key is derived with <strong>HKDF-SHA256</strong> from the secret your devices share when you pair them, with a fresh random 12-byte nonce prefix per transfer. On Free, that secret is made on your computer and shared only through the QR code. On Pro, OpenDrop's account service stores it so your signed-in devices can sync. Relay servers carry file contents only in encrypted form; they can see file names, folder names, file sizes and device names, which they need to route transfers. The encryption applies to:</p>
  <ul>
  <li>Chunked uploads, true-streaming uploads, and downloads (including range-sliced byte ranges)</li>
  <li>Thumbnails fetched from remote devices</li>
  <li>Direct desktop&harr;desktop relays via <code>/send-to</code></li>
  <li>LAN/Wi-Fi HTTP and HTTPS transfers</li>
  <li>Phone-to-phone nearby Wi-Fi transfers</li>
- <li>Bluetooth Low Energy fallback transfers</li>
+ <li>Bluetooth Low Energy fallback transfers between two phones (Pro)</li>
  </ul>
  <p>The mobile build runs the encryption through Apple <strong>CryptoKit</strong> on iOS and BoringSSL on Android API 28+, with a pure-Dart fallback for older devices. The desktop build uses Python's <code>cryptography</code> wheel (with the OpenSSL backend). The wire format is byte-identical across every implementation and is covered by a shared test-vector file.</p>
 
@@ -300,7 +246,7 @@
  <p>The desktop server and mobile clients advertise and require <code>X-OpenDrop-Protocol: 2</code> on every request. Servers respond with <strong>HTTP 426 Upgrade Required</strong> to any client below protocol v2, and v1.0 clients refuse to connect to a server that reports a lower protocol version. Account-deletion, receipts, app-version, and subscription endpoints are deliberately exempt from the gate so that pre-1.0 users can still clean up.</p>
 
  <h3><span class="marker">Headline</span> Auto-fallback transport: Wi-Fi LAN &rarr; peer-to-peer &rarr; encrypted relay</h3>
- <p>The mobile and desktop apps now choose the fastest available transport automatically. mDNS discovery (Bonjour service type <code>_opendrop._tcp.local.</code>) finds devices on the same Wi-Fi for direct LAN streaming. Across different networks, OpenDrop tries a direct <strong>peer-to-peer</strong> connection over WebRTC, using our own self-hosted STUN servers for NAT traversal (no third-party STUN, and no TURN). When a direct connection isn't possible, traffic falls back to OpenDrop's own end-to-end-encrypted <strong>WebSocket relay</strong>: the free tier uses our Oracle Cloud relay, and Pro subscribers get the high-throughput Fly.io relay with automatic failover to Oracle if Fly is ever down. Bluetooth LE carries small payloads when Wi-Fi isn't available. The free tier prefers P2P and treats the relay as a backstop; Pro prefers its fast dedicated relay and uses P2P as the fallback. Pairing and signaling run through our control-plane Cloudflare Worker, which never sees your files &mdash; and there is no third-party tunnel to download.</p>
+ <p>The mobile and desktop apps now choose the fastest available transport automatically. mDNS discovery (Bonjour service type <code>_opendrop._tcp.local.</code>) finds devices on the same Wi-Fi for direct LAN streaming. Across different networks, OpenDrop tries a direct <strong>peer-to-peer</strong> connection over WebRTC, using our own self-hosted STUN servers for NAT traversal (no third-party STUN, and no TURN). When a direct connection isn't possible, traffic falls back to OpenDrop's own end-to-end-encrypted <strong>WebSocket relay</strong>: the free tier uses the shared relay, and Pro subscribers get the faster Pro relay with automatic backup relays. With Pro, two phones signed in to the same account can also send over Bluetooth LE when there is no Wi-Fi; computers connect over Wi-Fi or the internet. The free tier prefers P2P and treats the relay as a backstop; Pro starts on the Pro relay and uses P2P as the fallback. Pairing and signaling run through our control-plane Cloudflare Worker, which never sees your files. There is no third-party tunnel to download.</p>
 
  <h3><span class="marker">Headline</span> Cross-platform parity</h3>
  <div class="feat-grid">
@@ -314,25 +260,25 @@
  <h3><span class="marker">Headline</span> OpenDrop Pro</h3>
  <ul>
  <li>Multi-device mesh: pair multiple phones and multiple desktops to a single account; same-account auto-connect via mDNS account hash.</li>
- <li>High-throughput Fly.io WebSocket relay for large cross-network transfers, with automatic failover to a backup Oracle Cloud relay and no per-transfer size cap. (Free transfers use the Oracle Cloud relay.)</li>
- <li>Cross-device file conversion: image (HEIC/PNG/JPG/WebP/BMP/TIFF), video (MP4/MOV/AVI/MKV/WebM), and RAW (CR2/NEF/ARW/RAF). Phone files queue against the desktop's <code>ffmpeg</code>; one-click undo restores from per-conversion backups.</li>
+ <li>Faster Pro relay for cross-network transfers: full speed, whole-file streaming and no weekly relay limit, with automatic backup relays. (Free transfers use the shared relay, which is speed-limited. Neither plan has a per-transfer size cap.)</li>
+ <li>Cross-device file conversion: image (HEIC/PNG/JPG/WebP/BMP/TIFF), video (MP4/MOV/AVI/MKV/WebM), and RAW (CR2/NEF/ARW/RAF). Phone files queue for conversion on your computer, convert as soon as it is reachable, and come back to the phone. Conversion history with undo (it asks for confirmation) puts the original back from the backup kept on the computer that converted it.</li>
  <li>Pricing: $2.99/month or $24.99/year (≈30% annual discount). Cross-platform entitlement via RevenueCat, one subscription unlocks Pro on every device linked to your account.</li>
  </ul>
 
- <h3><span class="marker">New</span> Drag-and-drop and rich browsing</h3>
+ <h3><span class="marker marker--new">New</span> Drag-and-drop and rich browsing</h3>
  <ul>
  <li>Thumbnails for images, videos, PDFs, and SVGs across local and remote devices.</li>
  <li>In-app preview for images (with <code>InteractiveViewer</code> zoom), code and text files, and PDFs.</li>
- <li>Multi-select bottom action bar; breadcrumb folder navigation.</li>
- <li>Recently Deleted with 30-day retention on the desktop server.</li>
- <li>Drag-and-drop between tabs on desktop and across the mobile file/folder views.</li>
+ <li>Multi-select bottom action bar; breadcrumb folder navigation (Pro).</li>
+ <li>Recently Deleted: restore files you deleted, or remove them for good.</li>
+ <li>Drag files onto a device tab on desktop to send them. With Pro, drag between the Files and Shared Folders tabs and into subfolders on desktop, or long-press and drag files into folders on mobile.</li>
  <li>Chrome-style device tab bar on desktop with per-device favicons.</li>
  </ul>
 
- <h3><span class="marker">New</span> Theming &amp; accessibility</h3>
- <p>Nine built-in color palettes: <em>OpenDrop Brand</em> (cerulean blue + aqua cyan, the default), <em>Ocean Breeze</em>, <em>Tide Pool</em>, <em>Sea Glass</em>, <em>Lilac Night</em>, <em>Cloud Blue</em>, <em>Peach Cream</em>, <em>Rose Petal</em>, and <em>Lavender Mist</em>. Light, dark, and follow-system modes. iOS Cupertino dialogs honor system text-size and Dynamic Type.</p>
+ <h3><span class="marker marker--new">New</span> Theming &amp; accessibility</h3>
+ <p>Nine built-in color palettes: <em>OpenDrop Brand</em> (cerulean blue + aqua cyan, the default), <em>Ocean Breeze</em>, <em>Tide Pool</em>, <em>Sea Glass</em>, <em>Lilac Night</em>, <em>Cloud Blue</em>, <em>Peach Cream</em>, <em>Rose Petal</em>, and <em>Lavender Mist</em>. The first five are dark and the last four are light. The desktop app also has a Custom theme with a color picker. iOS Cupertino dialogs honor system text-size and Dynamic Type.</p>
 
- <h3><span class="marker">New</span> Accounts &amp; auth</h3>
+ <h3><span class="marker marker--new">New</span> Accounts &amp; auth</h3>
  <ul>
  <li>Sign in with Google, Apple, Microsoft, or email/password through Firebase Authentication.</li>
  <li>Email verification flow for email/password sign-ups.</li>
@@ -340,7 +286,7 @@
  <li>Sentinel records that force sign-out across any device still holding old credentials.</li>
  </ul>
 
- <h3><span class="marker">New</span> Privacy controls</h3>
+ <h3><span class="marker marker--new">New</span> Privacy controls</h3>
  <ul>
  <li>Analytics opt-out in Settings on both mobile and desktop. When disabled, the app sends an <code>X-OpenDrop-Analytics-OptOut: 1</code> header and our infrastructure discards the heartbeat without recording it.</li>
  <li>Site-wide cookie banner with Google Consent Mode v2; default-deny posture; honors browser Global Privacy Control (GPC).</li>
@@ -348,20 +294,21 @@
  <li>New <a href="WithdrawalForm.html">EU/UK 14-day withdrawal form</a> reproducing Directive 2011/83/EU Annex I(B).</li>
  </ul>
 
- <h3><span class="marker">New</span> Headless / CLI mode</h3>
- <p>The desktop server can run without a GUI. A CLI client talks to a running GUI through a shared connection file; single-instance detection on a dynamically chosen port keeps multiple invocations from colliding. The CLI is included in every desktop build.</p>
+ <h3><span class="marker marker--new">New</span> Headless / CLI mode</h3>
+ <p>The desktop server can run without a GUI: start it with <code>opendrop serve</code> (add <code>--background</code> to detach). CLI commands find whichever OpenDrop is running on the same computer, the desktop app or the headless server, through a private local connection file; single-instance detection on a dynamically chosen port keeps multiple invocations from colliding. Commands that reach another device (<code>-d</code>) need Pro. The CLI is included in every desktop build.</p>
 
- <h3><span class="marker">Heads-up</span> Pre-1.0 builds are no longer accepted</h3>
+ <h3><span class="marker marker--heads-up">Heads-up</span> Pre-1.0 builds are no longer accepted</h3>
  <p>Any client running protocol v0 or v1 (pre-1.0 builds, including all internal previews) is rejected by the 1.0 server with <code>HTTP 426 Upgrade Required</code>. There is no compatibility mode and no plan to add one, the security goal is to eliminate the downgrade-attack surface where an attacker could strip the encryption header and force an unencrypted body. Please install the latest 1.0+ build before continuing to use OpenDrop.</p>
 
- <h3><span class="marker">Heads-up</span> What&rsquo;s still in flight</h3>
+ <h3><span class="marker marker--heads-up">Heads-up</span> What&rsquo;s still in flight</h3>
  <ul>
  <li><strong>macOS desktop is still in active development at 1.0.</strong> The macOS build is the same PySide6 desktop server that ships on Windows and Linux, just not yet released to the Mac App Store. iOS and Android cover the mobile side.</li>
- <li><strong>Discovery is local-network-aware, not location-aware.</strong> Devices find each other through mDNS on Wi-Fi, Bluetooth Low Energy proximity, or cloud pairing. There is no GPS in the loop, and the apps don&rsquo;t read your coordinates.</li>
+ <li><strong>Discovery is local-network-aware, not location-aware.</strong> Devices find each other through mDNS on Wi-Fi, cloud pairing, or (between two Pro phones) Bluetooth Low Energy proximity. There is no GPS in the loop, and the apps don&rsquo;t read your coordinates.</li>
  </ul>
 
- <h3><span class="marker">Reference</span> Version markers</h3>
- <table class="platform-table">
+ <h3><span class="marker marker--reference">Reference</span> Version markers</h3>
+ <div class="table-scroll">
+ <table class="doc-table version-table">
  <thead><tr><th>Component</th><th>Version</th></tr></thead>
  <tbody>
  <tr><td>Flutter mobile app</td><td><code>1.0.0+18</code></td></tr>
@@ -373,21 +320,90 @@
  <tr><td>KV schema</td><td><code>_schema_version: 2</code> (per-device records)</td></tr>
  </tbody>
  </table>
+ </div>
  </article>
 
- <article class="release-block">
+ <article class="doc-card release-block">
  <h2>Earlier history</h2>
- <p>Pre-1.0 builds were internal previews only. They are not supported and cannot interoperate with the 1.0 protocol. If you have a pre-1.0 install, please uninstall it and download a 1.0+ build from the <a href="./#download">Download</a> section.</p>
+ <p>Pre-1.0 builds were internal previews only. They are not supported and cannot interoperate with the 1.0 protocol. If you have a pre-1.0 install, please uninstall it and download a 1.0+ build from the <a href="/OpenDrop/#download">Download</a> section.</p>
  </article>
 
- <p class="text-muted" style="text-align:center;font-size:0.85rem;margin-top:var(--space-xl);">
- <a href="PrivacyPolicy.html" style="color:var(--accent);">Privacy Policy</a> &nbsp;&middot;&nbsp;
- <a href="TermsOfService.html" style="color:var(--accent);">Terms of Service</a> &nbsp;&middot;&nbsp;
- <a href="status.html" style="color:var(--accent);">System Status</a> &nbsp;&middot;&nbsp;
- <a href="security.html" style="color:var(--accent);">Security</a>
+ <p class="subpage-note">
+ <a href="PrivacyPolicy.html">Privacy Policy</a>&nbsp;&middot; 
+ <a href="TermsOfService.html">Terms of Service</a>&nbsp;&middot; 
+ <a href="status.html">System Status</a>&nbsp;&middot; 
+ <a href="security.html">Security</a>
  </p>
  </div>
  </main>
+
+    <div class="seam" aria-hidden="true"></div>
+
+    <footer class="site-footer">
+        <div class="wrap site-footer__grid">
+            <div class="site-footer__brand">
+                <a href="/OpenDrop/" class="logo">
+                    <picture>
+                        <source srcset="/OpenDrop/OpenDropIcon-logo.webp" type="image/webp">
+                        <img src="/OpenDrop/OpenDropIcon.png" alt="" class="logo-icon" width="36" height="36" loading="lazy">
+                    </picture>
+                    OpenDrop
+                </a>
+                <p>OpenDrop by NFDGames. File transfer for Windows, Linux, iPhone, iPad and Android.</p>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">OpenDrop</h2>
+                <ul>
+                    <li><a href="/OpenDrop/">Overview</a></li>
+                    <li><a href="/OpenDrop/#download">Download</a></li>
+                    <li><a href="/OpenDrop/#compare">Free vs Pro</a></li>
+                    <li><a href="/OpenDrop/changelog.html">What's new in 1.0</a></li>
+                    <li><a href="/OpenDrop/support.html">Support</a></li>
+                    <li><a href="/OpenDrop/status.html">System status</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Guides</h2>
+                <ul>
+                    <li><a href="/blog/posts/best-airdrop-alternatives-windows-2026.html">AirDrop alternatives</a></li>
+                    <li><a href="/blog/posts/share-files-iphone-android.html">iPhone to Android</a></li>
+                    <li><a href="/blog/posts/transfer-files-android-to-pc-without-usb.html">Android to PC, no USB</a></li>
+                    <li><a href="/blog/posts/transfer-photos-iphone-to-windows-pc.html">iPhone photos to PC</a></li>
+                    <li><a href="/blog/posts/transfer-files-windows-to-linux.html">Windows to Linux</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Studio</h2>
+                <ul>
+                    <li><a href="/">NFDGames home</a></li>
+                    <li><a href="/#gunslinger">Gunslinger</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/OpenDrop/press.html">Press kit</a></li>
+                    <li><a href="https://play.google.com/store/apps/dev?id=6331541447390891189&amp;hl=en_US" target="_blank" rel="noopener">Apps on Google Play</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Legal and security</h2>
+                <ul>
+                    <li><a href="/OpenDrop/PrivacyPolicy.html">Privacy Policy</a></li>
+                    <li><a href="/OpenDrop/TermsOfService.html">Terms of Service</a></li>
+                    <li><a href="/OpenDrop/security.html">Security and disclosure</a></li>
+                    <li><a href="/OpenDrop/accessibility.html">Accessibility</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="wrap site-footer__bottom">
+            <p>&copy; 2026 NFDGames. All rights reserved.</p>
+            <div class="site-footer__legal">
+                <a href="/OpenDrop/WithdrawalForm.html">EU/UK withdrawal</a>
+                <a href="/OpenDrop/third-party-notices.html">Third-party notices</a>
+                <a href="/OpenDrop/docs/export-compliance/">Export compliance</a>
+                <a href="mailto:support@nfdgames.com">support@nfdgames.com</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/scripts/common.js"></script>
 
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";

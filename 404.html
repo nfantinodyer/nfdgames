@@ -11,80 +11,165 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap">
     <link rel="stylesheet" href="/styles/common.css">
+    <link rel="stylesheet" href="/styles/subpage.css">
     <style>
-        body {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 2rem;
-        }
-        .nf-wrap {
-            max-width: 540px;
-        }
-        .nf-code {
-            font-family: 'Space Mono', monospace;
-            font-size: clamp(4rem, 14vw, 7rem);
-            font-weight: 700;
-            color: var(--accent, #7882ff);
-            line-height: 1;
-            margin: 0;
-        }
-        .nf-headline {
-            font-size: clamp(1.5rem, 3.5vw, 2rem);
-            font-weight: 600;
-            margin: 1rem 0 0.5rem;
-        }
-        .nf-sub {
-            color: var(--text-secondary, #b9b9c8);
-            line-height: 1.6;
-            margin-bottom: 2rem;
-        }
+        /* 404: page-only rules. Nav, footer and header come from common.css and subpage.css. */
+        body.page-404 { --subpage-w: 760px; }
+        .page-404 .subpage-head { padding-bottom: var(--sp-8); }
         .nf-actions {
-            display: inline-flex;
+            display: flex;
             flex-wrap: wrap;
-            gap: 0.75rem;
-            justify-content: center;
-        }
-        .nf-actions .btn {
-            padding: 0.7rem 1.2rem;
+            gap: var(--sp-3);
         }
         .nf-suggestions {
-            margin-top: 2.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid var(--border, #2a2a35);
-            color: var(--text-muted, #8b8b9c);
-            font-size: 0.85rem;
+            margin-top: var(--sp-10);
+            padding-top: var(--sp-6);
+            border-top: 1px solid var(--hairline);
+        }
+        .nf-suggestions h2 {
+            margin: 0 0 var(--sp-2);
+            font: 700 var(--fs-micro)/1.3 var(--font-mono);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-subtle);
+        }
+        .nf-suggestions ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 var(--sp-6);
+            margin: 0;
+            padding: 0;
+            list-style: none;
         }
         .nf-suggestions a {
-            color: var(--accent, #7882ff);
-            text-decoration: underline;
-            margin: 0 0.4rem;
+            display: inline-flex;
+            align-items: center;
+            min-height: 44px;
+            font-size: var(--fs-body);
+            font-weight: 600;
+        }
+        @media (max-width: 768px) {
+            .nf-actions > .btn-cta,
+            .nf-actions > .btn-ghost { width: 100%; }
         }
     </style>
 </head>
-<body>
+<body class="page-subpage page-404">
+    <a class="skip-link" href="#main">Skip to content</a>
     <div class="bg-gradient"></div>
-    <main class="nf-wrap">
-        <p class="nf-code">404</p>
-        <h1 class="nf-headline">This page wandered off.</h1>
-        <p class="nf-sub">
-            We can't find what you're looking for. It might have been moved,
-            renamed, or never existed in the first place.
-        </p>
-        <div class="nf-actions">
-            <a href="/" class="btn btn-primary">Back home</a>
-            <a href="/OpenDrop/" class="btn btn-secondary">Get OpenDrop</a>
+
+    <nav class="site-nav" aria-label="Main">
+        <a href="/" class="logo">
+            <picture>
+                <source srcset="/NFDGamesLogoCircleTransparent.webp" type="image/webp">
+                <img src="/NFDGamesLogoCircleTransparent.png" alt="" class="logo-icon" width="36" height="36">
+            </picture>
+            <span class="logo__word">NFDGames</span>
+        </a>
+        <div class="nav-links" id="navLinks">
+            <a href="/#projects">Projects</a>
+            <a href="/blog/">Blog</a>
+            <a href="/#about">About</a>
         </div>
-        <p class="nf-suggestions">
-            Or try
-            <a href="/OpenDrop/#features">Features</a>·
-            <a href="/OpenDrop/#screenshots-section">Screenshots</a>·
-            <a href="/OpenDrop/#compare">Free vs Pro</a>·
-            <a href="/blog/">Blog</a>·
-            <a href="/OpenDrop/support.html">Support</a>
-        </p>
+        <div class="nav-actions">
+            <a href="/OpenDrop/" class="btn-cta btn-cta--sm">Get OpenDrop</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-controls="navLinks" aria-expanded="false" aria-label="Open menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <main id="main" tabindex="-1">
+    <header class="subpage-head">
+        <div class="subpage-wrap section-head">
+            <p class="eyebrow">Error 404</p>
+            <h1 class="section-title">This page wandered off.</h1>
+            <p class="section-lede">We can't find what you're looking for. It might have been moved, renamed, or never existed in the first place.</p>
+        </div>
+    </header>
+
+    <div class="subpage-wrap subpage-body">
+        <div class="nf-actions">
+            <a href="/" class="btn-cta">Back home</a>
+            <a href="/OpenDrop/" class="btn-ghost">Get OpenDrop</a>
+        </div>
+        <div class="nf-suggestions">
+            <h2>Or try</h2>
+            <ul>
+                <li><a href="/OpenDrop/#features">Features</a></li>
+                <li><a href="/OpenDrop/#screenshots-section">Screenshots</a></li>
+                <li><a href="/OpenDrop/#compare">Free vs Pro</a></li>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/OpenDrop/support.html">Support</a></li>
+            </ul>
+        </div>
+    </div>
     </main>
+
+    <div class="seam" aria-hidden="true"></div>
+
+    <footer class="site-footer">
+        <div class="wrap site-footer__grid">
+            <div class="site-footer__brand">
+                <a href="/" class="logo">
+                    <picture>
+                        <source srcset="/NFDGamesLogoCircleTransparent.webp" type="image/webp">
+                        <img src="/NFDGamesLogoCircleTransparent.png" alt="" class="logo-icon" width="36" height="36" loading="lazy">
+                    </picture>
+                    NFDGames
+                </a>
+                <p>Independent studio making OpenDrop and Gunslinger.</p>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">OpenDrop</h2>
+                <ul>
+                    <li><a href="/OpenDrop/">Overview</a></li>
+                    <li><a href="/OpenDrop/#download">Download</a></li>
+                    <li><a href="/OpenDrop/#compare">Free vs Pro</a></li>
+                    <li><a href="/OpenDrop/changelog.html">What's new in 1.0</a></li>
+                    <li><a href="/OpenDrop/support.html">Support</a></li>
+                    <li><a href="/OpenDrop/status.html">System status</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Guides</h2>
+                <ul>
+                    <li><a href="/blog/posts/best-airdrop-alternatives-windows-2026.html">AirDrop alternatives</a></li>
+                    <li><a href="/blog/posts/share-files-iphone-android.html">iPhone to Android</a></li>
+                    <li><a href="/blog/posts/transfer-files-android-to-pc-without-usb.html">Android to PC, no USB</a></li>
+                    <li><a href="/blog/posts/transfer-photos-iphone-to-windows-pc.html">iPhone photos to PC</a></li>
+                    <li><a href="/blog/posts/transfer-files-windows-to-linux.html">Windows to Linux</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Studio</h2>
+                <ul>
+                    <li><a href="/">NFDGames home</a></li>
+                    <li><a href="/#gunslinger">Gunslinger</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/OpenDrop/press.html">Press kit</a></li>
+                    <li><a href="https://play.google.com/store/apps/dev?id=6331541447390891189&amp;hl=en_US" target="_blank" rel="noopener">Apps on Google Play</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Legal and security</h2>
+                <ul>
+                    <li><a href="/OpenDrop/PrivacyPolicy.html">Privacy Policy</a></li>
+                    <li><a href="/OpenDrop/TermsOfService.html">Terms of Service</a></li>
+                    <li><a href="/OpenDrop/security.html">Security and disclosure</a></li>
+                    <li><a href="/OpenDrop/accessibility.html">Accessibility</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="wrap site-footer__bottom">
+            <p>&copy; 2026 NFDGames. All rights reserved.</p>
+            <div class="site-footer__legal">
+                <a href="/OpenDrop/WithdrawalForm.html">EU/UK withdrawal</a>
+                <a href="/OpenDrop/third-party-notices.html">Third-party notices</a>
+                <a href="/OpenDrop/docs/export-compliance/">Export compliance</a>
+                <a href="mailto:support@nfdgames.com">support@nfdgames.com</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/scripts/common.js"></script>
 </body>
 </html>

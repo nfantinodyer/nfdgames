@@ -1,21 +1,16 @@
 /* ============================================
    OpenDrop - Product Page Styles
+   Shared tokens and components (eyebrow, seam, tile, chips,
+   segmented, stat strip, steps, sub-nav, footer) live in
+   common.css under "Refresh 2026-10". Rules here that are new or
+   changed are scoped to body.page-opendrop because this file is
+   also loaded by support, changelog, press, status, security,
+   accessibility, WithdrawalForm and third-party-notices.
    ============================================ */
 
 /* OpenDrop-specific background */
 .bg-gradient {
     background: none;
-}
-
-/* Full-height hero for product page */
-.hero {
-    min-height: 100vh;
-    padding: 8rem var(--space-xl) var(--space-3xl);
-}
-
-.hero h1 {
-    font-size: clamp(2rem, 5vw, 3.2rem);
-    max-width: 750px;
 }
 
 /* Hero Badge */
@@ -51,429 +46,8 @@
     border-radius: 50%;
 }
 
-.hero-subtitle {
-    margin-bottom: var(--space-md);
-}
-
-.hero-differentiator {
-    font-size: 0.95rem;
-    color: var(--text-muted);
-    max-width: 550px;
-    margin-bottom: var(--space-2xl);
-}
-
-.hero-platforms {
-    margin-top: var(--space-lg);
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    letter-spacing: 0.02em;
-}
-
-/* Free label on CTA */
-.btn-free-label {
-    font-size: 0.65rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    background: rgba(77, 184, 164, 0.2);
-    color: var(--success);
-    padding: 0.15rem 0.4rem;
-    border-radius: var(--radius-sm);
-}
-
-/* Hero visual: the screenshots carousel lives here. The old
-   .app-mockup is gone — real product shots are a stronger first
-   impression than a static mockup, and we already pull them from
-   the live App Store / Microsoft Store APIs. */
-.hero-visual {
-    margin-top: var(--space-3xl);
-    position: relative;
-    width: 100%;
-    max-width: 1100px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.app-mockup {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-xl);
-    padding: var(--space-lg);
-    box-shadow: var(--shadow-md);
-    max-width: 700px;
-    width: 90vw;
-}
-
-.mockup-header {
-    display: flex;
-    gap: var(--space-sm);
-    margin-bottom: var(--space-md);
-}
-
-.mockup-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: var(--border);
-}
-
-.mockup-dot:nth-child(1) { background: var(--error); }
-.mockup-dot:nth-child(2) { background: var(--warning); }
-.mockup-dot:nth-child(3) { background: var(--success); }
-
-.mockup-content {
-    background: var(--bg-dark);
-    border-radius: var(--radius-md);
-    padding: var(--space-xl);
-    font-family: 'Space Mono', monospace;
-    font-size: 0.85rem;
-}
-
-.mockup-status {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: var(--space-lg);
-}
-
-.status-dot {
-    width: 10px;
-    height: 10px;
-    background: var(--success);
-    border-radius: 50%;
-}
-
-.mockup-url {
-    color: var(--accent-glow);
-    word-break: break-all;
-}
-
-.mockup-files {
-    border-top: 1px solid var(--border);
-    padding-top: var(--space-md);
-    margin-top: var(--space-md);
-}
-
-.file-item {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: var(--space-sm) 0;
-    color: var(--text-secondary);
-}
-
-.file-icon {
-    color: var(--accent-glow);
-}
-
-.file-size {
-    margin-left: auto;
-    color: var(--text-muted);
-}
-
-/* Trust Bar */
-.trust-bar {
-    padding: var(--space-2xl) var(--space-xl);
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.trust-items {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-xl);
-}
-
-.trust-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.25rem;
-}
-
-.trust-value {
-    font-family: 'Space Mono', monospace;
-    font-weight: 700;
-    font-size: 1.25rem;
-    color: var(--text-primary);
-}
-
-.trust-label {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    text-align: center;
-}
-
-.trust-divider {
-    width: 1px;
-    height: 32px;
-    background: var(--border);
-}
-
-/* Features Section */
-.features {
-    padding: var(--space-4xl) var(--space-xl);
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.features .section-header {
-    text-align: center;
-    margin-bottom: var(--space-3xl);
-}
-
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--space-lg);
-}
-
-.feature-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-xl);
-    padding: var(--space-xl);
-    transition: all var(--transition-slow);
-}
-
-.feature-card:hover {
-    border-color: var(--accent);
-}
-
-.feature-icon {
-    display: none;
-}
-
-.feature-card h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.75rem;
-}
-
-.feature-card p {
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-}
-
-/* Download Section */
-.download {
-    padding: var(--space-4xl) var(--space-xl);
-}
-
-.download-container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.download .section-header {
-    text-align: center;
-}
-
-/* All 5 cards in a single row */
-.download-cards {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: var(--space-md);
-    margin-top: var(--space-2xl);
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.download-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-2xl);
-    padding: 1.5rem;
-    text-align: center;
-    transition: all var(--transition-slow);
-    position: relative;
-    overflow: hidden;
-}
-
-.download-card:hover {
-    border-color: var(--accent);
-}
-
-.platform-icon {
-    width: 56px;
-    height: 56px;
-    margin: 0 auto var(--space-md);
-    background: var(--bg-dark);
-    border-radius: var(--radius-xl);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.platform-icon svg {
-    width: 28px;
-    height: 28px;
-    color: var(--text-primary);
-}
-
-.download-card h3 {
-    font-size: 1.1rem;
-    margin-bottom: var(--space-xs);
-}
-
-.download-card .version {
-    color: var(--text-muted);
-    font-size: 0.75rem;
-    margin-bottom: var(--space-md);
-    font-family: 'Space Mono', monospace;
-}
-
-.download-card .btn {
-    width: 100%;
-    justify-content: center;
-    padding: 0.75rem 1rem;
-    font-size: 0.85rem;
-}
-
-/* Stacked download buttons for Windows */
-.download-buttons-stack {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.download-buttons-stack .btn {
-    width: 100%;
-    justify-content: center;
-    padding: 0.75rem 1rem;
-    font-size: 0.85rem;
-}
-
-/* Tertiary button style (smaller, less prominent) */
-.btn-tertiary {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 0.75rem;
-    background: transparent;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    color: var(--text-muted);
-    font-size: 0.75rem;
-    font-weight: 500;
-    text-decoration: none;
-    transition: all var(--transition-fast);
-    cursor: pointer;
-}
-
-.btn-tertiary:hover {
-    border-color: rgba(37, 139, 244, 0.5);
-    color: var(--text-secondary);
-    background: rgba(37, 139, 244, 0.05);
-}
-
-.btn-tertiary svg {
-    width: 14px;
-    height: 14px;
-}
-
-/* Small button variant */
-.btn-small {
-    padding: 0.5rem 0.75rem;
-    font-size: 0.75rem;
-}
-
-.btn-small svg {
-    width: 14px;
-    height: 14px;
-}
-
-/* Microsoft Store button style */
-.btn-store {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1rem;
-    background: transparent;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    color: var(--text-secondary);
-    font-size: 0.8rem;
-    font-weight: 500;
-    text-decoration: none;
-    transition: all var(--transition-fast);
-    cursor: pointer;
-}
-
-.btn-store:hover {
-    border-color: var(--accent);
-    color: var(--text-primary);
-    background: var(--accent-soft);
-}
-
-.btn-store svg {
-    flex-shrink: 0;
-}
-
-.coming-soon {
-    display: inline-block;
-    padding: 0.5rem 0.75rem;
-    background: rgba(245, 158, 11, 0.15);
-    color: var(--warning);
-    border-radius: var(--radius-sm);
-    font-size: 0.7rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-/* How It Works */
-.how-it-works {
-    padding: var(--space-4xl) var(--space-xl);
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.how-it-works .section-header {
-    text-align: center;
-}
-
-.steps {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xl);
-    margin-top: var(--space-2xl);
-}
-
-.step {
-    display: flex;
-    gap: var(--space-lg);
-    align-items: flex-start;
-}
-
-.step-number {
-    flex-shrink: 0;
-    width: 48px;
-    height: 48px;
-    background: var(--accent);
-    border-radius: var(--radius-lg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Space Mono', monospace;
-    font-weight: 700;
-    font-size: 1.25rem;
-}
-
-.step-content h3 {
-    font-size: 1.15rem;
-    margin-bottom: var(--space-sm);
-}
-
-.step-content p {
-    color: var(--text-secondary);
-}
-
 /* ============================================
-   Download Choice Modal (Windows)
+   Download modals
    ============================================ */
 .download-modal {
     position: fixed;
@@ -576,22 +150,6 @@
 
 .download-option svg {
     flex-shrink: 0;
-}
-
-/* Recommended badge */
-.recommended-badge {
-    position: absolute;
-    right: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(77, 184, 164, 0.15);
-    color: var(--success);
-    font-size: 0.65rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding: 0.25rem 0.5rem;
-    border-radius: var(--radius-sm);
 }
 
 /* ============================================
@@ -697,211 +255,11 @@
     margin-top: var(--space-md);
 }
 
-/* Social Proof / Testimonials */
-.social-proof {
-    padding: var(--space-3xl) var(--space-xl);
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-.social-proof .section-header {
-    text-align: center;
-    margin-bottom: var(--space-2xl);
-}
-
-.testimonials {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--space-lg);
-    align-items: stretch;
-}
-
-.testimonial-title {
-    color: var(--text-primary) !important;
-    font-style: normal !important;
-    font-weight: 600 !important;
-    font-size: 1.05rem !important;
-    margin-bottom: var(--space-sm) !important;
-}
-
-.testimonial {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-xl);
-    padding: var(--space-xl);
-    margin: 0;
-}
-
-.testimonial p {
-    color: var(--text-secondary);
-    font-size: 1rem;
-    font-style: italic;
-    line-height: 1.6;
-    margin-bottom: var(--space-md);
-}
-
-.testimonial cite {
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm);
-    font-style: normal;
-}
-
-.testimonial-stars {
-    color: var(--accent-secondary);
-    font-size: 0.9rem;
-    letter-spacing: 0.1em;
-}
-
-.testimonial-source {
-    color: var(--text-muted);
-    font-size: 0.8rem;
-}
-
-/* Mobile Hamburger Menu */
-.mobile-menu-btn {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.5rem;
-    z-index: 101;
-}
-
-.mobile-menu-btn span {
-    display: block;
-    width: 22px;
-    height: 2px;
-    background: var(--text-primary);
-    border-radius: 2px;
-    transition: all var(--transition-fast);
-}
-
-.mobile-menu-btn.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-}
-
-.mobile-menu-btn.active span:nth-child(2) {
-    opacity: 0;
-}
-
-.mobile-menu-btn.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
-}
-
-/* Responsive */
-@media (max-width: 1100px) {
-    .download-cards {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (max-width: 900px) {
-    .download-cards {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 768px) {
-    .hero {
-        padding: 7rem var(--space-lg) var(--space-2xl);
-    }
-
-    .hero-differentiator {
-        font-size: 0.85rem;
-    }
-
-    .mockup-content {
-        padding: 1.25rem;
-        font-size: 0.75rem;
-    }
-
-    .trust-items {
-        flex-wrap: wrap;
-        gap: var(--space-lg);
-    }
-
-    .trust-divider {
-        display: none;
-    }
-
-    .features,
-    .download,
-    .how-it-works {
-        padding: var(--space-3xl) var(--space-lg);
-    }
-
-    .step {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .step-number {
-        margin: 0 auto;
-    }
-    
-    /* Stack all cards on mobile */
-    .download-cards {
-        grid-template-columns: 1fr;
-        gap: var(--space-md);
-    }
-
-    /* Modal responsive */
-    .download-modal-content {
-        margin: var(--space-md);
-    }
-
-    .download-modal-options {
-        gap: var(--space-sm);
-    }
-
-    .download-option {
-        padding: 0.875rem 1rem;
-        font-size: 0.9rem;
-    }
-
-    .recommended-badge {
-        position: static;
-        transform: none;
-        margin-left: auto;
-    }
-
-    /* Linux modal responsive */
-    .terminal-body {
-        flex-direction: column;
-        gap: 0.75rem;
-        align-items: stretch;
-    }
-
-    .terminal-body code {
-        font-size: 0.75rem;
-        word-break: break-all;
-    }
-
-    .copy-btn {
-        align-self: flex-end;
-    }
-}
 
 /* ============================================
-   Screenshots — 3D coverflow carousel
-   Real screenshots fetched from Microsoft Store
-   and Apple App Store at runtime + via the
-   daily refresh GitHub Action.
+   Screenshot carousel (owned by scripts/opendrop-screenshots.js)
+   Real screenshots from the App Store and Microsoft Store.
    ============================================ */
-
-.screenshots {
-    padding: var(--space-3xl) var(--space-xl);
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.screenshots .section-header {
-    text-align: center;
-    margin-bottom: var(--space-xl);
-}
 
 .ss-tabs {
     display: flex;
@@ -987,7 +345,7 @@
    (rendered last) AND z-index.
 
    Card width/height are CSS custom properties set by JS per
-   platform — phone shots are tall (e.g. 280x540), Windows shots
+   platform: phone shots are tall (e.g. 280x540), Windows shots
    are wide (e.g. 540x420). Without per-platform sizing, the
    wider Windows shots get cropped horizontally because
    `object-fit: cover` clips. The slot-offset variable controls
@@ -1018,7 +376,7 @@
     display: block;
     width: 100%;
     height: 100%;
-    /* `contain` so the entire screenshot is always visible — no
+    /* `contain` so the entire screenshot is always visible: no
        crop, no aspect-ratio mismatch. The card itself is sized
        to the natural aspect ratio so there's minimal letterbox. */
     object-fit: contain;
@@ -1060,7 +418,7 @@
     filter: none;
 }
 
-/* Off-stage slots — cards that aren't in the visible 3-up window
+/* Off-stage slots: cards that aren't in the visible 3-up window
    sit here. They're invisible but still in the DOM so they can
    transition into prev/next when the carousel rotates. The
    transform offsets are 2× the slot offset so the card visibly
@@ -1116,7 +474,7 @@
     transform: translateY(0);
 }
 
-/* Position-indicator dots — one per shot in the active platform.
+/* Position-indicator dots: one per shot in the active platform.
    Active dot is wider and accent-coloured. Each dot is a button
    so a screen reader reads "Go to screenshot 3 of 6" via the
    aria-label set in JS. */
@@ -1162,15 +520,6 @@
     line-height: 1.5;
 }
 
-@media (max-width: 700px) {
-    .ss-stage-wrap {
-        height: 480px;
-    }
-    /* Card dimensions and slot offset are recomputed by JS on
-       resize via CSS custom properties on .ss-stage, so no fixed
-       overrides are needed here. */
-}
-
 @media (prefers-reduced-motion: reduce) {
     .ss-card {
         transition: none !important;
@@ -1178,357 +527,1574 @@
 }
 
 /* ============================================
-   Free vs Pro comparison table
+   Product page (body.page-opendrop), refresh 2026-10
    ============================================ */
 
-.compare {
-    padding: var(--space-3xl) var(--space-xl);
-    max-width: 1100px;
-    margin: 0 auto;
+/* This page is long and dense, so it runs the section rhythm tighter
+   than the shared default (56px, 48px on phones). The seam between
+   sections already marks each break. */
+body.page-opendrop {
+    --section-y: 48px;
 }
 
-.compare .section-header {
-    text-align: center;
-    margin-bottom: var(--space-xl);
+@media (max-width: 768px) {
+    body.page-opendrop {
+        --section-y: 40px;
+    }
 }
 
-.compare-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
+@media (max-width: 600px) {
+    body.page-opendrop {
+        --section-y: 32px;
+    }
+}
+
+body.page-opendrop [hidden] {
+    display: none !important;
+}
+
+body.page-opendrop [id],
+body.page-opendrop .section[id] {
+    scroll-margin-top: calc(var(--subnav-h) + 16px);
+}
+
+/* The Download section (06) has no rail link, so the sub-nav button
+   carries the current marker while it is in view. A ring, not an
+   outline, so the focus outline still reads on top of it. */
+body.page-opendrop .subnav__cta[aria-current="true"] {
+    box-shadow: 0 0 0 2px var(--bg-deep), 0 0 0 4px var(--accent-glow);
+}
+
+body.page-opendrop .od-sprite {
+    position: absolute;
+    width: 0;
+    height: 0;
     overflow: hidden;
-    font-size: 0.95rem;
 }
 
-.compare-table thead th {
-    background: rgba(255, 255, 255, 0.03);
-    text-align: left;
-    padding: 1rem 1.25rem;
-    font-weight: 600;
+body.page-opendrop main code {
+    padding: 1px 6px;
+    border-radius: 6px;
+    background: rgba(148, 163, 192, 0.12);
     color: var(--text-primary);
-    border-bottom: 1px solid var(--border);
-    font-size: 0.95rem;
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    white-space: nowrap;
 }
 
-.compare-table thead th.compare-plan {
-    text-align: center;
-    width: 18%;
+/* ---------- Global nav: family lockup, scrolls away ---------- */
+body.page-opendrop nav.od-site-nav,
+body.page-opendrop nav.od-site-nav.scrolled {
+    position: absolute;
+    background: transparent;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    border-bottom: 1px solid var(--hairline);
 }
 
-.compare-table thead th.compare-plan.pro {
-    color: var(--accent);
-}
-
-.compare-table tbody td {
-    padding: 0.85rem 1.25rem;
-    border-top: 1px solid var(--border);
-    color: var(--text-secondary);
-    vertical-align: top;
-}
-
-.compare-table tbody td.compare-feat {
-    color: var(--text-primary);
-    font-weight: 500;
-    width: 40%;
-}
-
-.compare-table tbody td.compare-cell {
-    text-align: center;
-    width: 18%;
-    color: var(--text-secondary);
-}
-
-.compare-cell .check {
-    color: #4ade80;
-    font-weight: 700;
-}
-
-.compare-cell .dash {
-    color: var(--text-muted);
-}
-
-.compare-cell .partial {
-    color: var(--accent);
-    font-size: 0.82rem;
-}
-
-.compare-section-row td {
-    background: rgba(255, 255, 255, 0.025);
-    color: var(--text-muted);
-    font-size: 0.78rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    padding: 0.5rem 1.25rem;
-    border-top: 1px solid var(--border);
-}
-
-.compare-cta {
-    margin-top: var(--space-xl);
-    text-align: center;
-    color: var(--text-muted);
-    font-size: 0.9rem;
-}
-
-@media (max-width: 700px) {
-    .compare-table {
-        font-size: 0.85rem;
-    }
-
-    .compare-table thead th,
-    .compare-table tbody td {
-        padding: 0.65rem 0.75rem;
-    }
-
-    .compare-table tbody td.compare-feat {
-        width: 50%;
-    }
-
-    .compare-table thead th.compare-plan,
-    .compare-table tbody td.compare-cell {
-        width: 25%;
-    }
-}
-
-/* ============================================
-   Redesigned feature wall — themed groups,
-   icon-led, scannable tiles instead of a wall
-   of paragraph-length cards.
-   ============================================ */
-
-.feature-groups {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2xl);
-    margin-top: var(--space-2xl);
-    max-width: 1100px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.feature-group-title {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin: 0 0 var(--space-md);
-    letter-spacing: 0.01em;
-}
-
-.feature-group-icon {
+body.page-opendrop .nav-lockup__home {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 36px;
-    height: 36px;
-    border-radius: 10px;
-    background: rgba(120, 130, 255, 0.08);
-    color: var(--accent);
-    flex-shrink: 0;
+    height: 44px;
+    border-radius: var(--r-sm);
 }
 
-.feature-tiles {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: var(--space-md);
+body.page-opendrop .nav-lockup__home img {
+    display: block;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
 }
 
-.feature-tile {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    padding: 1rem 1.1rem;
-    transition: border-color 0.2s, transform 0.2s;
+body.page-opendrop .nav-lockup .logo {
+    gap: 10px;
+    min-height: 44px;
+    font-size: 1.125rem;
 }
 
-.feature-tile:hover {
-    border-color: rgba(120, 130, 255, 0.4);
-    transform: translateY(-2px);
+body.page-opendrop .nav-lockup .logo-icon {
+    width: 32px;
+    height: 32px;
 }
 
-.feature-tile strong {
-    display: inline;
-    color: var(--text-primary);
-    font-weight: 600;
-    font-size: 0.95rem;
-    line-height: 1.3;
-    margin-right: 0.35rem;
+/* ---------- Hero ---------- */
+body.page-opendrop .od-hero {
+    padding: calc(var(--nav-h) + 40px) 0 32px;
 }
 
-.feature-tile p {
-    margin: 0.5rem 0 0;
-    color: var(--text-secondary);
-    font-size: 0.85rem;
-    line-height: 1.55;
+body.page-opendrop .od-hero .hero-badge {
+    margin-bottom: var(--sp-5);
 }
 
-.pro-pill {
-    display: inline-block;
-    background: linear-gradient(120deg, var(--accent), #b78bff);
-    color: #0e0e10;
-    font-size: 0.65rem !important;
-    font-weight: 700 !important;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    padding: 0.15rem 0.45rem;
-    border-radius: 999px;
-    margin-right: 0.4rem !important;
-    vertical-align: 0.06em;
+body.page-opendrop .od-hero h1 .gradient {
+    display: block;
 }
 
-@media (max-width: 700px) {
-    .feature-tiles {
-        grid-template-columns: 1fr;
+body.page-opendrop .od-hero .hero-visual {
+    min-width: 0;
+    max-width: none;
+    margin: 0;
+}
+
+body.page-opendrop #heroDownloadBtn .icon-arrow {
+    display: none;
+}
+
+html[data-os="macos"] body.page-opendrop #heroDownloadBtn .icon-download,
+html[data-os="unknown"] body.page-opendrop #heroDownloadBtn .icon-download,
+html[data-os="macos"] body.page-opendrop .hero-alt-link,
+html[data-os="unknown"] body.page-opendrop .hero-alt-link,
+html[data-os="macos"] body.page-opendrop .cta-badge,
+html[data-os="unknown"] body.page-opendrop .cta-badge {
+    display: none;
+}
+
+html[data-os="macos"] body.page-opendrop #heroDownloadBtn .icon-arrow,
+html[data-os="unknown"] body.page-opendrop #heroDownloadBtn .icon-arrow {
+    display: block;
+}
+
+body.page-opendrop .hero-note {
+    max-width: 54ch;
+    margin: var(--sp-3) 0 0;
+    font-size: var(--fs-small);
+    line-height: 1.5;
+    color: var(--text-subtle);
+}
+
+body.page-opendrop .hero-note span {
+    display: none;
+}
+
+html[data-os="windows"] body.page-opendrop .hero-note [data-show-os~="windows"],
+html[data-os="linux"] body.page-opendrop .hero-note [data-show-os~="linux"],
+html[data-os="ios"] body.page-opendrop .hero-note [data-show-os~="ios"],
+html[data-os="android"] body.page-opendrop .hero-note [data-show-os~="android"],
+html[data-os="macos"] body.page-opendrop .hero-note [data-show-os~="macos"] {
+    display: block;
+}
+
+body.page-opendrop .od-hero .platform-rail,
+body.page-opendrop .od-hero .stat-strip {
+    margin-top: var(--sp-6);
+}
+
+/* The lede already lists the platforms, so the rail's caption only
+   names the dashed icon at its end (which carries the same words as
+   its label). On a Mac the note above says it, so the caption hides. */
+html[data-os="macos"] body.page-opendrop .od-hero .platform-rail__text {
+    display: none;
+}
+
+@media (min-width: 1024px) {
+    body.page-opendrop .od-hero .hero__grid {
+        grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
+        gap: var(--sp-14);
+        align-items: center;
     }
 }
 
-/* ============================================
-   Pricing CTA strip — sits beneath the Free vs
-   Pro comparison and gives a single clear path
-   to subscribe / download.
-   ============================================ */
-
-.pricing-cta {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: var(--space-md);
-    margin-top: var(--space-2xl);
+/* Carousel restyle (behaviour and .ss-* contract unchanged) */
+body.page-opendrop .ss-tabs {
+    flex-wrap: nowrap;
+    gap: 4px;
+    width: max-content;
+    max-width: 100%;
+    margin: 0 auto var(--sp-2);
+    padding: 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    border-radius: var(--r-pill);
+    background: var(--bg-dark);
+    border: 1px solid var(--line-ui);
 }
 
-.pricing-card {
-    position: relative;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-xl);
-    padding: 1.5rem 1.5rem 1.75rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    transition: border-color 0.25s, transform 0.25s;
+body.page-opendrop .ss-tabs::-webkit-scrollbar {
+    display: none;
 }
 
-.pricing-card:hover {
-    border-color: rgba(120, 130, 255, 0.4);
-    transform: translateY(-2px);
-}
-
-.pricing-card-highlight {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 1px var(--accent),
-                0 16px 40px rgba(120, 130, 255, 0.18);
-}
-
-.pricing-badge {
-    position: absolute;
-    top: -12px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: linear-gradient(120deg, var(--accent), #b78bff);
-    color: #0e0e10;
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    padding: 0.3rem 0.75rem;
-    border-radius: 999px;
-}
-
-.pricing-tier {
-    color: var(--text-muted);
-    font-size: 0.78rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-}
-
-.pricing-amount {
-    color: var(--text-primary);
-    font-family: 'Space Mono', monospace;
-    font-size: 2.25rem;
-    font-weight: 700;
-    line-height: 1.1;
-}
-
-.pricing-amount-suffix {
-    color: var(--text-muted);
-    font-size: 1rem;
-    font-weight: 500;
-    margin-left: 0.25rem;
-}
-
-.pricing-period {
-    color: var(--text-muted);
-    font-size: 0.85rem;
-}
-
-.pricing-blurb {
+body.page-opendrop .ss-tab {
+    flex: none;
+    min-height: 44px;
+    padding: 0 16px;
+    border: 0;
+    border-radius: var(--r-pill);
+    background: transparent;
     color: var(--text-secondary);
-    font-size: 0.9rem;
-    line-height: 1.55;
-    margin: 0.5rem 0 1.25rem;
-    flex: 1;
+    font: 600 0.875rem/1 var(--font-sans);
+    letter-spacing: 0;
+    transition: background 0.15s ease, color 0.15s ease;
 }
 
-.pricing-card .btn {
-    width: 100%;
-    justify-content: center;
+body.page-opendrop .ss-tab:hover {
+    color: var(--text-primary);
 }
 
-/* ============================================
-   Alternatives comparison table — OpenDrop vs
-   LocalSend, Snapdrop, AirDrop. 4-plan column
-   layout, otherwise mirrors the Free vs Pro
-   table styling.
-   ============================================ */
+body.page-opendrop .ss-tab.active {
+    background: #edf2f7;
+    color: #0b1226;
+}
 
-.compare-alts {
-    padding: var(--space-3xl) var(--space-xl);
-    max-width: 1100px;
+body.page-opendrop .ss-tab:focus-visible,
+body.page-opendrop .ss-arrow:focus-visible {
+    outline: 2px solid var(--accent-glow);
+    outline-offset: 2px;
+}
+
+body.page-opendrop .ss-stage-wrap {
+    height: 540px;
     margin: 0 auto;
 }
 
-.compare-alts .section-header {
-    text-align: center;
-    margin-bottom: var(--space-xl);
+body.page-opendrop .ss-controls {
+    margin-top: var(--sp-2);
 }
 
-.alts-table-wrap {
-    overflow-x: auto;
-    /* Soft scrollbar on mobile so the table can scroll without
-       chopping off content. The table itself has min-width so
-       columns don't squish below the readable threshold. */
-    -webkit-overflow-scrolling: touch;
+body.page-opendrop .ss-arrow {
+    border-color: var(--line-ui);
+    background: var(--surface-1);
 }
 
-.alts-table {
-    min-width: 720px;
+body.page-opendrop .ss-note {
+    color: var(--text-subtle);
+    margin-top: var(--sp-3);
 }
 
-.alts-table thead th.compare-plan {
-    width: 16%;
+@media (max-width: 1023px) {
+    body.page-opendrop .ss-stage-wrap {
+        height: 500px;
+    }
 }
 
-.alts-table tbody td.compare-cell {
-    width: 16%;
-    font-size: 0.88rem;
+body.page-opendrop .section-head {
+    margin-bottom: var(--sp-6);
 }
 
-.alts-table tbody td.compare-feat {
-    width: 36%;
+/* Split heads: the H2 sits right under its eyebrow, whatever the
+   length of the lede beside it. */
+@media (min-width: 1024px) {
+    body.page-opendrop .section-head--split > .section-title {
+        align-self: start;
+    }
 }
 
-.alts-note {
-    color: var(--text-muted);
-    font-size: 0.78rem;
-    text-align: center;
-    margin-top: var(--space-md);
+@media (max-width: 600px) {
+    body.page-opendrop .section-head {
+        margin-bottom: var(--sp-5);
+    }
+}
+
+/* ---------- How it works ---------- */
+@media (min-width: 769px) {
+    body.page-opendrop .step__text {
+        max-width: 42ch;
+    }
+}
+
+/* The link chips sit on the horizontal rail. Once the steps stack,
+   they would only repeat the step text (they are aria-hidden). */
+@media (max-width: 768px) {
+    body.page-opendrop .step__link {
+        display: none;
+    }
+}
+
+body.page-opendrop .steps-note {
+    margin: var(--sp-6) 0 0;
+    font-size: var(--fs-small);
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+
+body.page-opendrop .steps-note .chip {
+    margin-right: 6px;
+    vertical-align: 1px;
+}
+
+/* ---------- Features ---------- */
+body.page-opendrop .route-tile .tile__head {
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* Phones: title and Free/Pro switch share one line. */
+@media (max-width: 600px) {
+    body.page-opendrop .route-tile .tile__title {
+        font-size: 1.0625rem;
+    }
+
+    body.page-opendrop .route-tile .segmented__btn {
+        padding: 0 12px;
+    }
+}
+
+body.page-opendrop .route-tile .tile__note {
+    margin-top: auto;
+    padding-top: var(--sp-4);
+    border-top: 1px solid var(--hairline);
+}
+
+body.page-opendrop .route-ladder-wrap {
+    margin-top: var(--sp-3);
+}
+
+/* On desktop the tile is as tall as the feature list beside it. The
+   rails between the rungs stretch to fill that height, so the ladder
+   reaches the note instead of leaving a blank block above it. */
+@media (min-width: 1024px) {
+    body.page-opendrop .route-ladder-wrap,
+    body.page-opendrop .route-plan,
+    body.page-opendrop .route-ladder {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+    }
+
+    body.page-opendrop .route-ladder > .route-rung:not(:last-child) {
+        flex: 1 1 auto;
+        min-height: 72px;
+    }
+}
+
+body.page-opendrop .route-plan + .route-plan {
+    margin-top: var(--sp-6);
+}
+
+body.page-opendrop .route-plan__label {
+    margin: 0 0 var(--sp-3);
+    font: 700 0.6875rem/1.2 var(--font-mono);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-secondary);
+}
+
+body.page-opendrop #routeLadder[data-state="free"] .route-plan--pro,
+body.page-opendrop #routeLadder[data-state="pro"] .route-plan--free {
+    display: none;
+}
+
+body.page-opendrop #routeLadder[data-state] .route-plan + .route-plan {
+    margin-top: 0;
+}
+
+body.page-opendrop #routeLadder[data-state] .route-plan__label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+body.page-opendrop .route-ladder {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+body.page-opendrop .route-rung {
+    position: relative;
+    display: grid;
+    grid-template-columns: 40px minmax(0, 1fr);
+    gap: 14px;
+    padding-bottom: var(--sp-4);
+}
+
+body.page-opendrop .route-rung:last-child {
+    padding-bottom: 0;
+}
+
+body.page-opendrop .route-rung:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    left: 19px;
+    top: 40px;
+    bottom: 0;
+    width: 2px;
+    background: var(--grad-accent-v);
+}
+
+body.page-opendrop .route-rung__node {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #0b1226;
+    border: 2px solid var(--accent);
+    box-shadow: 0 0 0 6px var(--surface-1);
+    font: 700 0.875rem/1 var(--font-mono);
+    color: var(--accent-glow);
+}
+
+body.page-opendrop .route-rung__name {
+    margin: 0;
+    padding-top: 1px;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.35;
+}
+
+body.page-opendrop .route-rung__text {
+    margin: 2px 0 0;
+    font-size: var(--fs-small);
     line-height: 1.5;
+    color: var(--text-secondary);
 }
 
-/* Cookie banner styles moved to styles/common.css so every page
-   that uses Google tags (including the policy pages, which use only
-   inline styles + common.css) inherits them. */
+@media (min-width: 1024px) {
+    body.page-opendrop .feature-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: var(--sp-6);
+    }
+
+    body.page-opendrop .feature-list > li:nth-last-child(2) {
+        border-bottom: 1px solid var(--hairline);
+    }
+
+    /* Two columns: the Pro chip moves under the row icon, so the title
+       gets the full column width and does not wrap around the chip.
+       The chip stays its own element, outside the title text. */
+    body.page-opendrop .feature-list > li {
+        position: relative;
+    }
+
+    body.page-opendrop .feature-list .row__title-line > .chip--pro {
+        position: absolute;
+        top: 58px;
+        left: 18px;
+        transform: translateX(-50%);
+    }
+}
+
+body.page-opendrop .feature-list .row__text {
+    font-size: var(--fs-small);
+    line-height: 1.55;
+}
+
+body.page-opendrop .feature-list > li {
+    padding: 14px 0;
+}
+
+body.page-opendrop .feature-list .link-arrow {
+    font-size: var(--fs-small);
+}
+
+@media (min-width: 769px) {
+    body.page-opendrop .feature-list .link-arrow {
+        min-height: 36px;
+    }
+}
+
+/* ---------- Free vs Pro ---------- */
+body.page-opendrop .plans-wrap {
+    max-width: 1040px;
+}
+
+body.page-opendrop .plans-both {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 var(--sp-5);
+}
+
+body.page-opendrop .plans-both .chip {
+    padding: 4px 10px;
+    font: 500 0.8125rem/1.3 var(--font-sans);
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--text-secondary);
+}
+
+body.page-opendrop .plans-both__label {
+    margin-right: 4px;
+    font-size: var(--fs-small);
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+body.page-opendrop .plans,
+body.page-opendrop .alts {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    table-layout: fixed;
+}
+
+body.page-opendrop .plans th,
+body.page-opendrop .plans td {
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--hairline);
+    text-align: left;
+    vertical-align: top;
+}
+
+body.page-opendrop .plans thead th {
+    width: 33%;
+    border-bottom: 0;
+    vertical-align: bottom;
+}
+
+body.page-opendrop .plans thead th:first-child {
+    width: 34%;
+}
+
+body.page-opendrop .plans tbody th,
+body.page-opendrop .alts tbody th {
+    font-size: var(--fs-body);
+    font-weight: 500;
+    line-height: 1.45;
+    color: var(--text-primary);
+}
+
+/* Every tbody cell shares one 22px line box: the row header text, the
+   cell strut and the inline-flex mark. Without this the td strut (body
+   line-height) sat under the mark and pushed its text 2px below the
+   row header, and single-line rows came out 51px while others did not.
+   Marks that wrap still grow the row; the first line stays aligned. */
+body.page-opendrop .plans tbody th,
+body.page-opendrop .plans tbody td,
+body.page-opendrop .alts tbody th,
+body.page-opendrop .alts tbody td {
+    line-height: 22px;
+}
+
+body.page-opendrop .plans tbody td .mark,
+body.page-opendrop .alts tbody td .mark {
+    vertical-align: top;
+    line-height: 22px;
+}
+
+body.page-opendrop .plans tbody td .mark svg,
+body.page-opendrop .alts tbody td .mark svg {
+    margin-top: 3px;
+}
+
+/* Text-only cells start where the text of an icon cell starts (16px
+   icon plus 8px gap), so the Free and Pro columns share one left edge.
+   Phones stack each cell under a micro label instead. */
+@media (min-width: 701px) {
+    body.page-opendrop .plans tbody td .mark--text {
+        padding-left: 24px;
+    }
+}
+
+body.page-opendrop .plan-head {
+    padding: 20px 20px;
+    border-radius: 16px 16px 0 0;
+}
+
+body.page-opendrop .plan-head--free {
+    background: var(--surface-1);
+}
+
+/* The Pro and OpenDrop lanes are outlined with one continuous ring:
+   the header's top edge (following the rounded corners), both sides
+   down the column, and the bottom of the last visible row. The inset
+   shadows all use the same colour, so no edge reads as a separate bar.
+   A stronger edge than the global token so the ring is visible over
+   the lane tint. */
+body.page-opendrop .plans,
+body.page-opendrop .alts {
+    --accent-edge: rgba(59, 142, 245, 0.55);
+}
+
+body.page-opendrop .plans .plan-head--pro {
+    position: relative;
+    background: linear-gradient(180deg, rgba(59, 142, 245, 0.16), rgba(59, 142, 245, 0.06));
+}
+
+body.page-opendrop .plan-name {
+    margin: 0;
+    font: 600 1.125rem/1.3 var(--font-sans);
+    color: var(--text-primary);
+}
+
+body.page-opendrop .plan-price {
+    margin: 6px 0 0;
+    font: 700 2rem/1.1 var(--font-mono);
+    color: var(--text-primary);
+}
+
+body.page-opendrop .plan-period,
+body.page-opendrop .plan-sub {
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    font-weight: 400;
+    color: var(--text-subtle);
+}
+
+body.page-opendrop .plan-sub {
+    margin: 4px 0 var(--sp-4);
+    line-height: 1.4;
+}
+
+body.page-opendrop .plan-head .btn-ghost {
+    min-height: 40px;
+    padding: 0 16px;
+    font-size: 0.875rem;
+}
+
+/* Lanes: the Pro column and the OpenDrop column. Cells carry only the
+   tint; the outline is ONE gradient ring per table (::after below), so
+   the top, sides and bottom have the same thickness and the gradient
+   runs unbroken around the rounded corners. Per-cell inset shadows were
+   tried first: the vertical edges landed on fractional pixels and
+   blurred wider than the crisp 1px top edge. */
+body.page-opendrop .plans .is-lane,
+body.page-opendrop .alts .is-lane {
+    background: var(--accent-tint);
+}
+
+body.page-opendrop .plans,
+body.page-opendrop .alts {
+    position: relative;
+}
+
+body.page-opendrop .plans::after,
+body.page-opendrop .alts::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    box-sizing: border-box;
+    padding: 2px;
+    pointer-events: none;
+    /* Gradient fill minus its content box leaves a 2px ring */
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+}
+
+/* Column geometry matches the thead widths (34/33/33 and 24/19x4).
+   round() snaps the edges to whole pixels where supported, so the
+   vertical sides stay as crisp as the top. */
+body.page-opendrop .plans::after {
+    left: 67%;
+    width: 33%;
+    left: round(67%, 1px);
+    width: round(33%, 1px);
+    border-radius: 16px;
+    background: var(--grad-pro);
+}
+
+body.page-opendrop .alts::after {
+    left: 24%;
+    width: 19%;
+    left: round(24%, 1px);
+    width: round(19%, 1px);
+    border-radius: 12px;
+    background: var(--grad-accent);
+}
+
+body.page-opendrop .plans thead .is-lane {
+    background: linear-gradient(180deg, rgba(59, 142, 245, 0.14), rgba(59, 142, 245, 0.06));
+}
+
+body.page-opendrop .plans tbody tr:last-child .is-lane,
+body.page-opendrop .plans:has(tr[hidden]) tr.is-last-default .is-lane,
+body.page-opendrop .alts tbody tr:last-child .is-lane,
+body.page-opendrop .alts:has(tr[hidden]) tr.is-last-default .is-lane {
+    border-radius: 0 0 16px 16px;
+}
+
+body.page-opendrop .plans .group-row th {
+    padding: 28px 20px 8px;
+    border-bottom: 0;
+    font: 700 0.6875rem/1.2 var(--font-mono);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-secondary);
+    background: linear-gradient(90deg, transparent 67%, var(--accent-tint) 67%);
+}
+
+body.page-opendrop .plans-note {
+    max-width: 72ch;
+    margin: var(--sp-5) 0 0;
+    font-size: var(--fs-small);
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+
+body.page-opendrop .plans-note strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* Phones: rows marked data-scope="wide" (their facts are repeated
+   elsewhere on the page) fold behind the reveal toggle too, while
+   the table is collapsed. Without JS there is no data-collapsed and
+   every row shows. */
+@media (max-width: 700px) {
+    body.page-opendrop table[data-collapsed] tbody tr[data-scope="wide"] {
+        display: none;
+    }
+}
+
+/* Phones: the both-plans chips read as one line of body text with
+   dot separators instead of six wrapping pills. */
+@media (max-width: 700px) {
+    body.page-opendrop .plans::after,
+    body.page-opendrop .alts::after {
+        display: none;
+    }
+
+    body.page-opendrop .plans-both {
+        display: block;
+        font-size: var(--fs-small);
+        line-height: 1.6;
+        color: var(--text-secondary);
+    }
+
+    body.page-opendrop .plans-both__label {
+        margin-right: 2px;
+        color: var(--text-primary);
+    }
+
+    body.page-opendrop .plans-both .chip {
+        display: inline;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: none;
+        font: inherit;
+        white-space: normal;
+        color: inherit;
+    }
+
+    body.page-opendrop .plans-both .chip + .chip::before {
+        content: "\00B7";
+        content: "\00B7" / "";
+        margin: 0 6px;
+        color: var(--text-subtle);
+    }
+}
+
+@media (max-width: 700px) {
+    body.page-opendrop .plans,
+    body.page-opendrop .plans thead,
+    body.page-opendrop .plans tbody,
+    body.page-opendrop .plans tr,
+    body.page-opendrop .plans th,
+    body.page-opendrop .plans td {
+        display: block;
+        width: auto;
+    }
+
+    body.page-opendrop .plans thead tr {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--sp-3);
+        margin-bottom: var(--sp-2);
+    }
+
+    body.page-opendrop .plans thead th:first-child {
+        display: none;
+    }
+
+    body.page-opendrop .plans thead th.plan-head {
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        padding: var(--sp-4);
+        border-radius: 16px;
+    }
+
+    body.page-opendrop .plans thead .plan-head--pro {
+        box-shadow: inset 0 0 0 1px var(--accent-edge);
+    }
+
+    body.page-opendrop .plan-price {
+        font-size: 1.375rem;
+        white-space: nowrap;
+    }
+
+    body.page-opendrop .plan-head .btn-ghost,
+    body.page-opendrop .plan-head .btn-cta {
+        width: 100%;
+        min-height: 44px;
+        margin-top: auto;
+        padding: 0 10px;
+    }
+
+    /* Rows: label on its own line, then the Free and Pro cells under
+       the plan cards they belong to. The cards and the Pro lane name
+       the columns, so the cells carry no label of their own. */
+    body.page-opendrop .plans tbody tr {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 4px var(--sp-3);
+        padding: 10px 0;
+        border-bottom: 1px solid var(--hairline);
+    }
+
+    body.page-opendrop .plans tbody th,
+    body.page-opendrop .plans tbody td {
+        padding: 0;
+        border: 0;
+    }
+
+    body.page-opendrop .plans tbody th {
+        grid-column: 1 / -1;
+        font-size: 0.9375rem;
+        font-weight: 600;
+    }
+
+    /* Flex cells, so the mark sets the line height instead of the
+       cell's body-text strut. */
+    body.page-opendrop .plans tbody td {
+        display: flex;
+        align-items: flex-start;
+        padding: 6px 10px;
+    }
+
+    body.page-opendrop .plans tbody .mark,
+    body.page-opendrop .alts[data-state] tbody .mark {
+        font-size: 0.8125rem;
+    }
+
+    body.page-opendrop .plans tbody .is-lane,
+    body.page-opendrop .plans tbody tr:last-child .is-lane,
+    body.page-opendrop .plans:has(tr[hidden]) tr.is-last-default .is-lane {
+        border-radius: 10px;
+        box-shadow: inset 0 0 0 1px var(--accent-edge);
+    }
+
+    body.page-opendrop .plans .group-row {
+        padding: 18px 0 2px;
+        border-bottom: 0;
+    }
+
+    body.page-opendrop .plans .group-row th {
+        padding: 0;
+        background: none;
+    }
+}
+
+/* ---------- Alternatives ---------- */
+body.page-opendrop .alt-picker {
+    display: none;
+}
+
+body.page-opendrop .table-scroll {
+    position: relative;
+}
+
+body.page-opendrop .table-scroll:focus-visible {
+    outline-offset: 4px;
+    border-radius: var(--r-md);
+}
+
+body.page-opendrop .alts th,
+body.page-opendrop .alts td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--hairline);
+    text-align: left;
+    vertical-align: top;
+}
+
+body.page-opendrop .alts thead th {
+    width: 19%;
+    padding-top: 14px;
+    border-bottom: 1px solid var(--hairline-strong);
+    vertical-align: bottom;
+    font-size: var(--fs-body);
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+body.page-opendrop .alts thead th:first-child {
+    width: 24%;
+}
+
+body.page-opendrop .alts thead th.is-lane {
+    position: relative;
+    border-radius: 12px 12px 0 0;
+    background: var(--accent-tint-strong);
+}
+
+body.page-opendrop .alts .mark .chip {
+    margin-top: 1px;
+}
+
+body.page-opendrop .alts-note {
+    max-width: 90ch;
+    margin: var(--sp-4) 0 0;
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    color: var(--text-subtle);
+}
+
+body.page-opendrop .alts-note a,
+body.page-opendrop .alts-sources a {
+    color: var(--accent-secondary);
+    text-underline-offset: 3px;
+}
+
+body.page-opendrop .alts-sources {
+    margin-top: var(--sp-3);
+    border-top: 1px solid var(--hairline);
+}
+
+body.page-opendrop .alts-sources > summary {
+    font-size: var(--fs-small);
+    color: var(--text-secondary);
+}
+
+body.page-opendrop .alts-sources .disclosure__body {
+    max-width: none;
+    font-size: 0.8125rem;
+}
+
+body.page-opendrop .alts-sources__list {
+    columns: 2 280px;
+    column-gap: var(--sp-8);
+    margin: 0;
+    padding-left: 18px;
+}
+
+body.page-opendrop .alts-sources__list li {
+    break-inside: avoid;
+    padding: 0;
+}
+
+body.page-opendrop .alts-sources__list > li a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+}
+
+@media (max-width: 768px) {
+    body.page-opendrop .alts-sources__list > li a {
+        min-height: 44px;
+    }
+}
+
+@media (max-width: 700px) {
+    body.page-opendrop .alt-picker {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--sp-2);
+        margin-bottom: var(--sp-4);
+    }
+
+    body.page-opendrop .alt-picker__label {
+        font-size: var(--fs-small);
+        font-weight: 600;
+        color: var(--text-secondary);
+    }
+
+    /* No JS: keep the table and let it scroll inside its box */
+    body.page-opendrop .table-scroll {
+        overflow-x: auto;
+    }
+
+    body.page-opendrop .table-scroll:has(.alts:not([data-state])) {
+        -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent);
+        mask-image: linear-gradient(90deg, #000 85%, transparent);
+    }
+
+    body.page-opendrop .alts:not([data-state]) {
+        min-width: 760px;
+    }
+
+    body.page-opendrop .alts:not([data-state]) tr > :first-child {
+        position: sticky;
+        left: 0;
+        z-index: 1;
+        background: var(--surface-1);
+    }
+
+    /* With JS: OpenDrop plus the chosen competitor, two columns */
+    body.page-opendrop .alts[data-state],
+    body.page-opendrop .alts[data-state] tbody,
+    body.page-opendrop .alts[data-state] tr,
+    body.page-opendrop .alts[data-state] th,
+    body.page-opendrop .alts[data-state] td {
+        display: block;
+        width: auto;
+    }
+
+    /* The header shrinks to the two columns on show (OpenDrop and the
+       chosen app), so the cells below need no labels of their own. */
+    body.page-opendrop .alts[data-state] thead {
+        display: block;
+    }
+
+    body.page-opendrop .alts[data-state] thead tr {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--sp-3);
+    }
+
+    body.page-opendrop .alts[data-state] thead th {
+        padding: 10px 10px 8px;
+        border-bottom: 0;
+        font-size: 0.875rem;
+    }
+
+    body.page-opendrop .alts[data-state] thead th:first-child {
+        display: none;
+    }
+
+    body.page-opendrop .alts[data-state] thead th:not(.is-lane) {
+        box-shadow: inset 0 -1px 0 var(--hairline-strong);
+    }
+
+    body.page-opendrop .alts[data-state] tbody tr {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 4px var(--sp-3);
+        padding: 10px 0;
+        border-bottom: 1px solid var(--hairline);
+    }
+
+    body.page-opendrop .alts[data-state] tbody th {
+        grid-column: 1 / -1;
+        padding: 0;
+        border: 0;
+        font-size: 0.9375rem;
+        font-weight: 600;
+    }
+
+    body.page-opendrop .alts[data-state] tbody td {
+        display: flex;
+        align-items: flex-start;
+        padding: 6px 10px;
+        border: 0;
+    }
+
+    body.page-opendrop .alts[data-state] tbody .is-lane,
+    body.page-opendrop .alts[data-state] tbody tr:last-child .is-lane,
+    body.page-opendrop .alts[data-state]:has(tr[hidden]) tr.is-last-default .is-lane {
+        border-radius: 10px;
+        box-shadow: inset 0 0 0 1px var(--accent-edge);
+    }
+
+    body.page-opendrop .alts[data-state="localsend"] [data-col="quickshare"],
+    body.page-opendrop .alts[data-state="localsend"] [data-col="airdrop"],
+    body.page-opendrop .alts[data-state="quickshare"] [data-col="localsend"],
+    body.page-opendrop .alts[data-state="quickshare"] [data-col="airdrop"],
+    body.page-opendrop .alts[data-state="airdrop"] [data-col="localsend"],
+    body.page-opendrop .alts[data-state="airdrop"] [data-col="quickshare"] {
+        display: none;
+    }
+}
+
+/* ---------- FAQ ---------- */
+body.page-opendrop .faq-cols {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--sp-12);
+    align-items: start;
+}
+
+@media (max-width: 899px) {
+    body.page-opendrop .faq-cols {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    body.page-opendrop .faq-cols .accordion + .accordion {
+        border-top: 0;
+    }
+}
+
+/* ---------- Download ---------- */
+body.page-opendrop .dl-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: var(--sp-12);
+    align-items: start;
+}
+
+body.page-opendrop .dl-main {
+    min-width: 0;
+}
+
+body.page-opendrop .dl-list {
+    --spine-node-y: 32px;
+}
+
+body.page-opendrop .dl-row {
+    align-items: flex-start;
+}
+
+body.page-opendrop .dl-row__glyph {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--surface-1);
+    border: 1px solid var(--hairline-strong);
+    color: var(--text-primary);
+}
+
+body.page-opendrop .dl-row__glyph svg {
+    width: 22px;
+    height: 22px;
+}
+
+body.page-opendrop .dl-row--soon .dl-row__glyph {
+    opacity: 0.5;
+    border-style: dashed;
+}
+
+body.page-opendrop .dl-row .row__title-line {
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+body.page-opendrop .dl-row .row__title {
+    font-size: 1.0625rem;
+}
+
+/* Name, then the version meta on the same line when it fits. */
+body.page-opendrop .dl-row .row__body {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 10px;
+}
+
+body.page-opendrop .dl-row__meta {
+    font: 400 0.75rem/1.4 var(--font-mono);
+    color: var(--text-subtle);
+}
+
+body.page-opendrop .dl-row .row__text {
+    flex-basis: 100%;
+    font-size: var(--fs-small);
+}
+
+/* Keeps technical tokens (64-bit, ChaCha20-Poly1305, SHA-256) on one
+   line on phones. */
+body.page-opendrop .nowrap {
+    white-space: nowrap;
+}
+
+body.page-opendrop .dl-row .row__aside {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+}
+
+body.page-opendrop .dl-row .row__aside .link-arrow {
+    font-size: var(--fs-small);
+}
+
+@media (min-width: 769px) {
+    body.page-opendrop .dl-row .row__aside .link-arrow {
+        min-height: 36px;
+    }
+}
+
+body.page-opendrop .dl-row.is-recommended {
+    padding-inline: 12px;
+    border-radius: 12px;
+    background: var(--accent-tint);
+}
+
+body.page-opendrop .dl-note {
+    margin: var(--sp-4) 0 0 28px;
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    color: var(--text-subtle);
+}
+
+body.page-opendrop .review-panel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-4);
+    min-width: 0;
+    padding: var(--sp-6);
+    border-radius: var(--r-xl);
+    background: var(--surface-1);
+    border: 1px solid var(--hairline);
+}
+
+body.page-opendrop .testimonials {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 100%;
+    gap: var(--sp-4);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+}
+
+body.page-opendrop .testimonials::-webkit-scrollbar {
+    display: none;
+}
+
+body.page-opendrop .testimonials:focus-visible {
+    outline-offset: 4px;
+    border-radius: var(--r-sm);
+}
+
+/* Every review gets the same box: the quote is clamped to a set number
+   of lines (one fewer when the review has a title), and the box is
+   tall enough for the longest case. The panel keeps its height whether
+   it holds the static quote or six live reviews. */
+body.page-opendrop .testimonials {
+    --quote-lines: 5;
+    --quote-lines-titled: 4;
+}
+
+@media (max-width: 600px) {
+    body.page-opendrop .testimonials {
+        --quote-lines: 6;
+        --quote-lines-titled: 5;
+    }
+}
+
+body.page-opendrop .testimonial {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(var(--quote-lines) * 1.6rem + 2.875rem);
+    margin: 0;
+    padding: 0 0 0 18px;
+    scroll-snap-align: start;
+    border: 0;
+    border-left: 3px solid;
+    border-image: var(--grad-accent-v) 1;
+    border-radius: 0;
+    background: none;
+}
+
+body.page-opendrop .testimonial p {
+    display: -webkit-box;
+    margin: 0;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: var(--quote-lines);
+    font-size: 1rem;
+    font-style: normal;
+    line-height: 1.6;
+    color: #d6deea;
+}
+
+body.page-opendrop .testimonial .testimonial-title + p {
+    -webkit-line-clamp: var(--quote-lines-titled);
+}
+
+body.page-opendrop .testimonial .testimonial-title {
+    margin-bottom: var(--sp-2);
+    -webkit-line-clamp: 1;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+body.page-opendrop .testimonial cite {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2);
+    margin-top: auto;
+    padding-top: var(--sp-3);
+    font-style: normal;
+}
+
+body.page-opendrop .testimonial-stars {
+    color: var(--state-partial);
+    font-size: 0.875rem;
+    letter-spacing: 0.08em;
+}
+
+body.page-opendrop .testimonial-source {
+    font-size: 0.8125rem;
+    color: var(--text-subtle);
+}
+
+body.page-opendrop .review-panel__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px var(--sp-3);
+}
+
+/* The hint shares the heading's line and only shows once there is
+   more than one review to scroll to. */
+body.page-opendrop .review-more {
+    visibility: hidden;
+    margin: 0;
+    font-size: 0.8125rem;
+    color: var(--text-subtle);
+}
+
+body.page-opendrop .review-panel:has(.testimonial + .testimonial) .review-more {
+    visibility: visible;
+}
+
+body.page-opendrop .review-panel .link-arrow {
+    align-self: flex-start;
+}
+
+@media (max-width: 1023px) {
+    body.page-opendrop .dl-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+/* ---------- Modals (restyled with shared tokens) ---------- */
+body.page-opendrop .download-modal-content {
+    background: var(--surface-1);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-xl);
+    box-shadow: var(--shadow-float);
+}
+
+body.page-opendrop .download-modal-header {
+    border-bottom-color: var(--hairline);
+}
+
+body.page-opendrop .download-modal-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin: -10px -10px -10px 0;
+    border-radius: var(--r-sm);
+    color: var(--text-subtle);
+}
+
+body.page-opendrop .download-modal-close:focus-visible {
+    outline: 2px solid var(--accent-glow);
+    outline-offset: 0;
+}
+
+body.page-opendrop .download-option {
+    width: 100%;
+}
+
+body.page-opendrop .instruction-note,
+body.page-opendrop .terminal-title {
+    color: var(--text-subtle);
+}
+
+body.page-opendrop .copy-btn {
+    min-width: 36px;
+    min-height: 36px;
+}
+
+/* ---------- Tablet and phone ---------- */
+@media (max-width: 768px) {
+    body.page-opendrop .nav-lockup {
+        gap: 4px;
+    }
+
+    body.page-opendrop .nav-lockup .logo {
+        gap: 8px;
+        font-size: 1rem;
+    }
+
+    body.page-opendrop .nav-lockup .logo-icon {
+        width: 28px;
+        height: 28px;
+    }
+
+    body.page-opendrop .od-hero {
+        padding: calc(var(--nav-h) + 24px) 0 32px;
+    }
+
+    body.page-opendrop .od-hero .hero-badge {
+        padding-block: 0;
+    }
+
+    body.page-opendrop .od-hero .hero-badge a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+    }
+
+    body.page-opendrop .feature-list > li {
+        gap: var(--sp-3);
+    }
+
+    body.page-opendrop .feature-list .row__icon {
+        width: 30px;
+        height: 30px;
+    }
+
+    body.page-opendrop .feature-list .row__icon svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    body.page-opendrop .plans-note {
+        font-size: 0.8125rem;
+    }
+
+    body.page-opendrop .hero-alt-link {
+        justify-content: center;
+        width: 100%;
+    }
+
+    body.page-opendrop .ss-stage-wrap {
+        height: 440px;
+    }
+
+    body.page-opendrop .dl-list {
+        display: flex;
+        flex-direction: column;
+    }
+
+    body.page-opendrop .dl-row.is-recommended {
+        order: -1;
+    }
+
+    body.page-opendrop .dl-row {
+        flex-wrap: wrap;
+    }
+
+    /* Actions sit on their own line, badge first and the text link
+       beside it when there is room. */
+    body.page-opendrop .dl-row .row__aside {
+        flex-basis: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0 var(--sp-4);
+        padding-left: 0;
+    }
+
+    body.page-opendrop .dl-row .store-badge {
+        width: auto;
+        min-width: 168px;
+    }
+
+    /* A row with a single store badge keeps it beside the name; it
+       drops below only when the name would get too narrow. */
+    body.page-opendrop .dl-row .row__body {
+        flex: 1 1 140px;
+    }
+
+    body.page-opendrop .dl-row .row__aside:has(> .store-badge:only-child) {
+        flex-basis: auto;
+        align-self: center;
+        margin-left: auto;
+    }
+
+    body.page-opendrop .dl-note {
+        margin-left: 0;
+    }
+
+    body.page-opendrop .review-panel {
+        padding: var(--sp-5);
+    }
+
+    /* Modals */
+    body.page-opendrop .download-modal-content {
+        margin: var(--space-md);
+    }
+
+    body.page-opendrop .download-modal-options {
+        gap: var(--space-sm);
+    }
+
+    body.page-opendrop .download-option {
+        padding: 0.875rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    body.page-opendrop .terminal-body {
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: stretch;
+    }
+
+    body.page-opendrop .terminal-body code {
+        font-size: 0.75rem;
+        word-break: break-all;
+    }
+
+    body.page-opendrop .copy-btn {
+        align-self: flex-end;
+    }
+}
+
+@media (max-width: 600px) {
+    /* Phones: the store badges carry the platform glyphs, so the rows
+       drop their own and give the text the full width. The spine node
+       moves up to the name. */
+    body.page-opendrop .dl-list {
+        --spine-node-y: 22px;
+    }
+
+    body.page-opendrop .dl-row__glyph {
+        display: none;
+    }
+
+    body.page-opendrop .dl-row {
+        padding-block: 14px;
+    }
+
+    /* The highlight grows outward, so the row keeps the full text
+       width and its badge stays beside the name. The spine node
+       shifts back by the same amount. */
+    body.page-opendrop .dl-row.is-recommended {
+        margin-inline: -8px;
+        padding-inline: 8px;
+    }
+
+    body.page-opendrop .dl-row.is-recommended::before {
+        left: -16px;
+    }
+
+    /* Slightly tighter rhythm for the long lists on a phone. Tap
+       targets stay at 44px or more. */
+    body.page-opendrop .faq-cols .disclosure > summary {
+        min-height: 52px;
+        padding-block: 12px;
+    }
+
+    body.page-opendrop .feature-list > li {
+        padding-block: 12px;
+    }
+
+    body.page-opendrop .steps {
+        gap: var(--sp-5);
+    }
+
+    body.page-opendrop .step:not(:last-child)::after {
+        bottom: calc(-1 * var(--sp-5));
+    }
+}
+
+@media (max-width: 480px) {
+    body.page-opendrop .ss-tab {
+        padding: 0 12px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body.page-opendrop .ss-tab,
+    body.page-opendrop .disclosure > summary::after,
+    body.page-opendrop .reveal-toggle svg {
+        transition: none;
+    }
+
+    body.page-opendrop .download-modal,
+    body.page-opendrop .download-modal-content {
+        animation: none;
+    }
+}

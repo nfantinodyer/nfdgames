@@ -29,11 +29,19 @@
   'use strict';
 
   const APPLE_APP_ID = '6757438202';
+
+  /* Apple's lookup API returns 320x480 thumbnails. The CDN serves any
+     size from the same path, so ask for a 1080px-wide WebP: the cards
+     render at up to 2x DPR and the thumbnail looks soft there. Same
+     rewrite as scripts/refresh-screenshots-manifest.mjs. */
+  function upscaleAppleUrl(u) {
+    return String(u).replace(/\/\d+x\d+[a-z]*\.(?:jpg|jpeg|png|webp)(\?.*)?$/i, '/1080x0w.webp');
+  }
   const MANIFEST_URL = 'screenshots-manifest.json';
   const ROTATE_MS = 4000;
 
   /**
-   * Live iOS fetch — the manifest is also pre-baked, but a live
+   * Live iOS fetch. The manifest is also pre-baked, but a live
    * fetch on page load means a new App Store release surfaces the
    * day it ships, not the day after the GitHub Action runs.
    */
@@ -46,12 +54,12 @@
       const json = await r.json();
       const app = (json.results || [])[0];
       if (!app) return [];
-      // Use ONLY iPhone screenshots — `ipadScreenshotUrls` would
+      // Use ONLY iPhone screenshots. `ipadScreenshotUrls` would
       // mix in shots at a different aspect ratio that look wrong
       // alongside the iPhone ones in the carousel.
       const urls = app.screenshotUrls || [];
       return urls.map((u, i) => ({
-        url: u,
+        url: upscaleAppleUrl(u),
         alt: `OpenDrop iOS screenshot ${i + 1}`,
       }));
     } catch (_) {
@@ -61,7 +69,7 @@
 
   /**
    * Live Mac fetch. Returns [] until Apple has a real macSoftware
-   * listing — the empty array is the signal to fall back to the
+   * listing; the empty array is the signal to fall back to the
    * Windows gallery in the carousel below.
    */
   async function fetchMacScreenshotsLive() {
@@ -75,7 +83,7 @@
       if (!app) return [];
       const urls = app.screenshotUrls || [];
       return urls.map((u, i) => ({
-        url: u,
+        url: upscaleAppleUrl(u),
         alt: `OpenDrop macOS screenshot ${i + 1}`,
       }));
     } catch (_) {
@@ -185,8 +193,8 @@
     // Set true when the carousel has scrolled out of view; the
     // auto-rotate tick is a no-op while this is true. Distinct
     // from `paused` (hover/focus/reduced-motion) so the two can
-    // coexist — e.g. a user hovering the carousel after scrolling
-    // it back into view stays paused via `paused`.
+    // coexist: a user hovering the carousel after scrolling it
+    // back into view stays paused via `paused`.
     let offscreen = false;
 
     function shotsForTab(name) {
@@ -210,16 +218,14 @@
       let msg = '';
       if (name === 'mac' && platforms && platforms.macIsFallback) {
         msg =
-          'macOS app is not yet released — preview shows the Windows UI. ' +
-          'Switches over automatically once the Mac App Store has screenshots.';
+          'The macOS app is not released yet, so this preview shows the Windows app. ' +
+          'It switches over once the Mac App Store has screenshots.';
       } else if (name === 'android') {
         msg =
-          'Android tab shows iOS screenshots — the apps are visually nearly ' +
-          'identical and the iOS gallery is what Apple publishes.';
+          'The Android tab shows iPhone screenshots. The two apps look nearly the same.';
       } else if (name === 'linux') {
         msg =
-          'Linux tab shows Windows screenshots — the desktop UI is the same ' +
-          'and the Microsoft Store gallery is what we keep current.';
+          'The Linux tab shows Windows screenshots. The desktop app looks the same on both.';
       }
       note.textContent = msg;
       note.style.display = msg ? '' : 'none';
@@ -229,8 +235,8 @@
      * Build one DOM element per shot and stash references in
      * `cardEls`. Called once per platform activation. After this,
      * rotations are class-swap operations on existing nodes so
-     * CSS transitions drive the slide animation — no DOM
-     * teardown, no flicker, no hard cut.
+     * CSS transitions drive the slide animation (no DOM
+     * teardown, no flicker, no hard cut).
      */
     function buildCards() {
       clearStage(stage);
@@ -312,7 +318,7 @@
      * Update each card's slot class based on its index relative
      * to currentIndex. The relative offset is normalized into
      * `(-n/2, n/2]` so cards always take the shortest path
-     * around the rotation — a card sitting one slot to the right
+     * around the rotation. A card sitting one slot to the right
      * never slides the long way around when it should slide one
      * slot left.
      */
@@ -387,9 +393,9 @@
       const wrapWidth = Math.min(stageWrap.clientWidth, 1100);
       const wrapHeight = stageWrap.clientHeight || 580;
       const cardHeightCap = Math.round(wrapHeight * 0.92);
-      // Side cards live at 0.82 scale and need to remain visible —
-      // limit the centre card to a fraction of the wrap width so
-      // they aren't pushed off-screen.
+      // Side cards live at 0.82 scale and need to remain visible,
+      // so limit the centre card to a fraction of the wrap width
+      // to keep them from being pushed off-screen.
       const cardWidthCap = Math.max(220, Math.round(wrapWidth * 0.55));
 
       let cardH = cardHeightCap;
@@ -424,7 +430,10 @@
     function activate(name) {
       currentTab = name;
       tabs.forEach((t) => {
-        t.classList.toggle('active', t.dataset.tab === name);
+        const selected = t.dataset.tab === name;
+        t.classList.toggle('active', selected);
+        t.setAttribute('aria-selected', selected ? 'true' : 'false');
+        t.setAttribute('tabindex', selected ? '0' : '-1');
       });
       currentShots = shotsForTab(name);
       currentIndex = 0;
@@ -491,7 +500,7 @@
       let downY = null;
       let downTime = 0;
       stageWrap.addEventListener('pointerdown', (e) => {
-        // Skip clicks on the inline arrows / dots — they have
+        // Skip clicks on the inline arrows / dots. They have
         // their own handlers and we don't want to double-fire.
         if (e.target.closest('.ss-arrow') || e.target.closest('.ss-dot')) {
           return;
@@ -506,7 +515,7 @@
         const dy = e.clientY - downY;
         const dt = Date.now() - downTime;
         downX = downY = null;
-        // Tap, not a swipe — let the click handlers run.
+        // Tap, not a swipe: let the click handlers run.
         if (Math.abs(dx) < SWIPE_THRESHOLD || Math.abs(dx) <= Math.abs(dy)) {
           return;
         }
@@ -538,8 +547,8 @@
       io.observe(stageWrap);
     }
 
-    // Keep the card size adapted to the wrap width on resize —
-    // mobile vs desktop cap differently, and the slot offset
+    // Keep the card size adapted to the wrap width on resize.
+    // Mobile and desktop cap differently, and the slot offset
     // depends on wrap width too.
     let resizeRaf = 0;
     window.addEventListener('resize', () => {

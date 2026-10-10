@@ -25,135 +25,89 @@
  <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
 
  <link rel="stylesheet" href="../styles/common.css">
- <link rel="stylesheet" href="../styles/opendrop.css">
+ <link rel="stylesheet" href="../styles/subpage.css">
 
  <style>
- .doc-hero {
- min-height: auto;
- padding: 9rem var(--space-xl) var(--space-xl);
- text-align: center;
- }
- .doc-hero h1 {
- font-size: clamp(2rem, 5vw, 3rem);
- margin-bottom: var(--space-md);
- }
- .doc-hero p {
- color: var(--text-secondary);
- max-width: 760px;
- margin: 0 auto;
- font-size: 1.02rem;
- }
- .doc-container {
- max-width: 1000px;
- margin: 0 auto;
- padding: 0 var(--space-xl) var(--space-4xl);
- }
- .doc-card {
- background: var(--bg-card);
- border: 1px solid var(--border);
- border-radius: var(--radius-2xl);
- padding: var(--space-2xl);
- margin-bottom: var(--space-lg);
- }
+ /* Third-party notices: page-only rules. Shared card and header styles live in subpage.css. */
+ body.page-notices { --subpage-w: 1000px; }
  .doc-card h2 {
- font-size: 1.35rem;
- margin-bottom: var(--space-md);
  display: flex;
+ flex-wrap: wrap;
  align-items: center;
- gap: 0.55rem;
+ gap: var(--sp-2) 0.6rem;
  }
- .doc-card h2 .platform-tag {
- font-family: 'Space Mono', monospace;
- font-size: 0.7rem;
- padding: 0.18rem 0.55rem;
- border-radius: var(--radius-full);
- color: #0d1333;
+ .platform-tag {
+ flex: none;
+ padding: 3px 8px;
+ border-radius: var(--r-pill);
+ font: 700 0.6875rem/1.2 var(--font-mono);
+ letter-spacing: 0.06em;
+ text-transform: uppercase;
+ color: var(--text-on-light);
  background: var(--accent-glow);
- font-weight: 700;
- letter-spacing: 0.04em;
  }
- .doc-card h3 {
- margin: var(--space-lg) 0 var(--space-sm);
- font-size: 1.0rem;
- color: var(--text-primary);
- }
- .doc-card p, .doc-card li {
- color: var(--text-secondary);
- font-size: 0.94rem;
- line-height: 1.65;
- }
- .doc-card strong { color: var(--text-primary); }
- .doc-card code {
- font-family: 'Space Mono', monospace;
- background: var(--bg-dark);
- padding: 0.12rem 0.4rem;
- border-radius: 4px;
- font-size: 0.85em;
- color: var(--accent-glow);
- }
- .doc-card a {
- color: var(--accent-glow);
- text-decoration: none;
- }
- .doc-card a:hover { text-decoration: underline; }
- .pkg-grid {
- margin: var(--space-sm) 0 var(--space-md);
- padding: 0;
- list-style: none;
+ .doc-card .pkg-grid {
  display: grid;
  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
  gap: 0.45rem 1rem;
- color: var(--text-secondary);
- font-family: 'Space Mono', monospace;
- font-size: 0.84rem;
- }
- .pkg-grid li {
- line-height: 1.5;
+ margin: var(--sp-2) 0 var(--sp-4);
  padding: 0;
- margin: 0;
+ list-style: none;
  }
- .pkg-grid li::before { content: '· '; color: var(--text-muted); }
+ .doc-card .pkg-grid li {
+ margin: 0;
+ padding: 0 0 0 2ch;
+ text-indent: -2ch;
+ font-family: var(--font-mono);
+ font-size: 0.8125rem;
+ line-height: 1.5;
+ }
+ .pkg-grid li::before { content: '\00B7\00A0'; color: var(--text-subtle); }
  .license-callout {
- background: rgba(212,113,126,0.08);
- border: 1px solid rgba(212,113,126,0.35);
- border-radius: var(--radius-lg);
- padding: var(--space-md) var(--space-lg);
- margin: var(--space-md) 0;
+ margin: var(--sp-4) 0;
+ padding: var(--sp-4) var(--sp-5);
+ border-radius: var(--r-md);
+ background: rgba(212, 113, 126, 0.08);
+ border: 1px solid rgba(212, 113, 126, 0.35);
+ font-size: var(--fs-small);
+ line-height: 1.6;
  color: var(--text-secondary);
- font-size: 0.92rem;
  }
  .license-callout strong { color: #f5a8b3; }
  .toc {
- background: var(--bg-dark);
- border: 1px solid var(--border);
- border-radius: var(--radius-lg);
- padding: var(--space-md) var(--space-lg);
- margin-bottom: var(--space-xl);
- font-size: 0.9rem;
+ margin-bottom: var(--sp-4);
+ padding: var(--sp-5) var(--sp-6);
+ border-radius: var(--r-lg);
+ background: var(--surface-1);
+ border: 1px solid var(--hairline);
  }
- .toc h3 {
- color: var(--text-primary);
- margin-bottom: var(--space-sm);
- font-size: 0.85rem;
+ .toc h2 {
+ margin: 0 0 var(--sp-2);
+ font: 700 var(--fs-micro)/1.3 var(--font-mono);
+ letter-spacing: 0.12em;
  text-transform: uppercase;
- letter-spacing: 0.05em;
+ color: var(--text-subtle);
  }
  .toc ul {
  display: grid;
  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
- gap: 0.4rem 1.5rem;
+ gap: 0 var(--sp-6);
  margin: 0;
- padding-left: 1.1rem;
+ padding: 0;
+ list-style: none;
  }
- .toc a {
+ .subpage-body .toc a {
+ display: flex;
+ align-items: center;
+ min-height: 40px;
+ font-size: var(--fs-small);
  color: var(--text-secondary);
- text-decoration: none;
  }
- .toc a:hover { color: var(--accent-glow); }
- @media (max-width: 720px) {
- .doc-hero { padding: 7rem var(--space-lg) var(--space-lg); }
- .doc-container { padding: 0 var(--space-lg) var(--space-3xl); }
- .doc-card { padding: var(--space-xl); }
+ .subpage-body .toc a:hover { color: var(--accent-glow); }
+ @media (max-width: 640px) {
+ .doc-card .pkg-grid { grid-template-columns: minmax(0, 1fr); }
+ .toc { padding: var(--sp-4); }
+ .subpage-body .toc a { min-height: 44px; }
  }
  </style>
 
@@ -214,39 +168,56 @@
 }
     </script>
 </head>
-<body>
+<body class="page-subpage page-notices">
+    <a class="skip-link" href="#main">Skip to content</a>
  <div class="bg-gradient"></div>
  <div class="noise"></div>
 
- <nav>
- <a href="./" class="logo">
- <picture>
- <source srcset="OpenDropIcon-logo.webp" type="image/webp">
- <img src="OpenDropIcon.png" alt="OpenDrop" class="logo-icon" width="36" height="36" loading="lazy">
- </picture>
- OpenDrop
- </a>
- <div class="nav-links">
- <a href="./#features">Features</a>
- <a href="./#download">Download</a>
- <a href="support.html">Support</a>
- <a href="./#download" class="nav-cta">Get Started</a>
- </div>
- </nav>
+    <nav class="site-nav" aria-label="Main">
+        <span class="nav-lockup">
+            <a href="/" class="nav-lockup__home" aria-label="NFDGames home">
+                <picture>
+                    <source srcset="/NFDGamesLogoCircleTransparent.webp" type="image/webp">
+                    <img src="/NFDGamesLogoCircleTransparent.png" alt="" width="28" height="28">
+                </picture>
+            </a>
+            <span class="nav-lockup__sep" aria-hidden="true">/</span>
+            <a href="/OpenDrop/" class="logo">
+                <picture>
+                    <source srcset="/OpenDrop/OpenDropIcon-logo.webp" type="image/webp">
+                    <img src="/OpenDrop/OpenDropIcon.png" alt="" class="logo-icon" width="32" height="32">
+                </picture>
+                <span class="logo__word">OpenDrop</span>
+            </a>
+        </span>
+        <div class="nav-links" id="navLinks">
+            <a href="/OpenDrop/#features">Features</a>
+            <a href="/OpenDrop/#compare">Free vs Pro</a>
+            <a href="/blog/">Blog</a>
+            <a href="/OpenDrop/support.html">Support</a>
+        </div>
+        <div class="nav-actions">
+            <a href="/OpenDrop/#download" class="btn-cta btn-cta--sm">Download</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-controls="navLinks" aria-expanded="false" aria-label="Open menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
 
- <main>
- <section class="doc-hero">
- <h1>Third-Party Notices</h1>
- <p>OpenDrop is proprietary software (&copy; NFDGames LLC, all rights reserved). The following open-source components are incorporated into the product and are used under their respective licenses. Their license texts are reproduced as required by each license; nothing on this page weakens the proprietary license of OpenDrop itself.</p>
- </section>
+ <main id="main" tabindex="-1">
+    <header class="subpage-head">
+        <div class="subpage-wrap section-head">
+            <p class="eyebrow">Legal</p>
+            <h1 class="section-title">Third-Party Notices</h1>
+            <p class="section-lede">OpenDrop is proprietary software (&copy; NFDGames LLC, all rights reserved). The following open-source components are incorporated into the product and are used under their respective licenses. Their license texts are reproduced as required by each license; nothing on this page weakens the proprietary license of OpenDrop itself.</p>
+        </div>
+    </header>
 
- <div class="doc-container">
+ <div class="subpage-wrap subpage-body">
 
- <div class="toc">
- <h3>On this page</h3>
+ <div class="toc" role="navigation" aria-labelledby="tocTitle">
+ <h2 id="tocTitle">On this page</h2>
  <ul>
  <li><a href="#mobile">Mobile apps (iOS, Android)</a></li>
- <li><a href="#desktop">Desktop server (Win/Linux/macOS)</a></li>
+ <li><a href="#desktop">Desktop server (Windows, Linux)</a></li>
  <li><a href="#bundled-binaries">Bundled native binaries</a></li>
  <li><a href="#worker">Cloudflare Worker</a></li>
  <li><a href="#relay">OpenDrop relay (Fly.io + Oracle Cloud)</a></li>
@@ -328,15 +299,15 @@
  </div>
 
  <div class="doc-card" id="desktop">
- <h2><span class="platform-tag">Win / Linux / macOS</span> Desktop server</h2>
- <p>The OpenDrop desktop server is a Python/PySide6 application. The components below are pulled from <code>pyproject.toml</code> and resolved at Nuitka build time. Dev-only tooling (nuitka, pytest, lints) is omitted.</p>
+ <h2><span class="platform-tag">Windows / Linux</span> Desktop server</h2>
+ <p>The OpenDrop desktop server is a Python/PySide6 application for Windows and Linux. A macOS build is in development and not released yet. The components below are pulled from <code>pyproject.toml</code> and resolved at Nuitka build time. Dev-only tooling (nuitka, pytest, lints) is omitted.</p>
 
  <div class="license-callout">
  <strong>LGPL notice.</strong> Components marked <strong>LGPL</strong> are dynamically linked. NFDGames LLC will, on written request and at no charge, provide a complete machine-readable copy of the corresponding source code of any LGPL-licensed component that ships with OpenDrop. See <a href="#how-to-request">Request a license text</a> below.
  </div>
 
  <h3>LGPL, Qt for Python (PySide6)</h3>
- <p>The desktop GUI is built on Qt for Python (PySide6) <strong>6.10.2</strong> (Qt 6.10.2). Upstream offers it under <code>LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only</code>; OpenDrop <strong>elects the LGPL-3.0</strong> option. The Qt/PySide6 libraries are <strong>dynamically linked</strong> — they ship as separate, replaceable shared libraries (<code>.dll</code> / <code>.dylib</code> / <code>.so</code>); the desktop app is not statically linked against Qt. The complete LGPLv3 and GPLv3 license texts are bundled with the installed application as <code>LICENSE.LGPLv3.txt</code> and <code>LICENSE.GPLv3.txt</code>.</p>
+ <p>The desktop GUI is built on Qt for Python (PySide6) <strong>6.10.2</strong> (Qt 6.10.2). Upstream offers it under <code>LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only</code>; OpenDrop <strong>elects the LGPL-3.0</strong> option. The Qt/PySide6 libraries are <strong>dynamically linked</strong>: they ship as separate, replaceable shared libraries (<code>.dll</code> / <code>.dylib</code> / <code>.so</code>); the desktop app is not statically linked against Qt. The complete LGPLv3 and GPLv3 license texts are bundled with the installed application as <code>LICENSE.LGPLv3.txt</code> and <code>LICENSE.GPLv3.txt</code>.</p>
  <ul class="pkg-grid">
  <li>PySide6 / shiboken6 6.10.2, LGPL-3.0 (Qt for Python). <a href="https://www.qt.io/licensing/">qt.io/licensing</a></li>
  <li>Corresponding source (PySide6 6.10.2): <a href="https://code.qt.io/cgit/pyside/pyside-setup.git/">code.qt.io/cgit/pyside/pyside-setup.git</a> · <a href="https://pypi.org/project/PySide6/6.10.2/#files">pypi.org/project/PySide6/6.10.2</a></li>
@@ -367,7 +338,7 @@
  <li>oauthlib / requests-oauthlib</li>
  <li>ifaddr</li>
  <li>rawpy (Python binding only, LibRaw notice below)</li>
- <li>pyobjc-framework-Quartz (macOS only)</li>
+ <li>pyobjc-framework-Quartz (macOS build only, not released yet)</li>
  </ul>
 
  <h3>BSD 3-Clause</h3>
@@ -457,12 +428,80 @@
  <p>The OpenDrop application itself, including every component developed by NFDGames LLC, is proprietary software. See <a href="TermsOfService.html">Terms of Service</a> Section 5 (Acceptable Use) for what you may and may not do with OpenDrop.</p>
  </div>
 
- <p class="text-muted" style="text-align:center;font-size:0.85rem;margin-top:var(--space-xl);">
- Last updated: June 28, 2026 &nbsp;&middot;&nbsp; Build <code>1.0.0+18</code> (mobile) / <code>1.0.0</code> (desktop) &nbsp;&middot;&nbsp;
- <a href="changelog.html" style="color:var(--accent);">Release notes</a>
+ <p class="subpage-note">
+ Last updated: June 28, 2026&nbsp;&middot;  Build <code>1.0.0+18</code> (mobile) / <code>1.0.0</code> (desktop)&nbsp;&middot; 
+ <a href="changelog.html">Release notes</a>
  </p>
  </div>
  </main>
+
+    <div class="seam" aria-hidden="true"></div>
+
+    <footer class="site-footer">
+        <div class="wrap site-footer__grid">
+            <div class="site-footer__brand">
+                <a href="/OpenDrop/" class="logo">
+                    <picture>
+                        <source srcset="/OpenDrop/OpenDropIcon-logo.webp" type="image/webp">
+                        <img src="/OpenDrop/OpenDropIcon.png" alt="" class="logo-icon" width="36" height="36" loading="lazy">
+                    </picture>
+                    OpenDrop
+                </a>
+                <p>OpenDrop by NFDGames. File transfer for Windows, Linux, iPhone, iPad and Android.</p>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">OpenDrop</h2>
+                <ul>
+                    <li><a href="/OpenDrop/">Overview</a></li>
+                    <li><a href="/OpenDrop/#download">Download</a></li>
+                    <li><a href="/OpenDrop/#compare">Free vs Pro</a></li>
+                    <li><a href="/OpenDrop/changelog.html">What's new in 1.0</a></li>
+                    <li><a href="/OpenDrop/support.html">Support</a></li>
+                    <li><a href="/OpenDrop/status.html">System status</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Guides</h2>
+                <ul>
+                    <li><a href="/blog/posts/best-airdrop-alternatives-windows-2026.html">AirDrop alternatives</a></li>
+                    <li><a href="/blog/posts/share-files-iphone-android.html">iPhone to Android</a></li>
+                    <li><a href="/blog/posts/transfer-files-android-to-pc-without-usb.html">Android to PC, no USB</a></li>
+                    <li><a href="/blog/posts/transfer-photos-iphone-to-windows-pc.html">iPhone photos to PC</a></li>
+                    <li><a href="/blog/posts/transfer-files-windows-to-linux.html">Windows to Linux</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Studio</h2>
+                <ul>
+                    <li><a href="/">NFDGames home</a></li>
+                    <li><a href="/#gunslinger">Gunslinger</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/OpenDrop/press.html">Press kit</a></li>
+                    <li><a href="https://play.google.com/store/apps/dev?id=6331541447390891189&amp;hl=en_US" target="_blank" rel="noopener">Apps on Google Play</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Legal and security</h2>
+                <ul>
+                    <li><a href="/OpenDrop/PrivacyPolicy.html">Privacy Policy</a></li>
+                    <li><a href="/OpenDrop/TermsOfService.html">Terms of Service</a></li>
+                    <li><a href="/OpenDrop/security.html">Security and disclosure</a></li>
+                    <li><a href="/OpenDrop/accessibility.html">Accessibility</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="wrap site-footer__bottom">
+            <p>&copy; 2026 NFDGames. All rights reserved.</p>
+            <div class="site-footer__legal">
+                <a href="/OpenDrop/WithdrawalForm.html">EU/UK withdrawal</a>
+                <a href="/OpenDrop/third-party-notices.html">Third-party notices</a>
+                <a href="/OpenDrop/docs/export-compliance/">Export compliance</a>
+                <a href="mailto:support@nfdgames.com">support@nfdgames.com</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/scripts/common.js"></script>
 
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";

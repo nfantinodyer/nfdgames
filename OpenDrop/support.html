@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support – OpenDrop | Help & Troubleshooting for File Transfer</title>
-    <meta name="description" content="Get help with OpenDrop. Submit a support ticket, browse FAQs, and find troubleshooting guides for file transfer issues on Windows, Android, Linux, and iOS.">
+    <title>Support - OpenDrop | Help and Troubleshooting for File Transfer</title>
+    <meta name="description" content="Get help with OpenDrop on Windows, Linux, iPhone, iPad and Android: pairing, transfers, encryption and Pro subscriptions, plus a form to contact support.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="author" content="NFDGames">
     <link rel="icon" type="image/x-icon" href="favicon-opendrop.ico">
@@ -14,14 +14,14 @@
     <link rel="canonical" href="https://www.nfdgames.com/OpenDrop/support.html" />
     <link rel="alternate" hreflang="en" href="https://www.nfdgames.com/OpenDrop/support.html" />
     <meta property="og:type" content="website">
-    <meta property="og:title" content="OpenDrop Support – Help & Troubleshooting for File Transfer">
-    <meta property="og:description" content="Get help with OpenDrop file transfers. FAQs, troubleshooting, and direct support.">
+    <meta property="og:title" content="OpenDrop Support - Help and Troubleshooting for File Transfer">
+    <meta property="og:description" content="Answers about pairing, transfers, encryption and Pro, plus a form to contact OpenDrop support.">
     <meta property="og:image" content="https://www.nfdgames.com/OpenDrop/OpenDropIcon.png">
     <meta property="og:url" content="https://www.nfdgames.com/OpenDrop/support.html">
     <meta property="og:site_name" content="NFDGames">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="OpenDrop Support – Help & Troubleshooting for File Transfer">
-    <meta name="twitter:description" content="Get help with OpenDrop file transfers. FAQs, troubleshooting, and direct support.">
+    <meta name="twitter:title" content="OpenDrop Support - Help and Troubleshooting for File Transfer">
+    <meta name="twitter:description" content="Answers about pairing, transfers, encryption and Pro, plus a form to contact OpenDrop support.">
     <meta name="twitter:image" content="https://www.nfdgames.com/OpenDrop/OpenDropIcon.png">
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -29,632 +29,533 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@graph": [
+      "@type": "WebPage",
+      "name": "OpenDrop Support - Help and Troubleshooting",
+      "description": "Answers about pairing, transfers, encryption and Pro, plus a form to contact OpenDrop support.",
+      "url": "https://www.nfdgames.com/OpenDrop/support.html",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "NFDGames",
+        "url": "https://www.nfdgames.com/"
+      },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "NFDGames", "item": "https://www.nfdgames.com/" },
+          { "@type": "ListItem", "position": 2, "name": "OpenDrop", "item": "https://www.nfdgames.com/OpenDrop/" },
+          { "@type": "ListItem", "position": 3, "name": "Support", "item": "https://www.nfdgames.com/OpenDrop/support.html" }
+        ]
+      }
+    }
+    </script>
+    <script type="application/ld+json" id="faq-schema">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
         {
-          "@type": "WebPage",
-          "name": "OpenDrop Support – Help & Troubleshooting",
-          "description": "Get help with OpenDrop file transfers. FAQs, troubleshooting, and direct support.",
-          "url": "https://www.nfdgames.com/OpenDrop/support.html",
-          "isPartOf": {
-            "@type": "WebSite",
-            "name": "NFDGames",
-            "url": "https://www.nfdgames.com/"
-          },
-          "breadcrumb": {
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-              {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "NFDGames",
-                "item": "https://www.nfdgames.com/"
-              },
-              {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "OpenDrop",
-                "item": "https://www.nfdgames.com/OpenDrop/"
-              },
-              {
-                "@type": "ListItem",
-                "position": 3,
-                "name": "Support",
-                "item": "https://www.nfdgames.com/OpenDrop/support.html"
-              }
-            ]
+          "@type": "Question",
+          "name": "Which devices does OpenDrop run on?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Windows, Linux, iPhone, iPad and Android. A Mac version is in development for the Mac App Store and has no release date yet. On Windows, get it from the Microsoft Store or download the installer. Both install the same app. On Linux, download the AppImage for x86_64 or ARM64 (aarch64) and run chmod +x on the file before you open it. iPhone and iPad use the App Store, and Android uses Google Play. You need iOS 16 or later, Android 7.0 or later, Windows 10 version 1809 or later (64-bit), or Linux with glibc 2.35 or newer (Ubuntu 22.04, Debian 12, Fedora 36 or later)."
           }
         },
         {
-          "@type": "FAQPage",
-          "mainEntity": [{
-            "@type": "Question",
-            "name": "Why won't my phone connect to OpenDrop?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "If you're on the same Wi-Fi, OpenDrop uses mDNS to discover your PC automatically. Some routers block mDNS, so if local discovery fails, the app falls back to OpenDrop's encrypted relay using the pairing details in the QR code. Try refreshing the QR code on the server, or make sure your firewall allows connections on port 8000."
-            }
-          }, {
-            "@type": "Question",
-            "name": "Are my files secure with OpenDrop?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes. File contents are end-to-end encrypted with ChaCha20-Poly1305 using a 256-bit key derived from your account's shared secret via HKDF-SHA256, only your own devices can decrypt them. On top of that, all connections run over TLS 1.2/1.3, and every request is signed with HMAC-SHA256 to prevent tampering and replay. When the cloud relay is used, it forwards encrypted bytes it cannot decrypt; nothing is persisted on our servers."
-            }
-          }, {
-            "@type": "Question",
-            "name": "What is the file size limit for OpenDrop?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "On the same Wi-Fi (LAN transfers), there's no file size limit. Files stream directly at your network's full speed. When your devices are on different networks, OpenDrop uses its own encrypted relay with no per-transfer size cap: free transfers go through our Oracle Cloud relay, and Pro subscribers get the faster Fly.io relay (with automatic failover to Oracle if Fly is down) and binary streaming of the whole file."
-            }
-          }, {
-            "@type": "Question",
-            "name": "How do I transfer photos from Android to PC wirelessly?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Open OpenDrop on your PC. It starts a local server and connects to OpenDrop's encrypted relay automatically. Scan the QR code with the OpenDrop Android app. If both devices are on the same Wi-Fi, it connects directly over LAN for maximum speed. Pick your photos and tap send."
-            }
-          }, {
-            "@type": "Question",
-            "name": "How is OpenDrop different from Snapdrop?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Snapdrop needs a WebRTC signaling server and only runs in a browser. OpenDrop runs a native FastAPI server on your desktop with automatic LAN discovery (mDNS), plus its own direct peer-to-peer path (WebRTC over self-hosted STUN, with no third-party STUN and no TURN) and an encrypted relay fallback for remote access. It works without any internet on the same Wi-Fi, and handles larger files, folder browsing, CLI mode, and native mobile apps."
-            }
-          }, {
-            "@type": "Question",
-            "name": "Is there a mobile app for OpenDrop?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes. OpenDrop is available on iOS (App Store), Android (Google Play), Windows (Microsoft Store + direct .exe), and Linux (.AppImage). The desktop app has both GUI and CLI modes. A macOS build is in active development."
-            }
-          }]
+          "@type": "Question",
+          "name": "How do I pair my phone with my computer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Install OpenDrop on your computer and open it. It shows a QR code. Open the OpenDrop app on your phone and scan that code. Free needs no account. On Free, each phone pairs with one computer, and scanning a different computer's code moves the phone to that computer. With Pro, sign in to the same OpenDrop account on each device and they connect automatically, with no QR code. The QR code holds a private pairing key. Anyone who scans it can pair with your computer, so do not share screenshots of it."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "My phone will not connect to my computer. What should I check?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Make sure OpenDrop is open on the computer and both devices run the latest version, because outdated versions are asked to update. On Free, scan the QR code on the computer again: the phone connects to the computer whose code it scanned last. If the devices are on different networks, both need an internet connection. You do not need to forward any ports. On the same Wi-Fi, allow OpenDrop through the computer's firewall for private networks. It listens on port 8000 by default. If it still fails, check System status, then send us a ticket."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I update OpenDrop?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Windows installer and the Linux AppImage check for updates when they start and install a new version in one click, verified with SHA-256. The Microsoft Store version tells you when an update is out and opens its Store page. On iPhone, iPad and Android, update through the App Store or Google Play."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do transfers work when my devices are on different networks?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "OpenDrop picks the route for you. Free tries a direct peer-to-peer link first, then OpenDrop's shared relay. Pro starts on the faster Pro relay and keeps peer-to-peer as a backup. There is nothing extra to install and no port to forward. Free remote transfers are speed-limited, move in 5 MB pieces and share a weekly fair-use allowance on the free relay. Pro streams the whole file at full speed with no weekly limit. On both plans, a dropped connection picks up where it left off."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is there a file size limit?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Neither plan has a per-file size cap. On the same Wi-Fi, files stream directly at full speed on both plans, with no chunking. Away from your Wi-Fi, Free is speed-limited and Pro runs at full speed."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do transfers keep going if I leave the app?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Remote uploads from your phone keep going in the background on iPhone, and for a while on Android. Transfers over Wi-Fi or peer-to-peer, and all downloads to your phone, need the OpenDrop app open."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does Pro add?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Free sends files between each phone and the computer it is paired with: at full speed on the same Wi-Fi and speed-limited over the internet, with no account and no file size cap. Pro adds phone to phone (iPhone and Android) and computer to computer transfers, Bluetooth between two phones when there is no Wi-Fi, automatic connection for every device signed in to your account, the faster Pro relay with no weekly limit, subfolder browsing, new folders and shared folders, and photo, video and RAW conversion, which runs on a computer. See the full comparison."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I subscribe to Pro?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Subscribe inside the OpenDrop app. iPhone and iPad use the App Store, and Android uses Google Play. On Windows or Linux, sign in in the desktop app and choose Upgrade to Pro. You sign in with Google, Apple, Microsoft or email. Pro is tied to your OpenDrop account, so one subscription covers all your devices."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I cancel Pro or get a refund?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cancel where you subscribed. On iPhone and iPad, open Settings, tap your name, then Subscriptions. On Android, open Google Play, tap your profile icon, then Payments and subscriptions, then Subscriptions. For a subscription bought in the desktop app, use the Stripe customer portal linked from your purchase email. You keep Pro until the end of the period you paid for. Refunds go through the store that took your payment: Apple for the App Store, Google for Google Play, and the contact email on your Stripe receipt for desktop purchases. In the EU or UK you may also have a right of withdrawal. Use the withdrawal form or email support@nfdgames.com."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are my files encrypted?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. File contents are encrypted with ChaCha20-Poly1305 on your device before they leave it, with a key derived (HKDF-SHA256) from a secret your paired devices share. Encryption is mandatory over Wi-Fi, peer-to-peer, the relay and Bluetooth between Pro phones, and OpenDrop refuses to send or accept unencrypted file data. Requests between your devices are signed with HMAC-SHA256. Relay servers carry file contents only in encrypted form. They can see transfer details such as file names, folder names, file sizes and device names, which they need to route transfers. On Free, the key is made on your computer and shared through the QR code. With Pro, OpenDrop's account service also stores it so your signed-in devices can connect."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What data does OpenDrop collect?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Free needs no account. The app sends basic usage statistics to our own server: a random install ID, the app version and platform, active-user counts and error counts, with email addresses hashed. The statistics include nothing about your files, and there are no ads. Turn them off in Settings with Disable basic analytics. The Privacy Policy has the full details."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I delete my account?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In the OpenDrop app on your phone or computer, open Settings, then Account, then Delete Account. You can also email support@nfdgames.com from the address on your account with the subject Delete My Account. Files on your devices are not affected."
+          }
         }
       ]
     }
     </script>
+
     <!-- Fonts (deferred to avoid render-blocking) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
-    
+
     <!-- Stylesheets -->
     <link rel="stylesheet" href="../styles/common.css">
-    <link rel="stylesheet" href="../styles/opendrop.css">
-    
-    <style>
-        /* Support Page Specific Styles */
-        .support-hero {
-            min-height: auto;
-            padding: 10rem var(--space-xl) var(--space-2xl);
-            text-align: center;
-        }
-
-        .support-hero h1 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            margin-bottom: var(--space-md);
-        }
-
-        .support-hero p {
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Support Container */
-        .support-container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 var(--space-xl) var(--space-4xl);
-        }
-
-        .support-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: var(--space-2xl);
-        }
-
-        /* Contact Info Sidebar */
-        .support-sidebar {
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-lg);
-        }
-
-        .info-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-xl);
-            padding: var(--space-xl);
-            transition: all var(--transition-slow);
-        }
-
-        .info-card:hover {
-            border-color: rgba(37, 139, 244, 0.3);
-        }
-
-        .info-card h3 {
-            font-size: 1rem;
-            margin-bottom: var(--space-sm);
-            display: flex;
-            align-items: center;
-            gap: var(--space-sm);
-        }
-
-        .info-card h3 span {
-            font-size: 1.25rem;
-        }
-
-        .info-card p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
-        .info-card a {
-            color: var(--accent-glow);
-            text-decoration: none;
-            transition: color var(--transition-fast);
-        }
-
-        .info-card a:hover {
-            color: var(--text-primary);
-            text-decoration: underline;
-        }
-
-        /* Ticket Form */
-        .ticket-form-container {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-2xl);
-            padding: var(--space-2xl);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .ticket-form-container::before {
-            display: none;
-        }
-
-        .ticket-form-container h2 {
-            font-size: 1.25rem;
-            margin-bottom: var(--space-lg);
-        }
-
-        .form-group {
-            margin-bottom: var(--space-lg);
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.85rem;
-            font-weight: 500;
-            margin-bottom: var(--space-sm);
-            color: var(--text-secondary);
-        }
-
-        .form-group label .required {
-            color: var(--error);
-            margin-left: 2px;
-        }
-
-        .form-input,
-        .form-select,
-        .form-textarea {
-            width: 100%;
-            padding: 0.875rem 1rem;
-            background: var(--bg-dark);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
-            color: var(--text-primary);
-            font-family: inherit;
-            font-size: 0.95rem;
-            transition: all var(--transition-fast);
-        }
-
-        .form-input:focus,
-        .form-select:focus,
-        .form-textarea:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(37, 139, 244, 0.15);
-        }
-
-        .form-input::placeholder,
-        .form-textarea::placeholder {
-            color: var(--text-muted);
-        }
-
-        .form-select {
-            cursor: pointer;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239ca3af'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 1rem center;
-            background-size: 1.25rem;
-            padding-right: 2.5rem;
-        }
-
-        .form-select option {
-            background: var(--bg-dark);
-            color: var(--text-primary);
-        }
-
-        .form-textarea {
-            min-height: 150px;
-            resize: vertical;
-            line-height: 1.6;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--space-md);
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 1rem 1.5rem;
-            background: var(--accent);
-            border: none;
-            border-radius: var(--radius-md);
-            color: white;
-            font-family: inherit;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background var(--transition-fast);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: var(--space-sm);
-        }
-
-        .submit-btn:hover {
-            background: var(--accent-glow);
-        }
-
-        .submit-btn svg {
-            width: 20px;
-            height: 20px;
-        }
-
-        /* FAQ Section */
-        .faq-section {
-            margin-top: var(--space-4xl);
-            padding: var(--space-3xl) var(--space-xl);
-            border-top: 1px solid var(--border);
-        }
-
-        .faq-section .section-header {
-            text-align: center;
-            margin-bottom: var(--space-2xl);
-        }
-
-        .faq-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: var(--space-lg);
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-xl);
-            padding: var(--space-xl);
-            transition: all var(--transition-slow);
-        }
-
-        .faq-item:hover {
-            border-color: var(--accent);
-        }
-
-        .faq-item h4 {
-            font-size: 1rem;
-            margin-bottom: var(--space-sm);
-            color: var(--text-primary);
-        }
-
-        .faq-item p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
-        /* Success Message */
-        .success-message {
-            display: none;
-            text-align: center;
-            padding: var(--space-2xl);
-        }
-
-        .success-message.show {
-            display: block;
-        }
-
-        .success-icon {
-            width: 64px;
-            height: 64px;
-            background: rgba(77, 184, 164, 0.15);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto var(--space-lg);
-            font-size: 2rem;
-        }
-
-        .success-message h3 {
-            font-size: 1.25rem;
-            margin-bottom: var(--space-sm);
-        }
-
-        .success-message p {
-            color: var(--text-secondary);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .support-hero {
-                padding: 8rem var(--space-lg) var(--space-xl);
-            }
-
-            .support-container {
-                padding: 0 var(--space-lg) var(--space-3xl);
-            }
-
-            .support-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .support-sidebar {
-                order: 2;
-            }
-
-            .ticket-form-container {
-                padding: var(--space-xl);
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-
-            .faq-section {
-                padding: var(--space-2xl) var(--space-lg);
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="../styles/support.css">
 </head>
-<body>
+<body class="page-support">
+    <a class="skip-link" href="#main">Skip to content</a>
     <div class="bg-gradient"></div>
     <div class="noise"></div>
 
-    <!-- Navigation -->
-    <nav>
-        <a href="./" class="logo">
-            <picture>
-                <source srcset="OpenDropIcon-logo.webp" type="image/webp">
-                <img src="OpenDropIcon.png" alt="OpenDrop - File Transfer App Support" class="logo-icon" width="36" height="36" loading="lazy">
-            </picture>
-            OpenDrop
-        </a>
-        <div class="nav-links">
-            <a href="./#features">Features</a>
-            <a href="./#download">Download</a>
-            <a href="./#how-it-works">How It Works</a>
-            <a href="./#download" class="nav-cta">Get Started</a>
+    <nav class="site-nav" aria-label="Main">
+        <span class="nav-lockup">
+            <a href="/" class="nav-lockup__home" aria-label="NFDGames home">
+                <picture>
+                    <source srcset="/NFDGamesLogoCircleTransparent.webp" type="image/webp">
+                    <img src="/NFDGamesLogoCircleTransparent.png" alt="" width="28" height="28">
+                </picture>
+            </a>
+            <span class="nav-lockup__sep" aria-hidden="true">/</span>
+            <a href="/OpenDrop/" class="logo">
+                <picture>
+                    <source srcset="OpenDropIcon-logo.webp" type="image/webp">
+                    <img src="OpenDropIcon.png" alt="" class="logo-icon" width="32" height="32">
+                </picture>
+                <span class="logo__word">OpenDrop</span>
+            </a>
+        </span>
+        <div class="nav-links" id="navLinks">
+            <a href="/OpenDrop/#features">Features</a>
+            <a href="/OpenDrop/#compare">Free vs Pro</a>
+            <a href="/blog/">Blog</a>
+            <a href="support.html" aria-current="page">Support</a>
+        </div>
+        <div class="nav-actions">
+            <a href="/OpenDrop/#download" class="btn-cta btn-cta--sm">Download</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-controls="navLinks" aria-expanded="false" aria-label="Open menu"><span></span><span></span><span></span></button>
         </div>
     </nav>
 
-    <main>
-    <!-- Support Hero -->
-    <section class="support-hero">
-        <h1>How can we <span class="gradient">help?</span></h1>
-        <p>Having trouble with OpenDrop? Submit a support ticket and we'll get back to you as soon as possible.</p>
+    <main id="main" tabindex="-1">
+    <section class="support-hero" aria-labelledby="pageTitle">
+        <div class="wrap">
+            <p class="eyebrow">Support</p>
+            <h1 id="pageTitle">How can we help?</h1>
+            <p class="section-lede">Get help with installing OpenDrop, pairing your devices, sending files and your Pro subscription.</p>
+
+            <h2 class="sr-only">Ways to get help</h2>
+            <ul class="support-tiles">
+                <li class="tile support-tile">
+                    <span class="support-tile__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg>
+                    </span>
+                    <h3 class="support-tile__title"><a class="support-tile__link" href="#contact" aria-describedby="tileTicketText">Support ticket</a></h3>
+                    <p class="support-tile__text" id="tileTicketText">Use the form on this page. Tell us your version and platform, and we reply by email.</p>
+                    <svg class="support-tile__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+                </li>
+                <li class="tile support-tile">
+                    <span class="support-tile__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5L12 13l8.5-6.5"/></svg>
+                    </span>
+                    <h3 class="support-tile__title"><a class="support-tile__link" href="mailto:support@nfdgames.com" aria-describedby="tileEmailText">Email</a></h3>
+                    <p class="support-tile__text" id="tileEmailText">Write to <strong>support@nfdgames.com</strong> about the app, your account or Pro.</p>
+                    <svg class="support-tile__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </li>
+                <li class="tile support-tile">
+                    <span class="support-tile__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="7" y="8" width="10" height="13" rx="5"/><path d="M9 8.5V7a3 3 0 0 1 6 0v1.5"/><path d="M12 12v9"/><path d="M7 13H3M21 13h-4M7.3 17.5L4 19.5M16.7 17.5l3.3 2M7.8 9.8L5 7.5M16.2 9.8L19 7.5"/></svg>
+                    </span>
+                    <h3 class="support-tile__title"><a class="support-tile__link" href="https://github.com/nfantinodyer/nfdgames/issues" target="_blank" rel="noopener" aria-describedby="tileBugText">Bug reports<span class="sr-only"> (opens in a new tab)</span></a></h3>
+                    <p class="support-tile__text" id="tileBugText">Open an issue on GitHub with the steps that cause the bug. Issues are public, so leave out personal details.</p>
+                    <svg class="support-tile__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17L17 7M9 7h8v8"/></svg>
+                </li>
+                <li class="tile support-tile">
+                    <span class="support-tile__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H10a2 2 0 0 1 2 2v14a1.5 1.5 0 0 0-1.5-1.5h-5A1.5 1.5 0 0 1 4 17z"/><path d="M20 5.5A1.5 1.5 0 0 0 18.5 4H14a2 2 0 0 0-2 2v14a1.5 1.5 0 0 1 1.5-1.5h5A1.5 1.5 0 0 0 20 17z"/></svg>
+                    </span>
+                    <h3 class="support-tile__title"><a class="support-tile__link" href="/OpenDrop/docs/export-compliance/" aria-describedby="tileDocsText">Documentation</a></h3>
+                    <p class="support-tile__text" id="tileDocsText">The export compliance document: which encryption OpenDrop uses and where it is used.</p>
+                    <svg class="support-tile__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </li>
+                <li class="tile support-tile">
+                    <span class="support-tile__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M3 12h4l2.5-6 5 12 2.5-6h4"/></svg>
+                    </span>
+                    <h3 class="support-tile__title"><a class="support-tile__link" href="status.html" aria-describedby="tileStatusText">System status</a></h3>
+                    <p class="support-tile__text" id="tileStatusText">Check whether the relay, sign-in and website are working before you troubleshoot your devices.</p>
+                    <svg class="support-tile__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </li>
+                <li class="tile support-tile">
+                    <span class="support-tile__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>
+                    </span>
+                    <h3 class="support-tile__title"><a class="support-tile__link" href="security.html" aria-describedby="tileSecurityText">Security reports</a></h3>
+                    <p class="support-tile__text" id="tileSecurityText">Report a vulnerability privately under our disclosure policy, not in a public GitHub issue.</p>
+                    <svg class="support-tile__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </li>
+            </ul>
+        </div>
     </section>
 
-    <!-- Support Content -->
-    <div class="support-container">
-        <div class="support-grid">
-            <!-- Sidebar -->
-            <aside class="support-sidebar">
-                <div class="info-card">
-                    <h3><span>📧</span> Email Us</h3>
-                    <p>For general inquiries, reach out directly at <a href="mailto:support@nfdgames.com">support@nfdgames.com</a></p>
-                </div>
+    <div class="seam" aria-hidden="true"></div>
 
-                <div class="info-card">
-                    <h3><span>📖</span> Documentation</h3>
-                    <p>Check out our <a href="https://www.nfdgames.com/OpenDrop/docs/export-compliance/">documentation</a> for setup guides and troubleshooting tips.</p>
-                </div>
-
-                <div class="info-card">
-                    <h3><span>🐛</span> Bug Reports</h3>
-                    <p>Found a bug? You can also report issues on our <a href="https://github.com/nfantinodyer/nfdgames/issues" target="_blank">GitHub Issues</a> page.</p>
-                </div>
-
-                <div class="info-card">
-                    <h3><span>⏱️</span> Response Time</h3>
-                    <p>We typically respond to support tickets within 24-48 hours during business days.</p>
-                </div>
-            </aside>
-
-            <!-- Ticket Form -->
-            <div class="ticket-form-container">
-                <h2>Submit a Support Ticket</h2>
-                
-                <!-- Form using Formspree -->
-                <form id="supportForm" action="https://formspree.io/f/mwvvpjan" method="POST">
-                    <input type="hidden" name="_subject" value="OpenDrop Support Ticket">
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="name">Name <span class="required">*</span></label>
-                            <input type="text" id="name" name="name" class="form-input" placeholder="Your name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email <span class="required">*</span></label>
-                            <input type="email" id="email" name="email" class="form-input" placeholder="your@email.com" required>
+    <section class="section" id="faq" aria-labelledby="faqTitle">
+        <div class="wrap">
+            <div class="section-head">
+                <p class="eyebrow">FAQ</p>
+                <h2 class="section-title" id="faqTitle">Common questions</h2>
+            </div>
+            <div class="faq-cols">
+                <div class="faq-col">
+                    <div class="faq-group">
+                        <h3 class="faq-group__title">Getting started</h3>
+                        <div class="accordion">
+                            <details class="disclosure">
+                                <summary>Which devices does OpenDrop run on?</summary>
+                                <div class="disclosure__body">
+                                    <p>Windows, Linux, iPhone, iPad and Android. A Mac version is in development for the Mac App Store and has no release date yet.</p>
+                                    <p>On Windows, get it from the Microsoft Store or <a href="/OpenDrop/#download">download the installer</a>. Both install the same app. On Linux, download the AppImage for x86_64 or ARM64 (aarch64) and run <code>chmod +x</code> on the file before you open it. iPhone and iPad use the App Store, and Android uses Google Play.</p>
+                                    <p>You need iOS 16 or later, Android 7.0 or later, Windows 10 version 1809 or later (64-bit), or Linux with glibc 2.35 or newer (Ubuntu 22.04, Debian 12, Fedora 36 or later).</p>
+                                </div>
+                            </details>
+                            <details class="disclosure">
+                                <summary>How do I pair my phone with my computer?</summary>
+                                <div class="disclosure__body">
+                                    <p>Install OpenDrop on your computer and open it. It shows a QR code. Open the OpenDrop app on your phone and scan that code. Free needs no account.</p>
+                                    <p>On Free, each phone pairs with one computer, and scanning a different computer's code moves the phone to that computer. With Pro, sign in to the same OpenDrop account on each device and they connect automatically, with no QR code.</p>
+                                    <p>The QR code holds a private pairing key. Anyone who scans it can pair with your computer, so do not share screenshots of it.</p>
+                                </div>
+                            </details>
+                            <details class="disclosure">
+                                <summary>My phone will not connect to my computer. What should I check?</summary>
+                                <div class="disclosure__body">
+                                    <p>Make sure OpenDrop is open on the computer and both devices run the latest version, because outdated versions are asked to update. On Free, scan the QR code on the computer again: the phone connects to the computer whose code it scanned last. If the devices are on different networks, both need an internet connection. You do not need to forward any ports.</p>
+                                    <p>On the same Wi-Fi, allow OpenDrop through the computer's firewall for private networks. It listens on port 8000 by default. If it still fails, check <a href="status.html">System status</a>, then <a href="#contact">send us a ticket</a>.</p>
+                                </div>
+                            </details>
+                            <details class="disclosure">
+                                <summary>How do I update OpenDrop?</summary>
+                                <div class="disclosure__body">
+                                    <p>The Windows installer and the Linux AppImage check for updates when they start and install a new version in one click, verified with SHA-256. The Microsoft Store version tells you when an update is out and opens its Store page. On iPhone, iPad and Android, update through the App Store or Google Play.</p>
+                                </div>
+                            </details>
                         </div>
                     </div>
+                    <div class="faq-group">
+                        <h3 class="faq-group__title">Transfers</h3>
+                        <div class="accordion">
+                            <details class="disclosure">
+                                <summary>How do transfers work when my devices are on different networks?</summary>
+                                <div class="disclosure__body">
+                                    <p>OpenDrop picks the route for you. Free tries a direct peer-to-peer link first, then OpenDrop's shared relay. Pro starts on the faster Pro relay and keeps peer-to-peer as a backup. There is nothing extra to install and no port to forward.</p>
+                                    <p>Free remote transfers are speed-limited, move in 5 MB pieces and share a weekly fair-use allowance on the free relay. Pro streams the whole file at full speed with no weekly limit. On both plans, a dropped connection picks up where it left off.</p>
+                                </div>
+                            </details>
+                            <details class="disclosure">
+                                <summary>Is there a file size limit?</summary>
+                                <div class="disclosure__body">
+                                    <p>No. Neither plan has a per-file size cap. On the same Wi-Fi, files stream directly at full speed on both plans, with no chunking. Away from your Wi-Fi, Free is speed-limited and Pro runs at full speed.</p>
+                                </div>
+                            </details>
+                            <details class="disclosure">
+                                <summary>Do transfers keep going if I leave the app?</summary>
+                                <div class="disclosure__body">
+                                    <p>Remote uploads from your phone keep going in the background on iPhone, and for a while on Android. Transfers over Wi-Fi or peer-to-peer, and all downloads to your phone, need the OpenDrop app open.</p>
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-col">
+                    <div class="faq-group">
+                        <h3 class="faq-group__title">Free and Pro</h3>
+                        <div class="accordion">
+                            <details class="disclosure">
+                                <summary>What does Pro add?</summary>
+                                <div class="disclosure__body">
+                                    <p>Free sends files between each phone and the computer it is paired with: at full speed on the same Wi-Fi and speed-limited over the internet, with no account and no file size cap.</p>
+                                    <p>Pro adds phone to phone (iPhone and Android) and computer to computer transfers, Bluetooth between two phones when there is no Wi-Fi, automatic connection for every device signed in to your account, the faster Pro relay with no weekly limit, subfolder browsing, new folders and shared folders, and photo, video and RAW conversion, which runs on a computer. See the <a href="/OpenDrop/#compare">full comparison</a>.</p>
+                                </div>
+                            </details>
+                            <details class="disclosure">
+                                <summary>How do I subscribe to Pro?</summary>
+                                <div class="disclosure__body">
+                                    <p>Subscribe inside the OpenDrop app. iPhone and iPad use the App Store, and Android uses Google Play. On Windows or Linux, sign in in the desktop app and choose Upgrade to Pro. You sign in with Google, Apple, Microsoft or email. Pro is tied to your OpenDrop account, so one subscription covers all your devices.</p>
+                                </div>
+                            </details>
+                            <details class="disclosure">
+                                <summary>How do I cancel Pro or get a refund?</summary>
+                                <div class="disclosure__body">
+                                    <p>Cancel where you subscribed. On iPhone and iPad, open Settings, tap your name, then Subscriptions. On Android, open Google Play, tap your profile icon, then Payments and subscriptions, then Subscriptions. For a subscription bought in the desktop app, use the Stripe customer portal linked from your purchase email. You keep Pro until the end of the period you paid for.</p>
+                                    <p>Refunds go through the store that took your payment: Apple for the App Store, Google for Google Play, and the contact email on your Stripe receipt for desktop purchases. In the EU or UK you may also have a right of withdrawal. Use the <a href="WithdrawalForm.html">withdrawal form</a> or email <a href="mailto:support@nfdgames.com">support@nfdgames.com</a>.</p>
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+                    <div class="faq-group">
+                        <h3 class="faq-group__title">Privacy and security</h3>
+                        <div class="accordion">
+                            <details class="disclosure">
+                                <summary>Are my files encrypted?</summary>
+                                <div class="disclosure__body">
+                                    <p>Yes. File contents are encrypted with ChaCha20-Poly1305 on your device before they leave it, with a key derived (HKDF-SHA256) from a secret your paired devices share. Encryption is mandatory over Wi-Fi, peer-to-peer, the relay and Bluetooth between Pro phones, and OpenDrop refuses to send or accept unencrypted file data. Requests between your devices are signed with HMAC-SHA256.</p>
+                                    <p>Relay servers carry file contents only in encrypted form. They can see transfer details such as file names, folder names, file sizes and device names, which they need to route transfers. On Free, the key is made on your computer and shared through the QR code. With Pro, OpenDrop's account service also stores it so your signed-in devices can connect.</p>
+                                </div>
+                            </details>
+                            <details class="disclosure">
+                                <summary>What data does OpenDrop collect?</summary>
+                                <div class="disclosure__body">
+                                    <p>Free needs no account. The app sends basic usage statistics to our own server: a random install ID, the app version and platform, active-user counts and error counts, with email addresses hashed. The statistics include nothing about your files, and there are no ads. Turn them off in Settings with Disable basic analytics. The <a href="PrivacyPolicy.html">Privacy Policy</a> has the full details.</p>
+                                </div>
+                            </details>
+                            <details class="disclosure">
+                                <summary>How do I delete my account?</summary>
+                                <div class="disclosure__body">
+                                    <p>In the OpenDrop app on your phone or computer, open Settings, then Account, then Delete Account. You can also email <a href="mailto:support@nfdgames.com">support@nfdgames.com</a> from the address on your account with the subject Delete My Account. Files on your devices are not affected.</p>
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="platform">Platform <span class="required">*</span></label>
-                            <select id="platform" name="platform" class="form-select" required>
-                                <option value="" disabled selected>Select your platform</option>
+    <div class="seam" aria-hidden="true"></div>
+
+    <section class="section support-ticket" id="contact" aria-labelledby="ticketTitle">
+        <div class="wrap support-ticket__grid">
+            <div class="support-ticket__intro">
+                <p class="eyebrow">Contact</p>
+                <h2 class="section-title" id="ticketTitle">Send a support ticket</h2>
+                <p class="section-lede">We reply to the email address you enter, usually within 24 to 48 hours on business days.</p>
+                <div class="support-checklist">
+                    <h3 class="support-checklist__title">Before you write in</h3>
+                    <ul class="support-checklist__list">
+                        <li><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>Version.</strong> The OpenDrop version on each device, for example 1.0.0. If a newer version is out, update first.</span></li>
+                        <li><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>Platform.</strong> Which devices are involved, for example a Windows PC and an iPhone, and whether they were on the same Wi-Fi.</span></li>
+                        <li><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>What you tried.</strong> The steps you took, what happened, and the exact text of any error message.</span></li>
+                        <li><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>Screenshots.</strong> If you email them, crop out any QR code first. Anyone who scans it can pair with your computer.</span></li>
+                    </ul>
+                </div>
+                <a class="link-arrow" href="#faq">Read the common questions <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 19V5M6 11l6-6 6 6"/></svg></a>
+            </div>
+
+            <div class="support-form-panel">
+                <form id="supportForm" action="https://formspree.io/f/mwvvpjan" method="POST">
+                    <input type="hidden" name="_subject" value="OpenDrop Support Ticket">
+
+                    <div class="support-fields">
+                        <div class="field">
+                            <label class="field__label" for="name">Name</label>
+                            <input type="text" id="name" name="name" class="field__control" placeholder="Your name" autocomplete="name" required>
+                        </div>
+                        <div class="field">
+                            <label class="field__label" for="email">Email</label>
+                            <input type="email" id="email" name="email" class="field__control" placeholder="you@example.com" autocomplete="email" required>
+                        </div>
+                        <div class="field">
+                            <label class="field__label" for="platform">Platform</label>
+                            <select id="platform" name="platform" class="field__control" required>
+                                <option value="" disabled selected>Choose one</option>
                                 <option value="Windows">Windows</option>
                                 <option value="Linux">Linux</option>
                                 <option value="Android">Android</option>
-                                <option value="iOS">iOS</option>
-                                <option value="macOS">macOS (Preview)</option>
+                                <option value="iOS">iPhone or iPad</option>
                                 <option value="Other">Other</option>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="category">Issue Type <span class="required">*</span></label>
-                            <select id="category" name="category" class="form-select" required>
-                                <option value="" disabled selected>Select issue type</option>
-                                <option value="Bug Report">Bug Report</option>
-                                <option value="Connection Issue">Connection Issue</option>
-                                <option value="Installation Help">Installation Help</option>
-                                <option value="Feature Request">Feature Request</option>
-                                <option value="Account/Subscription">Account / Subscription</option>
+                        <div class="field">
+                            <label class="field__label" for="version">OpenDrop version <span class="field__optional">(optional)</span></label>
+                            <input type="text" id="version" name="version" class="field__control" placeholder="For example 1.0.0">
+                        </div>
+                        <div class="field">
+                            <label class="field__label" for="category">Issue type</label>
+                            <select id="category" name="category" class="field__control" required>
+                                <option value="" disabled selected>Choose one</option>
+                                <option value="Bug Report">Bug report</option>
+                                <option value="Connection Issue">Connection</option>
+                                <option value="Installation Help">Installing</option>
+                                <option value="Feature Request">Feature request</option>
+                                <option value="Account/Subscription">Account or Pro</option>
                                 <option value="Other">Other</option>
                             </select>
                         </div>
+                        <div class="field">
+                            <label class="field__label" for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" class="field__control" placeholder="One line about the problem" required>
+                        </div>
+                        <div class="field field--full">
+                            <label class="field__label" for="message">Description</label>
+                            <textarea id="message" name="message" class="field__control" placeholder="What you did, what happened, what you expected, and any error message." required></textarea>
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="version">OpenDrop Version</label>
-                        <input type="text" id="version" name="version" class="form-input" placeholder="e.g., v1.0.0">
+                    <div class="support-form__actions">
+                        <button type="submit" class="btn-cta submit-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 3L10 14"/><path d="M21 3l-7 18-4-7-7-4z"/></svg>
+                            Send ticket
+                        </button>
+                        <p class="support-form__note">Every field except the version is required. The form is delivered by Formspree. Our <a href="PrivacyPolicy.html">Privacy Policy</a> explains how we handle it.</p>
                     </div>
-
-                    <div class="form-group">
-                        <label for="subject">Subject <span class="required">*</span></label>
-                        <input type="text" id="subject" name="subject" class="form-input" placeholder="Brief description of your issue" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="message">Description <span class="required">*</span></label>
-                        <textarea id="message" name="message" class="form-textarea" placeholder="Please describe your issue in detail. Include any error messages, steps to reproduce the problem, and what you've already tried." required></textarea>
-                    </div>
-
-                    <button type="submit" class="submit-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                        </svg>
-                        Submit Ticket
-                    </button>
                 </form>
 
-                <!-- Success Message -->
-                <div class="success-message" id="successMessage">
-                    <div class="success-icon">✓</div>
-                    <h3>Ticket Submitted!</h3>
-                    <p>Thank you for reaching out. We'll get back to you at the email address provided within 24-48 hours.</p>
+                <div class="success-message" id="successMessage" role="status" tabindex="-1">
+                    <div class="success-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+                    </div>
+                    <h3>Ticket sent</h3>
+                    <p>Thanks for writing in. We will reply to the email address you entered, usually within 24 to 48 hours on business days.</p>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- FAQ Section -->
-    <section class="faq-section">
-        <div class="section-header">
-            <h2>Frequently Asked Questions</h2>
-            <p>Quick answers to common questions</p>
-        </div>
-
-        <div class="faq-grid">
-            <div class="faq-item">
-                <h4>Why won't my phone connect?</h4>
-                <p>If you're on the same Wi-Fi, OpenDrop uses mDNS to discover your PC automatically. Some routers block mDNS, so if local discovery fails, the app falls back to OpenDrop's encrypted relay using the pairing details in the QR code. Try refreshing the QR code on the server, or make sure your firewall allows connections on port 8000.</p>
-            </div>
-            <div class="faq-item">
-                <h4>Are my files secure?</h4>
-                <p>Yes. File contents are end-to-end encrypted with ChaCha20-Poly1305 using a 256-bit key derived from your account's shared secret via HKDF-SHA256, only your own devices can decrypt them. On top of that, all connections run over TLS 1.2/1.3, and every request is signed with HMAC-SHA256 to prevent tampering and replay. When the cloud relay is used, it forwards encrypted bytes it cannot decrypt; nothing is persisted on our servers.</p>
-            </div>
-            <div class="faq-item">
-                <h4>What's the file size limit?</h4>
-                <p>On the same Wi-Fi (LAN transfers), there's no file size limit. Files stream directly at your network's full speed. When your devices are on different networks, OpenDrop uses its own encrypted relay with no per-transfer size cap: free transfers go through our Oracle Cloud relay, and Pro subscribers get the faster Fly.io relay (with automatic failover to Oracle if Fly is down) and binary streaming of the whole file.</p>
-            </div>
-            <div class="faq-item">
-                <h4>Is there a mobile app?</h4>
-                <p>Yes. OpenDrop is on iOS (App Store), Android (Google Play), Windows (Microsoft Store + direct .exe), and Linux (.AppImage). The desktop app has both GUI and CLI modes. A macOS build is in active development.</p>
-            </div>
-            <div class="faq-item">
-                <h4>How do I transfer photos from Android to PC wirelessly?</h4>
-                <p>Open OpenDrop on your PC. It starts a local server and connects to OpenDrop's encrypted relay automatically. Scan the QR code with the OpenDrop Android app. If both devices are on the same Wi-Fi, it connects directly over LAN for maximum speed. Pick your photos and tap send.</p>
-            </div>
-            <div class="faq-item">
-                <h4>How is OpenDrop different from Snapdrop?</h4>
-                <p>Snapdrop requires a WebRTC connection through a signaling server and only works in a browser. OpenDrop runs a native FastAPI server on your desktop with automatic LAN discovery (mDNS), plus its own direct peer-to-peer path (WebRTC over self-hosted STUN, with no third-party STUN and no TURN) and an encrypted relay fallback for remote access. It works without any internet at all on the same Wi-Fi, and supports larger files, folder browsing, and native mobile apps.</p>
             </div>
         </div>
     </section>
-
     </main>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-brand">
-                <a href="./" class="logo">
+    <div class="seam" aria-hidden="true"></div>
+
+    <footer class="site-footer">
+        <div class="wrap site-footer__grid">
+            <div class="site-footer__brand">
+                <a href="/OpenDrop/" class="logo">
                     <picture>
                         <source srcset="OpenDropIcon-logo.webp" type="image/webp">
-                        <img src="OpenDropIcon.png" alt="OpenDrop - File Transfer App Support" class="logo-icon" width="36" height="36" loading="lazy">
+                        <img src="OpenDropIcon.png" alt="" class="logo-icon" width="36" height="36" loading="lazy">
                     </picture>
                     OpenDrop
                 </a>
-                <p>Cross-platform file sharing made simple. Built by NFDGames.</p>
+                <p>OpenDrop by NFDGames. File transfer for Windows, Linux, iPhone, iPad and Android.</p>
             </div>
-
-            <div class="footer-links">
-                <div class="footer-col">
-                    <h4>Product</h4>
-                    <a href="./#features">Features</a>
-                    <a href="./#download">Download</a>
-                    <a href="./#how-it-works">How It Works</a>
-                    <a href="changelog.html">What&rsquo;s new in 1.0</a>
-                    <a href="status.html">System status</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Resources</h4>
-                    <a href="support.html">Support</a>
-                    <a href="https://www.nfdgames.com/OpenDrop/docs/export-compliance/">Documentation</a>
-                    <a href="press.html">Press kit</a>
-                    <a href="security.html">Security &amp; disclosure</a>
-                    <a href="accessibility.html">Accessibility</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Legal</h4>
-                    <a href="PrivacyPolicy.html">Privacy Policy</a>
-                    <a href="TermsOfService.html">Terms of Service</a>
-                    <a href="WithdrawalForm.html">EU/UK Withdrawal</a>
-                    <a href="third-party-notices.html">Third-party notices</a>
-                </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">OpenDrop</h2>
+                <ul>
+                    <li><a href="/OpenDrop/">Overview</a></li>
+                    <li><a href="/OpenDrop/#download">Download</a></li>
+                    <li><a href="/OpenDrop/#compare">Free vs Pro</a></li>
+                    <li><a href="/OpenDrop/changelog.html">What's new in 1.0</a></li>
+                    <li><a href="/OpenDrop/support.html">Support</a></li>
+                    <li><a href="/OpenDrop/status.html">System status</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Guides</h2>
+                <ul>
+                    <li><a href="/blog/posts/best-airdrop-alternatives-windows-2026.html">AirDrop alternatives</a></li>
+                    <li><a href="/blog/posts/share-files-iphone-android.html">iPhone to Android</a></li>
+                    <li><a href="/blog/posts/transfer-files-android-to-pc-without-usb.html">Android to PC, no USB</a></li>
+                    <li><a href="/blog/posts/transfer-photos-iphone-to-windows-pc.html">iPhone photos to PC</a></li>
+                    <li><a href="/blog/posts/transfer-files-windows-to-linux.html">Windows to Linux</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Studio</h2>
+                <ul>
+                    <li><a href="/">NFDGames home</a></li>
+                    <li><a href="/#gunslinger">Gunslinger</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/OpenDrop/press.html">Press kit</a></li>
+                    <li><a href="https://play.google.com/store/apps/dev?id=6331541447390891189&amp;hl=en_US" target="_blank" rel="noopener">Apps on Google Play</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Legal and security</h2>
+                <ul>
+                    <li><a href="/OpenDrop/PrivacyPolicy.html">Privacy Policy</a></li>
+                    <li><a href="/OpenDrop/TermsOfService.html">Terms of Service</a></li>
+                    <li><a href="/OpenDrop/security.html">Security and disclosure</a></li>
+                    <li><a href="/OpenDrop/accessibility.html">Accessibility</a></li>
+                </ul>
             </div>
         </div>
-
-        <div class="footer-bottom">
-            <p>© 2026 NFDGames. All rights reserved.</p>
-            <a href="mailto:support@nfdgames.com">support@nfdgames.com</a>
+        <div class="wrap site-footer__bottom">
+            <p>&copy; 2026 NFDGames. All rights reserved.</p>
+            <div class="site-footer__legal">
+                <a href="/OpenDrop/WithdrawalForm.html">EU/UK withdrawal</a>
+                <a href="/OpenDrop/third-party-notices.html">Third-party notices</a>
+                <a href="/OpenDrop/docs/export-compliance/">Export compliance</a>
+                <a href="mailto:support@nfdgames.com">support@nfdgames.com</a>
+            </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="../scripts/common.js"></script>
     <script>
-        // Handle form submission
+        // Send the ticket to Formspree without leaving the page.
         const form = document.getElementById('supportForm');
         const successMessage = document.getElementById('successMessage');
 
         form.addEventListener('submit', async function(e) {
             e.preventDefault();
-            
+
             const submitBtn = form.querySelector('.submit-btn');
             const originalText = submitBtn.innerHTML;
             submitBtn.innerHTML = '<span>Sending...</span>';
@@ -672,11 +573,12 @@
                 if (response.ok) {
                     form.style.display = 'none';
                     successMessage.classList.add('show');
+                    successMessage.focus();
                 } else {
                     throw new Error('Form submission failed');
                 }
             } catch (error) {
-                alert('There was an error submitting your ticket. Please try emailing us directly at support@nfdgames.com');
+                alert('Your ticket could not be sent. Please email us at support@nfdgames.com instead.');
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
             }

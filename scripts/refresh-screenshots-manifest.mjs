@@ -92,6 +92,15 @@ async function fetchMicrosoftStoreScreenshots() {
   return screenshots;
 }
 
+/* Apple's lookup API hands back small thumbnails (…/320x480bb.jpg).
+ * The same CDN path serves any size, so swap the final segment for a
+ * 1080px-wide WebP: the carousel cards and the home page hero render
+ * at up to 2x DPR and a 320px thumbnail looks soft there. The HTML
+ * scrape fallback already requests this size. */
+function upscaleAppleUrl(u) {
+  return String(u).replace(/\/\d+x\d+[a-z]*\.(?:jpg|jpeg|png|webp)(\?.*)?$/i, '/1080x0w.webp');
+}
+
 async function fetchITunesSearchScreenshots(entity) {
   const url = `https://itunes.apple.com/lookup?id=${APPLE_APP_ID}&entity=${entity}&country=us`;
   console.log(`[screenshots] GET ${url}`);
@@ -138,7 +147,7 @@ async function fetchIosScreenshots() {
   if (apiUrls.length) {
     console.log(`[screenshots] iTunes Search (iOS) -> ${apiUrls.length} shots`);
     return apiUrls.map((u, i) => ({
-      source_url: u,
+      source_url: upscaleAppleUrl(u),
       alt: `OpenDrop iOS screenshot ${i + 1}`,
     }));
   }
@@ -152,7 +161,7 @@ async function fetchMacScreenshots() {
   if (apiUrls.length) {
     console.log(`[screenshots] iTunes Search (Mac) -> ${apiUrls.length} shots`);
     return apiUrls.map((u, i) => ({
-      source_url: u,
+      source_url: upscaleAppleUrl(u),
       alt: `OpenDrop macOS screenshot ${i + 1}`,
     }));
   }
@@ -389,6 +398,35 @@ async function main() {
     }
   } catch (err) {
     console.warn(`[screenshots] og:image patch failed: ${err.message}`);
+  }
+
+  // Home page hero (root index.html): the two device mockups show real
+  // store screenshots. Each <img data-shot="platform:index"> is pointed
+  // at that entry of the manifest (index clamped to what exists), so the
+  // hero follows the store listings the same way the carousel does.
+  try {
+    const HOME_HTML = path.join(ROOT, 'index.html');
+    let html = await fs.readFile(HOME_HTML, 'utf8');
+    const before = html;
+    let tags = 0;
+    html = html.replace(/<img\b[^>]*\bdata-shot="([a-z]+):(\d+)"[^>]*>/gi, (tag, platform, idx) => {
+      tags += 1;
+      const list = manifest[platform] || [];
+      if (!list.length) return tag;
+      const entry = list[Math.min(Number(idx), list.length - 1)];
+      const src = entry.url.startsWith('http') ? entry.url : `/OpenDrop/${entry.url}`;
+      return tag.replace(/\bsrc="[^"]*"/i, `src="${src}"`);
+    });
+    if (!tags) {
+      console.warn('[screenshots] home hero: no <img data-shot> tags found — skipped patch');
+    } else if (html === before) {
+      console.log('[screenshots] home hero already up-to-date, no change');
+    } else {
+      await fs.writeFile(HOME_HTML, html);
+      console.log(`[screenshots] patched ${tags} home hero image(s) in ${HOME_HTML}`);
+    }
+  } catch (err) {
+    console.warn(`[screenshots] home hero patch failed: ${err.message}`);
   }
 
   if (!manifest.windows.length && !prev) {

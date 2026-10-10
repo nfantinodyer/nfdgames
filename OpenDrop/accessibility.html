@@ -25,101 +25,49 @@
  <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
 
  <link rel="stylesheet" href="../styles/common.css">
- <link rel="stylesheet" href="../styles/opendrop.css">
+ <link rel="stylesheet" href="../styles/subpage.css">
 
  <style>
- .doc-hero {
- min-height: auto;
- padding: 9rem var(--space-xl) var(--space-xl);
- text-align: center;
- }
- .doc-hero h1 {
- font-size: clamp(2rem, 5vw, 3.25rem);
- margin-bottom: var(--space-md);
- }
- .doc-hero p {
- color: var(--text-secondary);
- max-width: 760px;
- margin: 0 auto;
- font-size: 1.05rem;
- }
- .doc-container {
- max-width: 900px;
- margin: 0 auto;
- padding: 0 var(--space-xl) var(--space-4xl);
- }
- .doc-card {
- background: var(--bg-card);
- border: 1px solid var(--border);
- border-radius: var(--radius-2xl);
- padding: var(--space-2xl);
- margin-bottom: var(--space-lg);
- }
- .doc-card h2 {
- font-size: 1.35rem;
- margin-bottom: var(--space-md);
- }
- .doc-card h3 {
- margin: var(--space-lg) 0 var(--space-sm);
- font-size: 1.0rem;
- color: var(--text-primary);
- }
- .doc-card p, .doc-card li {
- color: var(--text-secondary);
- font-size: 0.97rem;
- line-height: 1.7;
- }
- .doc-card strong { color: var(--text-primary); }
- .doc-card a {
- color: var(--accent-glow);
- text-decoration: none;
- }
- .doc-card a:hover { text-decoration: underline; }
- .doc-card ul, .doc-card ol {
- margin: var(--space-sm) 0 var(--space-md) 1.25rem;
- }
- .doc-card li { margin-bottom: 0.4rem; }
+ /* Accessibility statement: page-only rules. Shared card and header styles live in subpage.css. */
  .compliance-grid {
  display: grid;
  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
- gap: var(--space-md);
- margin: var(--space-lg) 0;
+ gap: var(--sp-3);
+ margin: var(--sp-5) 0 0;
  }
  .compliance-card {
- background: var(--bg-dark);
- border: 1px solid var(--border);
- border-radius: var(--radius-lg);
- padding: var(--space-md);
+ padding: var(--sp-4);
+ border-radius: var(--r-md);
+ background: var(--bg-deep);
+ border: 1px solid var(--hairline);
  }
- .compliance-card h4 {
- color: var(--text-primary);
- font-size: 0.95rem;
- margin-bottom: 0.3rem;
+ .doc-card .compliance-card h3 {
+ display: flex;
+ flex-wrap: wrap;
+ align-items: center;
+ gap: var(--sp-2);
+ margin: 0 0 0.3rem;
+ font-size: 0.9375rem;
  }
- .compliance-card p {
- font-size: 0.85rem;
- color: var(--text-secondary);
- line-height: 1.55;
+ .doc-card .compliance-card p {
  margin: 0;
+ font-size: var(--fs-small);
+ line-height: 1.55;
  }
  .pill {
  display: inline-flex;
  align-items: center;
+ flex: none;
  padding: 0.2rem 0.55rem;
- border-radius: var(--radius-full);
- font-size: 0.7rem;
- font-weight: 700;
- margin-left: 0.4rem;
+ border-radius: var(--r-pill);
+ font: 700 0.6875rem/1.2 var(--font-mono);
  letter-spacing: 0.04em;
+ text-transform: uppercase;
  }
- .pill.ok { background: rgba(77,184,164,0.18); color: #9bdbcb; }
- .pill.partial { background: rgba(212,160,84,0.18); color: #f0c98a; }
- .pill.gap { background: rgba(212,113,126,0.18); color: #f5a8b3; }
- @media (max-width: 720px) {
- .doc-hero { padding: 7rem var(--space-lg) var(--space-lg); }
- .doc-container { padding: 0 var(--space-lg) var(--space-3xl); }
- .doc-card { padding: var(--space-xl); }
- }
+ li > .pill { margin-left: 0.4rem; }
+ .pill.ok { background: rgba(77, 184, 164, 0.18); color: #9bdbcb; }
+ .pill.partial { background: rgba(212, 160, 84, 0.18); color: #f0c98a; }
+ .pill.gap { background: rgba(212, 113, 126, 0.18); color: #f5a8b3; }
  </style>
 
     <!-- Cookie consent / Google Consent Mode v2 preboot -->
@@ -179,33 +127,50 @@
 }
     </script>
 </head>
-<body>
+<body class="page-subpage page-accessibility">
+    <a class="skip-link" href="#main">Skip to content</a>
  <div class="bg-gradient"></div>
  <div class="noise"></div>
 
- <nav>
- <a href="./" class="logo">
- <picture>
- <source srcset="OpenDropIcon-logo.webp" type="image/webp">
- <img src="OpenDropIcon.png" alt="OpenDrop" class="logo-icon" width="36" height="36" loading="lazy">
- </picture>
- OpenDrop
- </a>
- <div class="nav-links">
- <a href="./#features">Features</a>
- <a href="./#download">Download</a>
- <a href="support.html">Support</a>
- <a href="./#download" class="nav-cta">Get Started</a>
- </div>
- </nav>
+    <nav class="site-nav" aria-label="Main">
+        <span class="nav-lockup">
+            <a href="/" class="nav-lockup__home" aria-label="NFDGames home">
+                <picture>
+                    <source srcset="/NFDGamesLogoCircleTransparent.webp" type="image/webp">
+                    <img src="/NFDGamesLogoCircleTransparent.png" alt="" width="28" height="28">
+                </picture>
+            </a>
+            <span class="nav-lockup__sep" aria-hidden="true">/</span>
+            <a href="/OpenDrop/" class="logo">
+                <picture>
+                    <source srcset="/OpenDrop/OpenDropIcon-logo.webp" type="image/webp">
+                    <img src="/OpenDrop/OpenDropIcon.png" alt="" class="logo-icon" width="32" height="32">
+                </picture>
+                <span class="logo__word">OpenDrop</span>
+            </a>
+        </span>
+        <div class="nav-links" id="navLinks">
+            <a href="/OpenDrop/#features">Features</a>
+            <a href="/OpenDrop/#compare">Free vs Pro</a>
+            <a href="/blog/">Blog</a>
+            <a href="/OpenDrop/support.html">Support</a>
+        </div>
+        <div class="nav-actions">
+            <a href="/OpenDrop/#download" class="btn-cta btn-cta--sm">Download</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-controls="navLinks" aria-expanded="false" aria-label="Open menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
 
- <main>
- <section class="doc-hero">
- <h1>Accessibility Statement</h1>
- <p>NFDGames LLC works to make OpenDrop and nfdgames.com usable by everyone. This page describes our current conformance status, known gaps we are working on, and how to request an accommodation.</p>
- </section>
+ <main id="main" tabindex="-1">
+    <header class="subpage-head">
+        <div class="subpage-wrap section-head">
+            <p class="eyebrow">Accessibility</p>
+            <h1 class="section-title">Accessibility Statement</h1>
+            <p class="section-lede">NFDGames LLC works to make OpenDrop and nfdgames.com usable by everyone. This page describes our current conformance status, known gaps we are working on, and how to request an accommodation.</p>
+        </div>
+    </header>
 
- <div class="doc-container">
+ <div class="subpage-wrap subpage-body">
 
  <div class="doc-card">
  <h2>Conformance status</h2>
@@ -213,20 +178,20 @@
 
  <div class="compliance-grid">
  <div class="compliance-card">
- <h4>nfdgames.com web<span class="pill partial">Partial</span></h4>
+ <h3>nfdgames.com web<span class="pill partial">Partial</span></h3>
  <p>Marketing, blog, and policy pages. Conforms to most WCAG 2.1 AA criteria; known gaps listed below.</p>
  </div>
  <div class="compliance-card">
- <h4>OpenDrop iOS<span class="pill ok">Targeted</span></h4>
+ <h3>OpenDrop iOS<span class="pill ok">Targeted</span></h3>
  <p>Apple HIG accessibility. Supports VoiceOver, Dynamic Type, Reduce Motion, Reduce Transparency, and Smart Invert.</p>
  </div>
  <div class="compliance-card">
- <h4>OpenDrop Android<span class="pill ok">Targeted</span></h4>
+ <h3>OpenDrop Android<span class="pill ok">Targeted</span></h3>
  <p>Material 3 accessibility. Supports TalkBack, Display Size, Font Size, and high-contrast text where the OS provides it.</p>
  </div>
  <div class="compliance-card">
- <h4>OpenDrop desktop<span class="pill partial">Partial</span></h4>
- <p>Qt accessibility bridge enabled for screen readers (NVDA, VoiceOver, AT-SPI). Some custom widgets need additional ARIA-style labeling.</p>
+ <h3>OpenDrop desktop<span class="pill partial">Partial</span></h3>
+ <p>Qt accessibility bridge enabled for screen readers (NVDA on Windows, AT-SPI on Linux). Some custom widgets need additional ARIA-style labeling.</p>
  </div>
  </div>
  </div>
@@ -255,9 +220,9 @@
  </ul>
  <h3>Desktop</h3>
  <ul>
- <li>Qt accessibility bridge enables screen-reader navigation on Windows (NVDA, JAWS), macOS (VoiceOver), and Linux (Orca via AT-SPI).</li>
+ <li>Qt accessibility bridge enables screen-reader navigation on Windows (NVDA, JAWS) and Linux (Orca via AT-SPI). The macOS desktop app is not released yet.</li>
  <li>Full keyboard navigation, every action that can be done with the mouse can also be done with the keyboard.</li>
- <li>OS-level "Reduce motion" / "Reduce transparency" / dark-mode settings are honored.</li>
+ <li>OS-level "Reduce motion" / "Reduce transparency" settings are honored.</li>
  <li>Themed color palettes include high-contrast options.</li>
  </ul>
  </div>
@@ -266,7 +231,7 @@
  <h2>Known gaps we are working on</h2>
  <ul>
  <li><strong>Blog post code blocks</strong> on nfdgames.com don't carry an <code>aria-label</code> announcing the language; this can make code samples harder for screen-reader users to skim.<span class="pill partial">Web</span></li>
- <li><strong>Marketing-page coverflow carousel</strong> (the 3D screenshot stack on the OpenDrop landing page) is decorative; its underlying screenshots are reachable but the carousel controls are not keyboard-focusable. We plan to add focusable previous/next buttons and a pause-rotation control.<span class="pill gap">Web</span></li>
+ <li><strong>Screenshot carousel</strong> on the OpenDrop landing page rotates on its own every few seconds. It has keyboard-focusable Previous and Next buttons and position dots, responds to the arrow keys, and stops rotating while you hover over it, while it has keyboard focus, or when your system asks for reduced motion. There is no separate pause button yet; we plan to add a pause-rotation control.<span class="pill partial">Web</span></li>
  <li><strong>Cupertino dialogs on iOS 16</strong> can occasionally announce stale focus after dismissal. The 1.0 build mitigates this by re-focusing the previously-active element; it is not perfect.<span class="pill partial">iOS</span></li>
  <li><strong>File-thumbnail grid on mobile</strong> announces "image" rather than a more descriptive label. We will add filename + size announcements.<span class="pill partial">Mobile</span></li>
  <li><strong>Drag-and-drop on desktop</strong> requires a pointing device for some operations (e.g., reordering tabs). Keyboard equivalents are planned for a follow-up release.<span class="pill gap">Desktop</span></li>
@@ -304,14 +269,82 @@
  <p>This statement will be reviewed at least once per year, and after any major feature release.</p>
  </div>
 
- <p class="text-muted" style="text-align:center;font-size:0.85rem;margin-top:var(--space-xl);">
- Last updated: June 4, 2026 &nbsp;&middot;&nbsp;
- <a href="PrivacyPolicy.html" style="color:var(--accent);">Privacy Policy</a> &nbsp;&middot;&nbsp;
- <a href="TermsOfService.html" style="color:var(--accent);">Terms of Service</a> &nbsp;&middot;&nbsp;
- <a href="support.html" style="color:var(--accent);">Support</a>
+ <p class="subpage-note">
+ Last updated: June 4, 2026&nbsp;&middot; 
+ <a href="PrivacyPolicy.html">Privacy Policy</a>&nbsp;&middot; 
+ <a href="TermsOfService.html">Terms of Service</a>&nbsp;&middot; 
+ <a href="support.html">Support</a>
  </p>
  </div>
  </main>
+
+    <div class="seam" aria-hidden="true"></div>
+
+    <footer class="site-footer">
+        <div class="wrap site-footer__grid">
+            <div class="site-footer__brand">
+                <a href="/OpenDrop/" class="logo">
+                    <picture>
+                        <source srcset="/OpenDrop/OpenDropIcon-logo.webp" type="image/webp">
+                        <img src="/OpenDrop/OpenDropIcon.png" alt="" class="logo-icon" width="36" height="36" loading="lazy">
+                    </picture>
+                    OpenDrop
+                </a>
+                <p>OpenDrop by NFDGames. File transfer for Windows, Linux, iPhone, iPad and Android.</p>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">OpenDrop</h2>
+                <ul>
+                    <li><a href="/OpenDrop/">Overview</a></li>
+                    <li><a href="/OpenDrop/#download">Download</a></li>
+                    <li><a href="/OpenDrop/#compare">Free vs Pro</a></li>
+                    <li><a href="/OpenDrop/changelog.html">What's new in 1.0</a></li>
+                    <li><a href="/OpenDrop/support.html">Support</a></li>
+                    <li><a href="/OpenDrop/status.html">System status</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Guides</h2>
+                <ul>
+                    <li><a href="/blog/posts/best-airdrop-alternatives-windows-2026.html">AirDrop alternatives</a></li>
+                    <li><a href="/blog/posts/share-files-iphone-android.html">iPhone to Android</a></li>
+                    <li><a href="/blog/posts/transfer-files-android-to-pc-without-usb.html">Android to PC, no USB</a></li>
+                    <li><a href="/blog/posts/transfer-photos-iphone-to-windows-pc.html">iPhone photos to PC</a></li>
+                    <li><a href="/blog/posts/transfer-files-windows-to-linux.html">Windows to Linux</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Studio</h2>
+                <ul>
+                    <li><a href="/">NFDGames home</a></li>
+                    <li><a href="/#gunslinger">Gunslinger</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/OpenDrop/press.html">Press kit</a></li>
+                    <li><a href="https://play.google.com/store/apps/dev?id=6331541447390891189&amp;hl=en_US" target="_blank" rel="noopener">Apps on Google Play</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__col">
+                <h2 class="site-footer__title">Legal and security</h2>
+                <ul>
+                    <li><a href="/OpenDrop/PrivacyPolicy.html">Privacy Policy</a></li>
+                    <li><a href="/OpenDrop/TermsOfService.html">Terms of Service</a></li>
+                    <li><a href="/OpenDrop/security.html">Security and disclosure</a></li>
+                    <li><a href="/OpenDrop/accessibility.html">Accessibility</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="wrap site-footer__bottom">
+            <p>&copy; 2026 NFDGames. All rights reserved.</p>
+            <div class="site-footer__legal">
+                <a href="/OpenDrop/WithdrawalForm.html">EU/UK withdrawal</a>
+                <a href="/OpenDrop/third-party-notices.html">Third-party notices</a>
+                <a href="/OpenDrop/docs/export-compliance/">Export compliance</a>
+                <a href="mailto:support@nfdgames.com">support@nfdgames.com</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/scripts/common.js"></script>
 
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
