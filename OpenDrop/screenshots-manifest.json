@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-10T05:17:58.767Z",
+  "generated": "2026-10-10T07:09:15.709Z",
   "sources": {
     "windows": "https://apps.microsoft.com/store/detail/XP99SJJTQXZ9WT",
     "ios": "https://apps.apple.com/us/app/opendrop/id6757438202",
@@ -83,94 +83,112 @@
     {
       "url": "screenshots/ios/bd376f34d4c7.webp",
       "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/30/f5/82/30f582ae-eb26-5e7a-876a-4f5081397806/image_A070DC9C-CF6B-478E-892A-B001FE4EEDF2_1778257667.png/1080x0w.webp",
-      "alt": "OpenDrop iOS screenshot 1"
+      "alt": "OpenDrop iOS screenshot 1",
+      "reused": true
     },
     {
       "url": "screenshots/ios/f57bb7192d8d.webp",
       "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/a7/70/81/a770813b-d329-9a59-79c0-558d60b56988/image_108500A8-FABE-4A93-8023-34BA748DAAE8_1778257667.png/1080x0w.webp",
-      "alt": "OpenDrop iOS screenshot 2"
+      "alt": "OpenDrop iOS screenshot 2",
+      "reused": true
     },
     {
       "url": "screenshots/ios/2ef9dc605994.webp",
       "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/02/d1/68/02d1682c-022a-a160-cb0d-1d95f970d2bb/image_B892F809-48E4-468E-9A7A-41394B4471DB_1778257667.png/1080x0w.webp",
-      "alt": "OpenDrop iOS screenshot 3"
+      "alt": "OpenDrop iOS screenshot 3",
+      "reused": true
     },
     {
       "url": "screenshots/ios/7ff8548ba50b.webp",
       "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/cc/90/eb/cc90eb10-7599-2349-bcc9-c1b8c80d2443/image_8B2A0233-4912-44E6-A371-F95C24AB1A4A_1778257667.png/1080x0w.webp",
-      "alt": "OpenDrop iOS screenshot 4"
+      "alt": "OpenDrop iOS screenshot 4",
+      "reused": true
     },
     {
       "url": "screenshots/ios/f1f540828c3b.webp",
       "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/b8/c3/a6/b8c3a608-f43d-91d9-ac07-6998113eac7d/image_99381B2D-208C-4B04-BADD-985227245AA9_1778257667.png/1080x0w.webp",
-      "alt": "OpenDrop iOS screenshot 5"
+      "alt": "OpenDrop iOS screenshot 5",
+      "reused": true
     },
     {
       "url": "screenshots/ios/9dae5cd3ebf2.webp",
       "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/c9/30/c6/c930c658-7dc0-dd47-0ad8-a661cd145bb0/image_83AEEFA6-E16F-4741-823B-EF62608B614A_1778257667.png/1080x0w.webp",
-      "alt": "OpenDrop iOS screenshot 6"
+      "alt": "OpenDrop iOS screenshot 6",
+      "reused": true
     },
     {
       "url": "screenshots/ios/ac88e1055f3a.webp",
       "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/31/85/bc/3185bc8e-ad74-9b20-aefd-6b2badd9f18e/image_E58CE087-7D41-4ECB-8AEF-EC678EE39890_1778257667.png/1080x0w.webp",
-      "alt": "OpenDrop iOS screenshot 7"
+      "alt": "OpenDrop iOS screenshot 7",
+      "reused": true
     },
     {
       "url": "screenshots/ios/fd772b07ea32.webp",
       "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/22/2c/a8/222ca857-36d0-669b-5996-b29cb840eab7/image_AED9AE9E-48D2-4671-A8C2-75444636F1A7_1778257667.png/1080x0w.webp",
-      "alt": "OpenDrop iOS screenshot 8"
+      "alt": "OpenDrop iOS screenshot 8",
+      "reused": true
     },
     {
       "url": "screenshots/ios/136896a93d7d.webp",
       "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/2e/69/18/2e6918bb-7ac8-3705-901f-129dd53f8d75/image_9FA49CC1-F49B-4E6E-BC2A-05B8A5B25930_1778257667.png/1080x0w.webp",
-      "alt": "OpenDrop iOS screenshot 9"
+      "alt": "OpenDrop iOS screenshot 9",
+      "reused": true
     }
   ],
   "mac": [
     {
       "url": "screenshots/mac/bd376f34d4c7.webp",
       "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/30/f5/82/30f582ae-eb26-5e7a-876a-4f5081397806/image_A070DC9C-CF6B-478E-892A-B001FE4EEDF2_1778257667.png/1080x0w.webp",
-      "alt": "OpenDrop macOS screenshot 1"
+      "alt": "OpenDrop macOS screenshot 1",
+      "reused": true
     },
     {
       "url": "screenshots/mac/f57bb7192d8d.webp",
       "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/a7/70/81/a770813b-d329-9a59-79c0-558d60b56988/image_108500A8-FABE-4A93-8023-34BA748DAAE8_1778257667.png/1080x0w.webp",
-      "alt": "OpenDrop macOS screenshot 2"
+      "alt": "OpenDrop macOS screenshot 2",
+      "reused": true
     },
     {
       "url": "screenshots/mac/2ef9dc605994.webp",
       "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/02/d1/68/02d1682c-022a-a160-cb0d-1d95f970d2bb/image_B892F809-48E4-468E-9A7A-41394B4471DB_1778257667.png/1080x0w.webp",
-      "alt": "OpenDrop macOS screenshot 3"
+      "alt": "OpenDrop macOS screenshot 3",
+      "reused": true
     },
     {
       "url": "screenshots/mac/7ff8548ba50b.webp",
       "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/cc/90/eb/cc90eb10-7599-2349-bcc9-c1b8c80d2443/image_8B2A0233-4912-44E6-A371-F95C24AB1A4A_1778257667.png/1080x0w.webp",
-      "alt": "OpenDrop macOS screenshot 4"
+      "alt": "OpenDrop macOS screenshot 4",
+      "reused": true
     },
     {
       "url": "screenshots/mac/f1f540828c3b.webp",
       "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/b8/c3/a6/b8c3a608-f43d-91d9-ac07-6998113eac7d/image_99381B2D-208C-4B04-BADD-985227245AA9_1778257667.png/1080x0w.webp",
-      "alt": "OpenDrop macOS screenshot 5"
+      "alt": "OpenDrop macOS screenshot 5",
+      "reused": true
     },
     {
       "url": "screenshots/mac/9dae5cd3ebf2.webp",
       "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/c9/30/c6/c930c658-7dc0-dd47-0ad8-a661cd145bb0/image_83AEEFA6-E16F-4741-823B-EF62608B614A_1778257667.png/1080x0w.webp",
-      "alt": "OpenDrop macOS screenshot 6"
+      "alt": "OpenDrop macOS screenshot 6",
+      "reused": true
     },
     {
       "url": "screenshots/mac/ac88e1055f3a.webp",
       "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/31/85/bc/3185bc8e-ad74-9b20-aefd-6b2badd9f18e/image_E58CE087-7D41-4ECB-8AEF-EC678EE39890_1778257667.png/1080x0w.webp",
-      "alt": "OpenDrop macOS screenshot 7"
+      "alt": "OpenDrop macOS screenshot 7",
+      "reused": true
     },
     {
       "url": "screenshots/mac/fd772b07ea32.webp",
       "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/22/2c/a8/222ca857-36d0-669b-5996-b29cb840eab7/image_AED9AE9E-48D2-4671-A8C2-75444636F1A7_1778257667.png/1080x0w.webp",
-      "alt": "OpenDrop macOS screenshot 8"
+      "alt": "OpenDrop macOS screenshot 8",
+      "reused": true
     },
     {
       "url": "screenshots/mac/136896a93d7d.webp",
       "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/2e/69/18/2e6918bb-7ac8-3705-901f-129dd53f8d75/image_9FA49CC1-F49B-4E6E-BC2A-05B8A5B25930_1778257667.png/1080x0w.webp",
-      "alt": "OpenDrop macOS screenshot 9"
+      "alt": "OpenDrop macOS screenshot 9",
+      "reused": true
     }
   ],
   "heroImage": "https://www.nfdgames.com/OpenDrop/screenshots/ios/bd376f34d4c7.webp"
