@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-13T15:02:28.748Z",
+  "generated": "2026-10-14T12:52:12.510Z",
   "sources": {
     "windows": "https://apps.microsoft.com/store/detail/XP99SJJTQXZ9WT",
     "ios": "https://apps.apple.com/us/app/opendrop/id6757438202",
@@ -7,76 +7,67 @@
   },
   "windows": [
     {
-      "url": "screenshots/windows/b633f22766ab.png",
-      "source_url": "https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxnVsw_ms9ZuVpZ5c61SOaIWT3boUEM1ThFABHUgAM2WMGFnyTrUTemVugY3oBhNrc34ZpHI9177tiCAUxNsuCjI-&format=source",
+      "url": "screenshots/windows/e7a448a2d478.png",
+      "source_url": "https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxnVsw_ms9ZuVpZ5c61SOaIUH1HvjQSXtBiDpLtJUrPjh16AMtmbIX2JkkknaOjvJRDMuBp1d.OfaSqpJCeVrsTA-&format=source",
       "alt": "OpenDrop Windows screenshot 1",
       "width": 1234,
-      "height": 1397,
-      "reused": true
+      "height": 1397
     },
     {
-      "url": "screenshots/windows/3ee65010f001.png",
-      "source_url": "https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxnVsw_ms9ZuVpZ5c61SOaIWbKqqDUUJK786T_IS8i2IPGc.6pf_na6uehz76f.aQca7DrElcY_7MPOLtD_1sYMk-&format=source",
+      "url": "screenshots/windows/49e89b2e0b4c.png",
+      "source_url": "https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxnVsw_ms9ZuVpZ5c61SOaIW.o0RQXyrGfiDTRbS1kxdyWhDJSEyf6VFVkPGX7yMRLiFUbK_Kj9XSYj2fwe2wlmQ-&format=source",
       "alt": "OpenDrop Windows screenshot 2",
       "width": 1234,
-      "height": 1397,
-      "reused": true
+      "height": 1397
     },
     {
-      "url": "screenshots/windows/0d374850ece0.png",
-      "source_url": "https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxnVsw_ms9ZuVpZ5c61SOaIUdZkJ5ZG7AG7CKlSe40rdBBExgV9KmfUeJp.y2SGiEJBNCApNrJeiLBaVR6gnaC5s-&format=source",
+      "url": "screenshots/windows/de3a844201a6.png",
+      "source_url": "https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxnVsw_ms9ZuVpZ5c61SOaIVwvesUrivCpgl9ity1aN_58wwKNKDK5cX2wiYkdVCzMebPws8amNG2w0Iemj9kXRo-&format=source",
       "alt": "OpenDrop Windows screenshot 3",
       "width": 1234,
-      "height": 1397,
-      "reused": true
+      "height": 1397
     },
     {
-      "url": "screenshots/windows/fecaabf199c6.png",
-      "source_url": "https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxnVsw_ms9ZuVpZ5c61SOaIWwF2vmZtAzX1yzswcML8UvFZzSKUgVTWIPfI_zDNhvofvUt4scjURfJ2fi5orrH0U-&format=source",
+      "url": "screenshots/windows/be22804a3821.png",
+      "source_url": "https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxnVsw_ms9ZuVpZ5c61SOaIVkNqa4.WyfOkaXr0kULW7tVfvm84k2nJZmyy46KVygpeXBEFyJfW3stGs2JlY1iaI-&format=source",
       "alt": "OpenDrop Windows screenshot 4",
       "width": 1234,
-      "height": 1397,
-      "reused": true
+      "height": 1397
     },
     {
-      "url": "screenshots/windows/120da5616199.png",
-      "source_url": "https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxnVsw_ms9ZuVpZ5c61SOaIVWLnSFbBHubxDPlAXzh_YCX2ob3f.on_HGUmkcswleDz6c7W7P9rtpZYkjSJX3224-&format=source",
+      "url": "screenshots/windows/9854857fd468.png",
+      "source_url": "https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxnVsw_ms9ZuVpZ5c61SOaIUZ4aAGFsmXlT5I5pToJiUzWYjK9A.cSUnozAsAu8GBWOURNhEZCpeUM78n4NZ80w8-&format=source",
       "alt": "OpenDrop Windows screenshot 5",
       "width": 1234,
-      "height": 1397,
-      "reused": true
+      "height": 1397
     },
     {
-      "url": "screenshots/windows/96c03329287e.png",
-      "source_url": "https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxnVsw_ms9ZuVpZ5c61SOaIU8lPHKetDNViFkgkeY.GXdfwOdUc.DvK1b4bzNxnh6EnsktcHuGPxvAeI__Y_YGYI-&format=source",
+      "url": "screenshots/windows/1c1494d1f355.png",
+      "source_url": "https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxnVsw_ms9ZuVpZ5c61SOaIVq1n4j5YjjT60WqpSyUJ9_hOciSGRbyUxO2kaEsXaIfiwBvYJn_mj27bWIVYWpZJo-&format=source",
       "alt": "OpenDrop Windows screenshot 6",
       "width": 1234,
-      "height": 1397,
-      "reused": true
+      "height": 1397
     },
     {
-      "url": "screenshots/windows/1418c4674110.png",
-      "source_url": "https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxnVsw_ms9ZuVpZ5c61SOaIVXdBGLkIvL.3iTw6cIo4reqDhnz.t_7gsGsMEOMHpxO9uy.9RrRx6r3FRaniUsqsg-&format=source",
+      "url": "screenshots/windows/7b7c5ddc31f0.png",
+      "source_url": "https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxnVsw_ms9ZuVpZ5c61SOaIUyOBWRqMdDBmJcYN8BBA6Y73NlBsDjgo4WtnoZzVSyuQyoTNdgp_NJI101owxybaQ-&format=source",
       "alt": "OpenDrop Windows screenshot 7",
       "width": 1234,
-      "height": 1397,
-      "reused": true
+      "height": 1397
     },
     {
-      "url": "screenshots/windows/7866741dc60f.png",
-      "source_url": "https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxnVsw_ms9ZuVpZ5c61SOaIXATvJ7wuz3safS2.0iX8E2HLiPR73EdNJUkmMY.kJyCpaFWwkkgIJJ4WKCuod.GIM-&format=source",
+      "url": "screenshots/windows/d72f9eb9c526.png",
+      "source_url": "https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxnVsw_ms9ZuVpZ5c61SOaIUT3BjKLyQxwv6PQaCSkDW_8LtWgju6N32vCvt.5shMc_kth8cd4_H8O.Obz.X1ypM-&format=source",
       "alt": "OpenDrop Windows screenshot 8",
       "width": 1234,
-      "height": 1397,
-      "reused": true
+      "height": 1397
     },
     {
-      "url": "screenshots/windows/4f4e68a552d2.png",
-      "source_url": "https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxnVsw_ms9ZuVpZ5c61SOaIUyv90WNg8TDRiDwiQdmEOz9nF1iv8b92kVKyD3A438HvNHy6OAOeCOvM6a0WHJnLs-&format=source",
+      "url": "screenshots/windows/b19cbf38697e.png",
+      "source_url": "https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxnVsw_ms9ZuVpZ5c61SOaIUX2tpSN8yZpdKCON3t3kDJZWzdpdSpKJMTxldn4yiPCfh641fqEYB7GhHisPUc7Z4-&format=source",
       "alt": "OpenDrop Windows screenshot 9",
       "width": 1234,
-      "height": 1397,
-      "reused": true
+      "height": 1397
     }
   ],
   "ios": [
