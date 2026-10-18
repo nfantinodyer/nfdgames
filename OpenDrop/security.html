@@ -201,12 +201,13 @@
  <li>Whether you intend to disclose publicly, and on what timeline.</li>
  <li>Whether you would like credit in our acknowledgments below.</li>
  </ul>
- <h3>What we commit to</h3>
+ <h3>What we aim to do</h3>
+ <p class="doc-aside">These are the targets we work to, not guarantees: OpenDrop is a one-person product and timelines can move with the severity and complexity of a report.</p>
  <ul>
- <li><strong>Acknowledge receipt within 3 business days.</strong></li>
- <li><strong>Triage and initial assessment within 7 business days</strong>, with a severity rating and a target fix window.</li>
- <li><strong>Keep you informed</strong> as we investigate. We will not surprise you with disclosure timelines.</li>
- <li><strong>Coordinate public disclosure</strong> with you. Default 90-day disclosure window from triage, extendable for hardware/supply-chain issues.</li>
+ <li><strong>Acknowledge receipt</strong>, aiming for 3 business days.</li>
+ <li><strong>Triage and give an initial assessment</strong>, aiming for 7 business days, with a severity rating and a target fix window.</li>
+ <li><strong>Keep you informed</strong> as we investigate and as the fix ships.</li>
+ <li><strong>Document the fix</strong>: once a fix has shipped, we note it in the <a href="/OpenDrop/changelog.html">OpenDrop changelog</a> and, where it helps users, publish a short advisory on this page. We let you know before anything that references your report is published, and we will not surprise you with timelines.</li>
  <li><strong>Credit you</strong> in our acknowledgments (Hall of Fame, below) unless you request otherwise.</li>
  </ul>
  </div>
@@ -240,7 +241,7 @@
 
  <div class="doc-card">
  <h2>Severity rubric</h2>
- <p>We use a simple four-tier rubric, not CVSS. The tier dictates response speed and the order in which we ship fixes.</p>
+ <p>We use a simple four-tier rubric, not CVSS. The tier guides response speed and the order in which we ship fixes. The fix windows below are targets we aim for, not commitments.</p>
  <div class="table-scroll">
  <table class="doc-table severity-table">
  <thead>
@@ -264,7 +265,7 @@
  </tr>
  <tr>
  <td><span class="pill low">Low</span></td>
- <td>Hardening recommendations; missing security headers on non-sensitive pages; minor information disclosure (e.g., software version in error messages); rate-limit gaps without amplification.</td>
+ <td>Hardening recommendations; missing HTTP hardening headers (CSP, HSTS, X-Frame-Options) on non-sensitive web pages; minor information disclosure (e.g., software version in error messages); rate-limit gaps without amplification.</td>
  <td>Best-effort, no commitment</td>
  </tr>
  </tbody>
@@ -287,7 +288,7 @@
  <li>Only access, copy, or modify accounts and data that you own or have explicit permission to test.</li>
  <li>Do not run automated scanning that could cause service degradation.</li>
  <li>Do not exfiltrate or retain data beyond what is necessary to demonstrate the vulnerability, and destroy any data obtained when the report is acknowledged.</li>
- <li>Give us a reasonable amount of time (per the severity rubric above) to fix the issue before publicly disclosing.</li>
+ <li>Give us a reasonable amount of time (the severity rubric above is our guide) to fix the issue before publicly disclosing.</li>
  <li>Do not extort, threaten, or otherwise pressure NFDGames LLC.</li>
  </ul>
  <p>This safe-harbor extends only to claims by NFDGames LLC. We cannot waive claims by third parties whose systems you may inadvertently touch (e.g., our cloud providers). When in doubt, ask first.</p>
@@ -295,10 +296,10 @@
 
  <div class="doc-card">
  <h2>Compensation</h2>
- <p>OpenDrop is a one-person product and we do not currently operate a paid bug-bounty program. We compensate researchers in the following non-monetary ways:</p>
+ <p>OpenDrop is a one-person product and we do not currently operate a paid bug-bounty program. We thank researchers in the following non-monetary ways, at our discretion:</p>
  <ul>
  <li><strong>Acknowledgment</strong> in the Hall of Fame on this page (and in product release notes where the fix ships).</li>
- <li><strong>A complimentary OpenDrop Pro subscription</strong> (lifetime) for any report we triage as Medium or higher.</li>
+ <li><strong>A complimentary OpenDrop Pro subscription</strong> (lifetime) for reports we triage as High or Critical.</li>
  <li><strong>Direct line</strong> to me (founder, sole engineer) for follow-up research questions.</li>
  </ul>
  <p>If your research uncovers something Critical with broad real-world impact and you would prefer monetary compensation in lieu of acknowledgment, contact us, we will negotiate in good faith case-by-case.</p>
@@ -307,13 +308,20 @@
  <div class="doc-card" id="hall-of-fame">
  <h2>Hall of Fame</h2>
  <p>We thank the following researchers for responsibly disclosing security issues in OpenDrop:</p>
- <p class="doc-aside hall-empty">No public disclosures yet, be the first.</p>
+ <ul>
+ <li><strong>Kang Kung</strong> (October 2026). Details will be published with the OpenDrop 1.0.2 / 1.0.3 security advisory.</li>
+ </ul>
+ </div>
+
+ <div class="doc-card" id="advisories">
+ <h2>Advisories</h2>
+ <p>Security advisories are published here after the fixed release is available to everyone. The advisory for the issue fixed in OpenDrop 1.0.2 and completed in 1.0.3 will be published after 1.0.3 ships.</p>
  </div>
 
  <div class="doc-card">
  <h2>What this policy is not</h2>
  <ul>
- <li>It is not a service-level agreement. It does not promise that any particular finding will be fixed, only that we will respond and assess.</li>
+ <li>It is a statement of practice, not a contract or a service-level agreement. It describes how we intend to work with researchers, does not promise that any particular finding will be fixed or fixed by a given date, and may change as the product does.</li>
  <li>It is not a guarantee of monetary reward. See "Compensation" above.</li>
  <li>It is not a license to test third-party systems. If your test path touches Cloudflare, Fly.io, Oracle Cloud, Firebase, Apple, or any other provider in our stack, you must comply with that provider's own policy in addition to ours.</li>
  <li>It does not authorize denial-of-service testing, social engineering, or physical-security testing under any condition.</li>
