@@ -104,6 +104,17 @@
  color: var(--text-secondary);
  }
  .subpage-body .toc a:hover { color: var(--accent-glow); }
+ .license-text {
+ margin: var(--sp-2) 0 var(--sp-4);
+ padding: var(--sp-4) var(--sp-5);
+ border-radius: var(--r-md);
+ background: var(--bg-deep);
+ border: 1px solid var(--hairline);
+ font: 0.75rem/1.55 var(--font-mono);
+ color: var(--text-secondary);
+ white-space: pre-wrap;
+ overflow-wrap: anywhere;
+ }
  @media (max-width: 640px) {
  .doc-card .pkg-grid { grid-template-columns: minmax(0, 1fr); }
  .toc { padding: var(--sp-4); }
@@ -218,11 +229,14 @@
  <ul>
  <li><a href="#mobile">Mobile apps (iOS, Android)</a></li>
  <li><a href="#desktop">Desktop server (Windows, Linux)</a></li>
+ <li><a href="#icons">Desktop icon set (Lucide)</a></li>
+ <li><a href="#p2p">Peer-to-peer (WebRTC) components</a></li>
  <li><a href="#bundled-binaries">Bundled native binaries</a></li>
  <li><a href="#worker">Cloudflare Worker</a></li>
  <li><a href="#relay">OpenDrop relay (Fly.io + Oracle Cloud)</a></li>
  <li><a href="#installers">Installers &amp; signing</a></li>
  <li><a href="#fonts">Fonts &amp; web assets</a></li>
+ <li><a href="#full-texts">Full license texts</a></li>
  <li><a href="#how-to-request">Request a license text</a></li>
  </ul>
  </div>
@@ -239,7 +253,6 @@
  <li>cryptography 2.9.0</li>
  <li>cryptography_flutter 2.3.4</li>
  <li>google_fonts 8.1.0</li>
- <li>multidict, yarl, frozenlist, aiosignal</li>
  <li>com.android.tools:desugar_jdk_libs 2.1.4</li>
  <li>Firebase Android client libraries (BoM 34.11.0)</li>
  <li>Google Play services (play-services-auth/base/tasks)</li>
@@ -318,7 +331,7 @@
  <ul class="pkg-grid">
  <li>aiohttp + transitives (multidict, yarl, attrs, frozenlist, aiosignal, async-timeout)</li>
  <li>requests + google-auth-oauthlib</li>
- <li>cryptography (dual MIT/Apache; OpenSSL backend, see below)</li>
+ <li>cryptography (Apache-2.0 OR BSD-3-Clause; OpenSSL backend, see below)</li>
  <li>typing-extensions / annotated-types</li>
  <li>google-auth, cachetools (Apache)</li>
  </ul>
@@ -363,6 +376,86 @@
 
  <h3>OpenSSL Apache 2.0 (since OpenSSL 3.0)</h3>
  <p>The Python <code>cryptography</code> wheel statically links a build of OpenSSL. OpenSSL is licensed under the Apache License 2.0 as of OpenSSL 3.0. <a href="https://www.openssl.org/source/license.html">openssl.org/source/license</a></p>
+ </div>
+
+ <div class="doc-card" id="icons">
+ <h2><span class="platform-tag">Desktop</span> Icon set (Lucide)</h2>
+ <p>The desktop app's interface icons are SVG glyphs from <strong>Lucide</strong> (<code>lucide-static</code> 0.563.0), bundled inside the desktop application. Lucide is licensed under the ISC License; the portions of Lucide derived from Feather are licensed under the MIT License. <a href="https://lucide.dev">lucide.dev</a> · <a href="https://github.com/lucide-icons/lucide">github.com/lucide-icons/lucide</a></p>
+ <p>The notice below is the <code>LICENSE</code> file of the lucide-static 0.563.0 package, reproduced as published:</p>
+ <pre class="license-text">ISC License
+
+Copyright (c) for portions of Lucide are held by Cole Bemis 2013-2026 as part of Feather (MIT). All other copyright (c) for Lucide are held by Lucide Contributors 2026.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+---
+
+The MIT License (MIT) (for portions derived from Feather)
+
+Copyright (c) 2013-2026 Cole Bemis
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+</pre>
+ </div>
+
+ <div class="doc-card" id="p2p">
+ <h2><span class="platform-tag">Desktop / Mobile</span> Peer-to-peer (WebRTC) components</h2>
+ <p>OpenDrop's peer-to-peer transfer is built on WebRTC and uses the WebRTC data channel only: it transfers file bytes and never captures, encodes, decodes, records or transmits audio or video. On the desktop it uses aiortc; on mobile it uses flutter_webrtc. The desktop build replaces the PyAV (<code>av</code>) package that aiortc depends on with a small stub, so no PyAV code and no FFmpeg from the WebRTC stack ships in OpenDrop; this stack has no LGPL or GPL components. The full license text of each component is in <a href="#full-texts"><code>THIRD_PARTY_LICENSES.txt</code></a>.</p>
+
+ <h3>Desktop (aiortc stack)</h3>
+ <ul class="pkg-grid">
+ <li><a href="https://github.com/aiortc/aiortc">aiortc</a>, BSD-3-Clause</li>
+ <li><a href="https://github.com/aiortc/aioice">aioice</a>, BSD-3-Clause</li>
+ <li><a href="https://github.com/aiortc/pylibsrtp">pylibsrtp</a>, BSD-3-Clause</li>
+ <li><a href="https://github.com/cisco/libsrtp">libsrtp</a>, BSD-3-Clause (statically linked into pylibsrtp)</li>
+ <li><a href="https://github.com/python-cffi/cffi">cffi</a>, MIT</li>
+ <li><a href="https://github.com/eliben/pycparser">pycparser</a>, BSD-3-Clause</li>
+ <li><a href="https://github.com/pyca/cryptography">cryptography</a>, Apache-2.0 OR BSD-3-Clause</li>
+ <li><a href="https://github.com/googleapis/python-crc32c">google-crc32c</a>, Apache-2.0</li>
+ <li><a href="https://github.com/jfhbrook/pyee">pyee</a>, MIT</li>
+ <li><a href="https://github.com/rthalley/dnspython">dnspython</a>, ISC</li>
+ <li><a href="https://github.com/pydron/ifaddr">ifaddr</a>, MIT</li>
+ <li><a href="https://github.com/pyca/pyopenssl">pyOpenSSL</a>, Apache-2.0 (when compiled into the binary)</li>
+ </ul>
+
+ <h3>Mobile (flutter_webrtc and its native library)</h3>
+ <p>The mobile flutter_webrtc plugin bundles a prebuilt Google WebRTC native library (<code>libwebrtc.aar</code> on Android, <code>WebRTC.xcframework</code> on iOS) that statically links the libraries below. The video and image libraries (libvpx, libyuv) are listed because they are compiled into that binary, not because OpenDrop uses any media code.</p>
+ <ul class="pkg-grid">
+ <li><a href="https://github.com/flutter-webrtc/flutter-webrtc">flutter_webrtc</a>, MIT</li>
+ <li><a href="https://webrtc.googlesource.com/src">libwebrtc</a>, BSD-3-Clause</li>
+ <li><a href="https://boringssl.googlesource.com/boringssl">BoringSSL</a>, OpenSSL / ISC</li>
+ <li><a href="https://github.com/cisco/libsrtp">libsrtp</a>, BSD-3-Clause</li>
+ <li><a href="https://github.com/sctplab/usrsctp">usrsctp</a>, BSD-3-Clause</li>
+ <li><a href="https://chromium.googlesource.com/webm/libvpx">libvpx</a>, BSD-3-Clause</li>
+ <li><a href="https://chromium.googlesource.com/libyuv/libyuv">libyuv</a>, BSD-3-Clause</li>
+ <li><a href="https://github.com/abseil/abseil-cpp">Abseil</a>, Apache-2.0</li>
+ </ul>
  </div>
 
  <div class="doc-card" id="bundled-binaries">
@@ -422,6 +515,11 @@
  </ul>
  </div>
 
+ <div class="doc-card" id="full-texts">
+ <h2>Full license texts</h2>
+ <p>The desktop app ships a <code>THIRD_PARTY_LICENSES.txt</code> file with the full license text of each peer-to-peer component above, the Lucide icon notice, and the Qt for Python (PySide6) notice with its written offer of source code. A copy of that file is published here: <a href="THIRD_PARTY_LICENSES.txt">THIRD_PARTY_LICENSES.txt</a>.</p>
+ </div>
+
  <div class="doc-card" id="how-to-request">
  <h2>Request a license text or LGPL source archive</h2>
  <p>For the full verbatim license text of any component listed above (or for the corresponding source code of any LGPL-licensed component), email <a href="mailto:support@nfdgames.com">support@nfdgames.com</a> with the subject line "Third-Party License Request" and the component name. We will respond within 5 business days with a download link or, where the license text is short, the text inline.</p>
@@ -429,7 +527,7 @@
  </div>
 
  <p class="subpage-note">
- Last updated: October 10, 2026&nbsp;&middot;  Build <code>1.0.0+27</code> (mobile) / <code>1.0.0</code> (desktop)&nbsp;&middot; 
+ Last updated: November 22, 2026&nbsp;&middot;  Build <code>1.0.0+27</code> (mobile) / <code>1.0.0</code> (desktop)&nbsp;&middot; 
  <a href="changelog.html">Release notes</a>
  </p>
  </div>
